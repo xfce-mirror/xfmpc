@@ -1,0 +1,36 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-01-19 10:03+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/interface.c:123
+msgid "Xfmpc"
+msgstr ""
+
+#. override the volume changed signal
+#: ../src/interface.c:168 ../src/interface.c:354
+msgid "Not connected"
+msgstr ""
+
+#: ../src/interface.c:365
+msgid "Stopped"
+msgstr ""
+
+#. subtitle
+#: ../src/interface.c:389
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr ""

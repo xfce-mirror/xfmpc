@@ -1,0 +1,88 @@
+2008-01-19	Mike Massonnet <mmassonnet@xfce.org>
+
+	* AUTHORS, ChangeLog, README, po/ChangeLog:
+	  - Update text files
+
+2008-01-19	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/interface.c, src/interface.h:
+	  - Set xfmpc_interface_refresh static
+	  - Add static xfmpc_interface_reconnect
+	* src/interface.c(xfmpc_interface_init),
+	  src/interface.c(xfmpc_interface_refresh),
+	  src/mpdclient.c(xfmpc_mpdclient_is_stopped):
+	  - Add messages for stopped and disconnected state
+
+2008-01-18	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/interface.c:
+	  - Merge xfmpc_interface_set_fraction inside xfmpc_interface_set_time
+
+2008-01-18	Mike Massonnet <mmassonnet@xfce.org>
+
+	* configure.in.in: Bump GTK+ version to 2.12
+	* src/interface.h, src/interface.c:
+	  - Remove xfmpc_interface_volume_scroll_event
+	  - Add xfmpc_interface_volume_changed
+	* src/interface.c(interface_init):
+	  - Insert a GtkVolumeButton as a replacement for the volume button and connect
+	  signal "value-changed" to xfmpc_interface_volume_changed
+	* src/interface.c(xfmpc_interface_set_volume),
+	  src/interface.c(xfmpc_interface_refresh_volume):
+	  - Update code to fit with the GtkVolumeButton
+	* src/interface.c(xfmpc_interface_set_fraction):
+	  - Check value to be between 0 and 1
+
+2008-01-17	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/interface.c(xfmpc_interface_init):
+	  - Connect signal on progress bar (inside event box) to seek in the track
+	* src/interface.h, src/interface.c:
+	  - New callback xfmpc_interface_progress_box_press_event
+	* src/mpdclient.h, src/mpdclient.c:
+	  - Rename xfmpc_mpdclient_set_track_position to xfmpc_mpdclient_set_song_time
+	  and complete the function
+
+2008-01-17	Mike Massonnet <mmassonnet@xfce.org>
+
+	* THANKS:
+	  - Update stuff
+	* src/Makefile.am:
+	  - Move lines out from foobar_CFLAGS inside INCLUDES
+	  - Add libxfce4util for debug macros
+	* configure.in.in, src/Makefile.am:
+	  - Add libmpd
+	* src/mpdclient.c, src/mpdclient.h:
+	  - New files
+	  - Interface with libmpd
+	* interface.c, interface.h:
+	  - Add an XfmpcMpdclient inside private structure
+	  - Connect signals + write callbacks for control buttons
+	  - Add timeout to refresh the info on the interface
+
+2008-01-16	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/interface.c, src/interface.h:
+	  - Refine the interface and add several _set methods.
+
+2008-01-15	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/Makefile.am, src/interface.c, src/main.c:
+	  - Code is runnable and compilable.
+	  - The first interface is done.
+
+2008-01-15	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Makefile.am, configure.in.in, po/POTFILES.in, po/fr.po, po/xfmpc.pot:
+	  - Fix compilation for po files
+	  - Add initial pot template
+	  - Add french translation
+
+2008-01-15	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/*: Initial code
+
+2008-01-14	Mike Massonnet <mmassonnet@xfce.org>
+
+	* */*: Initial source directory
+

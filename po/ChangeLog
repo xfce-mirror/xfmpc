@@ -1,0 +1,10 @@
+2008-01-19	Mike Massonnet <mmassonnet@xfce.org>
+
+	* *.po, *.pot: make update-po
+	* fr.po: Update French translations
+
+2008-01-15	Mike Massonnet <mmassonnet@xfce.org>
+
+	* xfmpc.pot: Merge strings.
+	* fr.po: Update French translations
+
