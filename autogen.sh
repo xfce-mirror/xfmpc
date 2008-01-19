@@ -2,7 +2,7 @@
 #
 # $Id$
 #
-# Copyright (c) 2002-2006
+# Copyright (c) 2002-2008
 #         The Thunar development team. All rights reserved.
 #
 # Written for Thunar by Benedikt Meurer <benny@xfce.org>.
@@ -29,9 +29,16 @@ EOF
 
 # substitute revision and linguas
 linguas=`sed -e '/^#/d' po/LINGUAS`
-revision=`LC_ALL=C svn info $0 | awk '/^Revision: / {printf "%04d\n", $2}'`
+if test -d .git/svn; then
+  revision=`LC_ALL=C git-svn find-rev HEAD`
+elif test -f .svn; then
+  revision=`LC_ALL=C svn info $0 | awk '/^Revision: / {printf "%05d\n", $2}'`
+else
+  revision=""
+fi
 sed -e "s/@LINGUAS@/${linguas}/g" \
     -e "s/@REVISION@/${revision}/g" \
     < "configure.in.in" > "configure.in"
 
 exec xdt-autogen $@
+

@@ -1,5 +1,11 @@
 2008-01-19	Mike Massonnet <mmassonnet@xfce.org>
 
+	* === Release 0.0.1 ===
+	* autogen.sh: Use .git/svn revision number if there
+	* configure.in.in: Remove svn version tag
+
+2008-01-19	Mike Massonnet <mmassonnet@xfce.org>
+
 	* AUTHORS, ChangeLog, README, po/ChangeLog:
 	  - Update text files
 
