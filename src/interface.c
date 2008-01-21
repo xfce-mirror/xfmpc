@@ -48,6 +48,8 @@ static void             xfmpc_interface_action_stop             (GtkAction *acti
                                                                  XfmpcInterface *interface);
 static void             xfmpc_interface_action_next             (GtkAction *action,
                                                                  XfmpcInterface *interface);
+static void             xfmpc_interface_action_volume           (GtkAction *action,
+                                                                 XfmpcInterface *interface);
 
 
 
@@ -80,11 +82,12 @@ struct _XfmpcInterfacePriv
 
 static const GtkActionEntry action_entries[] =
 {
-  { "previous", NULL, N_("Previous"), "<control>b", NULL, G_CALLBACK (xfmpc_interface_action_previous), },
-  { "pp", NULL, N_("Play/Pause"), "<control>p", NULL, G_CALLBACK (xfmpc_interface_action_pp), },
-  { "stop", NULL, N_("Stop"), "<control>s", NULL, G_CALLBACK (xfmpc_interface_action_stop), },
-  { "next", NULL, N_("Next"), "<control>f", NULL, G_CALLBACK (xfmpc_interface_action_next), },
-  { "quit", NULL, N_("Quit"), "<control>q", NULL, G_CALLBACK (gtk_main_quit), },
+  { "previous", NULL, "", "<control>b", NULL, G_CALLBACK (xfmpc_interface_action_previous), },
+  { "pp", NULL, "", "<control>p", NULL, G_CALLBACK (xfmpc_interface_action_pp), },
+  { "stop", NULL, "", "<control>s", NULL, G_CALLBACK (xfmpc_interface_action_stop), },
+  { "next", NULL, "", "<control>f", NULL, G_CALLBACK (xfmpc_interface_action_next), },
+  { "volume", NULL, "", "<control>v", NULL, G_CALLBACK (xfmpc_interface_action_volume), },
+  { "quit", NULL, "", "<control>q", NULL, G_CALLBACK (gtk_main_quit), },
 };
 
 
@@ -220,7 +223,6 @@ xfmpc_interface_init (XfmpcInterface *interface)
 
   /* === Accelerators === */
   GtkActionGroup *action_group = gtk_action_group_new ("XfmpcInterface");
-  gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
   gtk_action_group_add_actions (action_group, action_entries, G_N_ELEMENTS (action_entries), GTK_WINDOW (interface));
 
   GtkUIManager *ui_manager = gtk_ui_manager_new ();
@@ -469,5 +471,12 @@ xfmpc_interface_action_next (GtkAction *action,
                              XfmpcInterface *interface)
 {
   xfmpc_mpdclient_next (interface->priv->mpdclient);
+}
+
+static void
+xfmpc_interface_action_volume (GtkAction *action,
+                               XfmpcInterface *interface)
+{
+  g_signal_emit_by_name (interface->priv->button_volume, "popup", G_TYPE_NONE);
 }
 

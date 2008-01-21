@@ -4,6 +4,7 @@
   <accelerator action="pp" />
   <accelerator action="stop" />
   <accelerator action="next" />
+  <accelerator action="volume" />
   <accelerator action="quit" />
 
 </ui>

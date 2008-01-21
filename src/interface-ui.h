@@ -8,10 +8,10 @@ static const char xfmpc_interface_ui[] __attribute__ ((__aligned__ (4))) =
 static const char xfmpc_interface_ui[] =
 #endif
 {
-  "<ui>\n\n  <accelerator action=\"previous\" />\n  <accelerator action=\""
-  "pp\" />\n  <accelerator action=\"stop\" />\n  <accelerator action=\"nex"
-  "t\" />\n  <accelerator action=\"quit\" />\n\n</ui>\n\n"
+  "<ui><accelerator action=\"previous\" /><accelerator action=\"pp\" /><ac"
+  "celerator action=\"stop\" /><accelerator action=\"next\" /><accelerator"
+  " action=\"volume\" /><accelerator action=\"quit\" /></ui>"
 };
 
-static const unsigned xfmpc_interface_ui_length = 176u;
+static const unsigned xfmpc_interface_ui_length = 187u;
 
