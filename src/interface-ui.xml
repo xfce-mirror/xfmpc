@@ -1,0 +1,10 @@
+<ui>
+
+  <accelerator action="previous" />
+  <accelerator action="pp" />
+  <accelerator action="stop" />
+  <accelerator action="next" />
+  <accelerator action="quit" />
+
+</ui>
+

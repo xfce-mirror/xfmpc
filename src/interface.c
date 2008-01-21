@@ -25,6 +25,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "interface.h"
+#include "interface-ui.h"
 #include "mpdclient.h"
 
 #define BORDER 4
@@ -38,6 +39,15 @@ static void             xfmpc_interface_dispose                 (GObject *object
 static gboolean         xfmpc_interface_refresh                 (XfmpcInterface *interface);
 
 static gboolean         xfmpc_interface_reconnect               (XfmpcInterface *interface);
+
+static void             xfmpc_interface_action_previous         (GtkAction *action,
+                                                                 XfmpcInterface *interface);
+static void             xfmpc_interface_action_pp               (GtkAction *action,
+                                                                 XfmpcInterface *interface);
+static void             xfmpc_interface_action_stop             (GtkAction *action,
+                                                                 XfmpcInterface *interface);
+static void             xfmpc_interface_action_next             (GtkAction *action,
+                                                                 XfmpcInterface *interface);
 
 
 
@@ -64,6 +74,17 @@ struct _XfmpcInterfacePriv
   GtkWidget            *subtitle;
 
   gint                  volume;
+};
+
+
+
+static const GtkActionEntry action_entries[] =
+{
+  { "previous", NULL, N_("Previous"), "<control>b", NULL, G_CALLBACK (xfmpc_interface_action_previous), },
+  { "pp", NULL, N_("Play/Pause"), "<control>p", NULL, G_CALLBACK (xfmpc_interface_action_pp), },
+  { "stop", NULL, N_("Stop"), "<control>s", NULL, G_CALLBACK (xfmpc_interface_action_stop), },
+  { "next", NULL, N_("Next"), "<control>f", NULL, G_CALLBACK (xfmpc_interface_action_next), },
+  { "quit", NULL, N_("Quit"), "<control>q", NULL, G_CALLBACK (gtk_main_quit), },
 };
 
 
@@ -123,10 +144,6 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_window_set_title (GTK_WINDOW (interface), _("Xfmpc"));
   gtk_container_set_border_width (GTK_CONTAINER (interface), BORDER);
   g_signal_connect (G_OBJECT (interface), "delete-event", G_CALLBACK (gtk_main_quit), NULL);
-
-  /* === Accel group === */
-  GtkAccelGroup *accel_group = gtk_accel_group_new();
-  gtk_window_add_accel_group (GTK_WINDOW (interface), accel_group);
 
   /* === Interface widgets === */
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_PREVIOUS, GTK_ICON_SIZE_BUTTON);
@@ -200,6 +217,18 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_box_pack_start (GTK_BOX (vbox), box, FALSE, TRUE, 0);
   gtk_container_add (GTK_CONTAINER (box), interface->priv->title);
   gtk_container_add (GTK_CONTAINER (box), interface->priv->subtitle);
+
+  /* === Accelerators === */
+  GtkActionGroup *action_group = gtk_action_group_new ("XfmpcInterface");
+  gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
+  gtk_action_group_add_actions (action_group, action_entries, G_N_ELEMENTS (action_entries), GTK_WINDOW (interface));
+
+  GtkUIManager *ui_manager = gtk_ui_manager_new ();
+  gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
+  gtk_ui_manager_add_ui_from_string (ui_manager, xfmpc_interface_ui, xfmpc_interface_ui_length, NULL);
+
+  GtkAccelGroup *accel_group = gtk_ui_manager_get_accel_group (ui_manager);
+  gtk_window_add_accel_group (GTK_WINDOW (interface), accel_group);
 
   /* === Signals === */
   g_signal_connect_swapped (interface->priv->button_prev, "clicked",
@@ -410,5 +439,35 @@ xfmpc_interface_reconnect (XfmpcInterface *interface)
   /* Return FALSE to kill the reconnection timeout and start a refresh timeout */
   g_timeout_add (1000, (GSourceFunc)xfmpc_interface_refresh, interface);
   return FALSE;
+}
+
+
+
+static void
+xfmpc_interface_action_previous (GtkAction *action,
+                                 XfmpcInterface *interface)
+{
+  xfmpc_mpdclient_previous (interface->priv->mpdclient);
+}
+
+static void
+xfmpc_interface_action_pp (GtkAction *action,
+                           XfmpcInterface *interface)
+{
+  xfmpc_interface_pp_clicked (interface);
+}
+
+static void
+xfmpc_interface_action_stop (GtkAction *action,
+                             XfmpcInterface *interface)
+{
+  xfmpc_mpdclient_stop (interface->priv->mpdclient);
+}
+
+static void
+xfmpc_interface_action_next (GtkAction *action,
+                             XfmpcInterface *interface)
+{
+  xfmpc_mpdclient_next (interface->priv->mpdclient);
 }
 
