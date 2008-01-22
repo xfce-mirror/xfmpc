@@ -4,6 +4,8 @@ xfmpc_SOURCES =								\
 	main.c								\
 	interface.c							\
 	interface.h							\
+	preferences.c							\
+	preferences.h							\
 	mpdclient.c							\
 	mpdclient.h
 

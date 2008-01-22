@@ -26,6 +26,7 @@
 
 #include "interface.h"
 #include "interface-ui.h"
+#include "preferences.h"
 #include "mpdclient.h"
 
 #define BORDER 4
@@ -35,11 +36,14 @@
 static void             xfmpc_interface_class_init              (XfmpcInterfaceClass *klass);
 static void             xfmpc_interface_init                    (XfmpcInterface *interface);
 static void             xfmpc_interface_dispose                 (GObject *object);
+static void             xfmpc_interface_finalize                (GObject *object);
 
 static gboolean         xfmpc_interface_refresh                 (XfmpcInterface *interface);
 
 static gboolean         xfmpc_interface_reconnect               (XfmpcInterface *interface);
 
+static gboolean         xfmpc_interface_closed                  (XfmpcInterface *interface,
+                                                                 GdkEvent *event);
 static void             xfmpc_interface_action_previous         (GtkAction *action,
                                                                  XfmpcInterface *interface);
 static void             xfmpc_interface_action_pp               (GtkAction *action,
@@ -62,6 +66,7 @@ struct _XfmpcInterface
 {
   GtkWindow             parent;
   XfmpcInterfacePriv   *priv;
+  XfmpcPreferences     *preferences;
 };
 
 struct _XfmpcInterfacePriv
@@ -133,6 +138,7 @@ xfmpc_interface_class_init (XfmpcInterfaceClass *klass)
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->dispose = xfmpc_interface_dispose;
+  gobject_class->finalize = xfmpc_interface_finalize;
 }
 
 static void
@@ -142,11 +148,21 @@ xfmpc_interface_init (XfmpcInterface *interface)
   interface->priv->mpdclient = xfmpc_mpdclient_new ();
   interface->priv->volume = -1;
 
+  interface->preferences = xfmpc_preferences_get ();
+
+  gint posx, posy;
+  g_object_get (G_OBJECT (interface->preferences),
+                "last-window-posx", &posx,
+                "last-window-posy", &posy,
+                NULL);
+
   /* === Window === */
   gtk_window_set_icon_name (GTK_WINDOW (interface), "stock_volume");
   gtk_window_set_title (GTK_WINDOW (interface), _("Xfmpc"));
   gtk_container_set_border_width (GTK_CONTAINER (interface), BORDER);
-  g_signal_connect (G_OBJECT (interface), "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+  g_signal_connect (G_OBJECT (interface), "delete-event", G_CALLBACK (xfmpc_interface_closed), interface);
+  if (G_LIKELY (posx != -1 && posy != -1))
+    gtk_window_move (GTK_WINDOW (interface), posx, posy);
 
   /* === Interface widgets === */
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_PREVIOUS, GTK_ICON_SIZE_BUTTON);
@@ -254,6 +270,14 @@ xfmpc_interface_dispose (GObject *object)
   (*G_OBJECT_CLASS (parent_class)->dispose) (object);
 }
 
+static void
+xfmpc_interface_finalize (GObject *object)
+{
+  XfmpcInterface *interface = XFMPC_INTERFACE (object);
+  g_object_unref (G_OBJECT (interface->preferences));
+  (*G_OBJECT_CLASS (parent_class)->finalize) (object);
+}
+
 GtkWidget*
 xfmpc_interface_new ()
 {
@@ -299,7 +323,7 @@ gboolean
 xfmpc_interface_progress_box_press_event (XfmpcInterface *interface,
                                           GdkEventButton *event)
 {
-  if (G_UNLIKELY (event->type != GDK_BUTTON_PRESS && event->button != 1))
+  if (G_UNLIKELY (event->type != GDK_BUTTON_PRESS || event->button != 1))
     return FALSE;
 
   XfmpcMpdclient *mpdclient = interface->priv->mpdclient;
@@ -416,7 +440,7 @@ xfmpc_interface_refresh (XfmpcInterface *interface)
   /* title */
   xfmpc_interface_set_title (interface, xfmpc_mpdclient_get_title (mpdclient));
 
-  /* subtitle */
+  /* subtitle "by \"artist\" from \"album\" (year)" */
   text = g_strdup_printf (_("by \"%s\" from \"%s\" (%s)"),
                           xfmpc_mpdclient_get_artist (mpdclient),
                           xfmpc_mpdclient_get_album (mpdclient),
@@ -440,6 +464,22 @@ xfmpc_interface_reconnect (XfmpcInterface *interface)
 
   /* Return FALSE to kill the reconnection timeout and start a refresh timeout */
   g_timeout_add (1000, (GSourceFunc)xfmpc_interface_refresh, interface);
+  return FALSE;
+}
+
+static gboolean
+xfmpc_interface_closed (XfmpcInterface *interface,
+                        GdkEvent *event)
+{
+  gint posx, posy;
+  gtk_window_get_position (GTK_WINDOW (interface), &posx, &posy);
+
+  g_object_set (G_OBJECT (interface->preferences),
+                "last-window-posx", posx,
+                "last-window-posy", posy,
+                NULL);
+
+  gtk_main_quit ();
   return FALSE;
 }
 

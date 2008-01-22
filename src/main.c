@@ -26,12 +26,25 @@
 
 #include "interface.h"
 
+
+
+static void
+transform_string_to_int (const GValue *src,
+                         GValue *dst)
+{
+  g_value_set_int (dst, (gint) strtol (g_value_get_string (src), NULL, 10));
+}
+
+
+
 int
 main (int argc, char *argv[])
 {
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
   gtk_init (&argc, &argv);
+
+  g_value_register_transform_func (G_TYPE_STRING, G_TYPE_INT, transform_string_to_int);
 
   gtk_window_set_default_icon_name ("xfmpc");
 
