@@ -1,6 +1,8 @@
 2008-01-27 Mike Massonnet <mmassonnet@xfce.org>
 
 	* === Release 0.0.2 ===
+	* NEWS, src/Makefile.am:
+	  - Random fixes
 
 2008-01-26 Mike Massonnet <mmassonnet@xfce.org>
 

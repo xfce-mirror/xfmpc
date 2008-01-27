@@ -4,6 +4,8 @@
   and open the volume slider.
 - A cleaner interface to libmpd, with status handling.
 - A GObjectified XfmpcMpdclient.
+- A GObject XfmpcPreferences interface, so far it remembers the last position
+  of the XfmpcInterface.
 
     0.0.1 (2008-01-20)
 
