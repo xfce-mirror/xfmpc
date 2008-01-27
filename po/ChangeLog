@@ -1,4 +1,9 @@
+2008-01-27	Mike Massonnet <mmassonnet@xfce.org>
+
+	* *.po, *.pot: make update-po
+
 2008-01-21  Og Maciel <ogmaciel@gnome.org>
+
 	* pt_BR.po: Added Brazilian Portuguese translation by
 	Fábio Nogueira <deb-user-ba@ubuntu.com>
 
