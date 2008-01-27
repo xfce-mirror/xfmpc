@@ -37,8 +37,6 @@ typedef struct _XfmpcInterfacePriv      XfmpcInterfacePriv;
 
 GType                   xfmpc_interface_get_type                () G_GNUC_CONST;
 
-
-
 GtkWidget *             xfmpc_interface_new                     ();
 
 void                    xfmpc_interface_set_title               (XfmpcInterface *interface,

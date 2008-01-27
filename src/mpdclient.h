@@ -19,10 +19,17 @@
 #ifndef __XFMPC_MPDCLIENT_H__
 #define __XFMPC_MPDCLIENT_H__
 
-#include <glib.h>
-#include <libmpd/libmpd.h>
-
 G_BEGIN_DECLS
+
+#define XFMPC_TYPE_MPDCLIENT                (xfmpc_mpdclient_get_type())
+
+#define XFMPC_MPDCLIENT(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclient))
+#define XFMPC_MPDCLIENT_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclientClass))
+
+#define XFMPC_IS_MPDCLIENT(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_MPDCLIENT))
+#define XFMPC_IS_MPDCLIENT_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_MPDCLIENT))
+
+#define XFMPC_MPDCLIENT_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclientClass))
 
 typedef enum
 {
@@ -33,29 +40,19 @@ typedef enum
   TIME_CHANGED          = 1 << 4,
 } StatusField;
 
-typedef struct _XfmpcMpdclient          XfmpcMpdclient;
+typedef struct _XfmpcMpdclientClass         XfmpcMpdclientClass;
+typedef struct _XfmpcMpdclient              XfmpcMpdclient;
+typedef struct _XfmpcMpdclientPriv          XfmpcMpdclientPriv;
 
-struct _XfmpcMpdclient
-{
-  MpdObj               *mi;
-  gchar                *host;
-  guint                 port;
-  gchar                *passwd;
-
-  StatusField           status;
-};
+GType                   xfmpc_mpdclient_get_type                () G_GNUC_CONST;
 
 XfmpcMpdclient *        xfmpc_mpdclient_new                     ();
-
-void                    xfmpc_mpdclient_initenv                 (XfmpcMpdclient *mpdclient);
 
 gboolean                xfmpc_mpdclient_connect                 (XfmpcMpdclient *mpdclient);
 
 void                    xfmpc_mpdclient_disconnect              (XfmpcMpdclient *mpdclient);
 
 gboolean                xfmpc_mpdclient_is_connected            (XfmpcMpdclient *mpdclient);
-
-void                    xfmpc_mpdclient_free                    (XfmpcMpdclient *mpdclient);
 
 gboolean                xfmpc_mpdclient_previous                (XfmpcMpdclient *mpdclient);
 

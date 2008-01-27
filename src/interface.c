@@ -67,11 +67,11 @@ struct _XfmpcInterface
   GtkWindow             parent;
   XfmpcInterfacePriv   *priv;
   XfmpcPreferences     *preferences;
+  XfmpcMpdclient       *mpdclient;
 };
 
 struct _XfmpcInterfacePriv
 {
-  XfmpcMpdclient       *mpdclient;
   GtkWidget            *button_prev;
   GtkWidget            *button_pp; /* play/pause */
   GtkWidget            *button_next;
@@ -144,9 +144,7 @@ xfmpc_interface_init (XfmpcInterface *interface)
 {
   interface->priv = g_slice_new0 (XfmpcInterfacePriv);
   interface->preferences = xfmpc_preferences_get ();
-
-  /* === Mpd client === */
-  interface->priv->mpdclient = xfmpc_mpdclient_new ();
+  interface->mpdclient = xfmpc_mpdclient_new ();
 
   /* === Window === */
   gtk_window_set_icon_name (GTK_WINDOW (interface), "stock_volume");
@@ -248,11 +246,11 @@ xfmpc_interface_init (XfmpcInterface *interface)
 
   /* === Signals === */
   g_signal_connect_swapped (interface->priv->button_prev, "clicked",
-                            G_CALLBACK (xfmpc_mpdclient_previous), interface->priv->mpdclient);
+                            G_CALLBACK (xfmpc_mpdclient_previous), interface->mpdclient);
   g_signal_connect_swapped (interface->priv->button_pp, "clicked",
                             G_CALLBACK (xfmpc_interface_pp_clicked), interface);
   g_signal_connect_swapped (interface->priv->button_next, "clicked",
-                            G_CALLBACK (xfmpc_mpdclient_next), interface->priv->mpdclient);
+                            G_CALLBACK (xfmpc_mpdclient_next), interface->mpdclient);
   g_signal_connect_swapped (interface->priv->button_volume, "value-changed",
                             G_CALLBACK (xfmpc_interface_volume_changed), interface);
   g_signal_connect_swapped (progress_box, "button-press-event",
@@ -273,7 +271,7 @@ xfmpc_interface_finalize (GObject *object)
 {
   XfmpcInterface *interface = XFMPC_INTERFACE (object);
   g_object_unref (G_OBJECT (interface->preferences));
-  xfmpc_mpdclient_free (interface->priv->mpdclient);
+  g_object_unref (G_OBJECT (interface->mpdclient));
   (*G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
@@ -302,7 +300,7 @@ xfmpc_interface_set_subtitle (XfmpcInterface *interface,
 void
 xfmpc_interface_pp_clicked (XfmpcInterface *interface)
 {
-  XfmpcMpdclient *mpdclient = interface->priv->mpdclient;
+  XfmpcMpdclient *mpdclient = interface->mpdclient;
   if (G_UNLIKELY (!xfmpc_mpdclient_pp (mpdclient)))
     return;
   xfmpc_interface_set_pp (interface, xfmpc_mpdclient_is_playing (mpdclient));
@@ -327,7 +325,7 @@ xfmpc_interface_progress_box_press_event (XfmpcInterface *interface,
   if (G_UNLIKELY (event->type != GDK_BUTTON_PRESS || event->button != 1))
     return FALSE;
 
-  XfmpcMpdclient *mpdclient = interface->priv->mpdclient;
+  XfmpcMpdclient *mpdclient = interface->mpdclient;
   gint time_total = xfmpc_mpdclient_get_total_time (mpdclient);
   if (G_UNLIKELY (time_total < 0))
     return FALSE;
@@ -345,7 +343,7 @@ xfmpc_interface_volume_changed (XfmpcInterface *interface,
                                 gdouble value)
 {
   guint8 volume = value * 100;
-  xfmpc_mpdclient_set_volume (interface->priv->mpdclient, volume);
+  xfmpc_mpdclient_set_volume (interface->mpdclient, volume);
 }
 
 void
@@ -382,12 +380,12 @@ xfmpc_interface_set_time (XfmpcInterface *interface,
 static gboolean
 xfmpc_interface_refresh (XfmpcInterface *interface)
 {
-  XfmpcMpdclient       *mpdclient = interface->priv->mpdclient;
+  XfmpcMpdclient       *mpdclient = interface->mpdclient;
   gchar                *text = NULL;
 
   if (G_UNLIKELY (xfmpc_mpdclient_connect (mpdclient) == FALSE))
     {
-      g_warning ("Failed to connect to MPD (host %s port %d)", mpdclient->host, mpdclient->port);
+      g_warning ("Failed to connect to MPD");
       xfmpc_mpdclient_disconnect (mpdclient);
       xfmpc_interface_set_pp (interface, FALSE);
       xfmpc_interface_set_time (interface, 0, 0);
@@ -457,7 +455,7 @@ xfmpc_interface_refresh (XfmpcInterface *interface)
 static gboolean
 xfmpc_interface_reconnect (XfmpcInterface *interface)
 {
-  if (G_UNLIKELY (xfmpc_mpdclient_connect (interface->priv->mpdclient) == FALSE))
+  if (G_UNLIKELY (xfmpc_mpdclient_connect (interface->mpdclient) == FALSE))
     return TRUE;
 
   /* Return FALSE to kill the reconnection timeout and start a refresh timeout */
@@ -487,7 +485,7 @@ static void
 xfmpc_interface_action_previous (GtkAction *action,
                                  XfmpcInterface *interface)
 {
-  xfmpc_mpdclient_previous (interface->priv->mpdclient);
+  xfmpc_mpdclient_previous (interface->mpdclient);
 }
 
 static void
@@ -501,14 +499,14 @@ static void
 xfmpc_interface_action_stop (GtkAction *action,
                              XfmpcInterface *interface)
 {
-  xfmpc_mpdclient_stop (interface->priv->mpdclient);
+  xfmpc_mpdclient_stop (interface->mpdclient);
 }
 
 static void
 xfmpc_interface_action_next (GtkAction *action,
                              XfmpcInterface *interface)
 {
-  xfmpc_mpdclient_next (interface->priv->mpdclient);
+  xfmpc_mpdclient_next (interface->mpdclient);
 }
 
 static void
