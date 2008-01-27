@@ -11,6 +11,11 @@ dist-bz2: dist
 distcheck-bz2: distcheck
 	zcat $(PACKAGE)-$(VERSION).tar.gz | bzip2 --best -c > $(PACKAGE)-$(VERSION).tar.bz2
 
+desktopdir = $(datadir)/applications
+desktop_in_files = xfmpc.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+@INTLTOOL_DESKTOP_RULE@
+
 EXTRA_DIST =								\
 	AUTHORS								\
 	ChangeLog							\
@@ -21,11 +26,13 @@ EXTRA_DIST =								\
 	THANKS								\
 	intltool-extract.in						\
 	intltool-merge.in						\
-	intltool-update.in
+	intltool-update.in						\
+	$(desktop_in_files)
 
 DISTCLEANFILES =							\
 	intltool-extract						\
 	intltool-merge							\
-	intltool-update
+	intltool-update							\
+	$(desktop_DATA)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
