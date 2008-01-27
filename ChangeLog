@@ -1,6 +1,11 @@
-2008-01-26 Mike Massonnet <mmassonnet@xfce.org>
+2008-01-27 Mike Massonnet <mmassonnet@xfce.org>
 
 	* === Release 0.0.2 ===
+	* NEWS, src/Makefile.am:
+	  - Random fixes
+
+2008-01-26 Mike Massonnet <mmassonnet@xfce.org>
+
 	* src/mpdclient.c, src/mpdclient.h, src/interface.c, src/interface.h:
 	  - XfmpcMpdclient is GObjectified
 	  - Each new instance increments the ref count
