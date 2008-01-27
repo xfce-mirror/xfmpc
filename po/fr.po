@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-27 14:56+0100\n"
+"POT-Creation-Date: 2008-01-27 17:00+0100\n"
 "PO-Revision-Date: 2008-01-15 18:44+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: French\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../src/interface.c:151
+#: ../src/interface.c:151 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr ""
 
@@ -34,3 +34,11 @@ msgstr "Stoppé"
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "par « %s » de « %s » (%s)"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "Client MPD"
+
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "Client MPD écrit en GTK+ pour Xfce"

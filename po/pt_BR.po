@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-27 14:56+0100\n"
+"POT-Creation-Date: 2008-01-27 17:00+0100\n"
 "PO-Revision-Date: 2008-01-21 10:07-0300\n"
 "Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../src/interface.c:151
+#: ../src/interface.c:151 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
@@ -33,3 +33,11 @@ msgstr "Parado"
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "por \"%s\" de \"%s\" (%s)"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr ""
+
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-27 14:56+0100\n"
+"POT-Creation-Date: 2008-01-27 17:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/interface.c:151
+#: ../src/interface.c:151 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr ""
 
@@ -32,4 +32,12 @@ msgstr ""
 #: ../src/interface.c:443
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
+msgstr ""
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr ""
+
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
 msgstr ""

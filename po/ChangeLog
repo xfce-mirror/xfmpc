@@ -1,5 +1,11 @@
 2008-01-27	Mike Massonnet <mmassonnet@xfce.org>
 
+	* *.po, *.pot, POTFILES.in: make update-po for new strings from
+	xfmpc.desktop.in
+	* fr.po: Update French translation
+
+2008-01-27	Mike Massonnet <mmassonnet@xfce.org>
+
 	* *.po, *.pot: make update-po
 
 2008-01-21  Og Maciel <ogmaciel@gnome.org>
