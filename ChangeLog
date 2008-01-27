@@ -1,3 +1,74 @@
+2008-01-26 Mike Massonnet <mmassonnet@xfce.org>
+
+	* === Release 0.0.2 ===
+	* src/mpdclient.c, src/mpdclient.h, src/interface.c, src/interface.h:
+	  - XfmpcMpdclient is GObjectified
+	  - Each new instance increments the ref count
+
+2008-01-26 Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/mpdclient.c, src/mpdclient.h:
+	  - Remove all the useless reconnections
+	  - Add status functions xfmpc_mpdclient_update_status,
+	    cb_xfmpc_mpdclient_status_changed, and xfmpc_mpdclient_update_status to:
+	    update the current status of mpd, a callback to mark the different status
+	    bits, and a function that returns a boolean to know if a bit was changed
+	    and reset it to 0 as it were read
+	* src/mpdclient.c(xfmpc_mpdclient_connect):
+	  - Send password
+	* src/interface.c:
+	  - Remove _refresh_volume and the delay to update the volume;  instead update
+	    the volume in mpd on value-changed signals from GtkVolumeButton
+	  - Make use of the changes in XfmpcMpdclient inside xfmpc_interface_refresh
+	* src/interface.c(xfmpc_interface_finalize):
+	  - Free XfmpcMpdclient
+
+2008-01-22 Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/Makefile.am, src/preferences.c, src/preferences.h:
+	  - New GObject preferences interface
+	* src/interface.c(xfmpc_interface_class_init),
+	  src/interface.c(xfmpc_interface_finalize):
+	  - New finalize function
+	  - Unref XfmpcPreferences
+	* src/interface.c(xfmpc_interface_init):
+	  - Get a XfmpcPreferences
+	  - Read the position of the window
+	* src/interface.c(xfmpc_interface_closed):
+	  - Save the position of the window
+	* src/main.c:
+	  - Add transformation function G_TYPE_STRING to G_TYPE_INT
+
+2008-01-21 Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/interface-ui.h, src/interface-ui.xml,
+	  src/interface.c:
+	  - Add keybinding Ctrl+V for volume
+
+2008-01-21 Mike Massonnet <mmassonnet@xfce.org>
+
+	* configure.in.in: Bump post-release
+
+2008-01-21 Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/interface-ui.h, src/interface-ui.xml:
+	  - New files, XML reprensents the GtkUIManager, .h is auto-generated with
+	  exo-csource
+	* src/interface.c:
+	  - Add accelerators: Ctrl+B/P/S/F to respectively go backwards, play/pause,
+	  stop, and go forward
+
+2008-01-20 Mike Massonnet <mmassonnet@xfce.org>
+
+	* NEWS: A word about the first release
+
+2008-01-20 Mike Massonnet <mmassonnet@xfce.org>
+
+	* Makefile.am:
+	  - Add bzip support to distcheck
+	* po/POTFILES.skip:
+	  - New file, distcheck failed about translation and src/mpdclient.c
+
 2008-01-19	Mike Massonnet <mmassonnet@xfce.org>
 
 	* === Release 0.0.1 ===

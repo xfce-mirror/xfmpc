@@ -1,1 +1,2 @@
 src/mpdclient.c
+src/preferences.c

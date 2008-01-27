@@ -15,6 +15,8 @@ http://goodies.xfce.org/projects/applications/xfmpc
 
 * libgtk+2 2.12
 * libxfcegui4 4.4.0
+* libxfce4util 4.4.0
+* libmpd 0.15.0
 
 
  Install
