@@ -30,14 +30,26 @@
 
 
 
+static void             cb_xfmpc_mpdclient_status_changed       (MpdObj *mi,
+                                                                 ChangedStatusType what,
+                                                                 gpointer user_data);
+
+
+
 XfmpcMpdclient *
 xfmpc_mpdclient_new ()
 {
   XfmpcMpdclient *mpdclient = g_slice_new0 (XfmpcMpdclient);
   xfmpc_mpdclient_initenv (mpdclient);
   mpdclient->mi = mpd_new (mpdclient->host, mpdclient->port, mpdclient->passwd);
-
+  mpd_signal_connect_status_changed (mpdclient->mi, (StatusChangedCallback)cb_xfmpc_mpdclient_status_changed, mpdclient);
   return mpdclient;
+}
+
+void
+xfmpc_mpdclient_free (XfmpcMpdclient *mpdclient)
+{
+  mpd_free (mpdclient->mi);
 }
 
 void
@@ -74,6 +86,8 @@ xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
   if (mpd_connect (mpdclient->mi) != MPD_OK)
     return FALSE;
 
+  mpd_send_password (mpdclient->mi);
+
   return TRUE;
 }
 
@@ -90,16 +104,9 @@ xfmpc_mpdclient_is_connected (XfmpcMpdclient *mpdclient)
   return mpd_check_connected (mpdclient->mi);
 }
 
-void
-xfmpc_mpdclient_free (XfmpcMpdclient *mpdclient)
-{
-  mpd_free (mpdclient->mi);
-}
-
 gboolean
 xfmpc_mpdclient_previous (XfmpcMpdclient *mpdclient)
 {
-  xfmpc_mpdclient_connect (mpdclient);
   if (mpd_player_prev (mpdclient->mi) != MPD_OK)
     return FALSE;
   else
@@ -118,7 +125,6 @@ xfmpc_mpdclient_pp (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_play (XfmpcMpdclient *mpdclient)
 {
-  xfmpc_mpdclient_connect (mpdclient);
   if (mpd_player_play (mpdclient->mi) != MPD_OK)
     return FALSE;
   else
@@ -128,7 +134,6 @@ xfmpc_mpdclient_play (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_pause (XfmpcMpdclient *mpdclient)
 {
-  xfmpc_mpdclient_connect (mpdclient);
   if (mpd_player_pause (mpdclient->mi) != MPD_OK)
     return FALSE;
   else
@@ -138,7 +143,6 @@ xfmpc_mpdclient_pause (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_stop (XfmpcMpdclient *mpdclient)
 {
-  xfmpc_mpdclient_connect (mpdclient);
   if (mpd_player_stop (mpdclient->mi) != MPD_OK)
     return FALSE;
   else
@@ -148,7 +152,6 @@ xfmpc_mpdclient_stop (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_next (XfmpcMpdclient *mpdclient)
 {
-  xfmpc_mpdclient_connect (mpdclient);
   if (mpd_player_next (mpdclient->mi) != MPD_OK)
     return FALSE;
   else
@@ -159,7 +162,6 @@ gboolean
 xfmpc_mpdclient_set_volume (XfmpcMpdclient *mpdclient,
                             guint8 volume)
 {
-  xfmpc_mpdclient_connect (mpdclient);
   if (mpd_status_set_volume (mpdclient->mi, volume) < 0)
     return FALSE;
   else
@@ -170,24 +172,10 @@ gboolean
 xfmpc_mpdclient_set_song_time (XfmpcMpdclient *mpdclient,
                                guint time)
 {
-  xfmpc_mpdclient_connect (mpdclient);
   if (mpd_player_seek (mpdclient->mi, time) != MPD_OK)
     return FALSE;
   else
     return TRUE;
-}
-
-gboolean
-xfmpc_mpdclient_is_playing (XfmpcMpdclient *mpdclient)
-{
-  xfmpc_mpdclient_connect (mpdclient);
-  return mpd_player_get_state (mpdclient->mi) == MPD_PLAYER_PLAY;
-}
-
-gboolean
-xfmpc_mpdclient_is_stopped (XfmpcMpdclient *mpdclient)
-{
-  return mpd_player_get_state (mpdclient->mi) == MPD_PLAYER_STOP;
 }
 
 const gchar *
@@ -251,7 +239,6 @@ xfmpc_mpdclient_get_time (XfmpcMpdclient *mpdclient)
 gint
 xfmpc_mpdclient_get_total_time (XfmpcMpdclient *mpdclient)
 {
-  xfmpc_mpdclient_connect (mpdclient);
   return mpd_status_get_total_song_time (mpdclient->mi);
 }
 
@@ -260,5 +247,76 @@ xfmpc_mpdclient_get_volume (XfmpcMpdclient *mpdclient)
 {
   gint volume = mpd_status_get_volume (mpdclient->mi);
   return (volume < 0) ? 100 : volume;
+}
+
+gboolean
+xfmpc_mpdclient_is_playing (XfmpcMpdclient *mpdclient)
+{
+  return mpd_player_get_state (mpdclient->mi) == MPD_PLAYER_PLAY;
+}
+
+gboolean
+xfmpc_mpdclient_is_stopped (XfmpcMpdclient *mpdclient)
+{
+  return mpd_player_get_state (mpdclient->mi) == MPD_PLAYER_STOP;
+}
+
+void
+xfmpc_mpdclient_update_status (XfmpcMpdclient *mpdclient)
+{
+  mpd_status_update (mpdclient->mi);
+}
+
+gboolean
+xfmpc_mpdclient_status (XfmpcMpdclient *mpdclient,
+                        gint bits)
+{
+  if (mpdclient->status & bits)
+    {
+      mpdclient->status &= ~bits;
+      return TRUE;
+    }
+
+  return FALSE;
+}
+
+static void
+cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
+                                   ChangedStatusType what,
+                                   gpointer user_data)
+{
+  XfmpcMpdclient *mpdclient = user_data;
+  g_return_if_fail (G_LIKELY (NULL != user_data));
+
+  if (what & MPD_CST_STATE)
+    {
+      switch (mpd_player_get_state (mi))
+        {
+        case MPD_PLAYER_STOP:
+          mpdclient->status |= STOP_CHANGED;
+          mpdclient->status |= SONG_CHANGED; /* as to say that the next time
+                                                the song plays again, it needs
+                                                to update its title in the
+                                                interface */
+          break;
+
+        case MPD_PLAYER_PLAY:
+        case MPD_PLAYER_PAUSE:
+          mpdclient->status |= PP_CHANGED;
+          break;
+
+        default:
+          break;
+        }
+    }
+
+  if (what & MPD_CST_SONGID)
+    mpdclient->status |= SONG_CHANGED;
+
+  if (what & MPD_CST_VOLUME)
+    mpdclient->status |= VOLUME_CHANGED;
+
+  if (what & (MPD_CST_ELAPSED_TIME|MPD_CST_TOTAL_TIME))
+    mpdclient->status |= TIME_CHANGED;
 }
 

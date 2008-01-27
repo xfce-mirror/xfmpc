@@ -22,6 +22,17 @@
 #include <glib.h>
 #include <libmpd/libmpd.h>
 
+G_BEGIN_DECLS
+
+typedef enum
+{
+  STOP_CHANGED          = 1 << 0,
+  PP_CHANGED            = 1 << 1,
+  SONG_CHANGED          = 1 << 2,
+  VOLUME_CHANGED        = 1 << 3,
+  TIME_CHANGED          = 1 << 4,
+} StatusField;
+
 typedef struct _XfmpcMpdclient          XfmpcMpdclient;
 
 struct _XfmpcMpdclient
@@ -31,7 +42,7 @@ struct _XfmpcMpdclient
   guint                 port;
   gchar                *passwd;
 
-  guint8                volume;
+  StatusField           status;
 };
 
 XfmpcMpdclient *        xfmpc_mpdclient_new                     ();
@@ -62,10 +73,6 @@ gboolean                xfmpc_mpdclient_set_volume              (XfmpcMpdclient 
                                                                  guint8 volume);
 gboolean                xfmpc_mpdclient_set_song_time           (XfmpcMpdclient *mpdclient,
                                                                  guint time);
-gboolean                xfmpc_mpdclient_is_playing              (XfmpcMpdclient *mpdclient);
-
-gboolean                xfmpc_mpdclient_is_stopped              (XfmpcMpdclient *mpdclient);
-
 const gchar *           xfmpc_mpdclient_get_artist              (XfmpcMpdclient *mpdclient);
 
 const gchar *           xfmpc_mpdclient_get_title               (XfmpcMpdclient *mpdclient);
@@ -79,6 +86,17 @@ gint                    xfmpc_mpdclient_get_time                (XfmpcMpdclient 
 gint                    xfmpc_mpdclient_get_total_time          (XfmpcMpdclient *mpdclient);
 
 guint8                  xfmpc_mpdclient_get_volume              (XfmpcMpdclient *mpdclient);
+
+gboolean                xfmpc_mpdclient_is_playing              (XfmpcMpdclient *mpdclient);
+
+gboolean                xfmpc_mpdclient_is_stopped              (XfmpcMpdclient *mpdclient);
+
+void                    xfmpc_mpdclient_update_status           (XfmpcMpdclient *mpdclient);
+
+gboolean                xfmpc_mpdclient_status                  (XfmpcMpdclient *mpdclient,
+                                                                 gint bits);
+
+G_END_DECLS
 
 #endif
 

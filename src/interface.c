@@ -79,8 +79,6 @@ struct _XfmpcInterfacePriv
   GtkWidget            *progress_bar; /* position in song */
   GtkWidget            *title;
   GtkWidget            *subtitle;
-
-  gint                  volume;
 };
 
 
@@ -145,22 +143,22 @@ static void
 xfmpc_interface_init (XfmpcInterface *interface)
 {
   interface->priv = g_slice_new0 (XfmpcInterfacePriv);
-  interface->priv->mpdclient = xfmpc_mpdclient_new ();
-  interface->priv->volume = -1;
-
   interface->preferences = xfmpc_preferences_get ();
 
-  gint posx, posy;
-  g_object_get (G_OBJECT (interface->preferences),
-                "last-window-posx", &posx,
-                "last-window-posy", &posy,
-                NULL);
+  /* === Mpd client === */
+  interface->priv->mpdclient = xfmpc_mpdclient_new ();
 
   /* === Window === */
   gtk_window_set_icon_name (GTK_WINDOW (interface), "stock_volume");
   gtk_window_set_title (GTK_WINDOW (interface), _("Xfmpc"));
   gtk_container_set_border_width (GTK_CONTAINER (interface), BORDER);
   g_signal_connect (G_OBJECT (interface), "delete-event", G_CALLBACK (xfmpc_interface_closed), interface);
+
+  gint posx, posy;
+  g_object_get (G_OBJECT (interface->preferences),
+                "last-window-posx", &posx,
+                "last-window-posy", &posy,
+                NULL);
   if (G_LIKELY (posx != -1 && posy != -1))
     gtk_window_move (GTK_WINDOW (interface), posx, posy);
 
@@ -275,8 +273,11 @@ xfmpc_interface_finalize (GObject *object)
 {
   XfmpcInterface *interface = XFMPC_INTERFACE (object);
   g_object_unref (G_OBJECT (interface->preferences));
+  xfmpc_mpdclient_free (interface->priv->mpdclient);
   (*G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
+
+
 
 GtkWidget*
 xfmpc_interface_new ()
@@ -343,7 +344,8 @@ void
 xfmpc_interface_volume_changed (XfmpcInterface *interface,
                                 gdouble value)
 {
-  interface->priv->volume = value * 100;
+  guint8 volume = value * 100;
+  xfmpc_mpdclient_set_volume (interface->priv->mpdclient, volume);
 }
 
 void
@@ -351,20 +353,6 @@ xfmpc_interface_set_volume (XfmpcInterface *interface,
                             guint8 volume)
 {
   gtk_scale_button_set_value (GTK_SCALE_BUTTON (interface->priv->button_volume), (gdouble)volume / 100);
-}
-
-void
-xfmpc_interface_refresh_volume (XfmpcInterface *interface)
-{
-  XfmpcMpdclient *mpdclient = interface->priv->mpdclient;
-
-  if (G_UNLIKELY (interface->priv->volume != -1))
-    {
-      xfmpc_mpdclient_set_volume (mpdclient, interface->priv->volume);
-      interface->priv->volume = -1;
-    }
-
-  xfmpc_interface_set_volume (interface, xfmpc_mpdclient_get_volume (mpdclient));
 }
 
 void
@@ -397,60 +385,71 @@ xfmpc_interface_refresh (XfmpcInterface *interface)
   XfmpcMpdclient       *mpdclient = interface->priv->mpdclient;
   gchar                *text = NULL;
 
-  TRACE ("ping");
   if (G_UNLIKELY (xfmpc_mpdclient_connect (mpdclient) == FALSE))
     {
-      DBG ("Couldn't connect to host %s port %d", mpdclient->host, mpdclient->port);
+      g_warning ("Failed to connect to MPD (host %s port %d)", mpdclient->host, mpdclient->port);
       xfmpc_mpdclient_disconnect (mpdclient);
       xfmpc_interface_set_pp (interface, FALSE);
       xfmpc_interface_set_time (interface, 0, 0);
       xfmpc_interface_set_volume (interface, 0);
-      interface->priv->volume = -1; /* override the volume changed signal */
       xfmpc_interface_set_title (interface, _("Not connected"));
       xfmpc_interface_set_subtitle (interface, PACKAGE_STRING);
-      /* Return FALSE to kill the refresh timeout and start a reconnection timeout */
+
+      /* Start a reconnection timeout and return FALSE to kill the refresh timeout */
       g_timeout_add (15000, (GSourceFunc)xfmpc_interface_reconnect, interface);
       return FALSE;
     }
-  else if (G_UNLIKELY (xfmpc_mpdclient_is_stopped (mpdclient) == TRUE))
-    {
-      xfmpc_interface_set_pp (interface, FALSE);
-      xfmpc_interface_set_time (interface, 0, 0);
-      xfmpc_interface_refresh_volume (interface);
-      xfmpc_interface_set_title (interface, _("Stopped"));
-      xfmpc_interface_set_subtitle (interface, PACKAGE_STRING);
 
-      /* Some hack to invalidate the state.  Hint: FIXME */
-      xfmpc_mpdclient_disconnect (mpdclient);
+  xfmpc_mpdclient_update_status (mpdclient);
+
+  if (G_UNLIKELY (xfmpc_mpdclient_status (mpdclient, VOLUME_CHANGED)))
+    {
+      /* volume */
+      xfmpc_interface_set_volume (interface, xfmpc_mpdclient_get_volume (mpdclient));
+    }
+
+  if (G_UNLIKELY (xfmpc_mpdclient_is_stopped (mpdclient)))
+    {
+      /* stopped */
+      if (xfmpc_mpdclient_status (mpdclient, STOP_CHANGED))
+        {
+          xfmpc_interface_set_pp (interface, FALSE);
+          xfmpc_interface_set_time (interface, 0, 0);
+          xfmpc_interface_set_title (interface, _("Stopped"));
+          xfmpc_interface_set_subtitle (interface, PACKAGE_STRING);
+        }
 
       return TRUE;
     }
 
-  /* play/pause */
-  xfmpc_interface_set_pp (interface, xfmpc_mpdclient_is_playing (mpdclient));
+  if (G_LIKELY (xfmpc_mpdclient_status (mpdclient, TIME_CHANGED)))
+    {
+      /* song time */
+      xfmpc_interface_set_time (interface,
+                                xfmpc_mpdclient_get_time (mpdclient),
+                                xfmpc_mpdclient_get_total_time (mpdclient));
+    }
 
-  /* song time */
-  xfmpc_interface_set_time (interface,
-                            xfmpc_mpdclient_get_time (mpdclient),
-                            xfmpc_mpdclient_get_total_time (mpdclient));
+  if (G_UNLIKELY (xfmpc_mpdclient_status (mpdclient, PP_CHANGED)))
+    {
+      /* play/pause */
+      xfmpc_interface_set_pp (interface, xfmpc_mpdclient_is_playing (mpdclient));
+    }
 
-  /* volume */
-  xfmpc_interface_refresh_volume (interface);
+  if (G_UNLIKELY (xfmpc_mpdclient_status (mpdclient, SONG_CHANGED)))
+    {
+      /* title */
+      xfmpc_interface_set_title (interface, xfmpc_mpdclient_get_title (mpdclient));
 
-  /* title */
-  xfmpc_interface_set_title (interface, xfmpc_mpdclient_get_title (mpdclient));
-
-  /* subtitle "by \"artist\" from \"album\" (year)" */
-  text = g_strdup_printf (_("by \"%s\" from \"%s\" (%s)"),
-                          xfmpc_mpdclient_get_artist (mpdclient),
-                          xfmpc_mpdclient_get_album (mpdclient),
-                          xfmpc_mpdclient_get_date (mpdclient));
-  /* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values */
-  xfmpc_interface_set_subtitle (interface, text);
-  g_free (text);
-
-  /* Some hack to invalidate the cached state.  Hint: FIXME */
-  xfmpc_mpdclient_disconnect (mpdclient);
+      /* subtitle "by \"artist\" from \"album\" (year)" */
+      text = g_strdup_printf (_("by \"%s\" from \"%s\" (%s)"),
+                              xfmpc_mpdclient_get_artist (mpdclient),
+                              xfmpc_mpdclient_get_album (mpdclient),
+                              xfmpc_mpdclient_get_date (mpdclient));
+      /* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values */
+      xfmpc_interface_set_subtitle (interface, text);
+      g_free (text);
+    }
 
   return TRUE;
 }
@@ -458,7 +457,6 @@ xfmpc_interface_refresh (XfmpcInterface *interface)
 static gboolean
 xfmpc_interface_reconnect (XfmpcInterface *interface)
 {
-  TRACE ("pong");
   if (G_UNLIKELY (xfmpc_mpdclient_connect (interface->priv->mpdclient) == FALSE))
     return TRUE;
 
