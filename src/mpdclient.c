@@ -478,6 +478,9 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
   XfmpcMpdclient *mpdclient = XFMPC_MPDCLIENT (user_data);
   g_return_if_fail (G_LIKELY (NULL != user_data));
 
+  if (what & MPD_CST_SONGID)
+    g_signal_emit_by_name (mpdclient, "song-changed");
+
   if (what & MPD_CST_STATE)
     {
       gint state = mpd_player_get_state (mi);
@@ -487,9 +490,6 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
         g_signal_emit_by_name (mpdclient, "pp-changed",
                                state == MPD_PLAYER_PLAY);
     }
-
-  if (what & MPD_CST_SONGID)
-    g_signal_emit_by_name (mpdclient, "song-changed");
 
   if (what & MPD_CST_VOLUME)
     g_signal_emit_by_name (mpdclient, "volume-changed",
