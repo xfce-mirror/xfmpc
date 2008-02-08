@@ -1,3 +1,7 @@
+2008-02-08  Stephan Arts <stephan@xfce.org>
+
+	* nl.po: Add Dutch translation
+
 2008-01-27	Mike Massonnet <mmassonnet@xfce.org>
 
 	* *.po, *.pot, POTFILES.in: make update-po for new strings from
