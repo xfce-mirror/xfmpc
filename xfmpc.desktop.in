@@ -7,6 +7,5 @@ Exec=xfmpc
 Icon=stock_volume
 Terminal=false
 Type=Application
-Categories=GTK;AudioVideo;
+Categories=GTK;AudioVideo;Audio;Player
 StartupNotify=true
-MimeType=image/png;image/gif;image/jpeg;image/bmp;image/x-ico;
