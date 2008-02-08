@@ -33,6 +33,7 @@ enum
   PROP_0,
   PROP_LAST_WINDOW_POSX,
   PROP_LAST_WINDOW_POSY,
+  PROP_LAST_WINDOW_STATE_STICKY,
   N_PROPERTIES,
 };
 
@@ -130,6 +131,14 @@ xfmpc_preferences_class_init (XfmpcPreferencesClass *klass)
                                                      "Window position on axis y",
                                                      -1, G_MAXINT, -1,
                                                      G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_LAST_WINDOW_STATE_STICKY,
+                                   g_param_spec_boolean ("last-window-state-sticky",
+                                                         "LastWindowStateSticky",
+                                                         "Sticky bit on window",
+                                                         FALSE,
+                                                         G_PARAM_READWRITE));
 }
 
 static void

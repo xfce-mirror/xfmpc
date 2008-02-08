@@ -42,6 +42,8 @@ static gboolean         xfmpc_interface_refresh                 (XfmpcInterface 
 
 static gboolean         xfmpc_interface_reconnect               (XfmpcInterface *interface);
 
+static gboolean         xfmpc_interface_state_event             (XfmpcInterface *interface,
+                                                                 GdkEventWindowState *event);
 static gboolean         xfmpc_interface_closed                  (XfmpcInterface *interface,
                                                                  GdkEvent *event);
 static void             xfmpc_interface_action_previous         (GtkAction *action,
@@ -150,15 +152,20 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_window_set_icon_name (GTK_WINDOW (interface), "stock_volume");
   gtk_window_set_title (GTK_WINDOW (interface), _("Xfmpc"));
   gtk_container_set_border_width (GTK_CONTAINER (interface), BORDER);
-  g_signal_connect (G_OBJECT (interface), "delete-event", G_CALLBACK (xfmpc_interface_closed), interface);
+  g_signal_connect (G_OBJECT (interface), "delete-event", G_CALLBACK (xfmpc_interface_closed), NULL);
+  g_signal_connect (G_OBJECT (interface), "window-state-event", G_CALLBACK (xfmpc_interface_state_event), NULL);
 
   gint posx, posy;
+  gboolean sticky;
   g_object_get (G_OBJECT (interface->preferences),
                 "last-window-posx", &posx,
                 "last-window-posy", &posy,
+                "last-window-state-sticky", &sticky,
                 NULL);
   if (G_LIKELY (posx != -1 && posy != -1))
     gtk_window_move (GTK_WINDOW (interface), posx, posy);
+  if (sticky == TRUE)
+    gtk_window_stick (GTK_WINDOW (interface));
 
   /* === Interface widgets === */
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_PREVIOUS, GTK_ICON_SIZE_BUTTON);
@@ -460,6 +467,29 @@ xfmpc_interface_reconnect (XfmpcInterface *interface)
 
   /* Return FALSE to kill the reconnection timeout and start a refresh timeout */
   g_timeout_add (1000, (GSourceFunc)xfmpc_interface_refresh, interface);
+  return FALSE;
+}
+
+static gboolean
+xfmpc_interface_state_event (XfmpcInterface *interface,
+                             GdkEventWindowState *event)
+{
+  if (G_UNLIKELY (event->type != GDK_WINDOW_STATE))
+    return FALSE;
+
+  /**
+   * Hiding the top level window will unstick it too, and send a
+   * window-state-event signal, so here we take the value only if
+   * the window is visible
+   **/
+  if (event->changed_mask & GDK_WINDOW_STATE_STICKY && GTK_WIDGET_VISIBLE (GTK_WIDGET (interface)))
+    {
+      gboolean sticky = ((gboolean) event->new_window_state & GDK_WINDOW_STATE_STICKY) == FALSE ? FALSE : TRUE;
+      g_object_set (G_OBJECT (interface->preferences),
+                    "last-window-state-sticky", sticky,
+                    NULL);
+    }
+
   return FALSE;
 }
 

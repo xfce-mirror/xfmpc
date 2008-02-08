@@ -35,6 +35,13 @@ transform_string_to_int (const GValue *src,
   g_value_set_int (dst, (gint) strtol (g_value_get_string (src), NULL, 10));
 }
 
+static void
+transform_string_to_boolean (const GValue *src,
+                             GValue *dst)
+{
+  g_value_set_boolean (dst, (gboolean) strcmp (g_value_get_string (src), "FALSE") != 0);
+}
+
 
 
 int
@@ -45,6 +52,7 @@ main (int argc, char *argv[])
   gtk_init (&argc, &argv);
 
   g_value_register_transform_func (G_TYPE_STRING, G_TYPE_INT, transform_string_to_int);
+  g_value_register_transform_func (G_TYPE_STRING, G_TYPE_BOOLEAN, transform_string_to_boolean);
 
   gtk_window_set_default_icon_name ("xfmpc");
 
