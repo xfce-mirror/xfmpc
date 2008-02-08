@@ -33,7 +33,7 @@ G_BEGIN_DECLS
 
 typedef struct _XfmpcInterfaceClass     XfmpcInterfaceClass;
 typedef struct _XfmpcInterface          XfmpcInterface;
-typedef struct _XfmpcInterfacePriv      XfmpcInterfacePriv;
+typedef struct _XfmpcInterfacePrivate   XfmpcInterfacePrivate;
 
 GType                   xfmpc_interface_get_type                () G_GNUC_CONST;
 

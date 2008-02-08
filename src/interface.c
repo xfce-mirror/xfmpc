@@ -32,6 +32,9 @@
 
 #define BORDER 4
 
+#define XFMPC_INTERFACE_GET_PRIVATE(o) \
+    (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_INTERFACE, XfmpcInterfacePrivate))
+
 
 
 static void             xfmpc_interface_class_init              (XfmpcInterfaceClass *klass);
@@ -62,27 +65,27 @@ static void             xfmpc_interface_action_volume           (GtkAction *acti
 
 struct _XfmpcInterfaceClass
 {
-  GtkWindowClass        parent_class;
+  GtkWindowClass            parent_class;
 };
 
 struct _XfmpcInterface
 {
-  GtkWindow             parent;
-  XfmpcInterfacePriv   *priv;
-  GtkWidget            *extended_interface;
-  XfmpcPreferences     *preferences;
-  XfmpcMpdclient       *mpdclient;
+  GtkWindow                 parent;
+  XfmpcInterfacePrivate    *priv;
+  GtkWidget                *extended_interface;
+  XfmpcPreferences         *preferences;
+  XfmpcMpdclient           *mpdclient;
 };
 
-struct _XfmpcInterfacePriv
+struct _XfmpcInterfacePrivate
 {
-  GtkWidget            *button_prev;
-  GtkWidget            *button_pp; /* play/pause */
-  GtkWidget            *button_next;
-  GtkWidget            *button_volume;
-  GtkWidget            *progress_bar; /* position in song */
-  GtkWidget            *title;
-  GtkWidget            *subtitle;
+  GtkWidget                *button_prev;
+  GtkWidget                *button_pp; /* play/pause */
+  GtkWidget                *button_next;
+  GtkWidget                *button_volume;
+  GtkWidget                *progress_bar; /* position in song */
+  GtkWidget                *title;
+  GtkWidget                *subtitle;
 };
 
 
@@ -136,6 +139,8 @@ xfmpc_interface_class_init (XfmpcInterfaceClass *klass)
 {
   GObjectClass *gobject_class;
 
+  g_type_class_add_private (klass, sizeof (XfmpcInterfacePrivate));
+
   parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
@@ -146,7 +151,8 @@ xfmpc_interface_class_init (XfmpcInterfaceClass *klass)
 static void
 xfmpc_interface_init (XfmpcInterface *interface)
 {
-  interface->priv = g_slice_new0 (XfmpcInterfacePriv);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
   interface->preferences = xfmpc_preferences_get ();
   interface->mpdclient = xfmpc_mpdclient_new ();
 
@@ -171,25 +177,25 @@ xfmpc_interface_init (XfmpcInterface *interface)
 
   /* === Interface widgets === */
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_PREVIOUS, GTK_ICON_SIZE_BUTTON);
-  GtkWidget *control = interface->priv->button_prev = gtk_button_new ();
+  GtkWidget *control = priv->button_prev = gtk_button_new ();
   gtk_button_set_relief (GTK_BUTTON (control), GTK_RELIEF_NONE);
   gtk_container_add (GTK_CONTAINER (control), image);
 
   image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_PLAY, GTK_ICON_SIZE_BUTTON);
-  control = interface->priv->button_pp = gtk_button_new ();
+  control = priv->button_pp = gtk_button_new ();
   gtk_button_set_relief (GTK_BUTTON (control), GTK_RELIEF_NONE);
   gtk_container_add (GTK_CONTAINER (control), image);
 
   image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_NEXT, GTK_ICON_SIZE_BUTTON);
-  control = interface->priv->button_next = gtk_button_new ();
+  control = priv->button_next = gtk_button_new ();
   gtk_button_set_relief (GTK_BUTTON (control), GTK_RELIEF_NONE);
   gtk_container_add (GTK_CONTAINER (control), image);
 
-  control = interface->priv->button_volume = gtk_volume_button_new ();
+  control = priv->button_volume = gtk_volume_button_new ();
   gtk_button_set_relief (GTK_BUTTON (control), GTK_RELIEF_NONE);
 
   GtkWidget *progress_box = gtk_event_box_new ();
-  control = interface->priv->progress_bar = gtk_progress_bar_new ();
+  control = priv->progress_bar = gtk_progress_bar_new ();
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (control), "0:00 / 0:00");
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (control), 1.0);
   gtk_container_add (GTK_CONTAINER (progress_box), control);
@@ -208,7 +214,7 @@ xfmpc_interface_init (XfmpcInterface *interface)
   attr->end_index = -1;
   pango_attr_list_insert (attrs, attr);
 
-  GtkWidget *label = interface->priv->title = gtk_label_new (_("Not connected"));
+  GtkWidget *label = priv->title = gtk_label_new (_("Not connected"));
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_label_set_selectable (GTK_LABEL (label), TRUE);
   gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
@@ -221,7 +227,7 @@ xfmpc_interface_init (XfmpcInterface *interface)
   attr->end_index = -1;
   pango_attr_list_insert (attrs, attr);
 
-  label = interface->priv->subtitle = gtk_label_new (PACKAGE_STRING);
+  label = priv->subtitle = gtk_label_new (PACKAGE_STRING);
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_label_set_selectable (GTK_LABEL (label), TRUE);
   gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
@@ -233,16 +239,16 @@ xfmpc_interface_init (XfmpcInterface *interface)
 
   GtkWidget *box = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox), box, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (box), interface->priv->button_prev, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (box), interface->priv->button_pp, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (box), interface->priv->button_next, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (box), priv->button_prev, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (box), priv->button_pp, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (box), priv->button_next, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (box), progress_box, TRUE, TRUE, BORDER);
-  gtk_box_pack_start (GTK_BOX (box), interface->priv->button_volume, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (box), priv->button_volume, FALSE, FALSE, 0);
 
   box = gtk_vbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox), box, FALSE, TRUE, 0);
-  gtk_container_add (GTK_CONTAINER (box), interface->priv->title);
-  gtk_container_add (GTK_CONTAINER (box), interface->priv->subtitle);
+  gtk_container_add (GTK_CONTAINER (box), priv->title);
+  gtk_container_add (GTK_CONTAINER (box), priv->subtitle);
 
   gtk_box_pack_start (GTK_BOX (vbox), interface->extended_interface, TRUE, TRUE, 0);
 
@@ -258,13 +264,13 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_window_add_accel_group (GTK_WINDOW (interface), accel_group);
 
   /* === Signals === */
-  g_signal_connect_swapped (interface->priv->button_prev, "clicked",
+  g_signal_connect_swapped (priv->button_prev, "clicked",
                             G_CALLBACK (xfmpc_mpdclient_previous), interface->mpdclient);
-  g_signal_connect_swapped (interface->priv->button_pp, "clicked",
+  g_signal_connect_swapped (priv->button_pp, "clicked",
                             G_CALLBACK (xfmpc_interface_pp_clicked), interface);
-  g_signal_connect_swapped (interface->priv->button_next, "clicked",
+  g_signal_connect_swapped (priv->button_next, "clicked",
                             G_CALLBACK (xfmpc_mpdclient_next), interface->mpdclient);
-  g_signal_connect_swapped (interface->priv->button_volume, "value-changed",
+  g_signal_connect_swapped (priv->button_volume, "value-changed",
                             G_CALLBACK (xfmpc_interface_volume_changed), interface);
   g_signal_connect_swapped (progress_box, "button-press-event",
                             G_CALLBACK (xfmpc_interface_progress_box_press_event), interface);
@@ -300,30 +306,35 @@ void
 xfmpc_interface_set_title (XfmpcInterface *interface,
                            const gchar *title)
 {
-  gtk_label_set_text (GTK_LABEL (interface->priv->title), title);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
+  gtk_label_set_text (GTK_LABEL (priv->title), title);
 }
 
 void
 xfmpc_interface_set_subtitle (XfmpcInterface *interface,
                               const gchar *subtitle)
 {
-  gtk_label_set_text (GTK_LABEL (interface->priv->subtitle), subtitle);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
+  gtk_label_set_text (GTK_LABEL (priv->subtitle), subtitle);
 }
 
 void
 xfmpc_interface_pp_clicked (XfmpcInterface *interface)
 {
-  XfmpcMpdclient *mpdclient = interface->mpdclient;
-  if (G_UNLIKELY (!xfmpc_mpdclient_pp (mpdclient)))
+  if (G_UNLIKELY (!xfmpc_mpdclient_pp (interface->mpdclient)))
     return;
-  xfmpc_interface_set_pp (interface, xfmpc_mpdclient_is_playing (mpdclient));
+  xfmpc_interface_set_pp (interface, xfmpc_mpdclient_is_playing (interface->mpdclient));
 }
 
 void
 xfmpc_interface_set_pp (XfmpcInterface *interface,
                         gboolean play)
 {
-  GtkWidget *image = gtk_bin_get_child (GTK_BIN (interface->priv->button_pp));
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
+  GtkWidget *image = gtk_bin_get_child (GTK_BIN (priv->button_pp));
 
   if (play == TRUE)
     gtk_image_set_from_stock (GTK_IMAGE (image), GTK_STOCK_MEDIA_PAUSE, GTK_ICON_SIZE_BUTTON);
@@ -335,18 +346,19 @@ gboolean
 xfmpc_interface_progress_box_press_event (XfmpcInterface *interface,
                                           GdkEventButton *event)
 {
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
   if (G_UNLIKELY (event->type != GDK_BUTTON_PRESS || event->button != 1))
     return FALSE;
 
-  XfmpcMpdclient *mpdclient = interface->mpdclient;
-  gint time_total = xfmpc_mpdclient_get_total_time (mpdclient);
+  gint time_total = xfmpc_mpdclient_get_total_time (interface->mpdclient);
   if (G_UNLIKELY (time_total < 0))
     return FALSE;
 
-  gdouble time = event->x / interface->priv->progress_bar->allocation.width;
+  gdouble time = event->x / priv->progress_bar->allocation.width;
   time *= time_total;
 
-  xfmpc_mpdclient_set_song_time (mpdclient, (guint)time);
+  xfmpc_mpdclient_set_song_time (interface->mpdclient, (guint)time);
 
   return TRUE;
 }
@@ -355,15 +367,16 @@ void
 xfmpc_interface_volume_changed (XfmpcInterface *interface,
                                 gdouble value)
 {
-  guint8 volume = value * 100;
-  xfmpc_mpdclient_set_volume (interface->mpdclient, volume);
+  xfmpc_mpdclient_set_volume (interface->mpdclient, (guint8)(value * 100));
 }
 
 void
 xfmpc_interface_set_volume (XfmpcInterface *interface,
                             guint8 volume)
 {
-  gtk_scale_button_set_value (GTK_SCALE_BUTTON (interface->priv->button_volume), (gdouble)volume / 100);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
+  gtk_scale_button_set_value (GTK_SCALE_BUTTON (priv->button_volume), (gdouble)volume / 100);
 }
 
 void
@@ -371,6 +384,8 @@ xfmpc_interface_set_time (XfmpcInterface *interface,
                           gint time,
                           gint time_total)
 {
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
   gint                  min, sec, min_total, sec_total;
   gchar                *text;
   gdouble               fraction = 1.0;
@@ -382,24 +397,23 @@ xfmpc_interface_set_time (XfmpcInterface *interface,
   sec_total = time_total % 60;
 
   text = g_strdup_printf ("%d:%02d / %d:%02d", min, sec, min_total, sec_total);
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (interface->priv->progress_bar), text);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), text);
   g_free (text);
 
   if (G_LIKELY (time_total > 0))
     fraction = (gfloat)time / (gfloat)time_total;
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (interface->priv->progress_bar), fraction);
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->progress_bar), fraction);
 }
 
 static gboolean
 xfmpc_interface_refresh (XfmpcInterface *interface)
 {
-  XfmpcMpdclient       *mpdclient = interface->mpdclient;
   gchar                *text = NULL;
 
-  if (G_UNLIKELY (xfmpc_mpdclient_connect (mpdclient) == FALSE))
+  if (G_UNLIKELY (xfmpc_mpdclient_connect (interface->mpdclient) == FALSE))
     {
       g_warning ("Failed to connect to MPD");
-      xfmpc_mpdclient_disconnect (mpdclient);
+      xfmpc_mpdclient_disconnect (interface->mpdclient);
       xfmpc_interface_set_pp (interface, FALSE);
       xfmpc_interface_set_time (interface, 0, 0);
       xfmpc_interface_set_volume (interface, 0);
@@ -411,18 +425,18 @@ xfmpc_interface_refresh (XfmpcInterface *interface)
       return FALSE;
     }
 
-  xfmpc_mpdclient_update_status (mpdclient);
+  xfmpc_mpdclient_update_status (interface->mpdclient);
 
-  if (G_UNLIKELY (xfmpc_mpdclient_status (mpdclient, VOLUME_CHANGED)))
+  if (G_UNLIKELY (xfmpc_mpdclient_status (interface->mpdclient, VOLUME_CHANGED)))
     {
       /* volume */
-      xfmpc_interface_set_volume (interface, xfmpc_mpdclient_get_volume (mpdclient));
+      xfmpc_interface_set_volume (interface, xfmpc_mpdclient_get_volume (interface->mpdclient));
     }
 
-  if (G_UNLIKELY (xfmpc_mpdclient_is_stopped (mpdclient)))
+  if (G_UNLIKELY (xfmpc_mpdclient_is_stopped (interface->mpdclient)))
     {
       /* stopped */
-      if (xfmpc_mpdclient_status (mpdclient, STOP_CHANGED))
+      if (xfmpc_mpdclient_status (interface->mpdclient, STOP_CHANGED))
         {
           xfmpc_interface_set_pp (interface, FALSE);
           xfmpc_interface_set_time (interface, 0, 0);
@@ -433,30 +447,30 @@ xfmpc_interface_refresh (XfmpcInterface *interface)
       return TRUE;
     }
 
-  if (G_LIKELY (xfmpc_mpdclient_status (mpdclient, TIME_CHANGED)))
+  if (G_LIKELY (xfmpc_mpdclient_status (interface->mpdclient, TIME_CHANGED)))
     {
       /* song time */
       xfmpc_interface_set_time (interface,
-                                xfmpc_mpdclient_get_time (mpdclient),
-                                xfmpc_mpdclient_get_total_time (mpdclient));
+                                xfmpc_mpdclient_get_time (interface->mpdclient),
+                                xfmpc_mpdclient_get_total_time (interface->mpdclient));
     }
 
-  if (G_UNLIKELY (xfmpc_mpdclient_status (mpdclient, PP_CHANGED)))
+  if (G_UNLIKELY (xfmpc_mpdclient_status (interface->mpdclient, PP_CHANGED)))
     {
       /* play/pause */
-      xfmpc_interface_set_pp (interface, xfmpc_mpdclient_is_playing (mpdclient));
+      xfmpc_interface_set_pp (interface, xfmpc_mpdclient_is_playing (interface->mpdclient));
     }
 
-  if (G_UNLIKELY (xfmpc_mpdclient_status (mpdclient, SONG_CHANGED)))
+  if (G_UNLIKELY (xfmpc_mpdclient_status (interface->mpdclient, SONG_CHANGED)))
     {
       /* title */
-      xfmpc_interface_set_title (interface, xfmpc_mpdclient_get_title (mpdclient));
+      xfmpc_interface_set_title (interface, xfmpc_mpdclient_get_title (interface->mpdclient));
 
       /* subtitle "by \"artist\" from \"album\" (year)" */
       text = g_strdup_printf (_("by \"%s\" from \"%s\" (%s)"),
-                              xfmpc_mpdclient_get_artist (mpdclient),
-                              xfmpc_mpdclient_get_album (mpdclient),
-                              xfmpc_mpdclient_get_date (mpdclient));
+                              xfmpc_mpdclient_get_artist (interface->mpdclient),
+                              xfmpc_mpdclient_get_album (interface->mpdclient),
+                              xfmpc_mpdclient_get_date (interface->mpdclient));
       /* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values */
       xfmpc_interface_set_subtitle (interface, text);
       g_free (text);
@@ -549,6 +563,8 @@ static void
 xfmpc_interface_action_volume (GtkAction *action,
                                XfmpcInterface *interface)
 {
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
   g_signal_emit_by_name (interface->priv->button_volume, "popup", G_TYPE_NONE);
 }
 

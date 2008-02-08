@@ -26,6 +26,9 @@
 
 #define BORDER 4
 
+#define XFMPC_EXTENDED_INTERFACE_GET_PRIVATE(o) \
+    (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterfacePrivate))
+
 
 
 /* List store identifiers */
@@ -50,20 +53,20 @@ static void             cb_xfmpc_extended_interface_combobox_changed (GtkComboBo
 
 struct _XfmpcExtendedInterfaceClass
 {
-  GtkVBoxClass                  parent_class;
+  GtkVBoxClass                      parent_class;
 };
 
 struct _XfmpcExtendedInterface
 {
-  GtkVBox                       parent;
-  XfmpcExtendedInterfacePriv   *priv;
+  GtkVBox                           parent;
+  XfmpcExtendedInterfacePrivate    *priv;
 };
 
-struct _XfmpcExtendedInterfacePriv
+struct _XfmpcExtendedInterfacePrivate
 {
-  GtkListStore                 *list_store;
-  GtkWidget                    *combobox;
-  GtkWidget                    *notebook;
+  GtkListStore                     *list_store;
+  GtkWidget                        *combobox;
+  GtkWidget                        *notebook;
 };
 
 
@@ -105,6 +108,8 @@ xfmpc_extended_interface_class_init (XfmpcExtendedInterfaceClass *klass)
 {
   GObjectClass *gobject_class;
 
+  g_type_class_add_private (klass, sizeof (XfmpcExtendedInterfacePrivate));
+
   parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
@@ -115,26 +120,24 @@ xfmpc_extended_interface_class_init (XfmpcExtendedInterfaceClass *klass)
 static void
 xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 {
-  extended_interface->priv = g_slice_new0 (XfmpcExtendedInterfacePriv);
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
 
   /* Combo box */
-  GtkListStore *list_store = extended_interface->priv->list_store =
-    gtk_list_store_new (N_COLUMNS,
-                        G_TYPE_STRING,
-                        G_TYPE_POINTER);
+  priv->list_store = gtk_list_store_new (N_COLUMNS,
+                                         G_TYPE_STRING,
+                                         G_TYPE_POINTER);
 
-  GtkWidget *combobox = extended_interface->priv->combobox =
-    gtk_combo_box_new_with_model (GTK_TREE_MODEL (list_store));
+  priv->combobox = gtk_combo_box_new_with_model (GTK_TREE_MODEL (priv->list_store));
 
   GtkCellRenderer *cell = gtk_cell_renderer_text_new ();
-  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combobox), cell, TRUE);
-  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combobox),
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combobox), cell, TRUE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combobox),
                                   cell, "text", COLUMN_STRING,
                                   NULL);
 
   /* Notebook */
-  GtkWidget *notebook = extended_interface->priv->notebook = gtk_notebook_new ();
-  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
+  priv->notebook = gtk_notebook_new ();
+  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
 
   /* Extended interface widgets */
   GtkWidget *child = gtk_label_new ("Hello world!");
@@ -144,11 +147,11 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   xfmpc_extended_interface_append_child (extended_interface, child, "Good bye world!");
 
   /* Containers */
-  gtk_box_pack_start (GTK_BOX (extended_interface), combobox, FALSE, FALSE, BORDER);
-  gtk_box_pack_start (GTK_BOX (extended_interface), notebook, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (extended_interface), priv->combobox, FALSE, FALSE, BORDER);
+  gtk_box_pack_start (GTK_BOX (extended_interface), priv->notebook, TRUE, TRUE, 0);
 
   /* Signals */
-  g_signal_connect (combobox, "changed",
+  g_signal_connect (priv->combobox, "changed",
                     G_CALLBACK (cb_xfmpc_extended_interface_combobox_changed), extended_interface);
 }
 
@@ -177,25 +180,29 @@ xfmpc_extended_interface_append_child (XfmpcExtendedInterface *extended_interfac
                                        GtkWidget *child,
                                        const gchar *title)
 {
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
+
   GtkTreeIter iter;
 
-  gtk_list_store_append (extended_interface->priv->list_store, &iter);
-  gtk_list_store_set (extended_interface->priv->list_store, &iter,
+  gtk_list_store_append (priv->list_store, &iter);
+  gtk_list_store_set (priv->list_store, &iter,
                       COLUMN_STRING, title,
                       COLUMN_POINTER, child,
                       -1);
 
-  if (gtk_combo_box_get_active(GTK_COMBO_BOX (extended_interface->priv->combobox)) == -1)
-    gtk_combo_box_set_active (GTK_COMBO_BOX (extended_interface->priv->combobox), 0);
+  if (gtk_combo_box_get_active(GTK_COMBO_BOX (priv->combobox)) == -1)
+    gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combobox), 0);
 
-  gtk_notebook_append_page (GTK_NOTEBOOK (extended_interface->priv->notebook), child, NULL);
-  gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (extended_interface->priv->notebook), child, TRUE, TRUE, GTK_PACK_START);
+  gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), child, NULL);
+  gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (priv->notebook), child, TRUE, TRUE, GTK_PACK_START);
 }
 
 static void
 cb_xfmpc_extended_interface_combobox_changed (GtkComboBox *widget,
                                               XfmpcExtendedInterface *extended_interface)
 {
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
+
   GtkWidget            *child;
   GtkTreeIter           iter;
   gint                  i;
@@ -203,12 +210,12 @@ cb_xfmpc_extended_interface_combobox_changed (GtkComboBox *widget,
   if (gtk_combo_box_get_active_iter (widget, &iter) == FALSE)
     return;
 
-  gtk_tree_model_get (GTK_TREE_MODEL (extended_interface->priv->list_store), &iter,
+  gtk_tree_model_get (GTK_TREE_MODEL (priv->list_store), &iter,
                       COLUMN_POINTER, &child,
                       -1);
   g_return_if_fail (G_LIKELY (GTK_IS_WIDGET (child)));
 
-  i = gtk_notebook_page_num (GTK_NOTEBOOK (extended_interface->priv->notebook), child);
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (extended_interface->priv->notebook), i);
+  i = gtk_notebook_page_num (GTK_NOTEBOOK (priv->notebook), child);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), i);
 }
 

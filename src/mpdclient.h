@@ -42,7 +42,7 @@ typedef enum
 
 typedef struct _XfmpcMpdclientClass         XfmpcMpdclientClass;
 typedef struct _XfmpcMpdclient              XfmpcMpdclient;
-typedef struct _XfmpcMpdclientPriv          XfmpcMpdclientPriv;
+typedef struct _XfmpcMpdclientPrivate       XfmpcMpdclientPrivate;
 
 GType                   xfmpc_mpdclient_get_type                () G_GNUC_CONST;
 
