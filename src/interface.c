@@ -565,6 +565,6 @@ xfmpc_interface_action_volume (GtkAction *action,
 {
   XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
 
-  g_signal_emit_by_name (interface->priv->button_volume, "popup", G_TYPE_NONE);
+  g_signal_emit_by_name (priv->button_volume, "popup", G_TYPE_NONE);
 }
 

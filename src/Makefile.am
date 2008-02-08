@@ -8,6 +8,8 @@ xfmpc_SOURCES =								\
 	interface-ui.xml						\
 	extended-interface.c						\
 	extended-interface.h						\
+	playlist.c							\
+	playlist.h							\
 	preferences.c							\
 	preferences.h							\
 	mpdclient.c							\

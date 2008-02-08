@@ -21,8 +21,10 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <libxfce4util/libxfce4util.h>
 
 #include "extended-interface.h"
+#include "playlist.h"
 
 #define BORDER 4
 
@@ -140,11 +142,11 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
 
   /* Extended interface widgets */
-  GtkWidget *child = gtk_label_new ("Hello world!");
-  xfmpc_extended_interface_append_child (extended_interface, child, "Hello world!");
+  GtkWidget *child = xfmpc_playlist_new ();
+  xfmpc_extended_interface_append_child (extended_interface, child, _("Current Playlist"));
 
-  child = gtk_label_new ("Good bye world!");
-  xfmpc_extended_interface_append_child (extended_interface, child, "Good bye world!");
+  child = gtk_label_new ("Hello world!");
+  xfmpc_extended_interface_append_child (extended_interface, child, "Hello world!");
 
   /* Containers */
   gtk_box_pack_start (GTK_BOX (extended_interface), priv->combobox, FALSE, FALSE, BORDER);
