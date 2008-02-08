@@ -1,3 +1,100 @@
+2008-02-08	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/mpdclient.c,
+	  src/mpdclient.h:
+	  - New signal playlist-changed
+	  - New function xfmpc_mpdclient_playlist_read, which returns every entry in
+	  the current playlist once at a time, should be used inside a loop
+	* src/playlist.c:
+	  - Insert a column "position of the song" in the tree model
+	  - Connect to signal playlist-changed to update the tree view
+	  - xfmpc_playlist_init(): Ellipsize + expand "artist - title"
+
+2008-02-07	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/mpdclient.c(cb_xfmpc_mpdclient_status_changed):
+	  - Move signal song-changed above stopped
+
+2008-02-07	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/mpdclient.c,
+	  src/mpdclient.h:
+	  - Replace code with StatusField against signals
+	* src/interface.c:
+	  - Connect to XfmpcClient signals
+
+2008-02-06	Mike Massonnet <mmassonnet@xfce.org>
+
+	* xfmpc.desktop.in: Fix desktop entry file (missing semi-colon)
+
+2008-02-06	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/Makefile.am:
+	  - Add compilation for playlist.{c,h}
+	* src/extended-interface.c:
+	  - Include libxfce4util for the gettext function _()
+	  - (xfmpc_extended_interface_init): Insert an XfmpcPlaylist in the notebook
+	* src/interface.c:
+	  - Fix segfault, forget to use the correct priv pointer
+	* src/playlist.c,
+	  src/playlist.h:
+	  - New XfmpcPlaylist widget (has no interaction with mpd for the moment)
+
+2008-02-01	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/extended-interface.c, src/extended-interface.h,
+	  src/interface.c, src/interface.h,
+	  src/mpdclient.c, src/mpdclient.h:
+	  - Create the private data structure with g_type_class_add_private instead of
+	    allocating the private structure with g_slice_new
+
+2008-02-01	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/Makefile.am:
+	  - Add compilation for new files
+	* src/extended-interface.c,
+	  src/extended-interface.h:
+	  - New files
+	* src/interface.c:
+	  - Add a new XfmpcExtendedInterface
+
+2008-01-31	Mike Massonnet <mmassonnet@xfce.org>
+
+	* xfmpc.desktop.in:
+	  - Clean up the desktop entry file
+
+2008-01-30	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/main.c:
+	  - Fix warnings for missing includes
+
+2008-01-30	Mike Massonnet <mmassonnet@xfce.org>
+
+	* autogen.sh:
+	  - Use remotes/trunk instead of HEAD for the git-svn find-rev command
+
+2008-01-28	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/interface.c(xfmpc_interface_set_time):
+	  - Use modulo operator to calculate the seconds
+
+2008-01-27	Mike Massonnet <mmassonnet@xfce.org>
+
+	* src/src/preferences.c:
+	  - Add LastWindowStateSticky preference
+	* src/interface.c(xfmpc_interface_init):
+	  - Connect signal "window-state-event" to xfmpc_interface_state_event
+	  - Restore the preference LastWindowStateSticky
+	* src/interface.c(xfmpc_interface_state_event):
+	  - Save the changes of the sticky window state
+	* src/main.c:
+	  - Register transform function from G_TYPE_STRING to G_TYPE_BOOLEAN
+
+2008-01-27	Mike Massonnet <mmassonnet@xfce.org>
+
+	* Makefile.am, xfmpc.desktop.in:
+	  - Add desktop file entry
+
 2008-01-27 Mike Massonnet <mmassonnet@xfce.org>
 
 	* === Release 0.0.2 ===
