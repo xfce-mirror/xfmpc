@@ -24,6 +24,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "playlist.h"
+#include "mpdclient.h"
 
 #define BORDER 4
 
@@ -37,11 +38,15 @@ static void             xfmpc_playlist_init                     (XfmpcPlaylist *
 static void             xfmpc_playlist_dispose                  (GObject *object);
 static void             xfmpc_playlist_finalize                 (GObject *object);
 
+static void             cb_playlist_changed                     (XfmpcPlaylist *playlist);
+
+
 
 
 /* List store identifiers */
 enum
 {
+  COLUMN_POS,
   COLUMN_SONG,
   COLUMN_LENGTH,
   N_COLUMNS,
@@ -58,6 +63,7 @@ struct _XfmpcPlaylist
 {
   GtkVBox               parent;
   XfmpcPlaylistPrivate *priv;
+  XfmpcMpdclient       *mpdclient;
 };
 
 struct _XfmpcPlaylistPrivate
@@ -119,22 +125,35 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
 
-  priv->store = gtk_list_store_new (N_COLUMNS,
-                                         G_TYPE_STRING,
-                                         G_TYPE_STRING);
+  playlist->mpdclient = xfmpc_mpdclient_new ();
 
+  /* Tree model */
+  priv->store = gtk_list_store_new (N_COLUMNS,
+                                    G_TYPE_INT,
+                                    G_TYPE_STRING,
+                                    G_TYPE_STRING);
+
+  /* Tree view */
   priv->treeview = gtk_tree_view_new ();
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->treeview), FALSE);
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview), TRUE);
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), GTK_TREE_MODEL (priv->store));
   g_object_unref (priv->store);
 
+  /* Column "artist - title" */
   GtkCellRenderer *cell = gtk_cell_renderer_text_new ();
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview),
-                                               -1, "Song", cell,
-                                               "text", COLUMN_SONG,
-                                               NULL);
+  g_object_set (G_OBJECT (cell),
+                "ellipsize", PANGO_ELLIPSIZE_END,
+                NULL);
+  GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes ("Song", cell,
+                                                                        "text", COLUMN_SONG,
+                                                                        NULL);
+  g_object_set (G_OBJECT (column),
+                "expand", TRUE,
+                NULL);
+  gtk_tree_view_append_column (GTK_TREE_VIEW (priv->treeview), column);
 
+  /* Column "length" */
   cell = gtk_cell_renderer_text_new ();
   g_object_set (G_OBJECT (cell), "xalign", 1.0, NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview),
@@ -142,18 +161,19 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                                                "text", COLUMN_LENGTH,
                                                NULL);
 
-#if 1
-  xfmpc_playlist_append (playlist, "Hello - World!", "0:00");
-  xfmpc_playlist_append (playlist, "Good bye - World!", "0:00");
-#endif
-
+  /* Scrolled window */
   GtkWidget *scrolled = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
                                   GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_ALWAYS);
 
+  /* Containers */
   gtk_container_add (GTK_CONTAINER (scrolled), priv->treeview);
   gtk_box_pack_start (GTK_BOX (playlist), scrolled, TRUE, TRUE, 0);
+
+  /* Signals */
+  g_signal_connect_swapped (playlist->mpdclient, "playlist-changed",
+                            G_CALLBACK (cb_playlist_changed), playlist);
 }
 
 static void
@@ -165,6 +185,8 @@ xfmpc_playlist_dispose (GObject *object)
 static void
 xfmpc_playlist_finalize (GObject *object)
 {
+  XfmpcPlaylist *playlist = XFMPC_PLAYLIST (object);
+  g_object_unref (G_OBJECT (playlist->mpdclient));
   (*G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
@@ -178,6 +200,7 @@ xfmpc_playlist_new ()
 
 void
 xfmpc_playlist_append (XfmpcPlaylist *playlist,
+                       gint pos,
                        gchar *song,
                        gchar *length)
 {
@@ -186,6 +209,7 @@ xfmpc_playlist_append (XfmpcPlaylist *playlist,
 
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter,
+                      COLUMN_POS, pos,
                       COLUMN_SONG, song,
                       COLUMN_LENGTH, length,
                       -1);
@@ -197,5 +221,21 @@ xfmpc_playlist_clear (XfmpcPlaylist *playlist)
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
 
   gtk_list_store_clear (priv->store);
+}
+
+static void
+cb_playlist_changed (XfmpcPlaylist *playlist)
+{
+  gchar                *song;
+  gchar                *length;
+  gint                  pos;
+
+  xfmpc_playlist_clear (playlist);
+  while (xfmpc_mpdclient_playlist_read (playlist->mpdclient, &pos, &song, &length))
+    {
+      xfmpc_playlist_append (playlist, pos, song, length);
+      g_free (song);
+      g_free (length);
+    }
 }
 

@@ -40,6 +40,7 @@ enum
   SIG_TIME_CHANGED,
   SIG_VOLUME_CHANGED,
   SIG_STOPPED,
+  SIG_PLAYLIST_CHANGED,
   LAST_SIGNAL
 };
 
@@ -68,6 +69,7 @@ struct _XfmpcMpdclientClass
   void (*time_changed)      (XfmpcMpdclient *mpdclient, gint time, gint total_time, gpointer user_data);
   void (*volume_changed)    (XfmpcMpdclient *mpdclient, gint volume, gpointer user_data);
   void (*stopped)           (XfmpcMpdclient *mpdclient, gpointer user_data);
+  void (*playlist_changed)  (XfmpcMpdclient *mpdclient, gpointer user_data);
 };
 
 struct _XfmpcMpdclient
@@ -150,7 +152,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   xfmpc_mpdclient_signals[SIG_TIME_CHANGED] =
     g_signal_new ("time-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, pp_changed),
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, time_changed),
                   NULL, NULL,
                   g_cclosure_marshal_VOID__UINT_POINTER,
                   G_TYPE_NONE, 2,
@@ -160,7 +162,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   xfmpc_mpdclient_signals[SIG_VOLUME_CHANGED] =
     g_signal_new ("volume-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, pp_changed),
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, volume_changed),
                   NULL, NULL,
                   g_cclosure_marshal_VOID__INT,
                   G_TYPE_NONE, 1,
@@ -169,7 +171,15 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   xfmpc_mpdclient_signals[SIG_STOPPED] =
     g_signal_new ("stopped", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, pp_changed),
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, stopped),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
+
+  xfmpc_mpdclient_signals[SIG_PLAYLIST_CHANGED] =
+    g_signal_new ("playlist-changed", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, playlist_changed),
                   NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
@@ -470,6 +480,39 @@ xfmpc_mpdclient_update_status (XfmpcMpdclient *mpdclient)
   mpd_status_update (priv->mi);
 }
 
+gboolean
+xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
+                               gint *pos,
+                               gchar **song,
+                               gchar **length)
+{
+  static MpdData       *data = NULL;
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (NULL == data)
+    data = mpd_playlist_get_changes (priv->mi, -1);
+  else
+    data = mpd_data_get_next (data);
+
+  if (NULL != data)
+    {
+      if (NULL != data->song->title)
+        {
+          if (data->song->artist)
+            *song = g_strdup_printf ("%s - %s", data->song->artist, data->song->title);
+          else
+            *song = g_strdup (data->song->title);
+        }
+      else
+        *song = g_path_get_basename (data->song->file);
+
+      *length = g_strdup_printf ("%d:%02d", data->song->time / 60, data->song->time % 60);
+      *pos = data->song->id;
+    }
+
+  return NULL != data;
+}
+
 static void
 cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
                                    ChangedStatusType what,
@@ -499,5 +542,8 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
     g_signal_emit_by_name (mpdclient, "time-changed",
                            xfmpc_mpdclient_get_time (mpdclient),
                            xfmpc_mpdclient_get_total_time (mpdclient));
+
+  if (what & MPD_CST_PLAYLIST)
+    g_signal_emit_by_name (mpdclient, "playlist-changed");
 }
 

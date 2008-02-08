@@ -40,6 +40,7 @@ GType                   xfmpc_playlist_get_type                 () G_GNUC_CONST;
 GtkWidget *             xfmpc_playlist_new                      ();
 
 void                    xfmpc_playlist_append                   (XfmpcPlaylist *playlist,
+                                                                 gint pos,
                                                                  gchar *song,
                                                                  gchar *length);
 void                    xfmpc_playlist_clear                    (XfmpcPlaylist *playlist);

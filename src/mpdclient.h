@@ -81,6 +81,11 @@ gboolean                xfmpc_mpdclient_is_stopped              (XfmpcMpdclient 
 
 void                    xfmpc_mpdclient_update_status           (XfmpcMpdclient *mpdclient);
 
+gboolean                xfmpc_mpdclient_playlist_read           (XfmpcMpdclient *mpdclient,
+                                                                 gint *pos,
+                                                                 gchar **song,
+                                                                 gchar **length);
+
 G_END_DECLS
 
 #endif
