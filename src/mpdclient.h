@@ -31,15 +31,6 @@ G_BEGIN_DECLS
 
 #define XFMPC_MPDCLIENT_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclientClass))
 
-typedef enum
-{
-  STOP_CHANGED          = 1 << 0,
-  PP_CHANGED            = 1 << 1,
-  SONG_CHANGED          = 1 << 2,
-  VOLUME_CHANGED        = 1 << 3,
-  TIME_CHANGED          = 1 << 4,
-} StatusField;
-
 typedef struct _XfmpcMpdclientClass         XfmpcMpdclientClass;
 typedef struct _XfmpcMpdclient              XfmpcMpdclient;
 typedef struct _XfmpcMpdclientPrivate       XfmpcMpdclientPrivate;
@@ -89,9 +80,6 @@ gboolean                xfmpc_mpdclient_is_playing              (XfmpcMpdclient 
 gboolean                xfmpc_mpdclient_is_stopped              (XfmpcMpdclient *mpdclient);
 
 void                    xfmpc_mpdclient_update_status           (XfmpcMpdclient *mpdclient);
-
-gboolean                xfmpc_mpdclient_status                  (XfmpcMpdclient *mpdclient,
-                                                                 gint bits);
 
 G_END_DECLS
 

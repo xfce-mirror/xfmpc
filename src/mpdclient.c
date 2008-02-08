@@ -33,6 +33,20 @@
 
 
 
+enum
+{
+  SIG_SONG_CHANGED,
+  SIG_PP_CHANGED,
+  SIG_TIME_CHANGED,
+  SIG_VOLUME_CHANGED,
+  SIG_STOPPED,
+  LAST_SIGNAL
+};
+
+static guint            xfmpc_mpdclient_signals[LAST_SIGNAL] = { 0 };
+
+
+
 static void             xfmpc_mpdclient_class_init              (XfmpcMpdclientClass *klass);
 static void             xfmpc_mpdclient_init                    (XfmpcMpdclient *mpdclient);
 static void             xfmpc_mpdclient_finalize                (GObject *object);
@@ -48,6 +62,12 @@ static void             cb_xfmpc_mpdclient_status_changed       (MpdObj *mi,
 struct _XfmpcMpdclientClass
 {
   GObjectClass              parent_class;
+
+  void (*song_changed)      (XfmpcMpdclient *mpdclient, gpointer user_data);
+  void (*pp_changed)        (XfmpcMpdclient *mpdclient, gboolean is_playing, gpointer user_data);
+  void (*time_changed)      (XfmpcMpdclient *mpdclient, gint time, gint total_time, gpointer user_data);
+  void (*volume_changed)    (XfmpcMpdclient *mpdclient, gint volume, gpointer user_data);
+  void (*stopped)           (XfmpcMpdclient *mpdclient, gpointer user_data);
 };
 
 struct _XfmpcMpdclient
@@ -62,8 +82,6 @@ struct _XfmpcMpdclientPrivate
   gchar                    *host;
   guint                     port;
   gchar                    *passwd;
-
-  StatusField               status;
 };
 
 
@@ -111,6 +129,50 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = xfmpc_mpdclient_finalize;
+
+  xfmpc_mpdclient_signals[SIG_SONG_CHANGED] =
+    g_signal_new ("song-changed", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, song_changed),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
+
+  xfmpc_mpdclient_signals[SIG_PP_CHANGED] =
+    g_signal_new ("pp-changed", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, pp_changed),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__BOOLEAN,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_BOOLEAN);
+
+  xfmpc_mpdclient_signals[SIG_TIME_CHANGED] =
+    g_signal_new ("time-changed", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, pp_changed),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__UINT_POINTER,
+                  G_TYPE_NONE, 2,
+                  G_TYPE_INT,
+                  G_TYPE_INT);
+
+  xfmpc_mpdclient_signals[SIG_VOLUME_CHANGED] =
+    g_signal_new ("volume-changed", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, pp_changed),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__INT,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_INT);
+
+  xfmpc_mpdclient_signals[SIG_STOPPED] =
+    g_signal_new ("stopped", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, pp_changed),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
 }
 
 static void
@@ -408,58 +470,34 @@ xfmpc_mpdclient_update_status (XfmpcMpdclient *mpdclient)
   mpd_status_update (priv->mi);
 }
 
-gboolean
-xfmpc_mpdclient_status (XfmpcMpdclient *mpdclient,
-                        gint bits)
-{
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
-  if (priv->status & bits)
-    {
-      priv->status &= ~bits;
-      return TRUE;
-    }
-
-  return FALSE;
-}
-
 static void
 cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
                                    ChangedStatusType what,
                                    gpointer user_data)
 {
-  XfmpcMpdclient *mpdclient = user_data;
+  XfmpcMpdclient *mpdclient = XFMPC_MPDCLIENT (user_data);
   g_return_if_fail (G_LIKELY (NULL != user_data));
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
 
   if (what & MPD_CST_STATE)
     {
-      switch (mpd_player_get_state (mi))
-        {
-        case MPD_PLAYER_STOP:
-          priv->status |= STOP_CHANGED;
-          priv->status |= SONG_CHANGED; /* as to say that the next time the
-                                           song plays again, it needs to update
-                                           its title in the interface */
-          break;
-
-        case MPD_PLAYER_PLAY:
-        case MPD_PLAYER_PAUSE:
-          priv->status |= PP_CHANGED;
-          break;
-
-        default:
-          break;
-        }
+      gint state = mpd_player_get_state (mi);
+      if (state == MPD_PLAYER_STOP)
+        g_signal_emit_by_name (mpdclient, "stopped");
+      else if (state == MPD_PLAYER_PLAY || state == MPD_PLAYER_PAUSE)
+        g_signal_emit_by_name (mpdclient, "pp-changed",
+                               state == MPD_PLAYER_PLAY);
     }
 
   if (what & MPD_CST_SONGID)
-    priv->status |= SONG_CHANGED;
+    g_signal_emit_by_name (mpdclient, "song-changed");
 
   if (what & MPD_CST_VOLUME)
-    priv->status |= VOLUME_CHANGED;
+    g_signal_emit_by_name (mpdclient, "volume-changed",
+                           xfmpc_mpdclient_get_volume (mpdclient));
 
   if (what & (MPD_CST_ELAPSED_TIME|MPD_CST_TOTAL_TIME))
-    priv->status |= TIME_CHANGED;
+    g_signal_emit_by_name (mpdclient, "time-changed",
+                           xfmpc_mpdclient_get_time (mpdclient),
+                           xfmpc_mpdclient_get_total_time (mpdclient));
 }
 

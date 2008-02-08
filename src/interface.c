@@ -60,6 +60,17 @@ static void             xfmpc_interface_action_next             (GtkAction *acti
                                                                  XfmpcInterface *interface);
 static void             xfmpc_interface_action_volume           (GtkAction *action,
                                                                  XfmpcInterface *interface);
+static void             cb_song_changed                         (XfmpcInterface *interface);
+
+static void             cb_pp_changed                           (XfmpcInterface *interface,
+                                                                 gboolean is_playing);
+static void             cb_time_changed                         (XfmpcInterface *interface,
+                                                                 gint time,
+                                                                 gint total_time);
+static void             cb_volume_changed                       (XfmpcInterface *interface,
+                                                                 gint volume);
+static void             cb_stopped                              (XfmpcInterface *interface);
+
 
 
 
@@ -86,6 +97,7 @@ struct _XfmpcInterfacePrivate
   GtkWidget                *progress_bar; /* position in song */
   GtkWidget                *title;
   GtkWidget                *subtitle;
+  gboolean                  refresh_title;
 };
 
 
@@ -275,6 +287,17 @@ xfmpc_interface_init (XfmpcInterface *interface)
   g_signal_connect_swapped (progress_box, "button-press-event",
                             G_CALLBACK (xfmpc_interface_progress_box_press_event), interface);
 
+  g_signal_connect_swapped (interface->mpdclient, "song-changed",
+                            G_CALLBACK (cb_song_changed), interface);
+  g_signal_connect_swapped (interface->mpdclient, "pp-changed",
+                            G_CALLBACK (cb_pp_changed), interface);
+  g_signal_connect_swapped (interface->mpdclient, "time-changed",
+                            G_CALLBACK (cb_time_changed), interface);
+  g_signal_connect_swapped (interface->mpdclient, "volume-changed",
+                            G_CALLBACK (cb_volume_changed), interface);
+  g_signal_connect_swapped (interface->mpdclient, "stopped",
+                            G_CALLBACK (cb_stopped), interface);
+
   /* === Timeout === */
   g_timeout_add (1000, (GSourceFunc)xfmpc_interface_refresh, interface);
 }
@@ -408,8 +431,6 @@ xfmpc_interface_set_time (XfmpcInterface *interface,
 static gboolean
 xfmpc_interface_refresh (XfmpcInterface *interface)
 {
-  gchar                *text = NULL;
-
   if (G_UNLIKELY (xfmpc_mpdclient_connect (interface->mpdclient) == FALSE))
     {
       g_warning ("Failed to connect to MPD");
@@ -426,55 +447,6 @@ xfmpc_interface_refresh (XfmpcInterface *interface)
     }
 
   xfmpc_mpdclient_update_status (interface->mpdclient);
-
-  if (G_UNLIKELY (xfmpc_mpdclient_status (interface->mpdclient, VOLUME_CHANGED)))
-    {
-      /* volume */
-      xfmpc_interface_set_volume (interface, xfmpc_mpdclient_get_volume (interface->mpdclient));
-    }
-
-  if (G_UNLIKELY (xfmpc_mpdclient_is_stopped (interface->mpdclient)))
-    {
-      /* stopped */
-      if (xfmpc_mpdclient_status (interface->mpdclient, STOP_CHANGED))
-        {
-          xfmpc_interface_set_pp (interface, FALSE);
-          xfmpc_interface_set_time (interface, 0, 0);
-          xfmpc_interface_set_title (interface, _("Stopped"));
-          xfmpc_interface_set_subtitle (interface, PACKAGE_STRING);
-        }
-
-      return TRUE;
-    }
-
-  if (G_LIKELY (xfmpc_mpdclient_status (interface->mpdclient, TIME_CHANGED)))
-    {
-      /* song time */
-      xfmpc_interface_set_time (interface,
-                                xfmpc_mpdclient_get_time (interface->mpdclient),
-                                xfmpc_mpdclient_get_total_time (interface->mpdclient));
-    }
-
-  if (G_UNLIKELY (xfmpc_mpdclient_status (interface->mpdclient, PP_CHANGED)))
-    {
-      /* play/pause */
-      xfmpc_interface_set_pp (interface, xfmpc_mpdclient_is_playing (interface->mpdclient));
-    }
-
-  if (G_UNLIKELY (xfmpc_mpdclient_status (interface->mpdclient, SONG_CHANGED)))
-    {
-      /* title */
-      xfmpc_interface_set_title (interface, xfmpc_mpdclient_get_title (interface->mpdclient));
-
-      /* subtitle "by \"artist\" from \"album\" (year)" */
-      text = g_strdup_printf (_("by \"%s\" from \"%s\" (%s)"),
-                              xfmpc_mpdclient_get_artist (interface->mpdclient),
-                              xfmpc_mpdclient_get_album (interface->mpdclient),
-                              xfmpc_mpdclient_get_date (interface->mpdclient));
-      /* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values */
-      xfmpc_interface_set_subtitle (interface, text);
-      g_free (text);
-    }
 
   return TRUE;
 }
@@ -527,6 +499,65 @@ xfmpc_interface_closed (XfmpcInterface *interface,
 
   gtk_main_quit ();
   return FALSE;
+}
+
+static void
+cb_song_changed (XfmpcInterface *interface)
+{
+  /* title */
+  xfmpc_interface_set_title (interface, xfmpc_mpdclient_get_title (interface->mpdclient));
+
+  /* subtitle "by \"artist\" from \"album\" (year)" */
+  gchar *text = g_strdup_printf (_("by \"%s\" from \"%s\" (%s)"),
+                                 xfmpc_mpdclient_get_artist (interface->mpdclient),
+                                 xfmpc_mpdclient_get_album (interface->mpdclient),
+                                 xfmpc_mpdclient_get_date (interface->mpdclient));
+  /* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values, so far I don't care */
+  xfmpc_interface_set_subtitle (interface, text);
+  g_free (text);
+}
+
+static void
+cb_pp_changed (XfmpcInterface *interface,
+               gboolean is_playing)
+{
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
+  xfmpc_interface_set_pp (interface, is_playing);
+
+  if (priv->refresh_title)
+    {
+      cb_song_changed (interface);
+      priv->refresh_title = FALSE;
+    }
+}
+
+static void
+cb_time_changed (XfmpcInterface *interface,
+                 gint time,
+                 gint total_time)
+{
+  xfmpc_interface_set_time (interface, time, total_time);
+}
+
+static void
+cb_volume_changed (XfmpcInterface *interface,
+                   gint volume)
+{
+  xfmpc_interface_set_volume (interface, volume);
+}
+
+static void
+cb_stopped (XfmpcInterface *interface)
+{
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
+  xfmpc_interface_set_pp (interface, FALSE);
+  xfmpc_interface_set_time (interface, 0, 0);
+  xfmpc_interface_set_title (interface, _("Stopped"));
+  xfmpc_interface_set_subtitle (interface, PACKAGE_STRING);
+
+  priv->refresh_title = TRUE;
 }
 
 
