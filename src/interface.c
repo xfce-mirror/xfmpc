@@ -26,6 +26,7 @@
 
 #include "interface.h"
 #include "interface-ui.h"
+#include "extended-interface.h"
 #include "preferences.h"
 #include "mpdclient.h"
 
@@ -68,6 +69,7 @@ struct _XfmpcInterface
 {
   GtkWindow             parent;
   XfmpcInterfacePriv   *priv;
+  GtkWidget            *extended_interface;
   XfmpcPreferences     *preferences;
   XfmpcMpdclient       *mpdclient;
 };
@@ -192,6 +194,8 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (control), 1.0);
   gtk_container_add (GTK_CONTAINER (progress_box), control);
 
+  interface->extended_interface = xfmpc_extended_interface_new ();
+
   /* Title */
   PangoAttrList* attrs = pango_attr_list_new ();
   PangoAttribute* attr = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
@@ -239,6 +243,8 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_box_pack_start (GTK_BOX (vbox), box, FALSE, TRUE, 0);
   gtk_container_add (GTK_CONTAINER (box), interface->priv->title);
   gtk_container_add (GTK_CONTAINER (box), interface->priv->subtitle);
+
+  gtk_box_pack_start (GTK_BOX (vbox), interface->extended_interface, TRUE, TRUE, 0);
 
   /* === Accelerators === */
   GtkActionGroup *action_group = gtk_action_group_new ("XfmpcInterface");
