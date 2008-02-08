@@ -370,10 +370,10 @@ xfmpc_interface_set_time (XfmpcInterface *interface,
   gdouble               fraction = 1.0;
 
   min = time / 60;
-  sec = time - (min * 60);
+  sec = time % 60;
 
   min_total = time_total / 60;
-  sec_total = time_total - (min_total * 60);
+  sec_total = time_total % 60;
 
   text = g_strdup_printf ("%d:%02d / %d:%02d", min, sec, min_total, sec_total);
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (interface->priv->progress_bar), text);
