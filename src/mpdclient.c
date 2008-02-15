@@ -348,6 +348,15 @@ xfmpc_mpdclient_next (XfmpcMpdclient *mpdclient)
 }
 
 gboolean
+xfmpc_mpdclient_set_id (XfmpcMpdclient *mpdclient,
+                        gint id)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  return mpd_player_play_id (priv->mi, id) == MPD_OK ? TRUE : FALSE;
+}
+
+gboolean
 xfmpc_mpdclient_set_volume (XfmpcMpdclient *mpdclient,
                             guint8 volume)
 {

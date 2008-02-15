@@ -40,13 +40,16 @@ static void             xfmpc_playlist_finalize                 (GObject *object
 
 static void             cb_playlist_changed                     (XfmpcPlaylist *playlist);
 
+static void             cb_row_activated                        (XfmpcPlaylist *playlist,
+                                                                 GtkTreePath *path,
+                                                                 GtkTreeViewColumn *column);
 
 
 
 /* List store identifiers */
 enum
 {
-  COLUMN_POS,
+  COLUMN_ID,
   COLUMN_SONG,
   COLUMN_LENGTH,
   COLUMN_IS_CURRENT,
@@ -180,6 +183,8 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   gtk_box_pack_start (GTK_BOX (playlist), scrolled, TRUE, TRUE, 0);
 
   /* Signals */
+  g_signal_connect_swapped (priv->treeview, "row-activated",
+                            G_CALLBACK (cb_row_activated), playlist);
   g_signal_connect_swapped (playlist->mpdclient, "song-changed",
                             G_CALLBACK (cb_playlist_changed), playlist);
   g_signal_connect_swapped (playlist->mpdclient, "playlist-changed",
@@ -220,7 +225,7 @@ xfmpc_playlist_append (XfmpcPlaylist *playlist,
 
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter,
-                      COLUMN_POS, id,
+                      COLUMN_ID, id,
                       COLUMN_SONG, song,
                       COLUMN_LENGTH, length,
                       COLUMN_IS_CURRENT, is_current ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
@@ -252,5 +257,23 @@ cb_playlist_changed (XfmpcPlaylist *playlist)
       g_free (song);
       g_free (length);
     }
+}
+
+static void
+cb_row_activated (XfmpcPlaylist *playlist,
+                  GtkTreePath *path,
+                  GtkTreeViewColumn *column)
+{
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  GtkTreeIter           iter;
+  gint                  id;
+
+  if (!gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path))
+    return;
+
+  gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
+                      COLUMN_ID, &id,
+                      -1);
+  xfmpc_mpdclient_set_id (playlist->mpdclient, id);
 }
 

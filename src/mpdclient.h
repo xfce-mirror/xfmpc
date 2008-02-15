@@ -57,6 +57,8 @@ gboolean                xfmpc_mpdclient_stop                    (XfmpcMpdclient 
 
 gboolean                xfmpc_mpdclient_next                    (XfmpcMpdclient *mpdclient);
 
+gboolean                xfmpc_mpdclient_set_id                  (XfmpcMpdclient *mpdclient,
+                                                                 gint id);
 gboolean                xfmpc_mpdclient_set_volume              (XfmpcMpdclient *mpdclient,
                                                                  guint8 volume);
 gboolean                xfmpc_mpdclient_set_song_time           (XfmpcMpdclient *mpdclient,
