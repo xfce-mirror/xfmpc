@@ -61,6 +61,8 @@ gboolean                xfmpc_mpdclient_set_volume              (XfmpcMpdclient 
                                                                  guint8 volume);
 gboolean                xfmpc_mpdclient_set_song_time           (XfmpcMpdclient *mpdclient,
                                                                  guint time);
+gint                    xfmpc_mpdclient_get_id                  (XfmpcMpdclient *mpdclient);
+
 const gchar *           xfmpc_mpdclient_get_artist              (XfmpcMpdclient *mpdclient);
 
 const gchar *           xfmpc_mpdclient_get_title               (XfmpcMpdclient *mpdclient);
@@ -82,7 +84,7 @@ gboolean                xfmpc_mpdclient_is_stopped              (XfmpcMpdclient 
 void                    xfmpc_mpdclient_update_status           (XfmpcMpdclient *mpdclient);
 
 gboolean                xfmpc_mpdclient_playlist_read           (XfmpcMpdclient *mpdclient,
-                                                                 gint *pos,
+                                                                 gint *id,
                                                                  gchar **song,
                                                                  gchar **length);
 

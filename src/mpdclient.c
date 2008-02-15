@@ -371,6 +371,14 @@ xfmpc_mpdclient_set_song_time (XfmpcMpdclient *mpdclient,
     return TRUE;
 }
 
+gint
+xfmpc_mpdclient_get_id (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  return mpd_player_get_current_song_id (priv->mi);
+}
+
 const gchar *
 xfmpc_mpdclient_get_artist (XfmpcMpdclient *mpdclient)
 {
@@ -482,7 +490,7 @@ xfmpc_mpdclient_update_status (XfmpcMpdclient *mpdclient)
 
 gboolean
 xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
-                               gint *pos,
+                               gint *id,
                                gchar **song,
                                gchar **length)
 {
@@ -507,7 +515,7 @@ xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
         *song = g_path_get_basename (data->song->file);
 
       *length = g_strdup_printf ("%d:%02d", data->song->time / 60, data->song->time % 60);
-      *pos = data->song->id;
+      *id = data->song->id;
     }
 
   return NULL != data;

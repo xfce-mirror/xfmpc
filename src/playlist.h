@@ -40,9 +40,10 @@ GType                   xfmpc_playlist_get_type                 () G_GNUC_CONST;
 GtkWidget *             xfmpc_playlist_new                      ();
 
 void                    xfmpc_playlist_append                   (XfmpcPlaylist *playlist,
-                                                                 gint pos,
+                                                                 gint id,
                                                                  gchar *song,
-                                                                 gchar *length);
+                                                                 gchar *length,
+                                                                 gboolean is_current);
 void                    xfmpc_playlist_clear                    (XfmpcPlaylist *playlist);
 
 G_END_DECLS

@@ -49,6 +49,7 @@ enum
   COLUMN_POS,
   COLUMN_SONG,
   COLUMN_LENGTH,
+  COLUMN_IS_CURRENT,
   N_COLUMNS,
 };
 
@@ -131,10 +132,12 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   priv->store = gtk_list_store_new (N_COLUMNS,
                                     G_TYPE_INT,
                                     G_TYPE_STRING,
-                                    G_TYPE_STRING);
+                                    G_TYPE_STRING,
+                                    G_TYPE_INT);
 
   /* Tree view */
   priv->treeview = gtk_tree_view_new ();
+  gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview)), GTK_SELECTION_MULTIPLE);
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->treeview), FALSE);
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview), TRUE);
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), GTK_TREE_MODEL (priv->store));
@@ -145,9 +148,11 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   g_object_set (G_OBJECT (cell),
                 "ellipsize", PANGO_ELLIPSIZE_END,
                 NULL);
-  GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes ("Song", cell,
-                                                                        "text", COLUMN_SONG,
-                                                                        NULL);
+  GtkTreeViewColumn *column =
+    gtk_tree_view_column_new_with_attributes ("Song", cell,
+                                              "text", COLUMN_SONG,
+                                              "weight", COLUMN_IS_CURRENT,
+                                              NULL);
   g_object_set (G_OBJECT (column),
                 "expand", TRUE,
                 NULL);
@@ -155,10 +160,13 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
 
   /* Column "length" */
   cell = gtk_cell_renderer_text_new ();
-  g_object_set (G_OBJECT (cell), "xalign", 1.0, NULL);
+  g_object_set (G_OBJECT (cell),
+                "xalign", 1.0,
+                NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview),
                                                -1, "Length", cell,
                                                "text", COLUMN_LENGTH,
+                                               "weight", COLUMN_IS_CURRENT,
                                                NULL);
 
   /* Scrolled window */
@@ -172,6 +180,8 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   gtk_box_pack_start (GTK_BOX (playlist), scrolled, TRUE, TRUE, 0);
 
   /* Signals */
+  g_signal_connect_swapped (playlist->mpdclient, "song-changed",
+                            G_CALLBACK (cb_playlist_changed), playlist);
   g_signal_connect_swapped (playlist->mpdclient, "playlist-changed",
                             G_CALLBACK (cb_playlist_changed), playlist);
 }
@@ -200,18 +210,20 @@ xfmpc_playlist_new ()
 
 void
 xfmpc_playlist_append (XfmpcPlaylist *playlist,
-                       gint pos,
+                       gint id,
                        gchar *song,
-                       gchar *length)
+                       gchar *length,
+                       gboolean is_current)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
-  GtkTreeIter iter;
+  GtkTreeIter           iter;
 
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter,
-                      COLUMN_POS, pos,
+                      COLUMN_POS, id,
                       COLUMN_SONG, song,
                       COLUMN_LENGTH, length,
+                      COLUMN_IS_CURRENT, is_current ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
                       -1);
 }
 
@@ -228,12 +240,15 @@ cb_playlist_changed (XfmpcPlaylist *playlist)
 {
   gchar                *song;
   gchar                *length;
-  gint                  pos;
+  gint                  id;
+  gint                  current;
+
+  current = xfmpc_mpdclient_get_id (playlist->mpdclient);
 
   xfmpc_playlist_clear (playlist);
-  while (xfmpc_mpdclient_playlist_read (playlist->mpdclient, &pos, &song, &length))
+  while (xfmpc_mpdclient_playlist_read (playlist->mpdclient, &id, &song, &length))
     {
-      xfmpc_playlist_append (playlist, pos, song, length);
+      xfmpc_playlist_append (playlist, id, song, length, current == id);
       g_free (song);
       g_free (length);
     }
