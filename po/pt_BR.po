@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-27 17:00+0100\n"
+"POT-Creation-Date: 2008-02-15 03:28+0100\n"
 "PO-Revision-Date: 2008-01-21 10:07-0300\n"
 "Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -16,23 +16,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../src/interface.c:151 ../xfmpc.desktop.in.h:3
+#: ../src/extended-interface.c:146
+msgid "Current Playlist"
+msgstr ""
+
+#: ../src/interface.c:173 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#: ../src/interface.c:200 ../src/interface.c:393
+#: ../src/interface.c:234 ../src/interface.c:446
 msgid "Not connected"
 msgstr "Não conectado"
 
-#: ../src/interface.c:416
-msgid "Stopped"
-msgstr "Parado"
-
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:443
+#: ../src/interface.c:520
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "por \"%s\" de \"%s\" (%s)"
+
+#: ../src/interface.c:566
+msgid "Stopped"
+msgstr "Parado"
+
+#: ../src/mpdclient.c:401 ../src/mpdclient.c:431 ../src/mpdclient.c:446
+msgid "n/a"
+msgstr ""
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"

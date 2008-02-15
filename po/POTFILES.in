@@ -1,3 +1,4 @@
-src/main.c
+src/extended-interface.c
 src/interface.c
+src/mpdclient.c
 xfmpc.desktop.in

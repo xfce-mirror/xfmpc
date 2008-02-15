@@ -1,3 +1,10 @@
+2008-02-15	Mike Massonnet <mmassonnet@xfce.org>
+
+	* *.po, *.pot, POTFILES.in, POTFILES.skip: make update-po for new strings
+	extended-interface.c
+	* fr.po: Update French translation
+	* nl.po: Translate one string to Dutch
+
 2008-02-08  Stephan Arts <stephan@xfce.org>
 
 	* nl.po: Add Dutch translation
