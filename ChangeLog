@@ -1,3 +1,50 @@
+2008-02-15	Mike Massonnet <mmassonnet@xfce.org>
+
+Remember window size
+	* preferences.c:
+	  - New user preferences LastWindowWidth and LastWindowHeight
+	* interface.c(xfmpc_interface_init):
+	  - Restore last window size
+	* interface.c(xfmpc_interface_state_event):
+	  - Save window size
+
+2008-02-15	Mike Massonnet <mmassonnet@xfce.org>
+
+Add autocenter in playlist (optional)
+	* preferences.c:
+	  - New user preference PlaylistAutocenter
+	* playlist.c:
+	  - Include preferences interface
+	  - (cb_playlist_changed) If preference autocenter is set, scroll to the
+	  current song + select it
+
+2008-02-12	Mike Massonnet <mmassonnet@xfce.org>
+
+Use row-activated signal to change the song in the playlist
+	* src/mpdclient.c,
+	  src/mpdclient.h:
+	  - New function xfmpc_mpdclient_set_id to set the current song
+	* src/playlist.c:
+	  - Connect signal row-activated to new callback cb_row_activated
+
+2008-02-12	Mike Massonnet <mmassonnet@xfce.org>
+
+Display the current song in bold in the playlist
+	* src/mpdclient.c,
+	  src/mpdclient.h:
+	  - New function xfmpc_mpdclient_get_id that returns the current id
+	* src/playlist.c(xfmpc_playlist_init):
+	  - Allow multiple selection in the treeview
+	  - Add new column (IS_CURRENT) and bind it to the attribute weight of both
+	  song and length cell renderers
+	  - Connect to signal song-changed in addition to playlist-changed
+	* src/playlist.c(xfmpc_playlist_append),
+	  src/playlist.h:
+	  - New argument gboolean is_current to use within gtk_list_store_set
+	* src/playlist.c(cb_playlist_changed):
+	  - Get the id of the current song
+	  - Return a gboolean result to xfmpc_playlist_append
+
 2008-02-08	Mike Massonnet <mmassonnet@xfce.org>
 
 	* src/mpdclient.c,
