@@ -34,6 +34,7 @@ enum
   PROP_LAST_WINDOW_POSX,
   PROP_LAST_WINDOW_POSY,
   PROP_LAST_WINDOW_STATE_STICKY,
+  PROP_PLAYLIST_AUTOCENTER,
   N_PROPERTIES,
 };
 
@@ -138,6 +139,14 @@ xfmpc_preferences_class_init (XfmpcPreferencesClass *klass)
                                                          "LastWindowStateSticky",
                                                          "Sticky bit on window",
                                                          FALSE,
+                                                         G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_PLAYLIST_AUTOCENTER,
+                                   g_param_spec_boolean ("playlist-autocenter",
+                                                         "PlaylistAutocenter",
+                                                         "Auto-centers the current song in the playlist",
+                                                         TRUE,
                                                          G_PARAM_READWRITE));
 }
 

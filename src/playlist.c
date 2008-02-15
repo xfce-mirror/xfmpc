@@ -24,6 +24,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "playlist.h"
+#include "preferences.h"
 #include "mpdclient.h"
 
 #define BORDER 4
@@ -67,6 +68,7 @@ struct _XfmpcPlaylist
 {
   GtkVBox               parent;
   XfmpcPlaylistPrivate *priv;
+  XfmpcPreferences     *preferences;
   XfmpcMpdclient       *mpdclient;
 };
 
@@ -74,6 +76,7 @@ struct _XfmpcPlaylistPrivate
 {
   GtkWidget            *treeview;
   GtkListStore         *store;
+  gboolean              autocenter;
 };
 
 
@@ -129,7 +132,12 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
 
+  playlist->preferences = xfmpc_preferences_get ();
   playlist->mpdclient = xfmpc_mpdclient_new ();
+
+  g_object_get (G_OBJECT (playlist->preferences),
+                "playlist-autocenter", &priv->autocenter,
+                NULL);
 
   /* Tree model */
   priv->store = gtk_list_store_new (N_COLUMNS,
@@ -243,19 +251,33 @@ xfmpc_playlist_clear (XfmpcPlaylist *playlist)
 static void
 cb_playlist_changed (XfmpcPlaylist *playlist)
 {
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
   gchar                *song;
   gchar                *length;
   gint                  id;
   gint                  current;
+  gboolean              count = priv->autocenter;
+  gint                  i = 0;
+  GtkTreePath          *path;
 
   current = xfmpc_mpdclient_get_id (playlist->mpdclient);
 
   xfmpc_playlist_clear (playlist);
   while (xfmpc_mpdclient_playlist_read (playlist->mpdclient, &id, &song, &length))
     {
+      if (count)
+        count = current != id && (i += 1);
       xfmpc_playlist_append (playlist, id, song, length, current == id);
       g_free (song);
       g_free (length);
+    }
+
+  if (priv->autocenter)
+    {
+      path = gtk_tree_path_new_from_indices (i, -1);
+      gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->treeview), path, NULL, FALSE);
+      gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (priv->treeview), path, NULL, TRUE, 0.5, 0);
+      gtk_tree_path_free (path);
     }
 }
 
