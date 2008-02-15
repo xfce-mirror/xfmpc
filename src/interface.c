@@ -176,14 +176,19 @@ xfmpc_interface_init (XfmpcInterface *interface)
   g_signal_connect (G_OBJECT (interface), "window-state-event", G_CALLBACK (xfmpc_interface_state_event), NULL);
 
   gint posx, posy;
+  gint width, height;
   gboolean sticky;
   g_object_get (G_OBJECT (interface->preferences),
                 "last-window-posx", &posx,
                 "last-window-posy", &posy,
+                "last-window-width", &width,
+                "last-window-height", &height,
                 "last-window-state-sticky", &sticky,
                 NULL);
   if (G_LIKELY (posx != -1 && posy != -1))
     gtk_window_move (GTK_WINDOW (interface), posx, posy);
+  if (G_LIKELY (width != -1 && height != -1))
+    gtk_window_set_default_size (GTK_WINDOW (interface), width, height);
   if (sticky == TRUE)
     gtk_window_stick (GTK_WINDOW (interface));
 
@@ -490,11 +495,15 @@ xfmpc_interface_closed (XfmpcInterface *interface,
                         GdkEvent *event)
 {
   gint posx, posy;
+  gint width, height;
   gtk_window_get_position (GTK_WINDOW (interface), &posx, &posy);
+  gtk_window_get_size (GTK_WINDOW (interface), &width, &height);
 
   g_object_set (G_OBJECT (interface->preferences),
                 "last-window-posx", posx,
                 "last-window-posy", posy,
+                "last-window-width", width,
+                "last-window-height", height,
                 NULL);
 
   gtk_main_quit ();

@@ -33,6 +33,8 @@ enum
   PROP_0,
   PROP_LAST_WINDOW_POSX,
   PROP_LAST_WINDOW_POSY,
+  PROP_LAST_WINDOW_WIDTH,
+  PROP_LAST_WINDOW_HEIGHT,
   PROP_LAST_WINDOW_STATE_STICKY,
   PROP_PLAYLIST_AUTOCENTER,
   N_PROPERTIES,
@@ -130,6 +132,21 @@ xfmpc_preferences_class_init (XfmpcPreferencesClass *klass)
                                    g_param_spec_int ("last-window-posy",
                                                      "LastWindowPosy",
                                                      "Window position on axis y",
+                                                     -1, G_MAXINT, -1,
+                                                     G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_LAST_WINDOW_WIDTH,
+                                   g_param_spec_int ("last-window-width",
+                                                     "LastWindowWidth",
+                                                     "Window width",
+                                                     -1, G_MAXINT, -1,
+                                                     G_PARAM_READWRITE));
+  g_object_class_install_property (gobject_class,
+                                   PROP_LAST_WINDOW_HEIGHT,
+                                   g_param_spec_int ("last-window-height",
+                                                     "LastWindowHeight",
+                                                     "Window height",
                                                      -1, G_MAXINT, -1,
                                                      G_PARAM_READWRITE));
 
