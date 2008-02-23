@@ -89,6 +89,10 @@ gboolean                xfmpc_mpdclient_playlist_read           (XfmpcMpdclient 
                                                                  gint *id,
                                                                  gchar **song,
                                                                  gchar **length);
+gboolean                xfmpc_mpdclient_queue_commit            (XfmpcMpdclient *mpdclient);
+
+gboolean                xfmpc_mpdclient_queue_remove_id         (XfmpcMpdclient *mpdclient,
+                                                                 gint id);
 
 G_END_DECLS
 

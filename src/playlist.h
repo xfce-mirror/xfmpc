@@ -48,6 +48,7 @@ void                    xfmpc_playlist_clear                    (XfmpcPlaylist *
 
 void                    xfmpc_playlist_select_row               (XfmpcPlaylist *playlist,
                                                                  gint i);
+void                    xfmpc_playlist_delete_selection         (XfmpcPlaylist *playlist);
 
 G_END_DECLS
 

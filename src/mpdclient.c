@@ -564,3 +564,26 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
     g_signal_emit_by_name (mpdclient, "playlist-changed");
 }
 
+gboolean
+xfmpc_mpdclient_queue_commit (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (mpd_playlist_queue_commit (priv->mi) != MPD_OK)
+    return FALSE;
+
+  return TRUE;
+}
+
+gboolean
+xfmpc_mpdclient_queue_remove_id (XfmpcMpdclient *mpdclient,
+                                 gint id)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (mpd_playlist_queue_delete_id (priv->mi, id) != MPD_OK)
+    return FALSE;
+
+  return TRUE;
+}
+

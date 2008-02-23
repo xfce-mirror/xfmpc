@@ -21,6 +21,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 #include <libxfce4util/libxfce4util.h>
 
 #include "playlist.h"
@@ -44,6 +45,8 @@ static void             cb_playlist_changed                     (XfmpcPlaylist *
 static void             cb_row_activated                        (XfmpcPlaylist *playlist,
                                                                  GtkTreePath *path,
                                                                  GtkTreeViewColumn *column);
+static gboolean         cb_key_released                         (XfmpcPlaylist *playlist,
+                                                                 GdkEventKey *event);
 
 
 
@@ -191,6 +194,8 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   gtk_box_pack_start (GTK_BOX (playlist), scrolled, TRUE, TRUE, 0);
 
   /* Signals */
+  g_signal_connect_swapped (priv->treeview, "key-release-event",
+                            G_CALLBACK (cb_key_released), playlist);
   g_signal_connect_swapped (priv->treeview, "row-activated",
                             G_CALLBACK (cb_row_activated), playlist);
   g_signal_connect_swapped (playlist->mpdclient, "song-changed",
@@ -260,6 +265,36 @@ xfmpc_playlist_select_row (XfmpcPlaylist *playlist,
   gtk_tree_path_free (path);
 }
 
+void
+xfmpc_playlist_delete_selection (XfmpcPlaylist *playlist)
+{
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  GtkTreeModel         *store = GTK_TREE_MODEL (priv->store);
+  GtkTreeIter           iter;
+  GList                *list;
+  gint                  id;
+
+  list = gtk_tree_selection_get_selected_rows (gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview)),
+                                               &store);
+  while (NULL != list)
+    {
+      if (gtk_tree_model_get_iter (store, &iter, list->data))
+        {       
+          gtk_tree_model_get (store, &iter,
+                              COLUMN_ID, &id,
+                              -1);
+          xfmpc_mpdclient_queue_remove_id (playlist->mpdclient, id);
+        }
+      list = g_list_next (list);
+    }
+
+  xfmpc_mpdclient_queue_commit (playlist->mpdclient);
+
+  g_list_foreach (list, (GFunc)gtk_tree_path_free, NULL);
+  g_list_free (list);
+}
+
+
 static void
 cb_playlist_changed (XfmpcPlaylist *playlist)
 {
@@ -301,5 +336,25 @@ cb_row_activated (XfmpcPlaylist *playlist,
                       COLUMN_ID, &id,
                       -1);
   xfmpc_mpdclient_set_id (playlist->mpdclient, id);
+}
+
+static gboolean
+cb_key_released (XfmpcPlaylist *playlist,
+                 GdkEventKey *event)
+{
+  if (event->type != GDK_KEY_RELEASE)
+    return FALSE;
+
+  switch (event->keyval)
+    {
+    case GDK_Delete:
+      xfmpc_playlist_delete_selection (playlist);
+      break;
+
+    default:
+      return FALSE;
+    }
+
+  return TRUE;
 }
 
