@@ -46,6 +46,9 @@ void                    xfmpc_playlist_append                   (XfmpcPlaylist *
                                                                  gboolean is_current);
 void                    xfmpc_playlist_clear                    (XfmpcPlaylist *playlist);
 
+void                    xfmpc_playlist_select_row               (XfmpcPlaylist *playlist,
+                                                                 gint i);
+
 G_END_DECLS
 
 #endif

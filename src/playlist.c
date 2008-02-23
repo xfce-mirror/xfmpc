@@ -53,7 +53,7 @@ enum
   COLUMN_ID,
   COLUMN_SONG,
   COLUMN_LENGTH,
-  COLUMN_IS_CURRENT,
+  COLUMN_WEIGHT,
   N_COLUMNS,
 };
 
@@ -162,7 +162,7 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   GtkTreeViewColumn *column =
     gtk_tree_view_column_new_with_attributes ("Song", cell,
                                               "text", COLUMN_SONG,
-                                              "weight", COLUMN_IS_CURRENT,
+                                              "weight", COLUMN_WEIGHT,
                                               NULL);
   g_object_set (G_OBJECT (column),
                 "expand", TRUE,
@@ -177,7 +177,7 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview),
                                                -1, "Length", cell,
                                                "text", COLUMN_LENGTH,
-                                               "weight", COLUMN_IS_CURRENT,
+                                               "weight", COLUMN_WEIGHT,
                                                NULL);
 
   /* Scrolled window */
@@ -236,7 +236,7 @@ xfmpc_playlist_append (XfmpcPlaylist *playlist,
                       COLUMN_ID, id,
                       COLUMN_SONG, song,
                       COLUMN_LENGTH, length,
-                      COLUMN_IS_CURRENT, is_current ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
+                      COLUMN_WEIGHT, is_current ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
                       -1);
 }
 
@@ -248,17 +248,26 @@ xfmpc_playlist_clear (XfmpcPlaylist *playlist)
   gtk_list_store_clear (priv->store);
 }
 
+void
+xfmpc_playlist_select_row (XfmpcPlaylist *playlist,
+                           gint i)
+{
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+
+  GtkTreePath *path = gtk_tree_path_new_from_indices (i, -1);
+  gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->treeview), path, NULL, FALSE);
+  gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (priv->treeview), path, NULL, TRUE, 0.42, 0);
+  gtk_tree_path_free (path);
+}
+
 static void
 cb_playlist_changed (XfmpcPlaylist *playlist)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
-  gchar                *song;
-  gchar                *length;
-  gint                  id;
-  gint                  current;
+  gchar                *song, *length;
+  gint                  id, current;
   gboolean              count = priv->autocenter;
   gint                  i = 0;
-  GtkTreePath          *path;
 
   current = xfmpc_mpdclient_get_id (playlist->mpdclient);
 
@@ -273,12 +282,7 @@ cb_playlist_changed (XfmpcPlaylist *playlist)
     }
 
   if (priv->autocenter)
-    {
-      path = gtk_tree_path_new_from_indices (i, -1);
-      gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->treeview), path, NULL, FALSE);
-      gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (priv->treeview), path, NULL, TRUE, 0.5, 0);
-      gtk_tree_path_free (path);
-    }
+    xfmpc_playlist_select_row (playlist, i);
 }
 
 static void
