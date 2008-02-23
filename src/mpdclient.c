@@ -538,6 +538,9 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
   XfmpcMpdclient *mpdclient = XFMPC_MPDCLIENT (user_data);
   g_return_if_fail (G_LIKELY (NULL != user_data));
 
+  if (what & MPD_CST_PLAYLIST)
+    g_signal_emit_by_name (mpdclient, "playlist-changed");
+
   if (what & MPD_CST_SONGID)
     g_signal_emit_by_name (mpdclient, "song-changed");
 
@@ -559,9 +562,6 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
     g_signal_emit_by_name (mpdclient, "time-changed",
                            xfmpc_mpdclient_get_time (mpdclient),
                            xfmpc_mpdclient_get_total_time (mpdclient));
-
-  if (what & MPD_CST_PLAYLIST)
-    g_signal_emit_by_name (mpdclient, "playlist-changed");
 }
 
 gboolean
