@@ -1,5 +1,9 @@
 2008-02-23	Mike Massonnet <mmassonnet@xfce.org>
 
+	* === Release 0.0.3 ===
+
+2008-02-23	Mike Massonnet <mmassonnet@xfce.org>
+
 Activate item within filter entry with enter
 	* src/playlist.c:
 	  - Add a private data "current" to represent the current id in the treeview

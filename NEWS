@@ -1,3 +1,12 @@
+    0.0.2 (2008-02-23)
+
+- New widget XfmpcExtendedInterface which displays notebook pages selectable
+  through a combo box
+- New widget XfmpcPlaylist with a filter entry
+- Save the state of the window (sticky window, size)
+- Installs a desktop file entry
+- Emit signals on changes instead of setting a bitfield inside XfmpcMpdclient
+
     0.0.2 (2008-01-27)
 
 - Keybindings (Ctrl+B/P/S/F/V) to go backwards, play/pause, stop, go forwards,
