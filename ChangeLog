@@ -1,3 +1,53 @@
+2008-02-23	Mike Massonnet <mmassonnet@xfce.org>
+
+Activate item within filter entry with enter
+	* src/playlist.c:
+	  - Add a private data "current" to represent the current id in the treeview
+	  - Add gtk entry signal "activate" on filter entry to start the selected song
+	  - Add gtk entry signal "changed" to filter the model
+	* src/mpdclient.c(xfmpc_playlist_select_row):
+	  - Verify that the model isn't empty
+	* src/playlist.c(cb_filter_entry_key_released):
+	  - Move refilter call outside in new callback cb_filter_entry_changed
+	  - Re-select current song on Escape key event
+
+2008-02-20	Mike Massonnet <mmassonnet@xfce.org>
+
+New entry to filter the treeview
+	* src/playlist.c(xfmpc_playlist_init):
+	  - Add a GtkTreeModelFilter between the model and the treeview
+	  - Add a GtkEntry
+	* src/playlist.c(cb_filter_entry_key_released),
+	  src/playlist.c(visible_func_filter_tree):
+	  - New functions
+	  - (cb_filter_entry_key_released): Callback for the new GtkEntry on changes
+	  - (visible_func_filter_tree): Visible function for the filter
+	* src/playlist.c(cb_playlist_changed):
+	  - Check if the new GtkEntry is empty to enable the autocenter
+	* src/playlist.c(cb_row_activated):
+	  - Activate items from the new filter model
+
+2008-02-18	Mike Massonnet <mmassonnet@xfce.org>
+
+Add key event to remove songs in the playlist (GDK_Delete)
+	* src/mpdclient.c,
+	  src/mpdclient.h:
+	  - New functions xfmpc_mpdclient_queue_commit and
+	  xfmpc_mpdclient_queue_remove_id
+	* src/playlist.c(xfmpc_playlist_init):
+	  - Connect signal key-release-event to new callback cb_key_released
+	* src/playlist.c(xfmpc_playlist_delete_selection),
+	  src/playlist.h:
+	  - New function to delete all selected songs in the playlist
+
+2008-02-17	Mike Massonnet <mmassonnet@xfce.org>
+
+New public function xfmpc_playlist_select_row
+	* src/playlist.c,
+	  src/playlist.h:
+	  - Replace COLUMN_IS_CURRENT with COLUMN_WEIGHT
+	  - Move code from cb_playlist_changed to new function xfmpc_playlist_select_row
+
 2008-02-15	Mike Massonnet <mmassonnet@xfce.org>
 
 Remember window size
