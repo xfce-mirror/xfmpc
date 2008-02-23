@@ -47,6 +47,11 @@ static void             cb_row_activated                        (XfmpcPlaylist *
                                                                  GtkTreeViewColumn *column);
 static gboolean         cb_key_released                         (XfmpcPlaylist *playlist,
                                                                  GdkEventKey *event);
+static gboolean         cb_filter_entry_key_released            (XfmpcPlaylist *playlist,
+                                                                 GdkEventKey *event);
+static gboolean         visible_func_filter_tree                (GtkTreeModel *filter,
+                                                                 GtkTreeIter *iter,
+                                                                 XfmpcPlaylist *playlist);
 
 
 
@@ -78,7 +83,11 @@ struct _XfmpcPlaylist
 struct _XfmpcPlaylistPrivate
 {
   GtkWidget            *treeview;
+  GtkTreeModelFilter   *filter;
   GtkListStore         *store;
+
+  GtkWidget            *filter_entry;
+
   gboolean              autocenter;
 };
 
@@ -149,13 +158,23 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                                     G_TYPE_STRING,
                                     G_TYPE_INT);
 
+  /* Filter */
+  priv->filter_entry = gtk_entry_new ();
+  priv->filter = GTK_TREE_MODEL_FILTER (gtk_tree_model_filter_new (GTK_TREE_MODEL (priv->store), NULL));
+  g_object_unref (priv->store);
+  gtk_tree_model_filter_set_visible_func (priv->filter,
+                                          (GtkTreeModelFilterVisibleFunc)visible_func_filter_tree,
+                                          playlist,
+                                          NULL);
+
   /* Tree view */
   priv->treeview = gtk_tree_view_new ();
   gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview)), GTK_SELECTION_MULTIPLE);
+  gtk_tree_view_set_enable_search (GTK_TREE_VIEW (priv->treeview), FALSE);
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->treeview), FALSE);
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview), TRUE);
-  gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), GTK_TREE_MODEL (priv->store));
-  g_object_unref (priv->store);
+  gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), GTK_TREE_MODEL (priv->filter));
+  g_object_unref (priv->filter);
 
   /* Column "artist - title" */
   GtkCellRenderer *cell = gtk_cell_renderer_text_new ();
@@ -192,10 +211,13 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   /* Containers */
   gtk_container_add (GTK_CONTAINER (scrolled), priv->treeview);
   gtk_box_pack_start (GTK_BOX (playlist), scrolled, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (playlist), priv->filter_entry, FALSE, FALSE, 0);
 
   /* Signals */
   g_signal_connect_swapped (priv->treeview, "key-release-event",
                             G_CALLBACK (cb_key_released), playlist);
+  g_signal_connect_swapped (priv->filter_entry, "key-release-event",
+                            G_CALLBACK (cb_filter_entry_key_released), playlist);
   g_signal_connect_swapped (priv->treeview, "row-activated",
                             G_CALLBACK (cb_row_activated), playlist);
   g_signal_connect_swapped (playlist->mpdclient, "song-changed",
@@ -316,7 +338,8 @@ cb_playlist_changed (XfmpcPlaylist *playlist)
       g_free (length);
     }
 
-  if (priv->autocenter)
+  /* don't autocenter if a filter is typped in */
+  if (gtk_entry_get_text (GTK_ENTRY (priv->filter_entry))[0] == '\0' && priv->autocenter)
     xfmpc_playlist_select_row (playlist, i);
 }
 
@@ -329,10 +352,10 @@ cb_row_activated (XfmpcPlaylist *playlist,
   GtkTreeIter           iter;
   gint                  id;
 
-  if (!gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path))
+  if (!gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->filter), &iter, path))
     return;
 
-  gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
+  gtk_tree_model_get (GTK_TREE_MODEL (priv->filter), &iter,
                       COLUMN_ID, &id,
                       -1);
   xfmpc_mpdclient_set_id (playlist->mpdclient, id);
@@ -356,5 +379,55 @@ cb_key_released (XfmpcPlaylist *playlist,
     }
 
   return TRUE;
+}
+
+static gboolean
+cb_filter_entry_key_released (XfmpcPlaylist *playlist,
+                              GdkEventKey *event)
+{
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+
+  if (event->type != GDK_KEY_RELEASE)
+    return FALSE;
+
+  if (event->keyval == GDK_Escape)
+    gtk_entry_set_text (GTK_ENTRY (priv->filter_entry), "");
+
+  gtk_tree_model_filter_refilter (priv->filter);
+}
+
+static gboolean
+visible_func_filter_tree (GtkTreeModel *filter,
+                          GtkTreeIter *iter,
+                          XfmpcPlaylist *playlist)
+{
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  gchar                *song, *song_tmp;
+  gchar                *search;
+  gboolean              result = TRUE;
+
+  gtk_tree_model_get (GTK_TREE_MODEL (filter), iter,
+                      COLUMN_SONG, &song,
+                      -1);
+  if (G_UNLIKELY (NULL == song))
+    return TRUE;
+
+  search = g_utf8_casefold (gtk_entry_get_text (GTK_ENTRY (priv->filter_entry)), -1);
+  g_return_val_if_fail (G_LIKELY (NULL != search), TRUE);
+
+  if (G_UNLIKELY (search[0] != '\0'))
+    {
+      song_tmp = g_utf8_casefold (song, -1);
+      g_free (song);
+      song = song_tmp;
+
+      if (NULL == g_strrstr (song, search))
+        result = FALSE;
+    }
+
+  g_free (song);
+  g_free (search);
+
+  return result;
 }
 
