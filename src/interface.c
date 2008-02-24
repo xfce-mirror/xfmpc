@@ -210,6 +210,10 @@ xfmpc_interface_init (XfmpcInterface *interface)
 
   control = priv->button_volume = gtk_volume_button_new ();
   gtk_button_set_relief (GTK_BUTTON (control), GTK_RELIEF_NONE);
+  GtkAdjustment* adjustment = gtk_scale_button_get_adjustment (GTK_SCALE_BUTTON (control));
+  adjustment->upper *= 100;
+  adjustment->step_increment *= 100;
+  adjustment->page_increment *= 100;
 
   GtkWidget *progress_box = gtk_event_box_new ();
   control = priv->progress_bar = gtk_progress_bar_new ();
@@ -395,7 +399,7 @@ void
 xfmpc_interface_volume_changed (XfmpcInterface *interface,
                                 gdouble value)
 {
-  xfmpc_mpdclient_set_volume (interface->mpdclient, (guint8)(value * 100));
+  xfmpc_mpdclient_set_volume (interface->mpdclient, value);
 }
 
 void
@@ -404,7 +408,7 @@ xfmpc_interface_set_volume (XfmpcInterface *interface,
 {
   XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
 
-  gtk_scale_button_set_value (GTK_SCALE_BUTTON (priv->button_volume), (gdouble)volume / 100);
+  gtk_scale_button_set_value (GTK_SCALE_BUTTON (priv->button_volume), volume);
 }
 
 void
@@ -430,7 +434,8 @@ xfmpc_interface_set_time (XfmpcInterface *interface,
 
   if (G_LIKELY (time_total > 0))
     fraction = (gfloat)time / (gfloat)time_total;
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->progress_bar), fraction);
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->progress_bar),
+                                 (fraction <= 1.0) ? fraction : 1.0);
 }
 
 static gboolean
