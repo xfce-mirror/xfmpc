@@ -1,3 +1,80 @@
+2008-03-21	Mike Massonnet <mmassonnet@gmail.com>
+
+Add a database browser
+	* src/dbbrowser.c, src/dbbrowser.h,
+	  src/Makefile.am:
+	  - Import initial source files, and add them to Makefile.am
+	  - Current features: browsing, activate row to open a directory or add a song
+	* src/extended-interface.c:
+	  - Remove the "Hello World" widgets from the extended interface and add the
+	  new XfmpcDbbrowser
+	* src/mpdclient.c, src/mpdclient.h:
+	  - New functions _queue_add to add songs to the playlist
+	  - New functions _database_read that returns all the files from a directory
+	* src/preferences.c:
+	  - New preference for XfmpcDbbrowser to remember the last working directory
+
+
+2008-03-02	Mike Massonnet <mmassonnet@gmail.com>
+
+Fiddle the behavior of key presses on the filter entry.
+	* src/playlist.c(cb_filter_entry_activated):
+	  - Focus the treeview on activate
+	* src/playlist.c(cb_filter_entry_key_released):
+	  - Focus the treeview on escape
+	  - Select the current song if the filter is empty
+
+2008-02-25	Mike Massonnet <mmassonnet@gmail.com>
+
+Correct COPYING licence
+	* COPYING:
+	  - I dunno where I copied COPYING but it sure isn't the right file, here an
+	  updated file with the GNU GPL 2 licence
+
+2008-02-25	Mike Massonnet <mmassonnet@gmail.com>
+
+Fix Ctrl+Q to save the window state
+	* src/interface.c:
+	  - Add a new action function for Ctrl+Q that calls xfmpc_interface_closed
+
+2008-02-25	Mike Massonnet <mmassonnet@gmail.com>
+
+Add a new public function to refresh the current song in the playlist (with bold)
+	* src/playlist.c,
+	  src/playlist.h:
+	  - New public function xfmpc_playlist_refresh_current_song
+	  - Drop code from cb_song_changed and cb_playlist_changed
+	  - Remove the argument gboolean is_current from xfmpc_playlist_append
+
+2008-02-24	Mike Massonnet <mmassonnet@gmail.com>
+
+Add a new callback in XfmpcPlaylist on song changes where the entire playlist doesn't need to be refreshed
+	* src/mpdclient.c,
+	  src/mpdclient.h:
+	  - New public function xfmpc_mpdclient_get_pos to return the position of the
+	  song in the playlist
+	* src/playlist.c:
+	  - (cb_song_changed): New callback connected to the signal "song-changed" of
+	  XfmpcMpdclient
+	  - (cb_playlist_changed): Update callback with xfmpc_mpdclient_get_pos
+
+2008-02-24	Mike Massonnet <mmassonnet@xfce.org>
+
+Fix misc bugs (volume adjustement and fraction of progress bar)
+	[Peter de Ridder]
+	* src/interface.c(xfmpc_interface_init):
+	  - Set adjustement from 0 to 100
+	* src/interface.c(xfmpc_interface_volume_changed),
+	  src/interface.c(xfmpc_interface_set_volume):
+	  - Remove the /100 and *100
+	[Mike Massonnet]
+	* src/interface.c(xfmpc_interface_set_time):
+	  - Don't pass a fraction >1.0
+
+2008-02-23	Mike Massonnet <mmassonnet@xfce.org>
+
+Fix version to 0.0.3 in NEWS file
+
 2008-02-23	Mike Massonnet <mmassonnet@xfce.org>
 
 	* === Release 0.0.3 ===
