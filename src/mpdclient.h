@@ -87,14 +87,21 @@ gboolean                xfmpc_mpdclient_is_stopped              (XfmpcMpdclient 
 
 void                    xfmpc_mpdclient_update_status           (XfmpcMpdclient *mpdclient);
 
+gboolean                xfmpc_mpdclient_queue_commit            (XfmpcMpdclient *mpdclient);
+
+gboolean                xfmpc_mpdclient_queue_add               (XfmpcMpdclient *mpdclient,
+                                                                 const gchar *path);
+gboolean                xfmpc_mpdclient_queue_remove_id         (XfmpcMpdclient *mpdclient,
+                                                                 gint id);
 gboolean                xfmpc_mpdclient_playlist_read           (XfmpcMpdclient *mpdclient,
                                                                  gint *id,
                                                                  gchar **song,
                                                                  gchar **length);
-gboolean                xfmpc_mpdclient_queue_commit            (XfmpcMpdclient *mpdclient);
-
-gboolean                xfmpc_mpdclient_queue_remove_id         (XfmpcMpdclient *mpdclient,
-                                                                 gint id);
+gboolean                xfmpc_mpdclient_database_read           (XfmpcMpdclient *mpdclient,
+                                                                 const gchar *dir,
+                                                                 gchar **filename,
+                                                                 gchar **basename,
+                                                                 gboolean *is_dir);
 
 G_END_DECLS
 

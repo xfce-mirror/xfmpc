@@ -35,6 +35,7 @@
 
 enum
 {
+  SIG_CONNECTED,
   SIG_SONG_CHANGED,
   SIG_PP_CHANGED,
   SIG_TIME_CHANGED,
@@ -64,6 +65,7 @@ struct _XfmpcMpdclientClass
 {
   GObjectClass              parent_class;
 
+  void (*connected)         (XfmpcMpdclient *mpdclient, gpointer user_data);
   void (*song_changed)      (XfmpcMpdclient *mpdclient, gpointer user_data);
   void (*pp_changed)        (XfmpcMpdclient *mpdclient, gboolean is_playing, gpointer user_data);
   void (*time_changed)      (XfmpcMpdclient *mpdclient, gint time, gint total_time, gpointer user_data);
@@ -131,6 +133,14 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = xfmpc_mpdclient_finalize;
+
+  xfmpc_mpdclient_signals[SIG_CONNECTED] =
+    g_signal_new ("connected", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, connected),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
 
   xfmpc_mpdclient_signals[SIG_SONG_CHANGED] =
     g_signal_new ("song-changed", G_TYPE_FROM_CLASS (klass),
@@ -262,6 +272,8 @@ xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
     return FALSE;
 
   mpd_send_password (priv->mi);
+
+  g_signal_emit_by_name (mpdclient, "connected");
 
   return TRUE;
 }
@@ -505,39 +517,6 @@ xfmpc_mpdclient_update_status (XfmpcMpdclient *mpdclient)
   mpd_status_update (priv->mi);
 }
 
-gboolean
-xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
-                               gint *id,
-                               gchar **song,
-                               gchar **length)
-{
-  static MpdData       *data = NULL;
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
-  if (NULL == data)
-    data = mpd_playlist_get_changes (priv->mi, -1);
-  else
-    data = mpd_data_get_next (data);
-
-  if (NULL != data)
-    {
-      if (NULL != data->song->title)
-        {
-          if (data->song->artist)
-            *song = g_strdup_printf ("%s - %s", data->song->artist, data->song->title);
-          else
-            *song = g_strdup (data->song->title);
-        }
-      else
-        *song = g_path_get_basename (data->song->file);
-
-      *length = g_strdup_printf ("%d:%02d", data->song->time / 60, data->song->time % 60);
-      *id = data->song->id;
-    }
-
-  return NULL != data;
-}
-
 static void
 cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
                                    ChangedStatusType what,
@@ -584,6 +563,18 @@ xfmpc_mpdclient_queue_commit (XfmpcMpdclient *mpdclient)
 }
 
 gboolean
+xfmpc_mpdclient_queue_add (XfmpcMpdclient *mpdclient,
+                           const gchar *path)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (mpd_playlist_queue_add (priv->mi, (gchar *)path) != MPD_OK)
+    return FALSE;
+
+  return TRUE;
+}
+
+gboolean
 xfmpc_mpdclient_queue_remove_id (XfmpcMpdclient *mpdclient,
                                  gint id)
 {
@@ -593,5 +584,96 @@ xfmpc_mpdclient_queue_remove_id (XfmpcMpdclient *mpdclient,
     return FALSE;
 
   return TRUE;
+}
+
+gboolean
+xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
+                               gint *id,
+                               gchar **song,
+                               gchar **length)
+{
+  static MpdData       *data = NULL;
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (NULL == data)
+    data = mpd_playlist_get_changes (priv->mi, -1);
+  else
+    data = mpd_data_get_next (data);
+
+  if (NULL != data)
+    {
+      if (NULL != data->song->title)
+        {
+          if (data->song->artist)
+            *song = g_strdup_printf ("%s - %s", data->song->artist, data->song->title);
+          else
+            *song = g_strdup (data->song->title);
+        }
+      else
+        *song = g_path_get_basename (data->song->file);
+
+      *length = g_strdup_printf ("%d:%02d", data->song->time / 60, data->song->time % 60);
+      *id = data->song->id;
+    }
+
+  return NULL != data;
+}
+
+gboolean
+xfmpc_mpdclient_database_read (XfmpcMpdclient *mpdclient,
+                               const gchar *dir,
+                               gchar **filename,
+                               gchar **basename,
+                               gboolean *is_dir)
+{
+  static MpdData       *data = NULL;
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (NULL == data)
+    data = mpd_database_get_directory (priv->mi, (gchar *)dir);
+  else
+    data = mpd_data_get_next (data);
+
+  if (NULL != data)
+    {
+      switch (data->type)
+        {
+        case MPD_DATA_TYPE_DIRECTORY:
+          *is_dir = TRUE;
+          *filename = g_strdup (data->directory);
+          *basename = g_path_get_basename (data->directory);
+          break;
+
+        case MPD_DATA_TYPE_SONG:
+          *is_dir = FALSE;
+          *filename = g_strdup (data->song->file);
+
+          if (NULL != data->song->title)
+            {
+              if (data->song->artist)
+                *basename = g_strdup_printf ("%s - %s", data->song->artist, data->song->title);
+              else
+                *basename = g_strdup (data->song->title);
+            }
+          else
+            *basename = g_path_get_basename (data->song->file);
+
+          break;
+
+        case MPD_DATA_TYPE_PLAYLIST:
+#if 0
+          *is_dir = FALSE;
+          *filename = g_strdup (data->playlist);
+          *basename = g_strconcat ("Playlist: ", data->playlist, NULL);
+          break;
+#endif
+
+        default:
+          return xfmpc_mpdclient_database_read (mpdclient, dir, filename, basename, is_dir);
+          break;
+        }
+    }
+
+  return NULL != data;
 }
 

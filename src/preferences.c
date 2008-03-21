@@ -37,6 +37,7 @@ enum
   PROP_LAST_WINDOW_HEIGHT,
   PROP_LAST_WINDOW_STATE_STICKY,
   PROP_PLAYLIST_AUTOCENTER,
+  PROP_DBBROWSER_LAST_PATH,
   N_PROPERTIES,
 };
 
@@ -164,6 +165,14 @@ xfmpc_preferences_class_init (XfmpcPreferencesClass *klass)
                                                          "PlaylistAutocenter",
                                                          "Auto-centers the current song in the playlist",
                                                          TRUE,
+                                                         G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_DBBROWSER_LAST_PATH,
+                                   g_param_spec_string ("dbbrowser-last-path",
+                                                        "DbbrowserLastPath",
+                                                        "Restores the last path from the database browser",
+                                                         "",
                                                          G_PARAM_READWRITE));
 }
 

@@ -25,6 +25,7 @@
 
 #include "extended-interface.h"
 #include "playlist.h"
+#include "dbbrowser.h"
 
 #define BORDER 4
 
@@ -48,7 +49,8 @@ static void             xfmpc_extended_interface_init       (XfmpcExtendedInterf
 static void             xfmpc_extended_interface_dispose    (GObject *object);
 static void             xfmpc_extended_interface_finalize   (GObject *object);
 
-static void             cb_xfmpc_extended_interface_combobox_changed (GtkComboBox *widget,
+static void             cb_xfmpc_extended_interface_combobox_changed
+                                                            (GtkComboBox *widget,
                                                              XfmpcExtendedInterface *extended_interface);
 
 
@@ -145,8 +147,8 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   GtkWidget *child = xfmpc_playlist_new ();
   xfmpc_extended_interface_append_child (extended_interface, child, _("Current Playlist"));
 
-  child = gtk_label_new ("Hello world!");
-  xfmpc_extended_interface_append_child (extended_interface, child, "Hello world!");
+  child = xfmpc_dbbrowser_new ();
+  xfmpc_extended_interface_append_child (extended_interface, child, _("Browse database"));
 
   /* Containers */
   gtk_box_pack_start (GTK_BOX (extended_interface), priv->combobox, FALSE, FALSE, BORDER);

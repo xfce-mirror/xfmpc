@@ -10,6 +10,8 @@ xfmpc_SOURCES =								\
 	extended-interface.h						\
 	playlist.c							\
 	playlist.h							\
+	dbbrowser.c							\
+	dbbrowser.h							\
 	preferences.c							\
 	preferences.h							\
 	mpdclient.c							\
