@@ -50,16 +50,6 @@ static gboolean         xfmpc_interface_state_event             (XfmpcInterface 
                                                                  GdkEventWindowState *event);
 static gboolean         xfmpc_interface_closed                  (XfmpcInterface *interface,
                                                                  GdkEvent *event);
-static void             xfmpc_interface_action_previous         (GtkAction *action,
-                                                                 XfmpcInterface *interface);
-static void             xfmpc_interface_action_pp               (GtkAction *action,
-                                                                 XfmpcInterface *interface);
-static void             xfmpc_interface_action_stop             (GtkAction *action,
-                                                                 XfmpcInterface *interface);
-static void             xfmpc_interface_action_next             (GtkAction *action,
-                                                                 XfmpcInterface *interface);
-static void             xfmpc_interface_action_volume           (GtkAction *action,
-                                                                 XfmpcInterface *interface);
 static void             cb_song_changed                         (XfmpcInterface *interface);
 
 static void             cb_pp_changed                           (XfmpcInterface *interface,
@@ -71,6 +61,18 @@ static void             cb_volume_changed                       (XfmpcInterface 
                                                                  gint volume);
 static void             cb_stopped                              (XfmpcInterface *interface);
 
+static void             xfmpc_interface_action_previous         (GtkAction *action,
+                                                                 XfmpcInterface *interface);
+static void             xfmpc_interface_action_pp               (GtkAction *action,
+                                                                 XfmpcInterface *interface);
+static void             xfmpc_interface_action_stop             (GtkAction *action,
+                                                                 XfmpcInterface *interface);
+static void             xfmpc_interface_action_next             (GtkAction *action,
+                                                                 XfmpcInterface *interface);
+static void             xfmpc_interface_action_volume           (GtkAction *action,
+                                                                 XfmpcInterface *interface);
+static void             xfmpc_interface_action_close            (GtkAction *action,
+                                                                 XfmpcInterface *interface);
 
 
 
@@ -109,7 +111,7 @@ static const GtkActionEntry action_entries[] =
   { "stop", NULL, "", "<control>s", NULL, G_CALLBACK (xfmpc_interface_action_stop), },
   { "next", NULL, "", "<control>f", NULL, G_CALLBACK (xfmpc_interface_action_next), },
   { "volume", NULL, "", "<control>v", NULL, G_CALLBACK (xfmpc_interface_action_volume), },
-  { "quit", NULL, "", "<control>q", NULL, G_CALLBACK (gtk_main_quit), },
+  { "quit", NULL, "", "<control>q", NULL, G_CALLBACK (xfmpc_interface_action_close), },
 };
 
 
@@ -611,5 +613,12 @@ xfmpc_interface_action_volume (GtkAction *action,
   XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
 
   g_signal_emit_by_name (priv->button_volume, "popup", G_TYPE_NONE);
+}
+
+static void
+xfmpc_interface_action_close (GtkAction *action,
+                              XfmpcInterface *interface)
+{
+  xfmpc_interface_closed (interface, NULL);
 }
 
