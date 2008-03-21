@@ -381,6 +381,14 @@ xfmpc_mpdclient_set_song_time (XfmpcMpdclient *mpdclient,
 }
 
 gint
+xfmpc_mpdclient_get_pos (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  return mpd_player_get_current_song_pos (priv->mi);
+}
+
+gint
 xfmpc_mpdclient_get_id (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);

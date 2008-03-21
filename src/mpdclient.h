@@ -63,6 +63,8 @@ gboolean                xfmpc_mpdclient_set_volume              (XfmpcMpdclient 
                                                                  guint8 volume);
 gboolean                xfmpc_mpdclient_set_song_time           (XfmpcMpdclient *mpdclient,
                                                                  guint time);
+gint                    xfmpc_mpdclient_get_pos                 (XfmpcMpdclient *mpdclient);
+
 gint                    xfmpc_mpdclient_get_id                  (XfmpcMpdclient *mpdclient);
 
 const gchar *           xfmpc_mpdclient_get_artist              (XfmpcMpdclient *mpdclient);

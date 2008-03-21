@@ -40,6 +40,8 @@ static void             xfmpc_playlist_init                     (XfmpcPlaylist *
 static void             xfmpc_playlist_dispose                  (GObject *object);
 static void             xfmpc_playlist_finalize                 (GObject *object);
 
+static void             cb_song_changed                         (XfmpcPlaylist *playlist);
+
 static void             cb_playlist_changed                     (XfmpcPlaylist *playlist);
 
 static void             cb_row_activated                        (XfmpcPlaylist *playlist,
@@ -219,7 +221,7 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
 
   /* === Signals === */
   g_signal_connect_swapped (playlist->mpdclient, "song-changed",
-                            G_CALLBACK (cb_playlist_changed), playlist);
+                            G_CALLBACK (cb_song_changed), playlist);
   g_signal_connect_swapped (playlist->mpdclient, "playlist-changed",
                             G_CALLBACK (cb_playlist_changed), playlist);
   /* Tree view */
@@ -332,29 +334,51 @@ xfmpc_playlist_delete_selection (XfmpcPlaylist *playlist)
 
 
 static void
+cb_song_changed (XfmpcPlaylist *playlist)
+{
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  gint                  id, current;
+
+  /* Remove the bold from the "last" current song */
+  GtkTreeIter iter;
+  GtkTreePath *path = gtk_tree_path_new_from_indices (priv->current, -1);
+  gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path);
+  gtk_list_store_set (priv->store, &iter,
+                      COLUMN_WEIGHT, PANGO_WEIGHT_NORMAL,
+                      -1);
+
+  /* Find the iter of the current song, set it bold and select it */
+  priv->current = xfmpc_mpdclient_get_pos (playlist->mpdclient);
+  path = gtk_tree_path_new_from_indices (priv->current, -1);
+  gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path);
+  gtk_list_store_set (priv->store, &iter,
+                      COLUMN_WEIGHT, PANGO_WEIGHT_BOLD,
+                      -1);
+  /* don't autocenter if a filter is typped in */
+  if (gtk_entry_get_text (GTK_ENTRY (priv->filter_entry))[0] == '\0' && priv->autocenter)
+    xfmpc_playlist_select_row (playlist, priv->current);
+}
+
+static void
 cb_playlist_changed (XfmpcPlaylist *playlist)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
   gchar                *song, *length;
   gint                  id, current;
-  gboolean              count = priv->autocenter;
-  gint                  i = 0;
 
   current = xfmpc_mpdclient_get_id (playlist->mpdclient);
 
   xfmpc_playlist_clear (playlist);
   while (xfmpc_mpdclient_playlist_read (playlist->mpdclient, &id, &song, &length))
     {
-      if (count)
-        count = current != id && (i += 1);
       xfmpc_playlist_append (playlist, id, song, length, current == id);
       g_free (song);
       g_free (length);
     }
 
-  priv->current = i;
+  priv->current = xfmpc_mpdclient_get_pos (playlist->mpdclient);
   /* don't autocenter if a filter is typped in */
-  if (gtk_entry_get_text (GTK_ENTRY (priv->filter_entry))[0] == '\0' && i > 0 && priv->autocenter)
+  if (gtk_entry_get_text (GTK_ENTRY (priv->filter_entry))[0] == '\0' && priv->autocenter)
     xfmpc_playlist_select_row (playlist, priv->current);
 }
 
