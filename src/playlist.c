@@ -441,6 +441,7 @@ cb_filter_entry_activated (XfmpcPlaylist *playlist)
       gtk_tree_view_row_activated (GTK_TREE_VIEW (priv->treeview), list->data, NULL);
       gtk_entry_set_text (GTK_ENTRY (priv->filter_entry), "");
       xfmpc_playlist_select_row (playlist, priv->current);
+      gtk_widget_grab_focus (priv->treeview);
       g_list_foreach (list, (GFunc)gtk_tree_path_free, NULL);
       g_list_free (list);
     }
@@ -459,9 +460,15 @@ cb_filter_entry_key_released (XfmpcPlaylist *playlist,
     {
       gtk_entry_set_text (GTK_ENTRY (priv->filter_entry), "");
       xfmpc_playlist_select_row (playlist, priv->current);
+      gtk_widget_grab_focus (priv->treeview);
     }
-  else if (gtk_entry_get_text (GTK_ENTRY (priv->filter_entry))[0] != '\0')
-    xfmpc_playlist_select_row (playlist, 0);
+  else 
+    {
+      if (gtk_entry_get_text (GTK_ENTRY (priv->filter_entry))[0] != '\0')
+        xfmpc_playlist_select_row (playlist, 0);
+      else
+        xfmpc_playlist_select_row (playlist, priv->current);
+    }
 
   return TRUE;
 }
