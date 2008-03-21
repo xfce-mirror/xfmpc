@@ -264,8 +264,7 @@ void
 xfmpc_playlist_append (XfmpcPlaylist *playlist,
                        gint id,
                        gchar *song,
-                       gchar *length,
-                       gboolean is_current)
+                       gchar *length)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
   GtkTreeIter           iter;
@@ -275,7 +274,7 @@ xfmpc_playlist_append (XfmpcPlaylist *playlist,
                       COLUMN_ID, id,
                       COLUMN_SONG, song,
                       COLUMN_LENGTH, length,
-                      COLUMN_WEIGHT, is_current ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
+                      COLUMN_WEIGHT, PANGO_WEIGHT_NORMAL,
                       -1);
 }
 
@@ -331,29 +330,37 @@ xfmpc_playlist_delete_selection (XfmpcPlaylist *playlist)
   g_list_free (list);
 }
 
-
-
-static void
-cb_song_changed (XfmpcPlaylist *playlist)
+void
+xfmpc_playlist_refresh_current_song (XfmpcPlaylist *playlist)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
-  gint                  id, current;
 
   /* Remove the bold from the "last" current song */
   GtkTreeIter iter;
   GtkTreePath *path = gtk_tree_path_new_from_indices (priv->current, -1);
-  gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path);
-  gtk_list_store_set (priv->store, &iter,
-                      COLUMN_WEIGHT, PANGO_WEIGHT_NORMAL,
-                      -1);
+  if (gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path))
+    gtk_list_store_set (priv->store, &iter,
+                        COLUMN_WEIGHT, PANGO_WEIGHT_NORMAL,
+                        -1);
 
-  /* Find the iter of the current song, set it bold and select it */
+  /* Set the current song bold */
   priv->current = xfmpc_mpdclient_get_pos (playlist->mpdclient);
   path = gtk_tree_path_new_from_indices (priv->current, -1);
   gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path);
   gtk_list_store_set (priv->store, &iter,
                       COLUMN_WEIGHT, PANGO_WEIGHT_BOLD,
                       -1);
+}
+
+
+
+static void
+cb_song_changed (XfmpcPlaylist *playlist)
+{
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+
+  xfmpc_playlist_refresh_current_song (playlist);
+
   /* don't autocenter if a filter is typped in */
   if (gtk_entry_get_text (GTK_ENTRY (priv->filter_entry))[0] == '\0' && priv->autocenter)
     xfmpc_playlist_select_row (playlist, priv->current);
@@ -371,12 +378,13 @@ cb_playlist_changed (XfmpcPlaylist *playlist)
   xfmpc_playlist_clear (playlist);
   while (xfmpc_mpdclient_playlist_read (playlist->mpdclient, &id, &song, &length))
     {
-      xfmpc_playlist_append (playlist, id, song, length, current == id);
+      xfmpc_playlist_append (playlist, id, song, length);
       g_free (song);
       g_free (length);
     }
 
-  priv->current = xfmpc_mpdclient_get_pos (playlist->mpdclient);
+  xfmpc_playlist_refresh_current_song (playlist);
+
   /* don't autocenter if a filter is typped in */
   if (gtk_entry_get_text (GTK_ENTRY (priv->filter_entry))[0] == '\0' && priv->autocenter)
     xfmpc_playlist_select_row (playlist, priv->current);

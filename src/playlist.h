@@ -42,13 +42,15 @@ GtkWidget *             xfmpc_playlist_new                      ();
 void                    xfmpc_playlist_append                   (XfmpcPlaylist *playlist,
                                                                  gint id,
                                                                  gchar *song,
-                                                                 gchar *length,
-                                                                 gboolean is_current);
+                                                                 gchar *length);
 void                    xfmpc_playlist_clear                    (XfmpcPlaylist *playlist);
 
 void                    xfmpc_playlist_select_row               (XfmpcPlaylist *playlist,
                                                                  gint i);
 void                    xfmpc_playlist_delete_selection         (XfmpcPlaylist *playlist);
+
+void                    xfmpc_playlist_refresh_current_song     (XfmpcPlaylist *playlist);
+
 
 G_END_DECLS
 
