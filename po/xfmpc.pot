@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-15 03:28+0100\n"
+"POT-Creation-Date: 2008-03-22 13:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,29 +16,33 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/extended-interface.c:146
+#: ../src/extended-interface.c:148
 msgid "Current Playlist"
 msgstr ""
 
-#: ../src/interface.c:173 ../xfmpc.desktop.in.h:3
+#: ../src/extended-interface.c:151
+msgid "Browse database"
+msgstr ""
+
+#: ../src/interface.c:175 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr ""
 
-#: ../src/interface.c:234 ../src/interface.c:446
+#: ../src/interface.c:240 ../src/interface.c:453
 msgid "Not connected"
 msgstr ""
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:520
+#: ../src/interface.c:527
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr ""
 
-#: ../src/interface.c:566
+#: ../src/interface.c:573
 msgid "Stopped"
 msgstr ""
 
-#: ../src/mpdclient.c:401 ../src/mpdclient.c:431 ../src/mpdclient.c:446
+#: ../src/mpdclient.c:421 ../src/mpdclient.c:451 ../src/mpdclient.c:466
 msgid "n/a"
 msgstr ""
 

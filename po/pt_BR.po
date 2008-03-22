@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-15 03:28+0100\n"
+"POT-Creation-Date: 2008-03-22 13:04+0100\n"
 "PO-Revision-Date: 2008-02-27 21:24-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -17,33 +17,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../src/extended-interface.c:146
+#: ../src/extended-interface.c:148
 msgid "Current Playlist"
 msgstr "Lista de reprodução atual"
 
-#: ../src/interface.c:173
-#: ../xfmpc.desktop.in.h:3
+#: ../src/extended-interface.c:151
+msgid "Browse database"
+msgstr ""
+
+#: ../src/interface.c:175 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#: ../src/interface.c:234
-#: ../src/interface.c:446
+#: ../src/interface.c:240 ../src/interface.c:453
 msgid "Not connected"
 msgstr "Não conectado"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:520
+#: ../src/interface.c:527
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "por \"%s\" de \"%s\" (%s)"
 
-#: ../src/interface.c:566
+#: ../src/interface.c:573
 msgid "Stopped"
 msgstr "Parado"
 
-#: ../src/mpdclient.c:401
-#: ../src/mpdclient.c:431
-#: ../src/mpdclient.c:446
+#: ../src/mpdclient.c:421 ../src/mpdclient.c:451 ../src/mpdclient.c:466
 msgid "n/a"
 msgstr "n/d"
 
@@ -54,4 +54,3 @@ msgstr "Cliente MPD"
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Cliente MPD escrito em GTK+ para o Xfce"
-
