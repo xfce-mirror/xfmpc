@@ -21,6 +21,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 #include <libxfce4util/libxfce4util.h>
 
 #include "dbbrowser.h"
@@ -42,6 +43,8 @@ static void             xfmpc_dbbrowser_finalize               (GObject *object)
 static void             cb_row_activated                       (XfmpcDbbrowser *dbbrowser,
                                                                 GtkTreePath *path,
                                                                 GtkTreeViewColumn *column);
+static gboolean         cb_key_pressed                         (XfmpcDbbrowser *dbbrowser,
+                                                                GdkEventKey *event);
 
 
 
@@ -153,6 +156,7 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
   /* === Tree view === */
   priv->treeview = gtk_tree_view_new ();
   gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview)), GTK_SELECTION_MULTIPLE);
+  gtk_tree_view_set_rubber_banding (GTK_TREE_VIEW (priv->treeview), TRUE);
   gtk_tree_view_set_enable_search (GTK_TREE_VIEW (priv->treeview), TRUE);
   gtk_tree_view_set_search_column (GTK_TREE_VIEW (priv->treeview), COLUMN_BASENAME);
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->treeview), FALSE);
@@ -196,6 +200,8 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
   /* Tree view */
   g_signal_connect_swapped (priv->treeview, "row-activated",
                             G_CALLBACK (cb_row_activated), dbbrowser);
+  g_signal_connect_swapped (priv->treeview, "key-press-event",
+                            G_CALLBACK (cb_key_pressed), dbbrowser);
 }
 
 static void
@@ -257,6 +263,36 @@ xfmpc_dbbrowser_append (XfmpcDbbrowser *dbbrowser,
                       COLUMN_BASENAME, basename,
                       COLUMN_IS_DIR, is_dir,
                       -1);
+}
+
+void
+xfmpc_dbbrowser_add_selected_rows (XfmpcDbbrowser *dbbrowser)
+{
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  GtkTreeModel         *store = GTK_TREE_MODEL (priv->store);
+  GtkTreeIter           iter;
+  GList                *list;
+  gchar                *filename;
+
+  list = gtk_tree_selection_get_selected_rows (gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview)),
+                                               &store);
+  while (NULL != list)
+    {
+      if (gtk_tree_model_get_iter (store, &iter, list->data))
+        {       
+          gtk_tree_model_get (store, &iter,
+                              COLUMN_FILENAME, &filename,
+                              -1);
+          xfmpc_mpdclient_queue_add (dbbrowser->mpdclient, filename);
+          g_free (filename);
+        }
+      list = g_list_next (list);
+    }
+
+  xfmpc_mpdclient_queue_commit (dbbrowser->mpdclient);
+
+  g_list_foreach (list, (GFunc)gtk_tree_path_free, NULL);
+  g_list_free (list);
 }
 
 void
@@ -370,5 +406,40 @@ cb_row_activated (XfmpcDbbrowser *dbbrowser,
     }
 
   g_free (filename);
+}
+
+static gboolean
+cb_key_pressed (XfmpcDbbrowser *dbbrowser,
+                GdkEventKey *event)
+{
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  GtkTreeSelection         *selection;
+  gchar                    *filename;
+
+  if (event->type != GDK_KEY_PRESS)
+    return FALSE;
+
+  switch (event->keyval)
+    {
+    case GDK_Return:
+      selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+      if (gtk_tree_selection_count_selected_rows (selection) > 1)
+        xfmpc_dbbrowser_add_selected_rows (dbbrowser);
+      else
+        return FALSE;
+      break;
+
+    case GDK_BackSpace:
+      filename = xfmpc_dbbrowser_get_parent_wdir (dbbrowser);
+      xfmpc_dbbrowser_set_wdir (dbbrowser, filename);
+      g_free (filename);
+      xfmpc_dbbrowser_reload (dbbrowser);
+      break;
+
+    default:
+      return FALSE;
+    }
+
+  return TRUE;
 }
 

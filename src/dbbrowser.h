@@ -45,6 +45,8 @@ void            xfmpc_dbbrowser_append                  (XfmpcDbbrowser *dbbrows
                                                          gchar *filename,
                                                          gchar *basename,
                                                          gboolean is_dir);
+void            xfmpc_dbbrowser_add_selected_rows       (XfmpcDbbrowser *dbbrowser);
+
 void            xfmpc_dbbrowser_reload                  (XfmpcDbbrowser *dbbrowser);
 
 void            xfmpc_dbbrowser_set_wdir                (XfmpcDbbrowser *dbbrowser,
