@@ -78,6 +78,7 @@ struct _XfmpcDbbrowserPrivate
   GtkWidget                *search_entry;
 
   gchar                    *wdir;
+  gchar                    *last_wdir;
 };
 
 
@@ -139,6 +140,7 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
   g_object_get (G_OBJECT (dbbrowser->preferences),
                 "dbbrowser-last-path", &priv->wdir,
                 NULL);
+  priv->last_wdir = g_strdup (priv->wdir);
 
   /* === Tree model === */
   priv->store = gtk_list_store_new (N_COLUMNS,
@@ -264,6 +266,7 @@ xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
   gchar                    *filename;
   gchar                    *basename;
   gboolean                  is_dir;
+  gint                      i = 0;
 
   xfmpc_dbbrowser_clear (dbbrowser);
 
@@ -272,12 +275,28 @@ xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
       filename = xfmpc_dbbrowser_get_parent_wdir (dbbrowser);
       xfmpc_dbbrowser_append (dbbrowser, filename, "..", TRUE);
       g_free (filename);
+      i++;
     }
 
   while (xfmpc_mpdclient_database_read (dbbrowser->mpdclient, priv->wdir,
                                         &filename, &basename, &is_dir))
     {
       xfmpc_dbbrowser_append (dbbrowser, filename, basename, is_dir);
+
+      if (i >= 0)
+        {
+          if (0 == g_ascii_strcasecmp (filename, priv->last_wdir))
+            {
+              GtkTreePath *path = gtk_tree_path_new_from_indices (i, -1);
+              gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->treeview), path, NULL, FALSE);
+              gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (priv->treeview), path, NULL, TRUE, 0.10, 0);
+              gtk_tree_path_free (path);
+
+              i = -1;
+            }
+          i++;
+        }
+
       g_free (filename);
       g_free (basename);
     }
@@ -291,7 +310,8 @@ xfmpc_dbbrowser_set_wdir (XfmpcDbbrowser *dbbrowser,
 {
   XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
 
-  g_free (priv->wdir);
+  g_free (priv->last_wdir);
+  priv->last_wdir = priv->wdir;
   priv->wdir = g_strdup (dir);
 }
 
