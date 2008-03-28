@@ -392,6 +392,8 @@ xfmpc_mpdclient_set_song_time (XfmpcMpdclient *mpdclient,
     return TRUE;
 }
 
+
+
 gint
 xfmpc_mpdclient_get_pos (XfmpcMpdclient *mpdclient)
 {
@@ -509,6 +511,8 @@ xfmpc_mpdclient_is_stopped (XfmpcMpdclient *mpdclient)
   return mpd_player_get_state (priv->mi) == MPD_PLAYER_STOP;
 }
 
+
+
 void
 xfmpc_mpdclient_update_status (XfmpcMpdclient *mpdclient)
 {
@@ -551,6 +555,8 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
                            xfmpc_mpdclient_get_total_time (mpdclient));
 }
 
+
+
 gboolean
 xfmpc_mpdclient_queue_commit (XfmpcMpdclient *mpdclient)
 {
@@ -585,6 +591,8 @@ xfmpc_mpdclient_queue_remove_id (XfmpcMpdclient *mpdclient,
 
   return TRUE;
 }
+
+
 
 gboolean
 xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,

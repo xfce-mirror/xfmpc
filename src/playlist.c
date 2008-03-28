@@ -287,21 +287,6 @@ xfmpc_playlist_clear (XfmpcPlaylist *playlist)
 }
 
 void
-xfmpc_playlist_select_row (XfmpcPlaylist *playlist,
-                           gint i)
-{
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
-
-  if (gtk_tree_model_iter_n_children (GTK_TREE_MODEL (priv->filter), NULL) == 0)
-    return;
-
-  GtkTreePath *path = gtk_tree_path_new_from_indices (i, -1);
-  gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->treeview), path, NULL, FALSE);
-  gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (priv->treeview), path, NULL, TRUE, 0.42, 0);
-  gtk_tree_path_free (path);
-}
-
-void
 xfmpc_playlist_delete_selection (XfmpcPlaylist *playlist)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
@@ -328,6 +313,21 @@ xfmpc_playlist_delete_selection (XfmpcPlaylist *playlist)
 
   g_list_foreach (list, (GFunc)gtk_tree_path_free, NULL);
   g_list_free (list);
+}
+
+void
+xfmpc_playlist_select_row (XfmpcPlaylist *playlist,
+                           gint i)
+{
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+
+  if (gtk_tree_model_iter_n_children (GTK_TREE_MODEL (priv->filter), NULL) == 0)
+    return;
+
+  GtkTreePath *path = gtk_tree_path_new_from_indices (i, -1);
+  gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->treeview), path, NULL, FALSE);
+  gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (priv->treeview), path, NULL, TRUE, 0.42, 0);
+  gtk_tree_path_free (path);
 }
 
 void

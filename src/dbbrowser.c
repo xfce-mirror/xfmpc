@@ -283,6 +283,8 @@ xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
     }
 }
 
+
+
 void
 xfmpc_dbbrowser_set_wdir (XfmpcDbbrowser *dbbrowser,
                           const gchar *dir)
@@ -315,6 +317,8 @@ xfmpc_dbbrowser_get_parent_wdir (XfmpcDbbrowser *dbbrowser)
 
   return filename;
 }
+
+
 
 static void
 cb_row_activated (XfmpcDbbrowser *dbbrowser,
