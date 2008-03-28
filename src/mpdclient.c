@@ -399,7 +399,11 @@ xfmpc_mpdclient_get_pos (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
 
-  return mpd_player_get_current_song_pos (priv->mi);
+  gint pos = mpd_player_get_current_song_pos (priv->mi);
+  if (pos < 0)
+    pos = 0;
+
+  return pos;
 }
 
 gint
