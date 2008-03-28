@@ -1,3 +1,27 @@
+2008-03-28	Mike Massonnet <mmassonnet@gmail.com>
+
+Add multiple selection to the XfmpcDbbrowser tree view, and go to parent directory with backspace
+	* src/dbbrowser.c(xfmpc_dbbrowser_init):
+	  - Enable rubber banding
+	* src/dbbrowser.c,
+	  src/dbbrowser.h:
+	  - Add new callback cb_key_pressed to add the selected rows on key Return
+	  - New function xfmpc_dbbrowser_add_selected_rows
+	* src/dbbrowser.c(cb_key_pressed):
+	  - Go to parent directory when key GDK_BackSpace is pressed
+
+2008-03-27	Mike Massonnet <mmassonnet@gmail.com>
+
+Fix bug in playlist when there is no current song
+	* src/mpdclient.c(xfmpc_mpdclient_get_pos):
+	  - Return 0 if pos is < 0
+
+2008-03-26	Mike Massonnet <mmassonnet@gmail.com>
+
+Select the row when going to the parent directory
+	* src/dbbrowser.c:
+	  - New property last_wdir to select the right row in the treeview
+
 2008-03-21	Mike Massonnet <mmassonnet@gmail.com>
 
 Add a database browser
@@ -13,7 +37,6 @@ Add a database browser
 	  - New functions _database_read that returns all the files from a directory
 	* src/preferences.c:
 	  - New preference for XfmpcDbbrowser to remember the last working directory
-
 
 2008-03-02	Mike Massonnet <mmassonnet@gmail.com>
 
