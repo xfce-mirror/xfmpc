@@ -1,5 +1,9 @@
 2008-03-28	Mike Massonnet <mmassonnet@gmail.com>
 
+=== Release 0.0.4 ===
+
+2008-03-28	Mike Massonnet <mmassonnet@gmail.com>
+
 Add multiple selection to the XfmpcDbbrowser tree view, and go to parent directory with backspace
 	* src/dbbrowser.c(xfmpc_dbbrowser_init):
 	  - Enable rubber banding

@@ -1,3 +1,10 @@
+    0.0.4 (2008-03-28)
+
+- Add a database browser with the ability to add songs
+- Add behaviors in the filter entry of the playlist
+- Be more efficient with playlist refreshes
+- Fix misc bugs
+
     0.0.3 (2008-02-23)
 
 - New widget XfmpcExtendedInterface which displays notebook pages selectable
