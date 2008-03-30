@@ -632,6 +632,17 @@ xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
 }
 
 gboolean
+xfmpc_mpdclient_playlist_clear (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (mpd_playlist_clear (priv->mi) != FALSE)
+    return FALSE;
+
+  return TRUE;
+}
+
+gboolean
 xfmpc_mpdclient_database_read (XfmpcMpdclient *mpdclient,
                                const gchar *dir,
                                gchar **filename,
@@ -687,5 +698,16 @@ xfmpc_mpdclient_database_read (XfmpcMpdclient *mpdclient,
     }
 
   return NULL != data;
+}
+
+gboolean
+xfmpc_mpdclient_database_refresh (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (mpd_database_update_dir (priv->mi, "") != MPD_OK)
+    return FALSE;
+
+  return TRUE;
 }
 

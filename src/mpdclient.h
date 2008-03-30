@@ -97,11 +97,15 @@ gboolean                xfmpc_mpdclient_playlist_read           (XfmpcMpdclient 
                                                                  gint *id,
                                                                  gchar **song,
                                                                  gchar **length);
+gboolean                xfmpc_mpdclient_playlist_clear          (XfmpcMpdclient *mpdclient);
+
 gboolean                xfmpc_mpdclient_database_read           (XfmpcMpdclient *mpdclient,
                                                                  const gchar *dir,
                                                                  gchar **filename,
                                                                  gchar **basename,
                                                                  gboolean *is_dir);
+gboolean                xfmpc_mpdclient_database_refresh        (XfmpcMpdclient *mpdclient);
+
 
 G_END_DECLS
 

@@ -223,6 +223,8 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (control), 1.0);
   gtk_container_add (GTK_CONTAINER (progress_box), control);
 
+  GtkWidget *separator = gtk_hseparator_new ();
+
   interface->extended_interface = xfmpc_extended_interface_new ();
 
   /* Title */
@@ -272,6 +274,8 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_box_pack_start (GTK_BOX (vbox), box, FALSE, TRUE, 0);
   gtk_container_add (GTK_CONTAINER (box), priv->title);
   gtk_container_add (GTK_CONTAINER (box), priv->subtitle);
+
+  gtk_box_pack_start (GTK_BOX (vbox), separator, FALSE, FALSE, 0);
 
   gtk_box_pack_start (GTK_BOX (vbox), interface->extended_interface, TRUE, TRUE, 0);
 

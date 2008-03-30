@@ -24,6 +24,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "extended-interface.h"
+#include "mpdclient.h"
 #include "playlist.h"
 #include "dbbrowser.h"
 
@@ -64,6 +65,7 @@ struct _XfmpcExtendedInterface
 {
   GtkVBox                           parent;
   XfmpcExtendedInterfacePrivate    *priv;
+  XfmpcMpdclient                   *mpdclient;
 };
 
 struct _XfmpcExtendedInterfacePrivate
@@ -126,12 +128,41 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 {
   XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
 
+  extended_interface->mpdclient = xfmpc_mpdclient_new ();
+
+  /* Hbox  */
+  GtkWidget *hbox = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (extended_interface), hbox, FALSE, FALSE, 2);
+
+  /* Clear playlist */
+  GtkWidget *widget = gtk_button_new ();
+  gtk_widget_set_tooltip_text (widget, _("Clear Playlist"));
+  gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
+  g_signal_connect_swapped (widget, "clicked",
+                            G_CALLBACK (xfmpc_mpdclient_playlist_clear), extended_interface->mpdclient);
+
+  GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (widget), image);
+
+  /* Refresh database */
+  widget = gtk_button_new ();
+  gtk_widget_set_tooltip_text (widget, _("Refresh Database"));
+  gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 2);
+  g_signal_connect_swapped (widget, "clicked",
+                            G_CALLBACK (xfmpc_mpdclient_database_refresh), extended_interface->mpdclient);
+
+  image = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (widget), image);
+
   /* Combo box */
   priv->list_store = gtk_list_store_new (N_COLUMNS,
                                          G_TYPE_STRING,
                                          G_TYPE_POINTER);
 
   priv->combobox = gtk_combo_box_new_with_model (GTK_TREE_MODEL (priv->list_store));
+  gtk_box_pack_start (GTK_BOX (hbox), priv->combobox, TRUE, TRUE, 0);
+  g_signal_connect (priv->combobox, "changed",
+                    G_CALLBACK (cb_xfmpc_extended_interface_combobox_changed), extended_interface);
 
   GtkCellRenderer *cell = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combobox), cell, TRUE);
@@ -141,6 +172,8 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 
   /* Notebook */
   priv->notebook = gtk_notebook_new ();
+  gtk_box_pack_start (GTK_BOX (extended_interface), priv->notebook, TRUE, TRUE, 0);
+
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
 
   /* Extended interface widgets */
@@ -149,14 +182,6 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 
   child = xfmpc_dbbrowser_new ();
   xfmpc_extended_interface_append_child (extended_interface, child, _("Browse database"));
-
-  /* Containers */
-  gtk_box_pack_start (GTK_BOX (extended_interface), priv->combobox, FALSE, FALSE, BORDER);
-  gtk_box_pack_start (GTK_BOX (extended_interface), priv->notebook, TRUE, TRUE, 0);
-
-  /* Signals */
-  g_signal_connect (priv->combobox, "changed",
-                    G_CALLBACK (cb_xfmpc_extended_interface_combobox_changed), extended_interface);
 }
 
 static void
