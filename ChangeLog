@@ -1,3 +1,24 @@
+2008-03-30	Mike Massonnet <mmassonnet@gmail.com>
+
+Fix GTK-Criticals on empty playlist
+	* src/playlist.c(xfmpc_playlist_refresh_current_song):
+	  - Check validity of GtkIter before setting the GtkListStore
+
+2008-03-30	Mike Massonnet <mmassonnet@gmail.com>
+
+Add "Clear Playlist" and "Refresh Database" buttons beneath the combo box
+	* src/interface.c(xfmpc_interface_init):
+	  - Add a GtkHSeparator between XfmpcInterface and XfmpcExtendedInterface
+	* src/mpdclient.c,
+	  src/mpdclient.h:
+	  - Two new functions _playlist_clear and _database_refresh
+	* src/extended-interface.c:
+	  - Add two GtkButton to clear to clear the playlist and refresh the database
+
+2008-03-30	Mike Massonnet <mmassonnet@gmail.com>
+
+Add IDEAS file
+
 2008-03-28	Mike Massonnet <mmassonnet@gmail.com>
 
 === Release 0.0.4 ===
