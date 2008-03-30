@@ -1,0 +1,7 @@
+  - XfmpcExtendedPluginInterface
+    ~ artwork
+    ~ random album playlist
+  - Options
+    ~ Font (size) for the tree views
+    ~ Hostname Port
+    ~ 
