@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-22 13:04+0100\n"
-"PO-Revision-Date: 2008-03-30 05:15+0200\n"
+"POT-Creation-Date: 2008-03-30 07:52+0200\n"
+"PO-Revision-Date: 2008-03-30 07:53+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../src/extended-interface.c:148
+#: ../src/extended-interface.c:139
+msgid "Clear Playlist"
+msgstr "Vider la liste de lecture"
+
+#: ../src/extended-interface.c:149
+msgid "Refresh Database"
+msgstr "Rafraîchir la base de données"
+
+#: ../src/extended-interface.c:181
 msgid "Current Playlist"
 msgstr "Liste de lecture"
 
-#: ../src/extended-interface.c:151
+#: ../src/extended-interface.c:184
 msgid "Browse database"
 msgstr "Base de données"
 
@@ -29,21 +37,21 @@ msgstr "Base de données"
 msgid "Xfmpc"
 msgstr ""
 
-#: ../src/interface.c:240 ../src/interface.c:453
+#: ../src/interface.c:242 ../src/interface.c:457
 msgid "Not connected"
 msgstr "Déconnecté"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:527
+#: ../src/interface.c:531
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "par « %s » de « %s » (%s)"
 
-#: ../src/interface.c:573
+#: ../src/interface.c:577
 msgid "Stopped"
 msgstr "Stoppé"
 
-#: ../src/mpdclient.c:421 ../src/mpdclient.c:451 ../src/mpdclient.c:466
+#: ../src/mpdclient.c:427 ../src/mpdclient.c:457 ../src/mpdclient.c:472
 msgid "n/a"
 msgstr ""
 

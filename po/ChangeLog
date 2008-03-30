@@ -1,5 +1,6 @@
 2008-03-30	Mike Massonnet <mmassonnet@xfce.org>
 
+	* *.po, *.pot: make update-po for new strings from extended-interface.c
 	* fr.po: Update French translation
 
 2008-03-22	Mike Massonnet <mmassonnet@xfce.org>

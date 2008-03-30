@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-22 13:04+0100\n"
+"POT-Creation-Date: 2008-03-30 07:52+0200\n"
 "PO-Revision-Date: 2008-02-15 03:30+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: Dutch\n"
@@ -17,11 +17,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/extended-interface.c:148
+#: ../src/extended-interface.c:139
+#, fuzzy
+msgid "Clear Playlist"
+msgstr "Huidige afspeellijst"
+
+#: ../src/extended-interface.c:149
+msgid "Refresh Database"
+msgstr ""
+
+#: ../src/extended-interface.c:181
 msgid "Current Playlist"
 msgstr "Huidige afspeellijst"
 
-#: ../src/extended-interface.c:151
+#: ../src/extended-interface.c:184
 msgid "Browse database"
 msgstr ""
 
@@ -29,21 +38,21 @@ msgstr ""
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#: ../src/interface.c:240 ../src/interface.c:453
+#: ../src/interface.c:242 ../src/interface.c:457
 msgid "Not connected"
 msgstr "Niet verbonden"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:527
+#: ../src/interface.c:531
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "door \"%s\" van \"%s\" (%s)"
 
-#: ../src/interface.c:573
+#: ../src/interface.c:577
 msgid "Stopped"
 msgstr "Gestopt"
 
-#: ../src/mpdclient.c:421 ../src/mpdclient.c:451 ../src/mpdclient.c:466
+#: ../src/mpdclient.c:427 ../src/mpdclient.c:457 ../src/mpdclient.c:472
 msgid "n/a"
 msgstr ""
 
