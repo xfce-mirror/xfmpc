@@ -346,10 +346,10 @@ xfmpc_playlist_refresh_current_song (XfmpcPlaylist *playlist)
   /* Set the current song bold */
   priv->current = xfmpc_mpdclient_get_pos (playlist->mpdclient);
   path = gtk_tree_path_new_from_indices (priv->current, -1);
-  gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path);
-  gtk_list_store_set (priv->store, &iter,
-                      COLUMN_WEIGHT, PANGO_WEIGHT_BOLD,
-                      -1);
+  if (gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path))
+    gtk_list_store_set (priv->store, &iter,
+                        COLUMN_WEIGHT, PANGO_WEIGHT_BOLD,
+                        -1);
 }
 
 
