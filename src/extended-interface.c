@@ -193,6 +193,8 @@ xfmpc_extended_interface_dispose (GObject *object)
 static void
 xfmpc_extended_interface_finalize (GObject *object)
 {
+  XfmpcExtendedInterface *extended_interface = XFMPC_EXTENDED_INTERFACE (object);
+  g_object_unref (G_OBJECT (extended_interface->mpdclient));
   (*G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
