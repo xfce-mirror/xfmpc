@@ -3,11 +3,9 @@ bin_PROGRAMS = xfmpc
 xfmpc_SOURCES =								\
 	main.c								\
 	main-ui.h							\
-	main-ui.xml							\
 	interface.c							\
 	interface.h							\
 	interface-ui.h							\
-	interface-ui.xml						\
 	extended-interface.c						\
 	extended-interface.h						\
 	playlist.c							\
@@ -38,11 +36,23 @@ INCLUDES =								\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
 	-DLOCALEDIR=\"$(localedir)\"
 
+if MAINTAINER_MODE
+DISTCLEANFILES =							\
+	main-ui.h							\
+	interface-ui.h
 
+BUILT_SOURCES =								\
+	main-ui.h							\
+	interface-ui.h
 
 main-ui.h: Makefile $(srcdir)/main-ui.xml
 	exo-csource --strip-comments --strip-content --static --name=main_ui $(srcdir)/main-ui.xml > main-ui.h
 
 interface-ui.h: Makefile $(srcdir)/interface-ui.xml
 	exo-csource --strip-comments --strip-content --static --name=xfmpc_interface_ui $(srcdir)/interface-ui.xml > interface-ui.h
+endif
+
+EXTRA_DIST =								\
+	main-ui.xml							\
+	interface-ui.xml
 
