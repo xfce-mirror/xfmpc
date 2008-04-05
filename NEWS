@@ -1,3 +1,9 @@
+    0.0.5 (2008-04-05)
+
+- Add Clear Playlist and Refresh Database buttons
+- Clean up XfmpcInterface, move GtkWindow code to main.c
+- Fix misc bugs
+
     0.0.4 (2008-03-28)
 
 - Add a database browser with the ability to add songs

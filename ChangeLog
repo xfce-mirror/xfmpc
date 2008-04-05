@@ -1,3 +1,44 @@
+2008-04-05	Mike Massonnet <mmassonnet@gmail.com>
+
+=== Release 0.0.5 ===
+
+2008-04-05	Mike Massonnet <mmassonnet@gmail.com>
+
+Fix src/Makefile.am to compile the -ui.xml files
+	* src/Makefile.am:
+	  - Rules to compile -ui.xml as maintainer mode
+	  - Distribute the .xml files
+
+2008-04-05	Mike Massonnet <mmassonnet@gmail.com>
+
+Rename xfmpc_mpdclient_new to xfmpc_mpdclient_get
+	* src/mpdclient.c,
+	  src/mpdclient.h:
+	  - Rename xfmpc_mpdclient_new to _get as it actually doesn't return new
+	  objects, but increments the ref count
+	* src/dbbrowser.c,
+	  src/extended-interface.c,
+	  src/interface.c,
+	  src/playlist.c:
+	  - Update files to use new name function
+
+2008-04-05	Mike Massonnet <mmassonnet@gmail.com>
+
+Code moving, throw GtkWindow inside main.c and keep XfmpcInterface simpler
+	* src/main.c, src/interface.c:
+	  - Move accelerators to main.c
+	  - Move GtkWindow creation to main.c
+	* src/main.c(main):
+	  - Call gtk_widget_show_all just after a new XfmpcInterface, and later again
+	  for the rest of the ui
+	  - Add a GtkHSeparator between XfmpcInterface and XfmpcExtendedInterface
+
+2008-03-30	Mike Massonnet <mmassonnet@gmail.com>
+
+Forget to unref XfmpcMpdclient on XfmpcExtendedInterface finalize
+	* src/extended-interface.c(xfmpc_extended_interface_finalize):
+	  - Unref XfmpcMpdclient
+
 2008-03-30	Mike Massonnet <mmassonnet@gmail.com>
 
 Fix GTK-Criticals on empty playlist
