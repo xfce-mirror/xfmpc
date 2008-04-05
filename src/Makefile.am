@@ -2,6 +2,8 @@ bin_PROGRAMS = xfmpc
 
 xfmpc_SOURCES =								\
 	main.c								\
+	main-ui.h							\
+	main-ui.xml							\
 	interface.c							\
 	interface.h							\
 	interface-ui.h							\
@@ -35,4 +37,12 @@ INCLUDES =								\
 	-I${top_srcdir}							\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
 	-DLOCALEDIR=\"$(localedir)\"
+
+
+
+main-ui.h: Makefile $(srcdir)/main-ui.xml
+	exo-csource --strip-comments --strip-content --static --name=main_ui $(srcdir)/main-ui.xml > main-ui.h
+
+interface-ui.h: Makefile $(srcdir)/interface-ui.xml
+	exo-csource --strip-comments --strip-content --static --name=xfmpc_interface_ui $(srcdir)/interface-ui.xml > interface-ui.h
 

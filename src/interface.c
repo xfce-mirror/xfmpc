@@ -25,8 +25,6 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "interface.h"
-#include "interface-ui.h"
-#include "extended-interface.h"
 #include "preferences.h"
 #include "mpdclient.h"
 
@@ -46,10 +44,6 @@ static gboolean         xfmpc_interface_refresh                 (XfmpcInterface 
 
 static gboolean         xfmpc_interface_reconnect               (XfmpcInterface *interface);
 
-static gboolean         xfmpc_interface_state_event             (XfmpcInterface *interface,
-                                                                 GdkEventWindowState *event);
-static gboolean         xfmpc_interface_closed                  (XfmpcInterface *interface,
-                                                                 GdkEvent *event);
 static void             cb_song_changed                         (XfmpcInterface *interface);
 
 static void             cb_pp_changed                           (XfmpcInterface *interface,
@@ -73,46 +67,6 @@ static void             xfmpc_interface_action_volume           (GtkAction *acti
                                                                  XfmpcInterface *interface);
 static void             xfmpc_interface_action_close            (GtkAction *action,
                                                                  XfmpcInterface *interface);
-
-
-
-struct _XfmpcInterfaceClass
-{
-  GtkWindowClass            parent_class;
-};
-
-struct _XfmpcInterface
-{
-  GtkWindow                 parent;
-  XfmpcInterfacePrivate    *priv;
-  GtkWidget                *extended_interface;
-  XfmpcPreferences         *preferences;
-  XfmpcMpdclient           *mpdclient;
-};
-
-struct _XfmpcInterfacePrivate
-{
-  GtkWidget                *button_prev;
-  GtkWidget                *button_pp; /* play/pause */
-  GtkWidget                *button_next;
-  GtkWidget                *button_volume;
-  GtkWidget                *progress_bar; /* position in song */
-  GtkWidget                *title;
-  GtkWidget                *subtitle;
-  gboolean                  refresh_title;
-};
-
-
-
-static const GtkActionEntry action_entries[] =
-{
-  { "previous", NULL, "", "<control>b", NULL, G_CALLBACK (xfmpc_interface_action_previous), },
-  { "pp", NULL, "", "<control>p", NULL, G_CALLBACK (xfmpc_interface_action_pp), },
-  { "stop", NULL, "", "<control>s", NULL, G_CALLBACK (xfmpc_interface_action_stop), },
-  { "next", NULL, "", "<control>f", NULL, G_CALLBACK (xfmpc_interface_action_next), },
-  { "volume", NULL, "", "<control>v", NULL, G_CALLBACK (xfmpc_interface_action_volume), },
-  { "quit", NULL, "", "<control>q", NULL, G_CALLBACK (xfmpc_interface_action_close), },
-};
 
 
 
@@ -140,7 +94,7 @@ xfmpc_interface_get_type ()
           (GInstanceInitFunc) xfmpc_interface_init,
           NULL
         };
-      xfmpc_interface_type = g_type_register_static (GTK_TYPE_WINDOW, "XfmpcInterface", &xfmpc_interface_info, 0);
+      xfmpc_interface_type = g_type_register_static (GTK_TYPE_VBOX, "XfmpcInterface", &xfmpc_interface_info, 0);
     }
 
   return xfmpc_interface_type;
@@ -167,32 +121,9 @@ xfmpc_interface_init (XfmpcInterface *interface)
 {
   XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
 
+  gtk_container_set_border_width (GTK_CONTAINER (interface), BORDER);
   interface->preferences = xfmpc_preferences_get ();
   interface->mpdclient = xfmpc_mpdclient_new ();
-
-  /* === Window === */
-  gtk_window_set_icon_name (GTK_WINDOW (interface), "stock_volume");
-  gtk_window_set_title (GTK_WINDOW (interface), _("Xfmpc"));
-  gtk_container_set_border_width (GTK_CONTAINER (interface), BORDER);
-  g_signal_connect (G_OBJECT (interface), "delete-event", G_CALLBACK (xfmpc_interface_closed), NULL);
-  g_signal_connect (G_OBJECT (interface), "window-state-event", G_CALLBACK (xfmpc_interface_state_event), NULL);
-
-  gint posx, posy;
-  gint width, height;
-  gboolean sticky;
-  g_object_get (G_OBJECT (interface->preferences),
-                "last-window-posx", &posx,
-                "last-window-posy", &posy,
-                "last-window-width", &width,
-                "last-window-height", &height,
-                "last-window-state-sticky", &sticky,
-                NULL);
-  if (G_LIKELY (posx != -1 && posy != -1))
-    gtk_window_move (GTK_WINDOW (interface), posx, posy);
-  if (G_LIKELY (width != -1 && height != -1))
-    gtk_window_set_default_size (GTK_WINDOW (interface), width, height);
-  if (sticky == TRUE)
-    gtk_window_stick (GTK_WINDOW (interface));
 
   /* === Interface widgets === */
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_PREVIOUS, GTK_ICON_SIZE_BUTTON);
@@ -222,10 +153,6 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (control), "0:00 / 0:00");
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (control), 1.0);
   gtk_container_add (GTK_CONTAINER (progress_box), control);
-
-  GtkWidget *separator = gtk_hseparator_new ();
-
-  interface->extended_interface = xfmpc_extended_interface_new ();
 
   /* Title */
   PangoAttrList* attrs = pango_attr_list_new ();
@@ -259,11 +186,8 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
 
   /* === Containers === */
-  GtkWidget *vbox = gtk_vbox_new (FALSE, BORDER);
-  gtk_container_add (GTK_CONTAINER (interface), vbox);
-
   GtkWidget *box = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox), box, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (interface), box, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (box), priv->button_prev, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (box), priv->button_pp, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (box), priv->button_next, FALSE, FALSE, 0);
@@ -271,24 +195,9 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_box_pack_start (GTK_BOX (box), priv->button_volume, FALSE, FALSE, 0);
 
   box = gtk_vbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox), box, FALSE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (interface), box, FALSE, TRUE, 0);
   gtk_container_add (GTK_CONTAINER (box), priv->title);
   gtk_container_add (GTK_CONTAINER (box), priv->subtitle);
-
-  gtk_box_pack_start (GTK_BOX (vbox), separator, FALSE, FALSE, 0);
-
-  gtk_box_pack_start (GTK_BOX (vbox), interface->extended_interface, TRUE, TRUE, 0);
-
-  /* === Accelerators === */
-  GtkActionGroup *action_group = gtk_action_group_new ("XfmpcInterface");
-  gtk_action_group_add_actions (action_group, action_entries, G_N_ELEMENTS (action_entries), GTK_WINDOW (interface));
-
-  GtkUIManager *ui_manager = gtk_ui_manager_new ();
-  gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
-  gtk_ui_manager_add_ui_from_string (ui_manager, xfmpc_interface_ui, xfmpc_interface_ui_length, NULL);
-
-  GtkAccelGroup *accel_group = gtk_ui_manager_get_accel_group (ui_manager);
-  gtk_window_add_accel_group (GTK_WINDOW (interface), accel_group);
 
   /* === Signals === */
   g_signal_connect_swapped (priv->button_prev, "clicked",
@@ -337,7 +246,8 @@ xfmpc_interface_finalize (GObject *object)
 GtkWidget*
 xfmpc_interface_new ()
 {
-  return g_object_new (XFMPC_TYPE_INTERFACE, NULL);
+  return g_object_new (XFMPC_TYPE_INTERFACE, 
+                       "spacing", BORDER, NULL);
 }
 
 void
@@ -418,6 +328,14 @@ xfmpc_interface_set_volume (XfmpcInterface *interface,
 }
 
 void
+xfmpc_interface_popup_volume (XfmpcInterface *interface)
+{
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+
+  g_signal_emit_by_name (priv->button_volume, "popup", G_TYPE_NONE);
+}
+
+void
 xfmpc_interface_set_time (XfmpcInterface *interface,
                           gint time,
                           gint time_total)
@@ -478,49 +396,6 @@ xfmpc_interface_reconnect (XfmpcInterface *interface)
   return FALSE;
 }
 
-static gboolean
-xfmpc_interface_state_event (XfmpcInterface *interface,
-                             GdkEventWindowState *event)
-{
-  if (G_UNLIKELY (event->type != GDK_WINDOW_STATE))
-    return FALSE;
-
-  /**
-   * Hiding the top level window will unstick it too, and send a
-   * window-state-event signal, so here we take the value only if
-   * the window is visible
-   **/
-  if (event->changed_mask & GDK_WINDOW_STATE_STICKY && GTK_WIDGET_VISIBLE (GTK_WIDGET (interface)))
-    {
-      gboolean sticky = ((gboolean) event->new_window_state & GDK_WINDOW_STATE_STICKY) == FALSE ? FALSE : TRUE;
-      g_object_set (G_OBJECT (interface->preferences),
-                    "last-window-state-sticky", sticky,
-                    NULL);
-    }
-
-  return FALSE;
-}
-
-static gboolean
-xfmpc_interface_closed (XfmpcInterface *interface,
-                        GdkEvent *event)
-{
-  gint posx, posy;
-  gint width, height;
-  gtk_window_get_position (GTK_WINDOW (interface), &posx, &posy);
-  gtk_window_get_size (GTK_WINDOW (interface), &width, &height);
-
-  g_object_set (G_OBJECT (interface->preferences),
-                "last-window-posx", posx,
-                "last-window-posy", posy,
-                "last-window-width", width,
-                "last-window-height", height,
-                NULL);
-
-  gtk_main_quit ();
-  return FALSE;
-}
-
 static void
 cb_song_changed (XfmpcInterface *interface)
 {
@@ -578,51 +453,5 @@ cb_stopped (XfmpcInterface *interface)
   xfmpc_interface_set_subtitle (interface, PACKAGE_STRING);
 
   priv->refresh_title = TRUE;
-}
-
-
-
-static void
-xfmpc_interface_action_previous (GtkAction *action,
-                                 XfmpcInterface *interface)
-{
-  xfmpc_mpdclient_previous (interface->mpdclient);
-}
-
-static void
-xfmpc_interface_action_pp (GtkAction *action,
-                           XfmpcInterface *interface)
-{
-  xfmpc_interface_pp_clicked (interface);
-}
-
-static void
-xfmpc_interface_action_stop (GtkAction *action,
-                             XfmpcInterface *interface)
-{
-  xfmpc_mpdclient_stop (interface->mpdclient);
-}
-
-static void
-xfmpc_interface_action_next (GtkAction *action,
-                             XfmpcInterface *interface)
-{
-  xfmpc_mpdclient_next (interface->mpdclient);
-}
-
-static void
-xfmpc_interface_action_volume (GtkAction *action,
-                               XfmpcInterface *interface)
-{
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
-
-  g_signal_emit_by_name (priv->button_volume, "popup", G_TYPE_NONE);
-}
-
-static void
-xfmpc_interface_action_close (GtkAction *action,
-                              XfmpcInterface *interface)
-{
-  xfmpc_interface_closed (interface, NULL);
 }
 

@@ -19,6 +19,9 @@
 #ifndef __XFMPC_INTERFACE_H__
 #define __XFMPC_INTERFACE_H__
 
+#include "preferences.h"
+#include "mpdclient.h"
+
 G_BEGIN_DECLS
 
 #define XFMPC_TYPE_INTERFACE            (xfmpc_interface_get_type())
@@ -34,6 +37,31 @@ G_BEGIN_DECLS
 typedef struct _XfmpcInterfaceClass     XfmpcInterfaceClass;
 typedef struct _XfmpcInterface          XfmpcInterface;
 typedef struct _XfmpcInterfacePrivate   XfmpcInterfacePrivate;
+
+struct _XfmpcInterfaceClass
+{
+  GtkVBoxClass              parent_class;
+};
+
+struct _XfmpcInterface
+{
+  GtkVBox                   parent;
+  XfmpcInterfacePrivate    *priv;
+  XfmpcPreferences         *preferences;
+  XfmpcMpdclient           *mpdclient;
+};
+
+struct _XfmpcInterfacePrivate
+{
+  GtkWidget                *button_prev;
+  GtkWidget                *button_pp; /* play/pause */
+  GtkWidget                *button_next;
+  GtkWidget                *button_volume;
+  GtkWidget                *progress_bar; /* position in song */
+  GtkWidget                *title;
+  GtkWidget                *subtitle;
+  gboolean                  refresh_title;
+};
 
 GType                   xfmpc_interface_get_type                () G_GNUC_CONST;
 
@@ -53,7 +81,7 @@ void                    xfmpc_interface_volume_changed          (XfmpcInterface 
                                                                  gdouble value);
 void                    xfmpc_interface_set_volume              (XfmpcInterface *interface,
                                                                  guint8 volume);
-void                    xfmpc_interface_refresh_volume          (XfmpcInterface *interface);
+void                    xfmpc_interface_popup_volume            (XfmpcInterface *interface);
 
 void                    xfmpc_interface_set_time                (XfmpcInterface *interface,
                                                                  gint time,
