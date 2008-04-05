@@ -1,0 +1,67 @@
+# German translations for xfmpc package
+# German messages for xfmpc.
+# Copyright (C) 2008 THE xfmpc'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfmpc package.
+# Enrico Tröger <enrico.troeger@uvena.de>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfmpc 0.0.5svn-r\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-30 07:52+0200\n"
+"PO-Revision-Date: 2008-04-04 08:50+0100\n"
+"Last-Translator: Enrico Tröger <enrico.troeger@uvena.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../src/extended-interface.c:139
+msgid "Clear Playlist"
+msgstr "Wiedergabeliste leeren"
+
+#: ../src/extended-interface.c:149
+msgid "Refresh Database"
+msgstr "Datenbak auffrischen"
+
+#: ../src/extended-interface.c:181
+msgid "Current Playlist"
+msgstr "Aktuelle Wiedergabeliste"
+
+#: ../src/extended-interface.c:184
+msgid "Browse database"
+msgstr "Datenbank durchsuchen"
+
+#: ../src/interface.c:175 ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
+#: ../src/interface.c:242 ../src/interface.c:457
+msgid "Not connected"
+msgstr "Nicht verbunden"
+
+#. subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:531
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "von \"%s\" aus \"%s\" (%s)"
+
+#: ../src/interface.c:577
+msgid "Stopped"
+msgstr "Angehalten"
+
+#: ../src/mpdclient.c:427 ../src/mpdclient.c:457 ../src/mpdclient.c:472
+msgid "n/a"
+msgstr "unbekannt"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD Client"
+
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "MPD Client geschrieben in GTK+ für Xfce"
