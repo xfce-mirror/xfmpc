@@ -23,7 +23,7 @@ msgstr "Afspeellijst legen"
 
 #: ../src/extended-interface.c:149
 msgid "Refresh Database"
-msgstr "Database opfrissen"
+msgstr "Database vernieuwen"
 
 #: ../src/extended-interface.c:181
 msgid "Current Playlist"
@@ -52,8 +52,9 @@ msgid "Stopped"
 msgstr "Gestopt"
 
 #: ../src/mpdclient.c:427 ../src/mpdclient.c:457 ../src/mpdclient.c:472
+#, fuzzy
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
