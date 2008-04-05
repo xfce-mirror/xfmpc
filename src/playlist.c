@@ -151,7 +151,7 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
 
   playlist->preferences = xfmpc_preferences_get ();
-  playlist->mpdclient = xfmpc_mpdclient_new ();
+  playlist->mpdclient = xfmpc_mpdclient_get ();
 
   g_object_get (G_OBJECT (playlist->preferences),
                 "playlist-autocenter", &priv->autocenter,

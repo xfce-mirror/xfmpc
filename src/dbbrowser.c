@@ -138,7 +138,7 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
   XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
 
   dbbrowser->preferences = xfmpc_preferences_get ();
-  dbbrowser->mpdclient = xfmpc_mpdclient_new ();
+  dbbrowser->mpdclient = xfmpc_mpdclient_get ();
 
   g_object_get (G_OBJECT (dbbrowser->preferences),
                 "dbbrowser-last-path", &priv->wdir,

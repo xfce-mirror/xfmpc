@@ -128,7 +128,7 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 {
   XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
 
-  extended_interface->mpdclient = xfmpc_mpdclient_new ();
+  extended_interface->mpdclient = xfmpc_mpdclient_get ();
 
   /* Hbox  */
   GtkWidget *hbox = gtk_hbox_new (FALSE, 0);

@@ -123,7 +123,7 @@ xfmpc_interface_init (XfmpcInterface *interface)
 
   gtk_container_set_border_width (GTK_CONTAINER (interface), BORDER);
   interface->preferences = xfmpc_preferences_get ();
-  interface->mpdclient = xfmpc_mpdclient_new ();
+  interface->mpdclient = xfmpc_mpdclient_get ();
 
   /* === Interface widgets === */
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_PREVIOUS, GTK_ICON_SIZE_BUTTON);

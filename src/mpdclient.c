@@ -218,7 +218,7 @@ xfmpc_mpdclient_finalize (GObject *object)
 
 
 XfmpcMpdclient *
-xfmpc_mpdclient_new ()
+xfmpc_mpdclient_get ()
 {
   static XfmpcMpdclient *mpdclient = NULL;
 
