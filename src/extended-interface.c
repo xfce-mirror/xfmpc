@@ -50,9 +50,17 @@ static void             xfmpc_extended_interface_init       (XfmpcExtendedInterf
 static void             xfmpc_extended_interface_dispose    (GObject *object);
 static void             xfmpc_extended_interface_finalize   (GObject *object);
 
-static void             cb_xfmpc_extended_interface_combobox_changed
-                                                            (GtkComboBox *widget,
+static void             cb_combobox_changed                 (GtkComboBox *widget,
                                                              XfmpcExtendedInterface *extended_interface);
+static void             cb_context_menu                     (GtkToggleButton *button,
+                                                             XfmpcExtendedInterface *extended_interface);
+static void             cb_context_menu_detach              (GtkWidget *button,
+                                                             GtkMenu *menu);
+static void             position_menu                       (GtkMenu *menu,
+                                                             gint *x,
+                                                             gint *y,
+                                                             gboolean *push_in,
+                                                             GtkWidget *widget);
 
 
 
@@ -131,7 +139,7 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   extended_interface->mpdclient = xfmpc_mpdclient_get ();
 
   /* Hbox  */
-  GtkWidget *hbox = gtk_hbox_new (FALSE, 0);
+  GtkWidget *hbox = gtk_hbox_new (FALSE, 2);
   gtk_box_pack_start (GTK_BOX (extended_interface), hbox, FALSE, FALSE, 2);
 
   /* Clear playlist */
@@ -147,11 +155,21 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   /* Refresh database */
   widget = gtk_button_new ();
   gtk_widget_set_tooltip_text (widget, _("Refresh Database"));
-  gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 2);
+  gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
   g_signal_connect_swapped (widget, "clicked",
                             G_CALLBACK (xfmpc_mpdclient_database_refresh), extended_interface->mpdclient);
 
   image = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (widget), image);
+
+  /* Context menu */
+  widget = gtk_toggle_button_new ();
+  gtk_widget_set_tooltip_text (widget, _("Context Menu"));
+  gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
+  g_signal_connect (widget, "toggled",
+                    G_CALLBACK (cb_context_menu), extended_interface);
+
+  image = gtk_image_new_from_stock (GTK_STOCK_PREFERENCES, GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (widget), image);
 
   /* Combo box */
@@ -162,7 +180,7 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   priv->combobox = gtk_combo_box_new_with_model (GTK_TREE_MODEL (priv->list_store));
   gtk_box_pack_start (GTK_BOX (hbox), priv->combobox, TRUE, TRUE, 0);
   g_signal_connect (priv->combobox, "changed",
-                    G_CALLBACK (cb_xfmpc_extended_interface_combobox_changed), extended_interface);
+                    G_CALLBACK (cb_combobox_changed), extended_interface);
 
   GtkCellRenderer *cell = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combobox), cell, TRUE);
@@ -229,8 +247,8 @@ xfmpc_extended_interface_append_child (XfmpcExtendedInterface *extended_interfac
 }
 
 static void
-cb_xfmpc_extended_interface_combobox_changed (GtkComboBox *widget,
-                                              XfmpcExtendedInterface *extended_interface)
+cb_combobox_changed (GtkComboBox *widget,
+                     XfmpcExtendedInterface *extended_interface)
 {
   XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
 
@@ -248,5 +266,70 @@ cb_xfmpc_extended_interface_combobox_changed (GtkComboBox *widget,
 
   i = gtk_notebook_page_num (GTK_NOTEBOOK (priv->notebook), child);
   gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), i);
+}
+
+static void
+cb_context_menu (GtkToggleButton *button,
+                 XfmpcExtendedInterface *extended_interface)
+{
+  if (!gtk_toggle_button_get_active (button))
+    return;
+
+#if 0
+  GtkWidget *menu = xfmpc_extended_interface_menu_preferences_new (extended_interface);
+#else
+  GtkWidget *menu = gtk_menu_new ();
+  gtk_menu_set_screen (GTK_MENU (menu), gtk_widget_get_screen (GTK_WIDGET (button)));
+  gtk_menu_attach_to_widget (GTK_MENU (menu), GTK_WIDGET (button),
+                             (GtkMenuDetachFunc) cb_context_menu_detach);
+  g_signal_connect (menu, "deactivate",
+                    G_CALLBACK (gtk_menu_detach), NULL);
+
+
+  GtkWidget *item = gtk_check_menu_item_new_with_label (_("Repeat"));
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+  item = gtk_check_menu_item_new_with_label (_("Random"));
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
+  gtk_widget_show_all (menu);
+#endif
+
+  gtk_menu_popup (GTK_MENU (menu),
+                  NULL,
+                  NULL,
+                  (GtkMenuPositionFunc) position_menu,
+                  GTK_WIDGET (button),
+                  0,
+                  gtk_get_current_event_time ());
+}
+
+static void
+cb_context_menu_detach (GtkWidget *button,
+                        GtkMenu *menu)
+{
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), FALSE);
+  gtk_widget_destroy (GTK_WIDGET (menu));
+}
+
+static void
+position_menu (GtkMenu *menu,
+               gint *x,
+               gint *y,
+               gboolean *push_in,
+               GtkWidget *widget)
+{
+  GtkRequisition        menu_req;
+  gint                  root_x;
+  gint                  root_y;
+
+  gtk_widget_size_request (GTK_WIDGET (menu), &menu_req);
+  gdk_window_get_origin (widget->window, &root_x, &root_y);
+
+  *x = root_x + widget->allocation.x;
+  *y = root_y + widget->allocation.y + widget->style->ythickness;
+
+  if (*y > gdk_screen_height () - menu_req.height)
+    *y = gdk_screen_height () - menu_req.height;
 }
 
