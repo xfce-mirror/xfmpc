@@ -41,6 +41,7 @@ enum
   SIG_TIME_CHANGED,
   SIG_VOLUME_CHANGED,
   SIG_STOPPED,
+  SIG_DATABASE_CHANGED,
   SIG_PLAYLIST_CHANGED,
   SIG_REPEAT,
   SIG_RANDOM,
@@ -73,6 +74,7 @@ struct _XfmpcMpdclientClass
   void (*time_changed)      (XfmpcMpdclient *mpdclient, gint time, gint total_time, gpointer user_data);
   void (*volume_changed)    (XfmpcMpdclient *mpdclient, gint volume, gpointer user_data);
   void (*stopped)           (XfmpcMpdclient *mpdclient, gpointer user_data);
+  void (*database_changed)  (XfmpcMpdclient *mpdclient, gpointer user_data);
   void (*playlist_changed)  (XfmpcMpdclient *mpdclient, gpointer user_data);
   void (*repeat)            (XfmpcMpdclient *mpdclient, gboolean repeat, gpointer user_data);
   void (*random)            (XfmpcMpdclient *mpdclient, gboolean random, gpointer user_data);
@@ -186,6 +188,14 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
     g_signal_new ("stopped", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, stopped),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
+
+  xfmpc_mpdclient_signals[SIG_DATABASE_CHANGED] =
+    g_signal_new ("database-changed", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, database_changed),
                   NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
@@ -593,6 +603,9 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
 {
   XfmpcMpdclient *mpdclient = XFMPC_MPDCLIENT (user_data);
   g_return_if_fail (G_LIKELY (NULL != user_data));
+
+  if (what & MPD_CST_DATABASE)
+    g_signal_emit_by_name (mpdclient, "database-changed");
 
   if (what & MPD_CST_PLAYLIST)
     g_signal_emit_by_name (mpdclient, "playlist-changed");

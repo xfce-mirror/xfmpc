@@ -193,10 +193,8 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
   /* === Signals === */
   g_signal_connect_swapped (dbbrowser->mpdclient, "connected",
                             G_CALLBACK (xfmpc_dbbrowser_reload), dbbrowser);
-#if 0
   g_signal_connect_swapped (dbbrowser->mpdclient, "database-changed",
-                            G_CALLBACK (cb_database_changed), dbbrowser);
-#endif
+                            G_CALLBACK (xfmpc_dbbrowser_reload), dbbrowser);
   /* Tree view */
   g_signal_connect_swapped (priv->treeview, "row-activated",
                             G_CALLBACK (cb_row_activated), dbbrowser);
