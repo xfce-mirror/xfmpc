@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-30 07:52+0200\n"
+"POT-Creation-Date: 2008-04-20 20:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,41 +16,49 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/extended-interface.c:139
+#: ../src/extended-interface.c:153
 msgid "Clear Playlist"
 msgstr ""
 
-#: ../src/extended-interface.c:149
+#: ../src/extended-interface.c:163
 msgid "Refresh Database"
 msgstr ""
 
-#: ../src/extended-interface.c:181
+#: ../src/extended-interface.c:173
+msgid "Context Menu"
+msgstr ""
+
+#: ../src/extended-interface.c:205
 msgid "Current Playlist"
 msgstr ""
 
-#: ../src/extended-interface.c:184
+#: ../src/extended-interface.c:208
 msgid "Browse database"
 msgstr ""
 
-#: ../src/interface.c:175 ../xfmpc.desktop.in.h:3
-msgid "Xfmpc"
+#: ../src/extended-interface.c:284
+msgid "Repeat"
 msgstr ""
 
-#: ../src/interface.c:242 ../src/interface.c:457
+#: ../src/extended-interface.c:291
+msgid "Random"
+msgstr ""
+
+#: ../src/interface.c:169 ../src/interface.c:375
 msgid "Not connected"
 msgstr ""
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:531
+#: ../src/interface.c:406
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr ""
 
-#: ../src/interface.c:577
+#: ../src/interface.c:452
 msgid "Stopped"
 msgstr ""
 
-#: ../src/mpdclient.c:427 ../src/mpdclient.c:457 ../src/mpdclient.c:472
+#: ../src/mpdclient.c:483 ../src/mpdclient.c:513 ../src/mpdclient.c:528
 msgid "n/a"
 msgstr ""
 
@@ -60,4 +68,8 @@ msgstr ""
 
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
+msgstr ""
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
 msgstr ""

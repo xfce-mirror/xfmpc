@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc 0.0.1\n"
+"Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-30 07:52+0200\n"
-"PO-Revision-Date: 2008-04-05 12:42+0200\n"
+"POT-Creation-Date: 2008-04-20 20:48+0200\n"
+"PO-Revision-Date: 2008-04-20 21:04+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -17,41 +17,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/extended-interface.c:139
+#: ../src/extended-interface.c:153
 msgid "Clear Playlist"
 msgstr "Afspeellijst legen"
 
-#: ../src/extended-interface.c:149
+#: ../src/extended-interface.c:163
 msgid "Refresh Database"
 msgstr "Database vernieuwen"
 
-#: ../src/extended-interface.c:181
+#: ../src/extended-interface.c:173
+msgid "Context Menu"
+msgstr "Contextmenu"
+
+#: ../src/extended-interface.c:205
 msgid "Current Playlist"
 msgstr "Huidige afspeellijst"
 
-#: ../src/extended-interface.c:184
+#: ../src/extended-interface.c:208
 msgid "Browse database"
 msgstr "Databasebrowser"
 
-#: ../src/interface.c:175 ../xfmpc.desktop.in.h:3
-msgid "Xfmpc"
-msgstr "Xfmpc"
+#: ../src/extended-interface.c:284
+msgid "Repeat"
+msgstr "Herhalen"
 
-#: ../src/interface.c:242 ../src/interface.c:457
+#: ../src/extended-interface.c:291
+msgid "Random"
+msgstr "Willekeurig"
+
+#: ../src/interface.c:169 ../src/interface.c:375
 msgid "Not connected"
 msgstr "Niet verbonden"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:531
+#: ../src/interface.c:406
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "door \"%s\" van \"%s\" (%s)"
 
-#: ../src/interface.c:577
+#: ../src/interface.c:452
 msgid "Stopped"
 msgstr "Gestopt"
 
-#: ../src/mpdclient.c:427 ../src/mpdclient.c:457 ../src/mpdclient.c:472
+#: ../src/mpdclient.c:483 ../src/mpdclient.c:513 ../src/mpdclient.c:528
 #, fuzzy
 msgid "n/a"
 msgstr "n/a"
@@ -63,3 +71,7 @@ msgstr "MPD client"
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD client geschreven in GTK+ voor Xfce"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"

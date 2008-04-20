@@ -1,3 +1,57 @@
+2008-04-20	Mike Massonnet <mmassonnet@gmail.com>
+
+Fix database refresh
+	* src/mpdclient.c(xfmpc_mpdclient_database_refresh):
+	  - Pass "/" to the refresh function
+
+2008-04-20	Mike Massonnet <mmassonnet@gmail.com>
+
+Fix database refresh
+	* src/mpdclient.c(xfmpc_mpdclient_database_refresh):
+	  - Pass "/" to the refresh function
+
+2008-04-20	Mike Massonnet <mmassonnet@gmail.com>
+
+Detach the context menu in a cleaner way
+	* src/extended-interface.c(xfmpc_extended_interface_dispose),
+	  src/extended-interface.c(xfmpc_extended_interface_finalize):
+	  - Detach the menu (destroys also its childrens)
+	  - Don't destroy the menu on finalize (it prints bad stuff on stderr)
+
+2008-04-20	Mike Massonnet <mmassonnet@gmail.com>
+
+Reload XfmpcDbbrowser on database changes
+	* src/mpdclient.c:
+	  - New signal "database-changed"
+	* src/dbbrowser.c(xfmpc_dbbrowser_init):
+	  - Connect signal "database-changed"
+
+2008-04-19	Mike Massonnet <mmassonnet@gmail.com>
+
+Make Random and Repeat check menu items work
+	* src/mpdclient.c,
+	  src/mpdclient.h:
+	  - Add new signals "repeat" and "random" on changes
+	* src/extended-interface.c,
+	  src/extended-interface.h:
+	  - Add two callbacks on check menu items "activate"
+
+2008-04-06	Mike Massonnet <mmassonnet@gmail.com>
+
+Add context button with an experimental menu
+	* src/extended-interface.c(xfmpc_extended_interface_init):
+	  - Rework the box spacing for the inner children
+	  - Add a GtkToggleButton with a callback cb_context_menu
+	* src/extended-interface.c:
+	  - New callbacks cb_combobox_changed, cb_context_menu, cb_context_menu_detach
+	  - New position function position_menu
+
+2008-04-05	Mike Massonnet <mmassonnet@gmail.com>
+
+Distribute the IDEAS file with the tarballs
+	* Makefile.am:
+	  - Forget to add the new IDEAS file to be distributed
+
 2008-04-05	Mike Massonnet <mmassonnet@gmail.com>
 
 === Release 0.0.5 ===

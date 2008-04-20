@@ -1,3 +1,10 @@
+    0.0.6 (2008-04-20)
+
+- New button that displays a context menu
+- Possibility to switch repeat and random in the context menu
+- Reload the database view on changes (mpc update)
+- Fix misc bugs
+
     0.0.5 (2008-04-05)
 
 - Add Clear Playlist and Refresh Database buttons

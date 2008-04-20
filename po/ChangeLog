@@ -1,4 +1,10 @@
-2008-04-10  Og Maciel < ogmaciel@gnome.org>
+2008-04-20	Mike Massonnet <mmassonnet@xfce.org>
+
+	* *.po, *.pot: make update-po for new strings from extended-interface.c
+	* fr.po: Update French translation
+	* nl.po: Update Dutch translation
+
+2008-04-10  Og Maciel <ogmaciel@gnome.org>
 
 	* pt_BR.po: Updated Brazilian Portuguese translation by
 	Fábio Nogueira <deb-user-ba@ubuntu.com>

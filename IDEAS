@@ -1,7 +1,12 @@
-  - XfmpcExtendedPluginInterface
+Next release
+
+  - Search database
+
+Unpredictable future
+
+  - XfmpcGoodies
     ~ artwork
     ~ random album playlist
   - Options
     ~ Font (size) for the tree views
     ~ Hostname Port
-    ~ 

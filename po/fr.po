@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-30 07:52+0200\n"
-"PO-Revision-Date: 2008-03-30 07:53+0200\n"
+"POT-Creation-Date: 2008-04-20 20:48+0200\n"
+"PO-Revision-Date: 2008-04-20 20:49+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -17,41 +17,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../src/extended-interface.c:139
+#: ../src/extended-interface.c:153
 msgid "Clear Playlist"
 msgstr "Vider la liste de lecture"
 
-#: ../src/extended-interface.c:149
+#: ../src/extended-interface.c:163
 msgid "Refresh Database"
 msgstr "Rafraîchir la base de données"
 
-#: ../src/extended-interface.c:181
+#: ../src/extended-interface.c:173
+msgid "Context Menu"
+msgstr "Menu contextuel"
+
+#: ../src/extended-interface.c:205
 msgid "Current Playlist"
 msgstr "Liste de lecture"
 
-#: ../src/extended-interface.c:184
+#: ../src/extended-interface.c:208
 msgid "Browse database"
 msgstr "Base de données"
 
-#: ../src/interface.c:175 ../xfmpc.desktop.in.h:3
-msgid "Xfmpc"
-msgstr ""
+#: ../src/extended-interface.c:284
+msgid "Repeat"
+msgstr "Répéter"
 
-#: ../src/interface.c:242 ../src/interface.c:457
+#: ../src/extended-interface.c:291
+msgid "Random"
+msgstr "Aléatoire"
+
+#: ../src/interface.c:169 ../src/interface.c:375
 msgid "Not connected"
 msgstr "Déconnecté"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:531
+#: ../src/interface.c:406
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "par « %s » de « %s » (%s)"
 
-#: ../src/interface.c:577
+#: ../src/interface.c:452
 msgid "Stopped"
 msgstr "Stoppé"
 
-#: ../src/mpdclient.c:427 ../src/mpdclient.c:457 ../src/mpdclient.c:472
+#: ../src/mpdclient.c:483 ../src/mpdclient.c:513 ../src/mpdclient.c:528
 msgid "n/a"
 msgstr ""
 
@@ -62,3 +70,7 @@ msgstr "Client MPD"
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Client MPD écrit en GTK+ pour Xfce"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr ""
