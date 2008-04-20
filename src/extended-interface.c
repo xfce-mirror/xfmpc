@@ -50,13 +50,17 @@ static void             xfmpc_extended_interface_init       (XfmpcExtendedInterf
 static void             xfmpc_extended_interface_dispose    (GObject *object);
 static void             xfmpc_extended_interface_finalize   (GObject *object);
 
-static void             cb_combobox_changed                 (GtkComboBox *widget,
+static void             cb_interface_changed                (GtkComboBox *widget,
                                                              XfmpcExtendedInterface *extended_interface);
+static void             cb_repeat_switch                    (XfmpcExtendedInterface *extended_interface);
+static void             cb_random_switch                    (XfmpcExtendedInterface *extended_interface);
 static void             cb_context_menu                     (GtkToggleButton *button,
                                                              XfmpcExtendedInterface *extended_interface);
 static void             cb_context_menu_detach              (GtkWidget *button,
                                                              GtkMenu *menu);
-static void             position_menu                       (GtkMenu *menu,
+static void             cb_context_menu_deactivate          (GtkMenuShell *menu,
+                                                             GtkWidget *attach_widget);
+static void             position_context_menu               (GtkMenu *menu,
                                                              gint *x,
                                                              gint *y,
                                                              gboolean *push_in,
@@ -81,6 +85,10 @@ struct _XfmpcExtendedInterfacePrivate
   GtkListStore                     *list_store;
   GtkWidget                        *combobox;
   GtkWidget                        *notebook;
+  GtkWidget                        *repeat;
+  GtkWidget                        *random;
+  GtkWidget                        *context_button;
+  GtkWidget                        *context_menu;
 };
 
 
@@ -163,14 +171,14 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   gtk_button_set_image (GTK_BUTTON (widget), image);
 
   /* Context menu */
-  widget = gtk_toggle_button_new ();
-  gtk_widget_set_tooltip_text (widget, _("Context Menu"));
-  gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
-  g_signal_connect (widget, "toggled",
+  priv->context_button = gtk_toggle_button_new ();
+  gtk_widget_set_tooltip_text (priv->context_button, _("Context Menu"));
+  gtk_box_pack_start (GTK_BOX (hbox), priv->context_button, FALSE, FALSE, 0);
+  g_signal_connect (priv->context_button, "toggled",
                     G_CALLBACK (cb_context_menu), extended_interface);
 
   image = gtk_image_new_from_stock (GTK_STOCK_PREFERENCES, GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (widget), image);
+  gtk_button_set_image (GTK_BUTTON (priv->context_button), image);
 
   /* Combo box */
   priv->list_store = gtk_list_store_new (N_COLUMNS,
@@ -180,7 +188,7 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   priv->combobox = gtk_combo_box_new_with_model (GTK_TREE_MODEL (priv->list_store));
   gtk_box_pack_start (GTK_BOX (hbox), priv->combobox, TRUE, TRUE, 0);
   g_signal_connect (priv->combobox, "changed",
-                    G_CALLBACK (cb_combobox_changed), extended_interface);
+                    G_CALLBACK (cb_interface_changed), extended_interface);
 
   GtkCellRenderer *cell = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combobox), cell, TRUE);
@@ -205,6 +213,20 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 static void
 xfmpc_extended_interface_dispose (GObject *object)
 {
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (object);
+
+  if (GTK_IS_WIDGET (priv->repeat))
+    {
+      gtk_widget_destroy (priv->repeat);
+      priv->repeat = NULL;
+    }
+
+  if (GTK_IS_WIDGET (priv->random))
+    {
+      gtk_widget_destroy (priv->random);
+      priv->random = NULL;
+    }
+
   (*G_OBJECT_CLASS (parent_class)->dispose) (object);
 }
 
@@ -212,7 +234,9 @@ static void
 xfmpc_extended_interface_finalize (GObject *object)
 {
   XfmpcExtendedInterface *extended_interface = XFMPC_EXTENDED_INTERFACE (object);
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
   g_object_unref (G_OBJECT (extended_interface->mpdclient));
+  gtk_widget_destroy (priv->context_menu);
   (*G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
@@ -246,9 +270,40 @@ xfmpc_extended_interface_append_child (XfmpcExtendedInterface *extended_interfac
   gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (priv->notebook), child, TRUE, TRUE, GTK_PACK_START);
 }
 
+void
+xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface *extended_interface,
+                                           GtkWidget *attach_widget)
+{
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
+
+  GtkWidget *menu = priv->context_menu = gtk_menu_new ();
+  gtk_menu_set_screen (GTK_MENU (menu), gtk_widget_get_screen (GTK_WIDGET (attach_widget)));
+  gtk_menu_attach_to_widget (GTK_MENU (menu), GTK_WIDGET (attach_widget), NULL);
+  g_signal_connect (menu, "deactivate",
+                    G_CALLBACK (cb_context_menu_deactivate), attach_widget);
+
+  priv->repeat = gtk_check_menu_item_new_with_label (_("Repeat"));
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (priv->repeat),
+                                  xfmpc_mpdclient_get_repeat (extended_interface->mpdclient));
+  g_signal_connect_swapped (priv->repeat, "activate",
+                            G_CALLBACK (cb_repeat_switch), extended_interface);
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), priv->repeat);
+
+  priv->random = gtk_check_menu_item_new_with_label (_("Random"));
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (priv->random),
+                                  xfmpc_mpdclient_get_random (extended_interface->mpdclient));
+  g_signal_connect_swapped (priv->random, "activate",
+                            G_CALLBACK (cb_random_switch), extended_interface);
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), priv->random);
+
+  gtk_widget_show_all (menu);
+}
+
+
+
 static void
-cb_combobox_changed (GtkComboBox *widget,
-                     XfmpcExtendedInterface *extended_interface)
+cb_interface_changed (GtkComboBox *widget,
+                      XfmpcExtendedInterface *extended_interface)
 {
   XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
 
@@ -269,55 +324,54 @@ cb_combobox_changed (GtkComboBox *widget,
 }
 
 static void
+cb_repeat_switch (XfmpcExtendedInterface *extended_interface)
+{
+  xfmpc_mpdclient_set_repeat (extended_interface->mpdclient,
+                              !xfmpc_mpdclient_get_repeat (extended_interface->mpdclient));
+}
+
+static void
+cb_random_switch (XfmpcExtendedInterface *extended_interface)
+{
+  xfmpc_mpdclient_set_random (extended_interface->mpdclient,
+                              !xfmpc_mpdclient_get_random (extended_interface->mpdclient));
+}
+
+static void
 cb_context_menu (GtkToggleButton *button,
                  XfmpcExtendedInterface *extended_interface)
 {
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
+
   if (!gtk_toggle_button_get_active (button))
     return;
 
-#if 0
-  GtkWidget *menu = xfmpc_extended_interface_menu_preferences_new (extended_interface);
-#else
-  GtkWidget *menu = gtk_menu_new ();
-  gtk_menu_set_screen (GTK_MENU (menu), gtk_widget_get_screen (GTK_WIDGET (button)));
-  gtk_menu_attach_to_widget (GTK_MENU (menu), GTK_WIDGET (button),
-                             (GtkMenuDetachFunc) cb_context_menu_detach);
-  g_signal_connect (menu, "deactivate",
-                    G_CALLBACK (gtk_menu_detach), NULL);
+  if (GTK_IS_MENU (priv->context_menu))
+    gtk_widget_destroy (priv->context_menu);
+  xfmpc_extended_interface_context_menu_new (extended_interface, priv->context_button);
 
-
-  GtkWidget *item = gtk_check_menu_item_new_with_label (_("Repeat"));
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
-
-  item = gtk_check_menu_item_new_with_label (_("Random"));
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
-
-  gtk_widget_show_all (menu);
-#endif
-
-  gtk_menu_popup (GTK_MENU (menu),
+  gtk_menu_popup (GTK_MENU (priv->context_menu),
                   NULL,
                   NULL,
-                  (GtkMenuPositionFunc) position_menu,
+                  (GtkMenuPositionFunc) position_context_menu,
                   GTK_WIDGET (button),
                   0,
                   gtk_get_current_event_time ());
 }
 
 static void
-cb_context_menu_detach (GtkWidget *button,
-                        GtkMenu *menu)
+cb_context_menu_deactivate (GtkMenuShell *menu,
+                            GtkWidget *attach_widget)
 {
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), FALSE);
-  gtk_widget_destroy (GTK_WIDGET (menu));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (attach_widget), FALSE);
 }
 
 static void
-position_menu (GtkMenu *menu,
-               gint *x,
-               gint *y,
-               gboolean *push_in,
-               GtkWidget *widget)
+position_context_menu (GtkMenu *menu,
+                       gint *x,
+                       gint *y,
+                       gboolean *push_in,
+                       GtkWidget *widget)
 {
   GtkRequisition        menu_req;
   gint                  root_x;

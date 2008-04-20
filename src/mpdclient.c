@@ -42,6 +42,8 @@ enum
   SIG_VOLUME_CHANGED,
   SIG_STOPPED,
   SIG_PLAYLIST_CHANGED,
+  SIG_REPEAT,
+  SIG_RANDOM,
   LAST_SIGNAL
 };
 
@@ -72,6 +74,8 @@ struct _XfmpcMpdclientClass
   void (*volume_changed)    (XfmpcMpdclient *mpdclient, gint volume, gpointer user_data);
   void (*stopped)           (XfmpcMpdclient *mpdclient, gpointer user_data);
   void (*playlist_changed)  (XfmpcMpdclient *mpdclient, gpointer user_data);
+  void (*repeat)            (XfmpcMpdclient *mpdclient, gboolean repeat, gpointer user_data);
+  void (*random)            (XfmpcMpdclient *mpdclient, gboolean random, gpointer user_data);
 };
 
 struct _XfmpcMpdclient
@@ -193,6 +197,24 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
+
+  xfmpc_mpdclient_signals[SIG_REPEAT] =
+    g_signal_new ("repeat", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, repeat),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__BOOLEAN,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_BOOLEAN);
+
+  xfmpc_mpdclient_signals[SIG_RANDOM] =
+    g_signal_new ("random", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, random),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__BOOLEAN,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_BOOLEAN);
 }
 
 static void
@@ -369,6 +391,18 @@ xfmpc_mpdclient_set_id (XfmpcMpdclient *mpdclient,
 }
 
 gboolean
+xfmpc_mpdclient_set_song_time (XfmpcMpdclient *mpdclient,
+                               guint time)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (mpd_player_seek (priv->mi, time) != MPD_OK)
+    return FALSE;
+  else
+    return TRUE;
+}
+
+gboolean
 xfmpc_mpdclient_set_volume (XfmpcMpdclient *mpdclient,
                             guint8 volume)
 {
@@ -381,12 +415,24 @@ xfmpc_mpdclient_set_volume (XfmpcMpdclient *mpdclient,
 }
 
 gboolean
-xfmpc_mpdclient_set_song_time (XfmpcMpdclient *mpdclient,
-                               guint time)
+xfmpc_mpdclient_set_repeat (XfmpcMpdclient *mpdclient,
+                            gboolean repeat)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
 
-  if (mpd_player_seek (priv->mi, time) != MPD_OK)
+  if (MPD_OK != mpd_player_set_repeat (priv->mi, repeat))
+    return FALSE;
+  else
+    return TRUE;
+}
+
+gboolean
+xfmpc_mpdclient_set_random (XfmpcMpdclient *mpdclient,
+                            gboolean random)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (MPD_OK != mpd_player_set_random (priv->mi, random))
     return FALSE;
   else
     return TRUE;
@@ -500,6 +546,21 @@ xfmpc_mpdclient_get_volume (XfmpcMpdclient *mpdclient)
 }
 
 gboolean
+xfmpc_mpdclient_get_repeat (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  return mpd_player_get_repeat (priv->mi);
+}
+
+gboolean
+xfmpc_mpdclient_get_random (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  return mpd_player_get_random (priv->mi);
+}
+gboolean
 xfmpc_mpdclient_is_playing (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
@@ -557,6 +618,14 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
     g_signal_emit_by_name (mpdclient, "time-changed",
                            xfmpc_mpdclient_get_time (mpdclient),
                            xfmpc_mpdclient_get_total_time (mpdclient));
+
+  if (what & MPD_CST_REPEAT)
+    g_signal_emit_by_name (mpdclient, "repeat",
+                           xfmpc_mpdclient_get_repeat (mpdclient));
+
+  if (what & MPD_CST_RANDOM)
+    g_signal_emit_by_name (mpdclient, "random",
+                           xfmpc_mpdclient_get_random (mpdclient));
 }
 
 
