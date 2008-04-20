@@ -56,8 +56,6 @@ static void             cb_repeat_switch                    (XfmpcExtendedInterf
 static void             cb_random_switch                    (XfmpcExtendedInterface *extended_interface);
 static void             cb_context_menu                     (GtkToggleButton *button,
                                                              XfmpcExtendedInterface *extended_interface);
-static void             cb_context_menu_detach              (GtkWidget *button,
-                                                             GtkMenu *menu);
 static void             cb_context_menu_deactivate          (GtkMenuShell *menu,
                                                              GtkWidget *attach_widget);
 static void             position_context_menu               (GtkMenu *menu,
@@ -215,16 +213,18 @@ xfmpc_extended_interface_dispose (GObject *object)
 {
   XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (object);
 
-  if (GTK_IS_WIDGET (priv->repeat))
+  if (GTK_IS_MENU (priv->context_menu))
     {
-      gtk_widget_destroy (priv->repeat);
+      gtk_menu_detach (GTK_MENU (priv->context_menu));
+      priv->context_menu = NULL;
       priv->repeat = NULL;
+      priv->random = NULL;
     }
 
-  if (GTK_IS_WIDGET (priv->random))
+  if (GTK_IS_WIDGET (priv->context_button))
     {
-      gtk_widget_destroy (priv->random);
-      priv->random = NULL;
+      gtk_widget_destroy (priv->context_button);
+      priv->context_button = NULL;
     }
 
   (*G_OBJECT_CLASS (parent_class)->dispose) (object);
@@ -236,7 +236,6 @@ xfmpc_extended_interface_finalize (GObject *object)
   XfmpcExtendedInterface *extended_interface = XFMPC_EXTENDED_INTERFACE (object);
   XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
   g_object_unref (G_OBJECT (extended_interface->mpdclient));
-  gtk_widget_destroy (priv->context_menu);
   (*G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
@@ -347,7 +346,7 @@ cb_context_menu (GtkToggleButton *button,
     return;
 
   if (GTK_IS_MENU (priv->context_menu))
-    gtk_widget_destroy (priv->context_menu);
+    gtk_menu_detach (GTK_MENU (priv->context_menu));
   xfmpc_extended_interface_context_menu_new (extended_interface, priv->context_button);
 
   gtk_menu_popup (GTK_MENU (priv->context_menu),
