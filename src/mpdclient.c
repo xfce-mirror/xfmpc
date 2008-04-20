@@ -787,7 +787,7 @@ xfmpc_mpdclient_database_refresh (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
 
-  if (mpd_database_update_dir (priv->mi, "") != MPD_OK)
+  if (mpd_database_update_dir (priv->mi, "/") != MPD_OK)
     return FALSE;
 
   return TRUE;
