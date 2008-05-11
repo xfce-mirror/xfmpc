@@ -1,5 +1,9 @@
 2008-04-20	Mike Massonnet <mmassonnet@gmail.com>
 
+=== Release 0.0.6 ===
+
+2008-04-20	Mike Massonnet <mmassonnet@gmail.com>
+
 Fix database refresh
 	* src/mpdclient.c(xfmpc_mpdclient_database_refresh):
 	  - Pass "/" to the refresh function
