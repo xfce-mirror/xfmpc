@@ -169,14 +169,11 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   gtk_button_set_image (GTK_BUTTON (widget), image);
 
   /* Context menu */
-  priv->context_button = gtk_toggle_button_new ();
+  priv->context_button = GTK_WIDGET (xfce_arrow_button_new (GTK_ARROW_DOWN));
   gtk_widget_set_tooltip_text (priv->context_button, _("Context Menu"));
   gtk_box_pack_start (GTK_BOX (hbox), priv->context_button, FALSE, FALSE, 0);
   g_signal_connect (priv->context_button, "toggled",
                     G_CALLBACK (cb_context_menu), extended_interface);
-
-  image = gtk_image_new_from_stock (GTK_STOCK_PREFERENCES, GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->context_button), image);
 
   /* Combo box */
   priv->list_store = gtk_list_store_new (N_COLUMNS,

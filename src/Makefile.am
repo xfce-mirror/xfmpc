@@ -15,7 +15,9 @@ xfmpc_SOURCES =								\
 	preferences.c							\
 	preferences.h							\
 	mpdclient.c							\
-	mpdclient.h
+	mpdclient.h							\
+	xfce-arrow-button.c						\
+	xfce-arrow-button.h
 
 xfmpc_CFLAGS =								\
 	@GTK_CFLAGS@							\
