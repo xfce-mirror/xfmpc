@@ -1,0 +1,68 @@
+# Japanese translations for xfmpc package
+# Copyright (C) 2008 the xfmpc's copyright holder
+# This file is distributed under the same license as the xfmpc package.
+# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfmpc 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-30 07:52+0200\n"
+"PO-Revision-Date: 2008-04-05 13:20+0900\n"
+"Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
+"Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+
+#: ../src/extended-interface.c:139
+msgid "Clear Playlist"
+msgstr "プレイリストのクリア"
+
+#: ../src/extended-interface.c:149
+msgid "Refresh Database"
+msgstr "データベースの更新"
+
+#: ../src/extended-interface.c:181
+msgid "Current Playlist"
+msgstr "現在のプレイリスト"
+
+#: ../src/extended-interface.c:184
+msgid "Browse database"
+msgstr "データベースを表示"
+
+#: ../src/interface.c:175
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
+#: ../src/interface.c:242
+#: ../src/interface.c:457
+msgid "Not connected"
+msgstr "接続されません。"
+
+#. subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:531
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "\"%s\" の \"%s\" (%s)"
+
+#: ../src/interface.c:577
+msgid "Stopped"
+msgstr "停止"
+
+#: ../src/mpdclient.c:427
+#: ../src/mpdclient.c:457
+#: ../src/mpdclient.c:472
+msgid "n/a"
+msgstr "該当なし"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD クライアント"
+
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "Xfce のために GTK+ で書かれたMPDクライアント"
