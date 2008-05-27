@@ -1,0 +1,78 @@
+# Danish translations for xfmpc package
+# Copyright (C) 2008 the xfmpc's copyright holder
+# This file is distributed under the same license as the xfmpc package.
+# Jens Hyllegaard <jens.hyllegaard@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: xfmpc 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-20 20:48+0200\n"
+"PO-Revision-Date: 2008-05-21 10:31+0100\n"
+"Last-Translator: Jens Hyllegaard <jens.hyllegaard@gmail.com>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../src/extended-interface.c:153
+msgid "Clear Playlist"
+msgstr "Ryd spillelisten"
+
+#: ../src/extended-interface.c:163
+msgid "Refresh Database"
+msgstr "Genopfrisk databasen"
+
+#: ../src/extended-interface.c:173
+msgid "Context Menu"
+msgstr "Kontekstmenu"
+
+#: ../src/extended-interface.c:205
+msgid "Current Playlist"
+msgstr "Aktuel spilleliste"
+
+#: ../src/extended-interface.c:208
+msgid "Browse database"
+msgstr "Gennemse databasen"
+
+#: ../src/extended-interface.c:284
+msgid "Repeat"
+msgstr "Gentag"
+
+#: ../src/extended-interface.c:291
+msgid "Random"
+msgstr "Tilfældig"
+
+#: ../src/interface.c:169
+#: ../src/interface.c:375
+msgid "Not connected"
+msgstr "Ikke tilsluttet"
+
+#. subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:406
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "af \"%s\" fra \"%s\" (%s)"
+
+#: ../src/interface.c:452
+msgid "Stopped"
+msgstr "Stoppet"
+
+#: ../src/mpdclient.c:483
+#: ../src/mpdclient.c:513
+#: ../src/mpdclient.c:528
+msgid "n/a"
+msgstr "n/a"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD klient"
+
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "MPD klient skrevet i GTK+ for Xfce"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
