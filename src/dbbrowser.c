@@ -85,6 +85,8 @@ struct _XfmpcDbbrowserPrivate
   GtkListStore             *store;
   GtkWidget                *search_entry;
 
+  gboolean                  is_searching;
+
   gchar                    *wdir;
   gchar                    *last_wdir;
 };
@@ -312,7 +314,6 @@ xfmpc_dbbrowser_add_selected_rows (XfmpcDbbrowser *dbbrowser)
 void
 xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
 {
-  /* TODO block while doing a search */
   XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
   gchar                    *filename;
   gchar                    *basename;
@@ -320,6 +321,8 @@ xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
   gint                      i = 0;
 
   if (G_UNLIKELY (!xfmpc_mpdclient_is_connected (dbbrowser->mpdclient)))
+    return;
+  else if (priv->is_searching)
     return;
 
   xfmpc_dbbrowser_clear (dbbrowser);
@@ -353,6 +356,36 @@ xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
 
       g_free (filename);
       g_free (basename);
+    }
+}
+
+void
+xfmpc_dbbrowser_search (XfmpcDbbrowser *dbbrowser,
+                        const gchar *query)
+{
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  gchar                    *filename;
+  gchar                    *basename;
+  gint                      i = 0;
+
+  if (G_UNLIKELY (!xfmpc_mpdclient_is_connected (dbbrowser->mpdclient)))
+    return;
+
+  priv->is_searching = TRUE;
+  xfmpc_dbbrowser_clear (dbbrowser);
+
+  while (xfmpc_mpdclient_database_search (dbbrowser->mpdclient, query, &filename, &basename))
+    {
+      xfmpc_dbbrowser_append (dbbrowser, filename, basename, FALSE);
+      g_free (filename);
+      g_free (basename);
+      i++;
+    }
+
+  if (i == 0)
+    {
+      /* TODO display a message that the query returned "no result" */
+      g_message ("change query bad query");
     }
 }
 
@@ -466,12 +499,17 @@ cb_key_pressed (XfmpcDbbrowser *dbbrowser,
 static void
 cb_search_entry_activated (XfmpcDbbrowser *dbbrowser)
 {
-  g_debug (__func__);
-  /* TODO execute the search */
-#if 0
-  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
-  GtkTreeModel         *model = GTK_TREE_MODEL (priv->filter);
-#endif
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  const gchar              *entry_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
+
+  if (entry_text[0] == '\0')
+    {
+      priv->is_searching = FALSE;
+      xfmpc_dbbrowser_reload (dbbrowser);
+      return;
+    }
+
+  xfmpc_dbbrowser_search (dbbrowser, entry_text);
 }
 
 static gboolean
@@ -485,7 +523,7 @@ cb_search_entry_key_released (XfmpcDbbrowser *dbbrowser,
 
   if (event->keyval == GDK_Escape)
     {
-      g_debug (__func__);
+      priv->is_searching = FALSE;
       gtk_entry_set_text (GTK_ENTRY (priv->search_entry), "");
       xfmpc_dbbrowser_reload (dbbrowser);
     }
@@ -496,11 +534,6 @@ cb_search_entry_key_released (XfmpcDbbrowser *dbbrowser,
 static void
 cb_search_entry_changed (XfmpcDbbrowser *dbbrowser)
 {
-  /* TODO do nothing? execute a timeout do postpone the search? */
-#if 0
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
-
-  gtk_tree_model_filter_refilter (priv->filter);
-#endif
+  /* TODO do nothing? execute a timeout to postpone the search? */
 }
 

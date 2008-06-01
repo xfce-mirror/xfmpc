@@ -107,13 +107,17 @@ gboolean                xfmpc_mpdclient_playlist_read           (XfmpcMpdclient 
                                                                  gchar **length);
 gboolean                xfmpc_mpdclient_playlist_clear          (XfmpcMpdclient *mpdclient);
 
+gboolean                xfmpc_mpdclient_database_refresh        (XfmpcMpdclient *mpdclient);
+
 gboolean                xfmpc_mpdclient_database_read           (XfmpcMpdclient *mpdclient,
                                                                  const gchar *dir,
                                                                  gchar **filename,
                                                                  gchar **basename,
                                                                  gboolean *is_dir);
-gboolean                xfmpc_mpdclient_database_refresh        (XfmpcMpdclient *mpdclient);
-
+gboolean                xfmpc_mpdclient_database_search         (XfmpcMpdclient *mpdclient,
+                                                                 const gchar *query,
+                                                                 gchar **filename,
+                                                                 gchar **basename);
 
 G_END_DECLS
 

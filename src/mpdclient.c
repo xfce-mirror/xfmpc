@@ -61,7 +61,7 @@ static void             xfmpc_mpdclient_initenv                 (XfmpcMpdclient 
 static void             cb_xfmpc_mpdclient_status_changed       (MpdObj *mi,
                                                                  ChangedStatusType what,
                                                                  gpointer user_data);
-
+static gchar *          _get_formatted_name                     (mpd_Song *song);
 
 
 struct _XfmpcMpdclientClass
@@ -696,16 +696,7 @@ xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
 
   if (NULL != data)
     {
-      if (NULL != data->song->title)
-        {
-          if (data->song->artist)
-            *song = g_strdup_printf ("%s - %s", data->song->artist, data->song->title);
-          else
-            *song = g_strdup (data->song->title);
-        }
-      else
-        *song = g_path_get_basename (data->song->file);
-
+      *song = _get_formatted_name (data->song);
       *length = g_strdup_printf ("%d:%02d", data->song->time / 60, data->song->time % 60);
       *id = data->song->id;
     }
@@ -725,14 +716,25 @@ xfmpc_mpdclient_playlist_clear (XfmpcMpdclient *mpdclient)
 }
 
 gboolean
+xfmpc_mpdclient_database_refresh (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+
+  if (mpd_database_update_dir (priv->mi, "/") != MPD_OK)
+    return FALSE;
+
+  return TRUE;
+}
+
+gboolean
 xfmpc_mpdclient_database_read (XfmpcMpdclient *mpdclient,
                                const gchar *dir,
                                gchar **filename,
                                gchar **basename,
                                gboolean *is_dir)
 {
-  static MpdData       *data = NULL;
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  static MpdData        *data = NULL;
 
   if (NULL == data)
     data = mpd_database_get_directory (priv->mi, (gchar *)dir);
@@ -752,17 +754,7 @@ xfmpc_mpdclient_database_read (XfmpcMpdclient *mpdclient,
         case MPD_DATA_TYPE_SONG:
           *is_dir = FALSE;
           *filename = g_strdup (data->song->file);
-
-          if (NULL != data->song->title)
-            {
-              if (data->song->artist)
-                *basename = g_strdup_printf ("%s - %s", data->song->artist, data->song->title);
-              else
-                *basename = g_strdup (data->song->title);
-            }
-          else
-            *basename = g_path_get_basename (data->song->file);
-
+          *basename = _get_formatted_name (data->song);
           break;
 
         case MPD_DATA_TYPE_PLAYLIST:
@@ -783,13 +775,56 @@ xfmpc_mpdclient_database_read (XfmpcMpdclient *mpdclient,
 }
 
 gboolean
-xfmpc_mpdclient_database_refresh (XfmpcMpdclient *mpdclient)
+xfmpc_mpdclient_database_search (XfmpcMpdclient *mpdclient,
+                                 const gchar *query,
+                                 gchar **filename,
+                                 gchar **basename)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  static MpdData        *data = NULL;
+  gchar                **queries;
+  gint                   i;
 
-  if (mpd_database_update_dir (priv->mi, "/") != MPD_OK)
-    return FALSE;
+  if (NULL == data)
+    {
+      queries = g_strsplit (query, " ", -1);
 
-  return TRUE;
+      mpd_database_search_start (priv->mi, FALSE);
+      for (i = 0; queries[i] != NULL; i++)
+        mpd_database_search_add_constraint (priv->mi, MPD_TAG_ITEM_ANY, queries[i]);
+      data = mpd_database_search_commit (priv->mi);
+
+      g_strfreev (queries);
+    }
+  else
+    data = mpd_data_get_next (data);
+
+  if (NULL != data)
+    {
+      *filename = g_strdup (data->song->file);
+      *basename = _get_formatted_name (data->song);
+    }
+
+  return NULL != data;
+}
+
+
+
+static gchar *
+_get_formatted_name (mpd_Song *song)
+{
+  gchar *formatted_name;
+
+  if (NULL != song->title)
+    {
+      if (song->artist)
+        formatted_name = g_strdup_printf ("%s - %s", song->artist, song->title);
+      else
+        formatted_name = g_strdup (song->title);
+    }
+  else
+    formatted_name = g_path_get_basename (song->file);
+
+  return formatted_name;
 }
 
