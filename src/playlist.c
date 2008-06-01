@@ -165,7 +165,6 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                                     G_TYPE_INT);
 
   /* === Filter === */
-  priv->filter_entry = gtk_entry_new ();
   priv->filter = GTK_TREE_MODEL_FILTER (gtk_tree_model_filter_new (GTK_TREE_MODEL (priv->store), NULL));
   g_object_unref (priv->store);
   gtk_tree_model_filter_set_visible_func (priv->filter,
@@ -214,6 +213,9 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                                   GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_ALWAYS);
 
+  /* === Filter entry === */
+  priv->filter_entry = gtk_entry_new ();
+
   /* === Containers === */
   gtk_container_add (GTK_CONTAINER (scrolled), priv->treeview);
   gtk_box_pack_start (GTK_BOX (playlist), scrolled, TRUE, TRUE, 0);
@@ -229,7 +231,7 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                             G_CALLBACK (cb_row_activated), playlist);
   g_signal_connect_swapped (priv->treeview, "key-release-event",
                             G_CALLBACK (cb_key_released), playlist);
-  /* Filter */
+  /* Filter entry */
   g_signal_connect_swapped (priv->filter_entry, "activate",
                             G_CALLBACK (cb_filter_entry_activated), playlist);
   g_signal_connect_swapped (priv->filter_entry, "key-release-event",

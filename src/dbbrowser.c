@@ -45,6 +45,11 @@ static void             cb_row_activated                       (XfmpcDbbrowser *
                                                                 GtkTreeViewColumn *column);
 static gboolean         cb_key_pressed                         (XfmpcDbbrowser *dbbrowser,
                                                                 GdkEventKey *event);
+static void             cb_search_entry_activated              (XfmpcDbbrowser *dbbrowser);
+
+static gboolean         cb_search_entry_key_released           (XfmpcDbbrowser *dbbrowser,
+                                                                GdkEventKey *event);
+static void             cb_search_entry_changed                (XfmpcDbbrowser *dbbrowser);
 
 
 
@@ -186,9 +191,13 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
                                   GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_ALWAYS);
 
+  /* === Search entry === */
+  priv->search_entry = gtk_entry_new ();
+
   /* === Containers === */
   gtk_container_add (GTK_CONTAINER (scrolled), priv->treeview);
-  gtk_container_add (GTK_CONTAINER (dbbrowser), scrolled);
+  gtk_box_pack_start (GTK_BOX (dbbrowser), scrolled, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (dbbrowser), priv->search_entry, FALSE, FALSE, 0);
 
   /* === Signals === */
   g_signal_connect_swapped (dbbrowser->mpdclient, "connected",
@@ -200,6 +209,13 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
                             G_CALLBACK (cb_row_activated), dbbrowser);
   g_signal_connect_swapped (priv->treeview, "key-press-event",
                             G_CALLBACK (cb_key_pressed), dbbrowser);
+  /* Search entry */
+  g_signal_connect_swapped (priv->search_entry, "activate",
+                            G_CALLBACK (cb_search_entry_activated), dbbrowser);
+  g_signal_connect_swapped (priv->search_entry, "key-release-event",
+                            G_CALLBACK (cb_search_entry_key_released), dbbrowser);
+  g_signal_connect_swapped (priv->search_entry, "changed",
+                            G_CALLBACK (cb_search_entry_changed), dbbrowser);
 }
 
 static void
@@ -296,11 +312,15 @@ xfmpc_dbbrowser_add_selected_rows (XfmpcDbbrowser *dbbrowser)
 void
 xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
 {
+  /* TODO block while doing a search */
   XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
   gchar                    *filename;
   gchar                    *basename;
   gboolean                  is_dir;
   gint                      i = 0;
+
+  if (G_UNLIKELY (!xfmpc_mpdclient_is_connected (dbbrowser->mpdclient)))
+    return;
 
   xfmpc_dbbrowser_clear (dbbrowser);
 
@@ -439,5 +459,48 @@ cb_key_pressed (XfmpcDbbrowser *dbbrowser,
     }
 
   return TRUE;
+}
+
+
+
+static void
+cb_search_entry_activated (XfmpcDbbrowser *dbbrowser)
+{
+  g_debug (__func__);
+  /* TODO execute the search */
+#if 0
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  GtkTreeModel         *model = GTK_TREE_MODEL (priv->filter);
+#endif
+}
+
+static gboolean
+cb_search_entry_key_released (XfmpcDbbrowser *dbbrowser,
+                              GdkEventKey *event)
+{
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+
+  if (event->type != GDK_KEY_RELEASE)
+    return FALSE;
+
+  if (event->keyval == GDK_Escape)
+    {
+      g_debug (__func__);
+      gtk_entry_set_text (GTK_ENTRY (priv->search_entry), "");
+      xfmpc_dbbrowser_reload (dbbrowser);
+    }
+
+  return TRUE;
+}
+
+static void
+cb_search_entry_changed (XfmpcDbbrowser *dbbrowser)
+{
+  /* TODO do nothing? execute a timeout do postpone the search? */
+#if 0
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+
+  gtk_tree_model_filter_refilter (priv->filter);
+#endif
 }
 
