@@ -51,6 +51,10 @@ static gboolean         cb_search_entry_key_released           (XfmpcDbbrowser *
                                                                 GdkEventKey *event);
 static void             cb_search_entry_changed                (XfmpcDbbrowser *dbbrowser);
 
+static gboolean         timeout_search                         (XfmpcDbbrowser *dbbrowser);
+
+static void             timeout_search_destroy                 (XfmpcDbbrowser *dbbrowser);
+
 
 
 /* List store identifiers */
@@ -85,6 +89,7 @@ struct _XfmpcDbbrowserPrivate
   GtkListStore             *store;
   GtkWidget                *search_entry;
 
+  guint                     search_timeout;
   gboolean                  is_searching;
 
   gchar                    *wdir;
@@ -384,7 +389,8 @@ xfmpc_dbbrowser_search (XfmpcDbbrowser *dbbrowser,
 
   if (i == 0)
     {
-      /* TODO display a message that the query returned "no result" */
+      /* TODO display a message that the query returned "no result"?
+       * set the entry background in red? */
       g_message ("change query bad query");
     }
 }
@@ -523,9 +529,7 @@ cb_search_entry_key_released (XfmpcDbbrowser *dbbrowser,
 
   if (event->keyval == GDK_Escape)
     {
-      priv->is_searching = FALSE;
       gtk_entry_set_text (GTK_ENTRY (priv->search_entry), "");
-      xfmpc_dbbrowser_reload (dbbrowser);
     }
 
   return TRUE;
@@ -534,6 +538,27 @@ cb_search_entry_key_released (XfmpcDbbrowser *dbbrowser,
 static void
 cb_search_entry_changed (XfmpcDbbrowser *dbbrowser)
 {
-  /* TODO do nothing? execute a timeout to postpone the search? */
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+
+  if (priv->search_timeout > 0)
+    g_source_remove (priv->search_timeout);
+
+  priv->search_timeout = g_timeout_add_full (G_PRIORITY_DEFAULT, 642,
+                                             (GSourceFunc)timeout_search, dbbrowser,
+                                             (GDestroyNotify)timeout_search_destroy);
+}
+
+static gboolean
+timeout_search (XfmpcDbbrowser *dbbrowser)
+{
+  cb_search_entry_activated (dbbrowser);
+  return FALSE;
+}
+
+static void
+timeout_search_destroy (XfmpcDbbrowser *dbbrowser)
+{
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  priv->search_timeout = 0;
 }
 
