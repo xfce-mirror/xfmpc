@@ -27,6 +27,7 @@
 #include "mpdclient.h"
 #include "playlist.h"
 #include "dbbrowser.h"
+#include "xfce-arrow-button.h"
 
 #define BORDER 4
 
@@ -377,9 +378,14 @@ position_context_menu (GtkMenu *menu,
   gdk_window_get_origin (widget->window, &root_x, &root_y);
 
   *x = root_x + widget->allocation.x;
-  *y = root_y + widget->allocation.y + widget->style->ythickness;
+  /* TODO find the good way to add spacing to *y */
+  *y = root_y + widget->allocation.y;
 
   if (*y > gdk_screen_height () - menu_req.height)
     *y = gdk_screen_height () - menu_req.height;
+  else if (*y < 0)
+    *y = 0;
+
+  *push_in = FALSE;
 }
 
