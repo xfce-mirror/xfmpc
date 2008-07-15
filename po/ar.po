@@ -1,0 +1,74 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-20 20:48+0200\n"
+"PO-Revision-Date: 2008-07-15 23:13+0200\n"
+"Last-Translator: Mohamed Magdy <mohamedmk@gmail.com>\n"
+"Language-Team: Arabeyes <doc@arabeyes.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Arabic\n"
+
+#: ../src/extended-interface.c:153
+msgid "Clear Playlist"
+msgstr ""
+
+#: ../src/extended-interface.c:163
+msgid "Refresh Database"
+msgstr ""
+
+#: ../src/extended-interface.c:173
+msgid "Context Menu"
+msgstr ""
+
+#: ../src/extended-interface.c:205
+msgid "Current Playlist"
+msgstr ""
+
+#: ../src/extended-interface.c:208
+msgid "Browse database"
+msgstr ""
+
+#: ../src/extended-interface.c:284
+msgid "Repeat"
+msgstr ""
+
+#: ../src/extended-interface.c:291
+msgid "Random"
+msgstr ""
+
+#: ../src/interface.c:169
+#: ../src/interface.c:375
+msgid "Not connected"
+msgstr ""
+
+#. subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:406
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr ""
+
+#: ../src/interface.c:452
+msgid "Stopped"
+msgstr ""
+
+#: ../src/mpdclient.c:483
+#: ../src/mpdclient.c:513
+#: ../src/mpdclient.c:528
+msgid "n/a"
+msgstr ""
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr ""
+
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr ""
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr ""
+
