@@ -55,10 +55,11 @@ static void             cb_interface_changed                (GtkComboBox *widget
                                                              XfmpcExtendedInterface *extended_interface);
 static void             cb_repeat_switch                    (XfmpcExtendedInterface *extended_interface);
 static void             cb_random_switch                    (XfmpcExtendedInterface *extended_interface);
-static void             cb_context_menu                     (GtkToggleButton *button,
+static void             cb_context_menu_clicked             (GtkToggleButton *button,
                                                              XfmpcExtendedInterface *extended_interface);
 static void             cb_context_menu_deactivate          (GtkMenuShell *menu,
                                                              GtkWidget *attach_widget);
+static void             popup_context_menu                  (XfmpcExtendedInterface *extended_interface);
 static void             position_context_menu               (GtkMenu *menu,
                                                              gint *x,
                                                              gint *y,
@@ -173,8 +174,10 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   priv->context_button = GTK_WIDGET (xfce_arrow_button_new (GTK_ARROW_DOWN));
   gtk_widget_set_tooltip_text (priv->context_button, _("Context Menu"));
   gtk_box_pack_start (GTK_BOX (hbox), priv->context_button, FALSE, FALSE, 0);
-  g_signal_connect (priv->context_button, "toggled",
-                    G_CALLBACK (cb_context_menu), extended_interface);
+  g_signal_connect_swapped (priv->context_button, "pressed",
+                            G_CALLBACK (popup_context_menu), extended_interface);
+  g_signal_connect (priv->context_button, "clicked",
+                    G_CALLBACK (cb_context_menu_clicked), extended_interface);
 
   /* Combo box */
   priv->list_store = gtk_list_store_new (N_COLUMNS,
@@ -335,13 +338,26 @@ cb_random_switch (XfmpcExtendedInterface *extended_interface)
 }
 
 static void
-cb_context_menu (GtkToggleButton *button,
-                 XfmpcExtendedInterface *extended_interface)
+cb_context_menu_clicked (GtkToggleButton *button,
+                         XfmpcExtendedInterface *extended_interface)
 {
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
-
   if (!gtk_toggle_button_get_active (button))
     return;
+
+  popup_context_menu (extended_interface);
+}
+
+static void
+cb_context_menu_deactivate (GtkMenuShell *menu,
+                            GtkWidget *attach_widget)
+{
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (attach_widget), FALSE);
+}
+
+static void
+popup_context_menu (XfmpcExtendedInterface *extended_interface)
+{
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
 
   if (GTK_IS_MENU (priv->context_menu))
     gtk_menu_detach (GTK_MENU (priv->context_menu));
@@ -351,16 +367,9 @@ cb_context_menu (GtkToggleButton *button,
                   NULL,
                   NULL,
                   (GtkMenuPositionFunc) position_context_menu,
-                  GTK_WIDGET (button),
+                  GTK_WIDGET (priv->context_button),
                   0,
                   gtk_get_current_event_time ());
-}
-
-static void
-cb_context_menu_deactivate (GtkMenuShell *menu,
-                            GtkWidget *attach_widget)
-{
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (attach_widget), FALSE);
 }
 
 static void
