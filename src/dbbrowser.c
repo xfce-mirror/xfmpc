@@ -372,6 +372,8 @@ xfmpc_dbbrowser_search (XfmpcDbbrowser *dbbrowser,
   gchar                    *filename;
   gchar                    *basename;
   gint                      i = 0;
+  static gboolean           no_result, no_result_buf;
+  GdkColor                  color = {0, 0xFFFF, 0x6666, 0x6666};
 
   if (G_UNLIKELY (!xfmpc_mpdclient_is_connected (dbbrowser->mpdclient)))
     return;
@@ -387,11 +389,36 @@ xfmpc_dbbrowser_search (XfmpcDbbrowser *dbbrowser,
       i++;
     }
 
+  /* check the rightness of the query and then play with the colors */
+  no_result_buf = no_result;
+  if (i == 0)
+    no_result = TRUE;
+  else if (no_result)
+    no_result = FALSE;
+
+  if (no_result != no_result_buf)
+    {
+#ifdef MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
+      gtk_widget_modify_base (priv->search_entry, GTK_STATE_NORMAL, no_result ? &color : NULL);
+#endif
+      gtk_widget_modify_bg (priv->search_entry, GTK_STATE_NORMAL, no_result ? &color : NULL);
+      gtk_widget_modify_bg (priv->search_entry, GTK_STATE_SELECTED, no_result ? &color : NULL);
+    }
   if (i == 0)
     {
-      /* TODO display a message that the query returned "no result"?
-       * set the entry background in red? */
-      g_message ("change query bad query");
+#ifdef MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
+      gtk_widget_modify_base (priv->search_entry, GTK_STATE_NORMAL, &color);
+#endif
+      gtk_widget_modify_bg (priv->search_entry, GTK_STATE_NORMAL, &color);
+      gtk_widget_modify_bg (priv->search_entry, GTK_STATE_SELECTED, &color);
+    }
+  else if (no_result)
+    {
+#ifdef MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
+      gtk_widget_modify_base (priv->search_entry, GTK_STATE_NORMAL, NULL);
+#endif
+      gtk_widget_modify_bg (priv->search_entry, GTK_STATE_NORMAL, NULL);
+      gtk_widget_modify_bg (priv->search_entry, GTK_STATE_SELECTED, NULL);
     }
 }
 
@@ -512,6 +539,13 @@ cb_search_entry_activated (XfmpcDbbrowser *dbbrowser)
     {
       priv->is_searching = FALSE;
       xfmpc_dbbrowser_reload (dbbrowser);
+
+      /* revert possible previous applied color */
+#ifdef MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
+      gtk_widget_modify_base (priv->search_entry, GTK_STATE_NORMAL, NULL);
+#endif
+      gtk_widget_modify_bg (priv->search_entry, GTK_STATE_NORMAL, NULL);
+      gtk_widget_modify_bg (priv->search_entry, GTK_STATE_SELECTED, NULL);
       return;
     }
 
