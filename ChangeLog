@@ -1,3 +1,89 @@
+2008-08-25	Mike Massonnet <mmassonnet@gmail.com>
+
+=== Release 0.0.7 ===
+
+2008-08-25	Mike Massonnet <mmassonnet@gmail.com>
+
+Add a right click menu in the Playlist to remove the selected song(s)
+	* src/playlist.c:
+	  - 3 new functions: cb_button_pressed (catches right click),
+	  cb_popup_menu (catches the menu key from the keyboard), and
+	  popup_menu to popup the gtk menu
+	  - (xfmpc_playlist_init): Build a menu with a first item "Remove"
+
+2008-08-25	Mike Massonnet <mmassonnet@gmail.com>
+
+Add a right click menu in the Database Browser to add the selected song(s)
+	* src/dbbrowser.c:
+	  - 3 new functions: cb_button_pressed (catches right click),
+	  cb_popup_menu (catches the menu key from the keyboard), and
+	  popup_menu to popup the gtk menu
+	  - (xfmpc_dbbrowser_init): Build a menu with a first item "Add"
+
+2008-08-24	Mike Massonnet <mmassonnet@gmail.com>
+
+Make the context button behave as the combo box
+	* src/extended-interface.c:
+	  - Rework how the context button behaves against mouse clicks and
+	    keyboard presses, so that it mimics the combo box
+
+2008-08-24	Mike Massonnet <mmassonnet@gmail.com>
+
+Add funky colors on a failed search in the database
+	* configure.in.in:
+	  - Add configure flag --enable-funky-colors
+	* src/dbbrowser.c:
+	  - Highlight the search entry if the query failed
+	  - Highlight also the background if build with --enable-funky-colors
+
+2008-06-01	Mike Massonnet <mmassonnet@gmail.com>
+
+Misc fixes
+	* autogen.sh:
+	  - s,remotes/trunk,git-svn, to fetch the svn revision with git-svn
+	* src/extended-interface.c:
+	  - Forgot to include xfce-arrow-button.h
+	* src/extended-interface.c(position_context_menu):
+	  - Remove ythickness from *y (need to find the good way)
+	  - Check if the menu pops out over the top of screen
+
+2008-06-01	Mike Massonnet <mmassonnet@gmail.com>
+
+Make search feature work with timeout
+	* src/dbbrowser.c(cb_search_entry_changed):
+	  - Initiate a timeout on entry changes to automatically process a search
+
+2008-06-01	Mike Massonnet <mmassonnet@gmail.com>
+
+Add search functions inside XfmpcMpdclient and extend XfmpcDbbrowser
+	* src/mpdclient.c:
+	  - Return the name of the song with new private function _get_formatted_name
+	    (remove duplicates of code)
+	  - New function xfmpc_mpdclient_database_search
+	* src/dbbrowser.c:
+	  - New private boolean is_searching to lock the tree view from updating
+	  - New function xfmpc_dbbrowser_search, makes use of xfmpc_mdclient_search and
+	    populates the tree view
+
+2008-06-01	Mike Massonnet <mmassonnet@gmail.com>
+
+Add search entry
+	* src/dbbrowser.c(xfmpc_dbbrowser_init):
+	  - Add a gtk entry and connect it to new callbacks for signals "activate",
+	    "key-release-event", and "changed"
+	* src/dbbrowser.c(xfmpc_dbbrowser_reload):
+	  - Check if the client is connected before going further in the reload process
+
+2008-05-11	Mike Massonnet <mmassonnet@gmail.com>
+
+Replace the context button image against an arrow
+	* src/Makefile.am,
+	  src/xfce-arrow-button.c,
+	  src/xfce-arrow-button.h:
+	  - Import XfceArrowButton from xfce4-panel with quick modifications
+	* src/extended-interface.c(xfmpc_extended_interface_init):
+	  - Replace gtk_toggle_button_new against xfce_arrow_button_new
+
 2008-04-20	Mike Massonnet <mmassonnet@gmail.com>
 
 === Release 0.0.6 ===
