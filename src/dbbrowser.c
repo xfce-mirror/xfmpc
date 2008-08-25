@@ -45,14 +45,16 @@ static void             cb_row_activated                       (XfmpcDbbrowser *
                                                                 GtkTreeViewColumn *column);
 static gboolean         cb_key_pressed                         (XfmpcDbbrowser *dbbrowser,
                                                                 GdkEventKey *event);
-static void             cb_search_entry_activated              (XfmpcDbbrowser *dbbrowser);
+static gboolean         cb_button_pressed                      (XfmpcDbbrowser *dbbrowser,
+                                                                GdkEventButton *event);
+static gboolean         cb_popup_menu                          (XfmpcDbbrowser *dbbrowser);
+static void             popup_menu                             (XfmpcDbbrowser *dbbrowser);
 
+static void             cb_search_entry_activated              (XfmpcDbbrowser *dbbrowser);
 static gboolean         cb_search_entry_key_released           (XfmpcDbbrowser *dbbrowser,
                                                                 GdkEventKey *event);
 static void             cb_search_entry_changed                (XfmpcDbbrowser *dbbrowser);
-
 static gboolean         timeout_search                         (XfmpcDbbrowser *dbbrowser);
-
 static void             timeout_search_destroy                 (XfmpcDbbrowser *dbbrowser);
 
 
@@ -88,6 +90,7 @@ struct _XfmpcDbbrowserPrivate
   GtkWidget                *treeview;
   GtkListStore             *store;
   GtkWidget                *search_entry;
+  GtkWidget                *menu;
 
   guint                     search_timeout;
   gboolean                  is_searching;
@@ -192,11 +195,21 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
                                                "text", COLUMN_BASENAME,
                                                NULL);
 
-  /* === Scrolled window === */
+  /* Scrolled window */
   GtkWidget *scrolled = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
                                   GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_ALWAYS);
+
+  /* === Menu === */
+  priv->menu = gtk_menu_new ();
+
+  GtkWidget *mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_ADD, NULL);
+  gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), mi);
+  g_signal_connect_swapped (mi, "activate",
+                            G_CALLBACK (xfmpc_dbbrowser_add_selected_rows), dbbrowser);
+
+  gtk_widget_show_all (priv->menu);
 
   /* === Search entry === */
   priv->search_entry = gtk_entry_new ();
@@ -216,6 +229,10 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
                             G_CALLBACK (cb_row_activated), dbbrowser);
   g_signal_connect_swapped (priv->treeview, "key-press-event",
                             G_CALLBACK (cb_key_pressed), dbbrowser);
+  g_signal_connect_swapped (priv->treeview, "button-press-event",
+                            G_CALLBACK (cb_button_pressed), dbbrowser);
+  g_signal_connect_swapped (priv->treeview, "popup-menu",
+                            G_CALLBACK (cb_popup_menu), dbbrowser);
   /* Search entry */
   g_signal_connect_swapped (priv->search_entry, "activate",
                             G_CALLBACK (cb_search_entry_activated), dbbrowser);
@@ -525,6 +542,55 @@ cb_key_pressed (XfmpcDbbrowser *dbbrowser,
     }
 
   return TRUE;
+}
+
+static gboolean
+cb_button_pressed (XfmpcDbbrowser *dbbrowser,
+                   GdkEventButton *event)
+{
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  GtkTreeSelection         *selection;
+  GtkTreePath              *path;
+  
+  if (event->type != GDK_BUTTON_PRESS || event->button != 3)
+    return FALSE;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (priv->treeview),
+                                     event->x, event->y,
+                                     &path, NULL, NULL, NULL))
+    {
+      if (!gtk_tree_selection_path_is_selected (selection, path))
+        {
+          gtk_tree_selection_unselect_all (selection);
+          gtk_tree_selection_select_path (selection, path);
+        }
+      gtk_tree_path_free (path);
+    }
+
+  popup_menu (dbbrowser);
+
+  return TRUE;
+}
+
+static gboolean
+cb_popup_menu (XfmpcDbbrowser *dbbrowser)
+{
+  popup_menu (dbbrowser);
+
+  return TRUE;
+}
+
+static void
+popup_menu (XfmpcDbbrowser *dbbrowser)
+{
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+
+  gtk_menu_popup (GTK_MENU (priv->menu),
+                  NULL, NULL,
+                  NULL, NULL,
+                  0,
+                  gtk_get_current_event_time ());
 }
 
 
