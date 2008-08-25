@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfmpc\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-20 20:48+0200\n"
+"PO-Revision-Date: 2008-08-24 15:25+0200\n"
+"Last-Translator: Miia Ranta <myrtti@ubuntu.com>\n"
+"Language-Team: Finnish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Finland\n"
+"X-Poedit-Country: Finland\n"
+
+#: ../src/extended-interface.c:153
+msgid "Clear Playlist"
+msgstr "Tyhjennä soittolista"
+
+#: ../src/extended-interface.c:163
+msgid "Refresh Database"
+msgstr "Päivitä kirjasto"
+
+#: ../src/extended-interface.c:173
+msgid "Context Menu"
+msgstr "Pikavalikko"
+
+#: ../src/extended-interface.c:205
+msgid "Current Playlist"
+msgstr "Nykyinen soittolista"
+
+#: ../src/extended-interface.c:208
+msgid "Browse database"
+msgstr "Selaa kirjastoa"
+
+#: ../src/extended-interface.c:284
+msgid "Repeat"
+msgstr "Toisto"
+
+#: ../src/extended-interface.c:291
+msgid "Random"
+msgstr "Satunnainen"
+
+#: ../src/interface.c:169
+#: ../src/interface.c:375
+msgid "Not connected"
+msgstr "Ei yhdistetty"
+
+#. subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:406
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr " \"%s\" albumilta \"%s\" (%s)"
+
+#: ../src/interface.c:452
+msgid "Stopped"
+msgstr "Pysäytetty"
+
+#: ../src/mpdclient.c:483
+#: ../src/mpdclient.c:513
+#: ../src/mpdclient.c:528
+msgid "n/a"
+msgstr "tuntematon"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD -asiakasohjelma"
+
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "Xfce:lle GTK+:lla kirjoitettu MPD -asiakasohjelma"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
