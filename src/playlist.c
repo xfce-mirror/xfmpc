@@ -41,20 +41,21 @@ static void             xfmpc_playlist_dispose                  (GObject *object
 static void             xfmpc_playlist_finalize                 (GObject *object);
 
 static void             cb_song_changed                         (XfmpcPlaylist *playlist);
-
 static void             cb_playlist_changed                     (XfmpcPlaylist *playlist);
-
 static void             cb_row_activated                        (XfmpcPlaylist *playlist,
                                                                  GtkTreePath *path,
                                                                  GtkTreeViewColumn *column);
 static gboolean         cb_key_released                         (XfmpcPlaylist *playlist,
                                                                  GdkEventKey *event);
-static void             cb_filter_entry_activated               (XfmpcPlaylist *playlist);
+static gboolean         cb_button_pressed                       (XfmpcPlaylist *playlist,
+                                                                 GdkEventButton *event);
+static gboolean         cb_popup_menu                           (XfmpcPlaylist *playlist);
+static void             popup_menu                              (XfmpcPlaylist *playlist);
 
+static void             cb_filter_entry_activated               (XfmpcPlaylist *playlist);
 static gboolean         cb_filter_entry_key_released            (XfmpcPlaylist *playlist,
                                                                  GdkEventKey *event);
 static void             cb_filter_entry_changed                 (XfmpcPlaylist *playlist);
-
 static gboolean         visible_func_filter_tree                (GtkTreeModel *filter,
                                                                  GtkTreeIter *iter,
                                                                  XfmpcPlaylist *playlist);
@@ -92,6 +93,7 @@ struct _XfmpcPlaylistPrivate
   GtkTreeModelFilter   *filter;
   GtkListStore         *store;
   GtkWidget            *filter_entry;
+  GtkWidget            *menu;
 
   gint                  current;
   gboolean              autocenter;
@@ -175,6 +177,7 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   /* === Tree view === */
   priv->treeview = gtk_tree_view_new ();
   gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview)), GTK_SELECTION_MULTIPLE);
+  gtk_tree_view_set_rubber_banding (GTK_TREE_VIEW (priv->treeview), TRUE);
   gtk_tree_view_set_enable_search (GTK_TREE_VIEW (priv->treeview), FALSE);
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->treeview), FALSE);
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview), TRUE);
@@ -207,11 +210,21 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                                                "weight", COLUMN_WEIGHT,
                                                NULL);
 
-  /* === Scrolled window === */
+  /* Scrolled window */
   GtkWidget *scrolled = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
                                   GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_ALWAYS);
+
+  /* Menu */
+  priv->menu = gtk_menu_new ();
+
+  GtkWidget *mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_REMOVE, NULL);
+  gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), mi);
+  g_signal_connect_swapped (mi, "activate",
+                            G_CALLBACK (xfmpc_playlist_delete_selection), playlist);
+
+  gtk_widget_show_all (priv->menu);
 
   /* === Filter entry === */
   priv->filter_entry = gtk_entry_new ();
@@ -231,6 +244,10 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                             G_CALLBACK (cb_row_activated), playlist);
   g_signal_connect_swapped (priv->treeview, "key-release-event",
                             G_CALLBACK (cb_key_released), playlist);
+  g_signal_connect_swapped (priv->treeview, "button-press-event",
+                            G_CALLBACK (cb_button_pressed), playlist);
+  g_signal_connect_swapped (priv->treeview, "popup-menu",
+                            G_CALLBACK (cb_popup_menu), playlist);
   /* Filter entry */
   g_signal_connect_swapped (priv->filter_entry, "activate",
                             G_CALLBACK (cb_filter_entry_activated), playlist);
@@ -429,6 +446,57 @@ cb_key_released (XfmpcPlaylist *playlist,
 
   return TRUE;
 }
+
+static gboolean
+cb_button_pressed (XfmpcPlaylist *playlist,
+                   GdkEventButton *event)
+{
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  GtkTreeSelection     *selection;
+  GtkTreePath          *path;
+  
+  if (event->type != GDK_BUTTON_PRESS || event->button != 3)
+    return FALSE;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (priv->treeview),
+                                     event->x, event->y,
+                                     &path, NULL, NULL, NULL))
+    {
+      if (!gtk_tree_selection_path_is_selected (selection, path))
+        {
+          gtk_tree_selection_unselect_all (selection);
+          gtk_tree_selection_select_path (selection, path);
+        }
+      gtk_tree_path_free (path);
+    }
+
+  popup_menu (playlist);
+
+  return TRUE;
+}
+
+static gboolean
+cb_popup_menu (XfmpcPlaylist *playlist)
+{
+  popup_menu (playlist);
+
+  return TRUE;
+}
+
+static void
+popup_menu (XfmpcPlaylist *playlist)
+{
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+
+  gtk_menu_popup (GTK_MENU (priv->menu),
+                  NULL, NULL,
+                  NULL, NULL,
+                  0,
+                  gtk_get_current_event_time ());
+}
+
+
 
 static void
 cb_filter_entry_activated (XfmpcPlaylist *playlist)

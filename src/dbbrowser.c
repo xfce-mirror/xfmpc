@@ -201,7 +201,7 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
                                   GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_ALWAYS);
 
-  /* === Menu === */
+  /* Menu */
   priv->menu = gtk_menu_new ();
 
   GtkWidget *mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_ADD, NULL);
