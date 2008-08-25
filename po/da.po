@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-20 20:48+0200\n"
+"POT-Creation-Date: 2008-08-25 21:50+0200\n"
 "PO-Revision-Date: 2008-05-21 10:31+0100\n"
 "Last-Translator: Jens Hyllegaard <jens.hyllegaard@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -15,36 +15,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/extended-interface.c:153
+#: ../src/extended-interface.c:155
 msgid "Clear Playlist"
 msgstr "Ryd spillelisten"
 
-#: ../src/extended-interface.c:163
+#: ../src/extended-interface.c:165
 msgid "Refresh Database"
 msgstr "Genopfrisk databasen"
 
-#: ../src/extended-interface.c:173
+#: ../src/extended-interface.c:175
 msgid "Context Menu"
 msgstr "Kontekstmenu"
 
-#: ../src/extended-interface.c:205
+#: ../src/extended-interface.c:206
 msgid "Current Playlist"
 msgstr "Aktuel spilleliste"
 
-#: ../src/extended-interface.c:208
+#: ../src/extended-interface.c:209
 msgid "Browse database"
 msgstr "Gennemse databasen"
 
-#: ../src/extended-interface.c:284
+#: ../src/extended-interface.c:285
 msgid "Repeat"
 msgstr "Gentag"
 
-#: ../src/extended-interface.c:291
+#: ../src/extended-interface.c:292
 msgid "Random"
 msgstr "Tilfældig"
 
-#: ../src/interface.c:169
-#: ../src/interface.c:375
+#: ../src/interface.c:169 ../src/interface.c:375
 msgid "Not connected"
 msgstr "Ikke tilsluttet"
 
@@ -58,9 +57,7 @@ msgstr "af \"%s\" fra \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Stoppet"
 
-#: ../src/mpdclient.c:483
-#: ../src/mpdclient.c:513
-#: ../src/mpdclient.c:528
+#: ../src/mpdclient.c:483 ../src/mpdclient.c:513 ../src/mpdclient.c:528
 msgid "n/a"
 msgstr "n/a"
 
@@ -75,4 +72,3 @@ msgstr "MPD klient skrevet i GTK+ for Xfce"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-

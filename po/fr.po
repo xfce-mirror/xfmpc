@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-20 20:48+0200\n"
+"POT-Creation-Date: 2008-08-25 21:50+0200\n"
 "PO-Revision-Date: 2008-04-20 20:49+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: French\n"
@@ -17,31 +17,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../src/extended-interface.c:153
+#: ../src/extended-interface.c:155
 msgid "Clear Playlist"
 msgstr "Vider la liste de lecture"
 
-#: ../src/extended-interface.c:163
+#: ../src/extended-interface.c:165
 msgid "Refresh Database"
 msgstr "Rafraîchir la base de données"
 
-#: ../src/extended-interface.c:173
+#: ../src/extended-interface.c:175
 msgid "Context Menu"
 msgstr "Menu contextuel"
 
-#: ../src/extended-interface.c:205
+#: ../src/extended-interface.c:206
 msgid "Current Playlist"
 msgstr "Liste de lecture"
 
-#: ../src/extended-interface.c:208
+#: ../src/extended-interface.c:209
 msgid "Browse database"
 msgstr "Base de données"
 
-#: ../src/extended-interface.c:284
+#: ../src/extended-interface.c:285
 msgid "Repeat"
 msgstr "Répéter"
 
-#: ../src/extended-interface.c:291
+#: ../src/extended-interface.c:292
 msgid "Random"
 msgstr "Aléatoire"
 

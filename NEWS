@@ -1,3 +1,11 @@
+    0.0.7 (2008-08-25)
+
+- Add a search entry in the database browser
+- Add a right click menu in the database browser to add the selected songs
+- Add a right click menu in the playlist to remove the selected songs
+- Fix misc bugs
+- New translations: Finnish, Indonesian, Japanese, Ukrainian
+
     0.0.6 (2008-04-20)
 
 - New button that displays a context menu

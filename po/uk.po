@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-20 20:48+0200\n"
+"POT-Creation-Date: 2008-08-25 21:50+0200\n"
 "PO-Revision-Date: 2008-07-28 19:11+0300\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -16,31 +16,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../src/extended-interface.c:153
+#: ../src/extended-interface.c:155
 msgid "Clear Playlist"
 msgstr "Очистити список програвання"
 
-#: ../src/extended-interface.c:163
+#: ../src/extended-interface.c:165
 msgid "Refresh Database"
 msgstr "Оновити базу даних"
 
-#: ../src/extended-interface.c:173
+#: ../src/extended-interface.c:175
 msgid "Context Menu"
 msgstr "Контекстне меню"
 
-#: ../src/extended-interface.c:205
+#: ../src/extended-interface.c:206
 msgid "Current Playlist"
 msgstr "Поточний список програвання"
 
-#: ../src/extended-interface.c:208
+#: ../src/extended-interface.c:209
 msgid "Browse database"
 msgstr "Вибрати базу даних"
 
-#: ../src/extended-interface.c:284
+#: ../src/extended-interface.c:285
 msgid "Repeat"
 msgstr "Повторити"
 
-#: ../src/extended-interface.c:291
+#: ../src/extended-interface.c:292
 msgid "Random"
 msgstr "Випадково"
 
@@ -73,4 +73,3 @@ msgstr "Клієнт MPD написаний в GTK+ для Xfce"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Програма Xfmpc"
-

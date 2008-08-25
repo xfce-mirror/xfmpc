@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-20 20:48+0200\n"
+"POT-Creation-Date: 2008-08-25 21:50+0200\n"
 "PO-Revision-Date: 2008-06-24 18:14+0100\n"
 "Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -20,36 +20,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: ../src/extended-interface.c:153
+#: ../src/extended-interface.c:155
 msgid "Clear Playlist"
 msgstr ""
 
-#: ../src/extended-interface.c:163
+#: ../src/extended-interface.c:165
 msgid "Refresh Database"
 msgstr ""
 
-#: ../src/extended-interface.c:173
+#: ../src/extended-interface.c:175
 msgid "Context Menu"
 msgstr ""
 
-#: ../src/extended-interface.c:205
+#: ../src/extended-interface.c:206
 msgid "Current Playlist"
 msgstr ""
 
-#: ../src/extended-interface.c:208
+#: ../src/extended-interface.c:209
 msgid "Browse database"
 msgstr ""
 
-#: ../src/extended-interface.c:284
+#: ../src/extended-interface.c:285
 msgid "Repeat"
 msgstr "Repetir"
 
-#: ../src/extended-interface.c:291
+#: ../src/extended-interface.c:292
 msgid "Random"
 msgstr ""
 
-#: ../src/interface.c:169
-#: ../src/interface.c:375
+#: ../src/interface.c:169 ../src/interface.c:375
 msgid "Not connected"
 msgstr "Non conectado"
 
@@ -63,9 +62,7 @@ msgstr ""
 msgid "Stopped"
 msgstr ""
 
-#: ../src/mpdclient.c:483
-#: ../src/mpdclient.c:513
-#: ../src/mpdclient.c:528
+#: ../src/mpdclient.c:483 ../src/mpdclient.c:513 ../src/mpdclient.c:528
 msgid "n/a"
 msgstr ""
 
@@ -80,4 +77,3 @@ msgstr ""
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-

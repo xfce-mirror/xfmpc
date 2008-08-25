@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-30 07:52+0200\n"
+"POT-Creation-Date: 2008-08-25 21:50+0200\n"
 "PO-Revision-Date: 2008-04-05 13:20+0900\n"
 "Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
 "Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
@@ -17,45 +17,49 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-Country: JAPAN\n"
 
-#: ../src/extended-interface.c:139
+#: ../src/extended-interface.c:155
 msgid "Clear Playlist"
 msgstr "プレイリストのクリア"
 
-#: ../src/extended-interface.c:149
+#: ../src/extended-interface.c:165
 msgid "Refresh Database"
 msgstr "データベースの更新"
 
-#: ../src/extended-interface.c:181
+#: ../src/extended-interface.c:175
+msgid "Context Menu"
+msgstr ""
+
+#: ../src/extended-interface.c:206
 msgid "Current Playlist"
 msgstr "現在のプレイリスト"
 
-#: ../src/extended-interface.c:184
+#: ../src/extended-interface.c:209
 msgid "Browse database"
 msgstr "データベースを表示"
 
-#: ../src/interface.c:175
-#: ../xfmpc.desktop.in.h:3
-msgid "Xfmpc"
-msgstr "Xfmpc"
+#: ../src/extended-interface.c:285
+msgid "Repeat"
+msgstr ""
 
-#: ../src/interface.c:242
-#: ../src/interface.c:457
+#: ../src/extended-interface.c:292
+msgid "Random"
+msgstr ""
+
+#: ../src/interface.c:169 ../src/interface.c:375
 msgid "Not connected"
 msgstr "接続されません。"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:531
+#: ../src/interface.c:406
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "\"%s\" の \"%s\" (%s)"
 
-#: ../src/interface.c:577
+#: ../src/interface.c:452
 msgid "Stopped"
 msgstr "停止"
 
-#: ../src/mpdclient.c:427
-#: ../src/mpdclient.c:457
-#: ../src/mpdclient.c:472
+#: ../src/mpdclient.c:483 ../src/mpdclient.c:513 ../src/mpdclient.c:528
 msgid "n/a"
 msgstr "該当なし"
 
@@ -66,3 +70,7 @@ msgstr "MPD クライアント"
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Xfce のために GTK+ で書かれたMPDクライアント"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"

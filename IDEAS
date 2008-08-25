@@ -1,12 +1,14 @@
 Next release
 
-  - Search database
+  - The 0.8.0 announcement
+  - On a search, have the ability to go to the directory of the song
 
 Unpredictable future
 
-  - XfmpcGoodies
+  - XfmpcGoodies, a plugin interface on the right side pane
     ~ artwork
     ~ random album playlist
   - Options
+    ~ Hostname and Port
     ~ Font (size) for the tree views
-    ~ Hostname Port
+
