@@ -38,25 +38,15 @@ typedef struct _XfmpcMpdclientPrivate       XfmpcMpdclientPrivate;
 GType                   xfmpc_mpdclient_get_type                () G_GNUC_CONST;
 
 XfmpcMpdclient *        xfmpc_mpdclient_get                     ();
-
 gboolean                xfmpc_mpdclient_connect                 (XfmpcMpdclient *mpdclient);
-
 void                    xfmpc_mpdclient_disconnect              (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_is_connected            (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_previous                (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_pp                      (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_play                    (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_pause                   (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_stop                    (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_next                    (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_set_id                  (XfmpcMpdclient *mpdclient,
                                                                  gint id);
 gboolean                xfmpc_mpdclient_set_song_time           (XfmpcMpdclient *mpdclient,
@@ -67,40 +57,30 @@ gboolean                xfmpc_mpdclient_set_repeat              (XfmpcMpdclient 
                                                                  gboolean repeat);
 gboolean                xfmpc_mpdclient_set_random              (XfmpcMpdclient *mpdclient,
                                                                  gboolean random);
+
 gint                    xfmpc_mpdclient_get_pos                 (XfmpcMpdclient *mpdclient);
-
 gint                    xfmpc_mpdclient_get_id                  (XfmpcMpdclient *mpdclient);
-
 const gchar *           xfmpc_mpdclient_get_artist              (XfmpcMpdclient *mpdclient);
-
 const gchar *           xfmpc_mpdclient_get_title               (XfmpcMpdclient *mpdclient);
-
 const gchar *           xfmpc_mpdclient_get_album               (XfmpcMpdclient *mpdclient);
-
 const gchar *           xfmpc_mpdclient_get_date                (XfmpcMpdclient *mpdclient);
-
 gint                    xfmpc_mpdclient_get_time                (XfmpcMpdclient *mpdclient);
-
 gint                    xfmpc_mpdclient_get_total_time          (XfmpcMpdclient *mpdclient);
-
 guint8                  xfmpc_mpdclient_get_volume              (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_get_repeat              (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_get_repeat              (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_is_playing              (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_is_stopped              (XfmpcMpdclient *mpdclient);
 
 void                    xfmpc_mpdclient_update_status           (XfmpcMpdclient *mpdclient);
 
 gboolean                xfmpc_mpdclient_queue_commit            (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_queue_add               (XfmpcMpdclient *mpdclient,
                                                                  const gchar *path);
 gboolean                xfmpc_mpdclient_queue_remove_id         (XfmpcMpdclient *mpdclient,
                                                                  gint id);
+gboolean                xfmpc_mpdclient_queue_clear             (XfmpcMpdclient *mpdclient);
+
 gboolean                xfmpc_mpdclient_playlist_read           (XfmpcMpdclient *mpdclient,
                                                                  gint *id,
                                                                  gchar **song,
@@ -108,7 +88,6 @@ gboolean                xfmpc_mpdclient_playlist_read           (XfmpcMpdclient 
 gboolean                xfmpc_mpdclient_playlist_clear          (XfmpcMpdclient *mpdclient);
 
 gboolean                xfmpc_mpdclient_database_refresh        (XfmpcMpdclient *mpdclient);
-
 gboolean                xfmpc_mpdclient_database_read           (XfmpcMpdclient *mpdclient,
                                                                  const gchar *dir,
                                                                  gchar **filename,

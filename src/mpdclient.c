@@ -570,6 +570,7 @@ xfmpc_mpdclient_get_random (XfmpcMpdclient *mpdclient)
 
   return mpd_player_get_random (priv->mi);
 }
+
 gboolean
 xfmpc_mpdclient_is_playing (XfmpcMpdclient *mpdclient)
 {
@@ -678,6 +679,15 @@ xfmpc_mpdclient_queue_remove_id (XfmpcMpdclient *mpdclient,
   return TRUE;
 }
 
+gboolean
+xfmpc_mpdclient_queue_clear (XfmpcMpdclient *mpdclient)
+{
+  gint id;
+
+  while (xfmpc_mpdclient_playlist_read (mpdclient, &id, NULL, NULL))
+    xfmpc_mpdclient_queue_remove_id (mpdclient, id);
+}
+
 
 
 gboolean
@@ -696,8 +706,10 @@ xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
 
   if (NULL != data)
     {
-      *song = _get_formatted_name (data->song);
-      *length = g_strdup_printf ("%d:%02d", data->song->time / 60, data->song->time % 60);
+      if (NULL != song)
+        *song = _get_formatted_name (data->song);
+      if (NULL != length)
+        *length = g_strdup_printf ("%d:%02d", data->song->time / 60, data->song->time % 60);
       *id = data->song->id;
     }
 

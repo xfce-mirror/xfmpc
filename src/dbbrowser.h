@@ -35,27 +35,26 @@ typedef struct _XfmpcDbbrowserClass         XfmpcDbbrowserClass;
 typedef struct _XfmpcDbbrowser              XfmpcDbbrowser;
 typedef struct _XfmpcDbbrowserPrivate       XfmpcDbbrowserPrivate;
 
-GType           xfmpc_dbbrowser_get_type                () G_GNUC_CONST;
+GType           xfmpc_dbbrowser_get_type                       () G_GNUC_CONST;
 
-GtkWidget *     xfmpc_dbbrowser_new                     ();
+GtkWidget *     xfmpc_dbbrowser_new                            ();
 
-void            xfmpc_dbbrowser_clear                   (XfmpcDbbrowser *dbbrowser);
+void            xfmpc_dbbrowser_clear                          (XfmpcDbbrowser *dbbrowser);
+void            xfmpc_dbbrowser_append                         (XfmpcDbbrowser *dbbrowser,
+                                                                gchar *filename,
+                                                                gchar *basename,
+                                                                gboolean is_dir);
 
-void            xfmpc_dbbrowser_append                  (XfmpcDbbrowser *dbbrowser,
-                                                         gchar *filename,
-                                                         gchar *basename,
-                                                         gboolean is_dir);
-void            xfmpc_dbbrowser_add_selected_rows       (XfmpcDbbrowser *dbbrowser);
+void            xfmpc_dbbrowser_add_selected_rows              (XfmpcDbbrowser *dbbrowser);
+void            xfmpc_dbbrowser_replace_with_selected_rows     (XfmpcDbbrowser *dbbrowser);
+void            xfmpc_dbbrowser_reload                         (XfmpcDbbrowser *dbbrowser);
+void            xfmpc_dbbrowser_search                         (XfmpcDbbrowser *dbbrowser,
+                                                                const gchar *query);
 
-void            xfmpc_dbbrowser_reload                  (XfmpcDbbrowser *dbbrowser);
-
-void            xfmpc_dbbrowser_search                  (XfmpcDbbrowser *dbbrowser,
-                                                         const gchar *query);
-void            xfmpc_dbbrowser_set_wdir                (XfmpcDbbrowser *dbbrowser,
-                                                         const gchar *dir);
-gboolean        xfmpc_dbbrowser_wdir_is_root            (XfmpcDbbrowser *dbbrowser);
-
-gchar *         xfmpc_dbbrowser_get_parent_wdir         (XfmpcDbbrowser *dbbrowser);
+void            xfmpc_dbbrowser_set_wdir                       (XfmpcDbbrowser *dbbrowser,
+                                                                const gchar *dir);
+gboolean        xfmpc_dbbrowser_wdir_is_root                   (XfmpcDbbrowser *dbbrowser);
+gchar *         xfmpc_dbbrowser_get_parent_wdir                (XfmpcDbbrowser *dbbrowser);
 
 G_END_DECLS
 

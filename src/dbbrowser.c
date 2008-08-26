@@ -204,10 +204,19 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
   /* Menu */
   priv->menu = gtk_menu_new ();
 
+  /* Menu -> Add */
   GtkWidget *mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_ADD, NULL);
   gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), mi);
   g_signal_connect_swapped (mi, "activate",
                             G_CALLBACK (xfmpc_dbbrowser_add_selected_rows), dbbrowser);
+
+  /* Menu -> Replace */
+  mi = gtk_image_menu_item_new_with_mnemonic (_("_Replace"));
+  gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), mi);
+  g_signal_connect_swapped (mi, "activate",
+                            G_CALLBACK (xfmpc_dbbrowser_replace_with_selected_rows), dbbrowser);
+  GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_CUT, GTK_ICON_SIZE_MENU);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
 
   gtk_widget_show_all (priv->menu);
 
@@ -331,6 +340,13 @@ xfmpc_dbbrowser_add_selected_rows (XfmpcDbbrowser *dbbrowser)
 
   g_list_foreach (list, (GFunc)gtk_tree_path_free, NULL);
   g_list_free (list);
+}
+
+void
+xfmpc_dbbrowser_replace_with_selected_rows (XfmpcDbbrowser *dbbrowser)
+{
+  xfmpc_mpdclient_queue_clear (dbbrowser->mpdclient);
+  xfmpc_dbbrowser_add_selected_rows (dbbrowser);
 }
 
 void
