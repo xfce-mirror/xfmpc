@@ -1,4 +1,8 @@
-2008-08-25	Mike Massonnet <mmassonnet@xfce.org>
+2008-09-14 Piarres Beobide <pi@beobide.net>
+
+	* eu.po, LINGUAS: Basque translation added
+
+2008-08-25 Mike Massonnet <mmassonnet@xfce.org>
 
 	* *.po, *.pot: make update-po
 	* fi.po: Add Finnish translation (Miia Ranta). Bug#4320

@@ -1,0 +1,76 @@
+# translation of xfmpc.po to Euskara
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Piarres Beobide <pi@beobide.net>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: xfmpc\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-08-25 21:50+0200\n"
+"PO-Revision-Date: 2008-09-14 01:22+0200\n"
+"Last-Translator: Piarres Beobide <pi@beobide.net>\n"
+"Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../src/extended-interface.c:155
+msgid "Clear Playlist"
+msgstr "Garbitu erreprodukzio-zerrenda"
+
+#: ../src/extended-interface.c:165
+msgid "Refresh Database"
+msgstr "Freskatu datu-basea"
+
+#: ../src/extended-interface.c:175
+msgid "Context Menu"
+msgstr "Kontestu menua"
+
+#: ../src/extended-interface.c:206
+msgid "Current Playlist"
+msgstr "Uneko erreprodukzio-zerrenda"
+
+#: ../src/extended-interface.c:209
+msgid "Browse database"
+msgstr "Arakatu datu-basea"
+
+#: ../src/extended-interface.c:285
+msgid "Repeat"
+msgstr "Errepikatu"
+
+#: ../src/extended-interface.c:292
+msgid "Random"
+msgstr "Ausaz"
+
+#: ../src/interface.c:169 ../src/interface.c:375
+msgid "Not connected"
+msgstr "Konexio gabe"
+
+#. subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:406
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "\"%s\"-ek \"%s\" (%s)-etik"
+
+#: ../src/interface.c:452
+msgid "Stopped"
+msgstr "Gelditurik"
+
+#: ../src/mpdclient.c:483 ../src/mpdclient.c:513 ../src/mpdclient.c:528
+msgid "n/a"
+msgstr "e/g"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD bezeroa"
+
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "Xfce-ren GTK+en idatzitako MPD bezeroa"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
