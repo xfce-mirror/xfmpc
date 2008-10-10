@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-25 21:50+0200\n"
-"PO-Revision-Date: 2008-04-05 13:20+0900\n"
+"PO-Revision-Date: 2008-10-10 03:12+0900\n"
 "Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
 "Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "データベースの更新"
 
 #: ../src/extended-interface.c:175
 msgid "Context Menu"
-msgstr ""
+msgstr "コンテキストメニュー"
 
 #: ../src/extended-interface.c:206
 msgid "Current Playlist"
@@ -39,13 +39,14 @@ msgstr "データベースを表示"
 
 #: ../src/extended-interface.c:285
 msgid "Repeat"
-msgstr ""
+msgstr "リピート"
 
 #: ../src/extended-interface.c:292
 msgid "Random"
-msgstr ""
+msgstr "ランダム"
 
-#: ../src/interface.c:169 ../src/interface.c:375
+#: ../src/interface.c:169
+#: ../src/interface.c:375
 msgid "Not connected"
 msgstr "接続されません。"
 
@@ -59,7 +60,9 @@ msgstr "\"%s\" の \"%s\" (%s)"
 msgid "Stopped"
 msgstr "停止"
 
-#: ../src/mpdclient.c:483 ../src/mpdclient.c:513 ../src/mpdclient.c:528
+#: ../src/mpdclient.c:483
+#: ../src/mpdclient.c:513
+#: ../src/mpdclient.c:528
 msgid "n/a"
 msgstr "該当なし"
 
@@ -74,3 +77,4 @@ msgstr "Xfce のために GTK+ で書かれたMPDクライアント"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
+
