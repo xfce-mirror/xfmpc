@@ -2,26 +2,30 @@
 # Copyright (C) 2008 the xfmpc's copyright holder
 # This file is distributed under the same license as the xfmpc package.
 # Jens Hyllegaard <jens.hyllegaard@gmail.com>, 2008.
+# Per Kongstad <p_kongstad@op.pl>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc 0.0.1\n"
+"Project-Id-Version: xfmpc 0.0.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-25 21:50+0200\n"
-"PO-Revision-Date: 2008-05-21 10:31+0100\n"
-"Last-Translator: Jens Hyllegaard <jens.hyllegaard@gmail.com>\n"
+"PO-Revision-Date: 2008-10-19 15:27+0100\n"
+"Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Danish\n"
+"X-Poedit-Country: DENMARK\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../src/extended-interface.c:155
 msgid "Clear Playlist"
-msgstr "Ryd spillelisten"
+msgstr "Ryd spilleliste"
 
 #: ../src/extended-interface.c:165
 msgid "Refresh Database"
-msgstr "Genopfrisk databasen"
+msgstr "Genopfrisk database"
 
 #: ../src/extended-interface.c:175
 msgid "Context Menu"
@@ -33,7 +37,7 @@ msgstr "Aktuel spilleliste"
 
 #: ../src/extended-interface.c:209
 msgid "Browse database"
-msgstr "Gennemse databasen"
+msgstr "Gennemse database"
 
 #: ../src/extended-interface.c:285
 msgid "Repeat"
@@ -43,7 +47,8 @@ msgstr "Gentag"
 msgid "Random"
 msgstr "Tilfældig"
 
-#: ../src/interface.c:169 ../src/interface.c:375
+#: ../src/interface.c:169
+#: ../src/interface.c:375
 msgid "Not connected"
 msgstr "Ikke tilsluttet"
 
@@ -57,18 +62,21 @@ msgstr "af \"%s\" fra \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Stoppet"
 
-#: ../src/mpdclient.c:483 ../src/mpdclient.c:513 ../src/mpdclient.c:528
+#: ../src/mpdclient.c:483
+#: ../src/mpdclient.c:513
+#: ../src/mpdclient.c:528
 msgid "n/a"
 msgstr "n/a"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
-msgstr "MPD klient"
+msgstr "MPD-klient"
 
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "MPD klient skrevet i GTK+ for Xfce"
+msgstr "MPD-klient skrevet i GTK+ til Xfce"
 
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
+
