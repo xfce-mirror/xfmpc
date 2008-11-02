@@ -3,6 +3,7 @@
 # Copyright (C) 2008 THE xfmpc'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfmpc package.
 # Enrico Tröger <enrico.troeger@uvena.de>, 2008.
+# Fabian Nowak <timystery@arcor.de>, 2008.
 #
 msgid ""
 msgstr ""
@@ -10,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-25 21:50+0200\n"
 "PO-Revision-Date: 2008-04-04 08:50+0100\n"
-"Last-Translator: Enrico Tröger <enrico.troeger@uvena.de>\n"
+"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +31,7 @@ msgstr "Datenbak auffrischen"
 
 #: ../src/extended-interface.c:175
 msgid "Context Menu"
-msgstr ""
+msgstr "Kontextmenü"
 
 #: ../src/extended-interface.c:206
 msgid "Current Playlist"
@@ -42,11 +43,11 @@ msgstr "Datenbank durchsuchen"
 
 #: ../src/extended-interface.c:285
 msgid "Repeat"
-msgstr ""
+msgstr "Widerholen"
 
 #: ../src/extended-interface.c:292
 msgid "Random"
-msgstr ""
+msgstr "Zufall"
 
 #: ../src/interface.c:169 ../src/interface.c:375
 msgid "Not connected"
@@ -56,7 +57,7 @@ msgstr "Nicht verbunden"
 #: ../src/interface.c:406
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "von \"%s\" aus \"%s\" (%s)"
+msgstr "von »%s« aus »%s« (%s)"
 
 #: ../src/interface.c:452
 msgid "Stopped"
