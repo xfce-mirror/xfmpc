@@ -73,4 +73,3 @@ msgstr "Xfce-ren GTK+en idatzitako MPD bezeroa"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
