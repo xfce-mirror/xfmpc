@@ -1,0 +1,79 @@
+# Turkish translation of xfmpc package.
+# Copyright (C) 2008 THE XFMPC'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the XFMPC package.
+#
+# Gökmen Görgen <gkmngrgn@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.0.7\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-08-25 21:50+0200\n"
+"PO-Revision-Date: 2008-11-06 15:13+0200\n"
+"Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
+"Language-Team: Turkish <turkce@pardus.org.tr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/extended-interface.c:155
+msgid "Clear Playlist"
+msgstr "Çalma Listesini Temizle"
+
+#: ../src/extended-interface.c:165
+msgid "Refresh Database"
+msgstr "Veritabanını Yenile"
+
+#: ../src/extended-interface.c:175
+msgid "Context Menu"
+msgstr "Toplu Menü"
+
+#: ../src/extended-interface.c:206
+msgid "Current Playlist"
+msgstr "Etkin Çalma Listesi"
+
+#: ../src/extended-interface.c:209
+msgid "Browse database"
+msgstr "Veritabanında Arama"
+
+#: ../src/extended-interface.c:285
+msgid "Repeat"
+msgstr "Yinele"
+
+#: ../src/extended-interface.c:292
+msgid "Random"
+msgstr "Rasgele"
+
+#: ../src/interface.c:169
+#: ../src/interface.c:375
+msgid "Not connected"
+msgstr "Bağlantı yok"
+
+#. subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:406
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "söyleyen \"%s\" albüm \"%s\" (%s)"
+
+#: ../src/interface.c:452
+msgid "Stopped"
+msgstr "Durduruldu"
+
+#: ../src/mpdclient.c:483
+#: ../src/mpdclient.c:513
+#: ../src/mpdclient.c:528
+msgid "n/a"
+msgstr "n/a"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD istemcisi"
+
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "Xfce için GTK+ ile yazılmış MPD istemcisi"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
