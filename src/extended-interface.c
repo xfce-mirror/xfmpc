@@ -301,7 +301,7 @@ xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface *extended_inte
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_PREFERENCES, GTK_ICON_SIZE_MENU);
-  mi = gtk_image_menu_item_new_with_label (_("Server Settings"));
+  mi = gtk_image_menu_item_new_with_label (_("MPD Settings"));
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
   g_signal_connect_swapped (mi, "activate",
                             G_CALLBACK (xfmpc_server_dialog_show), extended_interface);
@@ -337,7 +337,7 @@ xfmpc_server_dialog_show (XfmpcExtendedInterface *extended_interface)
                 "mpd-use-defaults", &use_defaults,
                 NULL);
 
-  dialog = gtk_dialog_new_with_buttons (_("Server Settings"),
+  dialog = gtk_dialog_new_with_buttons (_("MPD Settings"),
     GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (extended_interface))),
     GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
     GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
@@ -346,7 +346,7 @@ xfmpc_server_dialog_show (XfmpcExtendedInterface *extended_interface)
   gtk_window_set_icon_name (GTK_WINDOW (dialog), "stock_volume");
   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
 
-  frame = xfce_create_framebox (_("Server Settings"), &alignment);
+  frame = xfce_create_framebox (_("MPD Settings"), &alignment);
   gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), frame);
 
   vbox = gtk_vbox_new (FALSE, 6);

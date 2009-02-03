@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-14 16:23+0100\n"
+"POT-Creation-Date: 2009-02-03 22:16+0100\n"
 "PO-Revision-Date: 2008-12-14 20:52+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -15,52 +15,85 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/extended-interface.c:155
+#. Menu -> Replace
+#: ../src/dbbrowser.c:215
+msgid "_Replace"
+msgstr ""
+
+#: ../src/extended-interface.c:160
 msgid "Clear Playlist"
 msgstr "Töm spellista"
 
-#: ../src/extended-interface.c:165
+#: ../src/extended-interface.c:170
 msgid "Refresh Database"
 msgstr "Uppdatera databas"
 
-#: ../src/extended-interface.c:175
+#: ../src/extended-interface.c:180
 msgid "Context Menu"
 msgstr "Sammanhangsmeny"
 
-#: ../src/extended-interface.c:206
+#: ../src/extended-interface.c:211
 msgid "Current Playlist"
 msgstr "Aktuell spellista"
 
-#: ../src/extended-interface.c:209
+#: ../src/extended-interface.c:214
 msgid "Browse database"
 msgstr "Bläddra i databas"
 
-#: ../src/extended-interface.c:285
+#: ../src/extended-interface.c:286
 msgid "Repeat"
 msgstr "Upprepa"
 
-#: ../src/extended-interface.c:292
+#: ../src/extended-interface.c:293
 msgid "Random"
 msgstr "Slumpmässigt"
 
-#: ../src/interface.c:169
-#: ../src/interface.c:375
+#: ../src/extended-interface.c:304 ../src/extended-interface.c:340
+#: ../src/extended-interface.c:349
+msgid "MPD Settings"
+msgstr ""
+
+#: ../src/extended-interface.c:359
+msgid "Use default system settings"
+msgstr ""
+
+#: ../src/extended-interface.c:361
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr ""
+
+#: ../src/extended-interface.c:373
+msgid "Hostname:"
+msgstr ""
+
+#: ../src/extended-interface.c:380
+msgid "Port:"
+msgstr ""
+
+#: ../src/extended-interface.c:389
+msgid "Password:"
+msgstr ""
+
+#: ../src/interface.c:156 ../src/interface.c:364
 msgid "Not connected"
 msgstr "Inte ansluten"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:406
+#: ../src/interface.c:395
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "av \"%s\" från \"%s\" (%s)"
 
-#: ../src/interface.c:452
+#: ../src/interface.c:441
 msgid "Stopped"
 msgstr "Stoppad"
 
-#: ../src/mpdclient.c:483
-#: ../src/mpdclient.c:513
-#: ../src/mpdclient.c:528
+#: ../src/main.c:108 ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
+#: ../src/mpdclient.c:510 ../src/mpdclient.c:540 ../src/mpdclient.c:555
 msgid "n/a"
 msgstr "inte tillgänglig"
 
@@ -71,8 +104,3 @@ msgstr "MPD-klient"
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD-klient skriven i GTK+ för Xfce"
-
-#: ../xfmpc.desktop.in.h:3
-msgid "Xfmpc"
-msgstr "Xfmpc"
-

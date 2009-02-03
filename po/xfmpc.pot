@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-25 21:50+0200\n"
+"POT-Creation-Date: 2009-02-03 22:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,49 +16,85 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/extended-interface.c:155
+#. Menu -> Replace
+#: ../src/dbbrowser.c:215
+msgid "_Replace"
+msgstr ""
+
+#: ../src/extended-interface.c:160
 msgid "Clear Playlist"
 msgstr ""
 
-#: ../src/extended-interface.c:165
+#: ../src/extended-interface.c:170
 msgid "Refresh Database"
 msgstr ""
 
-#: ../src/extended-interface.c:175
+#: ../src/extended-interface.c:180
 msgid "Context Menu"
 msgstr ""
 
-#: ../src/extended-interface.c:206
+#: ../src/extended-interface.c:211
 msgid "Current Playlist"
 msgstr ""
 
-#: ../src/extended-interface.c:209
+#: ../src/extended-interface.c:214
 msgid "Browse database"
 msgstr ""
 
-#: ../src/extended-interface.c:285
+#: ../src/extended-interface.c:286
 msgid "Repeat"
 msgstr ""
 
-#: ../src/extended-interface.c:292
+#: ../src/extended-interface.c:293
 msgid "Random"
 msgstr ""
 
-#: ../src/interface.c:169 ../src/interface.c:375
+#: ../src/extended-interface.c:304 ../src/extended-interface.c:340
+#: ../src/extended-interface.c:349
+msgid "MPD Settings"
+msgstr ""
+
+#: ../src/extended-interface.c:359
+msgid "Use default system settings"
+msgstr ""
+
+#: ../src/extended-interface.c:361
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr ""
+
+#: ../src/extended-interface.c:373
+msgid "Hostname:"
+msgstr ""
+
+#: ../src/extended-interface.c:380
+msgid "Port:"
+msgstr ""
+
+#: ../src/extended-interface.c:389
+msgid "Password:"
+msgstr ""
+
+#: ../src/interface.c:156 ../src/interface.c:364
 msgid "Not connected"
 msgstr ""
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:406
+#: ../src/interface.c:395
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr ""
 
-#: ../src/interface.c:452
+#: ../src/interface.c:441
 msgid "Stopped"
 msgstr ""
 
-#: ../src/mpdclient.c:483 ../src/mpdclient.c:513 ../src/mpdclient.c:528
+#: ../src/main.c:108 ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr ""
+
+#: ../src/mpdclient.c:510 ../src/mpdclient.c:540 ../src/mpdclient.c:555
 msgid "n/a"
 msgstr ""
 
@@ -68,8 +104,4 @@ msgstr ""
 
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr ""
-
-#: ../xfmpc.desktop.in.h:3
-msgid "Xfmpc"
 msgstr ""
