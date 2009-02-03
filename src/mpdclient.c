@@ -639,7 +639,7 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
   if (what & MPD_CST_PLAYLIST)
     g_signal_emit_by_name (mpdclient, "playlist-changed");
 
-  if (what & MPD_CST_SONGID)
+  if (what & MPD_CST_SONGID && !(what & MPD_CST_DATABASE))
     g_signal_emit_by_name (mpdclient, "song-changed");
 
   if (what & MPD_CST_STATE)
