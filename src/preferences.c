@@ -38,6 +38,10 @@ enum
   PROP_LAST_WINDOW_STATE_STICKY,
   PROP_PLAYLIST_AUTOCENTER,
   PROP_DBBROWSER_LAST_PATH,
+  PROP_MPD_HOST,
+  PROP_MPD_PORT,
+  PROP_MPD_PASSWORD,
+  PROP_MPD_USE_DEFAULTS,
   N_PROPERTIES,
 };
 
@@ -172,7 +176,39 @@ xfmpc_preferences_class_init (XfmpcPreferencesClass *klass)
                                    g_param_spec_string ("dbbrowser-last-path",
                                                         "DbbrowserLastPath",
                                                         "Restores the last path from the database browser",
-                                                         "",
+                                                        "",
+                                                        G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_MPD_HOST,
+                                   g_param_spec_string ("mpd-hostname",
+                                                        "MpdHostname",
+                                                        "Hostname of the MPD server",
+                                                        "localhost",
+                                                        G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_MPD_PORT,
+                                   g_param_spec_int ("mpd-port",
+                                                      "MpdPort",
+                                                      "Port of the MPD server",
+                                                      0, 65536, 6600,
+                                                      G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_MPD_PASSWORD,
+                                   g_param_spec_string ("mpd-password",
+                                                        "MpdPassword",
+                                                        "Password of the MPD server",
+                                                        NULL,
+                                                        G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_MPD_USE_DEFAULTS,
+                                   g_param_spec_boolean ("mpd-use-defaults",
+                                                         "MpdUseDefaults",
+                                                         "Use default system settings for the MPD server (MPD_HOST/PORT environment variables)",
+                                                         TRUE,
                                                          G_PARAM_READWRITE));
 }
 

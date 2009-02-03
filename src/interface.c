@@ -211,6 +211,8 @@ xfmpc_interface_init (XfmpcInterface *interface)
   g_signal_connect_swapped (progress_box, "button-press-event",
                             G_CALLBACK (xfmpc_interface_progress_box_press_event), interface);
 
+  g_signal_connect_swapped (interface->mpdclient, "connected",
+                            G_CALLBACK (xfmpc_interface_reconnect), interface);
   g_signal_connect_swapped (interface->mpdclient, "song-changed",
                             G_CALLBACK (cb_song_changed), interface);
   g_signal_connect_swapped (interface->mpdclient, "pp-changed",

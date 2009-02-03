@@ -110,6 +110,7 @@ main (int argc, char *argv[])
   GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_icon_name (GTK_WINDOW (window), "stock_volume");
   gtk_window_set_title (GTK_WINDOW (window), _("Xfmpc"));
+  gtk_window_set_default_size (GTK_WINDOW (window), 330, 330);
   g_signal_connect (G_OBJECT (window), "delete-event", G_CALLBACK (cb_window_closed), NULL);
   g_signal_connect (G_OBJECT (window), "window-state-event", G_CALLBACK (cb_window_state_event), NULL);
 

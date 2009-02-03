@@ -24,9 +24,7 @@
 #include <libmpd/libmpd.h>
 
 #include "mpdclient.h"
-
-#define MPD_HOST "localhost"
-#define MPD_PORT 6600
+#include "preferences.h"
 
 #define XFMPC_MPDCLIENT_GET_PRIVATE(o) \
     (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclientPrivate))
@@ -92,6 +90,7 @@ struct _XfmpcMpdclientPrivate
   gchar                    *host;
   guint                     port;
   gchar                    *passwd;
+  gboolean                  env_cached;
 };
 
 
@@ -232,8 +231,7 @@ xfmpc_mpdclient_init (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
 
-  xfmpc_mpdclient_initenv (mpdclient);
-  priv->mi = mpd_new (priv->host, priv->port, priv->passwd);
+  priv->mi = mpd_new_default ();
   mpd_signal_connect_status_changed (priv->mi, (StatusChangedCallback)cb_xfmpc_mpdclient_status_changed, mpdclient);
 }
 
@@ -269,27 +267,52 @@ static void
 xfmpc_mpdclient_initenv (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcPreferences *preferences = xfmpc_preferences_get ();
+  gchar *host, *password;
+  guint port;
+  gboolean use_defaults;
 
-  /* Hostname */
-  priv->host = (g_getenv ("MPD_HOST") != NULL) ?
-      g_strdup (g_getenv ("MPD_HOST")) :
-      g_strdup (MPD_HOST);
+  g_object_get (preferences, "mpd-use-defaults", &use_defaults, NULL);
 
-  /* Port */
-  priv->port = (g_getenv ("MPD_PORT") != NULL) ?
-      (gint) g_ascii_strtoll (g_getenv ("MPD_PORT"), NULL, 0) :
-      MPD_PORT;
+  if (use_defaults)
+    {
+      if (!priv->env_cached)
+        {
+          g_free (priv->host);
+          g_free (priv->passwd);
+          priv->env_cached = TRUE;
 
-  /* Check for password */
-  priv->passwd = NULL;
-  gchar **split = g_strsplit (priv->host, "@", 2);
-  if (g_strv_length (split) == 2)
+          priv->host = (g_getenv ("MPD_HOST") != NULL) ?
+            g_strdup (g_getenv ("MPD_HOST")) :
+            g_strdup ("127.0.0.1");
+
+          priv->port = (g_getenv ("MPD_PORT") != NULL) ?
+            (gint) g_ascii_strtoll (g_getenv ("MPD_PORT"), NULL, 0) :
+            6600;
+
+          priv->passwd = NULL;
+          gchar **split = g_strsplit (priv->host, "@", 2);
+          if (g_strv_length (split) == 2)
+            {
+              g_free (priv->host);
+              priv->host = g_strdup (split[1]);
+              priv->passwd = g_strdup (split[0]);
+            }
+          g_strfreev (split);
+        }
+    }
+  else
     {
       g_free (priv->host);
-      priv->host = g_strdup (split[0]);
-      priv->passwd = g_strdup (split[1]);
+      g_free (priv->passwd);
+      priv->env_cached = FALSE;
+
+      g_object_get (preferences,
+                    "mpd-hostname", &priv->host,
+                    "mpd-port", &priv->port,
+                    "mpd-password", &priv->passwd,
+                    NULL);
     }
-  g_strfreev (split);
 }
 
 gboolean
@@ -299,6 +322,11 @@ xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
 
   if (xfmpc_mpdclient_is_connected (mpdclient))
     return TRUE;
+
+  xfmpc_mpdclient_initenv (mpdclient);
+  mpd_set_hostname (priv->mi, priv->host);
+  mpd_set_port (priv->mi, priv->port);
+  mpd_set_password (priv->mi, (priv->passwd != NULL) ? priv->passwd : "");
 
   if (mpd_connect (priv->mi) != MPD_OK)
     return FALSE;

@@ -31,14 +31,16 @@ EOF
 linguas=`sed -e '/^#/d' po/LINGUAS`
 if test -d .git/svn; then
   revision=`LC_ALL=C git-svn find-rev git-svn`
-elif test -f .svn; then
-  revision=`LC_ALL=C svn info $0 | awk '/^Revision: / {printf "%05d\n", $2}'`
+elif test -d .svn; then
+  revision=`LC_ALL=C svn info | awk '/^Revision: / {printf "%05d\n", $2}'`
 else
   revision=""
 fi
+
 sed -e "s/@LINGUAS@/${linguas}/g" \
     -e "s/@REVISION@/${revision}/g" \
     < "configure.in.in" > "configure.in"
 
-exec xdt-autogen $@
+exec xdt-autogen --enable-debug $@
+rm "configure.in"
 
