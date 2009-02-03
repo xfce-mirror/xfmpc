@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2008 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -9,11 +9,11 @@
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
+ *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -30,7 +30,7 @@
 
 #define BORDER 4
 
-#define XFMPC_PLAYLIST_GET_PRIVATE(o) \
+#define GET_PRIVATE(o) \
     (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_PLAYLIST, XfmpcPlaylistPrivate))
 
 
@@ -81,22 +81,23 @@ struct _XfmpcPlaylistClass
 
 struct _XfmpcPlaylist
 {
-  GtkVBox               parent;
-  XfmpcPlaylistPrivate *priv;
-  XfmpcPreferences     *preferences;
-  XfmpcMpdclient       *mpdclient;
+  GtkVBox                   parent;
+  XfmpcPreferences         *preferences;
+  XfmpcMpdclient           *mpdclient;
+  /*<private>*/
+  XfmpcPlaylistPrivate     *priv;
 };
 
 struct _XfmpcPlaylistPrivate
 {
-  GtkWidget            *treeview;
-  GtkTreeModelFilter   *filter;
-  GtkListStore         *store;
-  GtkWidget            *filter_entry;
-  GtkWidget            *menu;
+  GtkWidget                *treeview;
+  GtkTreeModelFilter       *filter;
+  GtkListStore             *store;
+  GtkWidget                *filter_entry;
+  GtkWidget                *menu;
 
-  gint                  current;
-  gboolean              autocenter;
+  gint                      current;
+  gboolean                  autocenter;
 };
 
 
@@ -150,7 +151,7 @@ xfmpc_playlist_class_init (XfmpcPlaylistClass *klass)
 static void
 xfmpc_playlist_init (XfmpcPlaylist *playlist)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = playlist->priv = GET_PRIVATE (playlist);
 
   playlist->preferences = xfmpc_preferences_get ();
   playlist->mpdclient = xfmpc_mpdclient_get ();
@@ -285,7 +286,7 @@ xfmpc_playlist_append (XfmpcPlaylist *playlist,
                        gchar *song,
                        gchar *length)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   GtkTreeIter           iter;
 
   gtk_list_store_append (priv->store, &iter);
@@ -300,15 +301,14 @@ xfmpc_playlist_append (XfmpcPlaylist *playlist,
 void
 xfmpc_playlist_clear (XfmpcPlaylist *playlist)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
-
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   gtk_list_store_clear (priv->store);
 }
 
 void
 xfmpc_playlist_delete_selection (XfmpcPlaylist *playlist)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   GtkTreeModel         *store = GTK_TREE_MODEL (priv->store);
   GtkTreeIter           iter;
   GList                *list;
@@ -338,7 +338,7 @@ void
 xfmpc_playlist_select_row (XfmpcPlaylist *playlist,
                            gint i)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
 
   if (gtk_tree_model_iter_n_children (GTK_TREE_MODEL (priv->filter), NULL) == 0)
     return;
@@ -352,7 +352,7 @@ xfmpc_playlist_select_row (XfmpcPlaylist *playlist,
 void
 xfmpc_playlist_refresh_current_song (XfmpcPlaylist *playlist)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
 
   /* Remove the bold from the "last" current song */
   GtkTreeIter iter;
@@ -376,7 +376,7 @@ xfmpc_playlist_refresh_current_song (XfmpcPlaylist *playlist)
 static void
 cb_song_changed (XfmpcPlaylist *playlist)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
 
   xfmpc_playlist_refresh_current_song (playlist);
 
@@ -388,7 +388,7 @@ cb_song_changed (XfmpcPlaylist *playlist)
 static void
 cb_playlist_changed (XfmpcPlaylist *playlist)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   gchar                *song, *length;
   gint                  id, current;
 
@@ -414,7 +414,7 @@ cb_row_activated (XfmpcPlaylist *playlist,
                   GtkTreePath *path,
                   GtkTreeViewColumn *column)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   GtkTreeIter           iter;
   gint                  id;
 
@@ -451,7 +451,7 @@ static gboolean
 cb_button_pressed (XfmpcPlaylist *playlist,
                    GdkEventButton *event)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   GtkTreeSelection     *selection;
   GtkTreePath          *path;
   
@@ -480,15 +480,13 @@ static gboolean
 cb_popup_menu (XfmpcPlaylist *playlist)
 {
   popup_menu (playlist);
-
   return TRUE;
 }
 
 static void
 popup_menu (XfmpcPlaylist *playlist)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
-
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   gtk_menu_popup (GTK_MENU (priv->menu),
                   NULL, NULL,
                   NULL, NULL,
@@ -501,7 +499,7 @@ popup_menu (XfmpcPlaylist *playlist)
 static void
 cb_filter_entry_activated (XfmpcPlaylist *playlist)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   GtkTreeModel         *model = GTK_TREE_MODEL (priv->filter);
   GList                *list;
 
@@ -521,7 +519,7 @@ static gboolean
 cb_filter_entry_key_released (XfmpcPlaylist *playlist,
                               GdkEventKey *event)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
 
   if (event->type != GDK_KEY_RELEASE)
     return FALSE;
@@ -546,8 +544,7 @@ cb_filter_entry_key_released (XfmpcPlaylist *playlist,
 static void
 cb_filter_entry_changed (XfmpcPlaylist *playlist)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
-
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   gtk_tree_model_filter_refilter (priv->filter);
 }
 
@@ -556,7 +553,7 @@ visible_func_filter_tree (GtkTreeModel *filter,
                           GtkTreeIter *iter,
                           XfmpcPlaylist *playlist)
 {
-  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST_GET_PRIVATE (playlist);
+  XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   gchar                *song, *song_tmp;
   gchar                *search;
   gboolean              result = TRUE;

@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2008 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -9,11 +9,11 @@
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
+ *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -26,7 +26,7 @@
 #include "mpdclient.h"
 #include "preferences.h"
 
-#define XFMPC_MPDCLIENT_GET_PRIVATE(o) \
+#define GET_PRIVATE(o) \
     (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclientPrivate))
 
 
@@ -46,7 +46,7 @@ enum
   LAST_SIGNAL
 };
 
-static guint            xfmpc_mpdclient_signals[LAST_SIGNAL] = { 0 };
+static guint            signals[LAST_SIGNAL] = { 0 };
 
 
 
@@ -56,10 +56,11 @@ static void             xfmpc_mpdclient_finalize                (GObject *object
 
 static void             xfmpc_mpdclient_initenv                 (XfmpcMpdclient *mpdclient);
 
-static void             cb_xfmpc_mpdclient_status_changed       (MpdObj *mi,
+static void             cb_status_changed                       (MpdObj *mi,
                                                                  ChangedStatusType what,
                                                                  gpointer user_data);
 static gchar *          _get_formatted_name                     (mpd_Song *song);
+
 
 
 struct _XfmpcMpdclientClass
@@ -81,6 +82,7 @@ struct _XfmpcMpdclientClass
 struct _XfmpcMpdclient
 {
   GObject                   parent;
+  /*<private>*/
   XfmpcMpdclientPrivate    *priv;
 };
 
@@ -139,7 +141,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = xfmpc_mpdclient_finalize;
 
-  xfmpc_mpdclient_signals[SIG_CONNECTED] =
+  signals[SIG_CONNECTED] =
     g_signal_new ("connected", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, connected),
@@ -147,7 +149,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
-  xfmpc_mpdclient_signals[SIG_SONG_CHANGED] =
+  signals[SIG_SONG_CHANGED] =
     g_signal_new ("song-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, song_changed),
@@ -155,7 +157,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
-  xfmpc_mpdclient_signals[SIG_PP_CHANGED] =
+  signals[SIG_PP_CHANGED] =
     g_signal_new ("pp-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, pp_changed),
@@ -164,7 +166,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   G_TYPE_NONE, 1,
                   G_TYPE_BOOLEAN);
 
-  xfmpc_mpdclient_signals[SIG_TIME_CHANGED] =
+  signals[SIG_TIME_CHANGED] =
     g_signal_new ("time-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, time_changed),
@@ -174,7 +176,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   G_TYPE_INT,
                   G_TYPE_INT);
 
-  xfmpc_mpdclient_signals[SIG_VOLUME_CHANGED] =
+  signals[SIG_VOLUME_CHANGED] =
     g_signal_new ("volume-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, volume_changed),
@@ -183,7 +185,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   G_TYPE_NONE, 1,
                   G_TYPE_INT);
 
-  xfmpc_mpdclient_signals[SIG_STOPPED] =
+  signals[SIG_STOPPED] =
     g_signal_new ("stopped", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, stopped),
@@ -191,7 +193,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
-  xfmpc_mpdclient_signals[SIG_DATABASE_CHANGED] =
+  signals[SIG_DATABASE_CHANGED] =
     g_signal_new ("database-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, database_changed),
@@ -199,7 +201,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
-  xfmpc_mpdclient_signals[SIG_PLAYLIST_CHANGED] =
+  signals[SIG_PLAYLIST_CHANGED] =
     g_signal_new ("playlist-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, playlist_changed),
@@ -207,7 +209,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
-  xfmpc_mpdclient_signals[SIG_REPEAT] =
+  signals[SIG_REPEAT] =
     g_signal_new ("repeat", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, repeat),
@@ -216,7 +218,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   G_TYPE_NONE, 1,
                   G_TYPE_BOOLEAN);
 
-  xfmpc_mpdclient_signals[SIG_RANDOM] =
+  signals[SIG_RANDOM] =
     g_signal_new ("random", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, random),
@@ -229,17 +231,16 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
 static void
 xfmpc_mpdclient_init (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
+  XfmpcMpdclientPrivate *priv = mpdclient->priv = GET_PRIVATE (mpdclient);
   priv->mi = mpd_new_default ();
-  mpd_signal_connect_status_changed (priv->mi, (StatusChangedCallback)cb_xfmpc_mpdclient_status_changed, mpdclient);
+  mpd_signal_connect_status_changed (priv->mi, (StatusChangedCallback)cb_status_changed, mpdclient);
 }
 
 static void
 xfmpc_mpdclient_finalize (GObject *object)
 {
   XfmpcMpdclient *mpdclient = XFMPC_MPDCLIENT (object);
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   mpd_free (priv->mi);
   (*G_OBJECT_CLASS (parent_class)->finalize) (object);
@@ -266,10 +267,8 @@ xfmpc_mpdclient_get ()
 static void
 xfmpc_mpdclient_initenv (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   XfmpcPreferences *preferences = xfmpc_preferences_get ();
-  gchar *host, *password;
-  guint port;
   gboolean use_defaults;
 
   g_object_get (preferences, "mpd-use-defaults", &use_defaults, NULL);
@@ -318,7 +317,7 @@ xfmpc_mpdclient_initenv (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (xfmpc_mpdclient_is_connected (mpdclient))
     return TRUE;
@@ -333,7 +332,7 @@ xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
 
   mpd_send_password (priv->mi);
 
-  g_signal_emit_by_name (mpdclient, "connected");
+  g_signal_emit (mpdclient, signals[SIG_CONNECTED], 0);
 
   return TRUE;
 }
@@ -341,7 +340,7 @@ xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
 void
 xfmpc_mpdclient_disconnect (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (xfmpc_mpdclient_is_connected (mpdclient))
     mpd_disconnect (priv->mi);
@@ -350,7 +349,7 @@ xfmpc_mpdclient_disconnect (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_is_connected (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   return mpd_check_connected (priv->mi);
 }
@@ -358,7 +357,7 @@ xfmpc_mpdclient_is_connected (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_previous (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_player_prev (priv->mi) != MPD_OK)
     return FALSE;
@@ -378,7 +377,7 @@ xfmpc_mpdclient_pp (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_play (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_player_play (priv->mi) != MPD_OK)
     return FALSE;
@@ -389,7 +388,7 @@ xfmpc_mpdclient_play (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_pause (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_player_pause (priv->mi) != MPD_OK)
     return FALSE;
@@ -400,7 +399,7 @@ xfmpc_mpdclient_pause (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_stop (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_player_stop (priv->mi) != MPD_OK)
     return FALSE;
@@ -411,7 +410,7 @@ xfmpc_mpdclient_stop (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_next (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_player_next (priv->mi) != MPD_OK)
     return FALSE;
@@ -423,7 +422,7 @@ gboolean
 xfmpc_mpdclient_set_id (XfmpcMpdclient *mpdclient,
                         gint id)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   return mpd_player_play_id (priv->mi, id) == MPD_OK ? TRUE : FALSE;
 }
@@ -432,7 +431,7 @@ gboolean
 xfmpc_mpdclient_set_song_time (XfmpcMpdclient *mpdclient,
                                guint time)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_player_seek (priv->mi, time) != MPD_OK)
     return FALSE;
@@ -444,7 +443,7 @@ gboolean
 xfmpc_mpdclient_set_volume (XfmpcMpdclient *mpdclient,
                             guint8 volume)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_status_set_volume (priv->mi, volume) < 0)
     return FALSE;
@@ -456,7 +455,7 @@ gboolean
 xfmpc_mpdclient_set_repeat (XfmpcMpdclient *mpdclient,
                             gboolean repeat)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (MPD_OK != mpd_player_set_repeat (priv->mi, repeat))
     return FALSE;
@@ -468,7 +467,7 @@ gboolean
 xfmpc_mpdclient_set_random (XfmpcMpdclient *mpdclient,
                             gboolean random)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (MPD_OK != mpd_player_set_random (priv->mi, random))
     return FALSE;
@@ -481,7 +480,7 @@ xfmpc_mpdclient_set_random (XfmpcMpdclient *mpdclient,
 gint
 xfmpc_mpdclient_get_pos (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   gint pos = mpd_player_get_current_song_pos (priv->mi);
   if (pos < 0)
@@ -493,7 +492,7 @@ xfmpc_mpdclient_get_pos (XfmpcMpdclient *mpdclient)
 gint
 xfmpc_mpdclient_get_id (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   return mpd_player_get_current_song_id (priv->mi);
 }
@@ -501,7 +500,7 @@ xfmpc_mpdclient_get_id (XfmpcMpdclient *mpdclient)
 const gchar *
 xfmpc_mpdclient_get_artist (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   mpd_Song *song = mpd_playlist_get_current_song (priv->mi);
   if (G_UNLIKELY (NULL == song))
@@ -516,7 +515,7 @@ xfmpc_mpdclient_get_artist (XfmpcMpdclient *mpdclient)
 const gchar *
 xfmpc_mpdclient_get_title (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   mpd_Song *song = mpd_playlist_get_current_song (priv->mi);
   if (G_UNLIKELY (NULL == song))
@@ -531,7 +530,7 @@ xfmpc_mpdclient_get_title (XfmpcMpdclient *mpdclient)
 const gchar *
 xfmpc_mpdclient_get_album (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   mpd_Song *song = mpd_playlist_get_current_song (priv->mi);
   if (G_UNLIKELY (NULL == song))
@@ -546,7 +545,7 @@ xfmpc_mpdclient_get_album (XfmpcMpdclient *mpdclient)
 const gchar *
 xfmpc_mpdclient_get_date (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   mpd_Song *song = mpd_playlist_get_current_song (priv->mi);
   if (G_UNLIKELY (NULL == song))
@@ -561,24 +560,21 @@ xfmpc_mpdclient_get_date (XfmpcMpdclient *mpdclient)
 gint
 xfmpc_mpdclient_get_time (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   return mpd_status_get_elapsed_song_time (priv->mi);
 }
 
 gint
 xfmpc_mpdclient_get_total_time (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   return mpd_status_get_total_song_time (priv->mi);
 }
 
 guint8
 xfmpc_mpdclient_get_volume (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   gint volume = mpd_status_get_volume (priv->mi);
   return (volume < 0) ? 100 : volume;
 }
@@ -586,32 +582,28 @@ xfmpc_mpdclient_get_volume (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_get_repeat (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   return mpd_player_get_repeat (priv->mi);
 }
 
 gboolean
 xfmpc_mpdclient_get_random (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   return mpd_player_get_random (priv->mi);
 }
 
 gboolean
 xfmpc_mpdclient_is_playing (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   return mpd_player_get_state (priv->mi) == MPD_PLAYER_PLAY;
 }
 
 gboolean
 xfmpc_mpdclient_is_stopped (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   return mpd_player_get_state (priv->mi) == MPD_PLAYER_STOP;
 }
 
@@ -620,54 +612,53 @@ xfmpc_mpdclient_is_stopped (XfmpcMpdclient *mpdclient)
 void
 xfmpc_mpdclient_update_status (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
-
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   mpd_status_update (priv->mi);
 }
 
 static void
-cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
-                                   ChangedStatusType what,
-                                   gpointer user_data)
+cb_status_changed (MpdObj *mi,
+                   ChangedStatusType what,
+                   gpointer user_data)
 {
   XfmpcMpdclient *mpdclient = XFMPC_MPDCLIENT (user_data);
   g_return_if_fail (G_LIKELY (NULL != user_data));
 
   if (what & MPD_CST_DATABASE)
-    g_signal_emit_by_name (mpdclient, "database-changed");
+    g_signal_emit (mpdclient, signals[SIG_DATABASE_CHANGED], 0);
 
   if (what & MPD_CST_PLAYLIST)
-    g_signal_emit_by_name (mpdclient, "playlist-changed");
+    g_signal_emit (mpdclient, signals[SIG_PLAYLIST_CHANGED], 0);
 
   if (what & MPD_CST_SONGID && !(what & MPD_CST_DATABASE))
-    g_signal_emit_by_name (mpdclient, "song-changed");
+    g_signal_emit (mpdclient, signals[SIG_SONG_CHANGED], 0);
 
   if (what & MPD_CST_STATE)
     {
       gint state = mpd_player_get_state (mi);
       if (state == MPD_PLAYER_STOP)
-        g_signal_emit_by_name (mpdclient, "stopped");
+        g_signal_emit (mpdclient, signals[SIG_STOPPED], 0);
       else if (state == MPD_PLAYER_PLAY || state == MPD_PLAYER_PAUSE)
-        g_signal_emit_by_name (mpdclient, "pp-changed",
-                               state == MPD_PLAYER_PLAY);
+        g_signal_emit (mpdclient, signals[SIG_PP_CHANGED], 0,
+                       state == MPD_PLAYER_PLAY);
     }
 
   if (what & MPD_CST_VOLUME)
-    g_signal_emit_by_name (mpdclient, "volume-changed",
-                           xfmpc_mpdclient_get_volume (mpdclient));
+    g_signal_emit (mpdclient, signals[SIG_VOLUME_CHANGED], 0,
+                   xfmpc_mpdclient_get_volume (mpdclient));
 
   if (what & (MPD_CST_ELAPSED_TIME|MPD_CST_TOTAL_TIME))
-    g_signal_emit_by_name (mpdclient, "time-changed",
-                           xfmpc_mpdclient_get_time (mpdclient),
-                           xfmpc_mpdclient_get_total_time (mpdclient));
+    g_signal_emit (mpdclient, signals[SIG_TIME_CHANGED], 0,
+                   xfmpc_mpdclient_get_time (mpdclient),
+                   xfmpc_mpdclient_get_total_time (mpdclient));
 
   if (what & MPD_CST_REPEAT)
-    g_signal_emit_by_name (mpdclient, "repeat",
-                           xfmpc_mpdclient_get_repeat (mpdclient));
+    g_signal_emit (mpdclient, signals[SIG_REPEAT], 0,
+                   xfmpc_mpdclient_get_repeat (mpdclient));
 
   if (what & MPD_CST_RANDOM)
-    g_signal_emit_by_name (mpdclient, "random",
-                           xfmpc_mpdclient_get_random (mpdclient));
+    g_signal_emit (mpdclient, signals[SIG_RANDOM], 0,
+                   xfmpc_mpdclient_get_random (mpdclient));
 }
 
 
@@ -675,7 +666,7 @@ cb_xfmpc_mpdclient_status_changed (MpdObj *mi,
 gboolean
 xfmpc_mpdclient_queue_commit (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_playlist_queue_commit (priv->mi) != MPD_OK)
     return FALSE;
@@ -687,7 +678,7 @@ gboolean
 xfmpc_mpdclient_queue_add (XfmpcMpdclient *mpdclient,
                            const gchar *path)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_playlist_queue_add (priv->mi, (gchar *)path) != MPD_OK)
     return FALSE;
@@ -699,7 +690,7 @@ gboolean
 xfmpc_mpdclient_queue_remove_id (XfmpcMpdclient *mpdclient,
                                  gint id)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_playlist_queue_delete_id (priv->mi, id) != MPD_OK)
     return FALSE;
@@ -713,7 +704,12 @@ xfmpc_mpdclient_queue_clear (XfmpcMpdclient *mpdclient)
   gint id;
 
   while (xfmpc_mpdclient_playlist_read (mpdclient, &id, NULL, NULL))
-    xfmpc_mpdclient_queue_remove_id (mpdclient, id);
+    {
+      if (!xfmpc_mpdclient_queue_remove_id (mpdclient, id))
+        return FALSE;
+    }
+
+  return TRUE;
 }
 
 
@@ -725,7 +721,7 @@ xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
                                gchar **length)
 {
   static MpdData       *data = NULL;
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (NULL == data)
     data = mpd_playlist_get_changes (priv->mi, -1);
@@ -747,7 +743,7 @@ xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
 gboolean
 xfmpc_mpdclient_playlist_clear (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_playlist_clear (priv->mi) != FALSE)
     return FALSE;
@@ -758,7 +754,7 @@ xfmpc_mpdclient_playlist_clear (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_database_refresh (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   if (mpd_database_update_dir (priv->mi, "/") != MPD_OK)
     return FALSE;
@@ -773,7 +769,7 @@ xfmpc_mpdclient_database_read (XfmpcMpdclient *mpdclient,
                                gchar **basename,
                                gboolean *is_dir)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   static MpdData        *data = NULL;
 
   if (NULL == data)
@@ -820,7 +816,7 @@ xfmpc_mpdclient_database_search (XfmpcMpdclient *mpdclient,
                                  gchar **filename,
                                  gchar **basename)
 {
-  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT_GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
   static MpdData        *data = NULL;
   gchar                **queries;
   gint                   i;

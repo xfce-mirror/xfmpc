@@ -40,18 +40,13 @@ INCLUDES =								\
 
 if MAINTAINER_MODE
 DISTCLEANFILES =							\
-	main-ui.h							\
-	interface-ui.h
+	main-ui.h
 
 BUILT_SOURCES =								\
-	main-ui.h							\
-	interface-ui.h
+	main-ui.h
 
 main-ui.h: Makefile $(srcdir)/main-ui.xml
 	exo-csource --strip-comments --strip-content --static --name=main_ui $(srcdir)/main-ui.xml > main-ui.h
-
-interface-ui.h: Makefile $(srcdir)/interface-ui.xml
-	exo-csource --strip-comments --strip-content --static --name=xfmpc_interface_ui $(srcdir)/interface-ui.xml > interface-ui.h
 endif
 
 EXTRA_DIST =								\

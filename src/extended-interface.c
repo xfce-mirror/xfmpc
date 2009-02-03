@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2008 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -9,11 +9,11 @@
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
+ *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -33,7 +33,7 @@
 
 #define BORDER 4
 
-#define XFMPC_EXTENDED_INTERFACE_GET_PRIVATE(o) \
+#define GET_PRIVATE(o) \
     (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterfacePrivate))
 
 
@@ -82,8 +82,9 @@ struct _XfmpcExtendedInterfaceClass
 struct _XfmpcExtendedInterface
 {
   GtkVBox                           parent;
-  XfmpcExtendedInterfacePrivate    *priv;
   XfmpcMpdclient                   *mpdclient;
+  /*<private>*/
+  XfmpcExtendedInterfacePrivate    *priv;
 };
 
 struct _XfmpcExtendedInterfacePrivate
@@ -91,8 +92,6 @@ struct _XfmpcExtendedInterfacePrivate
   GtkListStore                     *list_store;
   GtkWidget                        *combobox;
   GtkWidget                        *notebook;
-  GtkWidget                        *repeat;
-  GtkWidget                        *random;
   GtkWidget                        *context_button;
   GtkWidget                        *context_menu;
 };
@@ -148,7 +147,7 @@ xfmpc_extended_interface_class_init (XfmpcExtendedInterfaceClass *klass)
 static void
 xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 {
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
+  XfmpcExtendedInterfacePrivate *priv = extended_interface->priv = GET_PRIVATE (extended_interface);
 
   extended_interface->mpdclient = xfmpc_mpdclient_get ();
 
@@ -218,14 +217,12 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 static void
 xfmpc_extended_interface_dispose (GObject *object)
 {
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (object);
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (object)->priv;
 
   if (GTK_IS_MENU (priv->context_menu))
     {
       gtk_menu_detach (GTK_MENU (priv->context_menu));
       priv->context_menu = NULL;
-      priv->repeat = NULL;
-      priv->random = NULL;
     }
 
   if (GTK_IS_WIDGET (priv->context_button))
@@ -241,7 +238,6 @@ static void
 xfmpc_extended_interface_finalize (GObject *object)
 {
   XfmpcExtendedInterface *extended_interface = XFMPC_EXTENDED_INTERFACE (object);
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
   g_object_unref (G_OBJECT (extended_interface->mpdclient));
   (*G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
@@ -259,8 +255,7 @@ xfmpc_extended_interface_append_child (XfmpcExtendedInterface *extended_interfac
                                        GtkWidget *child,
                                        const gchar *title)
 {
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
-
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
   GtkTreeIter iter;
 
   gtk_list_store_append (priv->list_store, &iter);
@@ -280,7 +275,7 @@ void
 xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface *extended_interface,
                                            GtkWidget *attach_widget)
 {
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
 
   GtkWidget *menu = priv->context_menu = gtk_menu_new ();
   gtk_menu_set_screen (GTK_MENU (menu), gtk_widget_get_screen (GTK_WIDGET (attach_widget)));
@@ -288,21 +283,21 @@ xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface *extended_inte
   g_signal_connect (menu, "deactivate",
                     G_CALLBACK (cb_context_menu_deactivate), attach_widget);
 
-  priv->repeat = gtk_check_menu_item_new_with_label (_("Repeat"));
-  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (priv->repeat),
+  GtkWidget *mi = gtk_check_menu_item_new_with_label (_("Repeat"));
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (mi),
                                   xfmpc_mpdclient_get_repeat (extended_interface->mpdclient));
-  g_signal_connect_swapped (priv->repeat, "activate",
+  g_signal_connect_swapped (mi, "activate",
                             G_CALLBACK (cb_repeat_switch), extended_interface);
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), priv->repeat);
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
-  priv->random = gtk_check_menu_item_new_with_label (_("Random"));
-  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (priv->random),
+  mi = gtk_check_menu_item_new_with_label (_("Random"));
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (mi),
                                   xfmpc_mpdclient_get_random (extended_interface->mpdclient));
-  g_signal_connect_swapped (priv->random, "activate",
+  g_signal_connect_swapped (mi, "activate",
                             G_CALLBACK (cb_random_switch), extended_interface);
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), priv->random);
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
-  GtkWidget *mi = gtk_separator_menu_item_new ();
+  mi = gtk_separator_menu_item_new ();
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_PREFERENCES, GTK_ICON_SIZE_MENU);
@@ -425,8 +420,7 @@ static void
 cb_interface_changed (GtkComboBox *widget,
                       XfmpcExtendedInterface *extended_interface)
 {
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
-
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
   GtkWidget            *child;
   GtkTreeIter           iter;
   gint                  i;
@@ -477,7 +471,7 @@ cb_context_menu_deactivate (GtkMenuShell *menu,
 static void
 popup_context_menu (XfmpcExtendedInterface *extended_interface)
 {
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (extended_interface);
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
 
   if (GTK_IS_MENU (priv->context_menu))
     gtk_menu_detach (GTK_MENU (priv->context_menu));

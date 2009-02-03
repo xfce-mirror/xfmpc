@@ -1,5 +1,8 @@
 /*
- *  Copyright (c) 2008 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
+ *
+ *  Based on ThunarPreferences:
+ *  Copyright (c) 2005-2007 Benedikt Meurer <benny@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -9,11 +12,11 @@
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
+ *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -76,6 +79,7 @@ struct _XfmpcPreferencesClass
 struct _XfmpcPreferences
 {
   GObject               parent;
+  /*<private>*/
   GValue                values[N_PROPERTIES];
 };
 

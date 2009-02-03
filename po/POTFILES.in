@@ -1,4 +1,9 @@
+src/dbbrowser.c
 src/extended-interface.c
 src/interface.c
+src/main.c
 src/mpdclient.c
+src/playlist.c
+src/preferences.c
+src/xfce-arrow-button.c
 xfmpc.desktop.in

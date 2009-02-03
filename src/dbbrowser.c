@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2008 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -9,11 +9,11 @@
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
+ *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -30,7 +30,7 @@
 
 #define BORDER 4
 
-#define XFMPC_DBBROWSER_GET_PRIVATE(o) \
+#define GET_PRIVATE(o) \
     (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_DBBROWSER, XfmpcDbbrowserPrivate))
 
 
@@ -80,9 +80,10 @@ struct _XfmpcDbbrowserClass
 struct _XfmpcDbbrowser
 {
   GtkVBox                   parent;
-  XfmpcDbbrowserPrivate    *priv;
   XfmpcPreferences         *preferences;
   XfmpcMpdclient           *mpdclient;
+  /*<private>*/
+  XfmpcDbbrowserPrivate    *priv;
 };
 
 struct _XfmpcDbbrowserPrivate
@@ -150,7 +151,7 @@ xfmpc_dbbrowser_class_init (XfmpcDbbrowserClass *klass)
 static void
 xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
 {
-  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate *priv = dbbrowser->priv = GET_PRIVATE (dbbrowser);
 
   dbbrowser->preferences = xfmpc_preferences_get ();
   dbbrowser->mpdclient = xfmpc_mpdclient_get ();
@@ -261,7 +262,7 @@ static void
 xfmpc_dbbrowser_finalize (GObject *object)
 {
   XfmpcDbbrowser *dbbrowser = XFMPC_DBBROWSER (object);
-  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
 
   g_object_set (G_OBJECT (dbbrowser->preferences),
                 "dbbrowser-last-path", priv->wdir,
@@ -283,8 +284,7 @@ xfmpc_dbbrowser_new ()
 void
 xfmpc_dbbrowser_clear (XfmpcDbbrowser *dbbrowser)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
-
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   gtk_list_store_clear (priv->store);
 }
 
@@ -294,7 +294,7 @@ xfmpc_dbbrowser_append (XfmpcDbbrowser *dbbrowser,
                         gchar *basename,
                         gboolean is_dir)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   GdkPixbuf                *pixbuf;
   GtkTreeIter               iter;
 
@@ -315,7 +315,7 @@ xfmpc_dbbrowser_append (XfmpcDbbrowser *dbbrowser,
 void
 xfmpc_dbbrowser_add_selected_rows (XfmpcDbbrowser *dbbrowser)
 {
-  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   GtkTreeModel         *store = GTK_TREE_MODEL (priv->store);
   GtkTreeIter           iter;
   GList                *list;
@@ -352,7 +352,7 @@ xfmpc_dbbrowser_replace_with_selected_rows (XfmpcDbbrowser *dbbrowser)
 void
 xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   gchar                    *filename;
   gchar                    *basename;
   gboolean                  is_dir;
@@ -401,7 +401,7 @@ void
 xfmpc_dbbrowser_search (XfmpcDbbrowser *dbbrowser,
                         const gchar *query)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   gchar                    *filename;
   gchar                    *basename;
   gint                      i = 0;
@@ -461,7 +461,7 @@ void
 xfmpc_dbbrowser_set_wdir (XfmpcDbbrowser *dbbrowser,
                           const gchar *dir)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
 
   g_free (priv->last_wdir);
   priv->last_wdir = priv->wdir;
@@ -471,15 +471,14 @@ xfmpc_dbbrowser_set_wdir (XfmpcDbbrowser *dbbrowser,
 gboolean
 xfmpc_dbbrowser_wdir_is_root (XfmpcDbbrowser *dbbrowser)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
-
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   return priv->wdir[0] == '\0';
 }
 
 gchar *
 xfmpc_dbbrowser_get_parent_wdir (XfmpcDbbrowser *dbbrowser)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   gchar                    *filename;
 
   filename = g_strrstr (priv->wdir, "/");
@@ -498,7 +497,7 @@ cb_row_activated (XfmpcDbbrowser *dbbrowser,
                   GtkTreePath *path,
                   GtkTreeViewColumn *column)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   GtkTreeIter               iter;
   gchar                    *filename;
   gboolean                  is_dir;
@@ -529,7 +528,7 @@ static gboolean
 cb_key_pressed (XfmpcDbbrowser *dbbrowser,
                 GdkEventKey *event)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   GtkTreeSelection         *selection;
   gchar                    *filename;
 
@@ -564,7 +563,7 @@ static gboolean
 cb_button_pressed (XfmpcDbbrowser *dbbrowser,
                    GdkEventButton *event)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   GtkTreeSelection         *selection;
   GtkTreePath              *path;
   
@@ -593,15 +592,13 @@ static gboolean
 cb_popup_menu (XfmpcDbbrowser *dbbrowser)
 {
   popup_menu (dbbrowser);
-
   return TRUE;
 }
 
 static void
 popup_menu (XfmpcDbbrowser *dbbrowser)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
-
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   gtk_menu_popup (GTK_MENU (priv->menu),
                   NULL, NULL,
                   NULL, NULL,
@@ -614,7 +611,7 @@ popup_menu (XfmpcDbbrowser *dbbrowser)
 static void
 cb_search_entry_activated (XfmpcDbbrowser *dbbrowser)
 {
-  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   const gchar              *entry_text = gtk_entry_get_text (GTK_ENTRY (priv->search_entry));
 
   if (entry_text[0] == '\0')
@@ -638,7 +635,7 @@ static gboolean
 cb_search_entry_key_released (XfmpcDbbrowser *dbbrowser,
                               GdkEventKey *event)
 {
-  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
 
   if (event->type != GDK_KEY_RELEASE)
     return FALSE;
@@ -654,7 +651,7 @@ cb_search_entry_key_released (XfmpcDbbrowser *dbbrowser,
 static void
 cb_search_entry_changed (XfmpcDbbrowser *dbbrowser)
 {
-  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
 
   if (priv->search_timeout > 0)
     g_source_remove (priv->search_timeout);
@@ -674,7 +671,7 @@ timeout_search (XfmpcDbbrowser *dbbrowser)
 static void
 timeout_search_destroy (XfmpcDbbrowser *dbbrowser)
 {
-  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER_GET_PRIVATE (dbbrowser);
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   priv->search_timeout = 0;
 }
 

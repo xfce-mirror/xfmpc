@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2008 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -9,11 +9,11 @@
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
+ *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -36,7 +36,6 @@
 #include "mpdclient.h"
 #include "main-ui.h"
 #include "interface.h"
-#include "interface-ui.h"
 #include "extended-interface.h"
 
 #define BORDER 4
@@ -47,33 +46,30 @@ static gboolean         cb_window_state_event                       (GtkWidget *
                                                                      GdkEventWindowState *event);
 static gboolean         cb_window_closed                            (GtkWidget *window,
                                                                      GdkEvent *event);
-static void             action_main_close                           (GtkAction *action,
+static void             action_close                                (GtkAction *action,
                                                                      GtkWidget *window);
-static void             action_xfmpc_interface_previous             (GtkAction *action,
-                                                                     XfmpcInterface *interface);
-static void             action_xfmpc_interface_pp                   (GtkAction *action,
-                                                                     XfmpcInterface *interface);
-static void             action_xfmpc_interface_stop                 (GtkAction *action,
-                                                                     XfmpcInterface *interface);
-static void             action_xfmpc_interface_next                 (GtkAction *action,
-                                                                     XfmpcInterface *interface);
-static void             action_xfmpc_interface_volume               (GtkAction *action,
-                                                                     XfmpcInterface *interface);
+static void             action_previous                             (GtkAction *action,
+                                                                     GtkWidget *window);
+static void             action_pp                                   (GtkAction *action,
+                                                                     GtkWidget *window);
+static void             action_stop                                 (GtkAction *action,
+                                                                     GtkWidget *window);
+static void             action_next                                 (GtkAction *action,
+                                                                     GtkWidget *window);
+static void             action_volume                               (GtkAction *action,
+                                                                     GtkWidget *window);
 
 
 
-static const GtkActionEntry action_entries_main[] =
+static const GtkActionEntry action_entries[] =
 {
-  { "quit", NULL, "", "<control>q", NULL, G_CALLBACK (action_main_close), },
-};
+  { "quit", NULL, "", "<control>q", NULL, G_CALLBACK (action_close), },
 
-static const GtkActionEntry action_entries_xfmpc_interface[] =
-{
-  { "previous", NULL, "", "<control>b", NULL, G_CALLBACK (action_xfmpc_interface_previous), },
-  { "pp", NULL, "", "<control>p", NULL, G_CALLBACK (action_xfmpc_interface_pp), },
-  { "stop", NULL, "", "<control>s", NULL, G_CALLBACK (action_xfmpc_interface_stop), },
-  { "next", NULL, "", "<control>f", NULL, G_CALLBACK (action_xfmpc_interface_next), },
-  { "volume", NULL, "", "<control>v", NULL, G_CALLBACK (action_xfmpc_interface_volume), },
+  { "previous", NULL, "", "<control>b", NULL, G_CALLBACK (action_previous), },
+  { "pp", NULL, "", "<control>p", NULL, G_CALLBACK (action_pp), },
+  { "stop", NULL, "", "<control>s", NULL, G_CALLBACK (action_stop), },
+  { "next", NULL, "", "<control>f", NULL, G_CALLBACK (action_next), },
+  { "volume", NULL, "", "<control>v", NULL, G_CALLBACK (action_volume), },
 };
 
 
@@ -139,6 +135,7 @@ main (int argc, char *argv[])
 
   /* Interface */
   GtkWidget *interface = xfmpc_interface_new ();
+  g_object_set_data (G_OBJECT (window), "XfmpcInterface", interface);
   gtk_box_pack_start (GTK_BOX (vbox), interface, FALSE, FALSE, BORDER);
 
   /* Separator */
@@ -157,18 +154,11 @@ main (int argc, char *argv[])
   GtkUIManager *ui_manager = gtk_ui_manager_new ();
 
   GtkActionGroup *action_group = gtk_action_group_new ("Main");
-  gtk_action_group_add_actions (action_group, action_entries_main,
-                                G_N_ELEMENTS (action_entries_main),
+  gtk_action_group_add_actions (action_group, action_entries,
+                                G_N_ELEMENTS (action_entries),
                                 GTK_WIDGET (window));
   gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
   gtk_ui_manager_add_ui_from_string (ui_manager, main_ui, main_ui_length, NULL);
-
-  action_group = gtk_action_group_new ("XfmpcInterface");
-  gtk_action_group_add_actions (action_group, action_entries_xfmpc_interface,
-                                G_N_ELEMENTS (action_entries_xfmpc_interface),
-                                XFMPC_INTERFACE (interface));
-  gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
-  gtk_ui_manager_add_ui_from_string (ui_manager, xfmpc_interface_ui, xfmpc_interface_ui_length, NULL);
 
   GtkAccelGroup *accel_group = gtk_ui_manager_get_accel_group (ui_manager);
   gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
@@ -232,44 +222,49 @@ cb_window_closed (GtkWidget *window,
 
 
 static void
-action_main_close (GtkAction *action,
-                   GtkWidget *window)
+action_close (GtkAction *action,
+              GtkWidget *window)
 {
   cb_window_closed (window, NULL);
 }
 
 static void
-action_xfmpc_interface_previous (GtkAction *action,
-                                 XfmpcInterface *interface)
+action_previous (GtkAction *action,
+                 GtkWidget *window)
 {
+  XfmpcInterface *interface = g_object_get_data (G_OBJECT (window), "XfmpcInterface");
   xfmpc_mpdclient_previous (interface->mpdclient);
 }
 
 static void
-action_xfmpc_interface_pp (GtkAction *action,
-                           XfmpcInterface *interface)
+action_pp (GtkAction *action,
+           GtkWidget *window)
 {
+  XfmpcInterface *interface = g_object_get_data (G_OBJECT (window), "XfmpcInterface");
   xfmpc_interface_pp_clicked (interface);
 }
 
 static void
-action_xfmpc_interface_stop (GtkAction *action,
-                             XfmpcInterface *interface)
+action_stop (GtkAction *action,
+             GtkWidget *window)
 {
+  XfmpcInterface *interface = g_object_get_data (G_OBJECT (window), "XfmpcInterface");
   xfmpc_mpdclient_stop (interface->mpdclient);
 }
 
 static void
-action_xfmpc_interface_next (GtkAction *action,
-                             XfmpcInterface *interface)
+action_next (GtkAction *action,
+             GtkWidget *window)
 {
+  XfmpcInterface *interface = g_object_get_data (G_OBJECT (window), "XfmpcInterface");
   xfmpc_mpdclient_next (interface->mpdclient);
 }
 
 static void
-action_xfmpc_interface_volume (GtkAction *action,
-                               XfmpcInterface *interface)
+action_volume (GtkAction *action,
+               GtkWidget *window)
 {
+  XfmpcInterface *interface = g_object_get_data (G_OBJECT (window), "XfmpcInterface");
   xfmpc_interface_popup_volume (interface);
 }
 

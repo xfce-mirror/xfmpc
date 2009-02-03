@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2008 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -9,11 +9,11 @@
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
+ *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -30,7 +30,7 @@
 
 #define BORDER 4
 
-#define XFMPC_INTERFACE_GET_PRIVATE(o) \
+#define GET_PRIVATE(o) \
     (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_INTERFACE, XfmpcInterfacePrivate))
 
 
@@ -54,19 +54,6 @@ static void             cb_time_changed                         (XfmpcInterface 
 static void             cb_volume_changed                       (XfmpcInterface *interface,
                                                                  gint volume);
 static void             cb_stopped                              (XfmpcInterface *interface);
-
-static void             xfmpc_interface_action_previous         (GtkAction *action,
-                                                                 XfmpcInterface *interface);
-static void             xfmpc_interface_action_pp               (GtkAction *action,
-                                                                 XfmpcInterface *interface);
-static void             xfmpc_interface_action_stop             (GtkAction *action,
-                                                                 XfmpcInterface *interface);
-static void             xfmpc_interface_action_next             (GtkAction *action,
-                                                                 XfmpcInterface *interface);
-static void             xfmpc_interface_action_volume           (GtkAction *action,
-                                                                 XfmpcInterface *interface);
-static void             xfmpc_interface_action_close            (GtkAction *action,
-                                                                 XfmpcInterface *interface);
 
 
 
@@ -119,7 +106,7 @@ xfmpc_interface_class_init (XfmpcInterfaceClass *klass)
 static void
 xfmpc_interface_init (XfmpcInterface *interface)
 {
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+  XfmpcInterfacePrivate *priv = interface->priv = GET_PRIVATE (interface);
 
   gtk_container_set_border_width (GTK_CONTAINER (interface), BORDER);
   interface->preferences = xfmpc_preferences_get ();
@@ -256,7 +243,7 @@ void
 xfmpc_interface_set_title (XfmpcInterface *interface,
                            const gchar *title)
 {
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE (interface)->priv;
 
   gtk_label_set_text (GTK_LABEL (priv->title), title);
 }
@@ -265,7 +252,7 @@ void
 xfmpc_interface_set_subtitle (XfmpcInterface *interface,
                               const gchar *subtitle)
 {
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE (interface)->priv;
 
   gtk_label_set_text (GTK_LABEL (priv->subtitle), subtitle);
 }
@@ -282,7 +269,7 @@ void
 xfmpc_interface_set_pp (XfmpcInterface *interface,
                         gboolean play)
 {
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE (interface)->priv;
 
   GtkWidget *image = gtk_bin_get_child (GTK_BIN (priv->button_pp));
 
@@ -296,7 +283,7 @@ gboolean
 xfmpc_interface_progress_box_press_event (XfmpcInterface *interface,
                                           GdkEventButton *event)
 {
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE (interface)->priv;
 
   if (G_UNLIKELY (event->type != GDK_BUTTON_PRESS || event->button != 1))
     return FALSE;
@@ -324,7 +311,7 @@ void
 xfmpc_interface_set_volume (XfmpcInterface *interface,
                             guint8 volume)
 {
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE (interface)->priv;
 
   gtk_scale_button_set_value (GTK_SCALE_BUTTON (priv->button_volume), volume);
 }
@@ -332,7 +319,7 @@ xfmpc_interface_set_volume (XfmpcInterface *interface,
 void
 xfmpc_interface_popup_volume (XfmpcInterface *interface)
 {
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE (interface)->priv;
 
   g_signal_emit_by_name (priv->button_volume, "popup", G_TYPE_NONE);
 }
@@ -342,7 +329,7 @@ xfmpc_interface_set_time (XfmpcInterface *interface,
                           gint time,
                           gint time_total)
 {
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE (interface)->priv;
 
   gint                  min, sec, min_total, sec_total;
   gchar                *text;
@@ -418,7 +405,7 @@ static void
 cb_pp_changed (XfmpcInterface *interface,
                gboolean is_playing)
 {
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE (interface)->priv;
 
   xfmpc_interface_set_pp (interface, is_playing);
 
@@ -447,7 +434,7 @@ cb_volume_changed (XfmpcInterface *interface,
 static void
 cb_stopped (XfmpcInterface *interface)
 {
-  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE_GET_PRIVATE (interface);
+  XfmpcInterfacePrivate *priv = XFMPC_INTERFACE (interface)->priv;
 
   xfmpc_interface_set_pp (interface, FALSE);
   xfmpc_interface_set_time (interface, 0, 0);
