@@ -20,9 +20,8 @@ msgstr ""
 
 #. Menu -> Replace
 #: ../src/dbbrowser.c:215
-#,fuzzy
 msgid "_Replace"
-msgstr "_Substitueren"
+msgstr "_Vervangen"
 
 #: ../src/extended-interface.c:160
 msgid "Clear Playlist"
@@ -59,13 +58,15 @@ msgstr "MPD-instellingen"
 
 #: ../src/extended-interface.c:359
 msgid "Use default system settings"
-msgstr ""
+msgstr "Standaard systeeminstellingen gebruiken"
 
 #: ../src/extended-interface.c:361
+#,fuzzy
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
 msgstr ""
+"Indien geselecteerd, "
 
 #: ../src/extended-interface.c:373
 msgid "Hostname:"
@@ -98,6 +99,7 @@ msgid "Xfmpc"
 msgstr "Xfmpc"
 
 #: ../src/mpdclient.c:510 ../src/mpdclient.c:540 ../src/mpdclient.c:555
+#,fuzzy
 msgid "n/a"
 msgstr "n/a"
 

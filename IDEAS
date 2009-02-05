@@ -9,6 +9,7 @@ Unpredictable future
 
   - Reorder a song in the playlist (with DnD)
   - Editable shortcuts (accelerator maps from file)
+  - Set the songs in bold in the dbbrowser when they exist in the playlist
   - Document the code (with gtk-doc syntax)
   - XfmpcGoodies, a plugin interface (GModule) on a right side pane
     ~ artwork
