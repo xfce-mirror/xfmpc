@@ -42,9 +42,6 @@ GtkWidget *             xfmpc_extended_interface_new            ();
 void                    xfmpc_extended_interface_append_child   (XfmpcExtendedInterface *extended_interface,
                                                                  GtkWidget *child,
                                                                  const gchar *title);
-void                    xfmpc_extended_interface_context_menu_new
-                                                                (XfmpcExtendedInterface *extended_interface,
-                                                                 GtkWidget *attach_widget);
 G_END_DECLS
 
 #endif

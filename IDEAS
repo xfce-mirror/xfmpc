@@ -1,15 +1,15 @@
 Next release
 
   - The 0.0.8 announcement
-  - On a search, have the ability to go to the directory of the song and such
-  - Menu item to replace the playlist with the selection in the database browser
+  - On a search or in the playlist, add a menu item to go to the directory of
+  the song and such
 
 Unpredictable future
 
-  - XfmpcGoodies, a plugin interface on the right side pane
+  - XfmpcGoodies, a plugin interface (GModule) on a right side pane
     ~ artwork
     ~ random album playlist
-  - Options
+  - Settings dialog
     ~ Hostname and Port
     ~ Font (size) for the tree views
 

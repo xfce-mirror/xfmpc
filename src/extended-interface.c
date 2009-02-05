@@ -53,6 +53,9 @@ static void             xfmpc_extended_interface_init       (XfmpcExtendedInterf
 static void             xfmpc_extended_interface_dispose    (GObject *object);
 static void             xfmpc_extended_interface_finalize   (GObject *object);
 
+static void             xfmpc_extended_interface_context_menu_new
+                                                            (XfmpcExtendedInterface *extended_interface,
+                                                             GtkWidget *attach_widget);
 static void             xfmpc_server_dialog_show            (XfmpcExtendedInterface *extended_interface);
 static void             cb_use_defaults_toggled             (GtkToggleButton *button,
                                                              GtkWidget *widget);
@@ -271,7 +274,7 @@ xfmpc_extended_interface_append_child (XfmpcExtendedInterface *extended_interfac
   gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (priv->notebook), child, TRUE, TRUE, GTK_PACK_START);
 }
 
-void
+static void
 xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface *extended_interface,
                                            GtkWidget *attach_widget)
 {
@@ -412,6 +415,8 @@ xfmpc_server_dialog_show (XfmpcExtendedInterface *extended_interface)
 
   gtk_widget_destroy (dialog);
   g_object_unref (preferences);
+  g_free (host);
+  g_free (passwd);
 }
 
 
@@ -473,9 +478,8 @@ popup_context_menu (XfmpcExtendedInterface *extended_interface)
 {
   XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
 
-  if (GTK_IS_MENU (priv->context_menu))
-    gtk_menu_detach (GTK_MENU (priv->context_menu));
-  xfmpc_extended_interface_context_menu_new (extended_interface, priv->context_button);
+  if (!GTK_IS_MENU (priv->context_menu))
+    xfmpc_extended_interface_context_menu_new (extended_interface, priv->context_button);
 
   gtk_menu_popup (GTK_MENU (priv->context_menu),
                   NULL,
