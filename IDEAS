@@ -3,9 +3,13 @@ Next release
   - The 0.0.8 announcement
   - On a search or in the playlist, add a menu item to go to the directory of
   the song and such
+  - Enumarate the songs in the playlist
 
 Unpredictable future
 
+  - Reorder a song in the playlist (with DnD)
+  - Editable shortcuts (accelerator maps from file)
+  - Document the code (with gtk-doc syntax)
   - XfmpcGoodies, a plugin interface (GModule) on a right side pane
     ~ artwork
     ~ random album playlist
