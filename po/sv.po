@@ -1,14 +1,14 @@
 # Swedish translation for xfmpc.
-# Copyright (C) 2008 Free Software Foundation, Inc.
+# Copyright (C) 2008, 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfmpc package.
-# Daniel Nylander <po@danielnylander.se>, 2008.
+# Daniel Nylander <po@danielnylander.se>, 2008, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-03 22:16+0100\n"
-"PO-Revision-Date: 2008-12-14 20:52+0100\n"
+"POT-Creation-Date: 2009-02-09 00:28+0100\n"
+"PO-Revision-Date: 2009-02-09 00:50+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -18,64 +18,64 @@ msgstr ""
 #. Menu -> Replace
 #: ../src/dbbrowser.c:215
 msgid "_Replace"
-msgstr ""
+msgstr "_Ersätt"
 
-#: ../src/extended-interface.c:160
+#: ../src/extended-interface.c:163
 msgid "Clear Playlist"
 msgstr "Töm spellista"
 
-#: ../src/extended-interface.c:170
+#: ../src/extended-interface.c:173
 msgid "Refresh Database"
 msgstr "Uppdatera databas"
 
-#: ../src/extended-interface.c:180
+#: ../src/extended-interface.c:183
 msgid "Context Menu"
 msgstr "Sammanhangsmeny"
 
-#: ../src/extended-interface.c:211
+#: ../src/extended-interface.c:214
 msgid "Current Playlist"
 msgstr "Aktuell spellista"
 
-#: ../src/extended-interface.c:214
+#: ../src/extended-interface.c:217
 msgid "Browse database"
 msgstr "Bläddra i databas"
 
-#: ../src/extended-interface.c:286
+#: ../src/extended-interface.c:289
 msgid "Repeat"
 msgstr "Upprepa"
 
-#: ../src/extended-interface.c:293
+#: ../src/extended-interface.c:296
 msgid "Random"
 msgstr "Slumpmässigt"
 
-#: ../src/extended-interface.c:304 ../src/extended-interface.c:340
-#: ../src/extended-interface.c:349
+#: ../src/extended-interface.c:307
+#: ../src/extended-interface.c:343
+#: ../src/extended-interface.c:352
 msgid "MPD Settings"
-msgstr ""
+msgstr "Inställningar för MPD"
 
-#: ../src/extended-interface.c:359
+#: ../src/extended-interface.c:362
 msgid "Use default system settings"
-msgstr ""
+msgstr "Använd systemets standardinställningar"
 
-#: ../src/extended-interface.c:361
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
+#: ../src/extended-interface.c:364
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Om kryssad kommer Xfmpc att försöka att läsa miljövariablerna MPD_HOST och MPD_PORT, annars kommer localhost att användas"
 
-#: ../src/extended-interface.c:373
+#: ../src/extended-interface.c:376
 msgid "Hostname:"
-msgstr ""
+msgstr "Värdnamn:"
 
-#: ../src/extended-interface.c:380
+#: ../src/extended-interface.c:383
 msgid "Port:"
-msgstr ""
+msgstr "Port:"
 
-#: ../src/extended-interface.c:389
+#: ../src/extended-interface.c:392
 msgid "Password:"
-msgstr ""
+msgstr "Lösenord:"
 
-#: ../src/interface.c:156 ../src/interface.c:364
+#: ../src/interface.c:156
+#: ../src/interface.c:364
 msgid "Not connected"
 msgstr "Inte ansluten"
 
@@ -89,11 +89,14 @@ msgstr "av \"%s\" från \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Stoppad"
 
-#: ../src/main.c:108 ../xfmpc.desktop.in.h:3
+#: ../src/main.c:108
+#: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#: ../src/mpdclient.c:510 ../src/mpdclient.c:540 ../src/mpdclient.c:555
+#: ../src/mpdclient.c:510
+#: ../src/mpdclient.c:540
+#: ../src/mpdclient.c:555
 msgid "n/a"
 msgstr "inte tillgänglig"
 
@@ -104,3 +107,4 @@ msgstr "MPD-klient"
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD-klient skriven i GTK+ för Xfce"
+
