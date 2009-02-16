@@ -2,13 +2,13 @@
 # Copyright (C) 2008 the xfmpc's copyright holder
 # This file is distributed under the same license as the xfmpc package.
 # Jens Hyllegaard <jens.hyllegaard@gmail.com>, 2008.
-# Per Kongstad <p_kongstad@op.pl>, 2008.
+# Per Kongstad <p_kongstad@op.pl>, 2008, 09.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-03 22:16+0100\n"
-"PO-Revision-Date: 2008-10-19 15:27+0100\n"
+"PO-Revision-Date: 2009-02-16 15:31+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. Menu -> Replace
 #: ../src/dbbrowser.c:215
 msgid "_Replace"
-msgstr ""
+msgstr "_Erstat"
 
 #: ../src/extended-interface.c:160
 msgid "Clear Playlist"
@@ -52,34 +52,34 @@ msgstr "Gentag"
 msgid "Random"
 msgstr "Tilfældig"
 
-#: ../src/extended-interface.c:304 ../src/extended-interface.c:340
+#: ../src/extended-interface.c:304
+#: ../src/extended-interface.c:340
 #: ../src/extended-interface.c:349
 msgid "MPD Settings"
-msgstr ""
+msgstr "MPD-indstillinger"
 
 #: ../src/extended-interface.c:359
 msgid "Use default system settings"
-msgstr ""
+msgstr "Brug standard systemindstillinger"
 
 #: ../src/extended-interface.c:361
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Hvis afkrydset vil Xfmpc prøve at læse miljøvariabler MPD_HOST og MPD_PORT ellers vil blive brugt localhost"
 
 #: ../src/extended-interface.c:373
 msgid "Hostname:"
-msgstr ""
+msgstr "Værtsnavn:"
 
 #: ../src/extended-interface.c:380
 msgid "Port:"
-msgstr ""
+msgstr "Port:"
 
 #: ../src/extended-interface.c:389
 msgid "Password:"
-msgstr ""
+msgstr "Adgangskode:"
 
-#: ../src/interface.c:156 ../src/interface.c:364
+#: ../src/interface.c:156
+#: ../src/interface.c:364
 msgid "Not connected"
 msgstr "Ikke tilsluttet"
 
@@ -93,11 +93,14 @@ msgstr "af \"%s\" fra \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Stoppet"
 
-#: ../src/main.c:108 ../xfmpc.desktop.in.h:3
+#: ../src/main.c:108
+#: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#: ../src/mpdclient.c:510 ../src/mpdclient.c:540 ../src/mpdclient.c:555
+#: ../src/mpdclient.c:510
+#: ../src/mpdclient.c:540
+#: ../src/mpdclient.c:555
 msgid "n/a"
 msgstr "n/a"
 
@@ -108,3 +111,4 @@ msgstr "MPD-klient"
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD-klient skrevet i GTK+ til Xfce"
+
