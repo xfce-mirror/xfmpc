@@ -630,7 +630,7 @@ cb_status_changed (MpdObj *mi,
   if (what & MPD_CST_PLAYLIST)
     g_signal_emit (mpdclient, signals[SIG_PLAYLIST_CHANGED], 0);
 
-  if (what & MPD_CST_SONGID && !(what & (MPD_CST_DATABASE|MPD_CST_PLAYLIST)))
+  if (what & MPD_CST_SONGID && !(what & MPD_CST_DATABASE) && !(what & MPD_CST_PLAYLIST))
     g_signal_emit (mpdclient, signals[SIG_SONG_CHANGED], 0);
 
   if (what & MPD_CST_STATE)

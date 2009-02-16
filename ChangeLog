@@ -1,5 +1,11 @@
 2009-02-16	Mike Massonnet <mmassonnet@gmail.com>
 
+Fix song changes
+	* src/mpdclient.c(cb_status_changed):
+	  - The condition fixed in the previous commit was incorrect
+
+2009-02-16	Mike Massonnet <mmassonnet@gmail.com>
+
 Features for the database browser and a statusbar contributed by Vincent Legout
 	* src/mpdclient.c, src/mpdclient.h:
 	  - New functions xfmpc_mpdclient_playlist_get_length() and get_total_time()
