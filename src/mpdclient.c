@@ -630,7 +630,7 @@ cb_status_changed (MpdObj *mi,
   if (what & MPD_CST_PLAYLIST)
     g_signal_emit (mpdclient, signals[SIG_PLAYLIST_CHANGED], 0);
 
-  if (what & MPD_CST_SONGID && !(what & MPD_CST_DATABASE))
+  if (what & MPD_CST_SONGID && !(what & (MPD_CST_DATABASE|MPD_CST_PLAYLIST)))
     g_signal_emit (mpdclient, signals[SIG_SONG_CHANGED], 0);
 
   if (what & MPD_CST_STATE)
@@ -703,7 +703,7 @@ xfmpc_mpdclient_queue_clear (XfmpcMpdclient *mpdclient)
 {
   gint id;
 
-  while (xfmpc_mpdclient_playlist_read (mpdclient, &id, NULL, NULL))
+  while (xfmpc_mpdclient_playlist_read (mpdclient, &id, NULL, NULL, NULL))
     {
       if (!xfmpc_mpdclient_queue_remove_id (mpdclient, id))
         return FALSE;
@@ -717,6 +717,7 @@ xfmpc_mpdclient_queue_clear (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
                                gint *id,
+                               gchar **filename,
                                gchar **song,
                                gchar **length)
 {
@@ -730,6 +731,8 @@ xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
 
   if (NULL != data)
     {
+      if (NULL != filename)
+        *filename = g_strdup (data->song->file);
       if (NULL != song)
         *song = _get_formatted_name (data->song);
       if (NULL != length)
@@ -750,6 +753,48 @@ xfmpc_mpdclient_playlist_clear (XfmpcMpdclient *mpdclient)
 
   return TRUE;
 }
+
+gint
+xfmpc_mpdclient_playlist_get_length (XfmpcMpdclient *mpdclient)
+{
+  return mpd_playlist_get_playlist_length (mpdclient->priv->mi);
+}
+
+gint
+xfmpc_mpdclient_playlist_get_total_time (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = mpdclient->priv;
+  MpdData               *data;
+  gint                   seconds;
+
+  for (seconds = 0, data = mpd_playlist_get_changes (priv->mi, -1);
+       data != NULL; data = mpd_data_get_next (data))
+    seconds += data->song->time;
+
+  return seconds;
+}
+
+gboolean
+xfmpc_mpdclient_playlist_has_filename (XfmpcMpdclient *mpdclient,
+                                       const gchar *filename)
+{
+  XfmpcMpdclientPrivate *priv = mpdclient->priv;
+  MpdData               *data;
+
+  mpd_playlist_search_start (priv->mi, TRUE);
+  mpd_playlist_search_add_constraint (priv->mi, MPD_TAG_ITEM_FILENAME, filename);
+  data = mpd_playlist_search_commit (priv->mi);
+
+  if (data != NULL)
+    {
+      mpd_data_free (data);
+      return TRUE;
+    }
+
+  return FALSE;
+}
+
+
 
 gboolean
 xfmpc_mpdclient_database_refresh (XfmpcMpdclient *mpdclient)

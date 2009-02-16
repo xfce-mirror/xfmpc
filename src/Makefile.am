@@ -12,6 +12,8 @@ xfmpc_SOURCES =								\
 	playlist.h							\
 	dbbrowser.c							\
 	dbbrowser.h							\
+	statusbar.c							\
+	statusbar.h							\
 	preferences.c							\
 	preferences.h							\
 	mpdclient.c							\

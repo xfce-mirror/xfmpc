@@ -49,6 +49,7 @@ static gboolean         cb_button_pressed                      (XfmpcDbbrowser *
                                                                 GdkEventButton *event);
 static gboolean         cb_popup_menu                          (XfmpcDbbrowser *dbbrowser);
 static void             popup_menu                             (XfmpcDbbrowser *dbbrowser);
+static void             cb_browse                              (XfmpcDbbrowser *dbbrowser);
 
 static void             cb_search_entry_activated              (XfmpcDbbrowser *dbbrowser);
 static gboolean         cb_search_entry_key_released           (XfmpcDbbrowser *dbbrowser,
@@ -56,6 +57,8 @@ static gboolean         cb_search_entry_key_released           (XfmpcDbbrowser *
 static void             cb_search_entry_changed                (XfmpcDbbrowser *dbbrowser);
 static gboolean         timeout_search                         (XfmpcDbbrowser *dbbrowser);
 static void             timeout_search_destroy                 (XfmpcDbbrowser *dbbrowser);
+
+static void             cb_playlist_changed                    (XfmpcDbbrowser *dbbrowser);
 
 
 
@@ -67,6 +70,7 @@ enum
   COLUMN_FILENAME,
   COLUMN_BASENAME,
   COLUMN_IS_DIR,
+  COLUMN_WEIGHT,
   N_COLUMNS,
 };
 
@@ -92,6 +96,7 @@ struct _XfmpcDbbrowserPrivate
   GtkListStore             *store;
   GtkWidget                *search_entry;
   GtkWidget                *menu;
+  GtkWidget                *mi_browse;
 
   guint                     search_timeout;
   gboolean                  is_searching;
@@ -167,7 +172,8 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
                                     GDK_TYPE_PIXBUF,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
-                                    G_TYPE_BOOLEAN);
+                                    G_TYPE_BOOLEAN,
+                                    G_TYPE_INT);
 
   /* === Tree view === */
   priv->treeview = gtk_tree_view_new ();
@@ -194,6 +200,7 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview),
                                                -1, "Filename", cell,
                                                "text", COLUMN_BASENAME,
+                                               "weight", COLUMN_WEIGHT,
                                                NULL);
 
   /* Scrolled window */
@@ -219,6 +226,14 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_CUT, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
 
+  /* Menu -> Browse (only shown on a search) */
+  mi = priv->mi_browse = gtk_image_menu_item_new_with_mnemonic (_("_Browse"));
+  gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), mi);
+  g_signal_connect_swapped (mi, "activate",
+                            G_CALLBACK (cb_browse), dbbrowser);
+  image = gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
+
   gtk_widget_show_all (priv->menu);
 
   /* === Search entry === */
@@ -234,6 +249,8 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
                             G_CALLBACK (xfmpc_dbbrowser_reload), dbbrowser);
   g_signal_connect_swapped (dbbrowser->mpdclient, "database-changed",
                             G_CALLBACK (xfmpc_dbbrowser_reload), dbbrowser);
+  g_signal_connect_swapped (dbbrowser->mpdclient, "playlist-changed",
+                            G_CALLBACK (cb_playlist_changed), dbbrowser);
   /* Tree view */
   g_signal_connect_swapped (priv->treeview, "row-activated",
                             G_CALLBACK (cb_row_activated), dbbrowser);
@@ -292,7 +309,8 @@ void
 xfmpc_dbbrowser_append (XfmpcDbbrowser *dbbrowser,
                         gchar *filename,
                         gchar *basename,
-                        gboolean is_dir)
+                        gboolean is_dir,
+                        gboolean is_bold)
 {
   XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   GdkPixbuf                *pixbuf;
@@ -309,6 +327,7 @@ xfmpc_dbbrowser_append (XfmpcDbbrowser *dbbrowser,
                       COLUMN_FILENAME, filename,
                       COLUMN_BASENAME, basename,
                       COLUMN_IS_DIR, is_dir,
+                      COLUMN_WEIGHT, is_bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
                       -1);
 }
 
@@ -318,14 +337,14 @@ xfmpc_dbbrowser_add_selected_rows (XfmpcDbbrowser *dbbrowser)
   XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   GtkTreeModel         *store = GTK_TREE_MODEL (priv->store);
   GtkTreeIter           iter;
-  GList                *list;
+  GList                *l, *list;
   gchar                *filename;
 
-  list = gtk_tree_selection_get_selected_rows (gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview)),
-                                               &store);
-  while (NULL != list)
+  list = gtk_tree_selection_get_selected_rows (gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview)), &store);
+
+  for (l = list; l != NULL; l = l->next)
     {
-      if (gtk_tree_model_get_iter (store, &iter, list->data))
+      if (gtk_tree_model_get_iter (store, &iter, l->data))
         {       
           gtk_tree_model_get (store, &iter,
                               COLUMN_FILENAME, &filename,
@@ -333,7 +352,6 @@ xfmpc_dbbrowser_add_selected_rows (XfmpcDbbrowser *dbbrowser)
           xfmpc_mpdclient_queue_add (dbbrowser->mpdclient, filename);
           g_free (filename);
         }
-      list = g_list_next (list);
     }
 
   xfmpc_mpdclient_queue_commit (dbbrowser->mpdclient);
@@ -356,6 +374,7 @@ xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
   gchar                    *filename;
   gchar                    *basename;
   gboolean                  is_dir;
+  gboolean                  is_bold;
   gint                      i = 0;
 
   if (G_UNLIKELY (!xfmpc_mpdclient_is_connected (dbbrowser->mpdclient)))
@@ -368,7 +387,7 @@ xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
   if (!xfmpc_dbbrowser_wdir_is_root (dbbrowser))
     {
       filename = xfmpc_dbbrowser_get_parent_wdir (dbbrowser);
-      xfmpc_dbbrowser_append (dbbrowser, filename, "..", TRUE);
+      xfmpc_dbbrowser_append (dbbrowser, filename, "..", TRUE, FALSE);
       g_free (filename);
       i++;
     }
@@ -376,7 +395,8 @@ xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
   while (xfmpc_mpdclient_database_read (dbbrowser->mpdclient, priv->wdir,
                                         &filename, &basename, &is_dir))
     {
-      xfmpc_dbbrowser_append (dbbrowser, filename, basename, is_dir);
+      is_bold = xfmpc_mpdclient_playlist_has_filename (dbbrowser->mpdclient, filename);
+      xfmpc_dbbrowser_append (dbbrowser, filename, basename, is_dir, is_bold);
 
       if (i >= 0)
         {
@@ -389,7 +409,8 @@ xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
 
               i = -1;
             }
-          i++;
+          else
+            i++;
         }
 
       g_free (filename);
@@ -404,6 +425,7 @@ xfmpc_dbbrowser_search (XfmpcDbbrowser *dbbrowser,
   XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   gchar                    *filename;
   gchar                    *basename;
+  gboolean                  is_bold;
   gint                      i = 0;
   static gboolean           no_result, no_result_buf;
   GdkColor                  color = {0, 0xFFFF, 0x6666, 0x6666};
@@ -416,7 +438,8 @@ xfmpc_dbbrowser_search (XfmpcDbbrowser *dbbrowser,
 
   while (xfmpc_mpdclient_database_search (dbbrowser->mpdclient, query, &filename, &basename))
     {
-      xfmpc_dbbrowser_append (dbbrowser, filename, basename, FALSE);
+      is_bold = xfmpc_mpdclient_playlist_has_filename (dbbrowser->mpdclient, filename);
+      xfmpc_dbbrowser_append (dbbrowser, filename, basename, FALSE, is_bold);
       g_free (filename);
       g_free (basename);
       i++;
@@ -599,11 +622,53 @@ static void
 popup_menu (XfmpcDbbrowser *dbbrowser)
 {
   XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
+  GtkTreeSelection      *selection;
+  gint                   count;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  count = gtk_tree_selection_count_selected_rows (selection);
+
+  if (priv->is_searching && count == 1)
+    gtk_widget_show (priv->mi_browse);
+  else
+    gtk_widget_hide (priv->mi_browse);
+
   gtk_menu_popup (GTK_MENU (priv->menu),
                   NULL, NULL,
                   NULL, NULL,
                   0,
                   gtk_get_current_event_time ());
+}
+
+static void
+cb_browse (XfmpcDbbrowser *dbbrowser)
+{
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
+  GtkTreeSelection      *selection;
+  GtkTreeModel          *store = GTK_TREE_MODEL (priv->store);
+  GtkTreeIter            iter;
+  GList                 *list;
+  gchar                 *dir, *filename;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  if (gtk_tree_selection_count_selected_rows (selection) > 1)
+    return;
+
+  list = gtk_tree_selection_get_selected_rows (selection, &store);
+  if (gtk_tree_model_get_iter (store, &iter, list->data))
+    {
+      gtk_tree_model_get (store, &iter,
+                          COLUMN_FILENAME, &filename,
+                          -1);
+
+      priv->is_searching = FALSE;
+      dir = g_path_get_dirname (filename);
+      xfmpc_dbbrowser_set_wdir (dbbrowser, dir);
+      xfmpc_dbbrowser_reload (dbbrowser);
+
+      g_free (filename);
+      g_free (dir);
+    }
 }
 
 
@@ -673,5 +738,35 @@ timeout_search_destroy (XfmpcDbbrowser *dbbrowser)
 {
   XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   priv->search_timeout = 0;
+}
+
+
+
+static void
+cb_playlist_changed (XfmpcDbbrowser *dbbrowser)
+{
+  XfmpcDbbrowserPrivate *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
+  GtkTreeModel         *store = GTK_TREE_MODEL (priv->store);
+  GtkTreeIter           iter;
+  gchar                *filename;
+  gboolean              is_bold;
+
+  if (!gtk_tree_model_get_iter_first (store, &iter))
+    return;
+
+  do
+    {
+      gtk_tree_model_get (store, &iter,
+                          COLUMN_FILENAME, &filename,
+                          -1);
+
+      is_bold = xfmpc_mpdclient_playlist_has_filename (dbbrowser->mpdclient, filename);
+      gtk_list_store_set (GTK_LIST_STORE (store), &iter,
+                          COLUMN_WEIGHT, is_bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
+                          -1);
+
+      g_free (filename);
+    }
+  while (gtk_tree_model_iter_next (store, &iter));
 }
 

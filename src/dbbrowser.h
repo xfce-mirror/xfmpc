@@ -43,7 +43,8 @@ void            xfmpc_dbbrowser_clear                          (XfmpcDbbrowser *
 void            xfmpc_dbbrowser_append                         (XfmpcDbbrowser *dbbrowser,
                                                                 gchar *filename,
                                                                 gchar *basename,
-                                                                gboolean is_dir);
+                                                                gboolean is_dir,
+                                                                gboolean is_bold);
 
 void            xfmpc_dbbrowser_add_selected_rows              (XfmpcDbbrowser *dbbrowser);
 void            xfmpc_dbbrowser_replace_with_selected_rows     (XfmpcDbbrowser *dbbrowser);

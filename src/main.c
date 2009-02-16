@@ -37,6 +37,7 @@
 #include "main-ui.h"
 #include "interface.h"
 #include "extended-interface.h"
+#include "statusbar.h"
 
 #define BORDER 4
 
@@ -102,17 +103,6 @@ main (int argc, char *argv[])
 
   gtk_window_set_default_icon_name ("xfmpc");
 
-  /* Window */
-  GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_icon_name (GTK_WINDOW (window), "stock_volume");
-  gtk_window_set_title (GTK_WINDOW (window), _("Xfmpc"));
-  gtk_window_set_default_size (GTK_WINDOW (window), 330, 330);
-  g_signal_connect (G_OBJECT (window), "delete-event", G_CALLBACK (cb_window_closed), NULL);
-  g_signal_connect (G_OBJECT (window), "window-state-event", G_CALLBACK (cb_window_state_event), NULL);
-
-  GtkWidget *vbox = gtk_vbox_new (FALSE, 0);
-  gtk_container_add (GTK_CONTAINER (window), vbox);
-
   /* Read window preferences */
   gint posx, posy;
   gint width, height;
@@ -126,6 +116,18 @@ main (int argc, char *argv[])
                 "last-window-height", &height,
                 "last-window-state-sticky", &sticky,
                 NULL);
+
+  /* Window */
+  GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_icon_name (GTK_WINDOW (window), "stock_volume");
+  gtk_window_set_title (GTK_WINDOW (window), _("Xfmpc"));
+  gtk_window_set_default_size (GTK_WINDOW (window), 330, 330);
+  g_signal_connect (G_OBJECT (window), "delete-event", G_CALLBACK (cb_window_closed), NULL);
+  g_signal_connect (G_OBJECT (window), "window-state-event", G_CALLBACK (cb_window_state_event), NULL);
+
+  GtkWidget *vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (window), vbox);
+
   if (G_LIKELY (posx != -1 && posy != -1))
     gtk_window_move (GTK_WINDOW (window), posx, posy);
   if (G_LIKELY (width != -1 && height != -1))
@@ -147,6 +149,10 @@ main (int argc, char *argv[])
   /* ExtendedInterface */
   GtkWidget *extended_interface = xfmpc_extended_interface_new ();
   gtk_box_pack_start (GTK_BOX (vbox), extended_interface, TRUE, TRUE, 0);
+
+  /* Statusbar */
+  GtkWidget *statusbar = xfmpc_statusbar_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), statusbar, FALSE, FALSE, 2);
 
   gtk_widget_show_all (window);
 

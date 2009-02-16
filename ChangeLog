@@ -1,3 +1,111 @@
+2009-02-16	Mike Massonnet <mmassonnet@gmail.com>
+
+Features for the database browser and a statusbar contributed by Vincent Legout
+	* src/mpdclient.c, src/mpdclient.h:
+	  - New functions xfmpc_mpdclient_playlist_get_length() and get_total_time()
+	  - New function xfmpc_mpdclient_playlist_has_filename() to know if a
+	  filename is already in the playlist
+	  - (xfmpc_mpdclient_playlist_read): Takes a new argument **filename that
+	  will be useful to browse the database from the playlist
+	  - (cb_status_changed): The signal "song-changed" must not be emitted
+	  when the playlist changed
+	* src/playlist.c, src/playlist.h:
+	  - Use new function playlist_read from mpdclient
+	  - (xfmpc_playlist_append): New argument filename
+	* src/dbbrowser.c, src/dbbrowser.h:
+	  - New menu item Browse that is only displayed on a search and on a
+	  single row selection to open the directory of the filename
+	  - The rows are displayed in bold if they exist in the playlist
+	  - (xfmpc_dbbrowser_append): New argument is_bold
+	  - (cb_playlist_changed): New callback to refresh the rows in bold on
+	  playlist changes
+	  - (xfmpc_dbbrowser_add_selected_rows): Fix leak, list ended being NULL
+	  thus it didn't freed anything
+	  - (xfmpc_dbbrowser_reload): Fix a bug with i not being kept at -1
+	  when last_wdir is found in the current directory
+	* src/statusbar.c, src/statusbar.h, src/main.c:
+	  - New statusbar displayed in the main interface
+
+2009-02-05	Mike Massonnet <mmassonnet@gmail.com>
+
+Small leak
+	* src/extended-interface.c, src/extended-interface.h:
+	  - Move xfmpc_extended_interface_context_menu_new() to the C source and made
+	  it a static function
+	  - (xfmpc_server_dialog_show): Free the strings host and passwd
+	  - (popup_context_menu): Don't destroy the menu to recreate it as it doesn't
+	  make sense because it doesn't have any dynamic items
+	* IDEAS:
+	  - A very small update
+
+2009-02-03	Mike Massonnet <mmassonnet@gmail.com>
+
+Rename Server Settings to MPD Settings and run make update-po
+	* src/extended-interface.c:
+	  - Rename Server Settings to MPD Settings
+	* po/*.po, po/*.pot:
+	  - Run make update-po
+
+2009-02-03	Mike Massonnet <mmassonnet@gmail.com>
+
+General cleanup
+	* configure.in.in:
+	  - Move from AC_PROG_CC to AM_PROG_CC_C_O as suggested by the autotools output
+	  to support multiple program rules
+	  - Add call to AC_PROG_LIBTOOL as required by recent versions of libtool
+	* Makefile.am:
+	  - Add distclean rule
+	* po/POTFILES.*:
+	  - Clean up
+	* src/*.c, src/*.h:
+	  - Store private pointer in class structure to avoid repeatitive and boring
+	  calls via the GET_PRIVATE macro
+	  - Copyright headers
+	  - Merge the action entries
+	  - Replace calls of g_signal_emit_by_name() against g_signal_emit()
+	* src/extended-interface.c:
+	  - Drop the repeat and random pointers out from the private data structure
+
+2009-02-03	Mike Massonnet <mmassonnet@gmail.com>
+
+Fix weird condition in XfmpcMpdclient
+	* src/mpdclient.c(cb_xfmpc_mpdclient_status_changed):
+	  - The signal "song-changed" must not be emitted when the database has been
+	  updated
+
+2009-02-03	Mike Massonnet <mmassonnet@gmail.com>
+
+Add a graphical settings dialog for the MPD host contributed by Vincent Legout
+	* src/preferences.c(xfmpc_preferences_class_init):
+	  - Install new class properties for the MPD host
+	* src/mpdclient.c:
+	  - Use the XfmpcPreferences interface to fetch the host or the environment
+	  variables when mpd-use-defaults is true
+	  - Use the environment variables when 
+	  - Check the host before connecting for real
+	* src/extended-interface.c:
+	  - Implement a dialog to set the MPD host
+	* src/interface.c(xfmpc_interface_init):
+	  - Connect to "connected" signal to refresh the interface when connecting
+	  manually to a new MPD host.
+	* src/main.c:
+	  - Set a default window size to 330x330.
+	* autogen.sh:
+	  - Fix the revision number from svn, enable debug, and delete configure.in
+
+2008-08-26	Mike Massonnet <mmassonnet@gmail.com>
+
+Add Replace to the right click menu in the database browser
+	* src/mpdclient.c(xfmpc_mpdclient_queue_clear):
+	  - New function that removes all the songs from the playlist without
+	  commiting to MPD
+	* src/mpdclient.c(xfmpc_mpdclient_playlist_read):
+	  - Possibility to pass NULL to song and length
+	* src/dbbrowser.c(xfmpc_dbbrowser_replace_with_selected_rows):
+	  - New function to replace the playlist with the selected rows
+	* src/dbbrowser.c(xfmpc_dbbrowser_init):
+	  - Add Replace item in the right click menu
+
 2008-08-25	Mike Massonnet <mmassonnet@gmail.com>
 
 === Release 0.0.7 ===

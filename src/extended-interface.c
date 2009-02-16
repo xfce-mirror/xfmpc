@@ -57,8 +57,6 @@ static void             xfmpc_extended_interface_context_menu_new
                                                             (XfmpcExtendedInterface *extended_interface,
                                                              GtkWidget *attach_widget);
 static void             xfmpc_server_dialog_show            (XfmpcExtendedInterface *extended_interface);
-static void             cb_use_defaults_toggled             (GtkToggleButton *button,
-                                                             GtkWidget *widget);
 
 static void             cb_interface_changed                (GtkComboBox *widget,
                                                              XfmpcExtendedInterface *extended_interface);
@@ -73,6 +71,8 @@ static void             position_context_menu               (GtkMenu *menu,
                                                              gint *x,
                                                              gint *y,
                                                              gboolean *push_in,
+                                                             GtkWidget *widget);
+static void             cb_use_defaults_toggled             (GtkToggleButton *button,
                                                              GtkWidget *widget);
 
 

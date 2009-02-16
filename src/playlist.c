@@ -66,6 +66,7 @@ static gboolean         visible_func_filter_tree                (GtkTreeModel *f
 enum
 {
   COLUMN_ID,
+  COLUMN_FILENAME,
   COLUMN_SONG,
   COLUMN_LENGTH,
   COLUMN_WEIGHT,
@@ -163,6 +164,7 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   /* === Tree model === */
   priv->store = gtk_list_store_new (N_COLUMNS,
                                     G_TYPE_INT,
+                                    G_TYPE_STRING,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
                                     G_TYPE_INT);
@@ -283,6 +285,7 @@ xfmpc_playlist_new ()
 void
 xfmpc_playlist_append (XfmpcPlaylist *playlist,
                        gint id,
+                       gchar *filename,
                        gchar *song,
                        gchar *length)
 {
@@ -292,6 +295,7 @@ xfmpc_playlist_append (XfmpcPlaylist *playlist,
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter,
                       COLUMN_ID, id,
+                      COLUMN_FILENAME, filename,
                       COLUMN_SONG, song,
                       COLUMN_LENGTH, length,
                       COLUMN_WEIGHT, PANGO_WEIGHT_NORMAL,
@@ -389,15 +393,16 @@ static void
 cb_playlist_changed (XfmpcPlaylist *playlist)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
-  gchar                *song, *length;
+  gchar                *filename, *song, *length;
   gint                  id, current;
 
   current = xfmpc_mpdclient_get_id (playlist->mpdclient);
 
   xfmpc_playlist_clear (playlist);
-  while (xfmpc_mpdclient_playlist_read (playlist->mpdclient, &id, &song, &length))
+  while (xfmpc_mpdclient_playlist_read (playlist->mpdclient, &id, &filename, &song, &length))
     {
-      xfmpc_playlist_append (playlist, id, song, length);
+      xfmpc_playlist_append (playlist, id, filename, song, length);
+      g_free (filename);
       g_free (song);
       g_free (length);
     }

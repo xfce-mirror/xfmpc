@@ -83,9 +83,14 @@ gboolean                xfmpc_mpdclient_queue_clear             (XfmpcMpdclient 
 
 gboolean                xfmpc_mpdclient_playlist_read           (XfmpcMpdclient *mpdclient,
                                                                  gint *id,
+                                                                 gchar **filename,
                                                                  gchar **song,
                                                                  gchar **length);
 gboolean                xfmpc_mpdclient_playlist_clear          (XfmpcMpdclient *mpdclient);
+gint                    xfmpc_mpdclient_playlist_get_length     (XfmpcMpdclient *mpdclient);
+gint                    xfmpc_mpdclient_playlist_get_total_time (XfmpcMpdclient *mpdclient);
+gboolean                xfmpc_mpdclient_playlist_has_filename   (XfmpcMpdclient *mpdclient,
+                                                                 const gchar *filename);
 
 gboolean                xfmpc_mpdclient_database_refresh        (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_database_read           (XfmpcMpdclient *mpdclient,
