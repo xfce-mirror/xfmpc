@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-03 22:16+0100\n"
-"PO-Revision-Date: 2008-06-24 18:14+0100\n"
+"PO-Revision-Date: 2009-02-11 17:02+0100\n"
 "Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -23,23 +23,24 @@ msgstr ""
 #. Menu -> Replace
 #: ../src/dbbrowser.c:215
 msgid "_Replace"
-msgstr ""
+msgstr "_Substituír"
 
 #: ../src/extended-interface.c:160
 msgid "Clear Playlist"
-msgstr ""
+msgstr "Limpar a lista de reprodución"
 
 #: ../src/extended-interface.c:170
 msgid "Refresh Database"
-msgstr ""
+msgstr "Actualizar a base de datos"
 
 #: ../src/extended-interface.c:180
+#, fuzzy
 msgid "Context Menu"
-msgstr ""
+msgstr "Menú Pinceis"
 
 #: ../src/extended-interface.c:211
 msgid "Current Playlist"
-msgstr ""
+msgstr "Lista de reprodución actual"
 
 #: ../src/extended-interface.c:214
 msgid "Browse database"
@@ -51,61 +52,66 @@ msgstr "Repetir"
 
 #: ../src/extended-interface.c:293
 msgid "Random"
-msgstr ""
+msgstr "Aleatorio"
 
-#: ../src/extended-interface.c:304 ../src/extended-interface.c:340
+#: ../src/extended-interface.c:304
+#: ../src/extended-interface.c:340
 #: ../src/extended-interface.c:349
 msgid "MPD Settings"
-msgstr ""
+msgstr "Configuración de MPD"
 
 #: ../src/extended-interface.c:359
 msgid "Use default system settings"
-msgstr ""
+msgstr "Usar a configuración predeterminada do sistema"
 
 #: ../src/extended-interface.c:361
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
 msgstr ""
 
 #: ../src/extended-interface.c:373
 msgid "Hostname:"
-msgstr ""
+msgstr "Nome de máquina:"
 
 #: ../src/extended-interface.c:380
 msgid "Port:"
-msgstr ""
+msgstr "Porto:"
 
 #: ../src/extended-interface.c:389
 msgid "Password:"
-msgstr ""
+msgstr "Contrasinal:"
 
-#: ../src/interface.c:156 ../src/interface.c:364
+#: ../src/interface.c:156
+#: ../src/interface.c:364
 msgid "Not connected"
 msgstr "Non conectado"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:395
-#, c-format
+#, fuzzy, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr ""
+msgstr "Desde o _portapapeis"
 
 #: ../src/interface.c:441
 msgid "Stopped"
-msgstr ""
+msgstr "Parado"
 
-#: ../src/main.c:108 ../xfmpc.desktop.in.h:3
+#: ../src/main.c:108
+#: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#: ../src/mpdclient.c:510 ../src/mpdclient.c:540 ../src/mpdclient.c:555
+#: ../src/mpdclient.c:510
+#: ../src/mpdclient.c:540
+#: ../src/mpdclient.c:555
+#, fuzzy
 msgid "n/a"
-msgstr ""
+msgstr "n/d"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
-msgstr ""
+msgstr "Cliente de MPD"
 
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr ""
+msgstr "Cliente de MPD escrito en GTK+ para Xfce"
+

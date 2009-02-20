@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-03 22:16+0100\n"
-"PO-Revision-Date: 2008-06-21 20:58+0700\n"
+"PO-Revision-Date: 2009-02-10 22:35+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. Menu -> Replace
 #: ../src/dbbrowser.c:215
 msgid "_Replace"
-msgstr ""
+msgstr "_Ganti"
 
 #: ../src/extended-interface.c:160
 msgid "Clear Playlist"
@@ -48,34 +48,34 @@ msgstr "Ulangi"
 msgid "Random"
 msgstr "Acak"
 
-#: ../src/extended-interface.c:304 ../src/extended-interface.c:340
+#: ../src/extended-interface.c:304
+#: ../src/extended-interface.c:340
 #: ../src/extended-interface.c:349
 msgid "MPD Settings"
-msgstr ""
+msgstr "Pengaturan MPD"
 
 #: ../src/extended-interface.c:359
 msgid "Use default system settings"
-msgstr ""
+msgstr "Gunakan pengaturan sistem standar"
 
 #: ../src/extended-interface.c:361
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Jika diperiksa, Xfmpc akan coba untuk membaca variabel lingkungan MPD_HOST dan MPD_PORT atau akan menggunakan localhost"
 
 #: ../src/extended-interface.c:373
 msgid "Hostname:"
-msgstr ""
+msgstr "Nama host:"
 
 #: ../src/extended-interface.c:380
 msgid "Port:"
-msgstr ""
+msgstr "Pangkalan:"
 
 #: ../src/extended-interface.c:389
 msgid "Password:"
-msgstr ""
+msgstr "Sandi:"
 
-#: ../src/interface.c:156 ../src/interface.c:364
+#: ../src/interface.c:156
+#: ../src/interface.c:364
 msgid "Not connected"
 msgstr "Tak tersambung"
 
@@ -89,11 +89,14 @@ msgstr "oleh \"%s\" dari \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Terhenti"
 
-#: ../src/main.c:108 ../xfmpc.desktop.in.h:3
+#: ../src/main.c:108
+#: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#: ../src/mpdclient.c:510 ../src/mpdclient.c:540 ../src/mpdclient.c:555
+#: ../src/mpdclient.c:510
+#: ../src/mpdclient.c:540
+#: ../src/mpdclient.c:555
 msgid "n/a"
 msgstr "tak tersedia"
 
@@ -104,3 +107,4 @@ msgstr "Klien MPD"
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Klien MPD ditulis dalam GTK+ untuk Xfce"
+
