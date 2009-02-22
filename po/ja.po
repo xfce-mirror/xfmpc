@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-03 22:16+0100\n"
-"PO-Revision-Date: 2008-10-10 03:12+0900\n"
-"Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
+"POT-Creation-Date: 2009-02-18 00:40+0900\n"
+"PO-Revision-Date: 2009-02-17 00:44+0900\n"
+"Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,68 +18,75 @@ msgstr ""
 "X-Poedit-Country: JAPAN\n"
 
 #. Menu -> Replace
-#: ../src/dbbrowser.c:215
+#: ../src/dbbrowser.c:222
 msgid "_Replace"
-msgstr ""
+msgstr "置換(_R)"
 
-#: ../src/extended-interface.c:160
+#. Menu -> Browse (only shown on a search)
+#: ../src/dbbrowser.c:230
+msgid "_Browse"
+msgstr "参照(_B)"
+
+#: ../src/extended-interface.c:163
 msgid "Clear Playlist"
 msgstr "プレイリストのクリア"
 
-#: ../src/extended-interface.c:170
+#: ../src/extended-interface.c:173
 msgid "Refresh Database"
 msgstr "データベースの更新"
 
-#: ../src/extended-interface.c:180
+#: ../src/extended-interface.c:183
 msgid "Context Menu"
 msgstr "コンテキストメニュー"
 
-#: ../src/extended-interface.c:211
+#: ../src/extended-interface.c:214
 msgid "Current Playlist"
 msgstr "現在のプレイリスト"
 
-#: ../src/extended-interface.c:214
+#: ../src/extended-interface.c:217
 msgid "Browse database"
 msgstr "データベースを表示"
 
-#: ../src/extended-interface.c:286
+#: ../src/extended-interface.c:289
 msgid "Repeat"
 msgstr "リピート"
 
-#: ../src/extended-interface.c:293
+#: ../src/extended-interface.c:296
 msgid "Random"
 msgstr "ランダム"
 
-#: ../src/extended-interface.c:304 ../src/extended-interface.c:340
-#: ../src/extended-interface.c:349
+#: ../src/extended-interface.c:307 ../src/extended-interface.c:343
+#: ../src/extended-interface.c:352
 msgid "MPD Settings"
-msgstr ""
+msgstr "MPD 設定"
 
-#: ../src/extended-interface.c:359
+#: ../src/extended-interface.c:362
 msgid "Use default system settings"
-msgstr ""
+msgstr "システムのデフォルト設定を使用する"
 
-#: ../src/extended-interface.c:361
+#: ../src/extended-interface.c:364
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
 msgstr ""
+"このオプションを有効にすると Xfmpc は環境変数 MPD_HOST および MPD_PORT を参照"
+"し、なければローカルホストを使用します。"
 
-#: ../src/extended-interface.c:373
+#: ../src/extended-interface.c:376
 msgid "Hostname:"
-msgstr ""
+msgstr "ホスト名:"
 
-#: ../src/extended-interface.c:380
+#: ../src/extended-interface.c:383
 msgid "Port:"
-msgstr ""
+msgstr "ポート:"
 
-#: ../src/extended-interface.c:389
+#: ../src/extended-interface.c:392
 msgid "Password:"
-msgstr ""
+msgstr "パスワード:"
 
 #: ../src/interface.c:156 ../src/interface.c:364
 msgid "Not connected"
-msgstr "接続されません。"
+msgstr "未接続"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:395
@@ -91,7 +98,7 @@ msgstr "\"%s\" の \"%s\" (%s)"
 msgid "Stopped"
 msgstr "停止"
 
-#: ../src/main.c:108 ../xfmpc.desktop.in.h:3
+#: ../src/main.c:123 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
@@ -105,4 +112,4 @@ msgstr "MPD クライアント"
 
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "Xfce のために GTK+ で書かれたMPDクライアント"
+msgstr "Xfce 向けの GTK+ で書かれたMPDクライアントです。"
