@@ -1,20 +1,19 @@
 Next release
 
-  - The 0.0.8 announcement
-  - On a search or in the playlist, add a menu item to go to the directory of
-  the song and such
+  - The 0.1.0 announcement
   - Enumarate the songs in the playlist
+  - Options for the preferences dialog
+    ~ Song format (defaults to %artist - %title)
+    ~ A background color
+    ~ 
 
 Unpredictable future
 
+  - In the playlist, have a menu item to go to the directory of the song
   - Reorder a song in the playlist (with DnD)
   - Editable shortcuts (accelerator maps from file)
-  - Set the songs in bold in the dbbrowser when they exist in the playlist
   - Document the code (with gtk-doc syntax)
   - XfmpcGoodies, a plugin interface (GModule) on a right side pane
     ~ artwork
     ~ random album playlist
-  - Settings dialog
-    ~ Hostname and Port
-    ~ Font (size) for the tree views
 

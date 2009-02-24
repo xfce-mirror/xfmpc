@@ -1,5 +1,13 @@
 2009-02-24	Mike Massonnet <mmassonnet@gmail.com>
 
+Update IDEAS and bump to 0.1.0
+	* configure.in.in:
+	  - Bump next release version from 0.8.0 to 0.1.0
+	* IDEAS:
+	  - Two little options for the preferences dialog
+
+2009-02-24	Mike Massonnet <mmassonnet@gmail.com>
+
 Preferences dialog and enhancements by Vincent Legout
 	* src/preferences.c:
 	  - New option ShowStatusbar
