@@ -45,6 +45,7 @@ enum
   PROP_MPD_PORT,
   PROP_MPD_PASSWORD,
   PROP_MPD_USE_DEFAULTS,
+  PROP_SHOW_STATUSBAR,
   N_PROPERTIES,
 };
 
@@ -212,6 +213,14 @@ xfmpc_preferences_class_init (XfmpcPreferencesClass *klass)
                                    g_param_spec_boolean ("mpd-use-defaults",
                                                          "MpdUseDefaults",
                                                          "Use default system settings for the MPD server (MPD_HOST/PORT environment variables)",
+                                                         TRUE,
+                                                         G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_SHOW_STATUSBAR,
+                                   g_param_spec_boolean ("show-statusbar",
+                                                         "ShowStatusbar",
+                                                         "Show the statusbar",
                                                          TRUE,
                                                          G_PARAM_READWRITE));
 }

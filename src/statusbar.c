@@ -2,6 +2,9 @@
  *  Copyright (c) 2009 Vincent Legout <vincent@legout.info>
  *  Copyright (c) 2009 Mike Massonnet <mmassonnet@xfce.org>
  *
+ *  Based on ThunarStatus:
+ *  Copyright (c) 2005-2006 Benedikt Meurer <benny@xfce.org>
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -24,7 +27,6 @@
 #include <gtk/gtk.h>
 
 #include "statusbar.h"
-#include "mpdclient.h"
 
 #define GET_PRIVATE(o) \
     (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_STATUSBAR, XfmpcStatusbarPrivate))
@@ -38,8 +40,6 @@ static void             xfmpc_statusbar_set_property           (GObject *object,
                                                                 guint prop_id,
                                                                 const GValue *value,
                                                                 GParamSpec *pspec);
-
-static void             cb_playlist_changed                    (XfmpcStatusbar *statusbar);
 
 
 
@@ -58,7 +58,6 @@ struct _XfmpcStatusbarClass
 struct _XfmpcStatusbar
 {
   GtkStatusbar              parent;
-  XfmpcMpdclient           *mpdclient;
   /*<private>*/
   XfmpcStatusbarPrivate    *priv;
 };
@@ -128,21 +127,13 @@ xfmpc_statusbar_init (XfmpcStatusbar *statusbar)
 {
   XfmpcStatusbarPrivate *priv = statusbar->priv = GET_PRIVATE (statusbar);
 
-  statusbar->mpdclient = xfmpc_mpdclient_get ();
-
   priv->context_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "Main text");
   gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (statusbar), FALSE);
-
-  /* === Signals === */
-  g_signal_connect_swapped (statusbar->mpdclient, "playlist-changed",
-                            G_CALLBACK (cb_playlist_changed), statusbar);
 }
 
 static void
 xfmpc_statusbar_finalize (GObject *object)
 {
-  XfmpcStatusbar *statusbar = XFMPC_STATUSBAR (object);
-  g_object_unref (statusbar->mpdclient);
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -180,23 +171,5 @@ xfmpc_statusbar_set_text (XfmpcStatusbar *statusbar,
 
   gtk_statusbar_pop (GTK_STATUSBAR (statusbar), priv->context_id);
   gtk_statusbar_push (GTK_STATUSBAR (statusbar), priv->context_id, text);
-}
-
-static void
-cb_playlist_changed (XfmpcStatusbar *statusbar)
-{
-  gchar    *text;
-  gint      seconds, length;
-
-  length = xfmpc_mpdclient_playlist_get_length (statusbar->mpdclient);
-  seconds = xfmpc_mpdclient_playlist_get_total_time (statusbar->mpdclient);
-
-  if (seconds / 3600 > 0)
-    text = g_strdup_printf ("%d songs, %d hours and %d minutes", length, seconds / 3600, (seconds / 60) % 60);
-  else
-    text = g_strdup_printf ("%d songs, %d minutes", length, (seconds / 60) % 60);
-
-  xfmpc_statusbar_set_text (statusbar, text);
-  g_free (text);
 }
 

@@ -776,19 +776,39 @@ xfmpc_mpdclient_playlist_get_total_time (XfmpcMpdclient *mpdclient)
 
 gboolean
 xfmpc_mpdclient_playlist_has_filename (XfmpcMpdclient *mpdclient,
-                                       const gchar *filename)
+                                       const gchar *filename,
+                                       gboolean is_dir)
 {
   XfmpcMpdclientPrivate *priv = mpdclient->priv;
   MpdData               *data;
+  gchar                 *basename;
+  gint                   id;
+  gboolean               found = FALSE;
 
-  mpd_playlist_search_start (priv->mi, TRUE);
-  mpd_playlist_search_add_constraint (priv->mi, MPD_TAG_ITEM_FILENAME, filename);
-  data = mpd_playlist_search_commit (priv->mi);
-
-  if (data != NULL)
+  if (is_dir && strcmp (filename, ""))
     {
-      mpd_data_free (data);
-      return TRUE;
+      while (xfmpc_mpdclient_playlist_read (mpdclient, &id, &basename, NULL, NULL))
+        {
+          if (g_str_has_prefix (basename, filename))
+            found = TRUE;
+
+          g_free (basename);
+        }
+
+        if (found)
+          return TRUE;
+    }
+  else
+    {
+      mpd_playlist_search_start (priv->mi, TRUE);
+      mpd_playlist_search_add_constraint (priv->mi, MPD_TAG_ITEM_FILENAME, filename);
+      data = mpd_playlist_search_commit (priv->mi);
+
+      if (data != NULL)
+        {
+          mpd_data_free (data);
+          return TRUE;
+        }
     }
 
   return FALSE;

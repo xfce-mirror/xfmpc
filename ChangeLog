@@ -1,3 +1,29 @@
+2009-02-24	Mike Massonnet <mmassonnet@gmail.com>
+
+Preferences dialog and enhancements by Vincent Legout
+	* src/preferences.c:
+	  - New option ShowStatusbar
+	* src/preferences-dialog., src/preferences-dialog.h:
+	  - New preferences dialog
+	* src/extended-interface.c, src/main.c:
+	  - Move statusbar fom main.c to XfmpcExtendedInterface
+	  - Use a GtkActionGroup to update the visibility of the status bar WRT
+	  the corresponding option in XfmpcPreferences
+	  - Update the statusbar text WRT to playlist changes
+	  - Remove code for the mpd settings, use the new XfmpcPreferencesDialog
+	* src/statusbar.c:
+	  - Don't get a pointer on the mpdclient object and don't update the
+	  statusbar from within the object
+	* src/mpdclient.c(xfmpc_mpdclient_playlist_has_filename),
+	  src/mpdclient.h:
+	  - New argument gboolean is_dir to make a one level recursive
+	  verification inside the directory to know if a song from the
+	  directory is in the playlist
+	* src/dbbrowser.c:
+	  - Use updated function xfmpc_mpdclient_playlist_has_filename thus
+	  setting the listed directories in bold if they contain songs in the
+	  playlist
+
 2009-02-16	Mike Massonnet <mmassonnet@gmail.com>
 
 Fix song changes

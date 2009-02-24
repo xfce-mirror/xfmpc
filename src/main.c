@@ -37,7 +37,6 @@
 #include "main-ui.h"
 #include "interface.h"
 #include "extended-interface.h"
-#include "statusbar.h"
 
 #define BORDER 4
 
@@ -149,10 +148,6 @@ main (int argc, char *argv[])
   /* ExtendedInterface */
   GtkWidget *extended_interface = xfmpc_extended_interface_new ();
   gtk_box_pack_start (GTK_BOX (vbox), extended_interface, TRUE, TRUE, 0);
-
-  /* Statusbar */
-  GtkWidget *statusbar = xfmpc_statusbar_new ();
-  gtk_box_pack_start (GTK_BOX (vbox), statusbar, FALSE, FALSE, 2);
 
   gtk_widget_show_all (window);
 

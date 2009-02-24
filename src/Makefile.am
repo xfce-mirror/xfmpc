@@ -16,6 +16,8 @@ xfmpc_SOURCES =								\
 	statusbar.h							\
 	preferences.c							\
 	preferences.h							\
+	preferences-dialog.c						\
+	preferences-dialog.h						\
 	mpdclient.c							\
 	mpdclient.h							\
 	xfce-arrow-button.c						\

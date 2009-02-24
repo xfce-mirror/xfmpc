@@ -28,7 +28,9 @@
 #include "mpdclient.h"
 #include "playlist.h"
 #include "dbbrowser.h"
+#include "statusbar.h"
 #include "xfce-arrow-button.h"
+#include "preferences-dialog.h"
 #include "preferences.h"
 
 #define BORDER 4
@@ -48,32 +50,45 @@ enum
 
 
 
-static void             xfmpc_extended_interface_class_init (XfmpcExtendedInterfaceClass *klass);
-static void             xfmpc_extended_interface_init       (XfmpcExtendedInterface *extended_interface);
-static void             xfmpc_extended_interface_dispose    (GObject *object);
-static void             xfmpc_extended_interface_finalize   (GObject *object);
+static void xfmpc_extended_interface_class_init               (XfmpcExtendedInterfaceClass *klass);
+static void xfmpc_extended_interface_init                     (XfmpcExtendedInterface *extended_interface);
+static void xfmpc_extended_interface_dispose                  (GObject *object);
+static void xfmpc_extended_interface_finalize                 (GObject *object);
 
-static void             xfmpc_extended_interface_context_menu_new
-                                                            (XfmpcExtendedInterface *extended_interface,
-                                                             GtkWidget *attach_widget);
-static void             xfmpc_server_dialog_show            (XfmpcExtendedInterface *extended_interface);
+static void xfmpc_extended_interface_context_menu_new         (XfmpcExtendedInterface *extended_interface,
+                                                               GtkWidget *attach_widget);
+static void xfmpc_preferences_dialog_show                     (XfmpcExtendedInterface *extended_interface);
 
-static void             cb_interface_changed                (GtkComboBox *widget,
-                                                             XfmpcExtendedInterface *extended_interface);
-static void             cb_repeat_switch                    (XfmpcExtendedInterface *extended_interface);
-static void             cb_random_switch                    (XfmpcExtendedInterface *extended_interface);
-static void             cb_context_menu_clicked             (GtkToggleButton *button,
-                                                             XfmpcExtendedInterface *extended_interface);
-static void             cb_context_menu_deactivate          (GtkMenuShell *menu,
-                                                             GtkWidget *attach_widget);
-static void             popup_context_menu                  (XfmpcExtendedInterface *extended_interface);
-static void             position_context_menu               (GtkMenu *menu,
-                                                             gint *x,
-                                                             gint *y,
-                                                             gboolean *push_in,
-                                                             GtkWidget *widget);
-static void             cb_use_defaults_toggled             (GtkToggleButton *button,
-                                                             GtkWidget *widget);
+static void cb_interface_changed                              (GtkComboBox *widget,
+                                                               XfmpcExtendedInterface *extended_interface);
+static void cb_repeat_switch                                  (XfmpcExtendedInterface *extended_interface);
+static void cb_random_switch                                  (XfmpcExtendedInterface *extended_interface);
+static void cb_context_menu_clicked                           (GtkToggleButton *button,
+                                                               XfmpcExtendedInterface *extended_interface);
+static void cb_context_menu_deactivate                        (GtkMenuShell *menu,
+                                                               GtkWidget *attach_widget);
+static void popup_context_menu                                (XfmpcExtendedInterface *extended_interface);
+static void position_context_menu                             (GtkMenu *menu,
+                                                               gint *x,
+                                                               gint *y,
+                                                               gboolean *push_in,
+                                                               GtkWidget *widget);
+
+static void xfmpc_extended_interface_action_statusbar_changed (GtkToggleAction *action,
+                                                               XfmpcExtendedInterface *extended_interface);
+
+static void xfmpc_extended_interface_update_statusbar         (XfmpcExtendedInterface *extended_interface);
+
+static void cb_playlist_changed                               (XfmpcExtendedInterface *extended_interface);
+static void cb_show_statusbar_changed                         (XfmpcExtendedInterface *extended_interface,
+                                                               GParamSpec *pspec);
+
+
+
+static const GtkToggleActionEntry toggle_action_entries[] =
+{
+  { "view-statusbar", NULL, "Statusbar", NULL, "Change the visibility of the statusbar", G_CALLBACK (xfmpc_extended_interface_action_statusbar_changed), FALSE, },
+};
 
 
 
@@ -86,17 +101,20 @@ struct _XfmpcExtendedInterface
 {
   GtkVBox                           parent;
   XfmpcMpdclient                   *mpdclient;
+  XfmpcPreferences                 *preferences;
   /*<private>*/
   XfmpcExtendedInterfacePrivate    *priv;
 };
 
 struct _XfmpcExtendedInterfacePrivate
 {
+  GtkActionGroup                   *action_group;
   GtkListStore                     *list_store;
   GtkWidget                        *combobox;
   GtkWidget                        *notebook;
   GtkWidget                        *context_button;
   GtkWidget                        *context_menu;
+  GtkWidget                        *statusbar;
 };
 
 
@@ -151,8 +169,11 @@ static void
 xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 {
   XfmpcExtendedInterfacePrivate *priv = extended_interface->priv = GET_PRIVATE (extended_interface);
+  GtkAction *action;
+  gboolean active;
 
   extended_interface->mpdclient = xfmpc_mpdclient_get ();
+  extended_interface->preferences = xfmpc_preferences_get ();
 
   /* Hbox  */
   GtkWidget *hbox = gtk_hbox_new (FALSE, 2);
@@ -215,6 +236,23 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 
   child = xfmpc_dbbrowser_new ();
   xfmpc_extended_interface_append_child (extended_interface, child, _("Browse database"));
+
+  /* Action Group */
+  priv->action_group = gtk_action_group_new ("XfmpxExtendedInterface");
+  gtk_action_group_add_toggle_actions (priv->action_group, toggle_action_entries,
+                                       G_N_ELEMENTS (toggle_action_entries), GTK_WIDGET (extended_interface));
+
+  /* show-statusbar action */
+  action = gtk_action_group_get_action (priv->action_group, "view-statusbar");
+  g_object_get (G_OBJECT (extended_interface->preferences), "show-statusbar", &active, NULL);
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), active);
+
+  /* === Signals === */
+  g_signal_connect_swapped (extended_interface->mpdclient, "playlist-changed",
+                            G_CALLBACK (cb_playlist_changed), extended_interface);
+
+  g_signal_connect_swapped (extended_interface->preferences, "notify::show-statusbar",
+                            G_CALLBACK (cb_show_statusbar_changed), extended_interface);
 }
 
 static void
@@ -304,119 +342,20 @@ xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface *extended_inte
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_PREFERENCES, GTK_ICON_SIZE_MENU);
-  mi = gtk_image_menu_item_new_with_label (_("MPD Settings"));
+  mi = gtk_image_menu_item_new_with_label (_("Preferences"));
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
   g_signal_connect_swapped (mi, "activate",
-                            G_CALLBACK (xfmpc_server_dialog_show), extended_interface);
+                            G_CALLBACK (xfmpc_preferences_dialog_show), extended_interface);
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
   gtk_widget_show_all (menu);
 }
 
 static void
-xfmpc_server_dialog_show (XfmpcExtendedInterface *extended_interface)
+xfmpc_preferences_dialog_show (XfmpcExtendedInterface *extended_interface)
 {
-  XfmpcPreferences *preferences;
-  GtkWidget *dialog;
-  GtkWidget *frame;
-  GtkWidget *alignment;
-  GtkWidget *vbox, *vbox2;
-  GtkWidget *hbox;
-  GtkWidget *label;
-  GtkWidget *entry_use_defaults;
-  GtkWidget *entry_host;
-  GtkWidget *entry_port;
-  GtkWidget *entry_passwd;
-  gchar *host, *passwd;
-  guint port;
-  gboolean use_defaults;
-  gint res;
-
-  preferences = xfmpc_preferences_get ();
-  g_object_get (preferences,
-                "mpd-hostname", &host,
-                "mpd-port", &port,
-                "mpd-password", &passwd,
-                "mpd-use-defaults", &use_defaults,
-                NULL);
-
-  dialog = gtk_dialog_new_with_buttons (_("MPD Settings"),
-    GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (extended_interface))),
-    GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
-    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-    GTK_STOCK_OK, GTK_RESPONSE_OK,
-    NULL);
-  gtk_window_set_icon_name (GTK_WINDOW (dialog), "stock_volume");
-  gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-
-  frame = xfce_create_framebox (_("MPD Settings"), &alignment);
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), frame);
-
-  vbox = gtk_vbox_new (FALSE, 6);
-  gtk_container_add (GTK_CONTAINER (alignment), vbox);
-
-  vbox2 = gtk_vbox_new (FALSE, 6);
-
-  hbox = gtk_hbox_new (FALSE, 2);
-  gtk_container_add (GTK_CONTAINER (vbox), hbox);
-  entry_use_defaults = gtk_check_button_new_with_label (_("Use default system settings"));
-  gtk_widget_set_tooltip_text (entry_use_defaults,
-                               _("If checked, Xfmpc will try to read the environment "
-                                 "variables MPD_HOST and MPD_PORT otherwise it will "
-                                 "use localhost"));
-  g_signal_connect (entry_use_defaults, "toggled",
-                    G_CALLBACK (cb_use_defaults_toggled), vbox2);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (entry_use_defaults), use_defaults);
-  gtk_box_pack_start (GTK_BOX (hbox), entry_use_defaults, TRUE, TRUE, 0);
-
-  gtk_container_add (GTK_CONTAINER (vbox), vbox2);
-
-  hbox = gtk_hbox_new (FALSE, 2);
-  gtk_container_add (GTK_CONTAINER (vbox2), hbox);
-  label = gtk_label_new (_("Hostname:"));
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  entry_host = gtk_entry_new ();
-  gtk_entry_set_width_chars (GTK_ENTRY (entry_host), 15);
-  gtk_entry_set_text (GTK_ENTRY (entry_host), host);
-  gtk_box_pack_start (GTK_BOX (hbox), entry_host, TRUE, TRUE, 0);
-
-  label = gtk_label_new (_("Port:"));
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  entry_port = gtk_spin_button_new_with_range (0, 65536, 1);
-  gtk_spin_button_set_digits (GTK_SPIN_BUTTON (entry_port), 0);
-  gtk_spin_button_set_value (GTK_SPIN_BUTTON (entry_port), port);
-  gtk_box_pack_start (GTK_BOX (hbox), entry_port, FALSE, FALSE, 0);
-
-  hbox = gtk_hbox_new (FALSE, 2);
-  gtk_container_add (GTK_CONTAINER (vbox2), hbox);
-  label = gtk_label_new (_("Password:"));
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  entry_passwd = gtk_entry_new ();
-  gtk_entry_set_visibility (GTK_ENTRY (entry_passwd), FALSE);
-  if (passwd != NULL)
-    gtk_entry_set_text (GTK_ENTRY (entry_passwd), passwd);
-  gtk_box_pack_start (GTK_BOX (hbox), entry_passwd, TRUE, TRUE, 0);
-
-  gtk_widget_show_all (GTK_DIALOG (dialog)->vbox);
-  res = gtk_dialog_run (GTK_DIALOG (dialog));
-
-  if (res == GTK_RESPONSE_OK)
-    {
-      g_object_set (G_OBJECT (preferences),
-                    "mpd-hostname", gtk_entry_get_text (GTK_ENTRY (entry_host)),
-                    "mpd-port", gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (entry_port)),
-                    "mpd-password", gtk_entry_get_text (GTK_ENTRY (entry_passwd)),
-                    "mpd-use-defaults", gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (entry_use_defaults)),
-                    NULL);
-
-      xfmpc_mpdclient_disconnect (extended_interface->mpdclient);
-      xfmpc_mpdclient_connect (extended_interface->mpdclient);
-    }
-
-  gtk_widget_destroy (dialog);
-  g_object_unref (preferences);
-  g_free (host);
-  g_free (passwd);
+  GtkWidget *dialog = xfmpc_preferences_dialog_new (NULL);
+  gtk_widget_show (dialog);
 }
 
 
@@ -517,9 +456,73 @@ position_context_menu (GtkMenu *menu,
 }
 
 static void
-cb_use_defaults_toggled (GtkToggleButton *button,
-                         GtkWidget *widget)
+xfmpc_extended_interface_action_statusbar_changed (GtkToggleAction *action,
+                                                   XfmpcExtendedInterface *extended_interface)
 {
-  gtk_widget_set_sensitive (widget, !gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
+
+  gboolean active;
+
+  active = gtk_toggle_action_get_active (action);
+  
+  if (!active && priv->statusbar != NULL)
+    {
+      gtk_widget_destroy (priv->statusbar);
+      priv->statusbar = NULL;
+    }
+  else if (active && priv->statusbar == NULL)
+    {
+      priv->statusbar = xfmpc_statusbar_new ();
+      gtk_widget_show (priv->statusbar);
+      gtk_box_pack_start (GTK_BOX (extended_interface), priv->statusbar, FALSE, FALSE, 2);
+    }
+}
+
+static void
+cb_playlist_changed (XfmpcExtendedInterface *extended_interface)
+{
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
+
+  if (priv->statusbar == NULL)
+    return;
+
+  xfmpc_extended_interface_update_statusbar (extended_interface);
+}
+
+static void
+xfmpc_extended_interface_update_statusbar (XfmpcExtendedInterface *extended_interface)
+{
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
+  gchar    *text;
+  gint      seconds, length;
+
+  if (priv->statusbar == NULL)
+    return;
+
+  length = xfmpc_mpdclient_playlist_get_length (extended_interface->mpdclient);
+  seconds = xfmpc_mpdclient_playlist_get_total_time (extended_interface->mpdclient);
+
+  if (seconds / 3600 > 0)
+    text = g_strdup_printf (_("%d songs, %d hours and %d minutes"), length, seconds / 3600, (seconds / 60) % 60);
+  else
+    text = g_strdup_printf (_("%d songs, %d minutes"), length, (seconds / 60) % 60);
+
+  g_object_set (G_OBJECT (priv->statusbar), "text", text, NULL);
+  g_free (text);
+}
+
+static void
+cb_show_statusbar_changed (XfmpcExtendedInterface *extended_interface,
+                           GParamSpec *pspec)
+{
+  XfmpcExtendedInterfacePrivate *priv = extended_interface->priv;
+  gboolean active;
+  GtkAction *action;
+
+  action = gtk_action_group_get_action (priv->action_group, "view-statusbar");
+  g_object_get (extended_interface->preferences, "show-statusbar", &active, NULL);
+
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), active);
+  xfmpc_extended_interface_update_statusbar (extended_interface);
 }
 

@@ -395,7 +395,7 @@ xfmpc_dbbrowser_reload (XfmpcDbbrowser *dbbrowser)
   while (xfmpc_mpdclient_database_read (dbbrowser->mpdclient, priv->wdir,
                                         &filename, &basename, &is_dir))
     {
-      is_bold = xfmpc_mpdclient_playlist_has_filename (dbbrowser->mpdclient, filename);
+      is_bold = xfmpc_mpdclient_playlist_has_filename (dbbrowser->mpdclient, filename, is_dir);
       xfmpc_dbbrowser_append (dbbrowser, filename, basename, is_dir, is_bold);
 
       if (i >= 0)
@@ -438,7 +438,7 @@ xfmpc_dbbrowser_search (XfmpcDbbrowser *dbbrowser,
 
   while (xfmpc_mpdclient_database_search (dbbrowser->mpdclient, query, &filename, &basename))
     {
-      is_bold = xfmpc_mpdclient_playlist_has_filename (dbbrowser->mpdclient, filename);
+      is_bold = xfmpc_mpdclient_playlist_has_filename (dbbrowser->mpdclient, filename, 0);
       xfmpc_dbbrowser_append (dbbrowser, filename, basename, FALSE, is_bold);
       g_free (filename);
       g_free (basename);
@@ -750,6 +750,7 @@ cb_playlist_changed (XfmpcDbbrowser *dbbrowser)
   GtkTreeIter           iter;
   gchar                *filename;
   gboolean              is_bold;
+  gboolean              is_dir;
 
   if (!gtk_tree_model_get_iter_first (store, &iter))
     return;
@@ -758,9 +759,10 @@ cb_playlist_changed (XfmpcDbbrowser *dbbrowser)
     {
       gtk_tree_model_get (store, &iter,
                           COLUMN_FILENAME, &filename,
+                          COLUMN_IS_DIR, &is_dir,
                           -1);
 
-      is_bold = xfmpc_mpdclient_playlist_has_filename (dbbrowser->mpdclient, filename);
+      is_bold = xfmpc_mpdclient_playlist_has_filename (dbbrowser->mpdclient, filename, is_dir);
       gtk_list_store_set (GTK_LIST_STORE (store), &iter,
                           COLUMN_WEIGHT, is_bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
                           -1);
