@@ -1,3 +1,9 @@
+2009-02-25	Mike Massonnet <mmassonnet@gmail.com>
+
+Fix apply button in preferences dialog
+	* src/preferences-dialog.c(xfmpc_preferences_dialog_init):
+	  - Put the apply button in vbox2 so it remains clickable
+
 2009-02-24	Mike Massonnet <mmassonnet@gmail.com>
 
 Update IDEAS and bump to 0.1.0

@@ -227,7 +227,7 @@ xfmpc_preferences_dialog_init (XfmpcPreferencesDialog *dialog)
   button = gtk_button_new_from_stock (GTK_STOCK_APPLY);
   g_signal_connect (button, "clicked",
                     G_CALLBACK (cb_update_mpd), dialog);
-  gtk_container_add (GTK_CONTAINER (mpd_vbox), button);
+  gtk_container_add (GTK_CONTAINER (vbox2), button);
 
   /*
     Display
