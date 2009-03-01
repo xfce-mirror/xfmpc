@@ -3,6 +3,8 @@ bin_PROGRAMS = xfmpc
 xfmpc_SOURCES =								\
 	main.c								\
 	main-ui.h							\
+	main-window.c							\
+	main-window.h							\
 	interface.c							\
 	interface.h							\
 	interface-ui.h							\

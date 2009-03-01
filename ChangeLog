@@ -1,3 +1,13 @@
+2009-03-01	Vincent Legout <vincent@legout.info>
+
+New XfmpcMainWindow widget
+	* src/main-window.c, src/main-window.h:
+	  - New files
+	* src/main.c:
+	  - move window from main.c to XfmpcMainWindow
+	* src/extended-interface.c:
+	  - move statusbar from XfmpcExtendedInterface to XfmpcMainWindow
+
 2009-02-25	Mike Massonnet <mmassonnet@gmail.com>
 
 Fix apply button in preferences dialog

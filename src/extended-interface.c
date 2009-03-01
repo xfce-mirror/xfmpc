@@ -74,22 +74,6 @@ static void position_context_menu                             (GtkMenu *menu,
                                                                gboolean *push_in,
                                                                GtkWidget *widget);
 
-static void xfmpc_extended_interface_action_statusbar_changed (GtkToggleAction *action,
-                                                               XfmpcExtendedInterface *extended_interface);
-
-static void xfmpc_extended_interface_update_statusbar         (XfmpcExtendedInterface *extended_interface);
-
-static void cb_playlist_changed                               (XfmpcExtendedInterface *extended_interface);
-static void cb_show_statusbar_changed                         (XfmpcExtendedInterface *extended_interface,
-                                                               GParamSpec *pspec);
-
-
-
-static const GtkToggleActionEntry toggle_action_entries[] =
-{
-  { "view-statusbar", NULL, "Statusbar", NULL, "Change the visibility of the statusbar", G_CALLBACK (xfmpc_extended_interface_action_statusbar_changed), FALSE, },
-};
-
 
 
 struct _XfmpcExtendedInterfaceClass
@@ -108,13 +92,11 @@ struct _XfmpcExtendedInterface
 
 struct _XfmpcExtendedInterfacePrivate
 {
-  GtkActionGroup                   *action_group;
   GtkListStore                     *list_store;
   GtkWidget                        *combobox;
   GtkWidget                        *notebook;
   GtkWidget                        *context_button;
   GtkWidget                        *context_menu;
-  GtkWidget                        *statusbar;
 };
 
 
@@ -169,8 +151,6 @@ static void
 xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 {
   XfmpcExtendedInterfacePrivate *priv = extended_interface->priv = GET_PRIVATE (extended_interface);
-  GtkAction *action;
-  gboolean active;
 
   extended_interface->mpdclient = xfmpc_mpdclient_get ();
   extended_interface->preferences = xfmpc_preferences_get ();
@@ -236,23 +216,6 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 
   child = xfmpc_dbbrowser_new ();
   xfmpc_extended_interface_append_child (extended_interface, child, _("Browse database"));
-
-  /* Action Group */
-  priv->action_group = gtk_action_group_new ("XfmpxExtendedInterface");
-  gtk_action_group_add_toggle_actions (priv->action_group, toggle_action_entries,
-                                       G_N_ELEMENTS (toggle_action_entries), GTK_WIDGET (extended_interface));
-
-  /* show-statusbar action */
-  action = gtk_action_group_get_action (priv->action_group, "view-statusbar");
-  g_object_get (G_OBJECT (extended_interface->preferences), "show-statusbar", &active, NULL);
-  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), active);
-
-  /* === Signals === */
-  g_signal_connect_swapped (extended_interface->mpdclient, "playlist-changed",
-                            G_CALLBACK (cb_playlist_changed), extended_interface);
-
-  g_signal_connect_swapped (extended_interface->preferences, "notify::show-statusbar",
-                            G_CALLBACK (cb_show_statusbar_changed), extended_interface);
 }
 
 static void
@@ -453,76 +416,5 @@ position_context_menu (GtkMenu *menu,
     *y = 0;
 
   *push_in = FALSE;
-}
-
-static void
-xfmpc_extended_interface_action_statusbar_changed (GtkToggleAction *action,
-                                                   XfmpcExtendedInterface *extended_interface)
-{
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
-
-  gboolean active;
-
-  active = gtk_toggle_action_get_active (action);
-  
-  if (!active && priv->statusbar != NULL)
-    {
-      gtk_widget_destroy (priv->statusbar);
-      priv->statusbar = NULL;
-    }
-  else if (active && priv->statusbar == NULL)
-    {
-      priv->statusbar = xfmpc_statusbar_new ();
-      gtk_widget_show (priv->statusbar);
-      gtk_box_pack_start (GTK_BOX (extended_interface), priv->statusbar, FALSE, FALSE, 2);
-    }
-}
-
-static void
-cb_playlist_changed (XfmpcExtendedInterface *extended_interface)
-{
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
-
-  if (priv->statusbar == NULL)
-    return;
-
-  xfmpc_extended_interface_update_statusbar (extended_interface);
-}
-
-static void
-xfmpc_extended_interface_update_statusbar (XfmpcExtendedInterface *extended_interface)
-{
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
-  gchar    *text;
-  gint      seconds, length;
-
-  if (priv->statusbar == NULL)
-    return;
-
-  length = xfmpc_mpdclient_playlist_get_length (extended_interface->mpdclient);
-  seconds = xfmpc_mpdclient_playlist_get_total_time (extended_interface->mpdclient);
-
-  if (seconds / 3600 > 0)
-    text = g_strdup_printf (_("%d songs, %d hours and %d minutes"), length, seconds / 3600, (seconds / 60) % 60);
-  else
-    text = g_strdup_printf (_("%d songs, %d minutes"), length, (seconds / 60) % 60);
-
-  g_object_set (G_OBJECT (priv->statusbar), "text", text, NULL);
-  g_free (text);
-}
-
-static void
-cb_show_statusbar_changed (XfmpcExtendedInterface *extended_interface,
-                           GParamSpec *pspec)
-{
-  XfmpcExtendedInterfacePrivate *priv = extended_interface->priv;
-  gboolean active;
-  GtkAction *action;
-
-  action = gtk_action_group_get_action (priv->action_group, "view-statusbar");
-  g_object_get (extended_interface->preferences, "show-statusbar", &active, NULL);
-
-  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), active);
-  xfmpc_extended_interface_update_statusbar (extended_interface);
 }
 
