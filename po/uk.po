@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-03 22:16+0100\n"
-"PO-Revision-Date: 2008-07-28 19:11+0300\n"
+"PO-Revision-Date: 2009-02-24 20:34+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. Menu -> Replace
 #: ../src/dbbrowser.c:215
 msgid "_Replace"
-msgstr ""
+msgstr "_Замінити"
 
 #: ../src/extended-interface.c:160
 msgid "Clear Playlist"
@@ -52,33 +52,35 @@ msgstr "Випадково"
 #: ../src/extended-interface.c:304 ../src/extended-interface.c:340
 #: ../src/extended-interface.c:349
 msgid "MPD Settings"
-msgstr ""
+msgstr "Налаштування MPD"
 
 #: ../src/extended-interface.c:359
 msgid "Use default system settings"
-msgstr ""
+msgstr "Використовувати типові налаштування системи"
 
 #: ../src/extended-interface.c:361
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
 msgstr ""
+"Якщо відмічено, Xfmpc спробує прочитати змінні середовища MPD_HOST і "
+"MPD_PORT інакше буде використовувати localhost"
 
 #: ../src/extended-interface.c:373
 msgid "Hostname:"
-msgstr ""
+msgstr "Назва хоста:"
 
 #: ../src/extended-interface.c:380
 msgid "Port:"
-msgstr ""
+msgstr "Порт:"
 
 #: ../src/extended-interface.c:389
 msgid "Password:"
-msgstr ""
+msgstr "Пароль:"
 
 #: ../src/interface.c:156 ../src/interface.c:364
 msgid "Not connected"
-msgstr "Не під'єднано"
+msgstr "Не з'єднаний"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:395
@@ -105,3 +107,4 @@ msgstr "Клієнт MPD"
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Клієнт MPD написаний в GTK+ для Xfce"
+
