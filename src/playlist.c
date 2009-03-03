@@ -258,6 +258,12 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                             G_CALLBACK (cb_filter_entry_key_released), playlist);
   g_signal_connect_swapped (priv->filter_entry, "changed",
                             G_CALLBACK (cb_filter_entry_changed), playlist);
+
+  /* Preferences */
+  g_signal_connect_swapped (playlist->preferences, "notify::song-format",
+                            G_CALLBACK (cb_playlist_changed), playlist);
+  g_signal_connect_swapped (playlist->preferences, "notify::song-format-custom",
+                            G_CALLBACK (cb_playlist_changed), playlist);
 }
 
 static void

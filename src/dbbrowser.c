@@ -267,6 +267,11 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
                             G_CALLBACK (cb_search_entry_key_released), dbbrowser);
   g_signal_connect_swapped (priv->search_entry, "changed",
                             G_CALLBACK (cb_search_entry_changed), dbbrowser);
+  /* Preferences */
+  g_signal_connect_swapped (dbbrowser->preferences, "notify::song-format",
+                            G_CALLBACK (xfmpc_dbbrowser_reload), dbbrowser);
+  g_signal_connect_swapped (dbbrowser->preferences, "notify::song-format-custom",
+                            G_CALLBACK (xfmpc_dbbrowser_reload), dbbrowser);
 }
 
 static void

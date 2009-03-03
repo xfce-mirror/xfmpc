@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2008 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,6 +20,19 @@
 #define __XFMPC_PREFERENCES_H__
 
 G_BEGIN_DECLS
+
+typedef enum
+{
+  XFMPC_SONG_FORMAT_TITLE,
+  XFMPC_SONG_FORMAT_ARTIST_TITLE,
+  XFMPC_SONG_FORMAT_ALBUM_TITLE,
+  XFMPC_SONG_FORMAT_ARTIST_TITLE_DATE,
+  XFMPC_SONG_FORMAT_ARTIST_ALBUM_TITLE,
+  XFMPC_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE,
+  XFMPC_SONG_FORMAT_CUSTOM,
+} XfmpcSongFormat;
+GType xfmpc_song_format_get_type () G_GNUC_CONST;
+#define XFMPC_TYPE_SONG_FORMAT (xfmpc_song_format_get_type ())
 
 #define XFMPC_TYPE_PREFERENCES              (xfmpc_preferences_get_type())
 

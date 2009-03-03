@@ -51,6 +51,15 @@ static void               cb_update_mpd                       (GtkButton *button
 static void               cb_show_statusbar_toggled           (GtkToggleButton *button,
                                                                XfmpcPreferencesDialog *dialog);
 
+static void               cb_format_entry_activated           (XfmpcPreferencesDialog *dialog);
+static void               cb_format_entry_changed             (GtkEntry *entry,
+                                                               XfmpcPreferencesDialog *dialog);
+static void               cb_format_combo_changed             (GtkComboBox *combo,
+                                                               XfmpcPreferencesDialog *dialog);
+
+static gboolean           timeout_format                      (XfmpcPreferencesDialog *dialog);
+static void               timeout_format_destroy              (XfmpcPreferencesDialog *dialog);
+
 
 
 struct _XfmpcPreferencesDialogClass
@@ -68,11 +77,16 @@ struct _XfmpcPreferencesDialog
 
 struct _XfmpcPreferencesDialogPrivate
 {
-  GtkWidget *entry_use_defaults;
-  GtkWidget *entry_host;
-  GtkWidget *entry_port;
-  GtkWidget *entry_passwd;
-  GtkWidget *statusbar_button;
+  GtkWidget                        *entry_use_defaults;
+  GtkWidget                        *entry_host;
+  GtkWidget                        *entry_port;
+  GtkWidget                        *entry_passwd;
+  GtkWidget                        *statusbar_button;
+  GtkWidget                        *entry_format;
+  GtkWidget                        *combo_format;
+
+  guint                             format_timeout;
+  gboolean                          is_format;
 };
 
 
@@ -138,11 +152,14 @@ xfmpc_preferences_dialog_init (XfmpcPreferencesDialog *dialog)
   GtkWidget *frame;
   GtkWidget *label;
   GtkWidget *button;
+  GtkWidget *table;
 
   gchar *host, *passwd;
   guint port;
   gboolean use_defaults;
   gboolean statusbar;
+  XfmpcSongFormat song_format;
+  gchar *format_custom;
 
   dialog->preferences = xfmpc_preferences_get ();
 
@@ -152,6 +169,8 @@ xfmpc_preferences_dialog_init (XfmpcPreferencesDialog *dialog)
                 "mpd-password", &passwd,
                 "mpd-use-defaults", &use_defaults,
                 "show-statusbar", &statusbar,
+                "song-format", &song_format,
+                "song-format-custom", &format_custom,
                 NULL);
 
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
@@ -247,10 +266,103 @@ xfmpc_preferences_dialog_init (XfmpcPreferencesDialog *dialog)
                     G_CALLBACK (cb_show_statusbar_toggled), dialog);
   gtk_container_add (GTK_CONTAINER (vbox2), priv->statusbar_button);
 
+  vbox2 = gtk_vbox_new (FALSE, 6);
+  frame = xfce_create_framebox_with_content (_("Song Format"), vbox2);
+  gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, 0);
+
+  hbox = gtk_hbox_new (FALSE, 2);
+
+  label = gtk_label_new (_("Song format:"));
+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+  priv->combo_format = gtk_combo_box_new_text ();
+  gtk_box_pack_start (GTK_BOX (hbox), priv->combo_format, TRUE, TRUE, 0);
+
+  gint i;
+  GEnumClass *klass = g_type_class_ref (XFMPC_TYPE_SONG_FORMAT);
+  for (i = 0; i < klass->n_values; i++)
+    {
+      gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_format),
+                                 _(klass->values[i].value_nick));
+    }
+  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_format), song_format);
+  g_type_class_unref (klass);
+
+  gtk_container_add (GTK_CONTAINER (vbox2), hbox);
+
+  hbox = gtk_hbox_new (FALSE, 2);
+
+  label = gtk_label_new (_("Custom format:"));
+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+  priv->entry_format = gtk_entry_new ();
+  gtk_entry_set_width_chars (GTK_ENTRY (priv->entry_format), 15);
+  gtk_entry_set_max_length (GTK_ENTRY (priv->entry_format), 30);
+  gtk_entry_set_text (GTK_ENTRY (priv->entry_format), format_custom);
+  gtk_box_pack_start (GTK_BOX (hbox), priv->entry_format, TRUE, TRUE, 0);
+  g_signal_connect (priv->entry_format, "changed",
+                    G_CALLBACK (cb_format_entry_changed), dialog);
+  g_signal_connect (priv->combo_format, "changed",
+                    G_CALLBACK (cb_format_combo_changed), dialog);
+  gtk_widget_set_sensitive (priv->entry_format,
+                            song_format == XFMPC_SONG_FORMAT_CUSTOM);
+
+  gtk_container_add (GTK_CONTAINER (vbox2), hbox);
+
+  label = gtk_label_new (_("Available parameters:"));
+  gtk_container_add (GTK_CONTAINER (vbox2), label);
+
+  table = gtk_table_new (4, 6, TRUE);
+
+  PangoAttrList *attrs = pango_attr_list_new ();
+  PangoAttribute *attr = pango_attr_scale_new (PANGO_SCALE_SMALL);
+  pango_attr_list_insert (attrs, attr);
+
+  label = gtk_label_new (_("%a: Artist"));
+  gtk_label_set_attributes (GTK_LABEL (label), attrs);
+  gtk_misc_set_alignment (GTK_MISC (label), 0., 0.5);
+  gtk_table_attach_defaults (GTK_TABLE (table), label, 1, 3, 0, 1);
+  label = gtk_label_new (_("%A: Album"));
+  gtk_label_set_attributes (GTK_LABEL (label), attrs);
+  gtk_misc_set_alignment (GTK_MISC (label), 0., 0.5);
+  gtk_table_attach_defaults (GTK_TABLE (table), label, 4, 6, 0, 1);
+
+  label = gtk_label_new (_("%d: Date"));
+  gtk_label_set_attributes (GTK_LABEL (label), attrs);
+  gtk_misc_set_alignment (GTK_MISC (label), 0., 0.5);
+  gtk_table_attach_defaults (GTK_TABLE (table), label, 1, 3, 1, 2);
+  label = gtk_label_new (_("%D: Disc"));
+  gtk_label_set_attributes (GTK_LABEL (label), attrs);
+  gtk_misc_set_alignment (GTK_MISC (label), 0., 0.5);
+  gtk_table_attach_defaults (GTK_TABLE (table), label, 4, 6, 1, 2);
+
+  label = gtk_label_new (_("%f: File"));
+  gtk_label_set_attributes (GTK_LABEL (label), attrs);
+  gtk_misc_set_alignment (GTK_MISC (label), 0., 0.5);
+  gtk_table_attach_defaults (GTK_TABLE (table), label, 1, 3, 2, 3);
+  label = gtk_label_new (_("%g: Genre"));
+  gtk_label_set_attributes (GTK_LABEL (label), attrs);
+  gtk_misc_set_alignment (GTK_MISC (label), 0., 0.5);
+  gtk_table_attach_defaults (GTK_TABLE (table), label, 4, 6, 2, 3);
+
+  label = gtk_label_new (_("%t: Title"));
+  gtk_label_set_attributes (GTK_LABEL (label), attrs);
+  gtk_misc_set_alignment (GTK_MISC (label), 0., 0.5);
+  gtk_table_attach_defaults (GTK_TABLE (table), label, 1, 3, 3, 4);
+  label = gtk_label_new (_("%T: Track"));
+  gtk_label_set_attributes (GTK_LABEL (label), attrs);
+  gtk_misc_set_alignment (GTK_MISC (label), 0., 0.5);
+  gtk_table_attach_defaults (GTK_TABLE (table), label, 4, 6, 3, 4);
+
+  pango_attr_list_unref (attrs);
+
+  gtk_container_add (GTK_CONTAINER (vbox2), table);
+
   gtk_widget_show_all (GTK_DIALOG (dialog)->vbox);
 
   g_free (host);
   g_free (passwd);
+  g_free (format_custom);
 }
 
 static void
@@ -258,7 +370,7 @@ xfmpc_preferences_dialog_finalize (GObject *object)
 {
   XfmpcPreferencesDialog *dialog = XFMPC_PREFERENCES_DIALOG (object);
   g_object_unref (G_OBJECT (dialog->preferences));
-  (*G_OBJECT_CLASS (parent_class)->finalize) (object);
+  G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
 
@@ -267,6 +379,18 @@ static void
 xfmpc_preferences_dialog_response (GtkDialog *dialog,
                                    gint       response)
 {
+  XfmpcPreferencesDialogPrivate *priv = XFMPC_PREFERENCES_DIALOG (dialog)->priv;
+  XfmpcPreferences *preferences = XFMPC_PREFERENCES_DIALOG (dialog)->preferences;
+
+  if (priv->format_timeout > 0)
+    {
+      g_source_remove (priv->format_timeout);
+
+      g_object_set (G_OBJECT (preferences),
+                    "song-format-custom", gtk_entry_get_text (GTK_ENTRY (priv->entry_format)),
+                    NULL);
+    }
+
   gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
@@ -314,5 +438,62 @@ cb_show_statusbar_toggled (GtkToggleButton *button,
   g_object_set (G_OBJECT (dialog->preferences),
                 "show-statusbar", gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->statusbar_button)),
                 NULL);
+}
+
+static void
+cb_format_entry_activated (XfmpcPreferencesDialog *dialog)
+{
+  XfmpcPreferencesDialogPrivate *priv = XFMPC_PREFERENCES_DIALOG (dialog)->priv;
+  const gchar *entry_text = gtk_entry_get_text (GTK_ENTRY (priv->entry_format));
+
+  if (entry_text[0] == '\0')
+    {
+      priv->is_format = FALSE;
+    }
+
+  g_object_set (G_OBJECT (dialog->preferences),
+                "song-format-custom", gtk_entry_get_text (GTK_ENTRY (priv->entry_format)),
+                NULL);
+}
+
+static void
+cb_format_entry_changed (GtkEntry *entry,
+                         XfmpcPreferencesDialog *dialog)
+{
+  XfmpcPreferencesDialogPrivate *priv = XFMPC_PREFERENCES_DIALOG (dialog)->priv;
+
+  if (priv->format_timeout > 0)
+    g_source_remove (priv->format_timeout);
+
+  priv->format_timeout = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 1,
+                                                     (GSourceFunc)timeout_format, dialog,
+                                                     (GDestroyNotify)timeout_format_destroy);
+}
+
+static void
+cb_format_combo_changed (GtkComboBox *combo,
+                         XfmpcPreferencesDialog *dialog)
+{
+  XfmpcPreferencesDialogPrivate *priv = XFMPC_PREFERENCES_DIALOG (dialog)->priv;
+  XfmpcSongFormat song_format;
+
+  song_format = gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combo_format));
+  g_object_set (G_OBJECT (dialog->preferences), "song-format", song_format, NULL);
+
+  gtk_widget_set_sensitive (priv->entry_format, song_format == XFMPC_SONG_FORMAT_CUSTOM);
+}
+
+static gboolean
+timeout_format (XfmpcPreferencesDialog *dialog)
+{
+  cb_format_entry_activated (dialog);
+  return FALSE;
+}
+
+static void
+timeout_format_destroy (XfmpcPreferencesDialog *dialog)
+{
+  XfmpcPreferencesDialogPrivate *priv = XFMPC_PREFERENCES_DIALOG (dialog)->priv;
+  priv->format_timeout = 0;
 }
 

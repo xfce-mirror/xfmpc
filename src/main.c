@@ -49,6 +49,26 @@ transform_string_to_boolean (const GValue *src,
   g_value_set_boolean (dst, (gboolean) strcmp (g_value_get_string (src), "FALSE") != 0);
 }
 
+static void
+transform_string_to_enum (const GValue *src,
+                          GValue *dst)
+{
+  GEnumClass *klass;
+  gint        value = 0;
+  guint       n;
+
+  klass = g_type_class_ref (G_VALUE_TYPE (dst));
+  for (n = 0; n < klass->n_values; ++n)
+    {
+      value = klass->values[n].value;
+      if (!g_ascii_strcasecmp (klass->values[n].value_name, g_value_get_string (src)))
+        break;
+    }
+  g_type_class_unref (klass);
+
+  g_value_set_enum (dst, value);
+}
+
 
 
 int
@@ -60,6 +80,7 @@ main (int argc, char *argv[])
 
   g_value_register_transform_func (G_TYPE_STRING, G_TYPE_INT, transform_string_to_int);
   g_value_register_transform_func (G_TYPE_STRING, G_TYPE_BOOLEAN, transform_string_to_boolean);
+  g_value_register_transform_func (G_TYPE_STRING, G_TYPE_ENUM, transform_string_to_enum);
 
   GtkWidget *window = xfmpc_main_window_new ();
   gtk_widget_show_all (window);

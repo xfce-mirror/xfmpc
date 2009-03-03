@@ -1,5 +1,6 @@
 /*
  *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2009 Vincent Legout <vincent@xfce.org>
  *
  *  Based on ThunarPreferences:
  *  Copyright (c) 2005-2007 Benedikt Meurer <benny@xfce.org>
@@ -30,6 +31,30 @@
 
 
 
+/* Enum types */
+GType
+xfmpc_song_format_get_type ()
+{
+  static GType type = G_TYPE_INVALID;
+
+  static const GEnumValue values[] = {
+    { XFMPC_SONG_FORMAT_TITLE, "XFMPC_SONG_FORMAT_TITLE", N_("Title"), },
+    { XFMPC_SONG_FORMAT_ARTIST_TITLE, "XFMPC_SONG_FORMAT_ARTIST_TITLE", N_("Artist - Title"), },
+    { XFMPC_SONG_FORMAT_ALBUM_TITLE, "XFMPC_SONG_FORMAT_ALBUM_TITLE", N_("Album - Title"), },
+    { XFMPC_SONG_FORMAT_ARTIST_TITLE_DATE, "XFMPC_SONG_FORMAT_ARTIST_TITLE_DATE", N_("Artist - Title (Date)"), },
+    { XFMPC_SONG_FORMAT_ARTIST_ALBUM_TITLE, "XFMPC_SONG_FORMAT_ARTIST_ALBUM_TITLE", N_("Artist - Album - Title"), },
+    { XFMPC_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE, "XFMPC_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE", N_("Artist - Album - Track. Title"), },
+    { XFMPC_SONG_FORMAT_CUSTOM, "XFMPC_SONG_FORMAT_CUSTOM", N_("Custom"), },
+    { 0, NULL, NULL },
+  };
+
+  if (type != G_TYPE_INVALID)
+    return type;
+
+  type = g_enum_register_static ("XfmpcSongFormat", values);
+  return type;
+}
+
 /* Property identifiers */
 enum
 {
@@ -46,6 +71,8 @@ enum
   PROP_MPD_PASSWORD,
   PROP_MPD_USE_DEFAULTS,
   PROP_SHOW_STATUSBAR,
+  PROP_SONG_FORMAT,
+  PROP_SONG_FORMAT_CUSTOM,
   N_PROPERTIES,
 };
 
@@ -223,6 +250,23 @@ xfmpc_preferences_class_init (XfmpcPreferencesClass *klass)
                                                          "Show the statusbar",
                                                          TRUE,
                                                          G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_SONG_FORMAT,
+                                   g_param_spec_enum ("song-format",
+                                                      "SongFormat",
+                                                      "Song Format",
+                                                      XFMPC_TYPE_SONG_FORMAT,
+                                                      XFMPC_SONG_FORMAT_ARTIST_TITLE,
+                                                      G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_SONG_FORMAT_CUSTOM,
+                                   g_param_spec_string ("song-format-custom",
+                                                        "SongFormatCustom",
+                                                        "Custom Song Format",
+                                                        "\%a - \%t",
+                                                        G_PARAM_READWRITE));
 }
 
 static void

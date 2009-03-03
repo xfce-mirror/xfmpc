@@ -1,5 +1,6 @@
 /*
  *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2009 Vincent Legout <vincent@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -60,6 +61,10 @@ static void             cb_status_changed                       (MpdObj *mi,
                                                                  ChangedStatusType what,
                                                                  gpointer user_data);
 static gchar *          _get_formatted_name                     (mpd_Song *song);
+static gchar *          _get_formatted_name_predefined          (mpd_Song *song,
+                                                                 XfmpcSongFormat song_format);
+static gchar *          _get_formatted_name_custom              (mpd_Song *song,
+                                                                 const gchar *format);
 
 
 
@@ -914,17 +919,218 @@ xfmpc_mpdclient_database_search (XfmpcMpdclient *mpdclient,
 static gchar *
 _get_formatted_name (mpd_Song *song)
 {
+  XfmpcPreferences *preferences = xfmpc_preferences_get ();
+  XfmpcSongFormat song_format;
+  gchar *format_custom;
   gchar *formatted_name;
 
-  if (NULL != song->title)
+  g_object_get (preferences,
+                "song-format", &song_format,
+                "song-format-custom", &format_custom,
+                NULL);
+
+  if (NULL == song->title)
     {
-      if (song->artist)
-        formatted_name = g_strdup_printf ("%s - %s", song->artist, song->title);
-      else
-        formatted_name = g_strdup (song->title);
+      formatted_name = g_path_get_basename (song->file);
+    }
+  else if (song_format == XFMPC_SONG_FORMAT_CUSTOM)
+    {
+      formatted_name = _get_formatted_name_custom (song, format_custom);
     }
   else
-    formatted_name = g_path_get_basename (song->file);
+    {
+      formatted_name = _get_formatted_name_predefined (song, song_format);
+    }
+
+  g_free (format_custom);
+  return formatted_name;
+}
+
+static gchar *
+_get_formatted_name_predefined (mpd_Song *song,
+                                XfmpcSongFormat song_format)
+{
+  gchar *formatted_name, *tmp;
+
+  switch (song_format)
+    {
+    case XFMPC_SONG_FORMAT_TITLE:
+      formatted_name = g_strdup_printf ("%s", song->title);
+      break;
+
+    case XFMPC_SONG_FORMAT_ARTIST_TITLE:
+      if (NULL != song->artist)
+        {
+          formatted_name = g_strdup_printf ("%s - %s", song->artist, song->title);
+        }
+      else
+        {
+          formatted_name = g_strdup_printf ("%s", song->title);
+        }
+      break;
+
+    case XFMPC_SONG_FORMAT_ALBUM_TITLE:
+      if (NULL != song->album)
+        {
+          formatted_name = g_strdup_printf ("%s - %s", song->album, song->title);
+        }
+      else
+        {
+          formatted_name = g_strdup_printf ("%s", song->title);
+        }
+      break;
+
+    case XFMPC_SONG_FORMAT_ARTIST_TITLE_DATE:
+      if (NULL != song->artist && NULL != song->date)
+        {
+          formatted_name = g_strdup_printf ("%s - %s (%s)", song->artist, song->title, song->date);
+        }
+      else if (NULL != song->date)
+        {
+          formatted_name = g_strdup_printf ("%s (%s)", song->title, song->date);
+        }
+      else if (NULL != song->artist)
+        {
+          formatted_name = g_strdup_printf ("%s - %s", song->artist, song->title);
+        }
+      else
+        {
+          formatted_name = g_strdup_printf ("%s", song->title);
+        }
+      break;
+
+    case XFMPC_SONG_FORMAT_ARTIST_ALBUM_TITLE:
+      if (NULL != song->artist && NULL != song->album)
+        {
+          formatted_name = g_strdup_printf ("%s - %s - %s", song->artist, song->album, song->title);
+        }
+      else if (NULL != song->album)
+        {
+          formatted_name = g_strdup_printf ("%s - %s", song->album, song->title);
+        }
+      else if (NULL != song->artist)
+        {
+          formatted_name = g_strdup_printf ("%s - %s", song->artist, song->title);
+        }
+      else
+        {
+          formatted_name = g_strdup_printf ("%s", song->title);
+        }
+      break;
+
+    case XFMPC_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE:
+      formatted_name = g_strdup ("");
+
+      if (song->artist != NULL)
+        {
+          tmp = g_strconcat (formatted_name, song->artist, " - ", NULL);
+          g_free (formatted_name);
+          formatted_name = tmp;
+        }
+
+      if (song->album != NULL)
+        {
+          tmp = g_strconcat (formatted_name, song->album, " - ", NULL);
+          g_free (formatted_name);
+          formatted_name = tmp;
+        }
+
+      if (song->track != NULL)
+        {
+          tmp = g_strconcat (formatted_name, song->track, ". ", NULL);
+          g_free (formatted_name);
+          formatted_name = tmp;
+        }
+
+      tmp = g_strconcat (formatted_name, song->title, NULL);
+      g_free (formatted_name);
+      formatted_name = tmp;
+      break;
+
+    default:
+      g_critical ("Unsupported song format (%d)", song_format);
+      formatted_name = g_path_get_basename (song->file);
+      break;
+    }
+
+  return formatted_name;
+}
+
+static gchar *
+_get_formatted_name_custom (mpd_Song *song,
+                            const gchar *format)
+{
+  gchar *formatted_name, *tmp;
+
+  g_return_val_if_fail (G_LIKELY (format != NULL), NULL);
+
+  formatted_name = g_strdup ("");
+
+  do
+    {
+      if (*format == '%')
+        {
+          format ++;
+
+          switch (*(format))
+            {
+            case 'a':
+              if (song->artist)
+                tmp = g_strconcat (formatted_name, song->artist, NULL);
+              break;
+
+            case 'A':
+              if (song->album)
+                tmp = g_strconcat (formatted_name, song->album, NULL);
+              break;
+
+            case 'd':
+              if (song->date)
+                tmp = g_strconcat (formatted_name, song->date, NULL);
+              break;
+
+            case 'D':
+              if (song->disc)
+                tmp = g_strconcat (formatted_name, song->disc, NULL);
+              break;
+
+            case 'f':
+              if (song->file)
+                tmp = g_strconcat (formatted_name, song->file, NULL);
+              break;
+
+            case 'g':
+              if (song->genre)
+                tmp = g_strconcat (formatted_name, song->genre, NULL);
+              break;
+
+            case 't':
+              if (song->title)
+                tmp = g_strconcat (formatted_name, song->title, NULL);
+              break;
+
+            case 'T':
+              if (song->track)
+                tmp = g_strconcat (formatted_name, song->track, NULL);
+              break;
+
+            default:
+              tmp = g_strconcat (formatted_name, "%", NULL);
+              format --;
+              break;
+            }
+
+          g_free (formatted_name);
+          formatted_name = tmp;
+        }
+      else
+        {
+          tmp = g_strdup_printf ("%s%c", formatted_name, *format);
+          g_free (formatted_name);
+          formatted_name = tmp;
+        }
+    }
+  while (*format ++);
 
   return formatted_name;
 }

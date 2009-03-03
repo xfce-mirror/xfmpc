@@ -1,3 +1,27 @@
+2009-03-03	Vincent Legout <vincent@legout.info>
+
+New options to choose the song format
+	* src/preferences.c, src/preferences.h:
+	  - Update copyright date
+	  - New XfmpcSongFormat type
+	  - Add song-format property
+	  - Add song-format-custom property
+	* src/preferences-dialog.c:
+	  - Update the dialog with a new combobox and a new entry to choose the
+	    song format
+	  - Add a timeout on entry changes to update the custom song format
+	* src/mpdclient.c:
+	  - Update copyright information
+	  - Update _get_formatted_name to use the new XfmpcSongFormat
+	  - New functions _get_formatted_name_predefined and
+	    _get_formatted_name_custom used by _get_formatted_name
+	* src/dbbrowser.c:
+	  - Update the dbbrowser if the song format has changed
+	* src/playlist.c:
+	  - Update the playlist if the song format has changed
+	* src/main.c:
+	  - New function transform_string_to_enum
+
 2009-03-01	Vincent Legout <vincent@legout.info>
 
 New XfmpcMainWindow widget
