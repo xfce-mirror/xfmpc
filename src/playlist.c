@@ -27,6 +27,8 @@
 #include "playlist.h"
 #include "preferences.h"
 #include "mpdclient.h"
+#include "dbbrowser.h"
+#include "extended-interface.h"
 
 #define BORDER 4
 
@@ -59,6 +61,8 @@ static void             cb_filter_entry_changed                 (XfmpcPlaylist *
 static gboolean         visible_func_filter_tree                (GtkTreeModel *filter,
                                                                  GtkTreeIter *iter,
                                                                  XfmpcPlaylist *playlist);
+
+void                    cb_browse_selection                     (XfmpcPlaylist *playlist);
 
 
 
@@ -226,6 +230,13 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), mi);
   g_signal_connect_swapped (mi, "activate",
                             G_CALLBACK (xfmpc_playlist_delete_selection), playlist);
+
+  mi = gtk_image_menu_item_new_with_mnemonic (_("_Browse"));
+  gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), mi);
+  g_signal_connect_swapped (mi, "activate",
+                            G_CALLBACK (cb_browse_selection), playlist);
+  GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
 
   gtk_widget_show_all (priv->menu);
 
@@ -592,5 +603,45 @@ visible_func_filter_tree (GtkTreeModel *filter,
   g_free (search);
 
   return result;
+}
+
+void
+cb_browse_selection (XfmpcPlaylist *playlist)
+{
+  XfmpcPlaylistPrivate   *priv = XFMPC_PLAYLIST (playlist)->priv;
+  XfmpcDbbrowser         *dbbrowser;
+  XfmpcExtendedInterface *extended_interface;
+  GtkTreeModel           *store = GTK_TREE_MODEL (priv->store);
+  GtkTreeSelection       *selection;
+  GtkTreeIter             iter;
+  GList                  *list;
+  gchar                  *filename, *dir;
+
+  dbbrowser = g_object_get_data (G_OBJECT (playlist), "XfmpcDbbrowser");
+  extended_interface = g_object_get_data (G_OBJECT (playlist), "XfmpcExtendedInterface");
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  if (gtk_tree_selection_count_selected_rows (selection) > 1)
+    return;
+
+  list = gtk_tree_selection_get_selected_rows (selection, &store);
+  if (gtk_tree_model_get_iter (store, &iter, list->data))
+    {
+      gtk_tree_model_get (store, &iter,
+                          COLUMN_FILENAME, &filename,
+                          -1);
+
+      dir = g_path_get_dirname (filename);
+      xfmpc_dbbrowser_set_wdir (dbbrowser, dir);
+      xfmpc_dbbrowser_reload (dbbrowser);
+
+      xfmpc_extended_interface_update_notebook (extended_interface);
+
+      g_free (filename);
+      g_free (dir);
+    }
+
+  g_list_foreach (list, (GFunc)gtk_tree_path_free, NULL);
+  g_list_free (list);
 }
 

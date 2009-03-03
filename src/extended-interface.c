@@ -211,11 +211,14 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
 
   /* Extended interface widgets */
-  GtkWidget *child = xfmpc_playlist_new ();
-  xfmpc_extended_interface_append_child (extended_interface, child, _("Current Playlist"));
+  GtkWidget *playlist = xfmpc_playlist_new ();
+  xfmpc_extended_interface_append_child (extended_interface, playlist, _("Current Playlist"));
 
-  child = xfmpc_dbbrowser_new ();
-  xfmpc_extended_interface_append_child (extended_interface, child, _("Browse database"));
+  GtkWidget *dbbrowser = xfmpc_dbbrowser_new ();
+  xfmpc_extended_interface_append_child (extended_interface, dbbrowser, _("Browse database"));
+
+  g_object_set_data (G_OBJECT (playlist), "XfmpcDbbrowser", dbbrowser);
+  g_object_set_data (G_OBJECT (playlist), "XfmpcExtendedInterface", extended_interface);
 }
 
 static void
@@ -319,6 +322,23 @@ xfmpc_preferences_dialog_show (XfmpcExtendedInterface *extended_interface)
 {
   GtkWidget *dialog = xfmpc_preferences_dialog_new (NULL);
   gtk_widget_show (dialog);
+}
+
+void
+xfmpc_extended_interface_update_notebook (XfmpcExtendedInterface *extended_interface)
+{
+  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
+
+  if (gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combobox)) == 1)
+    {
+      gtk_notebook_prev_page (GTK_NOTEBOOK (priv->notebook));
+      gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combobox), 0);
+    }
+  else if (gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combobox)) == 0)
+    {
+      gtk_notebook_next_page (GTK_NOTEBOOK (priv->notebook));
+      gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combobox), 1);
+    }
 }
 
 

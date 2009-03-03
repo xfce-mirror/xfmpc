@@ -35,13 +35,16 @@ typedef struct _XfmpcExtendedInterfaceClass         XfmpcExtendedInterfaceClass;
 typedef struct _XfmpcExtendedInterface              XfmpcExtendedInterface;
 typedef struct _XfmpcExtendedInterfacePrivate       XfmpcExtendedInterfacePrivate;
 
-GType                   xfmpc_extended_interface_get_type       () G_GNUC_CONST;
+GType                   xfmpc_extended_interface_get_type        () G_GNUC_CONST;
 
-GtkWidget *             xfmpc_extended_interface_new            ();
+GtkWidget *             xfmpc_extended_interface_new             ();
 
-void                    xfmpc_extended_interface_append_child   (XfmpcExtendedInterface *extended_interface,
-                                                                 GtkWidget *child,
-                                                                 const gchar *title);
+void                    xfmpc_extended_interface_append_child    (XfmpcExtendedInterface *extended_interface,
+                                                                  GtkWidget *child,
+                                                                  const gchar *title);
+
+void                    xfmpc_extended_interface_update_notebook (XfmpcExtendedInterface *extended_interface);
+
 G_END_DECLS
 
 #endif

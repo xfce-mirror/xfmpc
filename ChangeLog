@@ -1,5 +1,18 @@
 2009-03-03	Vincent Legout <vincent@legout.info>
 
+New menu item Browse in the playlist
+	* src/playlist.c:
+	  - New menu item Browse to go to the database and open the directory of
+	  the song
+	  - New callback cb_browse_selection which update the database to the
+	  song directory and switch the notebook to the database
+	* src/extended-interface.c, src/extended-interface.h:
+	  - Associate the playlist with the extended interface and the database
+	  - New function xfmpc_extended_interface_update_notebook to switch from
+	  one page to another
+
+2009-03-03	Vincent Legout <vincent@legout.info>
+
 New options to choose the song format
 	* src/preferences.c, src/preferences.h:
 	  - Update copyright date
