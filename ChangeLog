@@ -1,3 +1,14 @@
+2009-03-04	Mike Massonnet <mmassonnet@xfce.org>
+
+Fix in custom format
+	* src/preferences.[ch]:
+	  - Put "Album - Title" at the second line
+	* src/mpdclient.c(_get_formatted_name_custom):
+	  - Fix a crash when a tag didn't exist -- tmp was not set and it
+	  broke when it came to free() and reset formatted_name and in fact an
+	  unexistent tag is nil hence it is useless to check if it exists and
+	  pass it as is in g_strconcat
+
 2009-03-03	Vincent Legout <vincent@legout.info>
 
 New menu item Browse in the playlist

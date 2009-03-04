@@ -1075,43 +1075,35 @@ _get_formatted_name_custom (mpd_Song *song,
           switch (*(format))
             {
             case 'a':
-              if (song->artist)
-                tmp = g_strconcat (formatted_name, song->artist, NULL);
+              tmp = g_strconcat (formatted_name, song->artist, NULL);
               break;
 
             case 'A':
-              if (song->album)
-                tmp = g_strconcat (formatted_name, song->album, NULL);
+              tmp = g_strconcat (formatted_name, song->album, NULL);
               break;
 
             case 'd':
-              if (song->date)
-                tmp = g_strconcat (formatted_name, song->date, NULL);
+              tmp = g_strconcat (formatted_name, song->date, NULL);
               break;
 
             case 'D':
-              if (song->disc)
-                tmp = g_strconcat (formatted_name, song->disc, NULL);
+              tmp = g_strconcat (formatted_name, song->disc, NULL);
               break;
 
             case 'f':
-              if (song->file)
-                tmp = g_strconcat (formatted_name, song->file, NULL);
+              tmp = g_strconcat (formatted_name, song->file, NULL);
               break;
 
             case 'g':
-              if (song->genre)
-                tmp = g_strconcat (formatted_name, song->genre, NULL);
+              tmp = g_strconcat (formatted_name, song->genre, NULL);
               break;
 
             case 't':
-              if (song->title)
-                tmp = g_strconcat (formatted_name, song->title, NULL);
+              tmp = g_strconcat (formatted_name, song->title, NULL);
               break;
 
             case 'T':
-              if (song->track)
-                tmp = g_strconcat (formatted_name, song->track, NULL);
+              tmp = g_strconcat (formatted_name, song->track, NULL);
               break;
 
             default:
