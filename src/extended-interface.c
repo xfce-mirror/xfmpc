@@ -57,7 +57,6 @@ static void xfmpc_extended_interface_finalize                 (GObject *object);
 
 static void xfmpc_extended_interface_context_menu_new         (XfmpcExtendedInterface *extended_interface,
                                                                GtkWidget *attach_widget);
-static void xfmpc_preferences_dialog_show                     (XfmpcExtendedInterface *extended_interface);
 
 static void cb_interface_changed                              (GtkComboBox *widget,
                                                                XfmpcExtendedInterface *extended_interface);
@@ -65,6 +64,7 @@ static void cb_repeat_switch                                  (XfmpcExtendedInte
 static void cb_random_switch                                  (XfmpcExtendedInterface *extended_interface);
 static void cb_context_menu_clicked                           (GtkToggleButton *button,
                                                                XfmpcExtendedInterface *extended_interface);
+static void cb_preferences                                    (XfmpcExtendedInterface *extended_interface);
 static void cb_context_menu_deactivate                        (GtkMenuShell *menu,
                                                                GtkWidget *attach_widget);
 static void popup_context_menu                                (XfmpcExtendedInterface *extended_interface);
@@ -210,7 +210,8 @@ xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
 
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
 
-  /* Extended interface widgets */
+  /* Extended interface widgets ; added in the same order as the
+   * XfmpcExtendedInterfaceWidget enum */
   GtkWidget *playlist = xfmpc_playlist_new ();
   xfmpc_extended_interface_append_child (extended_interface, playlist, _("Current Playlist"));
 
@@ -278,6 +279,14 @@ xfmpc_extended_interface_append_child (XfmpcExtendedInterface *extended_interfac
   gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (priv->notebook), child, TRUE, TRUE, GTK_PACK_START);
 }
 
+void
+xfmpc_extended_interface_set_active (XfmpcExtendedInterface *extended_interface,
+                                     XfmpcExtendedInterfaceWidget active_widget)
+{
+  XfmpcExtendedInterfacePrivate *priv = extended_interface->priv;
+  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combobox), active_widget);
+}
+
 static void
 xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface *extended_interface,
                                            GtkWidget *attach_widget)
@@ -311,34 +320,10 @@ xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface *extended_inte
   mi = gtk_image_menu_item_new_with_label (_("Preferences"));
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
   g_signal_connect_swapped (mi, "activate",
-                            G_CALLBACK (xfmpc_preferences_dialog_show), extended_interface);
+                            G_CALLBACK (cb_preferences), extended_interface);
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
   gtk_widget_show_all (menu);
-}
-
-static void
-xfmpc_preferences_dialog_show (XfmpcExtendedInterface *extended_interface)
-{
-  GtkWidget *dialog = xfmpc_preferences_dialog_new (NULL);
-  gtk_widget_show (dialog);
-}
-
-void
-xfmpc_extended_interface_update_notebook (XfmpcExtendedInterface *extended_interface)
-{
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
-
-  if (gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combobox)) == 1)
-    {
-      gtk_notebook_prev_page (GTK_NOTEBOOK (priv->notebook));
-      gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combobox), 0);
-    }
-  else if (gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combobox)) == 0)
-    {
-      gtk_notebook_next_page (GTK_NOTEBOOK (priv->notebook));
-      gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combobox), 1);
-    }
 }
 
 
@@ -386,6 +371,13 @@ cb_context_menu_clicked (GtkToggleButton *button,
     return;
 
   popup_context_menu (extended_interface);
+}
+
+static void
+cb_preferences (XfmpcExtendedInterface *extended_interface)
+{
+  GtkWidget *dialog = xfmpc_preferences_dialog_new (NULL);
+  gtk_widget_show (dialog);
 }
 
 static void

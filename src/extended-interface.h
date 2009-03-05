@@ -21,6 +21,12 @@
 
 G_BEGIN_DECLS
 
+typedef enum
+{
+  XFMPC_EXTENDED_INTERFACE_PLAYLIST,
+  XFMPC_EXTENDED_INTERFACE_DBBROWSER,
+} XfmpcExtendedInterfaceWidget;
+
 #define XFMPC_TYPE_EXTENDED_INTERFACE               (xfmpc_extended_interface_get_type())
 
 #define XFMPC_EXTENDED_INTERFACE(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterface))
@@ -43,7 +49,8 @@ void                    xfmpc_extended_interface_append_child    (XfmpcExtendedI
                                                                   GtkWidget *child,
                                                                   const gchar *title);
 
-void                    xfmpc_extended_interface_update_notebook (XfmpcExtendedInterface *extended_interface);
+void                    xfmpc_extended_interface_set_active      (XfmpcExtendedInterface *extended_interface,
+                                                                  XfmpcExtendedInterfaceWidget active_widget);
 
 G_END_DECLS
 

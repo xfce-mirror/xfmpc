@@ -633,8 +633,11 @@ popup_menu (XfmpcDbbrowser *dbbrowser)
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
   count = gtk_tree_selection_count_selected_rows (selection);
 
-  if (priv->is_searching && count == 1)
-    gtk_widget_show (priv->mi_browse);
+  if (priv->is_searching)
+    {
+      gtk_widget_show (priv->mi_browse);
+      gtk_widget_set_sensitive (priv->mi_browse, count == 1 ? TRUE : FALSE);
+    }
   else
     gtk_widget_hide (priv->mi_browse);
 
@@ -674,6 +677,9 @@ cb_browse (XfmpcDbbrowser *dbbrowser)
       g_free (filename);
       g_free (dir);
     }
+
+  g_list_foreach (list, (GFunc)gtk_tree_path_free, NULL);
+  g_list_free (list);
 }
 
 

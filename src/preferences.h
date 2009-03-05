@@ -31,6 +31,7 @@ typedef enum
   XFMPC_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE,
   XFMPC_SONG_FORMAT_CUSTOM,
 } XfmpcSongFormat;
+
 GType xfmpc_song_format_get_type () G_GNUC_CONST;
 #define XFMPC_TYPE_SONG_FORMAT (xfmpc_song_format_get_type ())
 

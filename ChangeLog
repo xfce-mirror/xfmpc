@@ -1,5 +1,22 @@
 2009-03-04	Mike Massonnet <mmassonnet@xfce.org>
 
+Rework "API" in XfmpcExtendedInterface
+	* src/extended-interface.[ch]:
+	  - Rename xfmpc_preferences_dialog_show to cb_preferences
+	  - Moved and simplified xfmpc_extended_interface_update_notebook to
+	  xfmpc_extended_interface_set_active
+	  - Declare an enum XfmpcExtendedInterfaceWidget to represent the
+	  playlist and the dbbrowser useful for the new set_active function
+	* src/playlist.c(cb_browse_selection):
+	  - Use new function xfmpc_extended_interface_set_active
+	* src/dbbrowser.c(popup_menu):
+	  - Always display the "Browse" menu item on a search, and update the
+	  sensitivity
+	* src/dbbrowser.c(cb_browse):
+	  - Fix leak -- forgot to free the GtkTreePath and GList
+
+2009-03-04	Mike Massonnet <mmassonnet@xfce.org>
+
 Fix in custom format
 	* src/preferences.[ch]:
 	  - Put "Album - Title" at the second line
