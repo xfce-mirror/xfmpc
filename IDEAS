@@ -9,7 +9,6 @@ Next release
 
 Unpredictable future
 
-  - In the playlist, have a menu item to go to the directory of the song
   - Reorder a song in the playlist (with DnD)
   - Editable shortcuts (accelerator maps from file)
   - Document the code (with gtk-doc syntax)
