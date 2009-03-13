@@ -22,6 +22,8 @@ xfmpc_SOURCES =								\
 	preferences-dialog.h						\
 	mpdclient.c							\
 	mpdclient.h							\
+	song-dialog.c							\
+	song-dialog.h							\
 	xfce-arrow-button.c						\
 	xfce-arrow-button.h
 

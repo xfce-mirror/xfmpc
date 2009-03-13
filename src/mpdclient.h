@@ -21,6 +21,18 @@
 
 G_BEGIN_DECLS
 
+typedef struct _XfmpcSongInfo XfmpcSongInfo;
+struct _XfmpcSongInfo
+{
+  gchar *filename;
+  gchar *artist;
+  gchar *title;
+  gchar *album;
+  gchar *date;
+  gchar *track;
+  gchar *genre;
+};
+
 #define XFMPC_TYPE_MPDCLIENT                (xfmpc_mpdclient_get_type())
 
 #define XFMPC_MPDCLIENT(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclient))
@@ -103,6 +115,11 @@ gboolean                xfmpc_mpdclient_database_search         (XfmpcMpdclient 
                                                                  const gchar *query,
                                                                  gchar **filename,
                                                                  gchar **basename);
+
+XfmpcSongInfo *         xfmpc_mpdclient_get_song_info           (XfmpcMpdclient *mpdclient,
+                                                                 gint id);
+
+void                    xfmpc_song_info_free                    ();
 
 G_END_DECLS
 

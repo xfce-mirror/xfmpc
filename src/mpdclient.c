@@ -1127,3 +1127,35 @@ _get_formatted_name_custom (mpd_Song *song,
   return formatted_name;
 }
 
+XfmpcSongInfo *
+xfmpc_mpdclient_get_song_info (XfmpcMpdclient *mpdclient, gint id)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
+  XfmpcSongInfo *song_info = g_slice_new0 (XfmpcSongInfo);
+  mpd_Song *song = mpd_playlist_get_song (priv->mi, id);
+
+  song_info->filename = song->file;
+  song_info->artist = song->artist;
+  song_info->title = song->title;
+  song_info->album = song->album;
+  song_info->track = song->track;
+  song_info->date = song->date;
+  song_info->genre = song->genre;
+
+  return song_info;
+}
+
+void
+xfmpc_song_info_free (XfmpcSongInfo *song_info)
+{
+  g_free (song_info->filename);
+  g_free (song_info->artist);
+  g_free (song_info->title);
+  g_free (song_info->album);
+  g_free (song_info->date);
+  g_free (song_info->track);
+  g_free (song_info->genre);
+
+  g_slice_free (XfmpcSongInfo, song_info);
+}
+

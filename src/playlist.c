@@ -30,6 +30,7 @@
 #include "mpdclient.h"
 #include "dbbrowser.h"
 #include "extended-interface.h"
+#include "song-dialog.h"
 
 #define BORDER 4
 
@@ -64,6 +65,7 @@ static gboolean         visible_func_filter_tree                (GtkTreeModel *f
                                                                  XfmpcPlaylist *playlist);
 
 void                    cb_browse_selection                     (XfmpcPlaylist *playlist);
+void                    cb_info_selection                       (XfmpcPlaylist *playlist);
 
 
 
@@ -238,6 +240,11 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                             G_CALLBACK (cb_browse_selection), playlist);
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
+
+  mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_INFO, NULL);
+  gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), mi);
+  g_signal_connect_swapped (mi, "activate",
+                            G_CALLBACK (cb_info_selection), playlist);
 
   gtk_widget_show_all (priv->menu);
 
@@ -639,6 +646,36 @@ cb_browse_selection (XfmpcPlaylist *playlist)
 
       g_free (filename);
       g_free (dir);
+    }
+
+  g_list_foreach (list, (GFunc)gtk_tree_path_free, NULL);
+  g_list_free (list);
+}
+
+void
+cb_info_selection (XfmpcPlaylist *playlist)
+{
+  XfmpcPlaylistPrivate   *priv = XFMPC_PLAYLIST (playlist)->priv;
+
+  GtkTreeModel           *store = GTK_TREE_MODEL (priv->store);
+  GtkTreeSelection       *selection;
+  GtkTreeIter             iter;
+  GList                  *list;
+  gint                    id;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  if (gtk_tree_selection_count_selected_rows (selection) > 1)
+    return;
+
+  list = gtk_tree_selection_get_selected_rows (selection, &store);
+  if (gtk_tree_model_get_iter (store, &iter, list->data))
+    {
+      gtk_tree_model_get (store, &iter,
+                          COLUMN_ID, &id,
+                          -1);
+
+      GtkWidget *dialog = xfmpc_song_dialog_new (id);
+      gtk_widget_show (dialog);
     }
 
   g_list_foreach (list, (GFunc)gtk_tree_path_free, NULL);

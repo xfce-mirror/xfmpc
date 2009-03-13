@@ -1,3 +1,17 @@
+2009-03-13	Vincent Legout <vincent@legout.info>
+
+New dialog which displays information about a song
+	* src/song-dialog.c, src/song-dialog.h:
+	  - New widget XfmpcSongDialog
+	* src/mpdclient.c, src/mpdclient.h:
+	  - New structure XfmpcSongInfo and new function xfmpc_song_info_free to
+	  free this structure
+	  - New function xfmpc_mpdclient_get_song_info to retrieve information
+	  on a song
+	* src/playlist.c:
+	  - New button to display the new XfmpcSongDialog and it's callback
+	  function cb_info_selection
+
 2009-03-04	Mike Massonnet <mmassonnet@xfce.org>
 
 Rework "API" in XfmpcExtendedInterface
