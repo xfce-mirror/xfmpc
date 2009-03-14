@@ -74,6 +74,7 @@ enum
 {
   COLUMN_ID,
   COLUMN_FILENAME,
+  COLUMN_POSITION,
   COLUMN_SONG,
   COLUMN_LENGTH,
   COLUMN_WEIGHT,
@@ -172,6 +173,7 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   priv->store = gtk_list_store_new (N_COLUMNS,
                                     G_TYPE_INT,
                                     G_TYPE_STRING,
+                                    G_TYPE_INT,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
                                     G_TYPE_INT);
@@ -194,8 +196,19 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), GTK_TREE_MODEL (priv->filter));
   g_object_unref (priv->filter);
 
-  /* Column "artist - title" */
+  /* Column "length" */
   GtkCellRenderer *cell = gtk_cell_renderer_text_new ();
+  g_object_set (G_OBJECT (cell),
+                "xalign", 1.0,
+                NULL);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview),
+                                               -1, "Length", cell,
+                                               "text", COLUMN_POSITION,
+                                               "weight", COLUMN_WEIGHT,
+                                               NULL);
+
+  /* Column "artist - title" */
+  cell = gtk_cell_renderer_text_new ();
   g_object_set (G_OBJECT (cell),
                 "ellipsize", PANGO_ELLIPSIZE_END,
                 NULL);
@@ -321,6 +334,7 @@ xfmpc_playlist_append (XfmpcPlaylist *playlist,
   gtk_list_store_set (priv->store, &iter,
                       COLUMN_ID, id,
                       COLUMN_FILENAME, filename,
+                      COLUMN_POSITION, id + 1,
                       COLUMN_SONG, song,
                       COLUMN_LENGTH, length,
                       COLUMN_WEIGHT, PANGO_WEIGHT_NORMAL,

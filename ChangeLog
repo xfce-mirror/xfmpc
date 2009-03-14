@@ -1,5 +1,11 @@
 2009-03-13	Mike Massonnet <mmassonnet@xfce.org>
 
+Add position of the track in the playlist
+	* src/playlist.c:
+	  - Display the position of track in the playlist on the left
+
+2009-03-13	Mike Massonnet <mmassonnet@xfce.org>
+
 Add about dialog in the context menu
 	* src/extended-interface.c:
 	  - (xfmpc_extended_interface_context_menu_new): New menu item about
