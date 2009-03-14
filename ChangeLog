@@ -1,5 +1,11 @@
 2009-03-14	Mike Massonnet <mmassonnet@xfce.org>
 
+Better fix for previous commit
+	* src/mpdclient.c(xfmpc_interface_init):
+	  - Better fix than the previous commit
+
+2009-03-14	Mike Massonnet <mmassonnet@xfce.org>
+
 Title not refreshed at first run
 	* src/mpdclient.c(xfmpc_interface_init):
 	  - Set refresh_title to TRUE (bug #4975)

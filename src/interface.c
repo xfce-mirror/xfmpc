@@ -111,7 +111,6 @@ xfmpc_interface_init (XfmpcInterface *interface)
   gtk_container_set_border_width (GTK_CONTAINER (interface), BORDER);
   interface->preferences = xfmpc_preferences_get ();
   interface->mpdclient = xfmpc_mpdclient_get ();
-  priv->refresh_title = TRUE; /* bug #4975 */
 
   /* === Interface widgets === */
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_PREVIOUS, GTK_ICON_SIZE_BUTTON);
@@ -380,6 +379,13 @@ xfmpc_interface_reconnect (XfmpcInterface *interface)
 {
   if (G_UNLIKELY (xfmpc_mpdclient_connect (interface->mpdclient) == FALSE))
     return TRUE;
+
+  /* Refresh title/subtitle (bug #4975) */
+  interface->priv->refresh_title = TRUE;
+  if (xfmpc_mpdclient_is_playing (interface->mpdclient))
+    cb_song_changed (interface);
+  else
+    cb_stopped (interface);
 
   /* Return FALSE to kill the reconnection timeout and start a refresh timeout */
   g_timeout_add (1000, (GSourceFunc)xfmpc_interface_refresh, interface);
