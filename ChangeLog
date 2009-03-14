@@ -1,3 +1,10 @@
+2009-03-14	Vincent Legout <vincent@legout.info>
+
+Don't set a size for the labels in the song dialog
+	* src/song-dialog.c:
+	  - Don't set a maximum size for the labels and increase the padding
+	  (bug #5098)
+
 2009-03-14	Mike Massonnet <mmassonnet@xfce.org>
 
 Move progress bar callback out of header inside C source
