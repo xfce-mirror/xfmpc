@@ -1,11 +1,14 @@
-    0.1.0 (2009-0x-xx)
+    0.1.0 (2009-03-21)
 
 - Preferences dialog for the MPD server and the appearance
+- An about dialog
+- Display the song position in the playlist
 - The database browser shows filenames already in the playlist in bold
-- A status bar with the number of songs and the total time of the playlist
+- A statusbar with the number of songs and total time of the playlist
 - A Replace item in the database browser context menu
 - A Browse item in the database browser (search results) and the playlist
   context menus to go to the directory of a song
+- An information item in the playlist context menu
 - Fix misc bugs
 - New translations: Swedish, Turkish, Portuguese, Czech, Basque, Italian, Spanish
 

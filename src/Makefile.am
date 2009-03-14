@@ -7,7 +7,6 @@ xfmpc_SOURCES =								\
 	main-window.h							\
 	interface.c							\
 	interface.h							\
-	interface-ui.h							\
 	extended-interface.c						\
 	extended-interface.h						\
 	playlist.c							\
@@ -58,6 +57,5 @@ main-ui.h: Makefile $(srcdir)/main-ui.xml
 endif
 
 EXTRA_DIST =								\
-	main-ui.xml							\
-	interface-ui.xml
+	main-ui.xml
 

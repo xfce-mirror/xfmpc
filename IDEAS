@@ -1,18 +1,11 @@
 Next release
 
-  - The 0.1.0 announcement
-  - Enumarate the songs in the playlist
-  - Options for the preferences dialog
-    ~ Song format (defaults to %artist - %title)
-    ~ Color / Font
-    ~ 
+  - Rewrite in Vala
 
 Unpredictable future
 
   - Reorder a song in the playlist (with DnD)
   - Editable shortcuts (accelerator maps from file)
   - Document the code (with gtk-doc syntax)
-  - XfmpcGoodies, a plugin interface (GModule) on a right side pane
-    ~ artwork
-    ~ random album playlist
+  - XfmpcGoodies (display artwork, ...), a plugin interface
 
