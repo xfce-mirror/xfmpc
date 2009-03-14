@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-14 07:47+0100\n"
+"POT-Creation-Date: 2009-03-14 09:31+0100\n"
 "PO-Revision-Date: 2009-02-09 00:50+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -25,36 +25,40 @@ msgstr "_Ersätt"
 msgid "_Browse"
 msgstr ""
 
-#: ../src/extended-interface.c:164
+#: ../src/extended-interface.c:165
 msgid "Clear Playlist"
 msgstr "Töm spellista"
 
-#: ../src/extended-interface.c:174
+#: ../src/extended-interface.c:175
 msgid "Refresh Database"
 msgstr "Uppdatera databas"
 
-#: ../src/extended-interface.c:184
+#: ../src/extended-interface.c:185
 msgid "Context Menu"
 msgstr "Sammanhangsmeny"
 
-#: ../src/extended-interface.c:216
+#: ../src/extended-interface.c:217
 msgid "Current Playlist"
 msgstr "Aktuell spellista"
 
-#: ../src/extended-interface.c:219
+#: ../src/extended-interface.c:220
 msgid "Browse database"
 msgstr "Bläddra i databas"
 
-#: ../src/extended-interface.c:302
+#: ../src/extended-interface.c:303
 msgid "Repeat"
 msgstr "Upprepa"
 
-#: ../src/extended-interface.c:309
+#: ../src/extended-interface.c:310
 msgid "Random"
 msgstr "Slumpmässigt"
 
-#: ../src/extended-interface.c:320
-msgid "Preferences"
+#: ../src/extended-interface.c:402 ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "MPD-klient skriven i GTK+ för Xfce"
+
+#: ../src/extended-interface.c:406
+msgid "translator-credits"
 msgstr ""
 
 #: ../src/interface.c:156 ../src/interface.c:364
@@ -246,10 +250,6 @@ msgstr ""
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
 msgstr "MPD-klient"
-
-#: ../xfmpc.desktop.in.h:2
-msgid "MPD client written in GTK+ for Xfce"
-msgstr "MPD-klient skriven i GTK+ för Xfce"
 
 #~ msgid "MPD Settings"
 #~ msgstr "Inställningar för MPD"

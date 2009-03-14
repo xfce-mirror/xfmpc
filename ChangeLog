@@ -1,5 +1,16 @@
 2009-03-13	Mike Massonnet <mmassonnet@xfce.org>
 
+Add about dialog in the context menu
+	* src/extended-interface.c:
+	  - (xfmpc_extended_interface_context_menu_new): New menu item about
+	  from stock item, replace preferences item against the preferences
+	  stock item
+	  - (cb_about): New callback attached to the about item
+	* po/*.*:
+	  - make update-po (yet again)
+
+2009-03-13	Mike Massonnet <mmassonnet@xfce.org>
+
 Support i18n in the song info dialog
 	* src/song-dialog.c:
 	  - Gettext support for translations

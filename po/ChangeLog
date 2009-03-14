@@ -1,5 +1,10 @@
 2009-03-14  Mike Massonnet <mmassonnet@xfce.org>
 
+	* *.po, *.pot: make update-po (yet again)
+	* fr.po: Update French translation
+
+2009-03-14  Mike Massonnet <mmassonnet@xfce.org>
+
 	* *.po, *.pot: make update-po
 	* fr.po: Update French translation
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-14 07:47+0100\n"
+"POT-Creation-Date: 2009-03-14 09:31+0100\n"
 "PO-Revision-Date: 2009-02-11 12:09+0200\n"
 "Last-Translator: Samed Beyribey <ras0ir@eventualis.org>\n"
 "Language-Team: Turkish <turkce@pardus.org.tr>\n"
@@ -26,36 +26,40 @@ msgstr "_Değiştir"
 msgid "_Browse"
 msgstr ""
 
-#: ../src/extended-interface.c:164
+#: ../src/extended-interface.c:165
 msgid "Clear Playlist"
 msgstr "Çalma Listesini Temizle"
 
-#: ../src/extended-interface.c:174
+#: ../src/extended-interface.c:175
 msgid "Refresh Database"
 msgstr "Veritabanını Yenile"
 
-#: ../src/extended-interface.c:184
+#: ../src/extended-interface.c:185
 msgid "Context Menu"
 msgstr "Toplu Menü"
 
-#: ../src/extended-interface.c:216
+#: ../src/extended-interface.c:217
 msgid "Current Playlist"
 msgstr "Etkin Çalma Listesi"
 
-#: ../src/extended-interface.c:219
+#: ../src/extended-interface.c:220
 msgid "Browse database"
 msgstr "Veritabanında Arama"
 
-#: ../src/extended-interface.c:302
+#: ../src/extended-interface.c:303
 msgid "Repeat"
 msgstr "Yinele"
 
-#: ../src/extended-interface.c:309
+#: ../src/extended-interface.c:310
 msgid "Random"
 msgstr "Rasgele"
 
-#: ../src/extended-interface.c:320
-msgid "Preferences"
+#: ../src/extended-interface.c:402 ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "Xfce için GTK+ ile yazılmış MPD istemcisi"
+
+#: ../src/extended-interface.c:406
+msgid "translator-credits"
 msgstr ""
 
 #: ../src/interface.c:156 ../src/interface.c:364
@@ -247,10 +251,6 @@ msgstr ""
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
 msgstr "MPD istemcisi"
-
-#: ../xfmpc.desktop.in.h:2
-msgid "MPD client written in GTK+ for Xfce"
-msgstr "Xfce için GTK+ ile yazılmış MPD istemcisi"
 
 #~ msgid "MPD Settings"
 #~ msgstr "MPD Ayarları"

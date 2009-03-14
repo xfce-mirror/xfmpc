@@ -65,6 +65,7 @@ static void cb_random_switch                                  (XfmpcExtendedInte
 static void cb_context_menu_clicked                           (GtkToggleButton *button,
                                                                XfmpcExtendedInterface *extended_interface);
 static void cb_preferences                                    (XfmpcExtendedInterface *extended_interface);
+static void cb_about                                          (XfmpcExtendedInterface *extended_interface);
 static void cb_context_menu_deactivate                        (GtkMenuShell *menu,
                                                                GtkWidget *attach_widget);
 static void popup_context_menu                                (XfmpcExtendedInterface *extended_interface);
@@ -316,12 +317,16 @@ xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface *extended_inte
   mi = gtk_separator_menu_item_new ();
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
 
-  GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_PREFERENCES, GTK_ICON_SIZE_MENU);
-  mi = gtk_image_menu_item_new_with_label (_("Preferences"));
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
+  mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_PREFERENCES, NULL);
   g_signal_connect_swapped (mi, "activate",
                             G_CALLBACK (cb_preferences), extended_interface);
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
+
+  mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_ABOUT, NULL);
+  g_signal_connect_swapped (mi, "activate",
+                            G_CALLBACK (cb_about), extended_interface);
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
+
 
   gtk_widget_show_all (menu);
 }
@@ -378,6 +383,30 @@ cb_preferences (XfmpcExtendedInterface *extended_interface)
 {
   GtkWidget *dialog = xfmpc_preferences_dialog_new (NULL);
   gtk_widget_show (dialog);
+}
+
+static void
+cb_about (XfmpcExtendedInterface *extended_interface)
+{
+  static const gchar *artists[] = { NULL };
+  static const gchar *authors[] = {
+    "Mike Massonnet <mmassonnet@xfce.org>",
+    "Vincent Legout <vincent@xfce.org>",
+    NULL,
+  };
+  static const gchar *documenters[] = { NULL };
+
+  gtk_show_about_dialog (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (extended_interface))),
+                         "artists", artists,
+                         "authors", authors,
+                         "comments", _("MPD client written in GTK+ for Xfce"),
+                         "copyright", "Copyright \302\251 2008-2009 Mike Massonnet, Vincent Legout",
+                         "documenters", documenters,
+                         "license", XFCE_LICENSE_GPL,
+                         "translator-credits", _("translator-credits"),
+                         "version", PACKAGE_VERSION,
+                         "website", "http://goodies.xfce.org/projects/applications/xfmpc",
+                         NULL);
 }
 
 static void

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-14 07:47+0100\n"
+"POT-Creation-Date: 2009-03-14 09:31+0100\n"
 "PO-Revision-Date: 2009-02-17 00:44+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
@@ -27,36 +27,40 @@ msgstr "置換(_R)"
 msgid "_Browse"
 msgstr "参照(_B)"
 
-#: ../src/extended-interface.c:164
+#: ../src/extended-interface.c:165
 msgid "Clear Playlist"
 msgstr "プレイリストのクリア"
 
-#: ../src/extended-interface.c:174
+#: ../src/extended-interface.c:175
 msgid "Refresh Database"
 msgstr "データベースの更新"
 
-#: ../src/extended-interface.c:184
+#: ../src/extended-interface.c:185
 msgid "Context Menu"
 msgstr "コンテキストメニュー"
 
-#: ../src/extended-interface.c:216
+#: ../src/extended-interface.c:217
 msgid "Current Playlist"
 msgstr "現在のプレイリスト"
 
-#: ../src/extended-interface.c:219
+#: ../src/extended-interface.c:220
 msgid "Browse database"
 msgstr "データベースを表示"
 
-#: ../src/extended-interface.c:302
+#: ../src/extended-interface.c:303
 msgid "Repeat"
 msgstr "リピート"
 
-#: ../src/extended-interface.c:309
+#: ../src/extended-interface.c:310
 msgid "Random"
 msgstr "ランダム"
 
-#: ../src/extended-interface.c:320
-msgid "Preferences"
+#: ../src/extended-interface.c:402 ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "Xfce 向けの GTK+ で書かれたMPDクライアントです。"
+
+#: ../src/extended-interface.c:406
+msgid "translator-credits"
 msgstr ""
 
 #: ../src/interface.c:156 ../src/interface.c:364
@@ -248,10 +252,6 @@ msgstr ""
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
 msgstr "MPD クライアント"
-
-#: ../xfmpc.desktop.in.h:2
-msgid "MPD client written in GTK+ for Xfce"
-msgstr "Xfce 向けの GTK+ で書かれたMPDクライアントです。"
 
 #~ msgid "MPD Settings"
 #~ msgstr "MPD 設定"

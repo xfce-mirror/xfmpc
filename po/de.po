@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.5svn-r\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-14 07:47+0100\n"
+"POT-Creation-Date: 2009-03-14 09:31+0100\n"
 "PO-Revision-Date: 2009-02-03 21:49+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
@@ -33,36 +33,40 @@ msgstr "_Ersetzen"
 msgid "_Browse"
 msgstr ""
 
-#: ../src/extended-interface.c:164
+#: ../src/extended-interface.c:165
 msgid "Clear Playlist"
 msgstr "Wiedergabeliste leeren"
 
-#: ../src/extended-interface.c:174
+#: ../src/extended-interface.c:175
 msgid "Refresh Database"
 msgstr "Datenbak auffrischen"
 
-#: ../src/extended-interface.c:184
+#: ../src/extended-interface.c:185
 msgid "Context Menu"
 msgstr "Kontextmenü"
 
-#: ../src/extended-interface.c:216
+#: ../src/extended-interface.c:217
 msgid "Current Playlist"
 msgstr "Aktuelle Wiedergabeliste"
 
-#: ../src/extended-interface.c:219
+#: ../src/extended-interface.c:220
 msgid "Browse database"
 msgstr "Datenbank durchsuchen"
 
-#: ../src/extended-interface.c:302
+#: ../src/extended-interface.c:303
 msgid "Repeat"
 msgstr "Widerholen"
 
-#: ../src/extended-interface.c:309
+#: ../src/extended-interface.c:310
 msgid "Random"
 msgstr "Zufall"
 
-#: ../src/extended-interface.c:320
-msgid "Preferences"
+#: ../src/extended-interface.c:402 ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "MPD Client geschrieben in GTK+ für Xfce"
+
+#: ../src/extended-interface.c:406
+msgid "translator-credits"
 msgstr ""
 
 #: ../src/interface.c:156 ../src/interface.c:364
@@ -253,10 +257,6 @@ msgstr ""
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
 msgstr "MPD Client"
-
-#: ../xfmpc.desktop.in.h:2
-msgid "MPD client written in GTK+ for Xfce"
-msgstr "MPD Client geschrieben in GTK+ für Xfce"
 
 #~ msgid "MPD Settings"
 #~ msgstr "MPD Einstellung"

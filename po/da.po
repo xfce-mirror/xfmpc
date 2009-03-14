@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-14 07:47+0100\n"
+"POT-Creation-Date: 2009-03-14 09:31+0100\n"
 "PO-Revision-Date: 2009-02-16 15:31+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -29,36 +29,40 @@ msgstr "_Erstat"
 msgid "_Browse"
 msgstr ""
 
-#: ../src/extended-interface.c:164
+#: ../src/extended-interface.c:165
 msgid "Clear Playlist"
 msgstr "Ryd spilleliste"
 
-#: ../src/extended-interface.c:174
+#: ../src/extended-interface.c:175
 msgid "Refresh Database"
 msgstr "Genopfrisk database"
 
-#: ../src/extended-interface.c:184
+#: ../src/extended-interface.c:185
 msgid "Context Menu"
 msgstr "Kontekstmenu"
 
-#: ../src/extended-interface.c:216
+#: ../src/extended-interface.c:217
 msgid "Current Playlist"
 msgstr "Aktuel spilleliste"
 
-#: ../src/extended-interface.c:219
+#: ../src/extended-interface.c:220
 msgid "Browse database"
 msgstr "Gennemse database"
 
-#: ../src/extended-interface.c:302
+#: ../src/extended-interface.c:303
 msgid "Repeat"
 msgstr "Gentag"
 
-#: ../src/extended-interface.c:309
+#: ../src/extended-interface.c:310
 msgid "Random"
 msgstr "Tilfældig"
 
-#: ../src/extended-interface.c:320
-msgid "Preferences"
+#: ../src/extended-interface.c:402 ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "MPD-klient skrevet i GTK+ til Xfce"
+
+#: ../src/extended-interface.c:406
+msgid "translator-credits"
 msgstr ""
 
 #: ../src/interface.c:156 ../src/interface.c:364
@@ -250,10 +254,6 @@ msgstr ""
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
 msgstr "MPD-klient"
-
-#: ../xfmpc.desktop.in.h:2
-msgid "MPD client written in GTK+ for Xfce"
-msgstr "MPD-klient skrevet i GTK+ til Xfce"
 
 #~ msgid "MPD Settings"
 #~ msgstr "MPD-indstillinger"
