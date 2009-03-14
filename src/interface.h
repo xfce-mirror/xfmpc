@@ -76,8 +76,6 @@ void                    xfmpc_interface_pp_clicked              (XfmpcInterface 
 
 void                    xfmpc_interface_set_pp                  (XfmpcInterface *interface,
                                                                  gboolean play);
-gboolean                xfmpc_interface_progress_box_press_event (XfmpcInterface *interface,
-                                                                 GdkEventButton *event);
 void                    xfmpc_interface_volume_changed          (XfmpcInterface *interface,
                                                                  gdouble value);
 void                    xfmpc_interface_set_volume              (XfmpcInterface *interface,

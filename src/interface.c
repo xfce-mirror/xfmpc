@@ -48,6 +48,8 @@ static void             cb_song_changed                         (XfmpcInterface 
 
 static void             cb_pp_changed                           (XfmpcInterface *interface,
                                                                  gboolean is_playing);
+static gboolean         cb_progress_box_release_event           (XfmpcInterface *interface,
+                                                                 GdkEventButton *event);
 static void             cb_time_changed                         (XfmpcInterface *interface,
                                                                  gint time,
                                                                  gint total_time);
@@ -195,8 +197,8 @@ xfmpc_interface_init (XfmpcInterface *interface)
                             G_CALLBACK (xfmpc_mpdclient_next), interface->mpdclient);
   g_signal_connect_swapped (priv->button_volume, "value-changed",
                             G_CALLBACK (xfmpc_interface_volume_changed), interface);
-  g_signal_connect_swapped (progress_box, "button-press-event",
-                            G_CALLBACK (xfmpc_interface_progress_box_press_event), interface);
+  g_signal_connect_swapped (progress_box, "button-release-event",
+                            G_CALLBACK (cb_progress_box_release_event), interface);
 
   g_signal_connect_swapped (interface->mpdclient, "connected",
                             G_CALLBACK (xfmpc_interface_reconnect), interface);
@@ -279,13 +281,13 @@ xfmpc_interface_set_pp (XfmpcInterface *interface,
     gtk_image_set_from_stock (GTK_IMAGE (image), GTK_STOCK_MEDIA_PLAY, GTK_ICON_SIZE_BUTTON);
 }
 
-gboolean
-xfmpc_interface_progress_box_press_event (XfmpcInterface *interface,
-                                          GdkEventButton *event)
+static gboolean
+cb_progress_box_release_event (XfmpcInterface *interface,
+                               GdkEventButton *event)
 {
   XfmpcInterfacePrivate *priv = XFMPC_INTERFACE (interface)->priv;
 
-  if (G_UNLIKELY (event->type != GDK_BUTTON_PRESS || event->button != 1))
+  if (G_UNLIKELY (event->type != GDK_BUTTON_RELEASE || event->button != 1))
     return FALSE;
 
   gint time_total = xfmpc_mpdclient_get_total_time (interface->mpdclient);

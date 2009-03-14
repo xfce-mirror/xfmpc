@@ -1,5 +1,15 @@
 2009-03-14	Mike Massonnet <mmassonnet@xfce.org>
 
+Move progress bar callback out of header inside C source
+	* src/interface.c, src/interface.h:
+	  - Remove xfmpc_interface_progress_box_press_event and place it
+	  inside the C source only under cb_progress_box_release_event
+	  - Set it a release event instead of press, it behaves better on
+	  mouse releases so you can also cancel it by moving the pointer
+	  outside the widget
+
+2009-03-14	Mike Massonnet <mmassonnet@xfce.org>
+
 Better fix for previous commit
 	* src/mpdclient.c(xfmpc_interface_init):
 	  - Better fix than the previous commit
