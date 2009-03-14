@@ -2,8 +2,12 @@ src/dbbrowser.c
 src/extended-interface.c
 src/interface.c
 src/main.c
+src/main-window.c
 src/mpdclient.c
 src/playlist.c
 src/preferences.c
+src/preferences-dialog.c
+src/song-dialog.c
+src/statusbar.c
 src/xfce-arrow-button.c
 xfmpc.desktop.in

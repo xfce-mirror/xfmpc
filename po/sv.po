@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-09 00:28+0100\n"
+"POT-Creation-Date: 2009-03-14 07:47+0100\n"
 "PO-Revision-Date: 2009-02-09 00:50+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -16,66 +16,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Menu -> Replace
-#: ../src/dbbrowser.c:215
+#: ../src/dbbrowser.c:222
 msgid "_Replace"
 msgstr "_Ersätt"
 
-#: ../src/extended-interface.c:163
+#. Menu -> Browse (only shown on a search)
+#: ../src/dbbrowser.c:230 ../src/playlist.c:237
+msgid "_Browse"
+msgstr ""
+
+#: ../src/extended-interface.c:164
 msgid "Clear Playlist"
 msgstr "Töm spellista"
 
-#: ../src/extended-interface.c:173
+#: ../src/extended-interface.c:174
 msgid "Refresh Database"
 msgstr "Uppdatera databas"
 
-#: ../src/extended-interface.c:183
+#: ../src/extended-interface.c:184
 msgid "Context Menu"
 msgstr "Sammanhangsmeny"
 
-#: ../src/extended-interface.c:214
+#: ../src/extended-interface.c:216
 msgid "Current Playlist"
 msgstr "Aktuell spellista"
 
-#: ../src/extended-interface.c:217
+#: ../src/extended-interface.c:219
 msgid "Browse database"
 msgstr "Bläddra i databas"
 
-#: ../src/extended-interface.c:289
+#: ../src/extended-interface.c:302
 msgid "Repeat"
 msgstr "Upprepa"
 
-#: ../src/extended-interface.c:296
+#: ../src/extended-interface.c:309
 msgid "Random"
 msgstr "Slumpmässigt"
 
-#: ../src/extended-interface.c:307
-#: ../src/extended-interface.c:343
-#: ../src/extended-interface.c:352
-msgid "MPD Settings"
-msgstr "Inställningar för MPD"
+#: ../src/extended-interface.c:320
+msgid "Preferences"
+msgstr ""
 
-#: ../src/extended-interface.c:362
-msgid "Use default system settings"
-msgstr "Använd systemets standardinställningar"
-
-#: ../src/extended-interface.c:364
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
-msgstr "Om kryssad kommer Xfmpc att försöka att läsa miljövariablerna MPD_HOST och MPD_PORT, annars kommer localhost att användas"
-
-#: ../src/extended-interface.c:376
-msgid "Hostname:"
-msgstr "Värdnamn:"
-
-#: ../src/extended-interface.c:383
-msgid "Port:"
-msgstr "Port:"
-
-#: ../src/extended-interface.c:392
-msgid "Password:"
-msgstr "Lösenord:"
-
-#: ../src/interface.c:156
-#: ../src/interface.c:364
+#: ../src/interface.c:156 ../src/interface.c:364
 msgid "Not connected"
 msgstr "Inte ansluten"
 
@@ -89,16 +71,177 @@ msgstr "av \"%s\" från \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Stoppad"
 
-#: ../src/main.c:108
-#: ../xfmpc.desktop.in.h:3
+#: ../src/main-window.c:393
+#, c-format
+msgid "%d songs, %d hours and %d minutes"
+msgstr ""
+
+#: ../src/main-window.c:395
+#, c-format
+msgid "%d songs, %d minutes"
+msgstr ""
+
+#: ../src/mpdclient.c:515 ../src/mpdclient.c:545 ../src/mpdclient.c:560
+msgid "n/a"
+msgstr "inte tillgänglig"
+
+#: ../src/preferences.c:41 ../src/song-dialog.c:173
+msgid "Title"
+msgstr ""
+
+#: ../src/preferences.c:42
+msgid "Album - Title"
+msgstr ""
+
+#: ../src/preferences.c:43
+msgid "Artist - Title"
+msgstr ""
+
+#: ../src/preferences.c:44
+msgid "Artist - Title (Date)"
+msgstr ""
+
+#: ../src/preferences.c:45
+msgid "Artist - Album - Title"
+msgstr ""
+
+#: ../src/preferences.c:46
+msgid "Artist - Album - Track. Title"
+msgstr ""
+
+#: ../src/preferences.c:47
+msgid "Custom..."
+msgstr ""
+
+#: ../src/preferences-dialog.c:181
+msgid "Xfmpc Preferences"
+msgstr ""
+
+#: ../src/preferences-dialog.c:197
+msgid "MPD"
+msgstr ""
+
+#: ../src/preferences-dialog.c:201
+msgid "Connection"
+msgstr ""
+
+#: ../src/preferences-dialog.c:204
+#, fuzzy
+msgid "Use _default system settings"
+msgstr "Använd systemets standardinställningar"
+
+#: ../src/preferences-dialog.c:206
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr ""
+"Om kryssad kommer Xfmpc att försöka att läsa miljövariablerna MPD_HOST och "
+"MPD_PORT, annars kommer localhost att användas"
+
+#: ../src/preferences-dialog.c:221
+msgid "Hostname:"
+msgstr "Värdnamn:"
+
+#: ../src/preferences-dialog.c:228
+msgid "Port:"
+msgstr "Port:"
+
+#: ../src/preferences-dialog.c:238
+msgid "Password:"
+msgstr "Lösenord:"
+
+#: ../src/preferences-dialog.c:256
+msgid "Appearance"
+msgstr ""
+
+#: ../src/preferences-dialog.c:260
+msgid "Statusbar"
+msgstr ""
+
+#: ../src/preferences-dialog.c:263
+msgid "Show _statusbar"
+msgstr ""
+
+#: ../src/preferences-dialog.c:270
+msgid "Song Format"
+msgstr ""
+
+#: ../src/preferences-dialog.c:275
+msgid "Song format:"
+msgstr ""
+
+#: ../src/preferences-dialog.c:295
+msgid "Custom format:"
+msgstr ""
+
+#: ../src/preferences-dialog.c:312
+msgid "Available parameters:"
+msgstr ""
+
+#: ../src/preferences-dialog.c:321
+#, c-format
+msgid "%a: Artist"
+msgstr ""
+
+#: ../src/preferences-dialog.c:325
+#, c-format
+msgid "%A: Album"
+msgstr ""
+
+#: ../src/preferences-dialog.c:330
+#, c-format
+msgid "%d: Date"
+msgstr ""
+
+#: ../src/preferences-dialog.c:334
+msgid "%D: Disc"
+msgstr ""
+
+#: ../src/preferences-dialog.c:339
+#, c-format
+msgid "%f: File"
+msgstr ""
+
+#: ../src/preferences-dialog.c:343
+#, c-format
+msgid "%g: Genre"
+msgstr ""
+
+#: ../src/preferences-dialog.c:348
+msgid "%t: Title"
+msgstr ""
+
+#: ../src/preferences-dialog.c:352
+msgid "%T: Track"
+msgstr ""
+
+#: ../src/song-dialog.c:133 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#: ../src/mpdclient.c:510
-#: ../src/mpdclient.c:540
-#: ../src/mpdclient.c:555
-msgid "n/a"
-msgstr "inte tillgänglig"
+#: ../src/song-dialog.c:153
+msgid "File"
+msgstr ""
+
+#: ../src/song-dialog.c:163
+msgid "Artist"
+msgstr ""
+
+#: ../src/song-dialog.c:183
+msgid "Album"
+msgstr ""
+
+#: ../src/song-dialog.c:193
+msgid "Date"
+msgstr ""
+
+#: ../src/song-dialog.c:200
+msgid "Track"
+msgstr ""
+
+#: ../src/song-dialog.c:211
+msgid "Genre"
+msgstr ""
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
@@ -108,3 +251,5 @@ msgstr "MPD-klient"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD-klient skriven i GTK+ för Xfce"
 
+#~ msgid "MPD Settings"
+#~ msgstr "Inställningar för MPD"

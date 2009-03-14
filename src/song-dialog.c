@@ -130,7 +130,7 @@ xfmpc_song_dialog_init (XfmpcSongDialog *dialog)
   gtk_window_set_skip_taskbar_hint (GTK_WINDOW (dialog), TRUE);
   gtk_window_set_icon_name (GTK_WINDOW (dialog), "stock_volume");
   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-  gtk_window_set_title (GTK_WINDOW (dialog), "Xfmpc");
+  gtk_window_set_title (GTK_WINDOW (dialog), _("Xfmpc"));
 
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                           GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
@@ -145,74 +145,74 @@ xfmpc_song_dialog_init (XfmpcSongDialog *dialog)
   gtk_widget_show (vbox);
 
   GtkWidget *vbox2 = gtk_vbox_new (FALSE, 0);
-  GtkWidget *frame = xfce_create_framebox_with_content ("", vbox2);
+  GtkWidget *frame = xfce_create_framebox_with_content (NULL, vbox2);
   gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, 0);
 
   /* File */
   GtkWidget *hbox = gtk_hbox_new (FALSE, 0);
-  GtkWidget *label = gtk_label_new ("File : ");
+  GtkWidget *label = gtk_label_new (_("File"));
   gtk_widget_set_size_request (GTK_WIDGET (label), 60, 10);
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  priv->label_file = gtk_label_new ("");
+  priv->label_file = gtk_label_new (NULL);
   gtk_box_pack_start (GTK_BOX (hbox), priv->label_file, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
 
   /* Artist */
   hbox = gtk_hbox_new (FALSE, 0);
-  label = gtk_label_new ("Artist : ");
+  label = gtk_label_new (_("Artist"));
   gtk_widget_set_size_request (GTK_WIDGET (label), 60, 10);
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  priv->label_artist = gtk_label_new ("");
+  priv->label_artist = gtk_label_new (NULL);
   gtk_box_pack_start (GTK_BOX (hbox), priv->label_artist, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
 
   /* Title */
   hbox = gtk_hbox_new (FALSE, 0);
-  label = gtk_label_new ("Title : ");
+  label = gtk_label_new (_("Title"));
   gtk_widget_set_size_request (GTK_WIDGET (label), 60, 10);
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  priv->label_title = gtk_label_new ("");
+  priv->label_title = gtk_label_new (NULL);
   gtk_box_pack_start (GTK_BOX (hbox), priv->label_title, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
 
   /* Album */
   hbox = gtk_hbox_new (FALSE, 0);
-  label = gtk_label_new ("Album : ");
+  label = gtk_label_new (_("Album"));
   gtk_widget_set_size_request (GTK_WIDGET (label), 60, 10);
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  priv->label_album = gtk_label_new ("");
+  priv->label_album = gtk_label_new (NULL);
   gtk_box_pack_start (GTK_BOX (hbox), priv->label_album, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
 
   /* Year and Track */
   hbox = gtk_hbox_new (TRUE, 0);
-  label = gtk_label_new ("Year : ");
+  label = gtk_label_new (_("Date"));
   gtk_widget_set_size_request (GTK_WIDGET (label), 60, 10);
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  priv->label_year = gtk_label_new ("");
+  priv->label_year = gtk_label_new (NULL);
   gtk_widget_set_size_request (GTK_WIDGET (priv->label_year), 60, 10);
   gtk_box_pack_start (GTK_BOX (hbox), priv->label_year, FALSE, FALSE, 0);
-  label = gtk_label_new ("Track : ");
+  label = gtk_label_new (_("Track"));
   gtk_widget_set_size_request (GTK_WIDGET (label), 60, 10);
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  priv->label_track = gtk_label_new ("");
+  priv->label_track = gtk_label_new (NULL);
   gtk_widget_set_size_request (GTK_WIDGET (label), 60, 10);
   gtk_box_pack_start (GTK_BOX (hbox), priv->label_track, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
 
   /* Genre */
   hbox = gtk_hbox_new (FALSE, 0);
-  label = gtk_label_new ("Genre : ");
+  label = gtk_label_new (_("Genre"));
   gtk_widget_set_size_request (GTK_WIDGET (label), 60, 10);
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  priv->label_genre = gtk_label_new ("");
+  priv->label_genre = gtk_label_new (NULL);
   gtk_box_pack_start (GTK_BOX (hbox), priv->label_genre, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
 

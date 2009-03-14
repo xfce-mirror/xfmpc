@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-03 22:16+0100\n"
+"POT-Creation-Date: 2009-03-14 07:47+0100\n"
 "PO-Revision-Date: 2009-02-11 12:09+0200\n"
 "Last-Translator: Samed Beyribey <ras0ir@eventualis.org>\n"
 "Language-Team: Turkish <turkce@pardus.org.tr>\n"
@@ -17,66 +17,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Menu -> Replace
-#: ../src/dbbrowser.c:215
+#: ../src/dbbrowser.c:222
 msgid "_Replace"
 msgstr "_Değiştir"
 
-#: ../src/extended-interface.c:160
+#. Menu -> Browse (only shown on a search)
+#: ../src/dbbrowser.c:230 ../src/playlist.c:237
+msgid "_Browse"
+msgstr ""
+
+#: ../src/extended-interface.c:164
 msgid "Clear Playlist"
 msgstr "Çalma Listesini Temizle"
 
-#: ../src/extended-interface.c:170
+#: ../src/extended-interface.c:174
 msgid "Refresh Database"
 msgstr "Veritabanını Yenile"
 
-#: ../src/extended-interface.c:180
+#: ../src/extended-interface.c:184
 msgid "Context Menu"
 msgstr "Toplu Menü"
 
-#: ../src/extended-interface.c:211
+#: ../src/extended-interface.c:216
 msgid "Current Playlist"
 msgstr "Etkin Çalma Listesi"
 
-#: ../src/extended-interface.c:214
+#: ../src/extended-interface.c:219
 msgid "Browse database"
 msgstr "Veritabanında Arama"
 
-#: ../src/extended-interface.c:286
+#: ../src/extended-interface.c:302
 msgid "Repeat"
 msgstr "Yinele"
 
-#: ../src/extended-interface.c:293
+#: ../src/extended-interface.c:309
 msgid "Random"
 msgstr "Rasgele"
 
-#: ../src/extended-interface.c:304
-#: ../src/extended-interface.c:340
-#: ../src/extended-interface.c:349
-msgid "MPD Settings"
-msgstr "MPD Ayarları"
+#: ../src/extended-interface.c:320
+msgid "Preferences"
+msgstr ""
 
-#: ../src/extended-interface.c:359
-msgid "Use default system settings"
-msgstr "Öntanımlı sistem ayarlarını kullan"
-
-#: ../src/extended-interface.c:361
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
-msgstr "Seçili ise, Xfmpc MPD_HOST ve MPD_PORT ortam değişkenlerini okuyacaktır, aksi takdirde localhost kullanacaktır"
-
-#: ../src/extended-interface.c:373
-msgid "Hostname:"
-msgstr "Host:"
-
-#: ../src/extended-interface.c:380
-msgid "Port:"
-msgstr "Port:"
-
-#: ../src/extended-interface.c:389
-msgid "Password:"
-msgstr "Parola:"
-
-#: ../src/interface.c:156
-#: ../src/interface.c:364
+#: ../src/interface.c:156 ../src/interface.c:364
 msgid "Not connected"
 msgstr "Bağlantı yok"
 
@@ -90,16 +72,177 @@ msgstr "söyleyen \"%s\" albüm \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Durduruldu"
 
-#: ../src/main.c:108
-#: ../xfmpc.desktop.in.h:3
+#: ../src/main-window.c:393
+#, c-format
+msgid "%d songs, %d hours and %d minutes"
+msgstr ""
+
+#: ../src/main-window.c:395
+#, c-format
+msgid "%d songs, %d minutes"
+msgstr ""
+
+#: ../src/mpdclient.c:515 ../src/mpdclient.c:545 ../src/mpdclient.c:560
+msgid "n/a"
+msgstr "n/a"
+
+#: ../src/preferences.c:41 ../src/song-dialog.c:173
+msgid "Title"
+msgstr ""
+
+#: ../src/preferences.c:42
+msgid "Album - Title"
+msgstr ""
+
+#: ../src/preferences.c:43
+msgid "Artist - Title"
+msgstr ""
+
+#: ../src/preferences.c:44
+msgid "Artist - Title (Date)"
+msgstr ""
+
+#: ../src/preferences.c:45
+msgid "Artist - Album - Title"
+msgstr ""
+
+#: ../src/preferences.c:46
+msgid "Artist - Album - Track. Title"
+msgstr ""
+
+#: ../src/preferences.c:47
+msgid "Custom..."
+msgstr ""
+
+#: ../src/preferences-dialog.c:181
+msgid "Xfmpc Preferences"
+msgstr ""
+
+#: ../src/preferences-dialog.c:197
+msgid "MPD"
+msgstr ""
+
+#: ../src/preferences-dialog.c:201
+msgid "Connection"
+msgstr ""
+
+#: ../src/preferences-dialog.c:204
+#, fuzzy
+msgid "Use _default system settings"
+msgstr "Öntanımlı sistem ayarlarını kullan"
+
+#: ../src/preferences-dialog.c:206
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr ""
+"Seçili ise, Xfmpc MPD_HOST ve MPD_PORT ortam değişkenlerini okuyacaktır, "
+"aksi takdirde localhost kullanacaktır"
+
+#: ../src/preferences-dialog.c:221
+msgid "Hostname:"
+msgstr "Host:"
+
+#: ../src/preferences-dialog.c:228
+msgid "Port:"
+msgstr "Port:"
+
+#: ../src/preferences-dialog.c:238
+msgid "Password:"
+msgstr "Parola:"
+
+#: ../src/preferences-dialog.c:256
+msgid "Appearance"
+msgstr ""
+
+#: ../src/preferences-dialog.c:260
+msgid "Statusbar"
+msgstr ""
+
+#: ../src/preferences-dialog.c:263
+msgid "Show _statusbar"
+msgstr ""
+
+#: ../src/preferences-dialog.c:270
+msgid "Song Format"
+msgstr ""
+
+#: ../src/preferences-dialog.c:275
+msgid "Song format:"
+msgstr ""
+
+#: ../src/preferences-dialog.c:295
+msgid "Custom format:"
+msgstr ""
+
+#: ../src/preferences-dialog.c:312
+msgid "Available parameters:"
+msgstr ""
+
+#: ../src/preferences-dialog.c:321
+#, c-format
+msgid "%a: Artist"
+msgstr ""
+
+#: ../src/preferences-dialog.c:325
+#, c-format
+msgid "%A: Album"
+msgstr ""
+
+#: ../src/preferences-dialog.c:330
+#, c-format
+msgid "%d: Date"
+msgstr ""
+
+#: ../src/preferences-dialog.c:334
+msgid "%D: Disc"
+msgstr ""
+
+#: ../src/preferences-dialog.c:339
+#, c-format
+msgid "%f: File"
+msgstr ""
+
+#: ../src/preferences-dialog.c:343
+#, c-format
+msgid "%g: Genre"
+msgstr ""
+
+#: ../src/preferences-dialog.c:348
+msgid "%t: Title"
+msgstr ""
+
+#: ../src/preferences-dialog.c:352
+msgid "%T: Track"
+msgstr ""
+
+#: ../src/song-dialog.c:133 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#: ../src/mpdclient.c:510
-#: ../src/mpdclient.c:540
-#: ../src/mpdclient.c:555
-msgid "n/a"
-msgstr "n/a"
+#: ../src/song-dialog.c:153
+msgid "File"
+msgstr ""
+
+#: ../src/song-dialog.c:163
+msgid "Artist"
+msgstr ""
+
+#: ../src/song-dialog.c:183
+msgid "Album"
+msgstr ""
+
+#: ../src/song-dialog.c:193
+msgid "Date"
+msgstr ""
+
+#: ../src/song-dialog.c:200
+msgid "Track"
+msgstr ""
+
+#: ../src/song-dialog.c:211
+msgid "Genre"
+msgstr ""
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
@@ -109,3 +252,5 @@ msgstr "MPD istemcisi"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Xfce için GTK+ ile yazılmış MPD istemcisi"
 
+#~ msgid "MPD Settings"
+#~ msgstr "MPD Ayarları"
