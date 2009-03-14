@@ -196,7 +196,7 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), GTK_TREE_MODEL (priv->filter));
   g_object_unref (priv->filter);
 
-  /* Column "length" */
+  /* Column "position" */
   GtkCellRenderer *cell = gtk_cell_renderer_text_new ();
   g_object_set (G_OBJECT (cell),
                 "xalign", 1.0,
