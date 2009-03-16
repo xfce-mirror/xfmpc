@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-14 09:31+0100\n"
-"PO-Revision-Date: 2009-02-21 20:00+0200\n"
+"POT-Creation-Date: 2009-03-16 20:54+0200\n"
+"PO-Revision-Date: 2009-03-16 21:05+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgid "_Replace"
 msgstr "_Korvaa"
 
 #. Menu -> Browse (only shown on a search)
-#: ../src/dbbrowser.c:230 ../src/playlist.c:237
+#: ../src/dbbrowser.c:230 ../src/playlist.c:250
 msgid "_Browse"
 msgstr "_Selaa"
 
@@ -63,79 +63,80 @@ msgstr "GTK+-pohjainen MPD-asiakasohjelma Xfce:lle"
 #: ../src/extended-interface.c:406
 msgid "translator-credits"
 msgstr ""
+"Miia Ranta <myrtti@ubuntu.com>\n"
+"Jari Rahkonen <jari.rahkonen@pp1.inet.fi>"
 
-#: ../src/interface.c:156 ../src/interface.c:364
+#: ../src/interface.c:158 ../src/interface.c:366
 msgid "Not connected"
 msgstr "Ei yhdistetty"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:395
+#: ../src/interface.c:404
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr " \"%s\" albumilta \"%s\" (%s)"
 
-#: ../src/interface.c:441
+#: ../src/interface.c:450
 msgid "Stopped"
 msgstr "Pysäytetty"
 
 #: ../src/main-window.c:393
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr ""
+msgstr "%d kappaletta, %d tuntia ja %d minuuttia"
 
 #: ../src/main-window.c:395
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr ""
+msgstr "%d kappaletta, %d minuuttia"
 
 #: ../src/mpdclient.c:515 ../src/mpdclient.c:545 ../src/mpdclient.c:560
 msgid "n/a"
-msgstr "tuntematon"
+msgstr "-"
 
-#: ../src/preferences.c:41 ../src/song-dialog.c:173
+#: ../src/preferences.c:41 ../src/song-dialog.c:171
 msgid "Title"
-msgstr ""
+msgstr "Kappale"
 
 #: ../src/preferences.c:42
 msgid "Album - Title"
-msgstr ""
+msgstr "Albumi - Kappale"
 
 #: ../src/preferences.c:43
 msgid "Artist - Title"
-msgstr ""
+msgstr "Esittäjä - Kappale"
 
 #: ../src/preferences.c:44
 msgid "Artist - Title (Date)"
-msgstr ""
+msgstr "Esittäjä - Kappale (PVM)"
 
 #: ../src/preferences.c:45
 msgid "Artist - Album - Title"
-msgstr ""
+msgstr "Esittäjä - Albumi - Kappale"
 
 #: ../src/preferences.c:46
 msgid "Artist - Album - Track. Title"
-msgstr ""
+msgstr "Esittäjä - Albumi - Raitanro. Kappale"
 
 #: ../src/preferences.c:47
 msgid "Custom..."
-msgstr ""
+msgstr "Mukautettu..."
 
 #: ../src/preferences-dialog.c:181
 msgid "Xfmpc Preferences"
-msgstr ""
+msgstr "Xfmpc:n asetukset"
 
 #: ../src/preferences-dialog.c:197
 msgid "MPD"
-msgstr ""
+msgstr "MPD"
 
 #: ../src/preferences-dialog.c:201
 msgid "Connection"
-msgstr ""
+msgstr "Yhteys"
 
 #: ../src/preferences-dialog.c:204
-#, fuzzy
 msgid "Use _default system settings"
-msgstr "Käytä järjestelmän oletuksia"
+msgstr "Käytä järjestelmän _oletuksia"
 
 #: ../src/preferences-dialog.c:206
 msgid ""
@@ -159,68 +160,68 @@ msgstr "Salasana:"
 
 #: ../src/preferences-dialog.c:256
 msgid "Appearance"
-msgstr ""
+msgstr "Ulkoasu"
 
 #: ../src/preferences-dialog.c:260
 msgid "Statusbar"
-msgstr ""
+msgstr "Tilapalkki"
 
 #: ../src/preferences-dialog.c:263
 msgid "Show _statusbar"
-msgstr ""
+msgstr "Näytä _tilapalkki"
 
 #: ../src/preferences-dialog.c:270
 msgid "Song Format"
-msgstr ""
+msgstr "Kappaleen esitystapa"
 
 #: ../src/preferences-dialog.c:275
 msgid "Song format:"
-msgstr ""
+msgstr "Kappaleen esitystapa:"
 
 #: ../src/preferences-dialog.c:295
 msgid "Custom format:"
-msgstr ""
+msgstr "Mukautettu esitystapa:"
 
 #: ../src/preferences-dialog.c:312
 msgid "Available parameters:"
-msgstr ""
+msgstr "Käytettävissä olevat merkinnät:"
 
 #: ../src/preferences-dialog.c:321
 #, c-format
 msgid "%a: Artist"
-msgstr ""
+msgstr "%a: Esittäjä"
 
 #: ../src/preferences-dialog.c:325
 #, c-format
 msgid "%A: Album"
-msgstr ""
+msgstr "%A: Albumi"
 
 #: ../src/preferences-dialog.c:330
 #, c-format
 msgid "%d: Date"
-msgstr ""
+msgstr "%d: PVM"
 
 #: ../src/preferences-dialog.c:334
 msgid "%D: Disc"
-msgstr ""
+msgstr "%D: Levy"
 
 #: ../src/preferences-dialog.c:339
 #, c-format
 msgid "%f: File"
-msgstr ""
+msgstr "%f: Tiedosto"
 
 #: ../src/preferences-dialog.c:343
 #, c-format
 msgid "%g: Genre"
-msgstr ""
+msgstr "%g: Tyylilaji"
 
 #: ../src/preferences-dialog.c:348
 msgid "%t: Title"
-msgstr ""
+msgstr "%t: Kappale"
 
 #: ../src/preferences-dialog.c:352
 msgid "%T: Track"
-msgstr ""
+msgstr "%T: Raitanro"
 
 #: ../src/song-dialog.c:133 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
@@ -228,31 +229,28 @@ msgstr "Xfmpc"
 
 #: ../src/song-dialog.c:153
 msgid "File"
-msgstr ""
+msgstr "Tiedosto"
 
-#: ../src/song-dialog.c:163
+#: ../src/song-dialog.c:162
 msgid "Artist"
-msgstr ""
+msgstr "Esittäjä"
 
-#: ../src/song-dialog.c:183
+#: ../src/song-dialog.c:180
 msgid "Album"
-msgstr ""
+msgstr "Albumi"
 
-#: ../src/song-dialog.c:193
+#: ../src/song-dialog.c:189
 msgid "Date"
-msgstr ""
+msgstr "PVM"
 
-#: ../src/song-dialog.c:200
+#: ../src/song-dialog.c:194
 msgid "Track"
-msgstr ""
+msgstr "Raitanro"
 
-#: ../src/song-dialog.c:211
+#: ../src/song-dialog.c:203
 msgid "Genre"
-msgstr ""
+msgstr "Tyylilaji"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
 msgstr "MPD-asiakasohjelma"
-
-#~ msgid "MPD Settings"
-#~ msgstr "MPD:n asetukset"
