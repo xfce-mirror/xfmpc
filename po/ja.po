@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-14 09:31+0100\n"
-"PO-Revision-Date: 2009-02-17 00:44+0900\n"
+"POT-Creation-Date: 2009-03-15 16:50+0900\n"
+"PO-Revision-Date: 2009-03-16 00:24+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "_Replace"
 msgstr "置換(_R)"
 
 #. Menu -> Browse (only shown on a search)
-#: ../src/dbbrowser.c:230 ../src/playlist.c:237
+#: ../src/dbbrowser.c:230 ../src/playlist.c:250
 msgid "_Browse"
 msgstr "参照(_B)"
 
@@ -57,92 +57,91 @@ msgstr "ランダム"
 
 #: ../src/extended-interface.c:402 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "Xfce 向けの GTK+ で書かれたMPDクライアントです。"
+msgstr "Xfce 向けの GTK+ で書かれた MPD クライアントです。"
 
 #: ../src/extended-interface.c:406
 msgid "translator-credits"
-msgstr ""
+msgstr "Masato Hashimoto <cabezon.hashimoto@gmail.com>"
 
-#: ../src/interface.c:156 ../src/interface.c:364
+#: ../src/interface.c:158 ../src/interface.c:366
 msgid "Not connected"
 msgstr "未接続"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:395
+#: ../src/interface.c:404
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "\"%s\" の \"%s\" (%s)"
+msgstr "by \"%s\" from \"%s\" (%s)"
 
-#: ../src/interface.c:441
+#: ../src/interface.c:450
 msgid "Stopped"
 msgstr "停止"
 
 #: ../src/main-window.c:393
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr ""
+msgstr "%d 曲、%d 時間 %d 分"
 
 #: ../src/main-window.c:395
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr ""
+msgstr "%d 曲、%d 分"
 
 #: ../src/mpdclient.c:515 ../src/mpdclient.c:545 ../src/mpdclient.c:560
 msgid "n/a"
-msgstr "該当なし"
+msgstr "N/A"
 
-#: ../src/preferences.c:41 ../src/song-dialog.c:173
+#: ../src/preferences.c:41 ../src/song-dialog.c:171
 msgid "Title"
-msgstr ""
+msgstr "タイトル"
 
 #: ../src/preferences.c:42
 msgid "Album - Title"
-msgstr ""
+msgstr "アルバム - タイトル"
 
 #: ../src/preferences.c:43
 msgid "Artist - Title"
-msgstr ""
+msgstr "アーティスト - タイトル"
 
 #: ../src/preferences.c:44
 msgid "Artist - Title (Date)"
-msgstr ""
+msgstr "アーティスト - タイトル (日付)"
 
 #: ../src/preferences.c:45
 msgid "Artist - Album - Title"
-msgstr ""
+msgstr "アーティスト - アルバム - タイトル"
 
 #: ../src/preferences.c:46
 msgid "Artist - Album - Track. Title"
-msgstr ""
+msgstr "アーティスト - アルバム - トラック. タイトル"
 
 #: ../src/preferences.c:47
 msgid "Custom..."
-msgstr ""
+msgstr "カスタム..."
 
 #: ../src/preferences-dialog.c:181
 msgid "Xfmpc Preferences"
-msgstr ""
+msgstr "Xfmpc 設定"
 
 #: ../src/preferences-dialog.c:197
 msgid "MPD"
-msgstr ""
+msgstr "MPD"
 
 #: ../src/preferences-dialog.c:201
 msgid "Connection"
-msgstr ""
+msgstr "接続"
 
 #: ../src/preferences-dialog.c:204
-#, fuzzy
 msgid "Use _default system settings"
-msgstr "システムのデフォルト設定を使用する"
+msgstr "デフォルトのシステム設定を使用する(_D)"
 
 #: ../src/preferences-dialog.c:206
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
 msgstr ""
-"このオプションを有効にすると Xfmpc は環境変数 MPD_HOST および MPD_PORT を参照"
-"し、なければローカルホストを使用します。"
+"このオプションを有効にすると、Xfmpc は環境変数 MPD_HOST および MPD_PORT を読"
+"み込もうとし、なければ localhost を使用します"
 
 #: ../src/preferences-dialog.c:221
 msgid "Hostname:"
@@ -158,68 +157,68 @@ msgstr "パスワード:"
 
 #: ../src/preferences-dialog.c:256
 msgid "Appearance"
-msgstr ""
+msgstr "外観"
 
 #: ../src/preferences-dialog.c:260
 msgid "Statusbar"
-msgstr ""
+msgstr "ステータスバー"
 
 #: ../src/preferences-dialog.c:263
 msgid "Show _statusbar"
-msgstr ""
+msgstr "ステータスバーを表示する(_S)"
 
 #: ../src/preferences-dialog.c:270
 msgid "Song Format"
-msgstr ""
+msgstr "楽曲のフォーマット"
 
 #: ../src/preferences-dialog.c:275
 msgid "Song format:"
-msgstr ""
+msgstr "楽曲のフォーマット:"
 
 #: ../src/preferences-dialog.c:295
 msgid "Custom format:"
-msgstr ""
+msgstr "カスタムフォーマット:"
 
 #: ../src/preferences-dialog.c:312
 msgid "Available parameters:"
-msgstr ""
+msgstr "利用可能なパラメータ:"
 
 #: ../src/preferences-dialog.c:321
 #, c-format
 msgid "%a: Artist"
-msgstr ""
+msgstr "%a: アーティスト"
 
 #: ../src/preferences-dialog.c:325
 #, c-format
 msgid "%A: Album"
-msgstr ""
+msgstr "%A: アルバム"
 
 #: ../src/preferences-dialog.c:330
 #, c-format
 msgid "%d: Date"
-msgstr ""
+msgstr "%d: 日付"
 
 #: ../src/preferences-dialog.c:334
 msgid "%D: Disc"
-msgstr ""
+msgstr "%D: ディスク"
 
 #: ../src/preferences-dialog.c:339
 #, c-format
 msgid "%f: File"
-msgstr ""
+msgstr "%f: ファイル"
 
 #: ../src/preferences-dialog.c:343
 #, c-format
 msgid "%g: Genre"
-msgstr ""
+msgstr "%g: ジャンル"
 
 #: ../src/preferences-dialog.c:348
 msgid "%t: Title"
-msgstr ""
+msgstr "%t: タイトル"
 
 #: ../src/preferences-dialog.c:352
 msgid "%T: Track"
-msgstr ""
+msgstr "%T: トラック"
 
 #: ../src/song-dialog.c:133 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
@@ -227,31 +226,28 @@ msgstr "Xfmpc"
 
 #: ../src/song-dialog.c:153
 msgid "File"
-msgstr ""
+msgstr "ファイル"
 
-#: ../src/song-dialog.c:163
+#: ../src/song-dialog.c:162
 msgid "Artist"
-msgstr ""
+msgstr "アーティスト"
 
-#: ../src/song-dialog.c:183
+#: ../src/song-dialog.c:180
 msgid "Album"
-msgstr ""
+msgstr "アルバム"
 
-#: ../src/song-dialog.c:193
+#: ../src/song-dialog.c:189
 msgid "Date"
-msgstr ""
+msgstr "日付"
 
-#: ../src/song-dialog.c:200
+#: ../src/song-dialog.c:194
 msgid "Track"
-msgstr ""
+msgstr "トラック"
 
-#: ../src/song-dialog.c:211
+#: ../src/song-dialog.c:203
 msgid "Genre"
-msgstr ""
+msgstr "ジャンル"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
 msgstr "MPD クライアント"
-
-#~ msgid "MPD Settings"
-#~ msgstr "MPD 設定"
