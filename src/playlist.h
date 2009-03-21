@@ -41,6 +41,7 @@ GtkWidget *             xfmpc_playlist_new                      ();
 
 void                    xfmpc_playlist_append                   (XfmpcPlaylist *playlist,
                                                                  gint id,
+                                                                 gint pos,
                                                                  gchar *filename,
                                                                  gchar *song,
                                                                  gchar *length);

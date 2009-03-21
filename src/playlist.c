@@ -323,6 +323,7 @@ xfmpc_playlist_new ()
 void
 xfmpc_playlist_append (XfmpcPlaylist *playlist,
                        gint id,
+                       gint pos,
                        gchar *filename,
                        gchar *song,
                        gchar *length)
@@ -334,7 +335,7 @@ xfmpc_playlist_append (XfmpcPlaylist *playlist,
   gtk_list_store_set (priv->store, &iter,
                       COLUMN_ID, id,
                       COLUMN_FILENAME, filename,
-                      COLUMN_POSITION, id + 1,
+                      COLUMN_POSITION, pos + 1,
                       COLUMN_SONG, song,
                       COLUMN_LENGTH, length,
                       COLUMN_WEIGHT, PANGO_WEIGHT_NORMAL,
@@ -433,14 +434,14 @@ cb_playlist_changed (XfmpcPlaylist *playlist)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   gchar                *filename, *song, *length;
-  gint                  id, current;
+  gint                  id, pos, current;
 
   current = xfmpc_mpdclient_get_id (playlist->mpdclient);
 
   xfmpc_playlist_clear (playlist);
-  while (xfmpc_mpdclient_playlist_read (playlist->mpdclient, &id, &filename, &song, &length))
+  while (xfmpc_mpdclient_playlist_read (playlist->mpdclient, &id, &pos, &filename, &song, &length))
     {
-      xfmpc_playlist_append (playlist, id, filename, song, length);
+      xfmpc_playlist_append (playlist, id, pos, filename, song, length);
       g_free (filename);
       g_free (song);
       g_free (length);

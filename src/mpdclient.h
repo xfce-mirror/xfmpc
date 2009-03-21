@@ -95,6 +95,7 @@ gboolean                xfmpc_mpdclient_queue_clear             (XfmpcMpdclient 
 
 gboolean                xfmpc_mpdclient_playlist_read           (XfmpcMpdclient *mpdclient,
                                                                  gint *id,
+                                                                 gint *pos,
                                                                  gchar **filename,
                                                                  gchar **song,
                                                                  gchar **length);

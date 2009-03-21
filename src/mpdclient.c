@@ -708,7 +708,7 @@ xfmpc_mpdclient_queue_clear (XfmpcMpdclient *mpdclient)
 {
   gint id;
 
-  while (xfmpc_mpdclient_playlist_read (mpdclient, &id, NULL, NULL, NULL))
+  while (xfmpc_mpdclient_playlist_read (mpdclient, &id, NULL, NULL, NULL, NULL))
     {
       if (!xfmpc_mpdclient_queue_remove_id (mpdclient, id))
         return FALSE;
@@ -722,6 +722,7 @@ xfmpc_mpdclient_queue_clear (XfmpcMpdclient *mpdclient)
 gboolean
 xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
                                gint *id,
+                               gint *pos,
                                gchar **filename,
                                gchar **song,
                                gchar **length)
@@ -742,6 +743,8 @@ xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
         *song = _get_formatted_name (data->song);
       if (NULL != length)
         *length = g_strdup_printf ("%d:%02d", data->song->time / 60, data->song->time % 60);
+      if (NULL != pos)
+      	*pos = data->song->pos;
       *id = data->song->id;
     }
 
@@ -792,7 +795,7 @@ xfmpc_mpdclient_playlist_has_filename (XfmpcMpdclient *mpdclient,
 
   if (is_dir && strcmp (filename, ""))
     {
-      while (xfmpc_mpdclient_playlist_read (mpdclient, &id, &basename, NULL, NULL))
+      while (xfmpc_mpdclient_playlist_read (mpdclient, &id, NULL, &basename, NULL, NULL))
         {
           if (g_str_has_prefix (basename, filename))
             found = TRUE;
