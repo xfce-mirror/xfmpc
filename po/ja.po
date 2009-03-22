@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-15 16:50+0900\n"
-"PO-Revision-Date: 2009-03-16 00:24+0900\n"
+"POT-Creation-Date: 2009-03-22 15:45+0900\n"
+"PO-Revision-Date: 2009-03-22 15:41+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,9 @@ msgstr "Xfce 向けの GTK+ で書かれた MPD クライアントです。"
 
 #: ../src/extended-interface.c:406
 msgid "translator-credits"
-msgstr "Masato Hashimoto <cabezon.hashimoto@gmail.com>"
+msgstr ""
+"Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
+"Masato Hashimoto <cabezon.hashimoto@gmail.com>"
 
 #: ../src/interface.c:158 ../src/interface.c:366
 msgid "Not connected"
