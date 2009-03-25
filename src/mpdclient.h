@@ -19,6 +19,8 @@
 #ifndef __XFMPC_MPDCLIENT_H__
 #define __XFMPC_MPDCLIENT_H__
 
+#include <glib-object.h>
+
 G_BEGIN_DECLS
 
 typedef struct _XfmpcSongInfo XfmpcSongInfo;

@@ -1,3 +1,9 @@
+2009-03-21	Mike Massonnet <mmassonnet@xfce.org>
+
+Include GLib in XfmpcMpdclient for Vala GObject Introspection
+	* src/mpdclient.h:
+	  - vala-gen-introspect failed because of the missing include
+
 2009-03-21	Vincent Legout <vincent@legout.info>
 
 Display the position rather than the id of the track in the playlist
