@@ -19,7 +19,7 @@ dnl *** Initialize autoconf ***
 dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2008
         The Xfce development team. All rights reserved.])
-AC_INIT([xfmpc], [xfmpc_version], [http://bugzilla.xfce.org/], [xfmpc])
+AC_INIT([Xfmpc], [xfmpc_version], [http://bugzilla.xfce.org/], [xfmpc])
 AC_PREREQ([2.50])
 AC_CANONICAL_TARGET()
 AC_REVISION([$Id$])

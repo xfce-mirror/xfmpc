@@ -63,9 +63,16 @@ struct _XfmpcSongDialogPrivate
   GtkWidget                     *label_artist;
   GtkWidget                     *label_title;
   GtkWidget                     *label_album;
-  GtkWidget                     *label_year;
+  GtkWidget                     *label_date;
   GtkWidget                     *label_track;
   GtkWidget                     *label_genre;
+
+  GtkWidget                     *hbox_artist;
+  GtkWidget                     *hbox_title;
+  GtkWidget                     *hbox_album;
+  GtkWidget                     *hbox_date;
+  GtkWidget                     *hbox_track;
+  GtkWidget                     *hbox_genre;
 };
 
 
@@ -130,7 +137,7 @@ xfmpc_song_dialog_init (XfmpcSongDialog *dialog)
   gtk_window_set_skip_taskbar_hint (GTK_WINDOW (dialog), TRUE);
   gtk_window_set_icon_name (GTK_WINDOW (dialog), "stock_volume");
   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-  gtk_window_set_title (GTK_WINDOW (dialog), _("Xfmpc"));
+  gtk_window_set_title (GTK_WINDOW (dialog), PACKAGE_NAME);
 
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                           GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
@@ -150,62 +157,75 @@ xfmpc_song_dialog_init (XfmpcSongDialog *dialog)
 
   /* File */
   GtkWidget *hbox = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
   GtkWidget *label = gtk_label_new (_("File"));
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  priv->label_file = gtk_label_new (NULL);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->label_file, FALSE, FALSE, 5);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
+  label = priv->label_file = gtk_label_new (NULL);
+  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
 
   /* Artist */
-  hbox = gtk_hbox_new (FALSE, 0);
+  hbox = priv->hbox_artist = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
   label = gtk_label_new (_("Artist"));
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  priv->label_artist = gtk_label_new (NULL);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->label_artist, FALSE, FALSE, 5);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
+  label = priv->label_artist = gtk_label_new (NULL);
+  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
 
   /* Title */
-  hbox = gtk_hbox_new (FALSE, 0);
+  hbox = priv->hbox_title = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
   label = gtk_label_new (_("Title"));
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  priv->label_title = gtk_label_new (NULL);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->label_title, FALSE, FALSE, 5);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
+  label = priv->label_title = gtk_label_new (NULL);
+  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
 
   /* Album */
-  hbox = gtk_hbox_new (FALSE, 0);
+  hbox = priv->hbox_album = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
   label = gtk_label_new (_("Album"));
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  priv->label_album = gtk_label_new (NULL);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->label_album, FALSE, FALSE, 5);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
+  label = priv->label_album = gtk_label_new (NULL);
+  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
 
-  /* Year and Track */
+  /* Date */
   hbox = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
+  priv->hbox_date = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), priv->hbox_date, FALSE, FALSE, 0);
   label = gtk_label_new (_("Date"));
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  priv->label_year = gtk_label_new (NULL);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->label_year, FALSE, FALSE, 5);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_date), label, FALSE, FALSE, 5);
+  label = priv->label_date = gtk_label_new (NULL);
+  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_date), label, FALSE, FALSE, 5);
+
+  /* Track */
+  priv->hbox_track = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), priv->hbox_track, FALSE, FALSE, 15);
   label = gtk_label_new (_("Track"));
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 15);
-  priv->label_track = gtk_label_new (NULL);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->label_track, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_track), label, FALSE, FALSE, 5);
+  label = priv->label_track = gtk_label_new (NULL);
+  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_track), label, FALSE, FALSE, 5);
 
   /* Genre */
-  hbox = gtk_hbox_new (FALSE, 0);
+  hbox = priv->hbox_genre = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
   label = gtk_label_new (_("Genre"));
   gtk_label_set_attributes (GTK_LABEL (label), attrs);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  priv->label_genre = gtk_label_new (NULL);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->label_genre, FALSE, FALSE, 5);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
+  label = priv->label_genre = gtk_label_new (NULL);
+  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
 
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), vbox, TRUE, TRUE, 0);
   gtk_widget_show_all (GTK_DIALOG (dialog)->vbox);
@@ -251,9 +271,39 @@ xfmpc_song_dialog_set_song_info (XfmpcSongDialog *dialog,
   gtk_label_set_text (GTK_LABEL (priv->label_artist), song_info->artist);
   gtk_label_set_text (GTK_LABEL (priv->label_album), song_info->album);
   gtk_label_set_text (GTK_LABEL (priv->label_title), song_info->title);
-  gtk_label_set_text (GTK_LABEL (priv->label_year), song_info->date);
+  gtk_label_set_text (GTK_LABEL (priv->label_date), song_info->date);
   gtk_label_set_text (GTK_LABEL (priv->label_track), song_info->track);
   gtk_label_set_text (GTK_LABEL (priv->label_genre), song_info->genre);
+
+  if (song_info->artist == NULL)
+    gtk_widget_hide (priv->hbox_artist);
+  else
+    gtk_widget_show (priv->hbox_artist);
+
+  if (song_info->album == NULL)
+    gtk_widget_hide (priv->hbox_album);
+  else
+    gtk_widget_show (priv->hbox_album);
+
+  if (song_info->title == NULL)
+    gtk_widget_hide (priv->hbox_title);
+  else
+    gtk_widget_show (priv->hbox_title);
+
+  if (song_info->date == NULL)
+    gtk_widget_hide (priv->hbox_date);
+  else
+    gtk_widget_show (priv->hbox_date);
+
+  if (song_info->track == NULL)
+    gtk_widget_hide (priv->hbox_track);
+  else
+    gtk_widget_show (priv->hbox_track);
+
+  if (song_info->genre == NULL)
+    gtk_widget_hide (priv->hbox_genre);
+  else
+    gtk_widget_show (priv->hbox_genre);
 
   gtk_window_set_title (GTK_WINDOW (dialog), song_info->title);
 }

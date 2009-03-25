@@ -1,4 +1,17 @@
-2009-03-21	Mike Massonnet <mmassonnet@xfce.org>
+2009-03-25	Mike Massonnet <mmassonnet@xfce.org>
+
+Polish the application name and the song info
+	* configure.in.in:
+	  - Capitalize package name
+	* src/main-window.c(xfmpc_main_window_init):
+	  - Replace the title "Xfmpc" against PACKAGE_NAME
+	* src/song-dialog.c:
+	  - Automatically hide empty values
+	  - Label informations are selectable
+	* autogen.sh:
+	  - Enable debug to full by default
+
+2009-03-25	Mike Massonnet <mmassonnet@xfce.org>
 
 Include GLib in XfmpcMpdclient for Vala GObject Introspection
 	* src/mpdclient.h:

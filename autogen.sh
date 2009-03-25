@@ -41,6 +41,6 @@ sed -e "s/@LINGUAS@/${linguas}/g" \
     -e "s/@REVISION@/${revision}/g" \
     < "configure.in.in" > "configure.in"
 
-exec xdt-autogen --enable-debug $@
+exec xdt-autogen --enable-debug=full $@
 rm "configure.in"
 

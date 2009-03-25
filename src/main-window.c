@@ -182,7 +182,7 @@ xfmpc_main_window_init (XfmpcMainWindow *window)
   /* Window */
   gtk_window_set_default_icon_name ("xfmpc");
   gtk_window_set_icon_name (GTK_WINDOW (window), "stock_volume");
-  gtk_window_set_title (GTK_WINDOW (window), "Xfmpc");
+  gtk_window_set_title (GTK_WINDOW (window), PACKAGE_NAME);
   gtk_window_set_default_size (GTK_WINDOW (window), 330, 330);
   g_signal_connect (G_OBJECT (window), "delete-event", G_CALLBACK (cb_window_closed), NULL);
   g_signal_connect (G_OBJECT (window), "window-state-event", G_CALLBACK (cb_window_state_event), NULL);
