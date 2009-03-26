@@ -197,7 +197,7 @@ xfmpc_preferences_dialog_init (XfmpcPreferencesDialog *dialog)
   label = gtk_label_new (_("MPD"));
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
 
-  vbox2 = gtk_vbox_new (FALSE, 6);
+  vbox2 = gtk_vbox_new (FALSE, 8);
   frame = xfce_create_framebox_with_content (_("Connection"), vbox2);
   gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, 0);
 
@@ -208,8 +208,12 @@ xfmpc_preferences_dialog_init (XfmpcPreferencesDialog *dialog)
                                  "use localhost"));
   gtk_container_add (GTK_CONTAINER (vbox2), priv->entry_use_defaults);
 
-  mpd_vbox = gtk_vbox_new (FALSE, 6);
-  gtk_container_add (GTK_CONTAINER (vbox2), mpd_vbox);
+  GtkWidget *alignment = gtk_alignment_new (0., 0., 1., 1.);
+  gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 8, 8, 16, 0);
+  gtk_container_add (GTK_CONTAINER (vbox2), alignment);
+
+  mpd_vbox = gtk_vbox_new (FALSE, 8);
+  gtk_container_add (GTK_CONTAINER (alignment), mpd_vbox);
 
   g_signal_connect (priv->entry_use_defaults, "toggled",
                     G_CALLBACK (cb_use_defaults_toggled), mpd_vbox);

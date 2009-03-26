@@ -1,5 +1,11 @@
 2009-03-26	Mike Massonnet <mmassonnet@xfce.org>
 
+Fiddle with the MPD settings
+	* src/preferences-dialog.c(xfmpc_preferences_dialog_init):
+	  - Box the mpd_vbox inside an alignment to add padding around it
+
+2009-03-26	Mike Massonnet <mmassonnet@xfce.org>
+
 Fiddle with the statusbar
 	* src/main-window.c(action_statusbar):
 	  - No space around the statusbar
