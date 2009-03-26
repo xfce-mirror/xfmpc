@@ -1,3 +1,11 @@
+2009-03-26	Mike Massonnet <mmassonnet@xfce.org>
+
+Fiddle with the statusbar
+	* src/main-window.c(action_statusbar):
+	  - No space around the statusbar
+	* src/main-window.c(xfmpc_main_window_update_statusbar):
+	  - Verify if there is an existing connection
+
 2009-03-25	Mike Massonnet <mmassonnet@xfce.org>
 
 Polish the application name and the song info

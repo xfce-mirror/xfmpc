@@ -372,7 +372,7 @@ action_statusbar (GtkToggleAction *action,
     {
       priv->statusbar = xfmpc_statusbar_new ();
       gtk_widget_show (priv->statusbar);
-      gtk_box_pack_start (GTK_BOX (priv->vbox), priv->statusbar, FALSE, FALSE, 2);
+      gtk_box_pack_start (GTK_BOX (priv->vbox), priv->statusbar, FALSE, FALSE, 0);
     }
 }
 
@@ -384,6 +384,9 @@ xfmpc_main_window_update_statusbar (XfmpcMainWindow *window)
   gint      seconds, length;
 
   if (G_UNLIKELY (priv->statusbar == NULL))
+    return;
+
+  if (!xfmpc_mpdclient_is_connected (window->mpdclient))
     return;
 
   length = xfmpc_mpdclient_playlist_get_length (window->mpdclient);
@@ -401,11 +404,6 @@ xfmpc_main_window_update_statusbar (XfmpcMainWindow *window)
 static void
 cb_playlist_changed (XfmpcMainWindow *window)
 {
-  XfmpcMainWindowPrivate *priv = XFMPC_MAIN_WINDOW (window)->priv;
-
-  if (priv->statusbar == NULL)
-    return;
-
   xfmpc_main_window_update_statusbar (window);
 }
 
