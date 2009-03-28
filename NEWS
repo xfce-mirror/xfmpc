@@ -1,4 +1,4 @@
-    0.1.0 (2009-03-21)
+    0.1.0 (2009-03-28)
 
 - Preferences dialog for the MPD server and the appearance
 - An about dialog
@@ -10,7 +10,8 @@
   context menus to go to the directory of a song
 - An information item in the playlist context menu
 - Fix misc bugs
-- New translations: Swedish, Turkish, Portuguese, Czech, Basque, Italian, Spanish
+- New translations: Swedish, Turkish, Portuguese, Czech, Basque, Italian,
+  Spanish, Catalan
 
     0.0.7 (2008-08-25)
 
