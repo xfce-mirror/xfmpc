@@ -683,6 +683,9 @@ cb_info_selection (XfmpcPlaylist *playlist)
     return;
 
   list = gtk_tree_selection_get_selected_rows (selection, &store);
+  if (list == NULL)
+    return;
+
   if (gtk_tree_model_get_iter (store, &iter, list->data))
     {
       gtk_tree_model_get (store, &iter,
