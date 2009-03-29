@@ -28,7 +28,6 @@
 #include "mpdclient.h"
 #include "playlist.h"
 #include "dbbrowser.h"
-#include "statusbar.h"
 #include "xfce-arrow-button.h"
 #include "preferences-dialog.h"
 #include "preferences.h"
