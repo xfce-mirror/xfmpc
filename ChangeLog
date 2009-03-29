@@ -1,5 +1,11 @@
 2009-03-29	Mike Massonnet <mmassonnet@xfce.org>
 
+Fix segfault when "browsing" no song
+	* src/playlist.c(cb_browse_selection):
+	  - Return if list is null
+
+2009-03-29	Mike Massonnet <mmassonnet@xfce.org>
+
 Fix segfault when retrieving information of no song
 	* src/playlist.c(cb_info_selection):
 	  - Return if list is null
