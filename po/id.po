@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-03-14 09:31+0100\n"
-"PO-Revision-Date: 2009-02-10 22:35+0700\n"
+"PO-Revision-Date: 2009-04-11 16:02-0400\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "_Ganti"
 #. Menu -> Browse (only shown on a search)
 #: ../src/dbbrowser.c:230 ../src/playlist.c:237
 msgid "_Browse"
-msgstr ""
+msgstr "_Ramban"
 
 #: ../src/extended-interface.c:165
 msgid "Clear Playlist"
@@ -59,7 +59,7 @@ msgstr "Klien MPD ditulis dalam GTK+ untuk Xfce"
 
 #: ../src/extended-interface.c:406
 msgid "translator-credits"
-msgstr ""
+msgstr "Andhika Padmawan <andhika.padmawan@gmail.com>, 2009.	"
 
 #: ../src/interface.c:156 ../src/interface.c:364
 msgid "Not connected"
@@ -78,12 +78,12 @@ msgstr "Terhenti"
 #: ../src/main-window.c:393
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr ""
+msgstr "%d lagu, %d jam dan %d menit"
 
 #: ../src/main-window.c:395
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr ""
+msgstr "%d lagu, %d menit"
 
 #: ../src/mpdclient.c:515 ../src/mpdclient.c:545 ../src/mpdclient.c:560
 msgid "n/a"
@@ -91,48 +91,47 @@ msgstr "tak tersedia"
 
 #: ../src/preferences.c:41 ../src/song-dialog.c:173
 msgid "Title"
-msgstr ""
+msgstr "Judul"
 
 #: ../src/preferences.c:42
 msgid "Album - Title"
-msgstr ""
+msgstr "Album - Judul"
 
 #: ../src/preferences.c:43
 msgid "Artist - Title"
-msgstr ""
+msgstr "Artis - Judul"
 
 #: ../src/preferences.c:44
 msgid "Artist - Title (Date)"
-msgstr ""
+msgstr "Artis - Judul (Tanggal)"
 
 #: ../src/preferences.c:45
 msgid "Artist - Album - Title"
-msgstr ""
+msgstr "Artis - Album - Judul"
 
 #: ../src/preferences.c:46
 msgid "Artist - Album - Track. Title"
-msgstr ""
+msgstr "Artis - Album - Lagu. Judul"
 
 #: ../src/preferences.c:47
 msgid "Custom..."
-msgstr ""
+msgstr "Suai..."
 
 #: ../src/preferences-dialog.c:181
 msgid "Xfmpc Preferences"
-msgstr ""
+msgstr "Pengaturan Xfmpc"
 
 #: ../src/preferences-dialog.c:197
 msgid "MPD"
-msgstr ""
+msgstr "MPD"
 
 #: ../src/preferences-dialog.c:201
 msgid "Connection"
-msgstr ""
+msgstr "Koneksi"
 
 #: ../src/preferences-dialog.c:204
-#, fuzzy
 msgid "Use _default system settings"
-msgstr "Gunakan pengaturan sistem standar"
+msgstr "Gunakan _pengaturan sistem standar"
 
 #: ../src/preferences-dialog.c:206
 msgid ""
@@ -156,68 +155,68 @@ msgstr "Sandi:"
 
 #: ../src/preferences-dialog.c:256
 msgid "Appearance"
-msgstr ""
+msgstr "Tampilan"
 
 #: ../src/preferences-dialog.c:260
 msgid "Statusbar"
-msgstr ""
+msgstr "Batang Status"
 
 #: ../src/preferences-dialog.c:263
 msgid "Show _statusbar"
-msgstr ""
+msgstr "Tampilkan batang _status"
 
 #: ../src/preferences-dialog.c:270
 msgid "Song Format"
-msgstr ""
+msgstr "Format Lagu"
 
 #: ../src/preferences-dialog.c:275
 msgid "Song format:"
-msgstr ""
+msgstr "Format lagu:"
 
 #: ../src/preferences-dialog.c:295
 msgid "Custom format:"
-msgstr ""
+msgstr "Format suai:"
 
 #: ../src/preferences-dialog.c:312
 msgid "Available parameters:"
-msgstr ""
+msgstr "Parameter tersedia:"
 
 #: ../src/preferences-dialog.c:321
 #, c-format
 msgid "%a: Artist"
-msgstr ""
+msgstr "%a: Artis"
 
 #: ../src/preferences-dialog.c:325
 #, c-format
 msgid "%A: Album"
-msgstr ""
+msgstr "%A: Album"
 
 #: ../src/preferences-dialog.c:330
 #, c-format
 msgid "%d: Date"
-msgstr ""
+msgstr "%d: Tanggal"
 
 #: ../src/preferences-dialog.c:334
 msgid "%D: Disc"
-msgstr ""
+msgstr "%D: Cakram"
 
 #: ../src/preferences-dialog.c:339
 #, c-format
 msgid "%f: File"
-msgstr ""
+msgstr "%f: Berkas"
 
 #: ../src/preferences-dialog.c:343
 #, c-format
 msgid "%g: Genre"
-msgstr ""
+msgstr "%g: Genre"
 
 #: ../src/preferences-dialog.c:348
 msgid "%t: Title"
-msgstr ""
+msgstr "%t: Judul"
 
 #: ../src/preferences-dialog.c:352
 msgid "%T: Track"
-msgstr ""
+msgstr "%T: Lagu"
 
 #: ../src/song-dialog.c:133 ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
@@ -225,27 +224,27 @@ msgstr "Xfmpc"
 
 #: ../src/song-dialog.c:153
 msgid "File"
-msgstr ""
+msgstr "Berkas"
 
 #: ../src/song-dialog.c:163
 msgid "Artist"
-msgstr ""
+msgstr "Artis"
 
 #: ../src/song-dialog.c:183
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: ../src/song-dialog.c:193
 msgid "Date"
-msgstr ""
+msgstr "Tanggal"
 
 #: ../src/song-dialog.c:200
 msgid "Track"
-msgstr ""
+msgstr "Lagu"
 
 #: ../src/song-dialog.c:211
 msgid "Genre"
-msgstr ""
+msgstr "Genre"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
