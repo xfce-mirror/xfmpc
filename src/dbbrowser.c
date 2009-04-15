@@ -45,7 +45,7 @@ static void             cb_row_activated                       (XfmpcDbbrowser *
                                                                 GtkTreeViewColumn *column);
 static gboolean         cb_key_pressed                         (XfmpcDbbrowser *dbbrowser,
                                                                 GdkEventKey *event);
-static gboolean         cb_button_pressed                      (XfmpcDbbrowser *dbbrowser,
+static gboolean         cb_button_released                     (XfmpcDbbrowser *dbbrowser,
                                                                 GdkEventButton *event);
 static gboolean         cb_popup_menu                          (XfmpcDbbrowser *dbbrowser);
 static void             popup_menu                             (XfmpcDbbrowser *dbbrowser);
@@ -256,8 +256,8 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
                             G_CALLBACK (cb_row_activated), dbbrowser);
   g_signal_connect_swapped (priv->treeview, "key-press-event",
                             G_CALLBACK (cb_key_pressed), dbbrowser);
-  g_signal_connect_swapped (priv->treeview, "button-press-event",
-                            G_CALLBACK (cb_button_pressed), dbbrowser);
+  g_signal_connect_swapped (priv->treeview, "button-release-event",
+                            G_CALLBACK (cb_button_released), dbbrowser);
   g_signal_connect_swapped (priv->treeview, "popup-menu",
                             G_CALLBACK (cb_popup_menu), dbbrowser);
   /* Search entry */
@@ -588,17 +588,20 @@ cb_key_pressed (XfmpcDbbrowser *dbbrowser,
 }
 
 static gboolean
-cb_button_pressed (XfmpcDbbrowser *dbbrowser,
-                   GdkEventButton *event)
+cb_button_released (XfmpcDbbrowser *dbbrowser,
+                    GdkEventButton *event)
 {
   XfmpcDbbrowserPrivate    *priv = XFMPC_DBBROWSER (dbbrowser)->priv;
   GtkTreeSelection         *selection;
   GtkTreePath              *path;
   
-  if (event->type != GDK_BUTTON_PRESS || event->button != 3)
+  if (event->type != GDK_BUTTON_RELEASE || event->button != 3)
     return FALSE;
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  if (gtk_tree_selection_count_selected_rows (selection) < 1)
+    return TRUE;
+
   if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (priv->treeview),
                                      event->x, event->y,
                                      &path, NULL, NULL, NULL))
@@ -612,7 +615,6 @@ cb_button_pressed (XfmpcDbbrowser *dbbrowser,
     }
 
   popup_menu (dbbrowser);
-
   return TRUE;
 }
 
