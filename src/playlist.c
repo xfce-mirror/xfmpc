@@ -51,7 +51,7 @@ static void             cb_row_activated                        (XfmpcPlaylist *
                                                                  GtkTreeViewColumn *column);
 static gboolean         cb_key_released                         (XfmpcPlaylist *playlist,
                                                                  GdkEventKey *event);
-static gboolean         cb_button_pressed                       (XfmpcPlaylist *playlist,
+static gboolean         cb_button_released                      (XfmpcPlaylist *playlist,
                                                                  GdkEventButton *event);
 static gboolean         cb_popup_menu                           (XfmpcPlaylist *playlist);
 static void             popup_menu                              (XfmpcPlaylist *playlist);
@@ -104,6 +104,8 @@ struct _XfmpcPlaylistPrivate
   GtkListStore             *store;
   GtkWidget                *filter_entry;
   GtkWidget                *menu;
+  GtkWidget                *mi_browse;
+  GtkWidget                *mi_information;
 
   gint                      current;
   gboolean                  autocenter;
@@ -247,14 +249,14 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
   g_signal_connect_swapped (mi, "activate",
                             G_CALLBACK (xfmpc_playlist_delete_selection), playlist);
 
-  mi = gtk_image_menu_item_new_with_mnemonic (_("_Browse"));
+  mi = priv->mi_browse = gtk_image_menu_item_new_with_mnemonic (_("_Browse"));
   gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), mi);
   g_signal_connect_swapped (mi, "activate",
                             G_CALLBACK (cb_browse_selection), playlist);
   GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
 
-  mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_INFO, NULL);
+  mi = priv->mi_information = gtk_image_menu_item_new_from_stock (GTK_STOCK_INFO, NULL);
   gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), mi);
   g_signal_connect_swapped (mi, "activate",
                             G_CALLBACK (cb_info_selection), playlist);
@@ -279,8 +281,8 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                             G_CALLBACK (cb_row_activated), playlist);
   g_signal_connect_swapped (priv->treeview, "key-release-event",
                             G_CALLBACK (cb_key_released), playlist);
-  g_signal_connect_swapped (priv->treeview, "button-press-event",
-                            G_CALLBACK (cb_button_pressed), playlist);
+  g_signal_connect_swapped (priv->treeview, "button-release-event",
+                            G_CALLBACK (cb_button_released), playlist);
   g_signal_connect_swapped (priv->treeview, "popup-menu",
                             G_CALLBACK (cb_popup_menu), playlist);
   /* Filter entry */
@@ -493,17 +495,25 @@ cb_key_released (XfmpcPlaylist *playlist,
 }
 
 static gboolean
-cb_button_pressed (XfmpcPlaylist *playlist,
-                   GdkEventButton *event)
+cb_button_released (XfmpcPlaylist *playlist,
+                    GdkEventButton *event)
 {
   XfmpcPlaylistPrivate *priv = XFMPC_PLAYLIST (playlist)->priv;
   GtkTreeSelection     *selection;
   GtkTreePath          *path;
+  gboolean              sensitive;
   
-  if (event->type != GDK_BUTTON_PRESS || event->button != 3)
+  if (event->type != GDK_BUTTON_RELEASE || event->button != 3)
     return FALSE;
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  if (gtk_tree_selection_count_selected_rows (selection) < 1)
+    return TRUE;
+
+  sensitive = gtk_tree_selection_count_selected_rows (selection) == 1;
+  gtk_widget_set_sensitive (priv->mi_browse, sensitive);
+  gtk_widget_set_sensitive (priv->mi_information, sensitive);
+
   if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (priv->treeview),
                                      event->x, event->y,
                                      &path, NULL, NULL, NULL))
@@ -517,7 +527,6 @@ cb_button_pressed (XfmpcPlaylist *playlist,
     }
 
   popup_menu (playlist);
-
   return TRUE;
 }
 
