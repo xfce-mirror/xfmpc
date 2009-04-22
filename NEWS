@@ -1,3 +1,7 @@
+    0.1.1 (2009-xx-xx)
+
+- Be more careful with context menus when disconnected
+
     0.1.0 (2009-03-28)
 
 - Preferences dialog for the MPD server and the appearance
