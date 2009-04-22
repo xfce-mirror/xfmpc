@@ -1,7 +1,13 @@
 2009-03-29	Mike Massonnet <mmassonnet@xfce.org>
 
+Avoid losing multiple selection in playlist/dbbrowser
+	* src/playlist.c, src/dbbrowser.c:
+	  - Don't lose multiple selection when right clicking
+
+2009-03-29	Mike Massonnet <mmassonnet@xfce.org>
+
 Be more careful with context menus
-	* src/playlist.c, src/dbbrowse.c:
+	* src/playlist.c, src/dbbrowser.c:
 	  - Don't show the context menu when no row is selected
 	  - React on button release instead of press this way it lets you do
 	  rubber banding selections

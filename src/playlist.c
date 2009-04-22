@@ -51,6 +51,8 @@ static void             cb_row_activated                        (XfmpcPlaylist *
                                                                  GtkTreeViewColumn *column);
 static gboolean         cb_key_released                         (XfmpcPlaylist *playlist,
                                                                  GdkEventKey *event);
+static gboolean         cb_button_pressed                       (XfmpcPlaylist *playlist,
+                                                                 GdkEventButton *event);
 static gboolean         cb_button_released                      (XfmpcPlaylist *playlist,
                                                                  GdkEventButton *event);
 static gboolean         cb_popup_menu                           (XfmpcPlaylist *playlist);
@@ -281,6 +283,8 @@ xfmpc_playlist_init (XfmpcPlaylist *playlist)
                             G_CALLBACK (cb_row_activated), playlist);
   g_signal_connect_swapped (priv->treeview, "key-release-event",
                             G_CALLBACK (cb_key_released), playlist);
+  g_signal_connect_swapped (priv->treeview, "button-press-event",
+                            G_CALLBACK (cb_button_pressed), playlist);
   g_signal_connect_swapped (priv->treeview, "button-release-event",
                             G_CALLBACK (cb_button_released), playlist);
   g_signal_connect_swapped (priv->treeview, "popup-menu",
@@ -492,6 +496,14 @@ cb_key_released (XfmpcPlaylist *playlist,
     }
 
   return TRUE;
+}
+
+static gboolean
+cb_button_pressed (XfmpcPlaylist *playlist,
+                   GdkEventButton *event)
+{
+  /* Avoid multiple selections from getting lost for button 3 */
+  return event->button == 3 ? TRUE : FALSE;
 }
 
 static gboolean

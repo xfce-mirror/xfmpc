@@ -45,6 +45,8 @@ static void             cb_row_activated                       (XfmpcDbbrowser *
                                                                 GtkTreeViewColumn *column);
 static gboolean         cb_key_pressed                         (XfmpcDbbrowser *dbbrowser,
                                                                 GdkEventKey *event);
+static gboolean         cb_button_pressed                      (XfmpcDbbrowser *dbbrowser,
+                                                                GdkEventButton *event);
 static gboolean         cb_button_released                     (XfmpcDbbrowser *dbbrowser,
                                                                 GdkEventButton *event);
 static gboolean         cb_popup_menu                          (XfmpcDbbrowser *dbbrowser);
@@ -256,6 +258,8 @@ xfmpc_dbbrowser_init (XfmpcDbbrowser *dbbrowser)
                             G_CALLBACK (cb_row_activated), dbbrowser);
   g_signal_connect_swapped (priv->treeview, "key-press-event",
                             G_CALLBACK (cb_key_pressed), dbbrowser);
+  g_signal_connect_swapped (priv->treeview, "button-press-event",
+                            G_CALLBACK (cb_button_pressed), dbbrowser);
   g_signal_connect_swapped (priv->treeview, "button-release-event",
                             G_CALLBACK (cb_button_released), dbbrowser);
   g_signal_connect_swapped (priv->treeview, "popup-menu",
@@ -585,6 +589,14 @@ cb_key_pressed (XfmpcDbbrowser *dbbrowser,
     }
 
   return TRUE;
+}
+
+static gboolean
+cb_button_pressed (XfmpcPlaylist *playlist,
+                   GdkEventButton *event)
+{
+  /* Avoid multiple selections from getting lost for button 3 */
+  return event->button == 3 ? TRUE : FALSE;
 }
 
 static gboolean
