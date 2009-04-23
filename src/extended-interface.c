@@ -1,5 +1,6 @@
 /*
- *  Copyright (c) 2008-2009 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2009 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2009 Vincent Legout <vincent@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,445 +17,561 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
+#include <glib.h>
+#include <glib-object.h>
 #include <gtk/gtk.h>
+#include <mpdclient.h>
+#include <preferences.h>
+#include <stdlib.h>
+#include <string.h>
+#include <config.h>
+#include <gdk/gdk.h>
+#include <glib/gi18n-lib.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4util/libxfce4util.h>
-
-#include "extended-interface.h"
-#include "mpdclient.h"
-#include "playlist.h"
-#include "dbbrowser.h"
-#include "xfce-arrow-button.h"
-#include "preferences-dialog.h"
-#include "preferences.h"
-
-#define BORDER 4
-
-#define GET_PRIVATE(o) \
-    (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterfacePrivate))
+#include <xfce-arrow-button.h>
 
 
+#define XFMPC_TYPE_EXTENDED_INTERFACE (xfmpc_extended_interface_get_type ())
+#define XFMPC_EXTENDED_INTERFACE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterface))
+#define XFMPC_EXTENDED_INTERFACE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterfaceClass))
+#define XFMPC_IS_EXTENDED_INTERFACE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_EXTENDED_INTERFACE))
+#define XFMPC_IS_EXTENDED_INTERFACE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_EXTENDED_INTERFACE))
+#define XFMPC_EXTENDED_INTERFACE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterfaceClass))
 
-/* List store identifiers */
-enum
-{
-  COLUMN_STRING,
-  COLUMN_POINTER,
-  N_COLUMNS,
+typedef struct _XfmpcExtendedInterface XfmpcExtendedInterface;
+typedef struct _XfmpcExtendedInterfaceClass XfmpcExtendedInterfaceClass;
+typedef struct _XfmpcExtendedInterfacePrivate XfmpcExtendedInterfacePrivate;
+
+#define XFMPC_EXTENDED_INTERFACE_TYPE_COLUMNS (xfmpc_extended_interface_columns_get_type ())
+
+#define XFMPC_EXTENDED_INTERFACE_TYPE_EXTENDED_INTERFACE_WIDGET (xfmpc_extended_interface_extended_interface_widget_get_type ())
+
+#define XFMPC_TYPE_PREFERENCES_DIALOG (xfmpc_preferences_dialog_get_type ())
+#define XFMPC_PREFERENCES_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_PREFERENCES_DIALOG, XfmpcPreferencesDialog))
+#define XFMPC_PREFERENCES_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_PREFERENCES_DIALOG, XfmpcPreferencesDialogClass))
+#define XFMPC_IS_PREFERENCES_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_PREFERENCES_DIALOG))
+#define XFMPC_IS_PREFERENCES_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_PREFERENCES_DIALOG))
+#define XFMPC_PREFERENCES_DIALOG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_PREFERENCES_DIALOG, XfmpcPreferencesDialogClass))
+
+typedef struct _XfmpcPreferencesDialog XfmpcPreferencesDialog;
+typedef struct _XfmpcPreferencesDialogClass XfmpcPreferencesDialogClass;
+
+#define XFMPC_TYPE_PLAYLIST (xfmpc_playlist_get_type ())
+#define XFMPC_PLAYLIST(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_PLAYLIST, XfmpcPlaylist))
+#define XFMPC_PLAYLIST_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_PLAYLIST, XfmpcPlaylistClass))
+#define XFMPC_IS_PLAYLIST(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_PLAYLIST))
+#define XFMPC_IS_PLAYLIST_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_PLAYLIST))
+#define XFMPC_PLAYLIST_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_PLAYLIST, XfmpcPlaylistClass))
+
+typedef struct _XfmpcPlaylist XfmpcPlaylist;
+typedef struct _XfmpcPlaylistClass XfmpcPlaylistClass;
+
+#define XFMPC_TYPE_DBBROWSER (xfmpc_dbbrowser_get_type ())
+#define XFMPC_DBBROWSER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_DBBROWSER, XfmpcDbbrowser))
+#define XFMPC_DBBROWSER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_DBBROWSER, XfmpcDbbrowserClass))
+#define XFMPC_IS_DBBROWSER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_DBBROWSER))
+#define XFMPC_IS_DBBROWSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_DBBROWSER))
+#define XFMPC_DBBROWSER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_DBBROWSER, XfmpcDbbrowserClass))
+
+typedef struct _XfmpcDbbrowser XfmpcDbbrowser;
+typedef struct _XfmpcDbbrowserClass XfmpcDbbrowserClass;
+
+struct _XfmpcExtendedInterface {
+	GtkVBox parent_instance;
+	XfmpcExtendedInterfacePrivate * priv;
 };
 
-
-
-static void xfmpc_extended_interface_class_init               (XfmpcExtendedInterfaceClass *klass);
-static void xfmpc_extended_interface_init                     (XfmpcExtendedInterface *extended_interface);
-static void xfmpc_extended_interface_dispose                  (GObject *object);
-static void xfmpc_extended_interface_finalize                 (GObject *object);
-
-static void xfmpc_extended_interface_context_menu_new         (XfmpcExtendedInterface *extended_interface,
-                                                               GtkWidget *attach_widget);
-
-static void cb_interface_changed                              (GtkComboBox *widget,
-                                                               XfmpcExtendedInterface *extended_interface);
-static void cb_repeat_switch                                  (XfmpcExtendedInterface *extended_interface);
-static void cb_random_switch                                  (XfmpcExtendedInterface *extended_interface);
-static void cb_context_menu_clicked                           (GtkToggleButton *button,
-                                                               XfmpcExtendedInterface *extended_interface);
-static void cb_preferences                                    (XfmpcExtendedInterface *extended_interface);
-static void cb_about                                          (XfmpcExtendedInterface *extended_interface);
-static void cb_context_menu_deactivate                        (GtkMenuShell *menu,
-                                                               GtkWidget *attach_widget);
-static void popup_context_menu                                (XfmpcExtendedInterface *extended_interface);
-static void position_context_menu                             (GtkMenu *menu,
-                                                               gint *x,
-                                                               gint *y,
-                                                               gboolean *push_in,
-                                                               GtkWidget *widget);
-
-
-
-struct _XfmpcExtendedInterfaceClass
-{
-  GtkVBoxClass                      parent_class;
+struct _XfmpcExtendedInterfaceClass {
+	GtkVBoxClass parent_class;
 };
 
-struct _XfmpcExtendedInterface
-{
-  GtkVBox                           parent;
-  XfmpcMpdclient                   *mpdclient;
-  XfmpcPreferences                 *preferences;
-  /*<private>*/
-  XfmpcExtendedInterfacePrivate    *priv;
+struct _XfmpcExtendedInterfacePrivate {
+	XfmpcMpdclient* mpdclient;
+	XfmpcPreferences* preferences;
+	char* gettext_package;
+	char* localedir;
+	GtkListStore* list_store;
+	GtkComboBox* combobox;
+	GtkNotebook* notebook;
+	GtkMenu* context_menu;
 };
 
-struct _XfmpcExtendedInterfacePrivate
-{
-  GtkListStore                     *list_store;
-  GtkWidget                        *combobox;
-  GtkWidget                        *notebook;
-  GtkWidget                        *context_button;
-  GtkWidget                        *context_menu;
+typedef enum  {
+	XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_STRING,
+	XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_POINTER,
+	XFMPC_EXTENDED_INTERFACE_COLUMNS_N_COLUMNS
+} XfmpcExtendedInterfaceColumns;
+
+typedef enum  {
+	XFMPC_EXTENDED_INTERFACE_EXTENDED_INTERFACE_WIDGET_PLAYLIST,
+	XFMPC_EXTENDED_INTERFACE_EXTENDED_INTERFACE_WIDGET_DBBROWSER
+} XfmpcExtendedInterfaceExtendedInterfaceWidget;
+
+
+
+GType xfmpc_extended_interface_get_type (void);
+#define XFMPC_EXTENDED_INTERFACE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterfacePrivate))
+enum  {
+	XFMPC_EXTENDED_INTERFACE_DUMMY_PROPERTY
 };
+static GType xfmpc_extended_interface_columns_get_type (void);
+GType xfmpc_extended_interface_extended_interface_widget_get_type (void);
+static XfceArrowButton* xfmpc_extended_interface_context_button;
+static XfceArrowButton* xfmpc_extended_interface_context_button = NULL;
+void xfmpc_extended_interface_set_active (XfmpcExtendedInterface* self, XfmpcExtendedInterfaceExtendedInterfaceWidget active_widget);
+static void xfmpc_extended_interface_append_child (XfmpcExtendedInterface* self, GtkWidget* child, const char* title);
+static void xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface* self, GtkWidget* attach_widget);
+static void xfmpc_extended_interface_position_context_menu (GtkMenu* menu, gint x, gint y, gboolean push_in);
+static void xfmpc_extended_interface_popup_context_menu (XfmpcExtendedInterface* self);
+static void xfmpc_extended_interface_menu_detach (XfmpcExtendedInterface* self, GtkWidget* attach_widget, GtkMenu* menu);
+static void xfmpc_extended_interface_cb_context_menu_deactivate (XfmpcExtendedInterface* self);
+static void _xfmpc_extended_interface_cb_context_menu_deactivate_gtk_menu_shell_deactivate (GtkMenu* _sender, gpointer self);
+static void xfmpc_extended_interface_cb_repeat_switch (XfmpcExtendedInterface* self);
+static void _xfmpc_extended_interface_cb_repeat_switch_gtk_menu_item_activate (GtkCheckMenuItem* _sender, gpointer self);
+static void xfmpc_extended_interface_cb_random_switch (XfmpcExtendedInterface* self);
+static void _xfmpc_extended_interface_cb_random_switch_gtk_menu_item_activate (GtkCheckMenuItem* _sender, gpointer self);
+static void xfmpc_extended_interface_cb_preferences (XfmpcExtendedInterface* self);
+static void _xfmpc_extended_interface_cb_preferences_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
+static void xfmpc_extended_interface_cb_about (XfmpcExtendedInterface* self);
+static void _xfmpc_extended_interface_cb_about_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
+static void xfmpc_extended_interface_cb_playlist_clear (XfmpcExtendedInterface* self);
+static void xfmpc_extended_interface_cb_database_refresh (XfmpcExtendedInterface* self);
+static void xfmpc_extended_interface_cb_interface_changed (XfmpcExtendedInterface* self);
+static void xfmpc_extended_interface_cb_context_menu_clicked (XfmpcExtendedInterface* self);
+XfmpcPreferencesDialog* xfmpc_preferences_dialog_new (void);
+XfmpcPreferencesDialog* xfmpc_preferences_dialog_construct (GType object_type);
+GType xfmpc_preferences_dialog_get_type (void);
+XfmpcExtendedInterface* xfmpc_extended_interface_new (void);
+XfmpcExtendedInterface* xfmpc_extended_interface_construct (GType object_type);
+XfmpcExtendedInterface* xfmpc_extended_interface_new (void);
+static void _xfmpc_extended_interface_cb_playlist_clear_gtk_button_clicked (GtkButton* _sender, gpointer self);
+static void _xfmpc_extended_interface_cb_database_refresh_gtk_button_clicked (GtkButton* _sender, gpointer self);
+static void _xfmpc_extended_interface_popup_context_menu_gtk_button_pressed (GtkButton* _sender, gpointer self);
+static void _xfmpc_extended_interface_cb_context_menu_clicked_gtk_button_clicked (GtkButton* _sender, gpointer self);
+static void _xfmpc_extended_interface_cb_interface_changed_gtk_combo_box_changed (GtkComboBox* _sender, gpointer self);
+XfmpcPlaylist* xfmpc_playlist_new (void);
+XfmpcPlaylist* xfmpc_playlist_construct (GType object_type);
+GType xfmpc_playlist_get_type (void);
+XfmpcDbbrowser* xfmpc_dbbrowser_new (void);
+XfmpcDbbrowser* xfmpc_dbbrowser_construct (GType object_type);
+GType xfmpc_dbbrowser_get_type (void);
+static GObject * xfmpc_extended_interface_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
+static gpointer xfmpc_extended_interface_parent_class = NULL;
+static void xfmpc_extended_interface_finalize (GObject* obj);
+static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func);
 
 
 
-static GObjectClass *parent_class = NULL;
 
-
-
-GType
-xfmpc_extended_interface_get_type ()
-{
-  static GType xfmpc_extended_interface_type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (xfmpc_extended_interface_type == G_TYPE_INVALID))
-    {
-      static const GTypeInfo xfmpc_extended_interface_info =
-        {
-          sizeof (XfmpcExtendedInterfaceClass),
-          (GBaseInitFunc) NULL,
-          (GBaseFinalizeFunc) NULL,
-          (GClassInitFunc) xfmpc_extended_interface_class_init,
-          (GClassFinalizeFunc) NULL,
-          NULL,
-          sizeof (XfmpcExtendedInterface),
-          0,
-          (GInstanceInitFunc) xfmpc_extended_interface_init,
-          NULL
-        };
-      xfmpc_extended_interface_type = g_type_register_static (GTK_TYPE_VBOX, "XfmpcExtendedInterface", &xfmpc_extended_interface_info, 0);
-    }
-
-  return xfmpc_extended_interface_type;
+static GType xfmpc_extended_interface_columns_get_type (void) {
+	static GType xfmpc_extended_interface_columns_type_id = 0;
+	if (G_UNLIKELY (xfmpc_extended_interface_columns_type_id == 0)) {
+		static const GEnumValue values[] = {{XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_STRING, "XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_STRING", "column-string"}, {XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_POINTER, "XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_POINTER", "column-pointer"}, {XFMPC_EXTENDED_INTERFACE_COLUMNS_N_COLUMNS, "XFMPC_EXTENDED_INTERFACE_COLUMNS_N_COLUMNS", "n-columns"}, {0, NULL, NULL}};
+		xfmpc_extended_interface_columns_type_id = g_enum_register_static ("XfmpcExtendedInterfaceColumns", values);
+	}
+	return xfmpc_extended_interface_columns_type_id;
 }
 
 
 
-static void
-xfmpc_extended_interface_class_init (XfmpcExtendedInterfaceClass *klass)
-{
-  GObjectClass *gobject_class;
-
-  g_type_class_add_private (klass, sizeof (XfmpcExtendedInterfacePrivate));
-
-  parent_class = g_type_class_peek_parent (klass);
-
-  gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->dispose = xfmpc_extended_interface_dispose;
-  gobject_class->finalize = xfmpc_extended_interface_finalize;
-}
-
-static void
-xfmpc_extended_interface_init (XfmpcExtendedInterface *extended_interface)
-{
-  XfmpcExtendedInterfacePrivate *priv = extended_interface->priv = GET_PRIVATE (extended_interface);
-
-  extended_interface->mpdclient = xfmpc_mpdclient_get ();
-  extended_interface->preferences = xfmpc_preferences_get ();
-
-  /* Hbox  */
-  GtkWidget *hbox = gtk_hbox_new (FALSE, 2);
-  gtk_box_pack_start (GTK_BOX (extended_interface), hbox, FALSE, FALSE, 2);
-
-  /* Clear playlist */
-  GtkWidget *widget = gtk_button_new ();
-  gtk_widget_set_tooltip_text (widget, _("Clear Playlist"));
-  gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
-  g_signal_connect_swapped (widget, "clicked",
-                            G_CALLBACK (xfmpc_mpdclient_playlist_clear), extended_interface->mpdclient);
-
-  GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (widget), image);
-
-  /* Refresh database */
-  widget = gtk_button_new ();
-  gtk_widget_set_tooltip_text (widget, _("Refresh Database"));
-  gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
-  g_signal_connect_swapped (widget, "clicked",
-                            G_CALLBACK (xfmpc_mpdclient_database_refresh), extended_interface->mpdclient);
-
-  image = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (widget), image);
-
-  /* Context menu */
-  priv->context_button = GTK_WIDGET (xfce_arrow_button_new (GTK_ARROW_DOWN));
-  gtk_widget_set_tooltip_text (priv->context_button, _("Context Menu"));
-  gtk_box_pack_start (GTK_BOX (hbox), priv->context_button, FALSE, FALSE, 0);
-  g_signal_connect_swapped (priv->context_button, "pressed",
-                            G_CALLBACK (popup_context_menu), extended_interface);
-  g_signal_connect (priv->context_button, "clicked",
-                    G_CALLBACK (cb_context_menu_clicked), extended_interface);
-
-  /* Combo box */
-  priv->list_store = gtk_list_store_new (N_COLUMNS,
-                                         G_TYPE_STRING,
-                                         G_TYPE_POINTER);
-
-  priv->combobox = gtk_combo_box_new_with_model (GTK_TREE_MODEL (priv->list_store));
-  gtk_box_pack_start (GTK_BOX (hbox), priv->combobox, TRUE, TRUE, 0);
-  g_signal_connect (priv->combobox, "changed",
-                    G_CALLBACK (cb_interface_changed), extended_interface);
-
-  GtkCellRenderer *cell = gtk_cell_renderer_text_new ();
-  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combobox), cell, TRUE);
-  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combobox),
-                                  cell, "text", COLUMN_STRING,
-                                  NULL);
-
-  /* Notebook */
-  priv->notebook = gtk_notebook_new ();
-  gtk_box_pack_start (GTK_BOX (extended_interface), priv->notebook, TRUE, TRUE, 0);
-
-  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
-
-  /* Extended interface widgets ; added in the same order as the
-   * XfmpcExtendedInterfaceWidget enum */
-  GtkWidget *playlist = xfmpc_playlist_new ();
-  xfmpc_extended_interface_append_child (extended_interface, playlist, _("Current Playlist"));
-
-  GtkWidget *dbbrowser = xfmpc_dbbrowser_new ();
-  xfmpc_extended_interface_append_child (extended_interface, dbbrowser, _("Browse database"));
-
-  g_object_set_data (G_OBJECT (playlist), "XfmpcDbbrowser", dbbrowser);
-  g_object_set_data (G_OBJECT (playlist), "XfmpcExtendedInterface", extended_interface);
-}
-
-static void
-xfmpc_extended_interface_dispose (GObject *object)
-{
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (object)->priv;
-
-  if (GTK_IS_MENU (priv->context_menu))
-    {
-      gtk_menu_detach (GTK_MENU (priv->context_menu));
-      priv->context_menu = NULL;
-    }
-
-  if (GTK_IS_WIDGET (priv->context_button))
-    {
-      gtk_widget_destroy (priv->context_button);
-      priv->context_button = NULL;
-    }
-
-  (*G_OBJECT_CLASS (parent_class)->dispose) (object);
-}
-
-static void
-xfmpc_extended_interface_finalize (GObject *object)
-{
-  XfmpcExtendedInterface *extended_interface = XFMPC_EXTENDED_INTERFACE (object);
-  g_object_unref (G_OBJECT (extended_interface->mpdclient));
-  (*G_OBJECT_CLASS (parent_class)->finalize) (object);
+GType xfmpc_extended_interface_extended_interface_widget_get_type (void) {
+	static GType xfmpc_extended_interface_extended_interface_widget_type_id = 0;
+	if (G_UNLIKELY (xfmpc_extended_interface_extended_interface_widget_type_id == 0)) {
+		static const GEnumValue values[] = {{XFMPC_EXTENDED_INTERFACE_EXTENDED_INTERFACE_WIDGET_PLAYLIST, "XFMPC_EXTENDED_INTERFACE_EXTENDED_INTERFACE_WIDGET_PLAYLIST", "playlist"}, {XFMPC_EXTENDED_INTERFACE_EXTENDED_INTERFACE_WIDGET_DBBROWSER, "XFMPC_EXTENDED_INTERFACE_EXTENDED_INTERFACE_WIDGET_DBBROWSER", "dbbrowser"}, {0, NULL, NULL}};
+		xfmpc_extended_interface_extended_interface_widget_type_id = g_enum_register_static ("XfmpcExtendedInterfaceExtendedInterfaceWidget", values);
+	}
+	return xfmpc_extended_interface_extended_interface_widget_type_id;
 }
 
 
-
-GtkWidget*
-xfmpc_extended_interface_new ()
-{
-  return g_object_new (XFMPC_TYPE_EXTENDED_INTERFACE, NULL);
-}
-
-void
-xfmpc_extended_interface_append_child (XfmpcExtendedInterface *extended_interface,
-                                       GtkWidget *child,
-                                       const gchar *title)
-{
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
-  GtkTreeIter iter;
-
-  gtk_list_store_append (priv->list_store, &iter);
-  gtk_list_store_set (priv->list_store, &iter,
-                      COLUMN_STRING, title,
-                      COLUMN_POINTER, child,
-                      -1);
-
-  if (gtk_combo_box_get_active(GTK_COMBO_BOX (priv->combobox)) == -1)
-    gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combobox), 0);
-
-  gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), child, NULL);
-  gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (priv->notebook), child, TRUE, TRUE, GTK_PACK_START);
-}
-
-void
-xfmpc_extended_interface_set_active (XfmpcExtendedInterface *extended_interface,
-                                     XfmpcExtendedInterfaceWidget active_widget)
-{
-  XfmpcExtendedInterfacePrivate *priv = extended_interface->priv;
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combobox), active_widget);
-}
-
-static void
-xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface *extended_interface,
-                                           GtkWidget *attach_widget)
-{
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
-
-  GtkWidget *menu = priv->context_menu = gtk_menu_new ();
-  gtk_menu_set_screen (GTK_MENU (menu), gtk_widget_get_screen (GTK_WIDGET (attach_widget)));
-  gtk_menu_attach_to_widget (GTK_MENU (menu), GTK_WIDGET (attach_widget), NULL);
-  g_signal_connect (menu, "deactivate",
-                    G_CALLBACK (cb_context_menu_deactivate), attach_widget);
-
-  GtkWidget *mi = gtk_check_menu_item_new_with_label (_("Repeat"));
-  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (mi),
-                                  xfmpc_mpdclient_get_repeat (extended_interface->mpdclient));
-  g_signal_connect_swapped (mi, "activate",
-                            G_CALLBACK (cb_repeat_switch), extended_interface);
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-
-  mi = gtk_check_menu_item_new_with_label (_("Random"));
-  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (mi),
-                                  xfmpc_mpdclient_get_random (extended_interface->mpdclient));
-  g_signal_connect_swapped (mi, "activate",
-                            G_CALLBACK (cb_random_switch), extended_interface);
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-
-  mi = gtk_separator_menu_item_new ();
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-
-  mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_PREFERENCES, NULL);
-  g_signal_connect_swapped (mi, "activate",
-                            G_CALLBACK (cb_preferences), extended_interface);
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-
-  mi = gtk_image_menu_item_new_from_stock (GTK_STOCK_ABOUT, NULL);
-  g_signal_connect_swapped (mi, "activate",
-                            G_CALLBACK (cb_about), extended_interface);
-  gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-
-
-  gtk_widget_show_all (menu);
+void xfmpc_extended_interface_set_active (XfmpcExtendedInterface* self, XfmpcExtendedInterfaceExtendedInterfaceWidget active_widget) {
+	g_return_if_fail (self != NULL);
+	gtk_combo_box_set_active (self->priv->combobox, (gint) active_widget);
 }
 
 
-
-static void
-cb_interface_changed (GtkComboBox *widget,
-                      XfmpcExtendedInterface *extended_interface)
-{
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
-  GtkWidget            *child;
-  GtkTreeIter           iter;
-  gint                  i;
-
-  if (gtk_combo_box_get_active_iter (widget, &iter) == FALSE)
-    return;
-
-  gtk_tree_model_get (GTK_TREE_MODEL (priv->list_store), &iter,
-                      COLUMN_POINTER, &child,
-                      -1);
-  g_return_if_fail (G_LIKELY (GTK_IS_WIDGET (child)));
-
-  i = gtk_notebook_page_num (GTK_NOTEBOOK (priv->notebook), child);
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), i);
+static void xfmpc_extended_interface_append_child (XfmpcExtendedInterface* self, GtkWidget* child, const char* title) {
+	GtkTreeIter iter = {0};
+	g_return_if_fail (self != NULL);
+	g_return_if_fail (child != NULL);
+	g_return_if_fail (title != NULL);
+	gtk_list_store_append (self->priv->list_store, &iter);
+	gtk_list_store_set (self->priv->list_store, &iter, XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_STRING, title, XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_POINTER, child, -1, -1);
+	if (gtk_combo_box_get_active (self->priv->combobox) == (-1)) {
+		gtk_combo_box_set_active (self->priv->combobox, 0);
+	}
+	gtk_notebook_append_page (self->priv->notebook, child, NULL);
+	gtk_notebook_set_tab_label_packing (self->priv->notebook, child, TRUE, TRUE, GTK_PACK_START);
 }
 
-static void
-cb_repeat_switch (XfmpcExtendedInterface *extended_interface)
-{
-  xfmpc_mpdclient_set_repeat (extended_interface->mpdclient,
-                              !xfmpc_mpdclient_get_repeat (extended_interface->mpdclient));
+
+static void xfmpc_extended_interface_popup_context_menu (XfmpcExtendedInterface* self) {
+	g_return_if_fail (self != NULL);
+	if (self->priv->context_menu == NULL) {
+		xfmpc_extended_interface_context_menu_new (self, GTK_WIDGET (xfmpc_extended_interface_context_button));
+	}
+	gtk_menu_popup (self->priv->context_menu, NULL, NULL, (GtkMenuPositionFunc) xfmpc_extended_interface_position_context_menu, NULL, (guint) 0, gtk_get_current_event_time ());
 }
 
-static void
-cb_random_switch (XfmpcExtendedInterface *extended_interface)
-{
-  xfmpc_mpdclient_set_random (extended_interface->mpdclient,
-                              !xfmpc_mpdclient_get_random (extended_interface->mpdclient));
+
+static void xfmpc_extended_interface_position_context_menu (GtkMenu* menu, gint x, gint y, gboolean push_in) {
+	GtkRequisition menu_req = {0};
+	gint root_x;
+	gint root_y;
+	g_return_if_fail (menu != NULL);
+	root_x = 0;
+	root_y = 0;
+	gtk_widget_size_request ((GtkWidget*) menu, &menu_req);
+	gdk_window_get_origin (GTK_WIDGET (xfmpc_extended_interface_context_button)->window, &root_x, &root_y);
+	x = root_x + GTK_WIDGET (xfmpc_extended_interface_context_button)->allocation.x;
+	y = root_y + GTK_WIDGET (xfmpc_extended_interface_context_button)->allocation.y;
+	if (y > (gdk_screen_height () - menu_req.height)) {
+		y = gdk_screen_height () - menu_req.height;
+	} else {
+		if (y < 0) {
+			y = 0;
+		}
+	}
+	push_in = FALSE;
 }
 
-static void
-cb_context_menu_clicked (GtkToggleButton *button,
-                         XfmpcExtendedInterface *extended_interface)
-{
-  if (!gtk_toggle_button_get_active (button))
-    return;
 
-  popup_context_menu (extended_interface);
+static void _xfmpc_extended_interface_cb_context_menu_deactivate_gtk_menu_shell_deactivate (GtkMenu* _sender, gpointer self) {
+	xfmpc_extended_interface_cb_context_menu_deactivate (self);
 }
 
-static void
-cb_preferences (XfmpcExtendedInterface *extended_interface)
-{
-  GtkWidget *dialog = xfmpc_preferences_dialog_new (NULL);
-  gtk_widget_show (dialog);
+
+static void _xfmpc_extended_interface_cb_repeat_switch_gtk_menu_item_activate (GtkCheckMenuItem* _sender, gpointer self) {
+	xfmpc_extended_interface_cb_repeat_switch (self);
 }
 
-static void
-cb_about (XfmpcExtendedInterface *extended_interface)
-{
-  static const gchar *artists[] = { NULL };
-  static const gchar *authors[] = {
-    "Mike Massonnet <mmassonnet@xfce.org>",
-    "Vincent Legout <vincent@xfce.org>",
-    NULL,
-  };
-  static const gchar *documenters[] = { NULL };
 
-  gtk_show_about_dialog (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (extended_interface))),
-                         "artists", artists,
-                         "authors", authors,
-                         "comments", _("MPD client written in GTK+ for Xfce"),
-                         "copyright", "Copyright \302\251 2008-2009 Mike Massonnet, Vincent Legout",
-                         "documenters", documenters,
-                         "license", XFCE_LICENSE_GPL,
-                         "translator-credits", _("translator-credits"),
-                         "version", PACKAGE_VERSION,
-                         "website", "http://goodies.xfce.org/projects/applications/xfmpc",
-                         NULL);
+static void _xfmpc_extended_interface_cb_random_switch_gtk_menu_item_activate (GtkCheckMenuItem* _sender, gpointer self) {
+	xfmpc_extended_interface_cb_random_switch (self);
 }
 
-static void
-cb_context_menu_deactivate (GtkMenuShell *menu,
-                            GtkWidget *attach_widget)
-{
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (attach_widget), FALSE);
+
+static void _xfmpc_extended_interface_cb_preferences_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self) {
+	xfmpc_extended_interface_cb_preferences (self);
 }
 
-static void
-popup_context_menu (XfmpcExtendedInterface *extended_interface)
-{
-  XfmpcExtendedInterfacePrivate *priv = XFMPC_EXTENDED_INTERFACE (extended_interface)->priv;
 
-  if (!GTK_IS_MENU (priv->context_menu))
-    xfmpc_extended_interface_context_menu_new (extended_interface, priv->context_button);
-
-  gtk_menu_popup (GTK_MENU (priv->context_menu),
-                  NULL,
-                  NULL,
-                  (GtkMenuPositionFunc) position_context_menu,
-                  GTK_WIDGET (priv->context_button),
-                  0,
-                  gtk_get_current_event_time ());
+static void _xfmpc_extended_interface_cb_about_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self) {
+	xfmpc_extended_interface_cb_about (self);
 }
 
-static void
-position_context_menu (GtkMenu *menu,
-                       gint *x,
-                       gint *y,
-                       gboolean *push_in,
-                       GtkWidget *widget)
-{
-  GtkRequisition        menu_req;
-  gint                  root_x;
-  gint                  root_y;
 
-  gtk_widget_size_request (GTK_WIDGET (menu), &menu_req);
-  gdk_window_get_origin (widget->window, &root_x, &root_y);
-
-  *x = root_x + widget->allocation.x;
-  /* TODO find the good way to add spacing to *y */
-  *y = root_y + widget->allocation.y;
-
-  if (*y > gdk_screen_height () - menu_req.height)
-    *y = gdk_screen_height () - menu_req.height;
-  else if (*y < 0)
-    *y = 0;
-
-  *push_in = FALSE;
+static void xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface* self, GtkWidget* attach_widget) {
+	GtkMenu* _tmp0;
+	GtkCheckMenuItem* mi;
+	GtkCheckMenuItem* _tmp1;
+	GtkSeparatorMenuItem* separator;
+	GtkImageMenuItem* imi;
+	GtkImageMenuItem* _tmp2;
+	g_return_if_fail (self != NULL);
+	g_return_if_fail (attach_widget != NULL);
+	_tmp0 = NULL;
+	self->priv->context_menu = (_tmp0 = g_object_ref_sink ((GtkMenu*) gtk_menu_new ()), (self->priv->context_menu == NULL) ? NULL : (self->priv->context_menu = (g_object_unref (self->priv->context_menu), NULL)), _tmp0);
+	gtk_menu_set_screen (self->priv->context_menu, gtk_widget_get_screen (attach_widget));
+	gtk_menu_attach_to_widget (self->priv->context_menu, attach_widget, (GtkMenuDetachFunc) xfmpc_extended_interface_menu_detach);
+	g_signal_connect_object ((GtkMenuShell*) self->priv->context_menu, "deactivate", (GCallback) _xfmpc_extended_interface_cb_context_menu_deactivate_gtk_menu_shell_deactivate, self, 0);
+	mi = g_object_ref_sink ((GtkCheckMenuItem*) gtk_check_menu_item_new_with_label (_ ("Repeat")));
+	gtk_check_menu_item_set_active (mi, xfmpc_mpdclient_get_repeat (self->priv->mpdclient));
+	g_signal_connect_object ((GtkMenuItem*) mi, "activate", (GCallback) _xfmpc_extended_interface_cb_repeat_switch_gtk_menu_item_activate, self, 0);
+	gtk_menu_shell_append ((GtkMenuShell*) self->priv->context_menu, (GtkWidget*) ((GtkMenuItem*) mi));
+	_tmp1 = NULL;
+	mi = (_tmp1 = g_object_ref_sink ((GtkCheckMenuItem*) gtk_check_menu_item_new_with_label (_ ("Random"))), (mi == NULL) ? NULL : (mi = (g_object_unref (mi), NULL)), _tmp1);
+	gtk_check_menu_item_set_active (mi, xfmpc_mpdclient_get_random (self->priv->mpdclient));
+	g_signal_connect_object ((GtkMenuItem*) mi, "activate", (GCallback) _xfmpc_extended_interface_cb_random_switch_gtk_menu_item_activate, self, 0);
+	gtk_menu_shell_append ((GtkMenuShell*) self->priv->context_menu, (GtkWidget*) ((GtkMenuItem*) mi));
+	separator = g_object_ref_sink ((GtkSeparatorMenuItem*) gtk_separator_menu_item_new ());
+	gtk_menu_shell_append ((GtkMenuShell*) self->priv->context_menu, (GtkWidget*) ((GtkMenuItem*) separator));
+	imi = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_from_stock (GTK_STOCK_PREFERENCES, NULL));
+	g_signal_connect_object ((GtkMenuItem*) imi, "activate", (GCallback) _xfmpc_extended_interface_cb_preferences_gtk_menu_item_activate, self, 0);
+	gtk_menu_shell_append ((GtkMenuShell*) self->priv->context_menu, (GtkWidget*) ((GtkMenuItem*) imi));
+	_tmp2 = NULL;
+	imi = (_tmp2 = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_from_stock (GTK_STOCK_ABOUT, NULL)), (imi == NULL) ? NULL : (imi = (g_object_unref (imi), NULL)), _tmp2);
+	g_signal_connect_object ((GtkMenuItem*) imi, "activate", (GCallback) _xfmpc_extended_interface_cb_about_gtk_menu_item_activate, self, 0);
+	gtk_menu_shell_append ((GtkMenuShell*) self->priv->context_menu, (GtkWidget*) ((GtkMenuItem*) imi));
+	gtk_widget_show_all ((GtkWidget*) self->priv->context_menu);
+	(mi == NULL) ? NULL : (mi = (g_object_unref (mi), NULL));
+	(separator == NULL) ? NULL : (separator = (g_object_unref (separator), NULL));
+	(imi == NULL) ? NULL : (imi = (g_object_unref (imi), NULL));
 }
+
+
+static void xfmpc_extended_interface_menu_detach (XfmpcExtendedInterface* self, GtkWidget* attach_widget, GtkMenu* menu) {
+	g_return_if_fail (self != NULL);
+	g_return_if_fail (attach_widget != NULL);
+	g_return_if_fail (menu != NULL);
+}
+
+
+/*
+ * Signal callbacks
+ */
+static void xfmpc_extended_interface_cb_playlist_clear (XfmpcExtendedInterface* self) {
+	g_return_if_fail (self != NULL);
+	xfmpc_mpdclient_playlist_clear (self->priv->mpdclient);
+}
+
+
+static void xfmpc_extended_interface_cb_database_refresh (XfmpcExtendedInterface* self) {
+	g_return_if_fail (self != NULL);
+	xfmpc_mpdclient_database_refresh (self->priv->mpdclient);
+}
+
+
+static void xfmpc_extended_interface_cb_interface_changed (XfmpcExtendedInterface* self) {
+	void* child;
+	GtkTreeIter iter = {0};
+	gint i;
+	g_return_if_fail (self != NULL);
+	child = NULL;
+	i = 0;
+	if (gtk_combo_box_get_active_iter (self->priv->combobox, &iter) == FALSE) {
+		return;
+	}
+	gtk_tree_model_get (GTK_TREE_MODEL (self->priv->list_store), &iter, XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_POINTER, &child, -1, -1);
+	i = gtk_notebook_page_num (self->priv->notebook, GTK_WIDGET (child));
+	gtk_notebook_set_current_page (self->priv->notebook, i);
+}
+
+
+static void xfmpc_extended_interface_cb_context_menu_clicked (XfmpcExtendedInterface* self) {
+	g_return_if_fail (self != NULL);
+	if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (xfmpc_extended_interface_context_button))) {
+		return;
+	}
+	xfmpc_extended_interface_popup_context_menu (self);
+}
+
+
+static void xfmpc_extended_interface_cb_context_menu_deactivate (XfmpcExtendedInterface* self) {
+	g_return_if_fail (self != NULL);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (xfmpc_extended_interface_context_button), FALSE);
+}
+
+
+static void xfmpc_extended_interface_cb_repeat_switch (XfmpcExtendedInterface* self) {
+	g_return_if_fail (self != NULL);
+	xfmpc_mpdclient_set_repeat (self->priv->mpdclient, !xfmpc_mpdclient_get_repeat (self->priv->mpdclient));
+}
+
+
+static void xfmpc_extended_interface_cb_random_switch (XfmpcExtendedInterface* self) {
+	g_return_if_fail (self != NULL);
+	xfmpc_mpdclient_set_random (self->priv->mpdclient, !xfmpc_mpdclient_get_random (self->priv->mpdclient));
+}
+
+
+static void xfmpc_extended_interface_cb_preferences (XfmpcExtendedInterface* self) {
+	XfmpcPreferencesDialog* dialog;
+	g_return_if_fail (self != NULL);
+	dialog = g_object_ref_sink (xfmpc_preferences_dialog_new ());
+	gtk_widget_show ((GtkWidget*) dialog);
+	(dialog == NULL) ? NULL : (dialog = (g_object_unref (dialog), NULL));
+}
+
+
+static void xfmpc_extended_interface_cb_about (XfmpcExtendedInterface* self) {
+	char** _tmp1;
+	gint artists_size;
+	gint artists_length1;
+	char** _tmp0;
+	char** artists;
+	char** _tmp3;
+	gint authors_size;
+	gint authors_length1;
+	char** _tmp2;
+	char** authors;
+	char** _tmp5;
+	gint documenters_size;
+	gint documenters_length1;
+	char** _tmp4;
+	char** documenters;
+	g_return_if_fail (self != NULL);
+	_tmp1 = NULL;
+	_tmp0 = NULL;
+	artists = (_tmp1 = (_tmp0 = g_new0 (char*, 1 + 1), _tmp0[0] = NULL, _tmp0), artists_length1 = 1, artists_size = artists_length1, _tmp1);
+	_tmp3 = NULL;
+	_tmp2 = NULL;
+	authors = (_tmp3 = (_tmp2 = g_new0 (char*, 2 + 1), _tmp2[0] = g_strdup ("Mike Massonnet <mmassonnet@xfce.org>"), _tmp2[1] = g_strdup ("Vincent Legout <vincent@xfce.org>"), _tmp2), authors_length1 = 2, authors_size = authors_length1, _tmp3);
+	_tmp5 = NULL;
+	_tmp4 = NULL;
+	documenters = (_tmp5 = (_tmp4 = g_new0 (char*, 1 + 1), _tmp4[0] = NULL, _tmp4), documenters_length1 = 1, documenters_size = documenters_length1, _tmp5);
+	gtk_show_about_dialog (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (self))), "artists", artists, "authors", authors, "comments", _ ("MPD client written in GTK+ for Xfce"), "copyright", "Copyright \302\251 2008-2009 Mike Massonnet, Vincent Legout", "documenters", documenters, "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL), "translator-credits", _ ("translator-credits"), "version", PACKAGE_VERSION, "website", "http://goodies.xfce.org/projects/applications/xfmpc", NULL, NULL);
+	artists = (_vala_array_free (artists, artists_length1, (GDestroyNotify) g_free), NULL);
+	authors = (_vala_array_free (authors, authors_length1, (GDestroyNotify) g_free), NULL);
+	documenters = (_vala_array_free (documenters, documenters_length1, (GDestroyNotify) g_free), NULL);
+}
+
+
+XfmpcExtendedInterface* xfmpc_extended_interface_construct (GType object_type) {
+	XfmpcExtendedInterface * self;
+	self = g_object_newv (object_type, 0, NULL);
+	return self;
+}
+
+
+XfmpcExtendedInterface* xfmpc_extended_interface_new (void) {
+	return xfmpc_extended_interface_construct (XFMPC_TYPE_EXTENDED_INTERFACE);
+}
+
+
+static void _xfmpc_extended_interface_cb_playlist_clear_gtk_button_clicked (GtkButton* _sender, gpointer self) {
+	xfmpc_extended_interface_cb_playlist_clear (self);
+}
+
+
+static void _xfmpc_extended_interface_cb_database_refresh_gtk_button_clicked (GtkButton* _sender, gpointer self) {
+	xfmpc_extended_interface_cb_database_refresh (self);
+}
+
+
+static void _xfmpc_extended_interface_popup_context_menu_gtk_button_pressed (GtkButton* _sender, gpointer self) {
+	xfmpc_extended_interface_popup_context_menu (self);
+}
+
+
+static void _xfmpc_extended_interface_cb_context_menu_clicked_gtk_button_clicked (GtkButton* _sender, gpointer self) {
+	xfmpc_extended_interface_cb_context_menu_clicked (self);
+}
+
+
+static void _xfmpc_extended_interface_cb_interface_changed_gtk_combo_box_changed (GtkComboBox* _sender, gpointer self) {
+	xfmpc_extended_interface_cb_interface_changed (self);
+}
+
+
+static GObject * xfmpc_extended_interface_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties) {
+	GObject * obj;
+	XfmpcExtendedInterfaceClass * klass;
+	GObjectClass * parent_class;
+	XfmpcExtendedInterface * self;
+	klass = XFMPC_EXTENDED_INTERFACE_CLASS (g_type_class_peek (XFMPC_TYPE_EXTENDED_INTERFACE));
+	parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
+	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
+	self = XFMPC_EXTENDED_INTERFACE (obj);
+	{
+		GtkHBox* hbox;
+		GtkButton* button;
+		GtkImage* image;
+		GtkButton* _tmp0;
+		GtkImage* _tmp1;
+		XfceArrowButton* _tmp2;
+		GtkListStore* _tmp3;
+		GtkComboBox* _tmp4;
+		GtkCellRendererText* cell;
+		GtkNotebook* _tmp5;
+		GtkWidget* playlist;
+		GtkWidget* dbbrowser;
+		xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
+		self->priv->mpdclient = xfmpc_mpdclient_get ();
+		self->priv->preferences = xfmpc_preferences_get ();
+		hbox = g_object_ref_sink ((GtkHBox*) gtk_hbox_new (FALSE, 2));
+		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) hbox, FALSE, FALSE, (guint) 2);
+		button = g_object_ref_sink ((GtkButton*) gtk_button_new ());
+		gtk_widget_set_tooltip_text ((GtkWidget*) button, _ ("Clear Playlist"));
+		g_signal_connect_object (button, "clicked", (GCallback) _xfmpc_extended_interface_cb_playlist_clear_gtk_button_clicked, self, 0);
+		gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) button, FALSE, FALSE, (guint) 0);
+		image = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU));
+		gtk_button_set_image (button, (GtkWidget*) image);
+		_tmp0 = NULL;
+		button = (_tmp0 = g_object_ref_sink ((GtkButton*) gtk_button_new ()), (button == NULL) ? NULL : (button = (g_object_unref (button), NULL)), _tmp0);
+		gtk_widget_set_tooltip_text ((GtkWidget*) button, _ ("Refresh Database"));
+		g_signal_connect_object (button, "clicked", (GCallback) _xfmpc_extended_interface_cb_database_refresh_gtk_button_clicked, self, 0);
+		gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) button, FALSE, FALSE, (guint) 0);
+		_tmp1 = NULL;
+		image = (_tmp1 = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_MENU)), (image == NULL) ? NULL : (image = (g_object_unref (image), NULL)), _tmp1);
+		gtk_button_set_image (button, (GtkWidget*) image);
+		_tmp2 = NULL;
+		xfmpc_extended_interface_context_button = (_tmp2 = (XfceArrowButton*) xfce_arrow_button_new (GTK_ARROW_DOWN), (xfmpc_extended_interface_context_button == NULL) ? NULL : (xfmpc_extended_interface_context_button = ( (xfmpc_extended_interface_context_button), NULL)), _tmp2);
+		gtk_widget_set_tooltip_text (GTK_WIDGET (xfmpc_extended_interface_context_button), _ ("Context Menu"));
+		g_signal_connect_object (GTK_BUTTON (xfmpc_extended_interface_context_button), "pressed", (GCallback) _xfmpc_extended_interface_popup_context_menu_gtk_button_pressed, self, 0);
+		g_signal_connect_object (GTK_BUTTON (xfmpc_extended_interface_context_button), "clicked", (GCallback) _xfmpc_extended_interface_cb_context_menu_clicked_gtk_button_clicked, self, 0);
+		gtk_box_pack_start ((GtkBox*) hbox, GTK_WIDGET (xfmpc_extended_interface_context_button), FALSE, FALSE, (guint) 0);
+		_tmp3 = NULL;
+		self->priv->list_store = (_tmp3 = gtk_list_store_new ((gint) XFMPC_EXTENDED_INTERFACE_COLUMNS_N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER, NULL), (self->priv->list_store == NULL) ? NULL : (self->priv->list_store = (g_object_unref (self->priv->list_store), NULL)), _tmp3);
+		_tmp4 = NULL;
+		self->priv->combobox = (_tmp4 = g_object_ref_sink ((GtkComboBox*) gtk_combo_box_new_with_model ((GtkTreeModel*) self->priv->list_store)), (self->priv->combobox == NULL) ? NULL : (self->priv->combobox = (g_object_unref (self->priv->combobox), NULL)), _tmp4);
+		gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) self->priv->combobox, TRUE, TRUE, (guint) 0);
+		g_signal_connect_object (self->priv->combobox, "changed", (GCallback) _xfmpc_extended_interface_cb_interface_changed_gtk_combo_box_changed, self, 0);
+		cell = g_object_ref_sink ((GtkCellRendererText*) gtk_cell_renderer_text_new ());
+		gtk_cell_layout_pack_start ((GtkCellLayout*) self->priv->combobox, (GtkCellRenderer*) cell, TRUE);
+		gtk_cell_layout_set_attributes ((GtkCellLayout*) self->priv->combobox, (GtkCellRenderer*) cell, "text", XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_STRING, NULL, NULL);
+		_tmp5 = NULL;
+		self->priv->notebook = (_tmp5 = g_object_ref_sink ((GtkNotebook*) gtk_notebook_new ()), (self->priv->notebook == NULL) ? NULL : (self->priv->notebook = (g_object_unref (self->priv->notebook), NULL)), _tmp5);
+		gtk_notebook_set_show_tabs (self->priv->notebook, FALSE);
+		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->notebook, TRUE, TRUE, (guint) 0);
+		playlist = GTK_WIDGET (g_object_ref_sink (xfmpc_playlist_new ()));
+		xfmpc_extended_interface_append_child (self, playlist, _ ("Current Playlist"));
+		dbbrowser = GTK_WIDGET (g_object_ref_sink (xfmpc_dbbrowser_new ()));
+		xfmpc_extended_interface_append_child (self, dbbrowser, _ ("Browse database"));
+		g_object_set_data ((GObject*) playlist, "XfmpcDbbrowser", dbbrowser);
+		g_object_set_data ((GObject*) playlist, "XfmpcExtendedInterface", self);
+		(hbox == NULL) ? NULL : (hbox = (g_object_unref (hbox), NULL));
+		(button == NULL) ? NULL : (button = (g_object_unref (button), NULL));
+		(image == NULL) ? NULL : (image = (g_object_unref (image), NULL));
+		(cell == NULL) ? NULL : (cell = (g_object_unref (cell), NULL));
+		(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
+		(dbbrowser == NULL) ? NULL : (dbbrowser = (g_object_unref (dbbrowser), NULL));
+	}
+	return obj;
+}
+
+
+static void xfmpc_extended_interface_class_init (XfmpcExtendedInterfaceClass * klass) {
+	xfmpc_extended_interface_parent_class = g_type_class_peek_parent (klass);
+	g_type_class_add_private (klass, sizeof (XfmpcExtendedInterfacePrivate));
+	G_OBJECT_CLASS (klass)->constructor = xfmpc_extended_interface_constructor;
+	G_OBJECT_CLASS (klass)->finalize = xfmpc_extended_interface_finalize;
+}
+
+
+static void xfmpc_extended_interface_instance_init (XfmpcExtendedInterface * self) {
+	self->priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (self);
+	self->priv->gettext_package = g_strdup (GETTEXT_PACKAGE);
+	self->priv->localedir = g_strdup (PACKAGE_LOCALE_DIR);
+}
+
+
+static void xfmpc_extended_interface_finalize (GObject* obj) {
+	XfmpcExtendedInterface * self;
+	self = XFMPC_EXTENDED_INTERFACE (obj);
+	self->priv->gettext_package = (g_free (self->priv->gettext_package), NULL);
+	self->priv->localedir = (g_free (self->priv->localedir), NULL);
+	(self->priv->list_store == NULL) ? NULL : (self->priv->list_store = (g_object_unref (self->priv->list_store), NULL));
+	(self->priv->combobox == NULL) ? NULL : (self->priv->combobox = (g_object_unref (self->priv->combobox), NULL));
+	(self->priv->notebook == NULL) ? NULL : (self->priv->notebook = (g_object_unref (self->priv->notebook), NULL));
+	(self->priv->context_menu == NULL) ? NULL : (self->priv->context_menu = (g_object_unref (self->priv->context_menu), NULL));
+	G_OBJECT_CLASS (xfmpc_extended_interface_parent_class)->finalize (obj);
+}
+
+
+GType xfmpc_extended_interface_get_type (void) {
+	static GType xfmpc_extended_interface_type_id = 0;
+	if (xfmpc_extended_interface_type_id == 0) {
+		static const GTypeInfo g_define_type_info = { sizeof (XfmpcExtendedInterfaceClass), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) xfmpc_extended_interface_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (XfmpcExtendedInterface), 0, (GInstanceInitFunc) xfmpc_extended_interface_instance_init, NULL };
+		xfmpc_extended_interface_type_id = g_type_register_static (GTK_TYPE_VBOX, "XfmpcExtendedInterface", &g_define_type_info, 0);
+	}
+	return xfmpc_extended_interface_type_id;
+}
+
+
+static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func) {
+	if ((array != NULL) && (destroy_func != NULL)) {
+		int i;
+		for (i = 0; i < array_length; i = i + 1) {
+			if (((gpointer*) array)[i] != NULL) {
+				destroy_func (((gpointer*) array)[i]);
+			}
+		}
+	}
+	g_free (array);
+}
+
+
+
 

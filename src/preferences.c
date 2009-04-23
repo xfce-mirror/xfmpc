@@ -258,7 +258,7 @@ xfmpc_preferences_class_init (XfmpcPreferencesClass *klass)
                                                       "Song Format",
                                                       XFMPC_TYPE_SONG_FORMAT,
                                                       XFMPC_SONG_FORMAT_ARTIST_TITLE,
-                                                      G_PARAM_CONSTRUCT|G_PARAM_READWRITE));
+                                                      G_PARAM_READWRITE));
 
   g_object_class_install_property (gobject_class,
                                    PROP_SONG_FORMAT_CUSTOM,
@@ -450,3 +450,202 @@ xfmpc_preferences_get_rc (XfmpcPreferences *preferences)
   return xfce_rc_config_open (XFCE_RESOURCE_CONFIG, "xfce4/xfmpcrc", FALSE);
 }
 
+
+
+gint
+xfmpc_preferences_get_last_window_posx (XfmpcPreferences *preferences)
+{
+  gint dst;
+  g_object_get (G_OBJECT (preferences), "last-window-posx", &dst, NULL);
+  return dst;
+}
+
+gint
+xfmpc_preferences_get_last_window_posy (XfmpcPreferences *preferences)
+{
+  gint dst;
+  g_object_get (G_OBJECT (preferences), "last-window-posy", &dst, NULL);
+  return dst;
+}
+
+gint
+xfmpc_preferences_get_last_window_width (XfmpcPreferences *preferences)
+{
+  gint dst;
+  g_object_get (G_OBJECT (preferences), "last-window-width", &dst, NULL);
+  return dst;
+}
+
+gint
+xfmpc_preferences_get_last_window_height (XfmpcPreferences *preferences)
+{
+  gint dst;
+  g_object_get (G_OBJECT (preferences), "last-window-width", &dst, NULL);
+  return dst;
+}
+
+gboolean
+xfmpc_preferences_get_last_window_state_sticky (XfmpcPreferences *preferences)
+{
+  gboolean dst;
+  g_object_get (G_OBJECT (preferences), "last-window-state-sticky", &dst, NULL);
+  return dst;
+}
+
+gboolean
+xfmpc_preferences_get_playlist_autocenter (XfmpcPreferences *preferences)
+{
+  gboolean dst;
+  g_object_get (G_OBJECT (preferences), "last-window-state-sticky", &dst, NULL);
+  return dst;
+}
+
+gchar *
+xfmpc_preferences_get_dbbrowser_last_path (XfmpcPreferences *preferences)
+{
+  gchar *dst;
+  g_object_get (G_OBJECT (preferences), "dbbrowser-last-path", &dst, NULL);
+  return dst;
+}
+
+gchar *
+xfmpc_preferences_get_mpd_hostname (XfmpcPreferences *preferences)
+{
+  gchar *dst;
+  g_object_get (G_OBJECT (preferences), "mpd-hostname", &dst, NULL);
+  return dst;
+}
+
+gint
+xfmpc_preferences_get_mpd_port (XfmpcPreferences *preferences)
+{
+  gint dst;
+  g_object_get (G_OBJECT (preferences), "mpd-port", &dst, NULL);
+  return dst;
+}
+
+gchar *
+xfmpc_preferences_get_mpd_password (XfmpcPreferences *preferences)
+{
+  gchar *dst;
+  g_object_get (G_OBJECT (preferences), "mpd-password", &dst, NULL);
+  return dst;
+}
+
+gboolean
+xfmpc_preferences_get_mpd_use_defaults (XfmpcPreferences *preferences)
+{
+  gboolean dst;
+  g_object_get (G_OBJECT (preferences), "mpd-use-defaults", &dst, NULL);
+  return dst;
+}
+
+gboolean
+xfmpc_preferences_get_show_statusbar (XfmpcPreferences *preferences)
+{
+  gboolean dst;
+  g_object_get (G_OBJECT (preferences), "show-statusbar", &dst, NULL);
+  return dst;
+}
+
+gint
+xfmpc_preferences_get_song_format (XfmpcPreferences *preferences)
+{
+  gint dst;
+  g_object_get (G_OBJECT (preferences), "song-format", &dst, NULL);
+  return dst;
+}
+
+gchar *
+xfmpc_preferences_get_song_format_custom (XfmpcPreferences *preferences)
+{
+  gchar *dst;
+  g_object_get (G_OBJECT (preferences), "song-format-custom", &dst, NULL);
+  return dst;
+}
+
+
+
+void
+xfmpc_preferences_set_last_window_posx (XfmpcPreferences *preferences, gint src)
+{
+  g_object_set (G_OBJECT (preferences), "last-window-posx", src, NULL);
+}
+
+void
+xfmpc_preferences_set_last_window_posy (XfmpcPreferences *preferences, gint src)
+{
+  g_object_set (G_OBJECT (preferences), "last-window-posy", src, NULL);
+}
+
+void
+xfmpc_preferences_set_last_window_width (XfmpcPreferences *preferences, gint src)
+{
+  g_object_set (G_OBJECT (preferences), "last-window-width", src, NULL);
+}
+
+void
+xfmpc_preferences_set_last_window_height (XfmpcPreferences *preferences, gint src)
+{
+  g_object_set (G_OBJECT (preferences), "last-window-width", src, NULL);
+}
+
+void
+xfmpc_preferences_set_last_window_state_sticky (XfmpcPreferences *preferences, gboolean src)
+{
+  g_object_set (G_OBJECT (preferences), "last-window-state-sticky", src, NULL);
+}
+
+void
+xfmpc_preferences_set_playlist_autocenter (XfmpcPreferences *preferences, gboolean src)
+{
+  g_object_set (G_OBJECT (preferences), "state-sticky", src, NULL);
+}
+
+void
+xfmpc_preferences_set_dbbrowser_last_path (XfmpcPreferences *preferences, gchar *src)
+{
+  g_object_set (G_OBJECT (preferences), "dbbrowser-last-path", src, NULL);
+}
+
+void
+xfmpc_preferences_set_mpd_hostname (XfmpcPreferences *preferences, gchar *src)
+{
+  g_object_set (G_OBJECT (preferences), "mpd-hostname", src, NULL);
+}
+
+void
+xfmpc_preferences_set_mpd_port (XfmpcPreferences *preferences, gint src)
+{
+  g_object_set (G_OBJECT (preferences), "mpd-port", src, NULL);
+}
+
+void
+xfmpc_preferences_set_mpd_password (XfmpcPreferences *preferences, gchar *src)
+{
+  g_object_set (G_OBJECT (preferences), "mpd-password", src, NULL);
+}
+
+void
+xfmpc_preferences_set_mpd_use_defaults (XfmpcPreferences *preferences, gboolean src)
+{
+  g_object_set (G_OBJECT (preferences), "mpd-use-defaults", src, NULL);
+}
+
+void
+xfmpc_preferences_set_show_statusbar (XfmpcPreferences *preferences, gboolean src)
+{
+  g_object_set (G_OBJECT (preferences), "show-statusbar", src, NULL);
+}
+
+void
+xfmpc_preferences_set_song_format (XfmpcPreferences *preferences, gint src)
+{
+  g_object_set (G_OBJECT (preferences), "song-format", src, NULL);
+}
+
+void
+xfmpc_preferences_set_song_format_custom (XfmpcPreferences *preferences, gchar *src)
+{
+  g_object_set (G_OBJECT (preferences), "song-format-custom", src, NULL);
+}

@@ -24,12 +24,11 @@
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
 
+#include "xfmpc.h"
 #include "main-window.h"
 #include "preferences.h"
 #include "interface.h"
 #include "main-ui.h"
-#include "extended-interface.h"
-#include "statusbar.h"
 
 #define BORDER 4
 
@@ -207,7 +206,7 @@ xfmpc_main_window_init (XfmpcMainWindow *window)
   gtk_box_pack_start (GTK_BOX (priv->vbox), separator, FALSE, FALSE, 0);
 
   /* ExtendedInterface */
-  GtkWidget *extended_interface = xfmpc_extended_interface_new ();
+  GtkWidget *extended_interface = GTK_WIDGET (xfmpc_extended_interface_new ());
   gtk_box_pack_start (GTK_BOX (priv->vbox), extended_interface, TRUE, TRUE, 0);
 
   /* Accelerators */
@@ -370,7 +369,7 @@ action_statusbar (GtkToggleAction *action,
     }
   else if (active && priv->statusbar == NULL)
     {
-      priv->statusbar = xfmpc_statusbar_new ();
+      priv->statusbar = GTK_WIDGET (xfmpc_statusbar_new ());
       gtk_widget_show (priv->statusbar);
       gtk_box_pack_start (GTK_BOX (priv->vbox), priv->statusbar, FALSE, FALSE, 0);
     }

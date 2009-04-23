@@ -1,5 +1,31 @@
 bin_PROGRAMS = xfmpc
 
+xfmpc_VALASOURCES =							\
+	preferences-dialog.vala						\
+	song-dialog.vala						\
+	statusbar.vala							\
+	dbbrowser.vala							\
+	extended-interface.vala						\
+	playlist.vala
+
+vala_built_SOURCES =							\
+	$(xfmpc_VALASOURCES:.vala=.c)
+
+if MAINTAINER_MODE
+
+BUILT_SOURCES =								\
+	main-ui.h							\
+	vala.stamp
+
+vala.stamp: $(xfmpc_VALASOURCES)
+	$(VALAC) --vapidir=$(top_srcdir)/vapi --pkg=gtk+-2.0 --pkg=libxfce4util-1.0 --pkg=libxfcegui4-1.0 --pkg=config --pkg=mpdclient --pkg=preferences --pkg=xfce-arrow-button $^ -C -H xfmpc.h
+	touch $@
+
+main-ui.h: Makefile $(srcdir)/main-ui.xml
+	exo-csource --strip-comments --strip-content --static --name=main_ui $(srcdir)/main-ui.xml > main-ui.h
+
+endif
+
 xfmpc_SOURCES =								\
 	main.c								\
 	main-ui.h							\
@@ -7,24 +33,14 @@ xfmpc_SOURCES =								\
 	main-window.h							\
 	interface.c							\
 	interface.h							\
-	extended-interface.c						\
-	extended-interface.h						\
-	playlist.c							\
-	playlist.h							\
-	dbbrowser.c							\
-	dbbrowser.h							\
-	statusbar.c							\
-	statusbar.h							\
 	preferences.c							\
 	preferences.h							\
-	preferences-dialog.c						\
-	preferences-dialog.h						\
 	mpdclient.c							\
 	mpdclient.h							\
-	song-dialog.c							\
-	song-dialog.h							\
 	xfce-arrow-button.c						\
-	xfce-arrow-button.h
+	xfce-arrow-button.h						\
+	xfmpc.h
+xfmpc_SOURCES += $(vala_built_SOURCES)
 
 xfmpc_CFLAGS =								\
 	@GTK_CFLAGS@							\
@@ -45,17 +61,12 @@ INCLUDES =								\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
 	-DLOCALEDIR=\"$(localedir)\"
 
-if MAINTAINER_MODE
-DISTCLEANFILES =							\
-	main-ui.h
-
-BUILT_SOURCES =								\
-	main-ui.h
-
-main-ui.h: Makefile $(srcdir)/main-ui.xml
-	exo-csource --strip-comments --strip-content --static --name=main_ui $(srcdir)/main-ui.xml > main-ui.h
-endif
-
 EXTRA_DIST =								\
-	main-ui.xml
+	main-ui.xml							\
+	$(xfce4_notes_plugin_VALASOURCES)
+
+DISTCLEANFILES =							\
+	main-ui.h							\
+	$(BUILT_SOURCES)						\
+	$(vala_built_SOURCES)
 

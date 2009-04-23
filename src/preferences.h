@@ -19,6 +19,8 @@
 #ifndef __XFMPC_PREFERENCES_H__
 #define __XFMPC_PREFERENCES_H__
 
+#include <glib-object.h>
+
 G_BEGIN_DECLS
 
 typedef enum
@@ -49,9 +51,39 @@ typedef struct _XfmpcPreferencesClass       XfmpcPreferencesClass;
 typedef struct _XfmpcPreferences            XfmpcPreferences;
 typedef struct _XfmpcPreferencesPriv        XfmpcPreferencesPriv;
 
-GType                   xfmpc_preferences_get_type              () G_GNUC_CONST;
+GType                   xfmpc_preferences_get_type               () G_GNUC_CONST;
 
-XfmpcPreferences *      xfmpc_preferences_get                   ();
+XfmpcPreferences *      xfmpc_preferences_get                    ();
+
+gint                    xfmpc_preferences_get_last_window_posx   (XfmpcPreferences *preferences);
+gint                    xfmpc_preferences_get_last_window_posy   (XfmpcPreferences *preferences);
+gint                    xfmpc_preferences_get_last_window_width  (XfmpcPreferences *preferences);
+gint                    xfmpc_preferences_get_last_window_height (XfmpcPreferences *preferences);
+gboolean                xfmpc_preferences_get_last_window_state_sticky (XfmpcPreferences *preferences);
+gboolean                xfmpc_preferences_get_playlist_autocenter (XfmpcPreferences *preferences);
+gchar *                 xfmpc_preferences_get_dbbrowser_last_path (XfmpcPreferences *preferences);
+gchar *                 xfmpc_preferences_get_mpd_hostname (XfmpcPreferences *preferences);
+gint                    xfmpc_preferences_get_mpd_port (XfmpcPreferences *preferences);
+gchar *                 xfmpc_preferences_get_mpd_password (XfmpcPreferences *preferences);
+gboolean                xfmpc_preferences_get_mpd_use_defaults (XfmpcPreferences *preferences);
+gboolean                xfmpc_preferences_get_show_statusbar     (XfmpcPreferences *preferences);
+gint                    xfmpc_preferences_get_song_format (XfmpcPreferences *preferences);
+gchar *                 xfmpc_preferences_get_song_format_custom (XfmpcPreferences *preferences);
+
+void                    xfmpc_preferences_set_last_window_posx (XfmpcPreferences *preferences, gint src);
+void                    xfmpc_preferences_set_last_window_posy (XfmpcPreferences *preferences, gint src);
+void                    xfmpc_preferences_set_last_window_width (XfmpcPreferences *preferences, gint src);
+void                    xfmpc_preferences_set_last_window_height (XfmpcPreferences *preferences, gint src);
+void                    xfmpc_preferences_set_last_window_state_sticky (XfmpcPreferences *preferences, gboolean src);
+void                    xfmpc_preferences_set_playlist_autocenter (XfmpcPreferences *preferences, gboolean src);
+void                    xfmpc_preferences_set_dbbrowser_last_path (XfmpcPreferences *preferences, gchar *src);
+void                    xfmpc_preferences_set_mpd_hostname (XfmpcPreferences *preferences, gchar *src);
+void                    xfmpc_preferences_set_mpd_port (XfmpcPreferences *preferences, gint src);
+void                    xfmpc_preferences_set_mpd_password (XfmpcPreferences *preferences, gchar *src) ;
+void                    xfmpc_preferences_set_mpd_use_defaults (XfmpcPreferences *preferences, gboolean src);
+void                    xfmpc_preferences_set_show_statusbar (XfmpcPreferences *preferences, gboolean src);
+void                    xfmpc_preferences_set_song_format (XfmpcPreferences *preferences, gint src);
+void                    xfmpc_preferences_set_song_format_custom (XfmpcPreferences *preferences, gchar *src);
 
 G_END_DECLS
 

@@ -64,6 +64,20 @@ XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([LIBMPD], [libmpd], [0.15.0])
 
+dnl Check for valac
+valac_minimum_version=0.7.0
+if test "x$USE_MAINTAINER_MODE" = "xyes" ; then
+	AC_CHECK_PROG([has_valac], [valac], [yes], [no])
+	AC_PATH_PROG([VALAC], [valac], [valac])
+	AC_SUBST(VALAC)
+	if test "x$has_valac" != "xyes" ; then
+		echo "***"
+		echo "*** You need the valac compiler in order to compile parts of the project"
+		echo "***"
+		echo
+	fi
+fi
+
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
@@ -91,7 +105,13 @@ dnl *** Print configuration ***
 dnl ***************************
 echo
 echo "Build Configuration:"
+echo 
+echo "* Maintainer Mode:        $USE_MAINTAINER_MODE"
+if test "x$USE_MAINTAINER_MODE" = "xyes" ; then
+echo "    * Vala:               $has_valac"
+echo "      You need Vala $valac_minimum_version or higher (run $VALAC --version)"
 echo
+fi
 echo "* Debug Support:    $enable_debug"
 echo "* Funky Colors:     $enable_funkycolors"
 echo

@@ -17,294 +17,243 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#include <gtk/gtk.h>
+#include <glib.h>
+#include <glib-object.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <stdlib.h>
+#include <string.h>
+#include <mpdclient.h>
+#include <config.h>
 #include <libxfce4util/libxfce4util.h>
-
-#include "song-dialog.h"
-#include "mpdclient.h"
-
-#define GET_PRIVATE(o) \
-    (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_SONG_DIALOG, XfmpcSongDialogPrivate))
+#include <gtk/gtk.h>
+#include <pango/pango.h>
+#include <glib/gi18n-lib.h>
 
 
+#define XFMPC_TYPE_SONG_DIALOG (xfmpc_song_dialog_get_type ())
+#define XFMPC_SONG_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_SONG_DIALOG, XfmpcSongDialog))
+#define XFMPC_SONG_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_SONG_DIALOG, XfmpcSongDialogClass))
+#define XFMPC_IS_SONG_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_SONG_DIALOG))
+#define XFMPC_IS_SONG_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_SONG_DIALOG))
+#define XFMPC_SONG_DIALOG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_SONG_DIALOG, XfmpcSongDialogClass))
 
-static void             xfmpc_song_dialog_class_init    (XfmpcSongDialogClass *klass);
-static void             xfmpc_song_dialog_init          (XfmpcSongDialog *dialog);
-static void             xfmpc_song_dialog_finalize      (GObject *object);
+typedef struct _XfmpcSongDialog XfmpcSongDialog;
+typedef struct _XfmpcSongDialogClass XfmpcSongDialogClass;
+typedef struct _XfmpcSongDialogPrivate XfmpcSongDialogPrivate;
 
-static void             xfmpc_song_dialog_response      (GtkDialog *dialog,
-                                                         gint response);
-
-static void             xfmpc_song_dialog_set_song_info (XfmpcSongDialog *dialog,
-                                                         XfmpcSongInfo *song_info);
-
-
-
-struct _XfmpcSongDialogClass
-{
-  XfceTitledDialogClass          parent_class;
+struct _XfmpcSongDialog {
+	XfceTitledDialog parent_instance;
+	XfmpcSongDialogPrivate * priv;
 };
 
-struct _XfmpcSongDialog
-{
-  XfceTitledDialog               parent;
-  /*<private>*/
-  XfmpcSongDialogPrivate        *priv;
+struct _XfmpcSongDialogClass {
+	XfceTitledDialogClass parent_class;
 };
 
-struct _XfmpcSongDialogPrivate
-{
-  GtkWidget                     *label_file;
-  GtkWidget                     *label_artist;
-  GtkWidget                     *label_title;
-  GtkWidget                     *label_album;
-  GtkWidget                     *label_date;
-  GtkWidget                     *label_track;
-  GtkWidget                     *label_genre;
-
-  GtkWidget                     *hbox_artist;
-  GtkWidget                     *hbox_title;
-  GtkWidget                     *hbox_album;
-  GtkWidget                     *hbox_date;
-  GtkWidget                     *hbox_track;
-  GtkWidget                     *hbox_genre;
+struct _XfmpcSongDialogPrivate {
+	char* gettext_package;
+	char* localedir;
+	XfmpcMpdclient* mpdclient;
+	XfmpcSongInfo* song;
 };
 
 
 
-static GObjectClass *parent_class = NULL;
+GType xfmpc_song_dialog_get_type (void);
+#define XFMPC_SONG_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_SONG_DIALOG, XfmpcSongDialogPrivate))
+enum  {
+	XFMPC_SONG_DIALOG_DUMMY_PROPERTY
+};
+static void xfmpc_song_dialog_cb_response (XfmpcSongDialog* self, XfmpcSongDialog* source, gint response);
+static void _xfmpc_song_dialog_cb_response_gtk_dialog_response (XfmpcSongDialog* _sender, gint response_id, gpointer self);
+XfmpcSongDialog* xfmpc_song_dialog_new (gint song_id);
+XfmpcSongDialog* xfmpc_song_dialog_construct (GType object_type, gint song_id);
+XfmpcSongDialog* xfmpc_song_dialog_new (gint song_id);
+static gpointer xfmpc_song_dialog_parent_class = NULL;
+static void xfmpc_song_dialog_finalize (GObject* obj);
 
 
 
-GType
-xfmpc_song_dialog_get_type (void)
-{
-  static GType xfmpc_song_dialog_type = G_TYPE_INVALID;
+static void _xfmpc_song_dialog_cb_response_gtk_dialog_response (XfmpcSongDialog* _sender, gint response_id, gpointer self) {
+	xfmpc_song_dialog_cb_response (self, _sender, response_id);
+}
 
-  if (G_UNLIKELY (xfmpc_song_dialog_type == G_TYPE_INVALID))
-    {
-      static const GTypeInfo xfmpc_song_dialog_info =
-      {
-        sizeof (XfmpcSongDialogClass),
-        NULL,
-        NULL,
-        (GClassInitFunc) xfmpc_song_dialog_class_init,
-        NULL,
-        NULL,
-        sizeof (XfmpcSongDialog),
-        0,
-        (GInstanceInitFunc) xfmpc_song_dialog_init,
-        NULL,
-      };
 
-      xfmpc_song_dialog_type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfmpcSongDialog", &xfmpc_song_dialog_info, 0);
-    }
+XfmpcSongDialog* xfmpc_song_dialog_construct (GType object_type, gint song_id) {
+	XfmpcSongDialog * self;
+	GtkVBox* vbox2;
+	GtkWidget* _tmp0;
+	GtkWidget* frame;
+	PangoAttrList* attrs;
+	GtkHBox* hbox;
+	GtkLabel* label;
+	GtkLabel* _tmp2;
+	char* _tmp1;
+	GtkHBox* _tmp3;
+	GtkLabel* _tmp4;
+	GtkLabel* _tmp5;
+	GtkHBox* _tmp6;
+	GtkLabel* _tmp7;
+	GtkLabel* _tmp8;
+	GtkHBox* _tmp9;
+	GtkLabel* _tmp10;
+	GtkLabel* _tmp11;
+	GtkHBox* _tmp12;
+	GtkLabel* _tmp13;
+	GtkLabel* _tmp14;
+	GtkLabel* _tmp15;
+	GtkLabel* _tmp16;
+	GtkHBox* _tmp17;
+	GtkLabel* _tmp18;
+	GtkLabel* _tmp19;
+	self = g_object_newv (object_type, 0, NULL);
+	xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
+	gtk_dialog_set_has_separator ((GtkDialog*) self, TRUE);
+	gtk_window_set_skip_taskbar_hint ((GtkWindow*) self, TRUE);
+	gtk_window_set_icon_name ((GtkWindow*) self, "stock_volume");
+	gtk_window_set_resizable ((GtkWindow*) self, FALSE);
+	self->priv->mpdclient = xfmpc_mpdclient_get ();
+	self->priv->song = xfmpc_mpdclient_get_song_info (self->priv->mpdclient, song_id);
+	gtk_window_set_title ((GtkWindow*) self, self->priv->song->title);
+	gtk_box_set_spacing ((GtkBox*) ((GtkDialog*) self)->vbox, 0);
+	vbox2 = g_object_ref_sink ((GtkVBox*) gtk_vbox_new (FALSE, 0));
+	_tmp0 = NULL;
+	frame = (_tmp0 = xfce_create_framebox_with_content ("", (GtkWidget*) vbox2), (_tmp0 == NULL) ? NULL : g_object_ref (_tmp0));
+	attrs = pango_attr_list_new ();
+	pango_attr_list_insert (attrs, pango_attr_weight_new (PANGO_WEIGHT_BOLD));
+	hbox = g_object_ref_sink ((GtkHBox*) gtk_hbox_new (FALSE, 0));
+	label = g_object_ref_sink ((GtkLabel*) gtk_label_new (_ ("File")));
+	gtk_label_set_attributes (label, attrs);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	_tmp2 = NULL;
+	_tmp1 = NULL;
+	label = (_tmp2 = g_object_ref_sink ((GtkLabel*) gtk_label_new (_tmp1 = g_path_get_basename (self->priv->song->filename))), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp2);
+	_tmp1 = (g_free (_tmp1), NULL);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	gtk_box_pack_start ((GtkBox*) vbox2, (GtkWidget*) hbox, FALSE, FALSE, (guint) 6);
+	_tmp3 = NULL;
+	hbox = (_tmp3 = g_object_ref_sink ((GtkHBox*) gtk_hbox_new (FALSE, 0)), (hbox == NULL) ? NULL : (hbox = (g_object_unref (hbox), NULL)), _tmp3);
+	_tmp4 = NULL;
+	label = (_tmp4 = g_object_ref_sink ((GtkLabel*) gtk_label_new (_ ("Artist"))), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp4);
+	gtk_label_set_attributes (label, attrs);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	_tmp5 = NULL;
+	label = (_tmp5 = g_object_ref_sink ((GtkLabel*) gtk_label_new (self->priv->song->artist)), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp5);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	gtk_box_pack_start ((GtkBox*) vbox2, (GtkWidget*) hbox, FALSE, FALSE, (guint) 6);
+	_tmp6 = NULL;
+	hbox = (_tmp6 = g_object_ref_sink ((GtkHBox*) gtk_hbox_new (FALSE, 0)), (hbox == NULL) ? NULL : (hbox = (g_object_unref (hbox), NULL)), _tmp6);
+	_tmp7 = NULL;
+	label = (_tmp7 = g_object_ref_sink ((GtkLabel*) gtk_label_new (_ ("Title"))), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp7);
+	gtk_label_set_attributes (label, attrs);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	_tmp8 = NULL;
+	label = (_tmp8 = g_object_ref_sink ((GtkLabel*) gtk_label_new (self->priv->song->title)), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp8);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	gtk_box_pack_start ((GtkBox*) vbox2, (GtkWidget*) hbox, FALSE, FALSE, (guint) 6);
+	_tmp9 = NULL;
+	hbox = (_tmp9 = g_object_ref_sink ((GtkHBox*) gtk_hbox_new (FALSE, 0)), (hbox == NULL) ? NULL : (hbox = (g_object_unref (hbox), NULL)), _tmp9);
+	_tmp10 = NULL;
+	label = (_tmp10 = g_object_ref_sink ((GtkLabel*) gtk_label_new (_ ("Album"))), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp10);
+	gtk_label_set_attributes (label, attrs);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	_tmp11 = NULL;
+	label = (_tmp11 = g_object_ref_sink ((GtkLabel*) gtk_label_new (self->priv->song->album)), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp11);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	gtk_box_pack_start ((GtkBox*) vbox2, (GtkWidget*) hbox, FALSE, FALSE, (guint) 6);
+	_tmp12 = NULL;
+	hbox = (_tmp12 = g_object_ref_sink ((GtkHBox*) gtk_hbox_new (FALSE, 0)), (hbox == NULL) ? NULL : (hbox = (g_object_unref (hbox), NULL)), _tmp12);
+	_tmp13 = NULL;
+	label = (_tmp13 = g_object_ref_sink ((GtkLabel*) gtk_label_new (_ ("Date"))), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp13);
+	gtk_label_set_attributes (label, attrs);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	_tmp14 = NULL;
+	label = (_tmp14 = g_object_ref_sink ((GtkLabel*) gtk_label_new (self->priv->song->date)), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp14);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	_tmp15 = NULL;
+	label = (_tmp15 = g_object_ref_sink ((GtkLabel*) gtk_label_new (_ ("Track"))), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp15);
+	gtk_label_set_attributes (label, attrs);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 15);
+	_tmp16 = NULL;
+	label = (_tmp16 = g_object_ref_sink ((GtkLabel*) gtk_label_new (self->priv->song->track)), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp16);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	gtk_box_pack_start ((GtkBox*) vbox2, (GtkWidget*) hbox, FALSE, FALSE, (guint) 6);
+	_tmp17 = NULL;
+	hbox = (_tmp17 = g_object_ref_sink ((GtkHBox*) gtk_hbox_new (FALSE, 0)), (hbox == NULL) ? NULL : (hbox = (g_object_unref (hbox), NULL)), _tmp17);
+	_tmp18 = NULL;
+	label = (_tmp18 = g_object_ref_sink ((GtkLabel*) gtk_label_new (_ ("Genre"))), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp18);
+	gtk_label_set_attributes (label, attrs);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	_tmp19 = NULL;
+	label = (_tmp19 = g_object_ref_sink ((GtkLabel*) gtk_label_new (self->priv->song->genre)), (label == NULL) ? NULL : (label = (g_object_unref (label), NULL)), _tmp19);
+	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) label, FALSE, FALSE, (guint) 5);
+	gtk_box_pack_start ((GtkBox*) vbox2, (GtkWidget*) hbox, FALSE, FALSE, (guint) 6);
+	gtk_box_pack_start ((GtkBox*) ((GtkDialog*) self)->vbox, frame, TRUE, TRUE, (guint) 0);
+	gtk_dialog_add_button ((GtkDialog*) self, GTK_STOCK_CLOSE, (gint) GTK_RESPONSE_CLOSE);
+	gtk_widget_show_all ((GtkWidget*) self);
+	g_signal_connect_object ((GtkDialog*) self, "response", (GCallback) _xfmpc_song_dialog_cb_response_gtk_dialog_response, self, 0);
+	(vbox2 == NULL) ? NULL : (vbox2 = (g_object_unref (vbox2), NULL));
+	(frame == NULL) ? NULL : (frame = (g_object_unref (frame), NULL));
+	(attrs == NULL) ? NULL : (attrs = (pango_attr_list_unref (attrs), NULL));
+	(hbox == NULL) ? NULL : (hbox = (g_object_unref (hbox), NULL));
+	(label == NULL) ? NULL : (label = (g_object_unref (label), NULL));
+	return self;
+}
 
-  return xfmpc_song_dialog_type;
+
+XfmpcSongDialog* xfmpc_song_dialog_new (gint song_id) {
+	return xfmpc_song_dialog_construct (XFMPC_TYPE_SONG_DIALOG, song_id);
+}
+
+
+/*
+ * Signal callbacks
+ */
+static void xfmpc_song_dialog_cb_response (XfmpcSongDialog* self, XfmpcSongDialog* source, gint response) {
+	g_return_if_fail (self != NULL);
+	g_return_if_fail (source != NULL);
+	switch (response) {
+		case GTK_RESPONSE_CLOSE:
+		{
+			gtk_object_destroy ((GtkObject*) self);
+			break;
+		}
+	}
+}
+
+
+static void xfmpc_song_dialog_class_init (XfmpcSongDialogClass * klass) {
+	xfmpc_song_dialog_parent_class = g_type_class_peek_parent (klass);
+	g_type_class_add_private (klass, sizeof (XfmpcSongDialogPrivate));
+	G_OBJECT_CLASS (klass)->finalize = xfmpc_song_dialog_finalize;
+}
+
+
+static void xfmpc_song_dialog_instance_init (XfmpcSongDialog * self) {
+	self->priv = XFMPC_SONG_DIALOG_GET_PRIVATE (self);
+	self->priv->gettext_package = g_strdup (GETTEXT_PACKAGE);
+	self->priv->localedir = g_strdup (PACKAGE_LOCALE_DIR);
+}
+
+
+static void xfmpc_song_dialog_finalize (GObject* obj) {
+	XfmpcSongDialog * self;
+	self = XFMPC_SONG_DIALOG (obj);
+	self->priv->gettext_package = (g_free (self->priv->gettext_package), NULL);
+	self->priv->localedir = (g_free (self->priv->localedir), NULL);
+	G_OBJECT_CLASS (xfmpc_song_dialog_parent_class)->finalize (obj);
+}
+
+
+GType xfmpc_song_dialog_get_type (void) {
+	static GType xfmpc_song_dialog_type_id = 0;
+	if (xfmpc_song_dialog_type_id == 0) {
+		static const GTypeInfo g_define_type_info = { sizeof (XfmpcSongDialogClass), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) xfmpc_song_dialog_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (XfmpcSongDialog), 0, (GInstanceInitFunc) xfmpc_song_dialog_instance_init, NULL };
+		xfmpc_song_dialog_type_id = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfmpcSongDialog", &g_define_type_info, 0);
+	}
+	return xfmpc_song_dialog_type_id;
 }
 
 
 
-static void
-xfmpc_song_dialog_class_init (XfmpcSongDialogClass *klass)
-{
-  GtkDialogClass *gtkdialog_class;
-  GObjectClass   *gobject_class;
-
-  g_type_class_add_private (klass, sizeof (XfmpcSongDialogPrivate));
-
-  parent_class = g_type_class_peek_parent (klass);
-
-  gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = xfmpc_song_dialog_finalize;
-
-  gtkdialog_class = GTK_DIALOG_CLASS (klass);
-  gtkdialog_class->response = xfmpc_song_dialog_response;
-}
-
-static void
-xfmpc_song_dialog_init (XfmpcSongDialog *dialog)
-{
-  XfmpcSongDialogPrivate *priv = dialog->priv = GET_PRIVATE (dialog);
-
-  gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
-  gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER_ON_PARENT);
-  gtk_window_set_skip_taskbar_hint (GTK_WINDOW (dialog), TRUE);
-  gtk_window_set_icon_name (GTK_WINDOW (dialog), "stock_volume");
-  gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-  gtk_window_set_title (GTK_WINDOW (dialog), PACKAGE_NAME);
-
-  gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                          GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-                          NULL);
-
-  PangoAttrList *attrs = pango_attr_list_new ();
-  PangoAttribute *attr = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
-  pango_attr_list_insert (attrs, attr);
-
-  GtkWidget *vbox = gtk_vbox_new (FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), 0);
-  gtk_widget_show (vbox);
-
-  GtkWidget *vbox2 = gtk_vbox_new (FALSE, 0);
-  GtkWidget *frame = xfce_create_framebox_with_content (NULL, vbox2);
-  gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, 0);
-
-  /* File */
-  GtkWidget *hbox = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
-  GtkWidget *label = gtk_label_new (_("File"));
-  gtk_label_set_attributes (GTK_LABEL (label), attrs);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  label = priv->label_file = gtk_label_new (NULL);
-  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-
-  /* Artist */
-  hbox = priv->hbox_artist = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
-  label = gtk_label_new (_("Artist"));
-  gtk_label_set_attributes (GTK_LABEL (label), attrs);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  label = priv->label_artist = gtk_label_new (NULL);
-  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-
-  /* Title */
-  hbox = priv->hbox_title = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
-  label = gtk_label_new (_("Title"));
-  gtk_label_set_attributes (GTK_LABEL (label), attrs);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  label = priv->label_title = gtk_label_new (NULL);
-  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-
-  /* Album */
-  hbox = priv->hbox_album = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
-  label = gtk_label_new (_("Album"));
-  gtk_label_set_attributes (GTK_LABEL (label), attrs);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  label = priv->label_album = gtk_label_new (NULL);
-  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-
-  /* Date */
-  hbox = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
-  priv->hbox_date = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->hbox_date, FALSE, FALSE, 0);
-  label = gtk_label_new (_("Date"));
-  gtk_label_set_attributes (GTK_LABEL (label), attrs);
-  gtk_box_pack_start (GTK_BOX (priv->hbox_date), label, FALSE, FALSE, 5);
-  label = priv->label_date = gtk_label_new (NULL);
-  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
-  gtk_box_pack_start (GTK_BOX (priv->hbox_date), label, FALSE, FALSE, 5);
-
-  /* Track */
-  priv->hbox_track = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->hbox_track, FALSE, FALSE, 15);
-  label = gtk_label_new (_("Track"));
-  gtk_label_set_attributes (GTK_LABEL (label), attrs);
-  gtk_box_pack_start (GTK_BOX (priv->hbox_track), label, FALSE, FALSE, 5);
-  label = priv->label_track = gtk_label_new (NULL);
-  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
-  gtk_box_pack_start (GTK_BOX (priv->hbox_track), label, FALSE, FALSE, 5);
-
-  /* Genre */
-  hbox = priv->hbox_genre = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 6);
-  label = gtk_label_new (_("Genre"));
-  gtk_label_set_attributes (GTK_LABEL (label), attrs);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-  label = priv->label_genre = gtk_label_new (NULL);
-  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
-
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), vbox, TRUE, TRUE, 0);
-  gtk_widget_show_all (GTK_DIALOG (dialog)->vbox);
-}
-
-static void
-xfmpc_song_dialog_finalize (GObject *object)
-{
-  G_OBJECT_CLASS (parent_class)->finalize (object);
-}
-
-
-
-static void
-xfmpc_song_dialog_response (GtkDialog *dialog,
-                            gint response)
-{
-  gtk_widget_destroy (GTK_WIDGET (dialog));
-}
-
-
-
-GtkWidget *
-xfmpc_song_dialog_new (gint id)
-{
-  XfmpcMpdclient *mpdclient = xfmpc_mpdclient_get ();
-
-  XfmpcSongInfo *song_info = xfmpc_mpdclient_get_song_info (mpdclient, id);
-
-  GtkWidget *dialog = g_object_new (XFMPC_TYPE_SONG_DIALOG, NULL);
-  xfmpc_song_dialog_set_song_info (XFMPC_SONG_DIALOG (dialog), song_info);
-
-  return dialog;
-}
-
-static void
-xfmpc_song_dialog_set_song_info (XfmpcSongDialog *dialog,
-                              	 XfmpcSongInfo *song_info)
-{
-  XfmpcSongDialogPrivate *priv = dialog->priv = GET_PRIVATE (dialog);
-
-  gtk_label_set_text (GTK_LABEL (priv->label_file), g_path_get_basename (song_info->filename));
-  gtk_label_set_text (GTK_LABEL (priv->label_artist), song_info->artist);
-  gtk_label_set_text (GTK_LABEL (priv->label_album), song_info->album);
-  gtk_label_set_text (GTK_LABEL (priv->label_title), song_info->title);
-  gtk_label_set_text (GTK_LABEL (priv->label_date), song_info->date);
-  gtk_label_set_text (GTK_LABEL (priv->label_track), song_info->track);
-  gtk_label_set_text (GTK_LABEL (priv->label_genre), song_info->genre);
-
-  if (song_info->artist == NULL)
-    gtk_widget_hide (priv->hbox_artist);
-  else
-    gtk_widget_show (priv->hbox_artist);
-
-  if (song_info->album == NULL)
-    gtk_widget_hide (priv->hbox_album);
-  else
-    gtk_widget_show (priv->hbox_album);
-
-  if (song_info->title == NULL)
-    gtk_widget_hide (priv->hbox_title);
-  else
-    gtk_widget_show (priv->hbox_title);
-
-  if (song_info->date == NULL)
-    gtk_widget_hide (priv->hbox_date);
-  else
-    gtk_widget_show (priv->hbox_date);
-
-  if (song_info->track == NULL)
-    gtk_widget_hide (priv->hbox_track);
-  else
-    gtk_widget_show (priv->hbox_track);
-
-  if (song_info->genre == NULL)
-    gtk_widget_hide (priv->hbox_genre);
-  else
-    gtk_widget_show (priv->hbox_genre);
-
-  gtk_window_set_title (GTK_WINDOW (dialog), song_info->title);
-}
 
