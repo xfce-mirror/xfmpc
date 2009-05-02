@@ -6,6 +6,8 @@ xfmpc_VALASOURCES =							\
 	statusbar.vala							\
 	dbbrowser.vala							\
 	extended-interface.vala						\
+	interface.vala							\
+	main-window.vala						\
 	playlist.vala
 
 vala_built_SOURCES =							\
@@ -26,13 +28,9 @@ main-ui.h: Makefile $(srcdir)/main-ui.xml
 
 endif
 
-xfmpc_SOURCES =								\
+xfmpc_SOURCES = 							\
 	main.c								\
 	main-ui.h							\
-	main-window.c							\
-	main-window.h							\
-	interface.c							\
-	interface.h							\
 	preferences.c							\
 	preferences.h							\
 	mpdclient.c							\
@@ -63,7 +61,7 @@ INCLUDES =								\
 
 EXTRA_DIST =								\
 	main-ui.xml							\
-	$(xfce4_notes_plugin_VALASOURCES)
+	$(xfmpc_VALASOURCES)
 
 DISTCLEANFILES =							\
 	main-ui.h							\

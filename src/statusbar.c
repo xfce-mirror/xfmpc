@@ -64,6 +64,7 @@ void xfmpc_statusbar_set_text (XfmpcStatusbar* self, const char* value);
 static GObject * xfmpc_statusbar_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static gpointer xfmpc_statusbar_parent_class = NULL;
 static void xfmpc_statusbar_finalize (GObject* obj);
+static void xfmpc_statusbar_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec);
 
 
 
@@ -80,12 +81,12 @@ XfmpcStatusbar* xfmpc_statusbar_new (void) {
 
 
 void xfmpc_statusbar_set_text (XfmpcStatusbar* self, const char* value) {
-	char* _tmp1;
-	const char* _tmp0;
+	char* _tmp1_;
+	const char* _tmp0_;
 	g_return_if_fail (self != NULL);
-	_tmp1 = NULL;
-	_tmp0 = NULL;
-	self->priv->_text = (_tmp1 = (_tmp0 = value, (_tmp0 == NULL) ? NULL : g_strdup (_tmp0)), self->priv->_text = (g_free (self->priv->_text), NULL), _tmp1);
+	_tmp1_ = NULL;
+	_tmp0_ = NULL;
+	self->priv->_text = (_tmp1_ = (_tmp0_ = value, (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_)), self->priv->_text = (g_free (self->priv->_text), NULL), _tmp1_);
 	gtk_statusbar_pop ((GtkStatusbar*) self, self->priv->context_id);
 	gtk_statusbar_push ((GtkStatusbar*) self, self->priv->context_id, self->priv->_text);
 	g_object_notify ((GObject *) self, "text");
@@ -106,20 +107,6 @@ static GObject * xfmpc_statusbar_constructor (GType type, guint n_construct_prop
 		self->priv->context_id = gtk_statusbar_get_context_id ((GtkStatusbar*) self, "Main text");
 	}
 	return obj;
-}
-
-
-static void xfmpc_statusbar_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
-	XfmpcStatusbar * self;
-	self = XFMPC_STATUSBAR (object);
-	switch (property_id) {
-		case XFMPC_STATUSBAR_TEXT:
-		xfmpc_statusbar_set_text (self, g_value_get_string (value));
-		break;
-		default:
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-		break;
-	}
 }
 
 
@@ -153,6 +140,20 @@ GType xfmpc_statusbar_get_type (void) {
 		xfmpc_statusbar_type_id = g_type_register_static (GTK_TYPE_STATUSBAR, "XfmpcStatusbar", &g_define_type_info, 0);
 	}
 	return xfmpc_statusbar_type_id;
+}
+
+
+static void xfmpc_statusbar_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
+	XfmpcStatusbar * self;
+	self = XFMPC_STATUSBAR (object);
+	switch (property_id) {
+		case XFMPC_STATUSBAR_TEXT:
+		xfmpc_statusbar_set_text (self, g_value_get_string (value));
+		break;
+		default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+		break;
+	}
 }
 
 

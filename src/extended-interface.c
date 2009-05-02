@@ -159,6 +159,7 @@ GType xfmpc_dbbrowser_get_type (void);
 static GObject * xfmpc_extended_interface_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static gpointer xfmpc_extended_interface_parent_class = NULL;
 static void xfmpc_extended_interface_finalize (GObject* obj);
+static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func);
 static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func);
 
 
@@ -223,7 +224,7 @@ static void xfmpc_extended_interface_position_context_menu (GtkMenu* menu, gint 
 	root_x = 0;
 	root_y = 0;
 	gtk_widget_size_request ((GtkWidget*) menu, &menu_req);
-	gdk_window_get_origin (GTK_WIDGET (xfmpc_extended_interface_context_button)->window, &root_x, &root_y);
+	gdk_window_get_origin (gtk_widget_get_window (GTK_WIDGET (xfmpc_extended_interface_context_button)), &root_x, &root_y);
 	x = root_x + GTK_WIDGET (xfmpc_extended_interface_context_button)->allocation.x;
 	y = root_y + GTK_WIDGET (xfmpc_extended_interface_context_button)->allocation.y;
 	if (y > (gdk_screen_height () - menu_req.height)) {
@@ -263,16 +264,16 @@ static void _xfmpc_extended_interface_cb_about_gtk_menu_item_activate (GtkImageM
 
 
 static void xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface* self, GtkWidget* attach_widget) {
-	GtkMenu* _tmp0;
+	GtkMenu* _tmp0_;
 	GtkCheckMenuItem* mi;
-	GtkCheckMenuItem* _tmp1;
+	GtkCheckMenuItem* _tmp1_;
 	GtkSeparatorMenuItem* separator;
 	GtkImageMenuItem* imi;
-	GtkImageMenuItem* _tmp2;
+	GtkImageMenuItem* _tmp2_;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (attach_widget != NULL);
-	_tmp0 = NULL;
-	self->priv->context_menu = (_tmp0 = g_object_ref_sink ((GtkMenu*) gtk_menu_new ()), (self->priv->context_menu == NULL) ? NULL : (self->priv->context_menu = (g_object_unref (self->priv->context_menu), NULL)), _tmp0);
+	_tmp0_ = NULL;
+	self->priv->context_menu = (_tmp0_ = g_object_ref_sink ((GtkMenu*) gtk_menu_new ()), (self->priv->context_menu == NULL) ? NULL : (self->priv->context_menu = (g_object_unref (self->priv->context_menu), NULL)), _tmp0_);
 	gtk_menu_set_screen (self->priv->context_menu, gtk_widget_get_screen (attach_widget));
 	gtk_menu_attach_to_widget (self->priv->context_menu, attach_widget, (GtkMenuDetachFunc) xfmpc_extended_interface_menu_detach);
 	g_signal_connect_object ((GtkMenuShell*) self->priv->context_menu, "deactivate", (GCallback) _xfmpc_extended_interface_cb_context_menu_deactivate_gtk_menu_shell_deactivate, self, 0);
@@ -280,8 +281,8 @@ static void xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface* s
 	gtk_check_menu_item_set_active (mi, xfmpc_mpdclient_get_repeat (self->priv->mpdclient));
 	g_signal_connect_object ((GtkMenuItem*) mi, "activate", (GCallback) _xfmpc_extended_interface_cb_repeat_switch_gtk_menu_item_activate, self, 0);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->context_menu, (GtkWidget*) ((GtkMenuItem*) mi));
-	_tmp1 = NULL;
-	mi = (_tmp1 = g_object_ref_sink ((GtkCheckMenuItem*) gtk_check_menu_item_new_with_label (_ ("Random"))), (mi == NULL) ? NULL : (mi = (g_object_unref (mi), NULL)), _tmp1);
+	_tmp1_ = NULL;
+	mi = (_tmp1_ = g_object_ref_sink ((GtkCheckMenuItem*) gtk_check_menu_item_new_with_label (_ ("Random"))), (mi == NULL) ? NULL : (mi = (g_object_unref (mi), NULL)), _tmp1_);
 	gtk_check_menu_item_set_active (mi, xfmpc_mpdclient_get_random (self->priv->mpdclient));
 	g_signal_connect_object ((GtkMenuItem*) mi, "activate", (GCallback) _xfmpc_extended_interface_cb_random_switch_gtk_menu_item_activate, self, 0);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->context_menu, (GtkWidget*) ((GtkMenuItem*) mi));
@@ -290,8 +291,8 @@ static void xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface* s
 	imi = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_from_stock (GTK_STOCK_PREFERENCES, NULL));
 	g_signal_connect_object ((GtkMenuItem*) imi, "activate", (GCallback) _xfmpc_extended_interface_cb_preferences_gtk_menu_item_activate, self, 0);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->context_menu, (GtkWidget*) ((GtkMenuItem*) imi));
-	_tmp2 = NULL;
-	imi = (_tmp2 = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_from_stock (GTK_STOCK_ABOUT, NULL)), (imi == NULL) ? NULL : (imi = (g_object_unref (imi), NULL)), _tmp2);
+	_tmp2_ = NULL;
+	imi = (_tmp2_ = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_from_stock (GTK_STOCK_ABOUT, NULL)), (imi == NULL) ? NULL : (imi = (g_object_unref (imi), NULL)), _tmp2_);
 	g_signal_connect_object ((GtkMenuItem*) imi, "activate", (GCallback) _xfmpc_extended_interface_cb_about_gtk_menu_item_activate, self, 0);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->context_menu, (GtkWidget*) ((GtkMenuItem*) imi));
 	gtk_widget_show_all ((GtkWidget*) self->priv->context_menu);
@@ -376,31 +377,31 @@ static void xfmpc_extended_interface_cb_preferences (XfmpcExtendedInterface* sel
 
 
 static void xfmpc_extended_interface_cb_about (XfmpcExtendedInterface* self) {
-	char** _tmp1;
+	char** _tmp1_;
 	gint artists_size;
 	gint artists_length1;
-	char** _tmp0;
+	char** _tmp0_;
 	char** artists;
-	char** _tmp3;
+	char** _tmp3_;
 	gint authors_size;
 	gint authors_length1;
-	char** _tmp2;
+	char** _tmp2_;
 	char** authors;
-	char** _tmp5;
+	char** _tmp5_;
 	gint documenters_size;
 	gint documenters_length1;
-	char** _tmp4;
+	char** _tmp4_;
 	char** documenters;
 	g_return_if_fail (self != NULL);
-	_tmp1 = NULL;
-	_tmp0 = NULL;
-	artists = (_tmp1 = (_tmp0 = g_new0 (char*, 1 + 1), _tmp0[0] = NULL, _tmp0), artists_length1 = 1, artists_size = artists_length1, _tmp1);
-	_tmp3 = NULL;
-	_tmp2 = NULL;
-	authors = (_tmp3 = (_tmp2 = g_new0 (char*, 2 + 1), _tmp2[0] = g_strdup ("Mike Massonnet <mmassonnet@xfce.org>"), _tmp2[1] = g_strdup ("Vincent Legout <vincent@xfce.org>"), _tmp2), authors_length1 = 2, authors_size = authors_length1, _tmp3);
-	_tmp5 = NULL;
-	_tmp4 = NULL;
-	documenters = (_tmp5 = (_tmp4 = g_new0 (char*, 1 + 1), _tmp4[0] = NULL, _tmp4), documenters_length1 = 1, documenters_size = documenters_length1, _tmp5);
+	_tmp1_ = NULL;
+	_tmp0_ = NULL;
+	artists = (_tmp1_ = (_tmp0_ = g_new0 (char*, 1 + 1), _tmp0_[0] = NULL, _tmp0_), artists_length1 = 1, artists_size = artists_length1, _tmp1_);
+	_tmp3_ = NULL;
+	_tmp2_ = NULL;
+	authors = (_tmp3_ = (_tmp2_ = g_new0 (char*, 2 + 1), _tmp2_[0] = g_strdup ("Mike Massonnet <mmassonnet@xfce.org>"), _tmp2_[1] = g_strdup ("Vincent Legout <vincent@xfce.org>"), _tmp2_), authors_length1 = 2, authors_size = authors_length1, _tmp3_);
+	_tmp5_ = NULL;
+	_tmp4_ = NULL;
+	documenters = (_tmp5_ = (_tmp4_ = g_new0 (char*, 1 + 1), _tmp4_[0] = NULL, _tmp4_), documenters_length1 = 1, documenters_size = documenters_length1, _tmp5_);
 	gtk_show_about_dialog (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (self))), "artists", artists, "authors", authors, "comments", _ ("MPD client written in GTK+ for Xfce"), "copyright", "Copyright \302\251 2008-2009 Mike Massonnet, Vincent Legout", "documenters", documenters, "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL), "translator-credits", _ ("translator-credits"), "version", PACKAGE_VERSION, "website", "http://goodies.xfce.org/projects/applications/xfmpc", NULL, NULL);
 	artists = (_vala_array_free (artists, artists_length1, (GDestroyNotify) g_free), NULL);
 	authors = (_vala_array_free (authors, authors_length1, (GDestroyNotify) g_free), NULL);
@@ -458,13 +459,13 @@ static GObject * xfmpc_extended_interface_constructor (GType type, guint n_const
 		GtkHBox* hbox;
 		GtkButton* button;
 		GtkImage* image;
-		GtkButton* _tmp0;
-		GtkImage* _tmp1;
-		XfceArrowButton* _tmp2;
-		GtkListStore* _tmp3;
-		GtkComboBox* _tmp4;
+		GtkButton* _tmp0_;
+		GtkImage* _tmp1_;
+		XfceArrowButton* _tmp2_;
+		GtkListStore* _tmp3_;
+		GtkComboBox* _tmp4_;
 		GtkCellRendererText* cell;
-		GtkNotebook* _tmp5;
+		GtkNotebook* _tmp5_;
 		GtkWidget* playlist;
 		GtkWidget* dbbrowser;
 		xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
@@ -478,31 +479,31 @@ static GObject * xfmpc_extended_interface_constructor (GType type, guint n_const
 		gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) button, FALSE, FALSE, (guint) 0);
 		image = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU));
 		gtk_button_set_image (button, (GtkWidget*) image);
-		_tmp0 = NULL;
-		button = (_tmp0 = g_object_ref_sink ((GtkButton*) gtk_button_new ()), (button == NULL) ? NULL : (button = (g_object_unref (button), NULL)), _tmp0);
+		_tmp0_ = NULL;
+		button = (_tmp0_ = g_object_ref_sink ((GtkButton*) gtk_button_new ()), (button == NULL) ? NULL : (button = (g_object_unref (button), NULL)), _tmp0_);
 		gtk_widget_set_tooltip_text ((GtkWidget*) button, _ ("Refresh Database"));
 		g_signal_connect_object (button, "clicked", (GCallback) _xfmpc_extended_interface_cb_database_refresh_gtk_button_clicked, self, 0);
 		gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) button, FALSE, FALSE, (guint) 0);
-		_tmp1 = NULL;
-		image = (_tmp1 = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_MENU)), (image == NULL) ? NULL : (image = (g_object_unref (image), NULL)), _tmp1);
+		_tmp1_ = NULL;
+		image = (_tmp1_ = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_MENU)), (image == NULL) ? NULL : (image = (g_object_unref (image), NULL)), _tmp1_);
 		gtk_button_set_image (button, (GtkWidget*) image);
-		_tmp2 = NULL;
-		xfmpc_extended_interface_context_button = (_tmp2 = (XfceArrowButton*) xfce_arrow_button_new (GTK_ARROW_DOWN), (xfmpc_extended_interface_context_button == NULL) ? NULL : (xfmpc_extended_interface_context_button = ( (xfmpc_extended_interface_context_button), NULL)), _tmp2);
+		_tmp2_ = NULL;
+		xfmpc_extended_interface_context_button = (_tmp2_ = (XfceArrowButton*) xfce_arrow_button_new (GTK_ARROW_DOWN), (xfmpc_extended_interface_context_button == NULL) ? NULL : (xfmpc_extended_interface_context_button = ( (xfmpc_extended_interface_context_button), NULL)), _tmp2_);
 		gtk_widget_set_tooltip_text (GTK_WIDGET (xfmpc_extended_interface_context_button), _ ("Context Menu"));
 		g_signal_connect_object (GTK_BUTTON (xfmpc_extended_interface_context_button), "pressed", (GCallback) _xfmpc_extended_interface_popup_context_menu_gtk_button_pressed, self, 0);
 		g_signal_connect_object (GTK_BUTTON (xfmpc_extended_interface_context_button), "clicked", (GCallback) _xfmpc_extended_interface_cb_context_menu_clicked_gtk_button_clicked, self, 0);
 		gtk_box_pack_start ((GtkBox*) hbox, GTK_WIDGET (xfmpc_extended_interface_context_button), FALSE, FALSE, (guint) 0);
-		_tmp3 = NULL;
-		self->priv->list_store = (_tmp3 = gtk_list_store_new ((gint) XFMPC_EXTENDED_INTERFACE_COLUMNS_N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER, NULL), (self->priv->list_store == NULL) ? NULL : (self->priv->list_store = (g_object_unref (self->priv->list_store), NULL)), _tmp3);
-		_tmp4 = NULL;
-		self->priv->combobox = (_tmp4 = g_object_ref_sink ((GtkComboBox*) gtk_combo_box_new_with_model ((GtkTreeModel*) self->priv->list_store)), (self->priv->combobox == NULL) ? NULL : (self->priv->combobox = (g_object_unref (self->priv->combobox), NULL)), _tmp4);
+		_tmp3_ = NULL;
+		self->priv->list_store = (_tmp3_ = gtk_list_store_new ((gint) XFMPC_EXTENDED_INTERFACE_COLUMNS_N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER, NULL), (self->priv->list_store == NULL) ? NULL : (self->priv->list_store = (g_object_unref (self->priv->list_store), NULL)), _tmp3_);
+		_tmp4_ = NULL;
+		self->priv->combobox = (_tmp4_ = g_object_ref_sink ((GtkComboBox*) gtk_combo_box_new_with_model ((GtkTreeModel*) self->priv->list_store)), (self->priv->combobox == NULL) ? NULL : (self->priv->combobox = (g_object_unref (self->priv->combobox), NULL)), _tmp4_);
 		gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) self->priv->combobox, TRUE, TRUE, (guint) 0);
 		g_signal_connect_object (self->priv->combobox, "changed", (GCallback) _xfmpc_extended_interface_cb_interface_changed_gtk_combo_box_changed, self, 0);
 		cell = g_object_ref_sink ((GtkCellRendererText*) gtk_cell_renderer_text_new ());
 		gtk_cell_layout_pack_start ((GtkCellLayout*) self->priv->combobox, (GtkCellRenderer*) cell, TRUE);
 		gtk_cell_layout_set_attributes ((GtkCellLayout*) self->priv->combobox, (GtkCellRenderer*) cell, "text", XFMPC_EXTENDED_INTERFACE_COLUMNS_COLUMN_STRING, NULL, NULL);
-		_tmp5 = NULL;
-		self->priv->notebook = (_tmp5 = g_object_ref_sink ((GtkNotebook*) gtk_notebook_new ()), (self->priv->notebook == NULL) ? NULL : (self->priv->notebook = (g_object_unref (self->priv->notebook), NULL)), _tmp5);
+		_tmp5_ = NULL;
+		self->priv->notebook = (_tmp5_ = g_object_ref_sink ((GtkNotebook*) gtk_notebook_new ()), (self->priv->notebook == NULL) ? NULL : (self->priv->notebook = (g_object_unref (self->priv->notebook), NULL)), _tmp5_);
 		gtk_notebook_set_show_tabs (self->priv->notebook, FALSE);
 		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->notebook, TRUE, TRUE, (guint) 0);
 		playlist = GTK_WIDGET (g_object_ref_sink (xfmpc_playlist_new ()));
@@ -560,7 +561,7 @@ GType xfmpc_extended_interface_get_type (void) {
 }
 
 
-static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func) {
+static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func) {
 	if ((array != NULL) && (destroy_func != NULL)) {
 		int i;
 		for (i = 0; i < array_length; i = i + 1) {
@@ -569,6 +570,11 @@ static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify 
 			}
 		}
 	}
+}
+
+
+static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func) {
+	_vala_array_destroy (array, array_length, destroy_func);
 	g_free (array);
 }
 

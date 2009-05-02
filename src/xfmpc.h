@@ -7,6 +7,8 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
 #include <string.h>
+#include <float.h>
+#include <math.h>
 
 G_BEGIN_DECLS
 
@@ -67,6 +69,28 @@ typedef struct _XfmpcExtendedInterfaceClass XfmpcExtendedInterfaceClass;
 typedef struct _XfmpcExtendedInterfacePrivate XfmpcExtendedInterfacePrivate;
 
 #define XFMPC_EXTENDED_INTERFACE_TYPE_EXTENDED_INTERFACE_WIDGET (xfmpc_extended_interface_extended_interface_widget_get_type ())
+
+#define XFMPC_TYPE_INTERFACE (xfmpc_interface_get_type ())
+#define XFMPC_INTERFACE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_INTERFACE, XfmpcInterface))
+#define XFMPC_INTERFACE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_INTERFACE, XfmpcInterfaceClass))
+#define XFMPC_IS_INTERFACE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_INTERFACE))
+#define XFMPC_IS_INTERFACE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_INTERFACE))
+#define XFMPC_INTERFACE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_INTERFACE, XfmpcInterfaceClass))
+
+typedef struct _XfmpcInterface XfmpcInterface;
+typedef struct _XfmpcInterfaceClass XfmpcInterfaceClass;
+typedef struct _XfmpcInterfacePrivate XfmpcInterfacePrivate;
+
+#define XFMPC_TYPE_MAIN_WINDOW (xfmpc_main_window_get_type ())
+#define XFMPC_MAIN_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_MAIN_WINDOW, XfmpcMainWindow))
+#define XFMPC_MAIN_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_MAIN_WINDOW, XfmpcMainWindowClass))
+#define XFMPC_IS_MAIN_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_MAIN_WINDOW))
+#define XFMPC_IS_MAIN_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_MAIN_WINDOW))
+#define XFMPC_MAIN_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_MAIN_WINDOW, XfmpcMainWindowClass))
+
+typedef struct _XfmpcMainWindow XfmpcMainWindow;
+typedef struct _XfmpcMainWindowClass XfmpcMainWindowClass;
+typedef struct _XfmpcMainWindowPrivate XfmpcMainWindowPrivate;
 
 #define XFMPC_TYPE_PLAYLIST (xfmpc_playlist_get_type ())
 #define XFMPC_PLAYLIST(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_PLAYLIST, XfmpcPlaylist))
@@ -129,6 +153,24 @@ typedef enum  {
 	XFMPC_EXTENDED_INTERFACE_EXTENDED_INTERFACE_WIDGET_DBBROWSER
 } XfmpcExtendedInterfaceExtendedInterfaceWidget;
 
+struct _XfmpcInterface {
+	GtkVBox parent_instance;
+	XfmpcInterfacePrivate * priv;
+};
+
+struct _XfmpcInterfaceClass {
+	GtkVBoxClass parent_class;
+};
+
+struct _XfmpcMainWindow {
+	GtkWindow parent_instance;
+	XfmpcMainWindowPrivate * priv;
+};
+
+struct _XfmpcMainWindowClass {
+	GtkWindowClass parent_class;
+};
+
 struct _XfmpcPlaylist {
 	GtkVBox parent_instance;
 	XfmpcPlaylistPrivate * priv;
@@ -165,6 +207,20 @@ GType xfmpc_extended_interface_extended_interface_widget_get_type (void);
 void xfmpc_extended_interface_set_active (XfmpcExtendedInterface* self, XfmpcExtendedInterfaceExtendedInterfaceWidget active_widget);
 XfmpcExtendedInterface* xfmpc_extended_interface_new (void);
 XfmpcExtendedInterface* xfmpc_extended_interface_construct (GType object_type);
+GType xfmpc_interface_get_type (void);
+void xfmpc_interface_set_title (XfmpcInterface* self, const char* title);
+void xfmpc_interface_set_subtitle (XfmpcInterface* self, const char* subtitle);
+void xfmpc_interface_pp_clicked (XfmpcInterface* self);
+void xfmpc_interface_set_pp (XfmpcInterface* self, gboolean play);
+void xfmpc_interface_volume_changed (XfmpcInterface* self, double value);
+void xfmpc_interface_set_volume (XfmpcInterface* self, gint volume);
+void xfmpc_interface_popup_volume (XfmpcInterface* self);
+void xfmpc_interface_set_time (XfmpcInterface* self, gint time, gint time_total);
+XfmpcInterface* xfmpc_interface_new (void);
+XfmpcInterface* xfmpc_interface_construct (GType object_type);
+GType xfmpc_main_window_get_type (void);
+XfmpcMainWindow* xfmpc_main_window_new (void);
+XfmpcMainWindow* xfmpc_main_window_construct (GType object_type);
 GType xfmpc_playlist_get_type (void);
 void xfmpc_playlist_append (XfmpcPlaylist* self, gint id, gint pos, const char* filename, const char* song, const char* length);
 void xfmpc_playlist_refresh_current_song (XfmpcPlaylist* self);

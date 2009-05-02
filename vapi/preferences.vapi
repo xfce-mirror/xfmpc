@@ -6,7 +6,7 @@ namespace Xfmpc {
 	[CCode (cheader_filename = "preferences.h")]
 	public class Preferences {
 		public static unowned Xfmpc.Preferences get ();
-		public int last_window_posx;
+		public int last_window_posx {get; set; }
 		public int last_window_posy { get; set; }
 		public int last_window_width { get; set; }
 		public int last_window_height { get; set; }

@@ -1,3 +1,20 @@
+2009-05-02	Vincent Legout <vincent@legout.info>
+
+Rewrite interface.c and main-window.c in vala
+	* src/Makefile.am:
+	  - Build interface.vala and main-window.vala
+	* src/interface.vala, main-window.vala:
+	  - New files
+	* src/main.c:
+	  - Include xfmpc.h
+	* vapi/config.vapi:
+	  - Add PACKAGE_STRING and PACKAGE_NAME
+	* vapi/mpdclient.vapi:
+	  - Update signals. Add arguments to pp_changed, time_changed and
+	  volume_changed
+	* vapi/preferences.vapi:
+	  - Make last_window_posx a property
+
 2009-04-22	Vincent Legout <vincent@legout.info>
 
 Start to rewrite in vala

@@ -175,9 +175,9 @@ void xfmpc_dbbrowser_reload (XfmpcDbbrowser* self) {
 	}
 	xfmpc_dbbrowser_clear (self);
 	if (!xfmpc_dbbrowser_wdir_is_root (self)) {
-		char* _tmp0;
-		_tmp0 = NULL;
-		filename = (_tmp0 = xfmpc_dbbrowser_get_parent_wdir (self), filename = (g_free (filename), NULL), _tmp0);
+		char* _tmp0_;
+		_tmp0_ = NULL;
+		filename = (_tmp0_ = xfmpc_dbbrowser_get_parent_wdir (self), filename = (g_free (filename), NULL), _tmp0_);
 		xfmpc_dbbrowser_append (self, filename, "..", TRUE, FALSE);
 		i++;
 	}
@@ -207,19 +207,19 @@ gboolean xfmpc_dbbrowser_wdir_is_root (XfmpcDbbrowser* self) {
 
 
 char* xfmpc_dbbrowser_get_parent_wdir (XfmpcDbbrowser* self) {
-	const char* _tmp0;
+	const char* _tmp0_;
 	char* filename;
 	g_return_val_if_fail (self != NULL, NULL);
-	_tmp0 = NULL;
-	filename = (_tmp0 = strstr (self->priv->wdir, "/"), (_tmp0 == NULL) ? NULL : g_strdup (_tmp0));
+	_tmp0_ = NULL;
+	filename = (_tmp0_ = strstr (self->priv->wdir, "/"), (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_));
 	if (filename == NULL) {
-		char* _tmp1;
-		_tmp1 = NULL;
-		return (_tmp1 = g_strdup (""), filename = (g_free (filename), NULL), _tmp1);
+		char* _tmp1_;
+		_tmp1_ = NULL;
+		return (_tmp1_ = g_strdup (""), filename = (g_free (filename), NULL), _tmp1_);
 	} else {
-		char* _tmp2;
-		_tmp2 = NULL;
-		return (_tmp2 = g_path_get_dirname (self->priv->wdir), filename = (g_free (filename), NULL), _tmp2);
+		char* _tmp2_;
+		_tmp2_ = NULL;
+		return (_tmp2_ = g_path_get_dirname (self->priv->wdir), filename = (g_free (filename), NULL), _tmp2_);
 	}
 	filename = (g_free (filename), NULL);
 }
@@ -227,44 +227,44 @@ char* xfmpc_dbbrowser_get_parent_wdir (XfmpcDbbrowser* self) {
 
 void xfmpc_dbbrowser_append (XfmpcDbbrowser* self, const char* filename, const char* basename, gboolean is_dir, gboolean is_bold) {
 	GtkTreeIter iter = {0};
-	const char* _tmp0;
+	const char* _tmp0_;
 	GdkPixbuf* pixbuf;
-	PangoWeight _tmp1;
+	PangoWeight _tmp1_;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (filename != NULL);
 	g_return_if_fail (basename != NULL);
-	_tmp0 = NULL;
+	_tmp0_ = NULL;
 	if (is_dir) {
-		_tmp0 = GTK_STOCK_DIRECTORY;
+		_tmp0_ = GTK_STOCK_DIRECTORY;
 	} else {
-		_tmp0 = GTK_STOCK_FILE;
+		_tmp0_ = GTK_STOCK_FILE;
 	}
-	pixbuf = gtk_widget_render_icon ((GtkWidget*) self->priv->treeview, _tmp0, GTK_ICON_SIZE_MENU, NULL);
+	pixbuf = gtk_widget_render_icon ((GtkWidget*) self->priv->treeview, _tmp0_, GTK_ICON_SIZE_MENU, NULL);
 	gtk_list_store_append (self->priv->store, &iter);
-	_tmp1 = 0;
+	_tmp1_ = 0;
 	if (is_bold) {
-		_tmp1 = PANGO_WEIGHT_BOLD;
+		_tmp1_ = PANGO_WEIGHT_BOLD;
 	} else {
-		_tmp1 = PANGO_WEIGHT_NORMAL;
+		_tmp1_ = PANGO_WEIGHT_NORMAL;
 	}
-	gtk_list_store_set (self->priv->store, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_PIXBUF, pixbuf, XFMPC_DBBROWSER_COLUMNS_COLUMN_FILENAME, filename, XFMPC_DBBROWSER_COLUMNS_COLUMN_BASENAME, basename, XFMPC_DBBROWSER_COLUMNS_COLUMN_IS_DIR, is_dir, XFMPC_DBBROWSER_COLUMNS_COLUMN_WEIGHT, _tmp1, -1, -1);
+	gtk_list_store_set (self->priv->store, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_PIXBUF, pixbuf, XFMPC_DBBROWSER_COLUMNS_COLUMN_FILENAME, filename, XFMPC_DBBROWSER_COLUMNS_COLUMN_BASENAME, basename, XFMPC_DBBROWSER_COLUMNS_COLUMN_IS_DIR, is_dir, XFMPC_DBBROWSER_COLUMNS_COLUMN_WEIGHT, _tmp1_, -1, -1);
 	(pixbuf == NULL) ? NULL : (pixbuf = (g_object_unref (pixbuf), NULL));
 }
 
 
 void xfmpc_dbbrowser_set_wdir (XfmpcDbbrowser* self, const char* dir) {
-	char* _tmp1;
-	const char* _tmp0;
-	char* _tmp3;
-	const char* _tmp2;
+	char* _tmp1_;
+	const char* _tmp0_;
+	char* _tmp3_;
+	const char* _tmp2_;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (dir != NULL);
-	_tmp1 = NULL;
-	_tmp0 = NULL;
-	self->priv->last_wdir = (_tmp1 = (_tmp0 = self->priv->wdir, (_tmp0 == NULL) ? NULL : g_strdup (_tmp0)), self->priv->last_wdir = (g_free (self->priv->last_wdir), NULL), _tmp1);
-	_tmp3 = NULL;
-	_tmp2 = NULL;
-	self->priv->wdir = (_tmp3 = (_tmp2 = dir, (_tmp2 == NULL) ? NULL : g_strdup (_tmp2)), self->priv->wdir = (g_free (self->priv->wdir), NULL), _tmp3);
+	_tmp1_ = NULL;
+	_tmp0_ = NULL;
+	self->priv->last_wdir = (_tmp1_ = (_tmp0_ = self->priv->wdir, (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_)), self->priv->last_wdir = (g_free (self->priv->last_wdir), NULL), _tmp1_);
+	_tmp3_ = NULL;
+	_tmp2_ = NULL;
+	self->priv->wdir = (_tmp3_ = (_tmp2_ = dir, (_tmp2_ == NULL) ? NULL : g_strdup (_tmp2_)), self->priv->wdir = (g_free (self->priv->wdir), NULL), _tmp3_);
 }
 
 
@@ -275,33 +275,33 @@ static void _g_list_free_gtk_tree_path_free (GList* self) {
 
 
 void xfmpc_dbbrowser_add_selected_rows (XfmpcDbbrowser* self) {
-	GtkTreeModel* _tmp0;
+	GtkTreeModel* _tmp0_;
 	GtkTreeModel* model;
 	GtkTreeIter iter = {0};
 	char* filename;
-	GtkTreeModel* _tmp4;
-	GtkTreeModel* _tmp3;
-	GList* _tmp2;
-	GtkTreeModel* _tmp1;
+	GtkTreeModel* _tmp4_;
+	GtkTreeModel* _tmp3_;
+	GList* _tmp2_;
+	GtkTreeModel* _tmp1_;
 	GList* list;
 	g_return_if_fail (self != NULL);
-	_tmp0 = NULL;
-	model = (_tmp0 = (GtkTreeModel*) self->priv->store, (_tmp0 == NULL) ? NULL : g_object_ref (_tmp0));
+	_tmp0_ = NULL;
+	model = (_tmp0_ = (GtkTreeModel*) self->priv->store, (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
 	filename = g_strdup ("");
-	_tmp4 = NULL;
-	_tmp3 = NULL;
-	_tmp2 = NULL;
-	_tmp1 = NULL;
-	list = (_tmp2 = gtk_tree_selection_get_selected_rows (gtk_tree_view_get_selection (self->priv->treeview), &_tmp1), model = (_tmp3 = (_tmp4 = _tmp1, (_tmp4 == NULL) ? NULL : g_object_ref (_tmp4)), (model == NULL) ? NULL : (model = (g_object_unref (model), NULL)), _tmp3), _tmp2);
+	_tmp4_ = NULL;
+	_tmp3_ = NULL;
+	_tmp2_ = NULL;
+	_tmp1_ = NULL;
+	list = (_tmp2_ = gtk_tree_selection_get_selected_rows (gtk_tree_view_get_selection (self->priv->treeview), &_tmp1_), model = (_tmp3_ = (_tmp4_ = _tmp1_, (_tmp4_ == NULL) ? NULL : g_object_ref (_tmp4_)), (model == NULL) ? NULL : (model = (g_object_unref (model), NULL)), _tmp3_), _tmp2_);
 	{
 		GList* path_collection;
 		GList* path_it;
 		path_collection = list;
 		for (path_it = path_collection; path_it != NULL; path_it = path_it->next) {
-			const GtkTreePath* _tmp5;
+			const GtkTreePath* _tmp5_;
 			GtkTreePath* path;
-			_tmp5 = NULL;
-			path = (_tmp5 = (const GtkTreePath*) path_it->data, (_tmp5 == NULL) ? NULL : gtk_tree_path_copy (_tmp5));
+			_tmp5_ = NULL;
+			path = (_tmp5_ = (const GtkTreePath*) path_it->data, (_tmp5_ == NULL) ? NULL : gtk_tree_path_copy (_tmp5_));
 			{
 				if (gtk_tree_model_get_iter (model, &iter, path)) {
 					gtk_tree_model_get (model, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_FILENAME, &filename, -1, -1);
@@ -326,7 +326,7 @@ void xfmpc_dbbrowser_search (XfmpcDbbrowser* self, const char* query) {
 	gboolean no_result_buf;
 	gboolean no_result;
 	GdkColor color = {0};
-	gboolean _tmp0;
+	gboolean _tmp0_;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (query != NULL);
 	filename = g_strdup ("");
@@ -358,24 +358,24 @@ void xfmpc_dbbrowser_search (XfmpcDbbrowser* self, const char* query) {
 			no_result = FALSE;
 		}
 	}
-	_tmp0 = FALSE;
+	_tmp0_ = FALSE;
 	if (no_result == no_result_buf) {
-		_tmp0 = no_result;
+		_tmp0_ = no_result;
 	} else {
-		_tmp0 = FALSE;
+		_tmp0_ = FALSE;
 	}
-	if (_tmp0) {
+	if (_tmp0_) {
 		gtk_widget_modify_bg ((GtkWidget*) self->priv->search_entry, GTK_STATE_NORMAL, &color);
 		gtk_widget_modify_bg ((GtkWidget*) self->priv->search_entry, GTK_STATE_SELECTED, &color);
 	} else {
-		gboolean _tmp1;
-		_tmp1 = FALSE;
+		gboolean _tmp1_;
+		_tmp1_ = FALSE;
 		if (no_result == no_result_buf) {
-			_tmp1 = !no_result;
+			_tmp1_ = !no_result;
 		} else {
-			_tmp1 = FALSE;
+			_tmp1_ = FALSE;
 		}
-		if (_tmp1) {
+		if (_tmp1_) {
 			gtk_widget_modify_bg ((GtkWidget*) self->priv->search_entry, GTK_STATE_NORMAL, NULL);
 			gtk_widget_modify_bg ((GtkWidget*) self->priv->search_entry, GTK_STATE_SELECTED, NULL);
 		}
@@ -401,23 +401,23 @@ static void xfmpc_dbbrowser_clear (XfmpcDbbrowser* self) {
 
 
 static void xfmpc_dbbrowser_menu_popup (XfmpcDbbrowser* self) {
-	GtkTreeSelection* _tmp0;
+	GtkTreeSelection* _tmp0_;
 	GtkTreeSelection* selection;
 	gint count;
 	g_return_if_fail (self != NULL);
-	_tmp0 = NULL;
-	selection = (_tmp0 = gtk_tree_view_get_selection (self->priv->treeview), (_tmp0 == NULL) ? NULL : g_object_ref (_tmp0));
+	_tmp0_ = NULL;
+	selection = (_tmp0_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
 	count = gtk_tree_selection_count_selected_rows (selection);
 	if (self->priv->is_searching) {
-		gboolean _tmp1;
+		gboolean _tmp1_;
 		gtk_widget_show ((GtkWidget*) self->priv->mi_browse);
-		_tmp1 = FALSE;
+		_tmp1_ = FALSE;
 		if (count == 1) {
-			_tmp1 = TRUE;
+			_tmp1_ = TRUE;
 		} else {
-			_tmp1 = FALSE;
+			_tmp1_ = FALSE;
 		}
-		gtk_widget_set_sensitive ((GtkWidget*) self->priv->mi_browse, _tmp1);
+		gtk_widget_set_sensitive ((GtkWidget*) self->priv->mi_browse, _tmp1_);
 	} else {
 		gtk_widget_hide ((GtkWidget*) self->priv->mi_browse);
 	}
@@ -430,15 +430,15 @@ static void xfmpc_dbbrowser_menu_popup (XfmpcDbbrowser* self) {
  * Signal callbacks
  */
 static void xfmpc_dbbrowser_cb_playlist_changed (XfmpcDbbrowser* self) {
-	GtkTreeModel* _tmp0;
+	GtkTreeModel* _tmp0_;
 	GtkTreeModel* model;
 	GtkTreeIter iter = {0};
 	char* filename;
 	gboolean is_bold;
 	gboolean is_dir;
 	g_return_if_fail (self != NULL);
-	_tmp0 = NULL;
-	model = (_tmp0 = (GtkTreeModel*) self->priv->store, (_tmp0 == NULL) ? NULL : g_object_ref (_tmp0));
+	_tmp0_ = NULL;
+	model = (_tmp0_ = (GtkTreeModel*) self->priv->store, (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
 	filename = g_strdup ("");
 	is_bold = FALSE;
 	is_dir = FALSE;
@@ -448,16 +448,16 @@ static void xfmpc_dbbrowser_cb_playlist_changed (XfmpcDbbrowser* self) {
 		return;
 	}
 	do {
-		PangoWeight _tmp1;
+		PangoWeight _tmp1_;
 		gtk_tree_model_get (model, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_FILENAME, &filename, XFMPC_DBBROWSER_COLUMNS_COLUMN_IS_DIR, &is_dir, -1, -1);
 		is_bold = xfmpc_mpdclient_playlist_has_filename (self->priv->mpdclient, filename, is_dir);
-		_tmp1 = 0;
+		_tmp1_ = 0;
 		if (is_bold) {
-			_tmp1 = PANGO_WEIGHT_BOLD;
+			_tmp1_ = PANGO_WEIGHT_BOLD;
 		} else {
-			_tmp1 = PANGO_WEIGHT_NORMAL;
+			_tmp1_ = PANGO_WEIGHT_NORMAL;
 		}
-		gtk_list_store_set (self->priv->store, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_WEIGHT, _tmp1, -1, -1);
+		gtk_list_store_set (self->priv->store, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_WEIGHT, _tmp1_, -1, -1);
 	} while (gtk_tree_model_iter_next (model, &iter));
 	(model == NULL) ? NULL : (model = (g_object_unref (model), NULL));
 	filename = (g_free (filename), NULL);
@@ -479,15 +479,15 @@ static gboolean xfmpc_dbbrowser_cb_key_pressed (XfmpcDbbrowser* self, const GdkE
 	switch ((*event).keyval) {
 		case 0xff0d:
 		{
-			GtkTreeSelection* _tmp1;
+			GtkTreeSelection* _tmp1_;
 			GtkTreeSelection* selection;
-			_tmp1 = NULL;
-			selection = (_tmp1 = gtk_tree_view_get_selection (self->priv->treeview), (_tmp1 == NULL) ? NULL : g_object_ref (_tmp1));
+			_tmp1_ = NULL;
+			selection = (_tmp1_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp1_ == NULL) ? NULL : g_object_ref (_tmp1_));
 			if (gtk_tree_selection_count_selected_rows (selection) > 1) {
 				xfmpc_dbbrowser_add_selected_rows (self);
 			} else {
-				gboolean _tmp2;
-				return (_tmp2 = FALSE, (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp2);
+				gboolean _tmp2_;
+				return (_tmp2_ = FALSE, (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp2_);
 			}
 			(selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL));
 			break;
@@ -511,48 +511,48 @@ static gboolean xfmpc_dbbrowser_cb_key_pressed (XfmpcDbbrowser* self, const GdkE
 
 
 static gboolean xfmpc_dbbrowser_cb_button_released (XfmpcDbbrowser* self, const GdkEventButton* event) {
-	gboolean _tmp0;
+	gboolean _tmp0_;
 	GtkTreePath* path;
-	GtkTreeSelection* _tmp2;
+	GtkTreeSelection* _tmp2_;
 	GtkTreeSelection* selection;
-	GtkTreePath* _tmp6;
-	gboolean _tmp5;
-	GtkTreePath* _tmp4;
-	gboolean _tmp7;
+	GtkTreePath* _tmp6_;
+	gboolean _tmp5_;
+	GtkTreePath* _tmp4_;
+	gboolean _tmp7_;
 	g_return_val_if_fail (self != NULL, FALSE);
-	_tmp0 = FALSE;
+	_tmp0_ = FALSE;
 	if ((*event).type != GDK_BUTTON_PRESS) {
-		_tmp0 = TRUE;
+		_tmp0_ = TRUE;
 	} else {
-		_tmp0 = (*event).button != 3;
+		_tmp0_ = (*event).button != 3;
 	}
-	if (_tmp0) {
+	if (_tmp0_) {
 		return FALSE;
 	}
 	path = NULL;
-	_tmp2 = NULL;
-	selection = (_tmp2 = gtk_tree_view_get_selection (self->priv->treeview), (_tmp2 == NULL) ? NULL : g_object_ref (_tmp2));
+	_tmp2_ = NULL;
+	selection = (_tmp2_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp2_ == NULL) ? NULL : g_object_ref (_tmp2_));
 	if (gtk_tree_selection_count_selected_rows (selection) < 1) {
-		gboolean _tmp3;
-		return (_tmp3 = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp3);
+		gboolean _tmp3_;
+		return (_tmp3_ = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp3_);
 	}
-	_tmp6 = NULL;
-	_tmp4 = NULL;
-	if ((_tmp5 = gtk_tree_view_get_path_at_pos (self->priv->treeview, (gint) (*event).x, (gint) (*event).y, &_tmp4, NULL, NULL, NULL), path = (_tmp6 = _tmp4, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp6), _tmp5)) {
+	_tmp6_ = NULL;
+	_tmp4_ = NULL;
+	if ((_tmp5_ = gtk_tree_view_get_path_at_pos (self->priv->treeview, (gint) (*event).x, (gint) (*event).y, &_tmp4_, NULL, NULL, NULL), path = (_tmp6_ = _tmp4_, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp6_), _tmp5_)) {
 		if (!gtk_tree_selection_path_is_selected (selection, path)) {
 			gtk_tree_selection_unselect_all (selection);
 			gtk_tree_selection_select_path (selection, path);
 		}
 	}
 	xfmpc_dbbrowser_menu_popup (self);
-	return (_tmp7 = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp7);
+	return (_tmp7_ = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp7_);
 }
 
 
 static void xfmpc_dbbrowser_cb_row_activated (XfmpcDbbrowser* self, const GtkTreePath* path, GtkTreeViewColumn* column) {
-	const GtkTreePath* _tmp0;
+	const GtkTreePath* _tmp0_;
 	GtkTreePath* ppath;
-	GtkTreeModel* _tmp1;
+	GtkTreeModel* _tmp1_;
 	GtkTreeModel* model;
 	GtkTreeIter iter = {0};
 	char* filename;
@@ -560,10 +560,10 @@ static void xfmpc_dbbrowser_cb_row_activated (XfmpcDbbrowser* self, const GtkTre
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (path != NULL);
 	g_return_if_fail (column != NULL);
-	_tmp0 = NULL;
-	ppath = (_tmp0 = path, (_tmp0 == NULL) ? NULL : gtk_tree_path_copy (_tmp0));
-	_tmp1 = NULL;
-	model = (_tmp1 = (GtkTreeModel*) self->priv->store, (_tmp1 == NULL) ? NULL : g_object_ref (_tmp1));
+	_tmp0_ = NULL;
+	ppath = (_tmp0_ = path, (_tmp0_ == NULL) ? NULL : gtk_tree_path_copy (_tmp0_));
+	_tmp1_ = NULL;
+	model = (_tmp1_ = (GtkTreeModel*) self->priv->store, (_tmp1_ == NULL) ? NULL : g_object_ref (_tmp1_));
 	filename = g_strdup ("");
 	is_dir = FALSE;
 	if (!gtk_tree_model_get_iter (model, &iter, ppath)) {
@@ -594,35 +594,35 @@ static void xfmpc_dbbrowser_cb_replace_with_selected_rows (XfmpcDbbrowser* self)
 
 
 static void xfmpc_dbbrowser_cb_browse (XfmpcDbbrowser* self) {
-	GtkTreeModel* _tmp0;
+	GtkTreeModel* _tmp0_;
 	GtkTreeModel* model;
 	GtkTreeIter iter = {0};
-	GtkTreeSelection* _tmp1;
+	GtkTreeSelection* _tmp1_;
 	GtkTreeSelection* selection;
-	GtkTreeModel* _tmp5;
-	GtkTreeModel* _tmp4;
-	GList* _tmp3;
-	GtkTreeModel* _tmp2;
+	GtkTreeModel* _tmp5_;
+	GtkTreeModel* _tmp4_;
+	GList* _tmp3_;
+	GtkTreeModel* _tmp2_;
 	GList* list;
-	const GtkTreePath* _tmp6;
+	const GtkTreePath* _tmp6_;
 	GtkTreePath* path;
 	g_return_if_fail (self != NULL);
-	_tmp0 = NULL;
-	model = (_tmp0 = (GtkTreeModel*) self->priv->store, (_tmp0 == NULL) ? NULL : g_object_ref (_tmp0));
-	_tmp1 = NULL;
-	selection = (_tmp1 = gtk_tree_view_get_selection (self->priv->treeview), (_tmp1 == NULL) ? NULL : g_object_ref (_tmp1));
+	_tmp0_ = NULL;
+	model = (_tmp0_ = (GtkTreeModel*) self->priv->store, (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
+	_tmp1_ = NULL;
+	selection = (_tmp1_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp1_ == NULL) ? NULL : g_object_ref (_tmp1_));
 	if (gtk_tree_selection_count_selected_rows (selection) > 1) {
 		(model == NULL) ? NULL : (model = (g_object_unref (model), NULL));
 		(selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL));
 		return;
 	}
-	_tmp5 = NULL;
-	_tmp4 = NULL;
-	_tmp3 = NULL;
-	_tmp2 = NULL;
-	list = (_tmp3 = gtk_tree_selection_get_selected_rows (selection, &_tmp2), model = (_tmp4 = (_tmp5 = _tmp2, (_tmp5 == NULL) ? NULL : g_object_ref (_tmp5)), (model == NULL) ? NULL : (model = (g_object_unref (model), NULL)), _tmp4), _tmp3);
-	_tmp6 = NULL;
-	path = (_tmp6 = (const GtkTreePath*) g_list_nth_data (list, (guint) 0), (_tmp6 == NULL) ? NULL : gtk_tree_path_copy (_tmp6));
+	_tmp5_ = NULL;
+	_tmp4_ = NULL;
+	_tmp3_ = NULL;
+	_tmp2_ = NULL;
+	list = (_tmp3_ = gtk_tree_selection_get_selected_rows (selection, &_tmp2_), model = (_tmp4_ = (_tmp5_ = _tmp2_, (_tmp5_ == NULL) ? NULL : g_object_ref (_tmp5_)), (model == NULL) ? NULL : (model = (g_object_unref (model), NULL)), _tmp4_), _tmp3_);
+	_tmp6_ = NULL;
+	path = (_tmp6_ = (const GtkTreePath*) g_list_nth_data (list, (guint) 0), (_tmp6_ == NULL) ? NULL : gtk_tree_path_copy (_tmp6_));
 	if (gtk_tree_model_get_iter (model, &iter, path)) {
 		char* filename;
 		char* dir;
@@ -642,11 +642,11 @@ static void xfmpc_dbbrowser_cb_browse (XfmpcDbbrowser* self) {
 
 
 static void xfmpc_dbbrowser_cb_search_entry_activated (XfmpcDbbrowser* self) {
-	const char* _tmp0;
+	const char* _tmp0_;
 	char* entry_text;
 	g_return_if_fail (self != NULL);
-	_tmp0 = NULL;
-	entry_text = (_tmp0 = gtk_entry_get_text (self->priv->search_entry), (_tmp0 == NULL) ? NULL : g_strdup (_tmp0));
+	_tmp0_ = NULL;
+	entry_text = (_tmp0_ = gtk_entry_get_text (self->priv->search_entry), (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_));
 	if (_vala_strcmp0 (entry_text, "") == 0) {
 		self->priv->is_searching = FALSE;
 		xfmpc_dbbrowser_reload (self);
@@ -787,33 +787,33 @@ static GObject * xfmpc_dbbrowser_constructor (GType type, guint n_construct_prop
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
 	self = XFMPC_DBBROWSER (obj);
 	{
-		char* _tmp1;
-		const char* _tmp0;
-		char* _tmp2;
-		GtkListStore* _tmp3;
-		GtkTreeView* _tmp4;
+		char* _tmp1_;
+		const char* _tmp0_;
+		char* _tmp2_;
+		GtkListStore* _tmp3_;
+		GtkTreeView* _tmp4_;
 		GtkCellRendererPixbuf* cell_pixbuf;
 		GtkCellRendererText* cell_text;
 		GtkScrolledWindow* scrolled;
-		GtkMenu* _tmp5;
+		GtkMenu* _tmp5_;
 		GtkImageMenuItem* mi;
-		GtkImageMenuItem* _tmp6;
+		GtkImageMenuItem* _tmp6_;
 		GtkImage* image;
-		GtkImageMenuItem* _tmp7;
-		GtkImage* _tmp8;
-		GtkEntry* _tmp9;
+		GtkImageMenuItem* _tmp7_;
+		GtkImage* _tmp8_;
+		GtkEntry* _tmp9_;
 		xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
 		self->priv->mpdclient = xfmpc_mpdclient_get ();
 		self->priv->preferences = xfmpc_preferences_get ();
-		_tmp1 = NULL;
-		_tmp0 = NULL;
-		self->priv->wdir = (_tmp1 = (_tmp0 = xfmpc_preferences_get_dbbrowser_last_path (self->priv->preferences), (_tmp0 == NULL) ? NULL : g_strdup (_tmp0)), self->priv->wdir = (g_free (self->priv->wdir), NULL), _tmp1);
-		_tmp2 = NULL;
-		self->priv->last_wdir = (_tmp2 = g_strndup (self->priv->wdir, (gsize) g_utf8_strlen (self->priv->wdir, -1)), self->priv->last_wdir = (g_free (self->priv->last_wdir), NULL), _tmp2);
-		_tmp3 = NULL;
-		self->priv->store = (_tmp3 = gtk_list_store_new ((gint) XFMPC_DBBROWSER_COLUMNS_N_COLUMNS, G_TYPE_INT, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_INT, NULL), (self->priv->store == NULL) ? NULL : (self->priv->store = (g_object_unref (self->priv->store), NULL)), _tmp3);
-		_tmp4 = NULL;
-		self->priv->treeview = (_tmp4 = g_object_ref_sink ((GtkTreeView*) gtk_tree_view_new ()), (self->priv->treeview == NULL) ? NULL : (self->priv->treeview = (g_object_unref (self->priv->treeview), NULL)), _tmp4);
+		_tmp1_ = NULL;
+		_tmp0_ = NULL;
+		self->priv->wdir = (_tmp1_ = (_tmp0_ = xfmpc_preferences_get_dbbrowser_last_path (self->priv->preferences), (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_)), self->priv->wdir = (g_free (self->priv->wdir), NULL), _tmp1_);
+		_tmp2_ = NULL;
+		self->priv->last_wdir = (_tmp2_ = g_strndup (self->priv->wdir, (gsize) g_utf8_strlen (self->priv->wdir, -1)), self->priv->last_wdir = (g_free (self->priv->last_wdir), NULL), _tmp2_);
+		_tmp3_ = NULL;
+		self->priv->store = (_tmp3_ = gtk_list_store_new ((gint) XFMPC_DBBROWSER_COLUMNS_N_COLUMNS, G_TYPE_INT, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_INT, NULL), (self->priv->store == NULL) ? NULL : (self->priv->store = (g_object_unref (self->priv->store), NULL)), _tmp3_);
+		_tmp4_ = NULL;
+		self->priv->treeview = (_tmp4_ = g_object_ref_sink ((GtkTreeView*) gtk_tree_view_new ()), (self->priv->treeview == NULL) ? NULL : (self->priv->treeview = (g_object_unref (self->priv->treeview), NULL)), _tmp4_);
 		gtk_tree_selection_set_mode (gtk_tree_view_get_selection (self->priv->treeview), GTK_SELECTION_MULTIPLE);
 		gtk_tree_view_set_rubber_banding (self->priv->treeview, TRUE);
 		gtk_tree_view_set_enable_search (self->priv->treeview, TRUE);
@@ -828,27 +828,27 @@ static GObject * xfmpc_dbbrowser_constructor (GType type, guint n_construct_prop
 		gtk_tree_view_insert_column_with_attributes (self->priv->treeview, -1, "Filename", (GtkCellRenderer*) cell_text, "text", XFMPC_DBBROWSER_COLUMNS_COLUMN_BASENAME, "weight", XFMPC_DBBROWSER_COLUMNS_COLUMN_WEIGHT, NULL, NULL);
 		scrolled = g_object_ref_sink ((GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL));
 		gtk_scrolled_window_set_policy (scrolled, GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
-		_tmp5 = NULL;
-		self->priv->menu = (_tmp5 = g_object_ref_sink ((GtkMenu*) gtk_menu_new ()), (self->priv->menu == NULL) ? NULL : (self->priv->menu = (g_object_unref (self->priv->menu), NULL)), _tmp5);
+		_tmp5_ = NULL;
+		self->priv->menu = (_tmp5_ = g_object_ref_sink ((GtkMenu*) gtk_menu_new ()), (self->priv->menu == NULL) ? NULL : (self->priv->menu = (g_object_unref (self->priv->menu), NULL)), _tmp5_);
 		mi = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_from_stock (GTK_STOCK_ADD, NULL));
 		gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) mi));
 		g_signal_connect_object ((GtkMenuItem*) mi, "activate", (GCallback) _xfmpc_dbbrowser_add_selected_rows_gtk_menu_item_activate, self, 0);
-		_tmp6 = NULL;
-		mi = (_tmp6 = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_with_mnemonic (_ ("Replace"))), (mi == NULL) ? NULL : (mi = (g_object_unref (mi), NULL)), _tmp6);
+		_tmp6_ = NULL;
+		mi = (_tmp6_ = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_with_mnemonic (_ ("Replace"))), (mi == NULL) ? NULL : (mi = (g_object_unref (mi), NULL)), _tmp6_);
 		image = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_CUT, GTK_ICON_SIZE_MENU));
 		gtk_image_menu_item_set_image (mi, (GtkWidget*) image);
 		gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) mi));
 		g_signal_connect_object ((GtkMenuItem*) mi, "activate", (GCallback) _xfmpc_dbbrowser_cb_replace_with_selected_rows_gtk_menu_item_activate, self, 0);
-		_tmp7 = NULL;
-		self->priv->mi_browse = (_tmp7 = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_with_mnemonic (_ ("Browse"))), (self->priv->mi_browse == NULL) ? NULL : (self->priv->mi_browse = (g_object_unref (self->priv->mi_browse), NULL)), _tmp7);
-		_tmp8 = NULL;
-		image = (_tmp8 = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU)), (image == NULL) ? NULL : (image = (g_object_unref (image), NULL)), _tmp8);
+		_tmp7_ = NULL;
+		self->priv->mi_browse = (_tmp7_ = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_with_mnemonic (_ ("Browse"))), (self->priv->mi_browse == NULL) ? NULL : (self->priv->mi_browse = (g_object_unref (self->priv->mi_browse), NULL)), _tmp7_);
+		_tmp8_ = NULL;
+		image = (_tmp8_ = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU)), (image == NULL) ? NULL : (image = (g_object_unref (image), NULL)), _tmp8_);
 		gtk_image_menu_item_set_image (self->priv->mi_browse, (GtkWidget*) image);
 		gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) self->priv->mi_browse));
 		g_signal_connect_object ((GtkMenuItem*) self->priv->mi_browse, "activate", (GCallback) _xfmpc_dbbrowser_cb_browse_gtk_menu_item_activate, self, 0);
 		gtk_widget_show_all ((GtkWidget*) self->priv->menu);
-		_tmp9 = NULL;
-		self->priv->search_entry = (_tmp9 = g_object_ref_sink ((GtkEntry*) gtk_entry_new ()), (self->priv->search_entry == NULL) ? NULL : (self->priv->search_entry = (g_object_unref (self->priv->search_entry), NULL)), _tmp9);
+		_tmp9_ = NULL;
+		self->priv->search_entry = (_tmp9_ = g_object_ref_sink ((GtkEntry*) gtk_entry_new ()), (self->priv->search_entry == NULL) ? NULL : (self->priv->search_entry = (g_object_unref (self->priv->search_entry), NULL)), _tmp9_);
 		gtk_container_add ((GtkContainer*) scrolled, (GtkWidget*) self->priv->treeview);
 		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) scrolled, TRUE, TRUE, (guint) 0);
 		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->search_entry, FALSE, FALSE, (guint) 0);

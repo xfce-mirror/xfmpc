@@ -190,34 +190,34 @@ static GType xfmpc_playlist_columns_get_type (void) {
 static gboolean xfmpc_playlist_visible_func_filter_tree (GtkTreeModel* model, GtkTreeIter* iter) {
 	char* song;
 	char* search;
-	gboolean result;
-	char* _tmp2;
-	const char* _tmp1;
-	char* _tmp3;
-	gboolean _tmp5;
+	gboolean _result_;
+	char* _tmp2_;
+	const char* _tmp1_;
+	char* _tmp3_;
+	gboolean _tmp5_;
 	g_return_val_if_fail (model != NULL, FALSE);
 	song = g_strdup ("");
 	search = g_strdup ("");
-	result = TRUE;
+	_result_ = TRUE;
 	gtk_tree_model_get (model, &(*iter), XFMPC_PLAYLIST_COLUMNS_COLUMN_SONG, &song, -1, -1);
 	if (_vala_strcmp0 (song, "") == 0) {
-		gboolean _tmp0;
-		return (_tmp0 = TRUE, song = (g_free (song), NULL), search = (g_free (search), NULL), _tmp0);
+		gboolean _tmp0_;
+		return (_tmp0_ = TRUE, song = (g_free (song), NULL), search = (g_free (search), NULL), _tmp0_);
 	}
-	_tmp2 = NULL;
-	_tmp1 = NULL;
-	search = (_tmp2 = (_tmp1 = gtk_entry_get_text (xfmpc_playlist_filter_entry), (_tmp1 == NULL) ? NULL : g_strdup (_tmp1)), search = (g_free (search), NULL), _tmp2);
-	_tmp3 = NULL;
-	search = (_tmp3 = g_utf8_casefold (search, (glong) (-1)), search = (g_free (search), NULL), _tmp3);
+	_tmp2_ = NULL;
+	_tmp1_ = NULL;
+	search = (_tmp2_ = (_tmp1_ = gtk_entry_get_text (xfmpc_playlist_filter_entry), (_tmp1_ == NULL) ? NULL : g_strdup (_tmp1_)), search = (g_free (search), NULL), _tmp2_);
+	_tmp3_ = NULL;
+	search = (_tmp3_ = g_utf8_casefold (search, (glong) (-1)), search = (g_free (search), NULL), _tmp3_);
 	if (_vala_strcmp0 (search, "") != 0) {
-		char* _tmp4;
-		_tmp4 = NULL;
-		song = (_tmp4 = g_utf8_casefold (song, (glong) (-1)), song = (g_free (song), NULL), _tmp4);
+		char* _tmp4_;
+		_tmp4_ = NULL;
+		song = (_tmp4_ = g_utf8_casefold (song, (glong) (-1)), song = (g_free (song), NULL), _tmp4_);
 		if (strstr (song, search) == NULL) {
-			result = FALSE;
+			_result_ = FALSE;
 		}
 	}
-	return (_tmp5 = result, song = (g_free (song), NULL), search = (g_free (search), NULL), _tmp5);
+	return (_tmp5_ = _result_, song = (g_free (song), NULL), search = (g_free (search), NULL), _tmp5_);
 }
 
 
@@ -233,53 +233,53 @@ static void _g_list_free_gtk_tree_path_free (GList* self) {
 static void xfmpc_playlist_cb_browse_selection (XfmpcPlaylist* self) {
 	XfmpcDbbrowser* dbbrowser;
 	XfmpcExtendedInterface* extended_interface;
-	GtkTreeSelection* _tmp0;
+	GtkTreeSelection* _tmp0_;
 	GtkTreeSelection* selection;
-	GtkListStore* _tmp1;
+	GtkListStore* _tmp1_;
 	GtkListStore* model;
-	GtkListStore* _tmp5;
-	GtkListStore* _tmp4;
-	GList* _tmp3;
-	GtkTreeModel* _tmp2;
+	GtkListStore* _tmp5_;
+	GtkListStore* _tmp4_;
+	GList* _tmp3_;
+	GtkTreeModel* _tmp2_;
 	GList* list;
 	GtkTreeIter iter = {0};
-	const GtkTreePath* _tmp6;
+	const GtkTreePath* _tmp6_;
 	GtkTreePath* path;
 	g_return_if_fail (self != NULL);
 	dbbrowser = NULL;
 	extended_interface = NULL;
 	dbbrowser = XFMPC_DBBROWSER (g_object_get_data ((GObject*) self, "XfmpcDbbrowser"));
 	extended_interface = XFMPC_EXTENDED_INTERFACE (g_object_get_data ((GObject*) self, "XfmpcExtendedInterface"));
-	_tmp0 = NULL;
-	selection = (_tmp0 = gtk_tree_view_get_selection (self->priv->treeview), (_tmp0 == NULL) ? NULL : g_object_ref (_tmp0));
+	_tmp0_ = NULL;
+	selection = (_tmp0_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
 	if (gtk_tree_selection_count_selected_rows (selection) > 1) {
 		(selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL));
 		return;
 	}
-	_tmp1 = NULL;
-	model = (_tmp1 = self->priv->store, (_tmp1 == NULL) ? NULL : g_object_ref (_tmp1));
-	_tmp5 = NULL;
-	_tmp4 = NULL;
-	_tmp3 = NULL;
-	_tmp2 = NULL;
-	list = (_tmp3 = gtk_tree_selection_get_selected_rows (selection, &_tmp2), model = (_tmp4 = (_tmp5 = (GtkListStore*) _tmp2, (_tmp5 == NULL) ? NULL : g_object_ref (_tmp5)), (model == NULL) ? NULL : (model = (g_object_unref (model), NULL)), _tmp4), _tmp3);
+	_tmp1_ = NULL;
+	model = (_tmp1_ = self->priv->store, (_tmp1_ == NULL) ? NULL : g_object_ref (_tmp1_));
+	_tmp5_ = NULL;
+	_tmp4_ = NULL;
+	_tmp3_ = NULL;
+	_tmp2_ = NULL;
+	list = (_tmp3_ = gtk_tree_selection_get_selected_rows (selection, &_tmp2_), model = (_tmp4_ = (_tmp5_ = (GtkListStore*) _tmp2_, (_tmp5_ == NULL) ? NULL : g_object_ref (_tmp5_)), (model == NULL) ? NULL : (model = (g_object_unref (model), NULL)), _tmp4_), _tmp3_);
 	if (g_list_length (list) == 0) {
 		(selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL));
 		(model == NULL) ? NULL : (model = (g_object_unref (model), NULL));
 		(list == NULL) ? NULL : (list = (_g_list_free_gtk_tree_path_free (list), NULL));
 		return;
 	}
-	_tmp6 = NULL;
-	path = (_tmp6 = (const GtkTreePath*) g_list_nth_data (list, (guint) 0), (_tmp6 == NULL) ? NULL : gtk_tree_path_copy (_tmp6));
+	_tmp6_ = NULL;
+	path = (_tmp6_ = (const GtkTreePath*) g_list_nth_data (list, (guint) 0), (_tmp6_ == NULL) ? NULL : gtk_tree_path_copy (_tmp6_));
 	if (gtk_tree_model_get_iter ((GtkTreeModel*) self->priv->store, &iter, path)) {
 		char* filename;
 		char* dir;
-		char* _tmp7;
+		char* _tmp7_;
 		filename = g_strdup ("");
 		dir = NULL;
 		gtk_tree_model_get ((GtkTreeModel*) self->priv->store, &iter, XFMPC_PLAYLIST_COLUMNS_COLUMN_FILENAME, &filename, -1, -1);
-		_tmp7 = NULL;
-		dir = (_tmp7 = g_path_get_dirname (filename), dir = (g_free (dir), NULL), _tmp7);
+		_tmp7_ = NULL;
+		dir = (_tmp7_ = g_path_get_dirname (filename), dir = (g_free (dir), NULL), _tmp7_);
 		xfmpc_dbbrowser_set_wdir (dbbrowser, dir);
 		xfmpc_dbbrowser_reload (dbbrowser);
 		xfmpc_extended_interface_set_active (extended_interface, XFMPC_EXTENDED_INTERFACE_EXTENDED_INTERFACE_WIDGET_DBBROWSER);
@@ -296,40 +296,40 @@ static void xfmpc_playlist_cb_browse_selection (XfmpcPlaylist* self) {
 static void xfmpc_playlist_cb_info_selection (XfmpcPlaylist* self) {
 	GtkTreeIter iter = {0};
 	gint id;
-	GtkTreeSelection* _tmp0;
+	GtkTreeSelection* _tmp0_;
 	GtkTreeSelection* selection;
-	GtkListStore* _tmp1;
+	GtkListStore* _tmp1_;
 	GtkListStore* model;
-	GtkListStore* _tmp5;
-	GtkListStore* _tmp4;
-	GList* _tmp3;
-	GtkTreeModel* _tmp2;
+	GtkListStore* _tmp5_;
+	GtkListStore* _tmp4_;
+	GList* _tmp3_;
+	GtkTreeModel* _tmp2_;
 	GList* list;
-	const GtkTreePath* _tmp6;
+	const GtkTreePath* _tmp6_;
 	GtkTreePath* path;
 	g_return_if_fail (self != NULL);
 	id = 0;
-	_tmp0 = NULL;
-	selection = (_tmp0 = gtk_tree_view_get_selection (self->priv->treeview), (_tmp0 == NULL) ? NULL : g_object_ref (_tmp0));
+	_tmp0_ = NULL;
+	selection = (_tmp0_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
 	if (gtk_tree_selection_count_selected_rows (selection) > 1) {
 		(selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL));
 		return;
 	}
-	_tmp1 = NULL;
-	model = (_tmp1 = self->priv->store, (_tmp1 == NULL) ? NULL : g_object_ref (_tmp1));
-	_tmp5 = NULL;
-	_tmp4 = NULL;
-	_tmp3 = NULL;
-	_tmp2 = NULL;
-	list = (_tmp3 = gtk_tree_selection_get_selected_rows (selection, &_tmp2), model = (_tmp4 = (_tmp5 = (GtkListStore*) _tmp2, (_tmp5 == NULL) ? NULL : g_object_ref (_tmp5)), (model == NULL) ? NULL : (model = (g_object_unref (model), NULL)), _tmp4), _tmp3);
+	_tmp1_ = NULL;
+	model = (_tmp1_ = self->priv->store, (_tmp1_ == NULL) ? NULL : g_object_ref (_tmp1_));
+	_tmp5_ = NULL;
+	_tmp4_ = NULL;
+	_tmp3_ = NULL;
+	_tmp2_ = NULL;
+	list = (_tmp3_ = gtk_tree_selection_get_selected_rows (selection, &_tmp2_), model = (_tmp4_ = (_tmp5_ = (GtkListStore*) _tmp2_, (_tmp5_ == NULL) ? NULL : g_object_ref (_tmp5_)), (model == NULL) ? NULL : (model = (g_object_unref (model), NULL)), _tmp4_), _tmp3_);
 	if (g_list_length (list) == 0) {
 		(selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL));
 		(model == NULL) ? NULL : (model = (g_object_unref (model), NULL));
 		(list == NULL) ? NULL : (list = (_g_list_free_gtk_tree_path_free (list), NULL));
 		return;
 	}
-	_tmp6 = NULL;
-	path = (_tmp6 = (const GtkTreePath*) g_list_nth_data (list, (guint) 0), (_tmp6 == NULL) ? NULL : gtk_tree_path_copy (_tmp6));
+	_tmp6_ = NULL;
+	path = (_tmp6_ = (const GtkTreePath*) g_list_nth_data (list, (guint) 0), (_tmp6_ == NULL) ? NULL : gtk_tree_path_copy (_tmp6_));
 	if (gtk_tree_model_get_iter ((GtkTreeModel*) self->priv->store, &iter, path)) {
 		XfmpcSongDialog* dialog;
 		gtk_tree_model_get ((GtkTreeModel*) self->priv->store, &iter, XFMPC_PLAYLIST_COLUMNS_COLUMN_ID, &id, -1, -1);
@@ -352,16 +352,16 @@ static gboolean xfmpc_playlist_cb_popup_menu (XfmpcPlaylist* self) {
 
 
 static void xfmpc_playlist_cb_song_changed (XfmpcPlaylist* self) {
-	gboolean _tmp0;
+	gboolean _tmp0_;
 	g_return_if_fail (self != NULL);
 	xfmpc_playlist_refresh_current_song (self);
-	_tmp0 = FALSE;
+	_tmp0_ = FALSE;
 	if (_vala_strcmp0 (gtk_entry_get_text (xfmpc_playlist_filter_entry), "") == 0) {
-		_tmp0 = self->priv->autocenter;
+		_tmp0_ = self->priv->autocenter;
 	} else {
-		_tmp0 = FALSE;
+		_tmp0_ = FALSE;
 	}
-	if (_tmp0) {
+	if (_tmp0_) {
 		xfmpc_playlist_select_row (self, self->priv->current);
 	}
 }
@@ -373,7 +373,7 @@ static void xfmpc_playlist_cb_playlist_changed (XfmpcPlaylist* self) {
 	char* length;
 	gint id;
 	gint pos;
-	gboolean _tmp0;
+	gboolean _tmp0_;
 	g_return_if_fail (self != NULL);
 	filename = g_strdup ("");
 	song = g_strdup ("");
@@ -386,13 +386,13 @@ static void xfmpc_playlist_cb_playlist_changed (XfmpcPlaylist* self) {
 		xfmpc_playlist_append (self, id, pos, filename, song, length);
 	}
 	xfmpc_playlist_refresh_current_song (self);
-	_tmp0 = FALSE;
+	_tmp0_ = FALSE;
 	if (_vala_strcmp0 (gtk_entry_get_text (xfmpc_playlist_filter_entry), "") != 0) {
-		_tmp0 = self->priv->autocenter;
+		_tmp0_ = self->priv->autocenter;
 	} else {
-		_tmp0 = FALSE;
+		_tmp0_ = FALSE;
 	}
-	if (_tmp0) {
+	if (_tmp0_) {
 		xfmpc_playlist_select_row (self, self->priv->current);
 	}
 	filename = (g_free (filename), NULL);
@@ -403,14 +403,14 @@ static void xfmpc_playlist_cb_playlist_changed (XfmpcPlaylist* self) {
 
 static void xfmpc_playlist_cb_row_activated (XfmpcPlaylist* self, const GtkTreePath* path, GtkTreeViewColumn* column) {
 	GtkTreeIter iter = {0};
-	const GtkTreePath* _tmp0;
+	const GtkTreePath* _tmp0_;
 	GtkTreePath* new_path;
 	gint id;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (path != NULL);
 	g_return_if_fail (column != NULL);
-	_tmp0 = NULL;
-	new_path = (_tmp0 = path, (_tmp0 == NULL) ? NULL : gtk_tree_path_copy (_tmp0));
+	_tmp0_ = NULL;
+	new_path = (_tmp0_ = path, (_tmp0_ == NULL) ? NULL : gtk_tree_path_copy (_tmp0_));
 	id = 0;
 	if (!gtk_tree_model_get_iter ((GtkTreeModel*) self->priv->filter, &iter, new_path)) {
 		(new_path == NULL) ? NULL : (new_path = (gtk_tree_path_free (new_path), NULL));
@@ -446,47 +446,47 @@ static gboolean xfmpc_playlist_cb_key_released (XfmpcPlaylist* self, const GdkEv
 static gboolean xfmpc_playlist_cb_button_released (XfmpcPlaylist* self, const GdkEventButton* event) {
 	GtkTreePath* path;
 	GtkTreeSelection* selection;
-	gboolean _tmp0;
-	GtkTreeSelection* _tmp3;
-	GtkTreeSelection* _tmp2;
+	gboolean _tmp0_;
+	GtkTreeSelection* _tmp3_;
+	GtkTreeSelection* _tmp2_;
 	gboolean sensitive;
-	GtkTreePath* _tmp7;
-	gboolean _tmp6;
-	GtkTreePath* _tmp5;
-	gboolean _tmp8;
+	GtkTreePath* _tmp7_;
+	gboolean _tmp6_;
+	GtkTreePath* _tmp5_;
+	gboolean _tmp8_;
 	g_return_val_if_fail (self != NULL, FALSE);
 	path = NULL;
 	selection = NULL;
-	_tmp0 = FALSE;
+	_tmp0_ = FALSE;
 	if ((*event).type != GDK_BUTTON_PRESS) {
-		_tmp0 = TRUE;
+		_tmp0_ = TRUE;
 	} else {
-		_tmp0 = (*event).button != 3;
+		_tmp0_ = (*event).button != 3;
 	}
-	if (_tmp0) {
-		gboolean _tmp1;
-		return (_tmp1 = FALSE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp1);
+	if (_tmp0_) {
+		gboolean _tmp1_;
+		return (_tmp1_ = FALSE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp1_);
 	}
-	_tmp3 = NULL;
-	_tmp2 = NULL;
-	selection = (_tmp3 = (_tmp2 = gtk_tree_view_get_selection (self->priv->treeview), (_tmp2 == NULL) ? NULL : g_object_ref (_tmp2)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp3);
+	_tmp3_ = NULL;
+	_tmp2_ = NULL;
+	selection = (_tmp3_ = (_tmp2_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp2_ == NULL) ? NULL : g_object_ref (_tmp2_)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp3_);
 	if (gtk_tree_selection_count_selected_rows (selection) < 1) {
-		gboolean _tmp4;
-		return (_tmp4 = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp4);
+		gboolean _tmp4_;
+		return (_tmp4_ = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp4_);
 	}
 	sensitive = gtk_tree_selection_count_selected_rows (selection) == 1;
 	gtk_widget_set_sensitive ((GtkWidget*) self->priv->mi_browse, sensitive);
 	gtk_widget_set_sensitive ((GtkWidget*) self->priv->mi_information, sensitive);
-	_tmp7 = NULL;
-	_tmp5 = NULL;
-	if ((_tmp6 = gtk_tree_view_get_path_at_pos (self->priv->treeview, (gint) (*event).x, (gint) (*event).y, &_tmp5, NULL, NULL, NULL), path = (_tmp7 = _tmp5, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp7), _tmp6)) {
+	_tmp7_ = NULL;
+	_tmp5_ = NULL;
+	if ((_tmp6_ = gtk_tree_view_get_path_at_pos (self->priv->treeview, (gint) (*event).x, (gint) (*event).y, &_tmp5_, NULL, NULL, NULL), path = (_tmp7_ = _tmp5_, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp7_), _tmp6_)) {
 		if (!gtk_tree_selection_path_is_selected (selection, path)) {
 			gtk_tree_selection_unselect_all (selection);
 			gtk_tree_selection_select_path (selection, path);
 		}
 	}
 	xfmpc_playlist_menu_popup (self);
-	return (_tmp8 = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp8);
+	return (_tmp8_ = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp8_);
 }
 
 
@@ -497,21 +497,21 @@ static void xfmpc_playlist_menu_popup (XfmpcPlaylist* self) {
 
 
 static void xfmpc_playlist_cb_filter_entry_activated (XfmpcPlaylist* self) {
-	GtkTreeModelFilter* _tmp3;
-	GtkTreeModelFilter* _tmp2;
-	GList* _tmp1;
-	GtkTreeModel* _tmp0;
+	GtkTreeModelFilter* _tmp3_;
+	GtkTreeModelFilter* _tmp2_;
+	GList* _tmp1_;
+	GtkTreeModel* _tmp0_;
 	GList* list;
-	const GtkTreePath* _tmp4;
+	const GtkTreePath* _tmp4_;
 	GtkTreePath* path;
 	g_return_if_fail (self != NULL);
-	_tmp3 = NULL;
-	_tmp2 = NULL;
-	_tmp1 = NULL;
-	_tmp0 = NULL;
-	list = (_tmp1 = gtk_tree_selection_get_selected_rows (gtk_tree_view_get_selection (self->priv->treeview), &_tmp0), self->priv->filter = (_tmp2 = (_tmp3 = (GtkTreeModelFilter*) _tmp0, (_tmp3 == NULL) ? NULL : g_object_ref (_tmp3)), (self->priv->filter == NULL) ? NULL : (self->priv->filter = (g_object_unref (self->priv->filter), NULL)), _tmp2), _tmp1);
-	_tmp4 = NULL;
-	path = (_tmp4 = (const GtkTreePath*) g_list_nth_data (list, (guint) 0), (_tmp4 == NULL) ? NULL : gtk_tree_path_copy (_tmp4));
+	_tmp3_ = NULL;
+	_tmp2_ = NULL;
+	_tmp1_ = NULL;
+	_tmp0_ = NULL;
+	list = (_tmp1_ = gtk_tree_selection_get_selected_rows (gtk_tree_view_get_selection (self->priv->treeview), &_tmp0_), self->priv->filter = (_tmp2_ = (_tmp3_ = (GtkTreeModelFilter*) _tmp0_, (_tmp3_ == NULL) ? NULL : g_object_ref (_tmp3_)), (self->priv->filter == NULL) ? NULL : (self->priv->filter = (g_object_unref (self->priv->filter), NULL)), _tmp2_), _tmp1_);
+	_tmp4_ = NULL;
+	path = (_tmp4_ = (const GtkTreePath*) g_list_nth_data (list, (guint) 0), (_tmp4_ == NULL) ? NULL : gtk_tree_path_copy (_tmp4_));
 	if (g_list_length (list) > 0) {
 		gtk_tree_view_row_activated (self->priv->treeview, path, gtk_tree_view_get_column (self->priv->treeview, 0));
 		gtk_entry_set_text (xfmpc_playlist_filter_entry, "");
@@ -567,21 +567,21 @@ void xfmpc_playlist_append (XfmpcPlaylist* self, gint id, gint pos, const char* 
 void xfmpc_playlist_refresh_current_song (XfmpcPlaylist* self) {
 	GtkTreeIter iter = {0};
 	GtkTreePath* path;
-	GtkTreePath* _tmp0;
-	GtkTreePath* _tmp1;
+	GtkTreePath* _tmp0_;
+	GtkTreePath* _tmp1_;
 	g_return_if_fail (self != NULL);
 	path = NULL;
 	if (self->priv->current < 0) {
 		self->priv->current = 0;
 	}
-	_tmp0 = NULL;
-	path = (_tmp0 = gtk_tree_path_new_from_indices (self->priv->current, -1, -1), (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp0);
+	_tmp0_ = NULL;
+	path = (_tmp0_ = gtk_tree_path_new_from_indices (self->priv->current, -1, -1), (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp0_);
 	if (gtk_tree_model_get_iter ((GtkTreeModel*) self->priv->store, &iter, path)) {
 		gtk_list_store_set (self->priv->store, &iter, XFMPC_PLAYLIST_COLUMNS_COLUMN_WEIGHT, PANGO_WEIGHT_NORMAL, -1, -1);
 	}
 	self->priv->current = xfmpc_mpdclient_get_pos (self->priv->mpdclient);
-	_tmp1 = NULL;
-	path = (_tmp1 = gtk_tree_path_new_from_indices (self->priv->current, -1, -1), (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp1);
+	_tmp1_ = NULL;
+	path = (_tmp1_ = gtk_tree_path_new_from_indices (self->priv->current, -1, -1), (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp1_);
 	if (gtk_tree_model_get_iter ((GtkTreeModel*) self->priv->store, &iter, path)) {
 		gtk_list_store_set (self->priv->store, &iter, XFMPC_PLAYLIST_COLUMNS_COLUMN_WEIGHT, PANGO_WEIGHT_BOLD, -1, -1);
 	}
@@ -608,31 +608,31 @@ void xfmpc_playlist_select_row (XfmpcPlaylist* self, gint i) {
 void xfmpc_playlist_delete_selection (XfmpcPlaylist* self) {
 	gint id;
 	GtkTreeIter iter = {0};
-	GtkListStore* _tmp0;
+	GtkListStore* _tmp0_;
 	GtkListStore* model;
-	GtkListStore* _tmp4;
-	GtkListStore* _tmp3;
-	GList* _tmp2;
-	GtkTreeModel* _tmp1;
+	GtkListStore* _tmp4_;
+	GtkListStore* _tmp3_;
+	GList* _tmp2_;
+	GtkTreeModel* _tmp1_;
 	GList* list;
 	g_return_if_fail (self != NULL);
 	id = 0;
-	_tmp0 = NULL;
-	model = (_tmp0 = self->priv->store, (_tmp0 == NULL) ? NULL : g_object_ref (_tmp0));
-	_tmp4 = NULL;
-	_tmp3 = NULL;
-	_tmp2 = NULL;
-	_tmp1 = NULL;
-	list = (_tmp2 = gtk_tree_selection_get_selected_rows (gtk_tree_view_get_selection (self->priv->treeview), &_tmp1), model = (_tmp3 = (_tmp4 = (GtkListStore*) _tmp1, (_tmp4 == NULL) ? NULL : g_object_ref (_tmp4)), (model == NULL) ? NULL : (model = (g_object_unref (model), NULL)), _tmp3), _tmp2);
+	_tmp0_ = NULL;
+	model = (_tmp0_ = self->priv->store, (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
+	_tmp4_ = NULL;
+	_tmp3_ = NULL;
+	_tmp2_ = NULL;
+	_tmp1_ = NULL;
+	list = (_tmp2_ = gtk_tree_selection_get_selected_rows (gtk_tree_view_get_selection (self->priv->treeview), &_tmp1_), model = (_tmp3_ = (_tmp4_ = (GtkListStore*) _tmp1_, (_tmp4_ == NULL) ? NULL : g_object_ref (_tmp4_)), (model == NULL) ? NULL : (model = (g_object_unref (model), NULL)), _tmp3_), _tmp2_);
 	{
 		GList* path_collection;
 		GList* path_it;
 		path_collection = list;
 		for (path_it = path_collection; path_it != NULL; path_it = path_it->next) {
-			const GtkTreePath* _tmp5;
+			const GtkTreePath* _tmp5_;
 			GtkTreePath* path;
-			_tmp5 = NULL;
-			path = (_tmp5 = (const GtkTreePath*) path_it->data, (_tmp5 == NULL) ? NULL : gtk_tree_path_copy (_tmp5));
+			_tmp5_ = NULL;
+			path = (_tmp5_ = (const GtkTreePath*) path_it->data, (_tmp5_ == NULL) ? NULL : gtk_tree_path_copy (_tmp5_));
 			{
 				if (gtk_tree_model_get_iter ((GtkTreeModel*) self->priv->store, &iter, path)) {
 					gtk_tree_model_get ((GtkTreeModel*) self->priv->store, &iter, XFMPC_PLAYLIST_COLUMNS_COLUMN_ID, &id, -1, -1);
@@ -735,34 +735,34 @@ static GObject * xfmpc_playlist_constructor (GType type, guint n_construct_prope
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
 	self = XFMPC_PLAYLIST (obj);
 	{
-		GtkListStore* _tmp0;
-		GtkTreeModelFilter* _tmp1;
-		GtkTreeView* _tmp2;
+		GtkListStore* _tmp0_;
+		GtkTreeModelFilter* _tmp1_;
+		GtkTreeView* _tmp2_;
 		GtkCellRendererText* cell;
-		GtkCellRendererText* _tmp3;
+		GtkCellRendererText* _tmp3_;
 		GtkTreeViewColumn* column;
-		GtkCellRendererText* _tmp4;
-		GtkAdjustment* _tmp6;
-		GtkAdjustment* _tmp5;
-		GtkScrolledWindow* _tmp7;
+		GtkCellRendererText* _tmp4_;
+		GtkAdjustment* _tmp6_;
+		GtkAdjustment* _tmp5_;
+		GtkScrolledWindow* _tmp7_;
 		GtkScrolledWindow* scrolled;
-		GtkMenu* _tmp8;
+		GtkMenu* _tmp8_;
 		GtkImageMenuItem* mi;
-		GtkImageMenuItem* _tmp9;
+		GtkImageMenuItem* _tmp9_;
 		GtkImage* image;
-		GtkImageMenuItem* _tmp10;
-		GtkEntry* _tmp11;
+		GtkImageMenuItem* _tmp10_;
+		GtkEntry* _tmp11_;
 		xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
 		self->priv->mpdclient = xfmpc_mpdclient_get ();
 		self->priv->preferences = xfmpc_preferences_get ();
 		self->priv->autocenter = xfmpc_preferences_get_playlist_autocenter (self->priv->preferences);
-		_tmp0 = NULL;
-		self->priv->store = (_tmp0 = gtk_list_store_new ((gint) XFMPC_PLAYLIST_COLUMNS_N_COLUMNS, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT, NULL), (self->priv->store == NULL) ? NULL : (self->priv->store = (g_object_unref (self->priv->store), NULL)), _tmp0);
-		_tmp1 = NULL;
-		self->priv->filter = (_tmp1 = (GtkTreeModelFilter*) gtk_tree_model_filter_new ((GtkTreeModel*) self->priv->store, NULL), (self->priv->filter == NULL) ? NULL : (self->priv->filter = (g_object_unref (self->priv->filter), NULL)), _tmp1);
+		_tmp0_ = NULL;
+		self->priv->store = (_tmp0_ = gtk_list_store_new ((gint) XFMPC_PLAYLIST_COLUMNS_N_COLUMNS, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT, NULL), (self->priv->store == NULL) ? NULL : (self->priv->store = (g_object_unref (self->priv->store), NULL)), _tmp0_);
+		_tmp1_ = NULL;
+		self->priv->filter = (_tmp1_ = (GtkTreeModelFilter*) gtk_tree_model_filter_new ((GtkTreeModel*) self->priv->store, NULL), (self->priv->filter == NULL) ? NULL : (self->priv->filter = (g_object_unref (self->priv->filter), NULL)), _tmp1_);
 		gtk_tree_model_filter_set_visible_func (self->priv->filter, (GtkTreeModelFilterVisibleFunc) xfmpc_playlist_visible_func_filter_tree, NULL, NULL);
-		_tmp2 = NULL;
-		self->priv->treeview = (_tmp2 = g_object_ref_sink ((GtkTreeView*) gtk_tree_view_new ()), (self->priv->treeview == NULL) ? NULL : (self->priv->treeview = (g_object_unref (self->priv->treeview), NULL)), _tmp2);
+		_tmp2_ = NULL;
+		self->priv->treeview = (_tmp2_ = g_object_ref_sink ((GtkTreeView*) gtk_tree_view_new ()), (self->priv->treeview == NULL) ? NULL : (self->priv->treeview = (g_object_unref (self->priv->treeview), NULL)), _tmp2_);
 		gtk_tree_selection_set_mode (gtk_tree_view_get_selection (self->priv->treeview), GTK_SELECTION_MULTIPLE);
 		gtk_tree_view_set_rubber_banding (self->priv->treeview, TRUE);
 		gtk_tree_view_set_enable_search (self->priv->treeview, FALSE);
@@ -772,39 +772,39 @@ static GObject * xfmpc_playlist_constructor (GType type, guint n_construct_prope
 		cell = g_object_ref_sink ((GtkCellRendererText*) gtk_cell_renderer_text_new ());
 		g_object_set ((GtkCellRenderer*) cell, "xalign", (float) 1, NULL);
 		gtk_tree_view_insert_column_with_attributes (self->priv->treeview, -1, "Length", (GtkCellRenderer*) cell, "text", XFMPC_PLAYLIST_COLUMNS_COLUMN_POSITION, "weight", XFMPC_PLAYLIST_COLUMNS_COLUMN_WEIGHT, NULL, NULL);
-		_tmp3 = NULL;
-		cell = (_tmp3 = g_object_ref_sink ((GtkCellRendererText*) gtk_cell_renderer_text_new ()), (cell == NULL) ? NULL : (cell = (g_object_unref (cell), NULL)), _tmp3);
+		_tmp3_ = NULL;
+		cell = (_tmp3_ = g_object_ref_sink ((GtkCellRendererText*) gtk_cell_renderer_text_new ()), (cell == NULL) ? NULL : (cell = (g_object_unref (cell), NULL)), _tmp3_);
 		g_object_set (cell, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 		column = g_object_ref_sink (gtk_tree_view_column_new_with_attributes ("Song", (GtkCellRenderer*) cell, "text", XFMPC_PLAYLIST_COLUMNS_COLUMN_SONG, "weight", XFMPC_PLAYLIST_COLUMNS_COLUMN_WEIGHT, NULL, NULL));
 		gtk_tree_view_column_set_expand (column, TRUE);
 		gtk_tree_view_append_column (self->priv->treeview, column);
-		_tmp4 = NULL;
-		cell = (_tmp4 = g_object_ref_sink ((GtkCellRendererText*) gtk_cell_renderer_text_new ()), (cell == NULL) ? NULL : (cell = (g_object_unref (cell), NULL)), _tmp4);
+		_tmp4_ = NULL;
+		cell = (_tmp4_ = g_object_ref_sink ((GtkCellRendererText*) gtk_cell_renderer_text_new ()), (cell == NULL) ? NULL : (cell = (g_object_unref (cell), NULL)), _tmp4_);
 		g_object_set ((GtkCellRenderer*) cell, "xalign", (float) 1, NULL);
 		gtk_tree_view_insert_column_with_attributes (self->priv->treeview, -1, "Length", (GtkCellRenderer*) cell, "text", XFMPC_PLAYLIST_COLUMNS_COLUMN_LENGTH, "weight", XFMPC_PLAYLIST_COLUMNS_COLUMN_WEIGHT, NULL, NULL);
-		_tmp6 = NULL;
-		_tmp5 = NULL;
-		_tmp7 = NULL;
-		scrolled = (_tmp7 = g_object_ref_sink ((GtkScrolledWindow*) gtk_scrolled_window_new (_tmp5 = g_object_ref_sink ((GtkAdjustment*) gtk_adjustment_new ((double) 0, (double) 0, (double) 0, (double) 0, (double) 0, (double) 0)), _tmp6 = g_object_ref_sink ((GtkAdjustment*) gtk_adjustment_new ((double) 0, (double) 0, (double) 0, (double) 0, (double) 0, (double) 0)))), (_tmp6 == NULL) ? NULL : (_tmp6 = (g_object_unref (_tmp6), NULL)), (_tmp5 == NULL) ? NULL : (_tmp5 = (g_object_unref (_tmp5), NULL)), _tmp7);
+		_tmp6_ = NULL;
+		_tmp5_ = NULL;
+		_tmp7_ = NULL;
+		scrolled = (_tmp7_ = g_object_ref_sink ((GtkScrolledWindow*) gtk_scrolled_window_new (_tmp5_ = g_object_ref_sink ((GtkAdjustment*) gtk_adjustment_new ((double) 0, (double) 0, (double) 0, (double) 0, (double) 0, (double) 0)), _tmp6_ = g_object_ref_sink ((GtkAdjustment*) gtk_adjustment_new ((double) 0, (double) 0, (double) 0, (double) 0, (double) 0, (double) 0)))), (_tmp6_ == NULL) ? NULL : (_tmp6_ = (g_object_unref (_tmp6_), NULL)), (_tmp5_ == NULL) ? NULL : (_tmp5_ = (g_object_unref (_tmp5_), NULL)), _tmp7_);
 		gtk_scrolled_window_set_policy (scrolled, GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
-		_tmp8 = NULL;
-		self->priv->menu = (_tmp8 = g_object_ref_sink ((GtkMenu*) gtk_menu_new ()), (self->priv->menu == NULL) ? NULL : (self->priv->menu = (g_object_unref (self->priv->menu), NULL)), _tmp8);
+		_tmp8_ = NULL;
+		self->priv->menu = (_tmp8_ = g_object_ref_sink ((GtkMenu*) gtk_menu_new ()), (self->priv->menu == NULL) ? NULL : (self->priv->menu = (g_object_unref (self->priv->menu), NULL)), _tmp8_);
 		mi = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_from_stock (GTK_STOCK_REMOVE, NULL));
 		gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) mi));
 		g_signal_connect_object ((GtkMenuItem*) mi, "activate", (GCallback) _xfmpc_playlist_delete_selection_gtk_menu_item_activate, self, 0);
-		_tmp9 = NULL;
-		self->priv->mi_browse = (_tmp9 = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_with_mnemonic (_ ("Browse"))), (self->priv->mi_browse == NULL) ? NULL : (self->priv->mi_browse = (g_object_unref (self->priv->mi_browse), NULL)), _tmp9);
+		_tmp9_ = NULL;
+		self->priv->mi_browse = (_tmp9_ = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_with_mnemonic (_ ("Browse"))), (self->priv->mi_browse == NULL) ? NULL : (self->priv->mi_browse = (g_object_unref (self->priv->mi_browse), NULL)), _tmp9_);
 		image = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
 		gtk_image_menu_item_set_image (self->priv->mi_browse, (GtkWidget*) image);
 		gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) self->priv->mi_browse));
 		g_signal_connect_object ((GtkMenuItem*) self->priv->mi_browse, "activate", (GCallback) _xfmpc_playlist_cb_browse_selection_gtk_menu_item_activate, self, 0);
-		_tmp10 = NULL;
-		self->priv->mi_information = (_tmp10 = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_from_stock (GTK_STOCK_INFO, NULL)), (self->priv->mi_information == NULL) ? NULL : (self->priv->mi_information = (g_object_unref (self->priv->mi_information), NULL)), _tmp10);
+		_tmp10_ = NULL;
+		self->priv->mi_information = (_tmp10_ = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_from_stock (GTK_STOCK_INFO, NULL)), (self->priv->mi_information == NULL) ? NULL : (self->priv->mi_information = (g_object_unref (self->priv->mi_information), NULL)), _tmp10_);
 		gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) self->priv->mi_information));
 		g_signal_connect_object ((GtkMenuItem*) self->priv->mi_information, "activate", (GCallback) _xfmpc_playlist_cb_info_selection_gtk_menu_item_activate, self, 0);
 		gtk_widget_show_all ((GtkWidget*) self->priv->menu);
-		_tmp11 = NULL;
-		xfmpc_playlist_filter_entry = (_tmp11 = g_object_ref_sink ((GtkEntry*) gtk_entry_new ()), (xfmpc_playlist_filter_entry == NULL) ? NULL : (xfmpc_playlist_filter_entry = (g_object_unref (xfmpc_playlist_filter_entry), NULL)), _tmp11);
+		_tmp11_ = NULL;
+		xfmpc_playlist_filter_entry = (_tmp11_ = g_object_ref_sink ((GtkEntry*) gtk_entry_new ()), (xfmpc_playlist_filter_entry == NULL) ? NULL : (xfmpc_playlist_filter_entry = (g_object_unref (xfmpc_playlist_filter_entry), NULL)), _tmp11_);
 		gtk_container_add ((GtkContainer*) scrolled, (GtkWidget*) self->priv->treeview);
 		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) scrolled, TRUE, TRUE, (guint) 0);
 		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) xfmpc_playlist_filter_entry, FALSE, FALSE, (guint) 0);

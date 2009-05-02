@@ -31,7 +31,7 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "main-window.h"
+#include "xfmpc.h"
 
 
 
