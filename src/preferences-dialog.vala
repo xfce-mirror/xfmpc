@@ -25,9 +25,6 @@ namespace Xfmpc {
 
 		private unowned Xfmpc.Preferences preferences;
 
-		private string gettext_package = Config.GETTEXT_PACKAGE;
-		private string localedir = Config.PACKAGE_LOCALE_DIR;
-
 		private CheckButton entry_use_defaults;
 		private Entry entry_host;
 		private Entry entry_passwd;
@@ -41,8 +38,6 @@ namespace Xfmpc {
 		private VBox mpd_vbox;
 
 		construct {
-			Xfce.textdomain (gettext_package, localedir, "UTF-8");
-
 			has_separator = true;
 			skip_taskbar_hint = true;
 			icon_name = "stock_volume";

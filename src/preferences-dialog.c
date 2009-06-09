@@ -21,12 +21,10 @@
 #include <glib-object.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <preferences.h>
+#include <gtk/gtk.h>
+#include <mpdclient.h>
 #include <stdlib.h>
 #include <string.h>
-#include <gtk/gtk.h>
-#include <config.h>
-#include <mpdclient.h>
-#include <libxfce4util/libxfce4util.h>
 #include <glib/gi18n-lib.h>
 #include <pango/pango.h>
 
@@ -53,8 +51,6 @@ struct _XfmpcPreferencesDialogClass {
 
 struct _XfmpcPreferencesDialogPrivate {
 	XfmpcPreferences* preferences;
-	char* gettext_package;
-	char* localedir;
 	GtkCheckButton* entry_use_defaults;
 	GtkEntry* entry_host;
 	GtkEntry* entry_passwd;
@@ -321,7 +317,6 @@ static GObject * xfmpc_preferences_dialog_constructor (GType type, guint n_const
 		GtkLabel* _tmp31_;
 		GtkLabel* _tmp32_;
 		GtkLabel* _tmp33_;
-		xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
 		gtk_dialog_set_has_separator ((GtkDialog*) self, TRUE);
 		gtk_window_set_skip_taskbar_hint ((GtkWindow*) self, TRUE);
 		gtk_window_set_icon_name ((GtkWindow*) self, "stock_volume");
@@ -515,16 +510,12 @@ static void xfmpc_preferences_dialog_class_init (XfmpcPreferencesDialogClass * k
 
 static void xfmpc_preferences_dialog_instance_init (XfmpcPreferencesDialog * self) {
 	self->priv = XFMPC_PREFERENCES_DIALOG_GET_PRIVATE (self);
-	self->priv->gettext_package = g_strdup (GETTEXT_PACKAGE);
-	self->priv->localedir = g_strdup (PACKAGE_LOCALE_DIR);
 }
 
 
 static void xfmpc_preferences_dialog_finalize (GObject* obj) {
 	XfmpcPreferencesDialog * self;
 	self = XFMPC_PREFERENCES_DIALOG (obj);
-	self->priv->gettext_package = (g_free (self->priv->gettext_package), NULL);
-	self->priv->localedir = (g_free (self->priv->localedir), NULL);
 	(self->priv->entry_use_defaults == NULL) ? NULL : (self->priv->entry_use_defaults = (g_object_unref (self->priv->entry_use_defaults), NULL));
 	(self->priv->entry_host == NULL) ? NULL : (self->priv->entry_host = (g_object_unref (self->priv->entry_host), NULL));
 	(self->priv->entry_passwd == NULL) ? NULL : (self->priv->entry_passwd = (g_object_unref (self->priv->entry_passwd), NULL));

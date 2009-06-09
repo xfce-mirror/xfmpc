@@ -23,15 +23,10 @@ namespace Xfmpc {
 
 	public class SongDialog : Xfce.TitledDialog {
 
-		private string gettext_package = Config.GETTEXT_PACKAGE;
-		private string localedir = Config.PACKAGE_LOCALE_DIR;
-
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.SongInfo song;
 
 		public SongDialog (int song_id) {
-			Xfce.textdomain (gettext_package, localedir, "UTF-8");
-
 			has_separator = true;
 			skip_taskbar_hint = true;
 			icon_name = "stock_volume";

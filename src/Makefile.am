@@ -11,7 +11,8 @@ xfmpc_VALASOURCES =							\
 	playlist.vala
 
 vala_built_SOURCES =							\
-	$(xfmpc_VALASOURCES:.vala=.c)
+	$(xfmpc_VALASOURCES:.vala=.c)					\
+	$(xfmpc_VALASOURCES:.vala=.h)
 
 if MAINTAINER_MODE
 
@@ -44,9 +45,7 @@ xfmpc_CFLAGS =								\
 	@GTK_CFLAGS@							\
 	@LIBXFCEGUI4_CFLAGS@						\
 	@LIBXFCE4UTIL_CFLAGS@						\
-	@LIBMPD_CFLAGS@							\
-	-DDATADIR=\"$(datadir)\"					\
-	-DSRCDIR=\"$(top_srcdir)\"
+	@LIBMPD_CFLAGS@
 
 xfmpc_LDADD =								\
 	@GTK_LIBS@							\
@@ -56,8 +55,11 @@ xfmpc_LDADD =								\
 
 INCLUDES =								\
 	-I${top_srcdir}							\
-	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
-	-DLOCALEDIR=\"$(localedir)\"
+	-DGETTEXT_PACKAGE=\""$(GETTEXT_PACKAGE)"\"			\
+	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"				\
+	-DLOCALEDIR=\""$(localedir)"\"					\
+	-DDATADIR=\""$(datadir)"\"					\
+	-DSRCDIR=\""$(top_srcdir)"\"
 
 EXTRA_DIST =								\
 	main-ui.xml							\

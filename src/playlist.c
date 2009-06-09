@@ -24,11 +24,9 @@
 #include <preferences.h>
 #include <stdlib.h>
 #include <string.h>
-#include <config.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <gdk/gdk.h>
 #include <pango/pango.h>
-#include <libxfce4util/libxfce4util.h>
 #include <glib/gi18n-lib.h>
 
 
@@ -89,8 +87,6 @@ struct _XfmpcPlaylistClass {
 struct _XfmpcPlaylistPrivate {
 	XfmpcMpdclient* mpdclient;
 	XfmpcPreferences* preferences;
-	char* gettext_package;
-	char* localedir;
 	GtkListStore* store;
 	GtkTreeModelFilter* filter;
 	GtkTreeView* treeview;
@@ -752,7 +748,6 @@ static GObject * xfmpc_playlist_constructor (GType type, guint n_construct_prope
 		GtkImage* image;
 		GtkImageMenuItem* _tmp10_;
 		GtkEntry* _tmp11_;
-		xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
 		self->priv->mpdclient = xfmpc_mpdclient_get ();
 		self->priv->preferences = xfmpc_preferences_get ();
 		self->priv->autocenter = xfmpc_preferences_get_playlist_autocenter (self->priv->preferences);
@@ -840,8 +835,6 @@ static void xfmpc_playlist_class_init (XfmpcPlaylistClass * klass) {
 
 static void xfmpc_playlist_instance_init (XfmpcPlaylist * self) {
 	self->priv = XFMPC_PLAYLIST_GET_PRIVATE (self);
-	self->priv->gettext_package = g_strdup (GETTEXT_PACKAGE);
-	self->priv->localedir = g_strdup (PACKAGE_LOCALE_DIR);
 	self->priv->current = 0;
 }
 
@@ -849,8 +842,6 @@ static void xfmpc_playlist_instance_init (XfmpcPlaylist * self) {
 static void xfmpc_playlist_finalize (GObject* obj) {
 	XfmpcPlaylist * self;
 	self = XFMPC_PLAYLIST (obj);
-	self->priv->gettext_package = (g_free (self->priv->gettext_package), NULL);
-	self->priv->localedir = (g_free (self->priv->localedir), NULL);
 	(self->priv->store == NULL) ? NULL : (self->priv->store = (g_object_unref (self->priv->store), NULL));
 	(self->priv->filter == NULL) ? NULL : (self->priv->filter = (g_object_unref (self->priv->filter), NULL));
 	(self->priv->treeview == NULL) ? NULL : (self->priv->treeview = (g_object_unref (self->priv->treeview), NULL));

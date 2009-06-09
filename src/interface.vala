@@ -26,9 +26,6 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
-		private string gettext_package = Config.GETTEXT_PACKAGE;
-		private string localedir = Config.PACKAGE_LOCALE_DIR;
-
 		private Button button_prev;
 		private Button button_pp;
 		private Button button_next;
@@ -39,8 +36,6 @@ namespace Xfmpc {
 		private bool refresh_title;
 
 		construct {
-			Xfce.textdomain (gettext_package, localedir, "UTF-8");
-
 			mpdclient = Xfmpc.Mpdclient.get ();
 			preferences = Xfmpc.Preferences.get ();
 

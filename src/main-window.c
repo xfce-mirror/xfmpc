@@ -22,12 +22,11 @@
 #include <gtk/gtk.h>
 #include <mpdclient.h>
 #include <preferences.h>
+#include <gdk/gdk.h>
+#include <glib/gi18n-lib.h>
 #include <stdlib.h>
 #include <string.h>
 #include <config.h>
-#include <gdk/gdk.h>
-#include <glib/gi18n-lib.h>
-#include <libxfce4util/libxfce4util.h>
 
 
 #define XFMPC_TYPE_MAIN_WINDOW (xfmpc_main_window_get_type ())
@@ -83,8 +82,6 @@ struct _XfmpcMainWindowClass {
 struct _XfmpcMainWindowPrivate {
 	XfmpcMpdclient* mpdclient;
 	XfmpcPreferences* preferences;
-	char* gettext_package;
-	char* localedir;
 	GtkVBox* vbox;
 	GtkActionGroup* action_group;
 	GtkWidget* statusbar;
@@ -424,7 +421,6 @@ static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_pr
 		GtkActionGroup* _tmp4_;
 		GtkAccelGroup* _tmp5_;
 		GtkAccelGroup* accel_group;
-		xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
 		self->priv->mpdclient = xfmpc_mpdclient_get ();
 		self->priv->preferences = xfmpc_preferences_get ();
 		/* Window */
@@ -531,16 +527,12 @@ static void xfmpc_main_window_class_init (XfmpcMainWindowClass * klass) {
 
 static void xfmpc_main_window_instance_init (XfmpcMainWindow * self) {
 	self->priv = XFMPC_MAIN_WINDOW_GET_PRIVATE (self);
-	self->priv->gettext_package = g_strdup (GETTEXT_PACKAGE);
-	self->priv->localedir = g_strdup (PACKAGE_LOCALE_DIR);
 }
 
 
 static void xfmpc_main_window_finalize (GObject* obj) {
 	XfmpcMainWindow * self;
 	self = XFMPC_MAIN_WINDOW (obj);
-	self->priv->gettext_package = (g_free (self->priv->gettext_package), NULL);
-	self->priv->localedir = (g_free (self->priv->localedir), NULL);
 	(self->priv->vbox == NULL) ? NULL : (self->priv->vbox = (g_object_unref (self->priv->vbox), NULL));
 	(self->priv->action_group == NULL) ? NULL : (self->priv->action_group = (g_object_unref (self->priv->action_group), NULL));
 	(self->priv->statusbar == NULL) ? NULL : (self->priv->statusbar = (g_object_unref (self->priv->statusbar), NULL));

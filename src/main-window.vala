@@ -26,9 +26,6 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
-		private string gettext_package = Config.GETTEXT_PACKAGE;
-		private string localedir = Config.PACKAGE_LOCALE_DIR;
-
 		private VBox vbox;
 		private ActionGroup action_group;
 		private Widget statusbar;
@@ -51,8 +48,6 @@ namespace Xfmpc {
 		private const int main_ui_length = 187u;
 
 		construct {
-			Xfce.textdomain (gettext_package, localedir, "UTF-8");
-
 			mpdclient = Xfmpc.Mpdclient.get ();
 			preferences = Xfmpc.Preferences.get ();
 

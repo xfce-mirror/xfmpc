@@ -24,12 +24,11 @@
 #include <preferences.h>
 #include <stdlib.h>
 #include <string.h>
-#include <config.h>
 #include <gdk/gdk.h>
 #include <float.h>
 #include <math.h>
 #include <glib/gi18n-lib.h>
-#include <libxfce4util/libxfce4util.h>
+#include <config.h>
 #include <pango/pango.h>
 
 
@@ -56,8 +55,6 @@ struct _XfmpcInterfaceClass {
 struct _XfmpcInterfacePrivate {
 	XfmpcMpdclient* mpdclient;
 	XfmpcPreferences* preferences;
-	char* gettext_package;
-	char* localedir;
 	GtkButton* button_prev;
 	GtkButton* button_pp;
 	GtkButton* button_next;
@@ -233,7 +230,7 @@ void xfmpc_interface_set_time (XfmpcInterface* self, gint time, gint time_total)
 static gboolean xfmpc_interface_refresh (XfmpcInterface* self) {
 	g_return_val_if_fail (self != NULL, FALSE);
 	if (xfmpc_mpdclient_connect (self->priv->mpdclient) == FALSE) {
-		g_warning ("interface.vala:213: Failed to connect to MPD");
+		g_warning ("interface.vala:208: Failed to connect to MPD");
 		xfmpc_mpdclient_disconnect (self->priv->mpdclient);
 		xfmpc_interface_set_pp (self, FALSE);
 		xfmpc_interface_set_time (self, 0, 0);
@@ -423,7 +420,6 @@ static GObject * xfmpc_interface_constructor (GType type, guint n_construct_prop
 		GtkLabel* _tmp10_;
 		GtkHBox* box;
 		GtkVBox* vbox;
-		xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
 		self->priv->mpdclient = xfmpc_mpdclient_get ();
 		self->priv->preferences = xfmpc_preferences_get ();
 		gtk_container_set_border_width ((GtkContainer*) self, (guint) 4);
@@ -534,16 +530,12 @@ static void xfmpc_interface_class_init (XfmpcInterfaceClass * klass) {
 
 static void xfmpc_interface_instance_init (XfmpcInterface * self) {
 	self->priv = XFMPC_INTERFACE_GET_PRIVATE (self);
-	self->priv->gettext_package = g_strdup (GETTEXT_PACKAGE);
-	self->priv->localedir = g_strdup (PACKAGE_LOCALE_DIR);
 }
 
 
 static void xfmpc_interface_finalize (GObject* obj) {
 	XfmpcInterface * self;
 	self = XFMPC_INTERFACE (obj);
-	self->priv->gettext_package = (g_free (self->priv->gettext_package), NULL);
-	self->priv->localedir = (g_free (self->priv->localedir), NULL);
 	(self->priv->button_prev == NULL) ? NULL : (self->priv->button_prev = (g_object_unref (self->priv->button_prev), NULL));
 	(self->priv->button_pp == NULL) ? NULL : (self->priv->button_pp = (g_object_unref (self->priv->button_pp), NULL));
 	(self->priv->button_next == NULL) ? NULL : (self->priv->button_next = (g_object_unref (self->priv->button_next), NULL));

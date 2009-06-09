@@ -26,9 +26,6 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
-		private string gettext_package = Config.GETTEXT_PACKAGE;
-		private string localedir = Config.PACKAGE_LOCALE_DIR;
-
 		private static Xfce.ArrowButton context_button;
 		private ListStore list_store;
 		private ComboBox combobox;
@@ -47,8 +44,6 @@ namespace Xfmpc {
 		}
 
 		construct {
-			Xfce.textdomain (gettext_package, localedir, "UTF-8");
-
 			mpdclient = Xfmpc.Mpdclient.get ();
 			preferences = Xfmpc.Preferences.get ();
 

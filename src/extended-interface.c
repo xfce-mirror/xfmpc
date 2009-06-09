@@ -24,11 +24,11 @@
 #include <preferences.h>
 #include <stdlib.h>
 #include <string.h>
-#include <config.h>
 #include <gdk/gdk.h>
 #include <glib/gi18n-lib.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4util/libxfce4util.h>
+#include <config.h>
 #include <xfce-arrow-button.h>
 
 
@@ -89,8 +89,6 @@ struct _XfmpcExtendedInterfaceClass {
 struct _XfmpcExtendedInterfacePrivate {
 	XfmpcMpdclient* mpdclient;
 	XfmpcPreferences* preferences;
-	char* gettext_package;
-	char* localedir;
 	GtkListStore* list_store;
 	GtkComboBox* combobox;
 	GtkNotebook* notebook;
@@ -468,7 +466,6 @@ static GObject * xfmpc_extended_interface_constructor (GType type, guint n_const
 		GtkNotebook* _tmp5_;
 		GtkWidget* playlist;
 		GtkWidget* dbbrowser;
-		xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
 		self->priv->mpdclient = xfmpc_mpdclient_get ();
 		self->priv->preferences = xfmpc_preferences_get ();
 		hbox = g_object_ref_sink ((GtkHBox*) gtk_hbox_new (FALSE, 2));
@@ -533,16 +530,12 @@ static void xfmpc_extended_interface_class_init (XfmpcExtendedInterfaceClass * k
 
 static void xfmpc_extended_interface_instance_init (XfmpcExtendedInterface * self) {
 	self->priv = XFMPC_EXTENDED_INTERFACE_GET_PRIVATE (self);
-	self->priv->gettext_package = g_strdup (GETTEXT_PACKAGE);
-	self->priv->localedir = g_strdup (PACKAGE_LOCALE_DIR);
 }
 
 
 static void xfmpc_extended_interface_finalize (GObject* obj) {
 	XfmpcExtendedInterface * self;
 	self = XFMPC_EXTENDED_INTERFACE (obj);
-	self->priv->gettext_package = (g_free (self->priv->gettext_package), NULL);
-	self->priv->localedir = (g_free (self->priv->localedir), NULL);
 	(self->priv->list_store == NULL) ? NULL : (self->priv->list_store = (g_object_unref (self->priv->list_store), NULL));
 	(self->priv->combobox == NULL) ? NULL : (self->priv->combobox = (g_object_unref (self->priv->combobox), NULL));
 	(self->priv->notebook == NULL) ? NULL : (self->priv->notebook = (g_object_unref (self->priv->notebook), NULL));

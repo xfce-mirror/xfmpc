@@ -20,11 +20,7 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <libxfcegui4/libxfcegui4.h>
-#include <stdlib.h>
-#include <string.h>
 #include <mpdclient.h>
-#include <config.h>
-#include <libxfce4util/libxfce4util.h>
 #include <gtk/gtk.h>
 #include <pango/pango.h>
 #include <glib/gi18n-lib.h>
@@ -51,8 +47,6 @@ struct _XfmpcSongDialogClass {
 };
 
 struct _XfmpcSongDialogPrivate {
-	char* gettext_package;
-	char* localedir;
 	XfmpcMpdclient* mpdclient;
 	XfmpcSongInfo* song;
 };
@@ -107,7 +101,6 @@ XfmpcSongDialog* xfmpc_song_dialog_construct (GType object_type, gint song_id) {
 	GtkLabel* _tmp18_;
 	GtkLabel* _tmp19_;
 	self = g_object_newv (object_type, 0, NULL);
-	xfce_textdomain (self->priv->gettext_package, self->priv->localedir, "UTF-8");
 	gtk_dialog_set_has_separator ((GtkDialog*) self, TRUE);
 	gtk_window_set_skip_taskbar_hint ((GtkWindow*) self, TRUE);
 	gtk_window_set_icon_name ((GtkWindow*) self, "stock_volume");
@@ -231,16 +224,12 @@ static void xfmpc_song_dialog_class_init (XfmpcSongDialogClass * klass) {
 
 static void xfmpc_song_dialog_instance_init (XfmpcSongDialog * self) {
 	self->priv = XFMPC_SONG_DIALOG_GET_PRIVATE (self);
-	self->priv->gettext_package = g_strdup (GETTEXT_PACKAGE);
-	self->priv->localedir = g_strdup (PACKAGE_LOCALE_DIR);
 }
 
 
 static void xfmpc_song_dialog_finalize (GObject* obj) {
 	XfmpcSongDialog * self;
 	self = XFMPC_SONG_DIALOG (obj);
-	self->priv->gettext_package = (g_free (self->priv->gettext_package), NULL);
-	self->priv->localedir = (g_free (self->priv->localedir), NULL);
 	G_OBJECT_CLASS (xfmpc_song_dialog_parent_class)->finalize (obj);
 }
 
