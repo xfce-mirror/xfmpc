@@ -19,6 +19,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 EXTRA_DIST =								\
 	AUTHORS								\
 	ChangeLog							\
+	ChangeLog.pre-r7517						\
 	COPYING								\
 	IDEAS								\
 	INSTALL								\
