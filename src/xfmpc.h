@@ -9,6 +9,7 @@
 #include <string.h>
 #include <float.h>
 #include <math.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 
@@ -103,6 +104,19 @@ typedef struct _XfmpcPlaylist XfmpcPlaylist;
 typedef struct _XfmpcPlaylistClass XfmpcPlaylistClass;
 typedef struct _XfmpcPlaylistPrivate XfmpcPlaylistPrivate;
 
+#define XFMPC_TYPE_PREFERENCES (xfmpc_preferences_get_type ())
+#define XFMPC_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferences))
+#define XFMPC_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+#define XFMPC_IS_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_IS_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_PREFERENCES_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+
+typedef struct _XfmpcPreferences XfmpcPreferences;
+typedef struct _XfmpcPreferencesClass XfmpcPreferencesClass;
+typedef struct _XfmpcPreferencesPrivate XfmpcPreferencesPrivate;
+
+#define XFMPC_PREFERENCES_TYPE_SONG_FORMAT (xfmpc_preferences_song_format_get_type ())
+
 struct _XfmpcPreferencesDialog {
 	XfceTitledDialog parent_instance;
 	XfmpcPreferencesDialogPrivate * priv;
@@ -180,6 +194,25 @@ struct _XfmpcPlaylistClass {
 	GtkVBoxClass parent_class;
 };
 
+struct _XfmpcPreferences {
+	GObject parent_instance;
+	XfmpcPreferencesPrivate * priv;
+};
+
+struct _XfmpcPreferencesClass {
+	GObjectClass parent_class;
+};
+
+typedef enum  {
+	XFMPC_PREFERENCES_SONG_FORMAT_TITLE,
+	XFMPC_PREFERENCES_SONG_FORMAT_ALBUM_TITLE,
+	XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_TITLE,
+	XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_TITLE_DATE,
+	XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_ALBUM_TITLE,
+	XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE,
+	XFMPC_PREFERENCES_SONG_FORMAT_CUSTOM_FORMAT
+} XfmpcPreferencesSongFormat;
+
 
 GType xfmpc_preferences_dialog_get_type (void);
 XfmpcPreferencesDialog* xfmpc_preferences_dialog_new (void);
@@ -227,6 +260,39 @@ void xfmpc_playlist_select_row (XfmpcPlaylist* self, gint i);
 void xfmpc_playlist_delete_selection (XfmpcPlaylist* self);
 XfmpcPlaylist* xfmpc_playlist_new (void);
 XfmpcPlaylist* xfmpc_playlist_construct (GType object_type);
+GType xfmpc_preferences_get_type (void);
+GType xfmpc_preferences_song_format_get_type (void);
+XfmpcPreferences* xfmpc_preferences_new (void);
+XfmpcPreferences* xfmpc_preferences_construct (GType object_type);
+XfmpcPreferences* xfmpc_preferences_get (void);
+gint xfmpc_preferences_get_last_window_posx (XfmpcPreferences* self);
+void xfmpc_preferences_set_last_window_posx (XfmpcPreferences* self, gint value);
+gint xfmpc_preferences_get_last_window_posy (XfmpcPreferences* self);
+void xfmpc_preferences_set_last_window_posy (XfmpcPreferences* self, gint value);
+gint xfmpc_preferences_get_last_window_width (XfmpcPreferences* self);
+void xfmpc_preferences_set_last_window_width (XfmpcPreferences* self, gint value);
+gint xfmpc_preferences_get_last_window_height (XfmpcPreferences* self);
+void xfmpc_preferences_set_last_window_height (XfmpcPreferences* self, gint value);
+gboolean xfmpc_preferences_get_last_window_state_sticky (XfmpcPreferences* self);
+void xfmpc_preferences_set_last_window_state_sticky (XfmpcPreferences* self, gboolean value);
+gboolean xfmpc_preferences_get_playlist_autocenter (XfmpcPreferences* self);
+void xfmpc_preferences_set_playlist_autocenter (XfmpcPreferences* self, gboolean value);
+const char* xfmpc_preferences_get_dbbrowser_last_path (XfmpcPreferences* self);
+void xfmpc_preferences_set_dbbrowser_last_path (XfmpcPreferences* self, const char* value);
+const char* xfmpc_preferences_get_mpd_hostname (XfmpcPreferences* self);
+void xfmpc_preferences_set_mpd_hostname (XfmpcPreferences* self, const char* value);
+gint xfmpc_preferences_get_mpd_port (XfmpcPreferences* self);
+void xfmpc_preferences_set_mpd_port (XfmpcPreferences* self, gint value);
+const char* xfmpc_preferences_get_mpd_password (XfmpcPreferences* self);
+void xfmpc_preferences_set_mpd_password (XfmpcPreferences* self, const char* value);
+gboolean xfmpc_preferences_get_mpd_use_defaults (XfmpcPreferences* self);
+void xfmpc_preferences_set_mpd_use_defaults (XfmpcPreferences* self, gboolean value);
+gboolean xfmpc_preferences_get_show_statusbar (XfmpcPreferences* self);
+void xfmpc_preferences_set_show_statusbar (XfmpcPreferences* self, gboolean value);
+XfmpcPreferencesSongFormat xfmpc_preferences_get_song_format (XfmpcPreferences* self);
+void xfmpc_preferences_set_song_format (XfmpcPreferences* self, XfmpcPreferencesSongFormat value);
+const char* xfmpc_preferences_get_song_format_custom (XfmpcPreferences* self);
+void xfmpc_preferences_set_song_format_custom (XfmpcPreferences* self, const char* value);
 
 
 G_END_DECLS

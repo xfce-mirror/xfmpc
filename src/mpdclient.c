@@ -25,7 +25,7 @@
 #include <libmpd/libmpd.h>
 
 #include "mpdclient.h"
-#include "preferences.h"
+#include "xfmpc.h"
 
 #define GET_PRIVATE(o) \
     (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclientPrivate))
@@ -62,7 +62,7 @@ static void             cb_status_changed                       (MpdObj *mi,
                                                                  gpointer user_data);
 static gchar *          _get_formatted_name                     (mpd_Song *song);
 static gchar *          _get_formatted_name_predefined          (mpd_Song *song,
-                                                                 XfmpcSongFormat song_format);
+                                                                 XfmpcPreferencesSongFormat song_format);
 static gchar *          _get_formatted_name_custom              (mpd_Song *song,
                                                                  const gchar *format);
 
@@ -923,7 +923,7 @@ static gchar *
 _get_formatted_name (mpd_Song *song)
 {
   XfmpcPreferences *preferences = xfmpc_preferences_get ();
-  XfmpcSongFormat song_format;
+  XfmpcPreferencesSongFormat song_format;
   gchar *format_custom;
   gchar *formatted_name;
 
@@ -936,7 +936,7 @@ _get_formatted_name (mpd_Song *song)
     {
       formatted_name = g_path_get_basename (song->file);
     }
-  else if (song_format == XFMPC_SONG_FORMAT_CUSTOM)
+  else if (song_format == XFMPC_PREFERENCES_SONG_FORMAT_CUSTOM_FORMAT)
     {
       formatted_name = _get_formatted_name_custom (song, format_custom);
     }
@@ -951,17 +951,17 @@ _get_formatted_name (mpd_Song *song)
 
 static gchar *
 _get_formatted_name_predefined (mpd_Song *song,
-                                XfmpcSongFormat song_format)
+                                XfmpcPreferencesSongFormat song_format)
 {
   gchar *formatted_name, *tmp;
 
   switch (song_format)
     {
-    case XFMPC_SONG_FORMAT_TITLE:
+    case XFMPC_PREFERENCES_SONG_FORMAT_TITLE:
       formatted_name = g_strdup_printf ("%s", song->title);
       break;
 
-    case XFMPC_SONG_FORMAT_ARTIST_TITLE:
+    case XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_TITLE:
       if (NULL != song->artist)
         {
           formatted_name = g_strdup_printf ("%s - %s", song->artist, song->title);
@@ -972,7 +972,7 @@ _get_formatted_name_predefined (mpd_Song *song,
         }
       break;
 
-    case XFMPC_SONG_FORMAT_ALBUM_TITLE:
+    case XFMPC_PREFERENCES_SONG_FORMAT_ALBUM_TITLE:
       if (NULL != song->album)
         {
           formatted_name = g_strdup_printf ("%s - %s", song->album, song->title);
@@ -983,7 +983,7 @@ _get_formatted_name_predefined (mpd_Song *song,
         }
       break;
 
-    case XFMPC_SONG_FORMAT_ARTIST_TITLE_DATE:
+    case XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_TITLE_DATE:
       if (NULL != song->artist && NULL != song->date)
         {
           formatted_name = g_strdup_printf ("%s - %s (%s)", song->artist, song->title, song->date);
@@ -1002,7 +1002,7 @@ _get_formatted_name_predefined (mpd_Song *song,
         }
       break;
 
-    case XFMPC_SONG_FORMAT_ARTIST_ALBUM_TITLE:
+    case XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_ALBUM_TITLE:
       if (NULL != song->artist && NULL != song->album)
         {
           formatted_name = g_strdup_printf ("%s - %s - %s", song->artist, song->album, song->title);
@@ -1021,7 +1021,7 @@ _get_formatted_name_predefined (mpd_Song *song,
         }
       break;
 
-    case XFMPC_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE:
+    case XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE:
       formatted_name = g_strdup ("");
 
       if (song->artist != NULL)

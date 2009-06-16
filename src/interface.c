@@ -21,7 +21,6 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <mpdclient.h>
-#include <preferences.h>
 #include <stdlib.h>
 #include <string.h>
 #include <gdk/gdk.h>
@@ -42,6 +41,16 @@
 typedef struct _XfmpcInterface XfmpcInterface;
 typedef struct _XfmpcInterfaceClass XfmpcInterfaceClass;
 typedef struct _XfmpcInterfacePrivate XfmpcInterfacePrivate;
+
+#define XFMPC_TYPE_PREFERENCES (xfmpc_preferences_get_type ())
+#define XFMPC_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferences))
+#define XFMPC_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+#define XFMPC_IS_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_IS_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_PREFERENCES_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+
+typedef struct _XfmpcPreferences XfmpcPreferences;
+typedef struct _XfmpcPreferencesClass XfmpcPreferencesClass;
 
 struct _XfmpcInterface {
 	GtkVBox parent_instance;
@@ -68,6 +77,7 @@ struct _XfmpcInterfacePrivate {
 
 
 GType xfmpc_interface_get_type (void);
+GType xfmpc_preferences_get_type (void);
 #define XFMPC_INTERFACE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_INTERFACE, XfmpcInterfacePrivate))
 enum  {
 	XFMPC_INTERFACE_DUMMY_PROPERTY
@@ -94,6 +104,7 @@ static void xfmpc_interface_cb_mpdclient_next (XfmpcInterface* self);
 XfmpcInterface* xfmpc_interface_new (void);
 XfmpcInterface* xfmpc_interface_construct (GType object_type);
 XfmpcInterface* xfmpc_interface_new (void);
+XfmpcPreferences* xfmpc_preferences_get (void);
 static void _xfmpc_interface_cb_mpdclient_previous_gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void _xfmpc_interface_pp_clicked_gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void _xfmpc_interface_cb_mpdclient_next_gtk_button_clicked (GtkButton* _sender, gpointer self);

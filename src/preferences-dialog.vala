@@ -250,14 +250,14 @@ namespace Xfmpc {
 
 			switch (combo_format.get_active ())
 			{
-				case 0: this.preferences.song_format = Xfmpc.SongFormat.TITLE; break;
-				case 1: this.preferences.song_format = Xfmpc.SongFormat.ALBUM_TITLE; break;
-				case 2: this.preferences.song_format = Xfmpc.SongFormat.ARTIST_TITLE; break;
-				case 3: this.preferences.song_format = Xfmpc.SongFormat.ARTIST_TITLE_DATE; break;
-				case 4: this.preferences.song_format = Xfmpc.SongFormat.ARTIST_ALBUM_TITLE; break;
-				case 5: this.preferences.song_format = Xfmpc.SongFormat.ARTIST_ALBUM_TRACK_TITLE; break;
-				case 6: this.preferences.song_format = Xfmpc.SongFormat.CUSTOM; break;
-				default: this.preferences.song_format = Xfmpc.SongFormat.TITLE; break;
+				case 0: this.preferences.song_format = Xfmpc.Preferences.SongFormat.TITLE; break;
+				case 1: this.preferences.song_format = Xfmpc.Preferences.SongFormat.ALBUM_TITLE; break;
+				case 2: this.preferences.song_format = Xfmpc.Preferences.SongFormat.ARTIST_TITLE; break;
+				case 3: this.preferences.song_format = Xfmpc.Preferences.SongFormat.ARTIST_TITLE_DATE; break;
+				case 4: this.preferences.song_format = Xfmpc.Preferences.SongFormat.ARTIST_ALBUM_TITLE; break;
+				case 5: this.preferences.song_format = Xfmpc.Preferences.SongFormat.ARTIST_ALBUM_TRACK_TITLE; break;
+				case 6: this.preferences.song_format = Xfmpc.Preferences.SongFormat.CUSTOM_FORMAT; break;
+				default: this.preferences.song_format = Xfmpc.Preferences.SongFormat.TITLE; break;
 			}
 
 			this.entry_custom.set_sensitive (this.combo_format.get_active () == 6);

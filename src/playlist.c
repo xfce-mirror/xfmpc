@@ -21,7 +21,6 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <mpdclient.h>
-#include <preferences.h>
 #include <stdlib.h>
 #include <string.h>
 #include <libxfcegui4/libxfcegui4.h>
@@ -40,6 +39,16 @@
 typedef struct _XfmpcPlaylist XfmpcPlaylist;
 typedef struct _XfmpcPlaylistClass XfmpcPlaylistClass;
 typedef struct _XfmpcPlaylistPrivate XfmpcPlaylistPrivate;
+
+#define XFMPC_TYPE_PREFERENCES (xfmpc_preferences_get_type ())
+#define XFMPC_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferences))
+#define XFMPC_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+#define XFMPC_IS_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_IS_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_PREFERENCES_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+
+typedef struct _XfmpcPreferences XfmpcPreferences;
+typedef struct _XfmpcPreferencesClass XfmpcPreferencesClass;
 
 #define XFMPC_PLAYLIST_TYPE_COLUMNS (xfmpc_playlist_columns_get_type ())
 
@@ -115,6 +124,7 @@ typedef enum  {
 
 
 GType xfmpc_playlist_get_type (void);
+GType xfmpc_preferences_get_type (void);
 #define XFMPC_PLAYLIST_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_PLAYLIST, XfmpcPlaylistPrivate))
 enum  {
 	XFMPC_PLAYLIST_DUMMY_PROPERTY
@@ -152,6 +162,8 @@ static void xfmpc_playlist_cb_filter_entry_changed (XfmpcPlaylist* self);
 XfmpcPlaylist* xfmpc_playlist_new (void);
 XfmpcPlaylist* xfmpc_playlist_construct (GType object_type);
 XfmpcPlaylist* xfmpc_playlist_new (void);
+XfmpcPreferences* xfmpc_preferences_get (void);
+gboolean xfmpc_preferences_get_playlist_autocenter (XfmpcPreferences* self);
 static void _xfmpc_playlist_delete_selection_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
 static void _xfmpc_playlist_cb_browse_selection_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
 static void _xfmpc_playlist_cb_info_selection_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
@@ -164,7 +176,7 @@ static gboolean _xfmpc_playlist_cb_popup_menu_gtk_widget_popup_menu (GtkTreeView
 static void _xfmpc_playlist_cb_filter_entry_activated_gtk_entry_activate (GtkEntry* _sender, gpointer self);
 static gboolean _xfmpc_playlist_cb_filter_entry_key_released_gtk_widget_key_release_event (GtkEntry* _sender, const GdkEventKey* event, gpointer self);
 static void _xfmpc_playlist_cb_filter_entry_changed_gtk_editable_changed (GtkEntry* _sender, gpointer self);
-static void _xfmpc_playlist_cb_playlist_changed_xfmpc_preferences_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self);
+static void _xfmpc_playlist_cb_playlist_changed_g_object_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self);
 static GObject * xfmpc_playlist_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static gpointer xfmpc_playlist_parent_class = NULL;
 static void xfmpc_playlist_finalize (GObject* obj);
@@ -716,7 +728,7 @@ static void _xfmpc_playlist_cb_filter_entry_changed_gtk_editable_changed (GtkEnt
 }
 
 
-static void _xfmpc_playlist_cb_playlist_changed_xfmpc_preferences_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self) {
+static void _xfmpc_playlist_cb_playlist_changed_g_object_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self) {
 	xfmpc_playlist_cb_playlist_changed (self);
 }
 
@@ -813,8 +825,8 @@ static GObject * xfmpc_playlist_constructor (GType type, guint n_construct_prope
 		g_signal_connect_object (xfmpc_playlist_filter_entry, "activate", (GCallback) _xfmpc_playlist_cb_filter_entry_activated_gtk_entry_activate, self, 0);
 		g_signal_connect_object ((GtkWidget*) xfmpc_playlist_filter_entry, "key-release-event", (GCallback) _xfmpc_playlist_cb_filter_entry_key_released_gtk_widget_key_release_event, self, 0);
 		g_signal_connect_object ((GtkEditable*) xfmpc_playlist_filter_entry, "changed", (GCallback) _xfmpc_playlist_cb_filter_entry_changed_gtk_editable_changed, self, 0);
-		g_signal_connect_object (self->priv->preferences, "notify::song-format", (GCallback) _xfmpc_playlist_cb_playlist_changed_xfmpc_preferences_notify, self, 0);
-		g_signal_connect_object (self->priv->preferences, "notify::song-format-custom", (GCallback) _xfmpc_playlist_cb_playlist_changed_xfmpc_preferences_notify, self, 0);
+		g_signal_connect_object ((GObject*) self->priv->preferences, "notify::song-format", (GCallback) _xfmpc_playlist_cb_playlist_changed_g_object_notify, self, 0);
+		g_signal_connect_object ((GObject*) self->priv->preferences, "notify::song-format-custom", (GCallback) _xfmpc_playlist_cb_playlist_changed_g_object_notify, self, 0);
 		(cell == NULL) ? NULL : (cell = (g_object_unref (cell), NULL));
 		(column == NULL) ? NULL : (column = (g_object_unref (column), NULL));
 		(scrolled == NULL) ? NULL : (scrolled = (g_object_unref (scrolled), NULL));

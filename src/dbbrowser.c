@@ -21,7 +21,6 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <mpdclient.h>
-#include <preferences.h>
 #include <stdlib.h>
 #include <string.h>
 #include <gdk-pixbuf/gdk-pixdata.h>
@@ -40,6 +39,16 @@
 typedef struct _XfmpcDbbrowser XfmpcDbbrowser;
 typedef struct _XfmpcDbbrowserClass XfmpcDbbrowserClass;
 typedef struct _XfmpcDbbrowserPrivate XfmpcDbbrowserPrivate;
+
+#define XFMPC_TYPE_PREFERENCES (xfmpc_preferences_get_type ())
+#define XFMPC_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferences))
+#define XFMPC_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+#define XFMPC_IS_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_IS_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_PREFERENCES_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+
+typedef struct _XfmpcPreferences XfmpcPreferences;
+typedef struct _XfmpcPreferencesClass XfmpcPreferencesClass;
 
 #define XFMPC_DBBROWSER_TYPE_COLUMNS (xfmpc_dbbrowser_columns_get_type ())
 
@@ -79,6 +88,7 @@ typedef enum  {
 
 
 GType xfmpc_dbbrowser_get_type (void);
+GType xfmpc_preferences_get_type (void);
 #define XFMPC_DBBROWSER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_DBBROWSER, XfmpcDbbrowserPrivate))
 enum  {
 	XFMPC_DBBROWSER_DUMMY_PROPERTY
@@ -109,6 +119,8 @@ static void xfmpc_dbbrowser_cb_search_entry_changed (XfmpcDbbrowser* self);
 XfmpcDbbrowser* xfmpc_dbbrowser_new (void);
 XfmpcDbbrowser* xfmpc_dbbrowser_construct (GType object_type);
 XfmpcDbbrowser* xfmpc_dbbrowser_new (void);
+XfmpcPreferences* xfmpc_preferences_get (void);
+const char* xfmpc_preferences_get_dbbrowser_last_path (XfmpcPreferences* self);
 static void _xfmpc_dbbrowser_add_selected_rows_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
 static void _xfmpc_dbbrowser_cb_replace_with_selected_rows_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
 static void _xfmpc_dbbrowser_cb_browse_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
@@ -122,7 +134,7 @@ static gboolean _xfmpc_dbbrowser_cb_popup_menu_gtk_widget_popup_menu (GtkTreeVie
 static void _xfmpc_dbbrowser_cb_search_entry_activated_gtk_entry_activate (GtkEntry* _sender, gpointer self);
 static gboolean _xfmpc_dbbrowser_cb_search_entry_key_released_gtk_widget_key_release_event (GtkEntry* _sender, const GdkEventKey* event, gpointer self);
 static void _xfmpc_dbbrowser_cb_search_entry_changed_gtk_editable_changed (GtkEntry* _sender, gpointer self);
-static void _xfmpc_dbbrowser_reload_xfmpc_preferences_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self);
+static void _xfmpc_dbbrowser_reload_g_object_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self);
 static GObject * xfmpc_dbbrowser_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static gpointer xfmpc_dbbrowser_parent_class = NULL;
 static void xfmpc_dbbrowser_finalize (GObject* obj);
@@ -762,7 +774,7 @@ static void _xfmpc_dbbrowser_cb_search_entry_changed_gtk_editable_changed (GtkEn
 }
 
 
-static void _xfmpc_dbbrowser_reload_xfmpc_preferences_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self) {
+static void _xfmpc_dbbrowser_reload_g_object_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self) {
 	xfmpc_dbbrowser_reload (self);
 }
 
@@ -858,8 +870,8 @@ static GObject * xfmpc_dbbrowser_constructor (GType type, guint n_construct_prop
 		g_signal_connect_object (self->priv->search_entry, "activate", (GCallback) _xfmpc_dbbrowser_cb_search_entry_activated_gtk_entry_activate, self, 0);
 		g_signal_connect_object ((GtkWidget*) self->priv->search_entry, "key-release-event", (GCallback) _xfmpc_dbbrowser_cb_search_entry_key_released_gtk_widget_key_release_event, self, 0);
 		g_signal_connect_object ((GtkEditable*) self->priv->search_entry, "changed", (GCallback) _xfmpc_dbbrowser_cb_search_entry_changed_gtk_editable_changed, self, 0);
-		g_signal_connect_object (self->priv->preferences, "notify::song-format", (GCallback) _xfmpc_dbbrowser_reload_xfmpc_preferences_notify, self, 0);
-		g_signal_connect_object (self->priv->preferences, "notify::song-format-custom", (GCallback) _xfmpc_dbbrowser_reload_xfmpc_preferences_notify, self, 0);
+		g_signal_connect_object ((GObject*) self->priv->preferences, "notify::song-format", (GCallback) _xfmpc_dbbrowser_reload_g_object_notify, self, 0);
+		g_signal_connect_object ((GObject*) self->priv->preferences, "notify::song-format-custom", (GCallback) _xfmpc_dbbrowser_reload_g_object_notify, self, 0);
 		(cell_pixbuf == NULL) ? NULL : (cell_pixbuf = (g_object_unref (cell_pixbuf), NULL));
 		(cell_text == NULL) ? NULL : (cell_text = (g_object_unref (cell_text), NULL));
 		(scrolled == NULL) ? NULL : (scrolled = (g_object_unref (scrolled), NULL));

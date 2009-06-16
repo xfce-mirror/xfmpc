@@ -21,7 +21,6 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <mpdclient.h>
-#include <preferences.h>
 #include <stdlib.h>
 #include <string.h>
 #include <gdk/gdk.h>
@@ -42,6 +41,16 @@
 typedef struct _XfmpcExtendedInterface XfmpcExtendedInterface;
 typedef struct _XfmpcExtendedInterfaceClass XfmpcExtendedInterfaceClass;
 typedef struct _XfmpcExtendedInterfacePrivate XfmpcExtendedInterfacePrivate;
+
+#define XFMPC_TYPE_PREFERENCES (xfmpc_preferences_get_type ())
+#define XFMPC_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferences))
+#define XFMPC_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+#define XFMPC_IS_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_IS_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_PREFERENCES_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+
+typedef struct _XfmpcPreferences XfmpcPreferences;
+typedef struct _XfmpcPreferencesClass XfmpcPreferencesClass;
 
 #define XFMPC_EXTENDED_INTERFACE_TYPE_COLUMNS (xfmpc_extended_interface_columns_get_type ())
 
@@ -109,6 +118,7 @@ typedef enum  {
 
 
 GType xfmpc_extended_interface_get_type (void);
+GType xfmpc_preferences_get_type (void);
 #define XFMPC_EXTENDED_INTERFACE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterfacePrivate))
 enum  {
 	XFMPC_EXTENDED_INTERFACE_DUMMY_PROPERTY
@@ -143,6 +153,7 @@ GType xfmpc_preferences_dialog_get_type (void);
 XfmpcExtendedInterface* xfmpc_extended_interface_new (void);
 XfmpcExtendedInterface* xfmpc_extended_interface_construct (GType object_type);
 XfmpcExtendedInterface* xfmpc_extended_interface_new (void);
+XfmpcPreferences* xfmpc_preferences_get (void);
 static void _xfmpc_extended_interface_cb_playlist_clear_gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void _xfmpc_extended_interface_cb_database_refresh_gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void _xfmpc_extended_interface_popup_context_menu_gtk_button_pressed (GtkButton* _sender, gpointer self);

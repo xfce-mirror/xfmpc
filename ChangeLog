@@ -1,3 +1,10 @@
+2009-06-16 	Vincent Legout <vincent@legout.info>
+
+Rewrite preferences.c in vala
+
+Update mpdclient.c and preferences-dialog.vala to compile with the new
+preferences. The configuration file xfmpcrc is changed.
+
 2009-06-16	Vincent Legout <vincent@legout.info>
 
 General cleanup and add dependency on xfce4-vala

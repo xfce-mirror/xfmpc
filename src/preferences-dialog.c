@@ -20,7 +20,6 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <libxfcegui4/libxfcegui4.h>
-#include <preferences.h>
 #include <gtk/gtk.h>
 #include <mpdclient.h>
 #include <stdlib.h>
@@ -39,6 +38,18 @@
 typedef struct _XfmpcPreferencesDialog XfmpcPreferencesDialog;
 typedef struct _XfmpcPreferencesDialogClass XfmpcPreferencesDialogClass;
 typedef struct _XfmpcPreferencesDialogPrivate XfmpcPreferencesDialogPrivate;
+
+#define XFMPC_TYPE_PREFERENCES (xfmpc_preferences_get_type ())
+#define XFMPC_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferences))
+#define XFMPC_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+#define XFMPC_IS_PREFERENCES(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_IS_PREFERENCES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_PREFERENCES))
+#define XFMPC_PREFERENCES_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_PREFERENCES, XfmpcPreferencesClass))
+
+typedef struct _XfmpcPreferences XfmpcPreferences;
+typedef struct _XfmpcPreferencesClass XfmpcPreferencesClass;
+
+#define XFMPC_PREFERENCES_TYPE_SONG_FORMAT (xfmpc_preferences_song_format_get_type ())
 
 struct _XfmpcPreferencesDialog {
 	XfceTitledDialog parent_instance;
@@ -62,27 +73,54 @@ struct _XfmpcPreferencesDialogPrivate {
 	GtkVBox* mpd_vbox;
 };
 
+typedef enum  {
+	XFMPC_PREFERENCES_SONG_FORMAT_TITLE,
+	XFMPC_PREFERENCES_SONG_FORMAT_ALBUM_TITLE,
+	XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_TITLE,
+	XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_TITLE_DATE,
+	XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_ALBUM_TITLE,
+	XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE,
+	XFMPC_PREFERENCES_SONG_FORMAT_CUSTOM_FORMAT
+} XfmpcPreferencesSongFormat;
+
 
 
 GType xfmpc_preferences_dialog_get_type (void);
+GType xfmpc_preferences_get_type (void);
 #define XFMPC_PREFERENCES_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_PREFERENCES_DIALOG, XfmpcPreferencesDialogPrivate))
 enum  {
 	XFMPC_PREFERENCES_DIALOG_DUMMY_PROPERTY
 };
 static void xfmpc_preferences_dialog_cb_response (XfmpcPreferencesDialog* self, XfmpcPreferencesDialog* source, gint response);
 static void xfmpc_preferences_dialog_cb_use_defaults_toggled (XfmpcPreferencesDialog* self, GtkCheckButton* source);
+void xfmpc_preferences_set_mpd_hostname (XfmpcPreferences* self, const char* value);
+void xfmpc_preferences_set_mpd_port (XfmpcPreferences* self, gint value);
+void xfmpc_preferences_set_mpd_password (XfmpcPreferences* self, const char* value);
+void xfmpc_preferences_set_mpd_use_defaults (XfmpcPreferences* self, gboolean value);
 static void xfmpc_preferences_dialog_cb_update_mpd (XfmpcPreferencesDialog* self, GtkButton* source);
+void xfmpc_preferences_set_show_statusbar (XfmpcPreferences* self, gboolean value);
 static void xfmpc_preferences_dialog_cb_show_statusbar_toggled (XfmpcPreferencesDialog* self, GtkCheckButton* source);
+GType xfmpc_preferences_song_format_get_type (void);
+void xfmpc_preferences_set_song_format (XfmpcPreferences* self, XfmpcPreferencesSongFormat value);
 static void xfmpc_preferences_dialog_cb_combo_format_changed (XfmpcPreferencesDialog* self, GtkComboBox* source);
 static gboolean xfmpc_preferences_dialog_timeout_format (XfmpcPreferencesDialog* self);
 static gboolean _xfmpc_preferences_dialog_timeout_format_gsource_func (gpointer self);
 static void xfmpc_preferences_dialog_cb_entry_custom_changed (XfmpcPreferencesDialog* self, GtkEntry* source);
+void xfmpc_preferences_set_song_format_custom (XfmpcPreferences* self, const char* value);
 XfmpcPreferencesDialog* xfmpc_preferences_dialog_new (void);
 XfmpcPreferencesDialog* xfmpc_preferences_dialog_construct (GType object_type);
 XfmpcPreferencesDialog* xfmpc_preferences_dialog_new (void);
+XfmpcPreferences* xfmpc_preferences_get (void);
+gboolean xfmpc_preferences_get_mpd_use_defaults (XfmpcPreferences* self);
 static void _xfmpc_preferences_dialog_cb_use_defaults_toggled_gtk_toggle_button_toggled (GtkCheckButton* _sender, gpointer self);
+const char* xfmpc_preferences_get_mpd_hostname (XfmpcPreferences* self);
+gint xfmpc_preferences_get_mpd_port (XfmpcPreferences* self);
+const char* xfmpc_preferences_get_mpd_password (XfmpcPreferences* self);
 static void _xfmpc_preferences_dialog_cb_update_mpd_gtk_button_clicked (GtkButton* _sender, gpointer self);
+gboolean xfmpc_preferences_get_show_statusbar (XfmpcPreferences* self);
 static void _xfmpc_preferences_dialog_cb_show_statusbar_toggled_gtk_toggle_button_toggled (GtkCheckButton* _sender, gpointer self);
+XfmpcPreferencesSongFormat xfmpc_preferences_get_song_format (XfmpcPreferences* self);
+const char* xfmpc_preferences_get_song_format_custom (XfmpcPreferences* self);
 static void _xfmpc_preferences_dialog_cb_combo_format_changed_gtk_combo_box_changed (GtkComboBox* _sender, gpointer self);
 static void _xfmpc_preferences_dialog_cb_entry_custom_changed_gtk_editable_changed (GtkEntry* _sender, gpointer self);
 static void _xfmpc_preferences_dialog_cb_response_gtk_dialog_response (XfmpcPreferencesDialog* _sender, gint response_id, gpointer self);
@@ -142,42 +180,42 @@ static void xfmpc_preferences_dialog_cb_combo_format_changed (XfmpcPreferencesDi
 	switch (gtk_combo_box_get_active (self->priv->combo_format)) {
 		case 0:
 		{
-			xfmpc_preferences_set_song_format (self->priv->preferences, (gint) XFMPC_SONG_FORMAT_TITLE);
+			xfmpc_preferences_set_song_format (self->priv->preferences, XFMPC_PREFERENCES_SONG_FORMAT_TITLE);
 			break;
 		}
 		case 1:
 		{
-			xfmpc_preferences_set_song_format (self->priv->preferences, (gint) XFMPC_SONG_FORMAT_ALBUM_TITLE);
+			xfmpc_preferences_set_song_format (self->priv->preferences, XFMPC_PREFERENCES_SONG_FORMAT_ALBUM_TITLE);
 			break;
 		}
 		case 2:
 		{
-			xfmpc_preferences_set_song_format (self->priv->preferences, (gint) XFMPC_SONG_FORMAT_ARTIST_TITLE);
+			xfmpc_preferences_set_song_format (self->priv->preferences, XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_TITLE);
 			break;
 		}
 		case 3:
 		{
-			xfmpc_preferences_set_song_format (self->priv->preferences, (gint) XFMPC_SONG_FORMAT_ARTIST_TITLE_DATE);
+			xfmpc_preferences_set_song_format (self->priv->preferences, XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_TITLE_DATE);
 			break;
 		}
 		case 4:
 		{
-			xfmpc_preferences_set_song_format (self->priv->preferences, (gint) XFMPC_SONG_FORMAT_ARTIST_ALBUM_TITLE);
+			xfmpc_preferences_set_song_format (self->priv->preferences, XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_ALBUM_TITLE);
 			break;
 		}
 		case 5:
 		{
-			xfmpc_preferences_set_song_format (self->priv->preferences, (gint) XFMPC_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE);
+			xfmpc_preferences_set_song_format (self->priv->preferences, XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_ALBUM_TRACK_TITLE);
 			break;
 		}
 		case 6:
 		{
-			xfmpc_preferences_set_song_format (self->priv->preferences, (gint) XFMPC_SONG_FORMAT_CUSTOM);
+			xfmpc_preferences_set_song_format (self->priv->preferences, XFMPC_PREFERENCES_SONG_FORMAT_CUSTOM_FORMAT);
 			break;
 		}
 		default:
 		{
-			xfmpc_preferences_set_song_format (self->priv->preferences, (gint) XFMPC_SONG_FORMAT_TITLE);
+			xfmpc_preferences_set_song_format (self->priv->preferences, XFMPC_PREFERENCES_SONG_FORMAT_TITLE);
 			break;
 		}
 	}
@@ -408,7 +446,7 @@ static GObject * xfmpc_preferences_dialog_constructor (GType type, guint n_const
 		gtk_combo_box_append_text (self->priv->combo_format, _ ("Artist - Album - Title"));
 		gtk_combo_box_append_text (self->priv->combo_format, _ ("Artist - Album - Track. Title"));
 		gtk_combo_box_append_text (self->priv->combo_format, _ ("Custom..."));
-		gtk_combo_box_set_active (self->priv->combo_format, xfmpc_preferences_get_song_format (self->priv->preferences));
+		gtk_combo_box_set_active (self->priv->combo_format, (gint) xfmpc_preferences_get_song_format (self->priv->preferences));
 		gtk_box_pack_start ((GtkBox*) vbox2, (GtkWidget*) hbox, TRUE, TRUE, (guint) 0);
 		_tmp22_ = NULL;
 		hbox = (_tmp22_ = g_object_ref_sink ((GtkHBox*) gtk_hbox_new (FALSE, 2)), (hbox == NULL) ? NULL : (hbox = (g_object_unref (hbox), NULL)), _tmp22_);

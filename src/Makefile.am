@@ -10,14 +10,15 @@ xfmpc_VALASOURCES =							\
 	extended-interface.vala						\
 	interface.vala							\
 	main-window.vala						\
-	playlist.vala
+	playlist.vala							\
+	preferences.vala
 
 vala_built_SOURCES =							\
 	$(xfmpc_VALASOURCES:.vala=.c)
 
 BUILT_SOURCES =	vala.stamp
 vala.stamp: $(xfmpc_VALASOURCES)
-	$(VALAC) --vapidir=. --pkg=libxfcegui4-1.0 --pkg=config --pkg=mpdclient --pkg=preferences --pkg=xfce-arrow-button $^ -C -H xfmpc.h
+	$(VALAC) --vapidir=. --pkg=libxfcegui4-1.0 --pkg=config --pkg=mpdclient --pkg=xfce-arrow-button $^ -C -H xfmpc.h
 	touch $@
 
 endif
@@ -25,8 +26,6 @@ endif
 xfmpc_SOURCES = 							\
 	main.c								\
 	main-ui.h							\
-	preferences.c							\
-	preferences.h							\
 	mpdclient.c							\
 	mpdclient.h							\
 	xfce-arrow-button.c						\
