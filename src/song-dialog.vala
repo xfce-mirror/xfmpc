@@ -27,85 +27,85 @@ namespace Xfmpc {
 		private unowned Xfmpc.SongInfo song;
 
 		public SongDialog (int song_id) {
-			has_separator = true;
-			skip_taskbar_hint = true;
-			icon_name = "stock_volume";
-			resizable = false;
+			this.has_separator = true;
+			this.skip_taskbar_hint = true;
+			this.icon_name = "stock_volume";
+			this.resizable = false;
 
-			mpdclient = Xfmpc.Mpdclient.get ();
-			song = mpdclient.get_song_info (song_id);
+			this.mpdclient = Xfmpc.Mpdclient.get ();
+			this.song = mpdclient.get_song_info (song_id);
 
-			title = song.title;
+			this.title = this.song.title;
 
-			vbox.set_spacing (0);
+			this.vbox.set_spacing (0);
 
-			var vbox2 = new VBox (false, 0);
-			var frame = Xfce.create_framebox_with_content ("", vbox2);
+			var vbox2 = new Gtk.VBox (false, 0);
+			var frame = Xfce.WidgetHelpers.create_framebox_with_content ("", vbox2);
 
 			var attrs = new Pango.AttrList ();
 			attrs.insert (Pango.attr_weight_new (Pango.Weight.BOLD));
 
-			var hbox = new HBox (false, 0);
-			var label = new Label (_("File"));
+			var hbox = new Gtk.HBox (false, 0);
+			var label = new Gtk.Label (_("File"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
-			label = new Label (Path.get_basename (song.filename));
+			label = new Gtk.Label (GLib.Path.get_basename (song.filename));
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			hbox = new HBox (false, 0);
-			label = new Label (_("Artist"));
+			hbox = new Gtk.HBox (false, 0);
+			label = new Gtk.Label (_("Artist"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
-			label = new Label (song.artist);
+			label = new Gtk.Label (song.artist);
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			hbox = new HBox (false, 0);
-			label = new Label (_("Title"));
+			hbox = new Gtk.HBox (false, 0);
+			label = new Gtk.Label (_("Title"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
-			label = new Label (song.title);
+			label = new Gtk.Label (song.title);
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			hbox = new HBox (false, 0);
-			label = new Label (_("Album"));
+			hbox = new Gtk.HBox (false, 0);
+			label = new Gtk.Label (_("Album"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
-			label = new Label (song.album);
+			label = new Gtk.Label (song.album);
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			hbox = new HBox (false, 0);
-			label = new Label (_("Date"));
+			hbox = new Gtk.HBox (false, 0);
+			label = new Gtk.Label (_("Date"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
-			label = new Label (song.date);
+			label = new Gtk.Label (song.date);
 			hbox.pack_start (label, false, false, 5);
-			label = new Label (_("Track"));
+			label = new Gtk.Label (_("Track"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 15);
-			label = new Label (song.track);
+			label = new Gtk.Label (song.track);
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			hbox = new HBox (false, 0);
-			label = new Label (_("Genre"));
+			hbox = new Gtk.HBox (false, 0);
+			label = new Gtk.Label (_("Genre"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
-			label = new Label (song.genre);
+			label = new Gtk.Label (song.genre);
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
 			vbox.pack_start (frame, true, true, 0);
 
-        		add_button (STOCK_CLOSE, ResponseType.CLOSE);
+        		add_button (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE);
 
 			show_all ();
 
 			/* Signals */
-			response += cb_response;
+			this.response += cb_response;
 		}
 
 		/*
@@ -114,7 +114,7 @@ namespace Xfmpc {
 
 		private void cb_response (SongDialog source, int response) {
         		switch (response) {
-        			case ResponseType.CLOSE:
+        			case Gtk.ResponseType.CLOSE:
             	    	    	    destroy ();
             	    	    	    break;
 			}

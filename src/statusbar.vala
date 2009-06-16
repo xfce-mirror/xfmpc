@@ -29,14 +29,14 @@ namespace Xfmpc {
 		public string text {
 			set {
 				_text = value;
-				pop (context_id);
-				push (context_id, _text);
+				pop (this.context_id);
+				push (this.context_id, _text);
 			}
 		}
 
 		construct {
 			set_has_resize_grip (false);
-			context_id = get_context_id ("Main text");
+			this.context_id = get_context_id ("Main text");
 		}
 	}
 

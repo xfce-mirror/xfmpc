@@ -26,14 +26,14 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
-		private ListStore store;
-		private TreeModelFilter filter;
-		private TreeView treeview;
-		private Menu menu;
-		private static Entry filter_entry;
+		private Gtk.ListStore store;
+		private Gtk.TreeModelFilter filter;
+		private Gtk.TreeView treeview;
+		private Gtk.Menu menu;
+		private static Gtk.Entry filter_entry;
 
-		private ImageMenuItem mi_browse;
-		private ImageMenuItem mi_information;
+		private Gtk.ImageMenuItem mi_browse;
+		private Gtk.ImageMenuItem mi_information;
 
 		private int current = 0;
 		private bool autocenter;
@@ -49,95 +49,95 @@ namespace Xfmpc {
 		}
 
 		construct {
-			mpdclient = Xfmpc.Mpdclient.get ();
-			preferences = Xfmpc.Preferences.get ();
+			this.mpdclient = Xfmpc.Mpdclient.get ();
+			this.preferences = Xfmpc.Preferences.get ();
 
-			autocenter = preferences.playlist_autocenter;
+			this.autocenter = this.preferences.playlist_autocenter;
 
-			store = new ListStore (Columns.N_COLUMNS,
-					       typeof (int),
-					       typeof (string),
-					       typeof (int),
-					       typeof (string),
-					       typeof (string),
-					       typeof (int));
+			this.store = new Gtk.ListStore (Columns.N_COLUMNS,
+					                typeof (int),
+					                typeof (string),
+					                typeof (int),
+					                typeof (string),
+					                typeof (string),
+					                typeof (int));
 
-			filter = new TreeModelFilter (store, null);
-			filter.set_visible_func ((TreeModelFilterVisibleFunc) visible_func_filter_tree);
+			this.filter = new Gtk.TreeModelFilter (this.store, null);
+			this.filter.set_visible_func ((Gtk.TreeModelFilterVisibleFunc) visible_func_filter_tree);
 
-			treeview = new TreeView ();
-			(treeview.get_selection ()).set_mode (SelectionMode.MULTIPLE);
-			treeview.set_rubber_banding (true);
-  			treeview.set_enable_search (false);
-			treeview.set_headers_visible (false);
-			treeview.set_rules_hint (true);
-			treeview.set_model (filter);
+			this.treeview = new Gtk.TreeView ();
+			(this.treeview.get_selection ()).set_mode (Gtk.SelectionMode.MULTIPLE);
+			this.treeview.set_rubber_banding (true);
+  			this.treeview.set_enable_search (false);
+			this.treeview.set_headers_visible (false);
+			this.treeview.set_rules_hint (true);
+			this.treeview.set_model (this.filter);
 
-			var cell = new CellRendererText ();
+			var cell = new Gtk.CellRendererText ();
 			cell.xalign = 1;
-			treeview.insert_column_with_attributes (-1, "Length", cell,
-							        "text", Columns.COLUMN_POSITION,
-							        "weight", Columns.COLUMN_WEIGHT,
-							        null);
-			cell = new CellRendererText ();
+			this.treeview.insert_column_with_attributes (-1, "Length", cell,
+							             "text", Columns.COLUMN_POSITION,
+							             "weight", Columns.COLUMN_WEIGHT,
+							             null);
+			cell = new Gtk.CellRendererText ();
 			cell.ellipsize = Pango.EllipsizeMode.END;
-			var column = new TreeViewColumn.with_attributes ("Song", cell,
-								"text", Columns.COLUMN_SONG,
-								"weight", Columns.COLUMN_WEIGHT,
-			        				null);
+			var column = new Gtk.TreeViewColumn.with_attributes ("Song", cell,
+								             "text", Columns.COLUMN_SONG,
+								             "weight", Columns.COLUMN_WEIGHT,
+			        				             null);
 			column.expand = true;
-			treeview.append_column (column);
-			cell = new CellRendererText ();
+			this.treeview.append_column (column);
+			cell = new Gtk.CellRendererText ();
 			cell.xalign = 1;
-			treeview.insert_column_with_attributes (-1, "Length", cell,
-								"text", Columns.COLUMN_LENGTH,
-								"weight", Columns.COLUMN_WEIGHT,
-			        				null);
+			this.treeview.insert_column_with_attributes (-1, "Length", cell,
+								     "text", Columns.COLUMN_LENGTH,
+								     "weight", Columns.COLUMN_WEIGHT,
+			        				     null);
 
-			var scrolled = new ScrolledWindow (new Adjustment (0, 0, 0, 0, 0, 0),
-							   new Adjustment (0, 0, 0, 0, 0, 0));
-			scrolled.set_policy (PolicyType.AUTOMATIC, PolicyType.ALWAYS);
+			var scrolled = new Gtk.ScrolledWindow (new Gtk.Adjustment (0, 0, 0, 0, 0, 0),
+							       new Gtk.Adjustment (0, 0, 0, 0, 0, 0));
+			scrolled.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.ALWAYS);
 
-			menu = new Menu ();
+			this.menu = new Menu ();
 
-			var mi = new ImageMenuItem.from_stock (STOCK_REMOVE, null);
-			menu.append (mi);
+			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_REMOVE, null);
+			this.menu.append (mi);
 			mi.activate += delete_selection;
-			mi_browse = new ImageMenuItem.with_mnemonic (_("Browse"));
-			var image = new Image.from_stock (STOCK_OPEN, IconSize.MENU);
-			mi_browse.set_image (image);
-			menu.append (mi_browse);
-			mi_browse.activate += cb_browse_selection;
-			mi_information = new ImageMenuItem.from_stock (STOCK_INFO, null);
-			menu.append (mi_information);
-			mi_information.activate += cb_info_selection;
+			this.mi_browse = new Gtk.ImageMenuItem.with_mnemonic (_("Browse"));
+			var image = new Gtk.Image.from_stock (Gtk.STOCK_OPEN, Gtk.IconSize.MENU);
+			this.mi_browse.set_image (image);
+			this.menu.append (this.mi_browse);
+			this.mi_browse.activate += cb_browse_selection;
+			this.mi_information = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_INFO, null);
+			this.menu.append (mi_information);
+			this.mi_information.activate += cb_info_selection;
 
-			menu.show_all ();
+			this.menu.show_all ();
 
-			filter_entry = new Entry ();
+			this.filter_entry = new Entry ();
 
-			scrolled.add (treeview);
+			scrolled.add (this.treeview);
 			pack_start (scrolled, true, true, 0);
-			pack_start (filter_entry, false, false, 0);
+			pack_start (this.filter_entry, false, false, 0);
 
 			/* Signals */
-			mpdclient.song_changed += cb_song_changed;
-			mpdclient.playlist_changed += cb_playlist_changed;
+			this.mpdclient.song_changed += cb_song_changed;
+			this.mpdclient.playlist_changed += cb_playlist_changed;
 
-			treeview.row_activated += cb_row_activated;
-			treeview.key_release_event += cb_key_released;
-			treeview.button_press_event += cb_button_released;
-			treeview.popup_menu += cb_popup_menu;
+			this.treeview.row_activated += cb_row_activated;
+			this.treeview.key_release_event += cb_key_released;
+			this.treeview.button_press_event += cb_button_released;
+			this.treeview.popup_menu += cb_popup_menu;
 
-			filter_entry.activate += cb_filter_entry_activated;
-			filter_entry.key_release_event += cb_filter_entry_key_released;
-			filter_entry.changed += cb_filter_entry_changed;
+			this.filter_entry.activate += cb_filter_entry_activated;
+			this.filter_entry.key_release_event += cb_filter_entry_key_released;
+			this.filter_entry.changed += cb_filter_entry_changed;
 
-			preferences.notify["song-format"] += cb_playlist_changed;
-			preferences.notify["song-format-custom"] += cb_playlist_changed;
+			this.preferences.notify["song-format"] += cb_playlist_changed;
+			this.preferences.notify["song-format-custom"] += cb_playlist_changed;
 		}
 
-		private static bool visible_func_filter_tree (TreeModel model, out TreeIter iter) {
+		private static bool visible_func_filter_tree (Gtk.TreeModel model, out Gtk.TreeIter iter) {
   			string song = "", search = "";
 			bool result = true;
 
@@ -169,45 +169,45 @@ namespace Xfmpc {
 			dbbrowser = (Xfmpc.Dbbrowser) get_data ("XfmpcDbbrowser");
 			extended_interface = (Xfmpc.ExtendedInterface) get_data ("XfmpcExtendedInterface");
 
-			var selection = treeview.get_selection ();
+			var selection = this.treeview.get_selection ();
 			if (selection.count_selected_rows () > 1)
 				return;
 
-			var model = store;
+			var model = this.store;
 			var list = selection.get_selected_rows (out model);
 			if (list.length () == 0)
 				return;
 
-			TreeIter iter;
+			Gtk.TreeIter iter;
 			var path = list.nth_data (0);
-			if (store.get_iter (out iter, path)) {
+			if (this.store.get_iter (out iter, path)) {
 				string filename = "", dir;
 				store.get (iter, Columns.COLUMN_FILENAME, out filename, -1);
-				dir = Path.get_dirname (filename);
+				dir = GLib.Path.get_dirname (filename);
 				dbbrowser.set_wdir (dir);
 				dbbrowser.reload ();
-				extended_interface.set_active (ExtendedInterface.ExtendedInterfaceWidget.DBBROWSER);
+				extended_interface.set_active (Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.DBBROWSER);
 			}
 		}
 
 		private void cb_info_selection () {
-			TreeIter iter;
+			Gtk.TreeIter iter;
 			int id = 0;
 
-			var selection = treeview.get_selection ();
+			var selection = this.treeview.get_selection ();
 			if (selection.count_selected_rows () > 1)
 				return;
 
-			var model = store;
+			var model = this.store;
 			var list = selection.get_selected_rows (out model);
 			if (list.length () == 0)
 				return;
 
 			var path = list.nth_data (0);
 
-			if (store.get_iter (out iter, path)) {
-				store.get (iter, Columns.COLUMN_ID, out id, -1);
-				var dialog = new SongDialog (id);
+			if (this.store.get_iter (out iter, path)) {
+				this.store.get (iter, Columns.COLUMN_ID, out id, -1);
+				var dialog = new Xfmpc.SongDialog (id);
 				dialog.show_all ();
 			}
 		}
@@ -220,38 +220,38 @@ namespace Xfmpc {
 		private void cb_song_changed () {
 			refresh_current_song ();
 
-			if (filter_entry.get_text () == "" && autocenter)
-				select_row (current);
+			if (filter_entry.get_text () == "" && this.autocenter)
+				select_row (this.current);
 		}
 
 		private void cb_playlist_changed () {
 			string filename = "", song = "", length = "";
 			int id = 0, pos = 0;
 
-			current = mpdclient.get_id ();
+			this.current = this.mpdclient.get_id ();
 
-			store.clear ();
+			this.store.clear ();
 
-			while (mpdclient.playlist_read (&id, &pos, &filename, &song, &length)) {
+			while (this.mpdclient.playlist_read (&id, &pos, &filename, &song, &length)) {
 				append (id, pos, filename, song, length);
 			}
 
 			refresh_current_song ();
 
-			if (filter_entry.get_text () != "" && autocenter)
-				select_row (current);
+			if (filter_entry.get_text () != "" && this.autocenter)
+				select_row (this.current);
 		}
 
-		private void cb_row_activated (TreePath path, TreeViewColumn column) {
-			TreeIter iter;
-			TreePath new_path = path;
+		private void cb_row_activated (Gtk.TreePath path, Gtk.TreeViewColumn column) {
+			Gtk.TreeIter iter;
+			Gtk.TreePath new_path = path;
 			int id = 0;
 
-			if (!filter.get_iter (out iter, new_path))
+			if (!this.filter.get_iter (out iter, new_path))
 				return;
 
-			filter.get (iter, Columns.COLUMN_ID, out id, -1);
-			mpdclient.set_id (id);
+			this.filter.get (iter, Columns.COLUMN_ID, out id, -1);
+			this.mpdclient.set_id (id);
 		}
 
 		private bool cb_key_released (Gdk.EventKey event) {
@@ -272,22 +272,22 @@ namespace Xfmpc {
 		}
 
 		private bool cb_button_released (Gdk.EventButton event) {
-			TreePath path;
-			TreeSelection selection;
+			Gtk.TreePath path;
+			Gtk.TreeSelection selection;
 
 			if (event.type != Gdk.EventType.BUTTON_PRESS || event.button != 3)
 				return false;
 
-			selection = treeview.get_selection ();
+			selection = this.treeview.get_selection ();
 			if (selection.count_selected_rows () < 1)
 				return true;
 
 			bool sensitive = selection.count_selected_rows () == 1;
-			mi_browse.set_sensitive (sensitive);
-			mi_information.set_sensitive (sensitive);
+			this.mi_browse.set_sensitive (sensitive);
+			this.mi_information.set_sensitive (sensitive);
 
-			if (treeview.get_path_at_pos ((int) event.x, (int) event.y,
-						      out path, null, null, null))
+			if (this.treeview.get_path_at_pos ((int) event.x, (int) event.y,
+				   		           out path, null, null, null))
 			{
 				if (!selection.path_is_selected (path)) {
 					selection.unselect_all ();
@@ -305,14 +305,14 @@ namespace Xfmpc {
 		}
 
 		private void cb_filter_entry_activated () {
-			var list = (treeview.get_selection ()).get_selected_rows (out filter);
+			var list = (this.treeview.get_selection ()).get_selected_rows (out filter);
 			var path = list.nth_data (0);
 
 			if (list.length () > 0) {
-				treeview.row_activated (path, treeview.get_column (0));
+				this.treeview.row_activated (path, this.treeview.get_column (0));
 				filter_entry.set_text ("");
 				select_row (current);
-				treeview.grab_focus ();
+				this.treeview.grab_focus ();
 			}
 		}
 
@@ -324,7 +324,7 @@ namespace Xfmpc {
 			if (event.keyval == 0xff1b) {
 				filter_entry.set_text ("");
 				select_row (current);
-				treeview.grab_focus ();
+				this.treeview.grab_focus ();
 			}
 			else {
 				if (filter_entry.get_text () != "")
@@ -337,7 +337,7 @@ namespace Xfmpc {
 		}
 
 		private void cb_filter_entry_changed () {
-  			filter.refilter ();
+  			this.filter.refilter ();
 		}
 
 		/*
@@ -345,63 +345,63 @@ namespace Xfmpc {
 		 */
 
 		public void append (int id, int pos, string filename, string song, string length) {
-			TreeIter iter;
+			Gtk.TreeIter iter;
 
-			store.append (out iter);
-			store.set (iter,
-				   Columns.COLUMN_ID, id,
-				   Columns.COLUMN_FILENAME, filename,
-				   Columns.COLUMN_POSITION, pos + 1,
-				   Columns.COLUMN_SONG, song,
-				   Columns.COLUMN_LENGTH, length,
-				   Columns.COLUMN_WEIGHT, Pango.Weight.NORMAL,
-				   -1);
+			this.store.append (out iter);
+			this.store.set (iter,
+				        Columns.COLUMN_ID, id,
+				        Columns.COLUMN_FILENAME, filename,
+				        Columns.COLUMN_POSITION, pos + 1,
+				        Columns.COLUMN_SONG, song,
+				        Columns.COLUMN_LENGTH, length,
+				        Columns.COLUMN_WEIGHT, Pango.Weight.NORMAL,
+				        -1);
 		}
 
 		public void refresh_current_song () {
-			TreeIter iter;
-			TreePath path;
+			Gtk.TreeIter iter;
+			Gtk.TreePath path;
 
-			if (current < 0)
-				current = 0;
+			if (this.current < 0)
+				this.current = 0;
 
-			path = new TreePath.from_indices (current, -1);
+			path = new Gtk.TreePath.from_indices (this.current, -1);
 
-			if (store.get_iter (out iter, path))
-				store.set (iter, Columns.COLUMN_WEIGHT, Pango.Weight.NORMAL, -1);
+			if (this.store.get_iter (out iter, path))
+				this.store.set (iter, Columns.COLUMN_WEIGHT, Pango.Weight.NORMAL, -1);
 
-			current = mpdclient.get_pos ();
-			path = new TreePath.from_indices (current, -1);
-			if (store.get_iter (out iter, path))
-				store.set (iter, Columns.COLUMN_WEIGHT, Pango.Weight.BOLD, -1);
+			this.current = this.mpdclient.get_pos ();
+			path = new Gtk.TreePath.from_indices (this.current, -1);
+			if (this.store.get_iter (out iter, path))
+				this.store.set (iter, Columns.COLUMN_WEIGHT, Pango.Weight.BOLD, -1);
 		}
 
 		public void select_row (int i) {
-			if (current < 0)
+			if (this.current < 0)
 				return;
-			if (filter.iter_n_children (null) == 0)
+			if (this.filter.iter_n_children (null) == 0)
 				return;
 
-			TreePath path = new TreePath.from_indices (i, -1);
-			treeview.set_cursor (path, null, false);
-			treeview.scroll_to_cell (path, null, true, (float) 0.42, 0);
+			Gtk.TreePath path = new Gtk.TreePath.from_indices (i, -1);
+			this.treeview.set_cursor (path, null, false);
+			this.treeview.scroll_to_cell (path, null, true, (float) 0.42, 0);
 		}
 
 		public void delete_selection () {
 			int id = 0;
-			TreeIter iter;
-			var model = store;
+			Gtk.TreeIter iter;
+			var model = this.store;
 
-			var list = (treeview.get_selection ()).get_selected_rows (out model);
+			var list = (this.treeview.get_selection ()).get_selected_rows (out model);
 
 			foreach (Gtk.TreePath path in list) {
-				if (store.get_iter (out iter, path)) {
-					store.get (iter, Columns.COLUMN_ID, out id, -1);
-					mpdclient.queue_remove_id (id);
+				if (this.store.get_iter (out iter, path)) {
+					this.store.get (iter, Columns.COLUMN_ID, out id, -1);
+					this.mpdclient.queue_remove_id (id);
 				}
 			}
 
-			mpdclient.queue_commit ();
+			this.mpdclient.queue_commit ();
 		}
 	}
 }

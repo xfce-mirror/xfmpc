@@ -109,11 +109,10 @@ static void xfmpc_main_window_action_next (XfmpcMainWindow* self);
 static void _xfmpc_main_window_action_next_gtk_action_callback (GtkAction* action, gpointer self);
 static void xfmpc_main_window_action_volume (XfmpcMainWindow* self);
 static void _xfmpc_main_window_action_volume_gtk_action_callback (GtkAction* action, gpointer self);
-#define XFMPC_MAIN_WINDOW_main_ui "<ui><accelerator action=\"quit\" /><accelerator action=\"previous\" /><accelerator action=\"pp\" /><accelerator action=\"stop\" /><accelerator action=\"next\" /><accelerator action=\"volume\" /></ui>"
-#define XFMPC_MAIN_WINDOW_main_ui_length (gint) 187u
+#define XFMPC_MAIN_WINDOW_ui_string "\n<ui>\n  <accelerator action=\"quit\" />\n  <accelerator action=\"previous\" />\n  <accelerator action=\"pp\" />\n  <accelerator action=\"stop\" />\n  <accelerator action=\"next\" />\n  <accelerator action=\"volume\" />\n</ui>\n"
 static gboolean xfmpc_main_window_cb_window_state_event (XfmpcMainWindow* self, const GdkEventWindowState* event);
 static void xfmpc_main_window_close_window (XfmpcMainWindow* self);
-static gboolean xfmpc_main_window_cb_window_closed (XfmpcMainWindow* self, const GdkEvent* event);
+static gboolean xfmpc_main_window_cb_window_closed (XfmpcMainWindow* self, GdkEvent* event);
 GType xfmpc_interface_get_type (void);
 void xfmpc_interface_pp_clicked (XfmpcInterface* self);
 void xfmpc_interface_popup_volume (XfmpcInterface* self);
@@ -127,7 +126,7 @@ static void xfmpc_main_window_cb_show_statusbar_changed (XfmpcMainWindow* self, 
 XfmpcMainWindow* xfmpc_main_window_new (void);
 XfmpcMainWindow* xfmpc_main_window_construct (GType object_type);
 XfmpcMainWindow* xfmpc_main_window_new (void);
-static gboolean _xfmpc_main_window_cb_window_closed_gtk_widget_delete_event (XfmpcMainWindow* _sender, const GdkEvent* event, gpointer self);
+static gboolean _xfmpc_main_window_cb_window_closed_gtk_widget_delete_event (XfmpcMainWindow* _sender, GdkEvent* event, gpointer self);
 static gboolean _xfmpc_main_window_cb_window_state_event_gtk_widget_window_state_event (XfmpcMainWindow* _sender, const GdkEventWindowState* event, gpointer self);
 XfmpcInterface* xfmpc_interface_new (void);
 XfmpcInterface* xfmpc_interface_construct (GType object_type);
@@ -211,8 +210,9 @@ static gboolean xfmpc_main_window_cb_window_state_event (XfmpcMainWindow* self, 
 }
 
 
-static gboolean xfmpc_main_window_cb_window_closed (XfmpcMainWindow* self, const GdkEvent* event) {
+static gboolean xfmpc_main_window_cb_window_closed (XfmpcMainWindow* self, GdkEvent* event) {
 	g_return_val_if_fail (self != NULL, FALSE);
+	g_return_val_if_fail (event != NULL, FALSE);
 	xfmpc_main_window_close_window (self);
 	return FALSE;
 }
@@ -379,7 +379,7 @@ XfmpcMainWindow* xfmpc_main_window_new (void) {
 }
 
 
-static gboolean _xfmpc_main_window_cb_window_closed_gtk_widget_delete_event (XfmpcMainWindow* _sender, const GdkEvent* event, gpointer self) {
+static gboolean _xfmpc_main_window_cb_window_closed_gtk_widget_delete_event (XfmpcMainWindow* _sender, GdkEvent* event, gpointer self) {
 	return xfmpc_main_window_cb_window_closed (self, event);
 }
 
@@ -411,6 +411,7 @@ static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_pr
 	self = XFMPC_MAIN_WINDOW (obj);
 	_inner_error_ = NULL;
 	{
+		XfmpcPreferences* preferences1;
 		GtkVBox* _tmp0_;
 		gboolean _tmp1_;
 		gboolean _tmp2_;
@@ -423,6 +424,7 @@ static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_pr
 		GtkAccelGroup* accel_group;
 		self->priv->mpdclient = xfmpc_mpdclient_get ();
 		self->priv->preferences = xfmpc_preferences_get ();
+		preferences1 = xfmpc_preferences_get ();
 		/* Window */
 		gtk_window_set_default_icon_name ("xfmpc");
 		gtk_window_set_icon_name ((GtkWindow*) self, "stock_volume");
@@ -474,7 +476,7 @@ static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_pr
 		gtk_action_group_add_toggle_actions (self->priv->action_group, XFMPC_MAIN_WINDOW_toggle_action_entries, G_N_ELEMENTS (XFMPC_MAIN_WINDOW_toggle_action_entries), self);
 		gtk_ui_manager_insert_action_group (self->priv->ui_manager, self->priv->action_group, 0);
 		{
-			gtk_ui_manager_add_ui_from_string (self->priv->ui_manager, XFMPC_MAIN_WINDOW_main_ui, (gssize) XFMPC_MAIN_WINDOW_main_ui_length, &_inner_error_);
+			gtk_ui_manager_add_ui_from_string (self->priv->ui_manager, XFMPC_MAIN_WINDOW_ui_string, (gssize) (-1), &_inner_error_);
 			if (_inner_error_ != NULL) {
 				goto __catch0_g_error;
 				goto __finally0;

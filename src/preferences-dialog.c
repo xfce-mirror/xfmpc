@@ -117,25 +117,15 @@ static void xfmpc_preferences_dialog_cb_use_defaults_toggled (XfmpcPreferencesDi
 
 static void xfmpc_preferences_dialog_cb_update_mpd (XfmpcPreferencesDialog* self, GtkButton* source) {
 	XfmpcMpdclient* mpdclient;
-	const char* _tmp0_;
-	char* mpd_hostname;
-	const char* _tmp1_;
-	char* mpd_password;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (source != NULL);
 	mpdclient = xfmpc_mpdclient_get ();
-	_tmp0_ = NULL;
-	mpd_hostname = (_tmp0_ = gtk_entry_get_text (self->priv->entry_host), (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_));
-	_tmp1_ = NULL;
-	mpd_password = (_tmp1_ = gtk_entry_get_text (self->priv->entry_passwd), (_tmp1_ == NULL) ? NULL : g_strdup (_tmp1_));
-	xfmpc_preferences_set_mpd_hostname (self->priv->preferences, mpd_hostname);
+	xfmpc_preferences_set_mpd_hostname (self->priv->preferences, gtk_entry_get_text (self->priv->entry_host));
 	xfmpc_preferences_set_mpd_port (self->priv->preferences, gtk_spin_button_get_value_as_int (self->priv->entry_port));
-	xfmpc_preferences_set_mpd_password (self->priv->preferences, mpd_password);
+	xfmpc_preferences_set_mpd_password (self->priv->preferences, gtk_entry_get_text (self->priv->entry_passwd));
 	xfmpc_preferences_set_mpd_use_defaults (self->priv->preferences, gtk_toggle_button_get_active ((GtkToggleButton*) self->priv->entry_use_defaults));
 	xfmpc_mpdclient_disconnect (mpdclient);
 	xfmpc_mpdclient_connect (mpdclient);
-	mpd_hostname = (g_free (mpd_hostname), NULL);
-	mpd_password = (g_free (mpd_password), NULL);
 }
 
 

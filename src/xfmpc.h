@@ -192,7 +192,6 @@ XfmpcStatusbar* xfmpc_statusbar_new (void);
 XfmpcStatusbar* xfmpc_statusbar_construct (GType object_type);
 void xfmpc_statusbar_set_text (XfmpcStatusbar* self, const char* value);
 GType xfmpc_dbbrowser_get_type (void);
-void xfmpc_dbbrowser_free (XfmpcDbbrowser* self);
 void xfmpc_dbbrowser_reload (XfmpcDbbrowser* self);
 gboolean xfmpc_dbbrowser_wdir_is_root (XfmpcDbbrowser* self);
 char* xfmpc_dbbrowser_get_parent_wdir (XfmpcDbbrowser* self);

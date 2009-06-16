@@ -76,6 +76,7 @@ if test "x$USE_MAINTAINER_MODE" = "xyes" ; then
 		echo "***"
 		echo
 	fi
+	XDT_CHECK_PACKAGE([XFCE4VALA], [xfce4-vala], [0.1])
 fi
 
 dnl ***********************************

@@ -1,3 +1,11 @@
+2009-06-16	Vincent Legout <vincent@legout.info>
+
+General cleanup and add dependency on xfce4-vala
+
+Removed the vapi/ dir because Xfmpc now depends on xfce4-vala. The others vapi
+files have been moved to src/.
+Removed main-ui.h and main-ui.xml. The code has been moved to main-window.vala.
+
 2009-06-15	Mike Massonnet <mmassonne@xfce.org>
 
 Fix build problem for Gettext

@@ -1,5 +1,7 @@
 bin_PROGRAMS = xfmpc
 
+if MAINTAINER_MODE
+
 xfmpc_VALASOURCES =							\
 	preferences-dialog.vala						\
 	song-dialog.vala						\
@@ -11,21 +13,12 @@ xfmpc_VALASOURCES =							\
 	playlist.vala
 
 vala_built_SOURCES =							\
-	$(xfmpc_VALASOURCES:.vala=.c)					\
-	$(xfmpc_VALASOURCES:.vala=.h)
+	$(xfmpc_VALASOURCES:.vala=.c)
 
-if MAINTAINER_MODE
-
-BUILT_SOURCES =								\
-	main-ui.h							\
-	vala.stamp
-
+BUILT_SOURCES =	vala.stamp
 vala.stamp: $(xfmpc_VALASOURCES)
-	$(VALAC) --vapidir=$(top_srcdir)/vapi --pkg=gtk+-2.0 --pkg=libxfce4util-1.0 --pkg=libxfcegui4-1.0 --pkg=config --pkg=mpdclient --pkg=preferences --pkg=xfce-arrow-button $^ -C -H xfmpc.h
+	$(VALAC) --vapidir=. --pkg=libxfcegui4-1.0 --pkg=config --pkg=mpdclient --pkg=preferences --pkg=xfce-arrow-button $^ -C -H xfmpc.h
 	touch $@
-
-main-ui.h: Makefile $(srcdir)/main-ui.xml
-	exo-csource --strip-comments --strip-content --static --name=main_ui $(srcdir)/main-ui.xml > main-ui.h
 
 endif
 
@@ -62,11 +55,10 @@ INCLUDES =								\
 	-DSRCDIR=\""$(top_srcdir)"\"
 
 EXTRA_DIST =								\
-	main-ui.xml							\
 	$(xfmpc_VALASOURCES)
 
-DISTCLEANFILES =							\
-	main-ui.h							\
+CLEANFILES =								\
 	$(BUILT_SOURCES)						\
-	$(vala_built_SOURCES)
+	$(vala_built_SOURCES)						\
+	xfmpc.h
 

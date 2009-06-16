@@ -84,7 +84,6 @@ enum  {
 	XFMPC_DBBROWSER_DUMMY_PROPERTY
 };
 static GType xfmpc_dbbrowser_columns_get_type (void);
-void xfmpc_dbbrowser_free (XfmpcDbbrowser* self);
 static void xfmpc_dbbrowser_clear (XfmpcDbbrowser* self);
 gboolean xfmpc_dbbrowser_wdir_is_root (XfmpcDbbrowser* self);
 char* xfmpc_dbbrowser_get_parent_wdir (XfmpcDbbrowser* self);
@@ -139,11 +138,6 @@ static GType xfmpc_dbbrowser_columns_get_type (void) {
 		xfmpc_dbbrowser_columns_type_id = g_enum_register_static ("XfmpcDbbrowserColumns", values);
 	}
 	return xfmpc_dbbrowser_columns_type_id;
-}
-
-
-void xfmpc_dbbrowser_free (XfmpcDbbrowser* self) {
-	g_return_if_fail (self != NULL);
 }
 
 
@@ -785,30 +779,36 @@ static GObject * xfmpc_dbbrowser_constructor (GType type, guint n_construct_prop
 	{
 		char* _tmp1_;
 		const char* _tmp0_;
-		char* _tmp2_;
-		GtkListStore* _tmp3_;
-		GtkTreeView* _tmp4_;
+		GtkListStore* _tmp4_;
+		GtkTreeView* _tmp5_;
 		GtkCellRendererPixbuf* cell_pixbuf;
 		GtkCellRendererText* cell_text;
 		GtkScrolledWindow* scrolled;
-		GtkMenu* _tmp5_;
+		GtkMenu* _tmp6_;
 		GtkImageMenuItem* mi;
-		GtkImageMenuItem* _tmp6_;
-		GtkImage* image;
 		GtkImageMenuItem* _tmp7_;
-		GtkImage* _tmp8_;
-		GtkEntry* _tmp9_;
+		GtkImage* image;
+		GtkImageMenuItem* _tmp8_;
+		GtkImage* _tmp9_;
+		GtkEntry* _tmp10_;
 		self->priv->mpdclient = xfmpc_mpdclient_get ();
 		self->priv->preferences = xfmpc_preferences_get ();
 		_tmp1_ = NULL;
 		_tmp0_ = NULL;
 		self->priv->wdir = (_tmp1_ = (_tmp0_ = xfmpc_preferences_get_dbbrowser_last_path (self->priv->preferences), (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_)), self->priv->wdir = (g_free (self->priv->wdir), NULL), _tmp1_);
-		_tmp2_ = NULL;
-		self->priv->last_wdir = (_tmp2_ = g_strndup (self->priv->wdir, (gsize) g_utf8_strlen (self->priv->wdir, -1)), self->priv->last_wdir = (g_free (self->priv->last_wdir), NULL), _tmp2_);
-		_tmp3_ = NULL;
-		self->priv->store = (_tmp3_ = gtk_list_store_new ((gint) XFMPC_DBBROWSER_COLUMNS_N_COLUMNS, G_TYPE_INT, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_INT, NULL), (self->priv->store == NULL) ? NULL : (self->priv->store = (g_object_unref (self->priv->store), NULL)), _tmp3_);
+		if (self->priv->wdir != NULL) {
+			char* _tmp2_;
+			_tmp2_ = NULL;
+			self->priv->last_wdir = (_tmp2_ = g_strndup (self->priv->wdir, (gsize) g_utf8_strlen (self->priv->wdir, -1)), self->priv->last_wdir = (g_free (self->priv->last_wdir), NULL), _tmp2_);
+		} else {
+			char* _tmp3_;
+			_tmp3_ = NULL;
+			self->priv->last_wdir = (_tmp3_ = g_strdup (""), self->priv->last_wdir = (g_free (self->priv->last_wdir), NULL), _tmp3_);
+		}
 		_tmp4_ = NULL;
-		self->priv->treeview = (_tmp4_ = g_object_ref_sink ((GtkTreeView*) gtk_tree_view_new ()), (self->priv->treeview == NULL) ? NULL : (self->priv->treeview = (g_object_unref (self->priv->treeview), NULL)), _tmp4_);
+		self->priv->store = (_tmp4_ = gtk_list_store_new ((gint) XFMPC_DBBROWSER_COLUMNS_N_COLUMNS, G_TYPE_INT, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_INT, NULL), (self->priv->store == NULL) ? NULL : (self->priv->store = (g_object_unref (self->priv->store), NULL)), _tmp4_);
+		_tmp5_ = NULL;
+		self->priv->treeview = (_tmp5_ = g_object_ref_sink ((GtkTreeView*) gtk_tree_view_new ()), (self->priv->treeview == NULL) ? NULL : (self->priv->treeview = (g_object_unref (self->priv->treeview), NULL)), _tmp5_);
 		gtk_tree_selection_set_mode (gtk_tree_view_get_selection (self->priv->treeview), GTK_SELECTION_MULTIPLE);
 		gtk_tree_view_set_rubber_banding (self->priv->treeview, TRUE);
 		gtk_tree_view_set_enable_search (self->priv->treeview, TRUE);
@@ -823,27 +823,27 @@ static GObject * xfmpc_dbbrowser_constructor (GType type, guint n_construct_prop
 		gtk_tree_view_insert_column_with_attributes (self->priv->treeview, -1, "Filename", (GtkCellRenderer*) cell_text, "text", XFMPC_DBBROWSER_COLUMNS_COLUMN_BASENAME, "weight", XFMPC_DBBROWSER_COLUMNS_COLUMN_WEIGHT, NULL, NULL);
 		scrolled = g_object_ref_sink ((GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL));
 		gtk_scrolled_window_set_policy (scrolled, GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
-		_tmp5_ = NULL;
-		self->priv->menu = (_tmp5_ = g_object_ref_sink ((GtkMenu*) gtk_menu_new ()), (self->priv->menu == NULL) ? NULL : (self->priv->menu = (g_object_unref (self->priv->menu), NULL)), _tmp5_);
+		_tmp6_ = NULL;
+		self->priv->menu = (_tmp6_ = g_object_ref_sink ((GtkMenu*) gtk_menu_new ()), (self->priv->menu == NULL) ? NULL : (self->priv->menu = (g_object_unref (self->priv->menu), NULL)), _tmp6_);
 		mi = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_from_stock (GTK_STOCK_ADD, NULL));
 		gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) mi));
 		g_signal_connect_object ((GtkMenuItem*) mi, "activate", (GCallback) _xfmpc_dbbrowser_add_selected_rows_gtk_menu_item_activate, self, 0);
-		_tmp6_ = NULL;
-		mi = (_tmp6_ = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_with_mnemonic (_ ("Replace"))), (mi == NULL) ? NULL : (mi = (g_object_unref (mi), NULL)), _tmp6_);
+		_tmp7_ = NULL;
+		mi = (_tmp7_ = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_with_mnemonic (_ ("Replace"))), (mi == NULL) ? NULL : (mi = (g_object_unref (mi), NULL)), _tmp7_);
 		image = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_CUT, GTK_ICON_SIZE_MENU));
 		gtk_image_menu_item_set_image (mi, (GtkWidget*) image);
 		gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) mi));
 		g_signal_connect_object ((GtkMenuItem*) mi, "activate", (GCallback) _xfmpc_dbbrowser_cb_replace_with_selected_rows_gtk_menu_item_activate, self, 0);
-		_tmp7_ = NULL;
-		self->priv->mi_browse = (_tmp7_ = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_with_mnemonic (_ ("Browse"))), (self->priv->mi_browse == NULL) ? NULL : (self->priv->mi_browse = (g_object_unref (self->priv->mi_browse), NULL)), _tmp7_);
 		_tmp8_ = NULL;
-		image = (_tmp8_ = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU)), (image == NULL) ? NULL : (image = (g_object_unref (image), NULL)), _tmp8_);
+		self->priv->mi_browse = (_tmp8_ = g_object_ref_sink ((GtkImageMenuItem*) gtk_image_menu_item_new_with_mnemonic (_ ("Browse"))), (self->priv->mi_browse == NULL) ? NULL : (self->priv->mi_browse = (g_object_unref (self->priv->mi_browse), NULL)), _tmp8_);
+		_tmp9_ = NULL;
+		image = (_tmp9_ = g_object_ref_sink ((GtkImage*) gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU)), (image == NULL) ? NULL : (image = (g_object_unref (image), NULL)), _tmp9_);
 		gtk_image_menu_item_set_image (self->priv->mi_browse, (GtkWidget*) image);
 		gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) self->priv->mi_browse));
 		g_signal_connect_object ((GtkMenuItem*) self->priv->mi_browse, "activate", (GCallback) _xfmpc_dbbrowser_cb_browse_gtk_menu_item_activate, self, 0);
 		gtk_widget_show_all ((GtkWidget*) self->priv->menu);
-		_tmp9_ = NULL;
-		self->priv->search_entry = (_tmp9_ = g_object_ref_sink ((GtkEntry*) gtk_entry_new ()), (self->priv->search_entry == NULL) ? NULL : (self->priv->search_entry = (g_object_unref (self->priv->search_entry), NULL)), _tmp9_);
+		_tmp10_ = NULL;
+		self->priv->search_entry = (_tmp10_ = g_object_ref_sink ((GtkEntry*) gtk_entry_new ()), (self->priv->search_entry == NULL) ? NULL : (self->priv->search_entry = (g_object_unref (self->priv->search_entry), NULL)), _tmp10_);
 		gtk_container_add ((GtkContainer*) scrolled, (GtkWidget*) self->priv->treeview);
 		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) scrolled, TRUE, TRUE, (guint) 0);
 		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->search_entry, FALSE, FALSE, (guint) 0);

@@ -26,11 +26,11 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
-		private ListStore store;
-		private TreeView treeview;
-		private Menu menu;
-		private Entry search_entry;
-		private ImageMenuItem mi_browse;
+		private Gtk.ListStore store;
+		private Gtk.TreeView treeview;
+		private Gtk.Menu menu;
+		private Gtk.Entry search_entry;
+		private Gtk.ImageMenuItem mi_browse;
 
 		private string wdir;
 		private string last_wdir;
@@ -49,87 +49,87 @@ namespace Xfmpc {
 		}
 
 		construct {
-			mpdclient = Xfmpc.Mpdclient.get ();
-			preferences = Xfmpc.Preferences.get ();
+			this.mpdclient = Xfmpc.Mpdclient.get ();
+			this.preferences = Xfmpc.Preferences.get ();
 
-			wdir = preferences.dbbrowser_last_path;
-			last_wdir = wdir.ndup (wdir.len ());
+			this.wdir = preferences.dbbrowser_last_path;
+			if (this.wdir != null)
+				this.last_wdir = this.wdir.ndup (this.wdir.len ());
+			else
+				this.last_wdir = "";
 
-			store = new ListStore (Columns.N_COLUMNS,
-					       typeof (int),
-					       typeof (Gdk.Pixbuf),
-					       typeof (string),
-					       typeof (string),
-					       typeof (bool),
-					       typeof (int));
+			this.store = new Gtk.ListStore (Columns.N_COLUMNS,
+					       	    	typeof (int),
+					       	    	typeof (Gdk.Pixbuf),
+					       	    	typeof (string),
+					       	    	typeof (string),
+					       	    	typeof (bool),
+					       	    	typeof (int));
 
-			treeview = new TreeView ();
-			(treeview.get_selection ()).set_mode (SelectionMode.MULTIPLE);
-			treeview.set_rubber_banding (true);
-  			treeview.set_enable_search (true);
-			treeview.set_search_column (Columns.COLUMN_BASENAME);
-			treeview.set_headers_visible (false);
-			treeview.set_rules_hint (true);
-			treeview.set_model (store);
+			this.treeview = new Gtk.TreeView ();
+			(this.treeview.get_selection ()).set_mode (Gtk.SelectionMode.MULTIPLE);
+			this.treeview.set_rubber_banding (true);
+  			this.treeview.set_enable_search (true);
+			this.treeview.set_search_column (Columns.COLUMN_BASENAME);
+			this.treeview.set_headers_visible (false);
+			this.treeview.set_rules_hint (true);
+			this.treeview.set_model (this.store);
 
-			var cell_pixbuf = new CellRendererPixbuf ();
-			treeview.insert_column_with_attributes (-1, "", cell_pixbuf,
-								"pixbuf", Columns.COLUMN_PIXBUF,
-								null);
+			var cell_pixbuf = new Gtk.CellRendererPixbuf ();
+			this.treeview.insert_column_with_attributes (-1, "", cell_pixbuf,
+							             "pixbuf", Columns.COLUMN_PIXBUF,
+								     null);
 
-			var cell_text = new CellRendererText ();
+			var cell_text = new Gtk.CellRendererText ();
 			cell_text.ellipsize = Pango.EllipsizeMode.END;
-			treeview.insert_column_with_attributes (-1, "Filename", cell_text,
-							        "text", Columns.COLUMN_BASENAME,
-							        "weight", Columns.COLUMN_WEIGHT,
-							        null);
+			this.treeview.insert_column_with_attributes (-1, "Filename", cell_text,
+			                                             "text", Columns.COLUMN_BASENAME,
+							             "weight", Columns.COLUMN_WEIGHT,
+							             null);
 
-			var scrolled = new ScrolledWindow (null, null);
-			scrolled.set_policy (PolicyType.AUTOMATIC, PolicyType.ALWAYS);
+			var scrolled = new Gtk.ScrolledWindow (null, null);
+			scrolled.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.ALWAYS);
 
-			menu = new Menu ();
+			this.menu = new Gtk.Menu ();
 
-			var mi = new ImageMenuItem.from_stock (STOCK_ADD, null);
-			menu.append (mi);
+			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_ADD, null);
+			this.menu.append (mi);
 			mi.activate += add_selected_rows;
-			mi = new ImageMenuItem.with_mnemonic (_("Replace"));
-			var image = new Image.from_stock (STOCK_CUT, IconSize.MENU);
+			mi = new Gtk.ImageMenuItem.with_mnemonic (_("Replace"));
+			var image = new Gtk.Image.from_stock (Gtk.STOCK_CUT, Gtk.IconSize.MENU);
 			mi.set_image (image);
-			menu.append (mi);
+			this.menu.append (mi);
 			mi.activate += cb_replace_with_selected_rows;
-			mi_browse = new ImageMenuItem.with_mnemonic (_("Browse"));
-			image = new Image.from_stock (STOCK_OPEN, IconSize.MENU);
-			mi_browse.set_image (image);
-			menu.append (mi_browse);
-			mi_browse.activate += cb_browse;
+			this.mi_browse = new Gtk.ImageMenuItem.with_mnemonic (_("Browse"));
+			image = new Gtk.Image.from_stock (Gtk.STOCK_OPEN, Gtk.IconSize.MENU);
+			this.mi_browse.set_image (image);
+			this.menu.append (this.mi_browse);
+			this.mi_browse.activate += cb_browse;
 
-			menu.show_all ();
+			this.menu.show_all ();
 
-			search_entry = new Entry ();
+			this.search_entry = new Entry ();
 
-			scrolled.add (treeview);
+			scrolled.add (this.treeview);
 			pack_start (scrolled, true, true, 0);
-			pack_start (search_entry, false, false, 0);
+			pack_start (this.search_entry, false, false, 0);
 
 			/* Signals */
-			mpdclient.connected += reload;
-			mpdclient.database_changed += reload;
-			mpdclient.playlist_changed += cb_playlist_changed;
+			this.mpdclient.connected += reload;
+			this.mpdclient.database_changed += reload;
+			this.mpdclient.playlist_changed += cb_playlist_changed;
 
-			treeview.row_activated += cb_row_activated;
-			treeview.key_press_event += cb_key_pressed;
-			treeview.button_press_event += cb_button_released;
-			treeview.popup_menu += cb_popup_menu;
+			this.treeview.row_activated += cb_row_activated;
+			this.treeview.key_press_event += cb_key_pressed;
+			this.treeview.button_press_event += cb_button_released;
+			this.treeview.popup_menu += cb_popup_menu;
 
-			search_entry.activate += cb_search_entry_activated;
-			search_entry.key_release_event += cb_search_entry_key_released;
-			search_entry.changed += cb_search_entry_changed;
+			this.search_entry.activate += cb_search_entry_activated;
+			this.search_entry.key_release_event += cb_search_entry_key_released;
+			this.search_entry.changed += cb_search_entry_changed;
 
-			preferences.notify["song-format"] += reload;
-			preferences.notify["song-format-custom"] += reload;
-		}
-
-		public void free () {
+			this.preferences.notify["song-format"] += reload;
+			this.preferences.notify["song-format-custom"] += reload;
 		}
 
 		public void reload () {
@@ -137,27 +137,27 @@ namespace Xfmpc {
 			bool is_dir = false, is_bold = false;
 			int i = 0;
 
-			if (!mpdclient.is_connected ())
+			if (!this.mpdclient.is_connected ())
 				return;
-			if (is_searching)
+			if (this.is_searching)
 				return;
 
 			clear ();
 
-			if (!wdir_is_root ()) {
+			if (!this.wdir_is_root ()) {
 				filename = get_parent_wdir ();
 				append (filename, "..", true, false);
 				i ++;
 			}
 
-			while (mpdclient.database_read (wdir, &filename, &basename, &is_dir)) {
-				is_bold = mpdclient.playlist_has_filename (filename, is_dir);
+			while (this.mpdclient.database_read (wdir, &filename, &basename, &is_dir)) {
+				is_bold = this.mpdclient.playlist_has_filename (filename, is_dir);
 				append (filename, basename, is_dir, is_bold);
 
 				if (filename.collate (last_wdir) == 0) {
 					var path = new TreePath.from_indices (i, -1);
-					treeview.set_cursor (path, null, false);
-					treeview.scroll_to_cell (path, null, true, (float) 0.10, 0);
+					this.treeview.set_cursor (path, null, false);
+					this.treeview.scroll_to_cell (path, null, true, (float) 0.10, 0);
 					i = -1;
 				}
 				else
@@ -166,7 +166,7 @@ namespace Xfmpc {
 		}
 
 		public bool wdir_is_root () {
-			return (wdir == "");
+			return (this.wdir == "");
 		}
 
 		public string get_parent_wdir () {
@@ -175,45 +175,45 @@ namespace Xfmpc {
 			if (filename == null)
 				return "";
 			else
-				return Path.get_dirname (wdir);
+				return GLib.Path.get_dirname (wdir);
 		}
 
 		public void append (string filename, string basename, bool is_dir, bool is_bold) {
-			TreeIter iter;
+			Gtk.TreeIter iter;
 
-			var pixbuf = treeview.render_icon (is_dir ? STOCK_DIRECTORY : STOCK_FILE,
-							   IconSize.MENU, null);
+			var pixbuf = this.treeview.render_icon (is_dir ? Gtk.STOCK_DIRECTORY : Gtk.STOCK_FILE,
+					                        Gtk.IconSize.MENU, null);
 
-			store.append (out iter);
-			store.set (iter,
-				   Columns.COLUMN_PIXBUF, pixbuf,
-				   Columns.COLUMN_FILENAME, filename,
-				   Columns.COLUMN_BASENAME, basename,
-				   Columns.COLUMN_IS_DIR, is_dir,
-				   Columns.COLUMN_WEIGHT, is_bold ? Pango.Weight.BOLD : Pango.Weight.NORMAL,
-				   -1);
+			this.store.append (out iter);
+			this.store.set (iter,
+				   	Columns.COLUMN_PIXBUF, pixbuf,
+				   	Columns.COLUMN_FILENAME, filename,
+				   	Columns.COLUMN_BASENAME, basename,
+				   	Columns.COLUMN_IS_DIR, is_dir,
+				   	Columns.COLUMN_WEIGHT, is_bold ? Pango.Weight.BOLD : Pango.Weight.NORMAL,
+				   	-1);
 		}
 
 		public void set_wdir (string dir) {
-			last_wdir = wdir;
-			wdir = dir;
+			this.last_wdir = this.wdir;
+			this.wdir = dir;
 		}
 
 		public void add_selected_rows () {
-			TreeModel model = store;
-			TreeIter iter;
+			Gtk.TreeModel model = this.store;
+			Gtk.TreeIter iter;
 			string filename = "";
 
-			var list = (treeview.get_selection ()).get_selected_rows (out model);
+			var list = (this.treeview.get_selection ()).get_selected_rows (out model);
 
-			foreach (TreePath path in list) {
+			foreach (Gtk.TreePath path in list) {
 				if (model.get_iter (out iter, path)) {
 					model.get (iter, Columns.COLUMN_FILENAME, out filename, -1);
-					mpdclient.queue_add (filename);
+					this.mpdclient.queue_add (filename);
 				}
 			}
 
-			mpdclient.queue_commit ();
+			this.mpdclient.queue_commit ();
 		}
 
 		public void search (string query) {
@@ -221,14 +221,14 @@ namespace Xfmpc {
 			bool is_bold;
 			int i = 0;
 
-			if (!mpdclient.is_connected ())
+			if (!this.mpdclient.is_connected ())
 				return;
 
-			is_searching = true;
+			this.is_searching = true;
 			clear ();
 
-			while (mpdclient.database_search (query, &filename, &basename)) {
-				is_bold = mpdclient.playlist_has_filename (filename, false);
+			while (this.mpdclient.database_search (query, &filename, &basename)) {
+				is_bold = this.mpdclient.playlist_has_filename (filename, false);
 				append (filename, basename, false, is_bold);
 				i++;
 			}
@@ -248,51 +248,51 @@ namespace Xfmpc {
 
 			if (no_result == no_result_buf && no_result) {
 #if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-				search_entry.modify_base (StateType.NORMAL, color);
+				this.search_entry.modify_base (Gtk.StateType.NORMAL, color);
 #endif
-				search_entry.modify_bg (StateType.NORMAL, color);
-				search_entry.modify_bg (StateType.SELECTED, color);
+				this.search_entry.modify_bg (Gtk.StateType.NORMAL, color);
+				this.search_entry.modify_bg (Gtk.StateType.SELECTED, color);
 			}
 			else if (no_result == no_result_buf && !no_result) {
 #if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-				search_entry.modify_base (StateType.NORMAL, null);
+				this.search_entry.modify_base (Gtk.StateType.NORMAL, null);
 #endif
-				search_entry.modify_bg (StateType.NORMAL, null);
-				search_entry.modify_bg (StateType.SELECTED, null);
+				this.search_entry.modify_bg (Gtk.StateType.NORMAL, null);
+				this.search_entry.modify_bg (Gtk.StateType.SELECTED, null);
 			}
 
 			if (i == 0) {
 #if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-      				search_entry.modify_base (StateType.NORMAL, color);
+      				this.search_entry.modify_base (Gtk.StateType.NORMAL, color);
 #endif
-				search_entry.modify_bg (StateType.NORMAL, color);
-				search_entry.modify_bg (StateType.SELECTED, color);
+				this.search_entry.modify_bg (Gtk.StateType.NORMAL, color);
+				this.search_entry.modify_bg (Gtk.StateType.SELECTED, color);
 			}
 			else if (no_result) {
 #if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-      				search_entry.modify_base (StateType.NORMAL, null);
+      				this.search_entry.modify_base (Gtk.StateType.NORMAL, null);
 #endif
-				search_entry.modify_bg (StateType.NORMAL, null);
-				search_entry.modify_bg (StateType.SELECTED, null);
+				this.search_entry.modify_bg (Gtk.StateType.NORMAL, null);
+				this.search_entry.modify_bg (Gtk.StateType.SELECTED, null);
 			}
 		}
 
 		private void clear () {
-  			store.clear ();
+  			this.store.clear ();
 		}
 
 		private void menu_popup () {
-			var selection = treeview.get_selection ();
+			var selection = this.treeview.get_selection ();
 			int count = selection.count_selected_rows ();
 
-			if (is_searching) {
-				mi_browse.show ();
-				mi_browse.set_sensitive (count == 1 ? true : false);
+			if (this.is_searching) {
+				this.mi_browse.show ();
+				this.mi_browse.set_sensitive (count == 1 ? true : false);
 			}
 			else
-				mi_browse.hide ();
+				this.mi_browse.hide ();
 
-			menu.popup (null, null, null, 0, get_current_event_time ());
+			this.menu.popup (null, null, null, 0, get_current_event_time ());
 		}
 
 		/*
@@ -300,8 +300,8 @@ namespace Xfmpc {
 		 */
 
 		private void cb_playlist_changed () {
-			TreeModel model = store;
-			TreeIter iter;
+			Gtk.TreeModel model = this.store;
+			Gtk.TreeIter iter;
 			string filename = "";
 			bool is_bold = false, is_dir = false;
 
@@ -314,7 +314,7 @@ namespace Xfmpc {
 					   Columns.COLUMN_IS_DIR, out is_dir,
 					   -1);
 
-				is_bold = mpdclient.playlist_has_filename (filename, is_dir);
+				is_bold = this.mpdclient.playlist_has_filename (filename, is_dir);
 				store.set (iter,
 					   Columns.COLUMN_WEIGHT,
 					   is_bold ? Pango.Weight.BOLD : Pango.Weight.NORMAL,
@@ -333,7 +333,7 @@ namespace Xfmpc {
 
 			switch (event.keyval) {
 				case 0xff0d:
-					var selection = treeview.get_selection ();
+					var selection = this.treeview.get_selection ();
 					if (selection.count_selected_rows () > 1)
 						add_selected_rows ();
 					else
@@ -357,13 +357,13 @@ namespace Xfmpc {
 			if (event.type != Gdk.EventType.BUTTON_PRESS || event.button != 3)
 				return false;
 
-			TreePath path;
-			var selection = treeview.get_selection ();
+			Gtk.TreePath path;
+			var selection = this.treeview.get_selection ();
 			if (selection.count_selected_rows () < 1)
 				return true;
 
-			if (treeview.get_path_at_pos ((int) event.x, (int) event.y,
-						      out path, null, null, null))
+			if (this.treeview.get_path_at_pos ((int) event.x, (int) event.y,
+						           out path, null, null, null))
 			{
 				if (!selection.path_is_selected (path)) {
 					selection.unselect_all ();
@@ -377,9 +377,9 @@ namespace Xfmpc {
 		}
 
 		private void cb_row_activated (TreePath path, TreeViewColumn column) {
-			TreePath ppath = path;
-			TreeModel model = store;
-			TreeIter iter;
+			Gtk.TreePath ppath = path;
+			Gtk.TreeModel model = this.store;
+			Gtk.TreeIter iter;
 			string filename = "";
 			bool is_dir = false;
 
@@ -395,21 +395,21 @@ namespace Xfmpc {
 				set_wdir (filename);
 				reload ();
 			} else {
-				mpdclient.queue_add (filename);
-				mpdclient.queue_commit ();
+				this.mpdclient.queue_add (filename);
+				this.mpdclient.queue_commit ();
 			}
 		}
 
 		private void cb_replace_with_selected_rows () {
-			mpdclient.queue_clear ();
+			this.mpdclient.queue_clear ();
 			add_selected_rows ();
 		}
 
 		private void cb_browse () {
-			TreeModel model = store;
-			TreeIter iter;
+			Gtk.TreeModel model = this.store;
+			Gtk.TreeIter iter;
 
-			var selection = treeview.get_selection ();
+			var selection = this.treeview.get_selection ();
 			if (selection.count_selected_rows () > 1)
 				return;
 
@@ -425,18 +425,18 @@ namespace Xfmpc {
 		}
 
 		private void cb_search_entry_activated () {
-			string entry_text = search_entry.get_text ();
+			string entry_text = this.search_entry.get_text ();
 
 			if (entry_text == "") {
-				is_searching = false;
+				this.is_searching = false;
 				reload ();
 
       	      	      	      	/* revert possible previous applied color */
 #if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-				search_entry.modify_base (StateType.NORMAL, null);
+				this.search_entry.modify_base (Gtk.StateType.NORMAL, null);
 #endif
-				search_entry.modify_bg (StateType.NORMAL, null);
-				search_entry.modify_bg (StateType.SELECTED, null);
+				this.search_entry.modify_bg (Gtk.StateType.NORMAL, null);
+				this.search_entry.modify_bg (Gtk.StateType.SELECTED, null);
 
 				return;
 			}
@@ -456,10 +456,10 @@ namespace Xfmpc {
 		}
 
 		private void cb_search_entry_changed () {
-			if (search_timeout > 0)
-				Source.remove (search_timeout);
+			if (this.search_timeout > 0)
+				GLib.Source.remove (search_timeout);
 
-			search_timeout = Timeout.add_full (Priority.DEFAULT, 642, timeout_search);
+			this.search_timeout = GLib.Timeout.add_full (Priority.DEFAULT, 642, this.timeout_search);
 		}
 
 		private bool timeout_search () {

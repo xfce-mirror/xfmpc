@@ -34,7 +34,6 @@
 #include "xfmpc.h"
 
 
-
 static void
 transform_string_to_int (const GValue *src,
                          GValue *dst)
@@ -82,7 +81,7 @@ main (int argc, char *argv[])
   g_value_register_transform_func (G_TYPE_STRING, G_TYPE_BOOLEAN, transform_string_to_boolean);
   g_value_register_transform_func (G_TYPE_STRING, G_TYPE_ENUM, transform_string_to_enum);
 
-  GtkWidget *window = xfmpc_main_window_new ();
+  GtkWidget *window = (GtkWidget *)xfmpc_main_window_new ();
   gtk_widget_show_all (window);
 
   gtk_main ();

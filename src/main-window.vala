@@ -26,16 +26,16 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
-		private VBox vbox;
-		private ActionGroup action_group;
-		private Widget statusbar;
-		private UIManager ui_manager;
+		private Gtk.VBox vbox;
+		private Gtk.ActionGroup action_group;
+		private Gtk.Widget statusbar;
+		private Gtk.UIManager ui_manager;
 
-		private const ToggleActionEntry[] toggle_action_entries = {
+		private const Gtk.ToggleActionEntry[] toggle_action_entries = {
 			{ "view-statusbar", null, "", null, null, action_statusbar, false }
 		};
 
-		private const ActionEntry[] action_entries = {
+		private const Gtk.ActionEntry[] action_entries = {
 			{ "quit", null, "", "<control>q", null, action_close },
 			{ "previous", null, "", "<control>b", null, action_previous },
 			{ "pp", null, "", "<control>p", null, action_pp },
@@ -44,12 +44,22 @@ namespace Xfmpc {
 			{ "volume", null, "", "<control>v", null, action_volume }
 		};
 
-		private const string main_ui = "<ui><accelerator action=\"quit\" /><accelerator action=\"previous\" /><accelerator action=\"pp\" /><accelerator action=\"stop\" /><accelerator action=\"next\" /><accelerator action=\"volume\" /></ui>";
-		private const int main_ui_length = 187u;
+		private const string ui_string =
+"""
+<ui>
+  <accelerator action="quit" />
+  <accelerator action="previous" />
+  <accelerator action="pp" />
+  <accelerator action="stop" />
+  <accelerator action="next" />
+  <accelerator action="volume" />
+</ui>
+""";
 
 		construct {
 			mpdclient = Xfmpc.Mpdclient.get ();
 			preferences = Xfmpc.Preferences.get ();
+			unowned Preferences preferences1 = Xfmpc.Preferences.get ();
 
   	  	  	/* Window */
 			set_default_icon_name ("xfmpc");
@@ -59,53 +69,53 @@ namespace Xfmpc {
 			this.delete_event += cb_window_closed;
 			this.window_state_event += cb_window_state_event;
 
-			vbox = new VBox (false, 0);
+			this.vbox = new Gtk.VBox (false, 0);
 			add (vbox);
 
-			if (preferences.last_window_posx != -1 && preferences.last_window_posy != -1)
-				move (preferences.last_window_posx, preferences.last_window_posy);
-			if (preferences.last_window_width != -1 && preferences.last_window_height != -1)
-				set_default_size (preferences.last_window_width, preferences.last_window_height);
-			if (preferences.last_window_state_sticky == true)
+			if (this.preferences.last_window_posx != -1 && this.preferences.last_window_posy != -1)
+				move (this.preferences.last_window_posx, this.preferences.last_window_posy);
+			if (this.preferences.last_window_width != -1 && this.preferences.last_window_height != -1)
+				set_default_size (this.preferences.last_window_width, this.preferences.last_window_height);
+			if (this.preferences.last_window_state_sticky == true)
 				stick ();
 
   	  	  	/* Interface */
-			var interface = new Interface ();
+			var interface = new Xfmpc.Interface ();
 			set_data ("XfmpcInterface", interface);
-			vbox.pack_start (interface, false, false, 4);
+			this.vbox.pack_start (interface, false, false, 4);
 
   	  	  	/* Separator */
-			var separator = new HSeparator ();
-			vbox.pack_start (separator, false, false, 0);
+			var separator = new Gtk.HSeparator ();
+			this.vbox.pack_start (separator, false, false, 0);
 
   	  	  	/* ExtendedInterface */
-			var extended_interface = new ExtendedInterface ();
-			vbox.pack_start (extended_interface, true, true, 0);
+			var extended_interface = new Xfmpc.ExtendedInterface ();
+			this.vbox.pack_start (extended_interface, true, true, 0);
 
   	  	  	/* Accelerators */
-			ui_manager = new UIManager ();
+			this.ui_manager = new Gtk.UIManager ();
 
   	  	  	/* Action group */
-			action_group = new ActionGroup ("XfmpcMainWindow");
-			action_group.add_actions (action_entries, this);
-			action_group.add_toggle_actions (toggle_action_entries, this);
-			ui_manager.insert_action_group (action_group, 0);
+			this.action_group = new Gtk.ActionGroup ("XfmpcMainWindow");
+			this.action_group.add_actions (this.action_entries, this);
+			this.action_group.add_toggle_actions (this.toggle_action_entries, this);
+			this.ui_manager.insert_action_group (this.action_group, 0);
 			try {
-				ui_manager.add_ui_from_string (main_ui, main_ui_length);
+				this.ui_manager.add_ui_from_string (this.ui_string, -1);
 			} catch (Error e) {
 				warning (e.message);
 			}
 
   	  	  	/* Accel group */
-			var accel_group = ui_manager.get_accel_group ();
+			var accel_group = this.ui_manager.get_accel_group ();
 			add_accel_group (accel_group);
 
   	  	  	/* show-statusbar action */
-			((ToggleAction )(action_group.get_action ("view-statusbar"))).set_active (preferences.show_statusbar);
+			((Gtk.ToggleAction )(this.action_group.get_action ("view-statusbar"))).set_active (this.preferences.show_statusbar);
 
   	  	  	/* === Signals === */
-			mpdclient.playlist_changed += cb_playlist_changed;
-			preferences.notify["show-statusbar"] += cb_show_statusbar_changed;
+			this.mpdclient.playlist_changed += cb_playlist_changed;
+			this.preferences.notify["show-statusbar"] += cb_show_statusbar_changed;
 		}
 
 		private bool cb_window_state_event (Gdk.EventWindowState event) {
@@ -124,7 +134,7 @@ namespace Xfmpc {
 				else
 					sticky = true;
 
-				preferences.last_window_state_sticky = sticky;
+				this.preferences.last_window_state_sticky = sticky;
 			}
 
 			return false;
@@ -147,69 +157,69 @@ namespace Xfmpc {
 			get_position (out posx, out posy);
 			get_size (out width, out height);
 
-			preferences.last_window_posx = posx;
-			preferences.last_window_posy = posy;
-			preferences.last_window_width = width;
-			preferences.last_window_height = height;
+			this.preferences.last_window_posx = posx;
+			this.preferences.last_window_posy = posy;
+			this.preferences.last_window_width = width;
+			this.preferences.last_window_height = height;
 
 			main_quit ();
 		}
 
 		private void action_previous () {
-			mpdclient.previous ();
+			this.mpdclient.previous ();
 		}
 
 		private void action_pp () {
-			Interface interface = (Interface) get_data ("XfmpcInterface");
+			Xfmpc.Interface interface = (Xfmpc.Interface) get_data ("XfmpcInterface");
 			interface.pp_clicked ();
 		}
 
 		private void action_stop () {
-			mpdclient.stop ();
+			this.mpdclient.stop ();
 		}
 
 		private void action_next () {
-			mpdclient.next ();
+			this.mpdclient.next ();
 		}
 
 		private void action_volume () {
-			Interface interface = (Interface) get_data ("XfmpcInterface");
+			Xfmpc.Interface interface = (Xfmpc.Interface) get_data ("XfmpcInterface");
 			interface.popup_volume ();
 		}
 
 		private void action_statusbar (Action action) {
-			bool active = ((ToggleAction) action).get_active ();
+			bool active = ((Gtk.ToggleAction) action).get_active ();
 
-			if (!active && statusbar != null) {
-				statusbar.destroy ();
-				statusbar = null;
+			if (!active && this.statusbar != null) {
+				this.statusbar.destroy ();
+				this.statusbar = null;
 			}
-			else if (active && statusbar == null) {
-				statusbar = new Statusbar ();
-				statusbar.show ();
-				vbox.pack_start (statusbar, false, false, 0);
+			else if (active && this.statusbar == null) {
+				this.statusbar = new Statusbar ();
+				this.statusbar.show ();
+				this.vbox.pack_start (this.statusbar, false, false, 0);
 			}
 		}
 
 		private void update_statusbar () {
 			int seconds, length;
 
-			if (statusbar == null)
+			if (this.statusbar == null)
 				return;
 
-			if (!mpdclient.is_connected ())
+			if (!this.mpdclient.is_connected ())
 				return;
 
-			length = mpdclient.playlist_get_length ();
-			seconds = mpdclient.playlist_get_total_time ();
+			length = this.mpdclient.playlist_get_length ();
+			seconds = this.mpdclient.playlist_get_total_time ();
 
-			StringBuilder text = new StringBuilder ();
+			GLib.StringBuilder text = new GLib.StringBuilder ();
 			if (seconds / 3600 > 0)
 				text.append_printf (_("%d songs, %d hours and %d minutes"), length, seconds / 3600, (seconds / 60) % 60);
 			else
 				text.append_printf (_("%d songs, %d minutes"), length, (seconds / 60) % 60);
 
-			((Statusbar) statusbar).text = text.str;
+			((Xfmpc.Statusbar) this.statusbar).text = text.str;
 		}
 
 		private void cb_playlist_changed () {
@@ -217,10 +227,10 @@ namespace Xfmpc {
 		}
 
 		private void cb_show_statusbar_changed (ParamSpec pspec) {
-			var action = action_group.get_action ("view-statusbar");
-			bool active = preferences.show_statusbar;
+			var action = this.action_group.get_action ("view-statusbar");
+			bool active = this.preferences.show_statusbar;
 
-			((ToggleAction) action).set_active (active);
+			((Gtk.ToggleAction) action).set_active (active);
 			update_statusbar ();
 		}
 	}
