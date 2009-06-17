@@ -256,7 +256,7 @@ static void xfmpc_preferences_store (XfmpcPreferences* self) {
 	g_return_if_fail (self != NULL);
 	rc = xfce_rc_config_open (XFCE_RESOURCE_CONFIG, "xfce4/xfmpcrc", FALSE);
 	if (rc == NULL) {
-		g_warning ("preferences.vala:171: Failed to save the preferences");
+		g_warning ("preferences.vala:170: Failed to save the preferences");
 		(rc == NULL) ? NULL : (rc = (xfce_rc_close (rc), NULL));
 		return;
 	}

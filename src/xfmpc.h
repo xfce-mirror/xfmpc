@@ -293,6 +293,7 @@ XfmpcPreferencesSongFormat xfmpc_preferences_get_song_format (XfmpcPreferences* 
 void xfmpc_preferences_set_song_format (XfmpcPreferences* self, XfmpcPreferencesSongFormat value);
 const char* xfmpc_preferences_get_song_format_custom (XfmpcPreferences* self);
 void xfmpc_preferences_set_song_format_custom (XfmpcPreferences* self, const char* value);
+gint xfmpc_main (char** args, int args_length1);
 
 
 G_END_DECLS

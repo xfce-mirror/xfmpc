@@ -11,7 +11,8 @@ xfmpc_VALASOURCES =							\
 	interface.vala							\
 	main-window.vala						\
 	playlist.vala							\
-	preferences.vala
+	preferences.vala						\
+	main.vala
 
 vala_built_SOURCES =							\
 	$(xfmpc_VALASOURCES:.vala=.c)
@@ -24,8 +25,6 @@ vala.stamp: $(xfmpc_VALASOURCES)
 endif
 
 xfmpc_SOURCES = 							\
-	main.c								\
-	main-ui.h							\
 	mpdclient.c							\
 	mpdclient.h							\
 	xfce-arrow-button.c						\
