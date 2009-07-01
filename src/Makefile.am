@@ -1,7 +1,5 @@
 bin_PROGRAMS = xfmpc
 
-if MAINTAINER_MODE
-
 xfmpc_VALASOURCES =							\
 	preferences-dialog.vala						\
 	song-dialog.vala						\
@@ -16,6 +14,8 @@ xfmpc_VALASOURCES =							\
 
 vala_built_SOURCES =							\
 	$(xfmpc_VALASOURCES:.vala=.c)
+
+if MAINTAINER_MODE
 
 BUILT_SOURCES =	vala.stamp
 vala.stamp: $(xfmpc_VALASOURCES)
@@ -56,7 +56,5 @@ EXTRA_DIST =								\
 	$(xfmpc_VALASOURCES)
 
 CLEANFILES =								\
-	$(BUILT_SOURCES)						\
-	$(vala_built_SOURCES)						\
-	xfmpc.h
+	$(BUILT_SOURCES)
 

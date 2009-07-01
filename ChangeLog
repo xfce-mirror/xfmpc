@@ -1,3 +1,7 @@
+2009-07-01	Vincent Legout <vincent@legout.info>
+
+Fix compilation when not in maintainer mode
+
 2009-06-17	Vincent Legout <vincent@legout.info>
 
 Rewrite main.c in vala
