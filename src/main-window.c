@@ -143,8 +143,8 @@ XfmpcMainWindow* xfmpc_main_window_new (void);
 XfmpcMainWindow* xfmpc_main_window_construct (GType object_type);
 XfmpcMainWindow* xfmpc_main_window_new (void);
 XfmpcPreferences* xfmpc_preferences_get (void);
-static gboolean _xfmpc_main_window_cb_window_closed_gtk_widget_delete_event (XfmpcMainWindow* _sender, GdkEvent* event, gpointer self);
-static gboolean _xfmpc_main_window_cb_window_state_event_gtk_widget_window_state_event (XfmpcMainWindow* _sender, const GdkEventWindowState* event, gpointer self);
+static gboolean _xfmpc_main_window_cb_window_closed_gtk_widget_delete_event (GtkWidget* _sender, GdkEvent* event, gpointer self);
+static gboolean _xfmpc_main_window_cb_window_state_event_gtk_widget_window_state_event (GtkWidget* _sender, const GdkEventWindowState* event, gpointer self);
 gint xfmpc_preferences_get_last_window_posx (XfmpcPreferences* self);
 gint xfmpc_preferences_get_last_window_posy (XfmpcPreferences* self);
 gint xfmpc_preferences_get_last_window_width (XfmpcPreferences* self);
@@ -156,7 +156,7 @@ XfmpcExtendedInterface* xfmpc_extended_interface_new (void);
 XfmpcExtendedInterface* xfmpc_extended_interface_construct (GType object_type);
 GType xfmpc_extended_interface_get_type (void);
 static void _xfmpc_main_window_cb_playlist_changed_xfmpc_mpdclient_playlist_changed (XfmpcMpdclient* _sender, gpointer self);
-static void _xfmpc_main_window_cb_show_statusbar_changed_g_object_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self);
+static void _xfmpc_main_window_cb_show_statusbar_changed_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self);
 static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static gpointer xfmpc_main_window_parent_class = NULL;
 static void xfmpc_main_window_finalize (GObject* obj);
@@ -401,12 +401,12 @@ XfmpcMainWindow* xfmpc_main_window_new (void) {
 }
 
 
-static gboolean _xfmpc_main_window_cb_window_closed_gtk_widget_delete_event (XfmpcMainWindow* _sender, GdkEvent* event, gpointer self) {
+static gboolean _xfmpc_main_window_cb_window_closed_gtk_widget_delete_event (GtkWidget* _sender, GdkEvent* event, gpointer self) {
 	return xfmpc_main_window_cb_window_closed (self, event);
 }
 
 
-static gboolean _xfmpc_main_window_cb_window_state_event_gtk_widget_window_state_event (XfmpcMainWindow* _sender, const GdkEventWindowState* event, gpointer self) {
+static gboolean _xfmpc_main_window_cb_window_state_event_gtk_widget_window_state_event (GtkWidget* _sender, const GdkEventWindowState* event, gpointer self) {
 	return xfmpc_main_window_cb_window_state_event (self, event);
 }
 
@@ -416,7 +416,7 @@ static void _xfmpc_main_window_cb_playlist_changed_xfmpc_mpdclient_playlist_chan
 }
 
 
-static void _xfmpc_main_window_cb_show_statusbar_changed_g_object_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self) {
+static void _xfmpc_main_window_cb_show_statusbar_changed_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self) {
 	xfmpc_main_window_cb_show_statusbar_changed (self, pspec);
 }
 

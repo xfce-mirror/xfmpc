@@ -91,39 +91,39 @@ GType xfmpc_preferences_get_type (void);
 enum  {
 	XFMPC_PREFERENCES_DIALOG_DUMMY_PROPERTY
 };
-static void xfmpc_preferences_dialog_cb_response (XfmpcPreferencesDialog* self, XfmpcPreferencesDialog* source, gint response);
-static void xfmpc_preferences_dialog_cb_use_defaults_toggled (XfmpcPreferencesDialog* self, GtkCheckButton* source);
+static void xfmpc_preferences_dialog_cb_response (XfmpcPreferencesDialog* self, gint response);
+static void xfmpc_preferences_dialog_cb_use_defaults_toggled (XfmpcPreferencesDialog* self);
 void xfmpc_preferences_set_mpd_hostname (XfmpcPreferences* self, const char* value);
 void xfmpc_preferences_set_mpd_port (XfmpcPreferences* self, gint value);
 void xfmpc_preferences_set_mpd_password (XfmpcPreferences* self, const char* value);
 void xfmpc_preferences_set_mpd_use_defaults (XfmpcPreferences* self, gboolean value);
 static void xfmpc_preferences_dialog_cb_update_mpd (XfmpcPreferencesDialog* self, GtkButton* source);
 void xfmpc_preferences_set_show_statusbar (XfmpcPreferences* self, gboolean value);
-static void xfmpc_preferences_dialog_cb_show_statusbar_toggled (XfmpcPreferencesDialog* self, GtkCheckButton* source);
+static void xfmpc_preferences_dialog_cb_show_statusbar_toggled (XfmpcPreferencesDialog* self);
 GType xfmpc_preferences_song_format_get_type (void);
 void xfmpc_preferences_set_song_format (XfmpcPreferences* self, XfmpcPreferencesSongFormat value);
 static void xfmpc_preferences_dialog_cb_combo_format_changed (XfmpcPreferencesDialog* self, GtkComboBox* source);
 static gboolean xfmpc_preferences_dialog_timeout_format (XfmpcPreferencesDialog* self);
 static gboolean _xfmpc_preferences_dialog_timeout_format_gsource_func (gpointer self);
-static void xfmpc_preferences_dialog_cb_entry_custom_changed (XfmpcPreferencesDialog* self, GtkEntry* source);
+static void xfmpc_preferences_dialog_cb_entry_custom_changed (XfmpcPreferencesDialog* self);
 void xfmpc_preferences_set_song_format_custom (XfmpcPreferences* self, const char* value);
 XfmpcPreferencesDialog* xfmpc_preferences_dialog_new (void);
 XfmpcPreferencesDialog* xfmpc_preferences_dialog_construct (GType object_type);
 XfmpcPreferencesDialog* xfmpc_preferences_dialog_new (void);
 XfmpcPreferences* xfmpc_preferences_get (void);
 gboolean xfmpc_preferences_get_mpd_use_defaults (XfmpcPreferences* self);
-static void _xfmpc_preferences_dialog_cb_use_defaults_toggled_gtk_toggle_button_toggled (GtkCheckButton* _sender, gpointer self);
+static void _xfmpc_preferences_dialog_cb_use_defaults_toggled_gtk_toggle_button_toggled (GtkToggleButton* _sender, gpointer self);
 const char* xfmpc_preferences_get_mpd_hostname (XfmpcPreferences* self);
 gint xfmpc_preferences_get_mpd_port (XfmpcPreferences* self);
 const char* xfmpc_preferences_get_mpd_password (XfmpcPreferences* self);
 static void _xfmpc_preferences_dialog_cb_update_mpd_gtk_button_clicked (GtkButton* _sender, gpointer self);
 gboolean xfmpc_preferences_get_show_statusbar (XfmpcPreferences* self);
-static void _xfmpc_preferences_dialog_cb_show_statusbar_toggled_gtk_toggle_button_toggled (GtkCheckButton* _sender, gpointer self);
+static void _xfmpc_preferences_dialog_cb_show_statusbar_toggled_gtk_toggle_button_toggled (GtkToggleButton* _sender, gpointer self);
 XfmpcPreferencesSongFormat xfmpc_preferences_get_song_format (XfmpcPreferences* self);
 const char* xfmpc_preferences_get_song_format_custom (XfmpcPreferences* self);
 static void _xfmpc_preferences_dialog_cb_combo_format_changed_gtk_combo_box_changed (GtkComboBox* _sender, gpointer self);
-static void _xfmpc_preferences_dialog_cb_entry_custom_changed_gtk_editable_changed (GtkEntry* _sender, gpointer self);
-static void _xfmpc_preferences_dialog_cb_response_gtk_dialog_response (XfmpcPreferencesDialog* _sender, gint response_id, gpointer self);
+static void _xfmpc_preferences_dialog_cb_entry_custom_changed_gtk_editable_changed (GtkEditable* _sender, gpointer self);
+static void _xfmpc_preferences_dialog_cb_response_gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self);
 static GObject * xfmpc_preferences_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static gpointer xfmpc_preferences_dialog_parent_class = NULL;
 static void xfmpc_preferences_dialog_finalize (GObject* obj);
@@ -133,9 +133,8 @@ static void xfmpc_preferences_dialog_finalize (GObject* obj);
 /*
  * Signal callbacks
  */
-static void xfmpc_preferences_dialog_cb_response (XfmpcPreferencesDialog* self, XfmpcPreferencesDialog* source, gint response) {
+static void xfmpc_preferences_dialog_cb_response (XfmpcPreferencesDialog* self, gint response) {
 	g_return_if_fail (self != NULL);
-	g_return_if_fail (source != NULL);
 	switch (response) {
 		case GTK_RESPONSE_CLOSE:
 		{
@@ -146,9 +145,8 @@ static void xfmpc_preferences_dialog_cb_response (XfmpcPreferencesDialog* self, 
 }
 
 
-static void xfmpc_preferences_dialog_cb_use_defaults_toggled (XfmpcPreferencesDialog* self, GtkCheckButton* source) {
+static void xfmpc_preferences_dialog_cb_use_defaults_toggled (XfmpcPreferencesDialog* self) {
 	g_return_if_fail (self != NULL);
-	g_return_if_fail (source != NULL);
 	gtk_widget_set_sensitive ((GtkWidget*) self->priv->mpd_vbox, !gtk_toggle_button_get_active ((GtkToggleButton*) self->priv->entry_use_defaults));
 }
 
@@ -167,9 +165,8 @@ static void xfmpc_preferences_dialog_cb_update_mpd (XfmpcPreferencesDialog* self
 }
 
 
-static void xfmpc_preferences_dialog_cb_show_statusbar_toggled (XfmpcPreferencesDialog* self, GtkCheckButton* source) {
+static void xfmpc_preferences_dialog_cb_show_statusbar_toggled (XfmpcPreferencesDialog* self) {
 	g_return_if_fail (self != NULL);
-	g_return_if_fail (source != NULL);
 	xfmpc_preferences_set_show_statusbar (self->priv->preferences, gtk_toggle_button_get_active ((GtkToggleButton*) self->priv->show_statusbar));
 }
 
@@ -228,9 +225,8 @@ static gboolean _xfmpc_preferences_dialog_timeout_format_gsource_func (gpointer 
 }
 
 
-static void xfmpc_preferences_dialog_cb_entry_custom_changed (XfmpcPreferencesDialog* self, GtkEntry* source) {
+static void xfmpc_preferences_dialog_cb_entry_custom_changed (XfmpcPreferencesDialog* self) {
 	g_return_if_fail (self != NULL);
-	g_return_if_fail (source != NULL);
 	if (self->priv->format_timeout > 0) {
 		g_source_remove (self->priv->format_timeout);
 	}
@@ -262,8 +258,8 @@ XfmpcPreferencesDialog* xfmpc_preferences_dialog_new (void) {
 }
 
 
-static void _xfmpc_preferences_dialog_cb_use_defaults_toggled_gtk_toggle_button_toggled (GtkCheckButton* _sender, gpointer self) {
-	xfmpc_preferences_dialog_cb_use_defaults_toggled (self, _sender);
+static void _xfmpc_preferences_dialog_cb_use_defaults_toggled_gtk_toggle_button_toggled (GtkToggleButton* _sender, gpointer self) {
+	xfmpc_preferences_dialog_cb_use_defaults_toggled (self);
 }
 
 
@@ -272,8 +268,8 @@ static void _xfmpc_preferences_dialog_cb_update_mpd_gtk_button_clicked (GtkButto
 }
 
 
-static void _xfmpc_preferences_dialog_cb_show_statusbar_toggled_gtk_toggle_button_toggled (GtkCheckButton* _sender, gpointer self) {
-	xfmpc_preferences_dialog_cb_show_statusbar_toggled (self, _sender);
+static void _xfmpc_preferences_dialog_cb_show_statusbar_toggled_gtk_toggle_button_toggled (GtkToggleButton* _sender, gpointer self) {
+	xfmpc_preferences_dialog_cb_show_statusbar_toggled (self);
 }
 
 
@@ -282,13 +278,13 @@ static void _xfmpc_preferences_dialog_cb_combo_format_changed_gtk_combo_box_chan
 }
 
 
-static void _xfmpc_preferences_dialog_cb_entry_custom_changed_gtk_editable_changed (GtkEntry* _sender, gpointer self) {
-	xfmpc_preferences_dialog_cb_entry_custom_changed (self, _sender);
+static void _xfmpc_preferences_dialog_cb_entry_custom_changed_gtk_editable_changed (GtkEditable* _sender, gpointer self) {
+	xfmpc_preferences_dialog_cb_entry_custom_changed (self);
 }
 
 
-static void _xfmpc_preferences_dialog_cb_response_gtk_dialog_response (XfmpcPreferencesDialog* _sender, gint response_id, gpointer self) {
-	xfmpc_preferences_dialog_cb_response (self, _sender, response_id);
+static void _xfmpc_preferences_dialog_cb_response_gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self) {
+	xfmpc_preferences_dialog_cb_response (self, response_id);
 }
 
 

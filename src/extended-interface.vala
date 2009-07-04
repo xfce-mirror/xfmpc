@@ -52,7 +52,7 @@ namespace Xfmpc {
 
 			var button = new Gtk.Button ();
 			button.set_tooltip_text (_("Clear Playlist"));
-			button.clicked += cb_playlist_clear;
+			button.clicked.connect (cb_playlist_clear);
 			hbox.pack_start (button, false, false, 0);
 
 			var image = new Gtk.Image.from_stock (Gtk.STOCK_NEW, Gtk.IconSize.MENU);
@@ -60,7 +60,7 @@ namespace Xfmpc {
 
 			button = new Gtk.Button ();
 			button.set_tooltip_text (_("Refresh Database"));
-			button.clicked += cb_database_refresh;
+			button.clicked.connect (cb_database_refresh);
 			hbox.pack_start (button, false, false, 0);
 
 			image = new Gtk.Image.from_stock (Gtk.STOCK_REFRESH, Gtk.IconSize.MENU);
@@ -68,8 +68,8 @@ namespace Xfmpc {
 
 			this.context_button = new Xfce.ArrowButton (Gtk.ArrowType.DOWN);
 			((Widget) this.context_button).set_tooltip_text (_("Context Menu"));
-			((Button) this.context_button).pressed += popup_context_menu;
-			((Button) this.context_button).clicked += cb_context_menu_clicked;
+			((Button) this.context_button).pressed.connect (popup_context_menu);
+			((Button) this.context_button).clicked.connect (cb_context_menu_clicked);
 			hbox.pack_start (((Widget) this.context_button), false, false, 0);
 
 			this.list_store = new Gtk.ListStore (Columns.N_COLUMNS,
@@ -78,7 +78,7 @@ namespace Xfmpc {
 
 			this.combobox = new Gtk.ComboBox.with_model (this.list_store);
 			hbox.pack_start (combobox, true, true, 0);
-			this.combobox.changed += cb_interface_changed;
+			this.combobox.changed.connect (cb_interface_changed);
 
 			var cell = new Gtk.CellRendererText ();
 			this.combobox.pack_start (cell, true);
@@ -151,27 +151,27 @@ namespace Xfmpc {
 			this.context_menu = new Gtk.Menu ();
 			this.context_menu.set_screen (attach_widget.get_screen ());
 			this.context_menu.attach_to_widget (attach_widget, (Gtk.MenuDetachFunc) menu_detach);
-			this.context_menu.deactivate += cb_context_menu_deactivate;
+			this.context_menu.deactivate.connect (cb_context_menu_deactivate);
 
 			var mi = new Gtk.CheckMenuItem.with_label (_("Repeat"));
 			mi.set_active (this.mpdclient.get_repeat ());
-			mi.activate += cb_repeat_switch;
+			mi.activate.connect (cb_repeat_switch);
 			this.context_menu.append (mi);
 
 			mi = new Gtk.CheckMenuItem.with_label (_("Random"));
 			mi.set_active (this.mpdclient.get_random ());
-			mi.activate += cb_random_switch;
+			mi.activate.connect (cb_random_switch);
 			this.context_menu.append (mi);
 
 			var separator = new Gtk.SeparatorMenuItem ();
 			this.context_menu.append (separator);
 
 			var imi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_PREFERENCES, null);
-			imi.activate += cb_preferences;
+			imi.activate.connect (cb_preferences);
 			this.context_menu.append (imi);
 
 			imi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_ABOUT, null);
-			imi.activate += cb_about;
+			imi.activate.connect (cb_about);
 			this.context_menu.append (imi);
 
 			this.context_menu.show_all ();
@@ -231,17 +231,15 @@ namespace Xfmpc {
 		}
 
 		private void cb_about () {
-			string[] artists = { null };
 			string[] authors = {"Mike Massonnet <mmassonnet@xfce.org>",
 					   "Vincent Legout <vincent@xfce.org>"};
-			string[] documenters = { null };
 
   	  	  	Gtk.show_about_dialog (((Gtk.Window) ((Gtk.Widget) this).get_toplevel ()),
-					       "artists", artists,
+					       "artists", null,
 					       "authors", authors,
 					       "comments", _("MPD client written in GTK+ for Xfce"),
 					       "copyright", "Copyright \302\251 2008-2009 Mike Massonnet, Vincent Legout",
-                         	 	       "documenters", documenters,
+                         	 	       "documenters", null,
                          	 	       "license", Xfce.get_license_text (Xfce.LicenseTextType.GPL),
                          	 	       "translator-credits", _("translator-credits"),
                          	 	       "version", Config.PACKAGE_VERSION,

@@ -108,8 +108,8 @@ XfmpcPreferences* xfmpc_preferences_get (void);
 static void _xfmpc_interface_cb_mpdclient_previous_gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void _xfmpc_interface_pp_clicked_gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void _xfmpc_interface_cb_mpdclient_next_gtk_button_clicked (GtkButton* _sender, gpointer self);
-static void _xfmpc_interface_volume_changed_gtk_scale_button_value_changed (GtkVolumeButton* _sender, double value, gpointer self);
-static gboolean _xfmpc_interface_cb_progress_box_release_event_gtk_widget_button_release_event (GtkEventBox* _sender, const GdkEventButton* event, gpointer self);
+static void _xfmpc_interface_volume_changed_gtk_scale_button_value_changed (GtkScaleButton* _sender, double value, gpointer self);
+static gboolean _xfmpc_interface_cb_progress_box_release_event_gtk_widget_button_release_event (GtkWidget* _sender, const GdkEventButton* event, gpointer self);
 static void _xfmpc_interface_reconnect_xfmpc_mpdclient_connected (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_interface_cb_song_changed_xfmpc_mpdclient_song_changed (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_interface_cb_pp_changed_xfmpc_mpdclient_pp_changed (XfmpcMpdclient* _sender, gboolean is_playing, gpointer self);
@@ -363,12 +363,12 @@ static void _xfmpc_interface_cb_mpdclient_next_gtk_button_clicked (GtkButton* _s
 }
 
 
-static void _xfmpc_interface_volume_changed_gtk_scale_button_value_changed (GtkVolumeButton* _sender, double value, gpointer self) {
+static void _xfmpc_interface_volume_changed_gtk_scale_button_value_changed (GtkScaleButton* _sender, double value, gpointer self) {
 	xfmpc_interface_volume_changed (self, value);
 }
 
 
-static gboolean _xfmpc_interface_cb_progress_box_release_event_gtk_widget_button_release_event (GtkEventBox* _sender, const GdkEventButton* event, gpointer self) {
+static gboolean _xfmpc_interface_cb_progress_box_release_event_gtk_widget_button_release_event (GtkWidget* _sender, const GdkEventButton* event, gpointer self) {
 	return xfmpc_interface_cb_progress_box_release_event (self, event);
 }
 

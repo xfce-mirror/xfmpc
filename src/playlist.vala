@@ -102,15 +102,15 @@ namespace Xfmpc {
 
 			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_REMOVE, null);
 			this.menu.append (mi);
-			mi.activate += delete_selection;
+			mi.activate.connect (delete_selection);
 			this.mi_browse = new Gtk.ImageMenuItem.with_mnemonic (_("Browse"));
 			var image = new Gtk.Image.from_stock (Gtk.STOCK_OPEN, Gtk.IconSize.MENU);
 			this.mi_browse.set_image (image);
 			this.menu.append (this.mi_browse);
-			this.mi_browse.activate += cb_browse_selection;
+			this.mi_browse.activate.connect (cb_browse_selection);
 			this.mi_information = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_INFO, null);
 			this.menu.append (mi_information);
-			this.mi_information.activate += cb_info_selection;
+			this.mi_information.activate.connect (cb_info_selection);
 
 			this.menu.show_all ();
 
@@ -121,20 +121,20 @@ namespace Xfmpc {
 			pack_start (this.filter_entry, false, false, 0);
 
 			/* Signals */
-			this.mpdclient.song_changed += cb_song_changed;
-			this.mpdclient.playlist_changed += cb_playlist_changed;
+			this.mpdclient.song_changed.connect (cb_song_changed);
+			this.mpdclient.playlist_changed.connect (cb_playlist_changed);
 
-			this.treeview.row_activated += cb_row_activated;
-			this.treeview.key_release_event += cb_key_released;
-			this.treeview.button_press_event += cb_button_released;
-			this.treeview.popup_menu += cb_popup_menu;
+			this.treeview.row_activated.connect (cb_row_activated);
+			this.treeview.key_release_event.connect (cb_key_released);
+			this.treeview.button_press_event.connect (cb_button_released);
+			this.treeview.popup_menu.connect (cb_popup_menu);
 
-			this.filter_entry.activate += cb_filter_entry_activated;
-			this.filter_entry.key_release_event += cb_filter_entry_key_released;
-			this.filter_entry.changed += cb_filter_entry_changed;
+			this.filter_entry.activate.connect (cb_filter_entry_activated);
+			this.filter_entry.key_release_event.connect (cb_filter_entry_key_released);
+			this.filter_entry.changed.connect (cb_filter_entry_changed);
 
-			this.preferences.notify["song-format"] += cb_playlist_changed;
-			this.preferences.notify["song-format-custom"] += cb_playlist_changed;
+			this.preferences.notify["song-format"].connect (cb_playlist_changed);
+			this.preferences.notify["song-format-custom"].connect (cb_playlist_changed);
 		}
 
 		private static bool visible_func_filter_tree (Gtk.TreeModel model, out Gtk.TreeIter iter) {

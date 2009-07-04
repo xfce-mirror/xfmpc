@@ -58,8 +58,8 @@ GType xfmpc_song_dialog_get_type (void);
 enum  {
 	XFMPC_SONG_DIALOG_DUMMY_PROPERTY
 };
-static void xfmpc_song_dialog_cb_response (XfmpcSongDialog* self, XfmpcSongDialog* source, gint response);
-static void _xfmpc_song_dialog_cb_response_gtk_dialog_response (XfmpcSongDialog* _sender, gint response_id, gpointer self);
+static void xfmpc_song_dialog_cb_response (XfmpcSongDialog* self, gint response);
+static void _xfmpc_song_dialog_cb_response_gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self);
 XfmpcSongDialog* xfmpc_song_dialog_new (gint song_id);
 XfmpcSongDialog* xfmpc_song_dialog_construct (GType object_type, gint song_id);
 XfmpcSongDialog* xfmpc_song_dialog_new (gint song_id);
@@ -68,8 +68,8 @@ static void xfmpc_song_dialog_finalize (GObject* obj);
 
 
 
-static void _xfmpc_song_dialog_cb_response_gtk_dialog_response (XfmpcSongDialog* _sender, gint response_id, gpointer self) {
-	xfmpc_song_dialog_cb_response (self, _sender, response_id);
+static void _xfmpc_song_dialog_cb_response_gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self) {
+	xfmpc_song_dialog_cb_response (self, response_id);
 }
 
 
@@ -202,9 +202,8 @@ XfmpcSongDialog* xfmpc_song_dialog_new (gint song_id) {
 /*
  * Signal callbacks
  */
-static void xfmpc_song_dialog_cb_response (XfmpcSongDialog* self, XfmpcSongDialog* source, gint response) {
+static void xfmpc_song_dialog_cb_response (XfmpcSongDialog* self, gint response) {
 	g_return_if_fail (self != NULL);
-	g_return_if_fail (source != NULL);
 	switch (response) {
 		case GTK_RESPONSE_CLOSE:
 		{

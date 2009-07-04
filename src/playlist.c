@@ -165,19 +165,19 @@ XfmpcPlaylist* xfmpc_playlist_construct (GType object_type);
 XfmpcPlaylist* xfmpc_playlist_new (void);
 XfmpcPreferences* xfmpc_preferences_get (void);
 gboolean xfmpc_preferences_get_playlist_autocenter (XfmpcPreferences* self);
-static void _xfmpc_playlist_delete_selection_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
-static void _xfmpc_playlist_cb_browse_selection_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
-static void _xfmpc_playlist_cb_info_selection_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
+static void _xfmpc_playlist_delete_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _xfmpc_playlist_cb_browse_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _xfmpc_playlist_cb_info_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _xfmpc_playlist_cb_song_changed_xfmpc_mpdclient_song_changed (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_playlist_cb_playlist_changed_xfmpc_mpdclient_playlist_changed (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_playlist_cb_row_activated_gtk_tree_view_row_activated (GtkTreeView* _sender, const GtkTreePath* path, GtkTreeViewColumn* column, gpointer self);
-static gboolean _xfmpc_playlist_cb_key_released_gtk_widget_key_release_event (GtkTreeView* _sender, const GdkEventKey* event, gpointer self);
-static gboolean _xfmpc_playlist_cb_button_released_gtk_widget_button_press_event (GtkTreeView* _sender, const GdkEventButton* event, gpointer self);
-static gboolean _xfmpc_playlist_cb_popup_menu_gtk_widget_popup_menu (GtkTreeView* _sender, gpointer self);
+static gboolean _xfmpc_playlist_cb_key_released_gtk_widget_key_release_event (GtkWidget* _sender, const GdkEventKey* event, gpointer self);
+static gboolean _xfmpc_playlist_cb_button_released_gtk_widget_button_press_event (GtkWidget* _sender, const GdkEventButton* event, gpointer self);
+static gboolean _xfmpc_playlist_cb_popup_menu_gtk_widget_popup_menu (GtkWidget* _sender, gpointer self);
 static void _xfmpc_playlist_cb_filter_entry_activated_gtk_entry_activate (GtkEntry* _sender, gpointer self);
-static gboolean _xfmpc_playlist_cb_filter_entry_key_released_gtk_widget_key_release_event (GtkEntry* _sender, const GdkEventKey* event, gpointer self);
-static void _xfmpc_playlist_cb_filter_entry_changed_gtk_editable_changed (GtkEntry* _sender, gpointer self);
-static void _xfmpc_playlist_cb_playlist_changed_g_object_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self);
+static gboolean _xfmpc_playlist_cb_filter_entry_key_released_gtk_widget_key_release_event (GtkWidget* _sender, const GdkEventKey* event, gpointer self);
+static void _xfmpc_playlist_cb_filter_entry_changed_gtk_editable_changed (GtkEditable* _sender, gpointer self);
+static void _xfmpc_playlist_cb_playlist_changed_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self);
 static GObject * xfmpc_playlist_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static gpointer xfmpc_playlist_parent_class = NULL;
 static void xfmpc_playlist_finalize (GObject* obj);
@@ -700,17 +700,17 @@ XfmpcPlaylist* xfmpc_playlist_new (void) {
 }
 
 
-static void _xfmpc_playlist_delete_selection_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self) {
+static void _xfmpc_playlist_delete_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_playlist_delete_selection (self);
 }
 
 
-static void _xfmpc_playlist_cb_browse_selection_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self) {
+static void _xfmpc_playlist_cb_browse_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_playlist_cb_browse_selection (self);
 }
 
 
-static void _xfmpc_playlist_cb_info_selection_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self) {
+static void _xfmpc_playlist_cb_info_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_playlist_cb_info_selection (self);
 }
 
@@ -730,17 +730,17 @@ static void _xfmpc_playlist_cb_row_activated_gtk_tree_view_row_activated (GtkTre
 }
 
 
-static gboolean _xfmpc_playlist_cb_key_released_gtk_widget_key_release_event (GtkTreeView* _sender, const GdkEventKey* event, gpointer self) {
+static gboolean _xfmpc_playlist_cb_key_released_gtk_widget_key_release_event (GtkWidget* _sender, const GdkEventKey* event, gpointer self) {
 	return xfmpc_playlist_cb_key_released (self, event);
 }
 
 
-static gboolean _xfmpc_playlist_cb_button_released_gtk_widget_button_press_event (GtkTreeView* _sender, const GdkEventButton* event, gpointer self) {
+static gboolean _xfmpc_playlist_cb_button_released_gtk_widget_button_press_event (GtkWidget* _sender, const GdkEventButton* event, gpointer self) {
 	return xfmpc_playlist_cb_button_released (self, event);
 }
 
 
-static gboolean _xfmpc_playlist_cb_popup_menu_gtk_widget_popup_menu (GtkTreeView* _sender, gpointer self) {
+static gboolean _xfmpc_playlist_cb_popup_menu_gtk_widget_popup_menu (GtkWidget* _sender, gpointer self) {
 	return xfmpc_playlist_cb_popup_menu (self);
 }
 
@@ -750,17 +750,17 @@ static void _xfmpc_playlist_cb_filter_entry_activated_gtk_entry_activate (GtkEnt
 }
 
 
-static gboolean _xfmpc_playlist_cb_filter_entry_key_released_gtk_widget_key_release_event (GtkEntry* _sender, const GdkEventKey* event, gpointer self) {
+static gboolean _xfmpc_playlist_cb_filter_entry_key_released_gtk_widget_key_release_event (GtkWidget* _sender, const GdkEventKey* event, gpointer self) {
 	return xfmpc_playlist_cb_filter_entry_key_released (self, event);
 }
 
 
-static void _xfmpc_playlist_cb_filter_entry_changed_gtk_editable_changed (GtkEntry* _sender, gpointer self) {
+static void _xfmpc_playlist_cb_filter_entry_changed_gtk_editable_changed (GtkEditable* _sender, gpointer self) {
 	xfmpc_playlist_cb_filter_entry_changed (self);
 }
 
 
-static void _xfmpc_playlist_cb_playlist_changed_g_object_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self) {
+static void _xfmpc_playlist_cb_playlist_changed_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self) {
 	xfmpc_playlist_cb_playlist_changed (self);
 }
 

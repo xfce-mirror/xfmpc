@@ -66,8 +66,8 @@ namespace Xfmpc {
 			set_icon_name ("stock_volume");
 			set_title (Config.PACKAGE_NAME);
 			set_default_size (330, 330);
-			this.delete_event += cb_window_closed;
-			this.window_state_event += cb_window_state_event;
+			this.delete_event.connect (cb_window_closed);
+			this.window_state_event.connect (cb_window_state_event);
 
 			this.vbox = new Gtk.VBox (false, 0);
 			add (vbox);
@@ -114,8 +114,8 @@ namespace Xfmpc {
 			((Gtk.ToggleAction )(this.action_group.get_action ("view-statusbar"))).set_active (this.preferences.show_statusbar);
 
   	  	  	/* === Signals === */
-			this.mpdclient.playlist_changed += cb_playlist_changed;
-			this.preferences.notify["show-statusbar"] += cb_show_statusbar_changed;
+			this.mpdclient.playlist_changed.connect (cb_playlist_changed);
+			this.preferences.notify["show-statusbar"].connect (cb_show_statusbar_changed);
 		}
 
 		private bool cb_window_state_event (Gdk.EventWindowState event) {

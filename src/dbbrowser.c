@@ -133,20 +133,20 @@ XfmpcDbbrowser* xfmpc_dbbrowser_construct (GType object_type);
 XfmpcDbbrowser* xfmpc_dbbrowser_new (void);
 XfmpcPreferences* xfmpc_preferences_get (void);
 const char* xfmpc_preferences_get_dbbrowser_last_path (XfmpcPreferences* self);
-static void _xfmpc_dbbrowser_add_selected_rows_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
-static void _xfmpc_dbbrowser_cb_replace_with_selected_rows_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
-static void _xfmpc_dbbrowser_cb_browse_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
+static void _xfmpc_dbbrowser_add_selected_rows_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _xfmpc_dbbrowser_cb_replace_with_selected_rows_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _xfmpc_dbbrowser_cb_browse_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _xfmpc_dbbrowser_reload_xfmpc_mpdclient_connected (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_dbbrowser_reload_xfmpc_mpdclient_database_changed (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_dbbrowser_cb_playlist_changed_xfmpc_mpdclient_playlist_changed (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_dbbrowser_cb_row_activated_gtk_tree_view_row_activated (GtkTreeView* _sender, const GtkTreePath* path, GtkTreeViewColumn* column, gpointer self);
-static gboolean _xfmpc_dbbrowser_cb_key_pressed_gtk_widget_key_press_event (GtkTreeView* _sender, const GdkEventKey* event, gpointer self);
-static gboolean _xfmpc_dbbrowser_cb_button_released_gtk_widget_button_press_event (GtkTreeView* _sender, const GdkEventButton* event, gpointer self);
-static gboolean _xfmpc_dbbrowser_cb_popup_menu_gtk_widget_popup_menu (GtkTreeView* _sender, gpointer self);
+static gboolean _xfmpc_dbbrowser_cb_key_pressed_gtk_widget_key_press_event (GtkWidget* _sender, const GdkEventKey* event, gpointer self);
+static gboolean _xfmpc_dbbrowser_cb_button_released_gtk_widget_button_press_event (GtkWidget* _sender, const GdkEventButton* event, gpointer self);
+static gboolean _xfmpc_dbbrowser_cb_popup_menu_gtk_widget_popup_menu (GtkWidget* _sender, gpointer self);
 static void _xfmpc_dbbrowser_cb_search_entry_activated_gtk_entry_activate (GtkEntry* _sender, gpointer self);
-static gboolean _xfmpc_dbbrowser_cb_search_entry_key_released_gtk_widget_key_release_event (GtkEntry* _sender, const GdkEventKey* event, gpointer self);
-static void _xfmpc_dbbrowser_cb_search_entry_changed_gtk_editable_changed (GtkEntry* _sender, gpointer self);
-static void _xfmpc_dbbrowser_reload_g_object_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self);
+static gboolean _xfmpc_dbbrowser_cb_search_entry_key_released_gtk_widget_key_release_event (GtkWidget* _sender, const GdkEventKey* event, gpointer self);
+static void _xfmpc_dbbrowser_cb_search_entry_changed_gtk_editable_changed (GtkEditable* _sender, gpointer self);
+static void _xfmpc_dbbrowser_reload_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self);
 static GObject * xfmpc_dbbrowser_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static gpointer xfmpc_dbbrowser_parent_class = NULL;
 static void xfmpc_dbbrowser_finalize (GObject* obj);
@@ -344,25 +344,30 @@ void xfmpc_dbbrowser_search (XfmpcDbbrowser* self, const char* query) {
 	char* basename;
 	gboolean is_bold;
 	gint i;
+	XfmpcPlaylist* _tmp0_;
+	XfmpcPlaylist* playlist;
 	gboolean no_result_buf;
 	gboolean no_result;
 	GdkColor color = {0};
-	gboolean _tmp0_;
+	gboolean _tmp1_;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (query != NULL);
 	filename = g_strdup ("");
 	basename = g_strdup ("");
 	is_bold = FALSE;
 	i = 0;
+	_tmp0_ = NULL;
+	playlist = (_tmp0_ = XFMPC_PLAYLIST (g_object_get_data ((GObject*) self, "XfmpcPlaylist")), (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
 	if (!xfmpc_mpdclient_is_connected (self->priv->mpdclient)) {
 		filename = (g_free (filename), NULL);
 		basename = (g_free (basename), NULL);
+		(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
 		return;
 	}
 	self->priv->is_searching = TRUE;
 	xfmpc_dbbrowser_clear (self);
 	while (xfmpc_mpdclient_database_search (self->priv->mpdclient, query, &filename, &basename)) {
-		is_bold = xfmpc_mpdclient_playlist_has_filename (self->priv->mpdclient, filename, FALSE);
+		is_bold = xfmpc_playlist_has_filename (playlist, filename, FALSE);
 		xfmpc_dbbrowser_append (self, filename, basename, FALSE, is_bold);
 		i++;
 	}
@@ -379,24 +384,24 @@ void xfmpc_dbbrowser_search (XfmpcDbbrowser* self, const char* query) {
 			no_result = FALSE;
 		}
 	}
-	_tmp0_ = FALSE;
+	_tmp1_ = FALSE;
 	if (no_result == no_result_buf) {
-		_tmp0_ = no_result;
+		_tmp1_ = no_result;
 	} else {
-		_tmp0_ = FALSE;
+		_tmp1_ = FALSE;
 	}
-	if (_tmp0_) {
+	if (_tmp1_) {
 		gtk_widget_modify_bg ((GtkWidget*) self->priv->search_entry, GTK_STATE_NORMAL, &color);
 		gtk_widget_modify_bg ((GtkWidget*) self->priv->search_entry, GTK_STATE_SELECTED, &color);
 	} else {
-		gboolean _tmp1_;
-		_tmp1_ = FALSE;
+		gboolean _tmp2_;
+		_tmp2_ = FALSE;
 		if (no_result == no_result_buf) {
-			_tmp1_ = !no_result;
+			_tmp2_ = !no_result;
 		} else {
-			_tmp1_ = FALSE;
+			_tmp2_ = FALSE;
 		}
-		if (_tmp1_) {
+		if (_tmp2_) {
 			gtk_widget_modify_bg ((GtkWidget*) self->priv->search_entry, GTK_STATE_NORMAL, NULL);
 			gtk_widget_modify_bg ((GtkWidget*) self->priv->search_entry, GTK_STATE_SELECTED, NULL);
 		}
@@ -412,6 +417,7 @@ void xfmpc_dbbrowser_search (XfmpcDbbrowser* self, const char* query) {
 	}
 	filename = (g_free (filename), NULL);
 	basename = (g_free (basename), NULL);
+	(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
 }
 
 
@@ -734,17 +740,17 @@ XfmpcDbbrowser* xfmpc_dbbrowser_new (void) {
 }
 
 
-static void _xfmpc_dbbrowser_add_selected_rows_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self) {
+static void _xfmpc_dbbrowser_add_selected_rows_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_dbbrowser_add_selected_rows (self);
 }
 
 
-static void _xfmpc_dbbrowser_cb_replace_with_selected_rows_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self) {
+static void _xfmpc_dbbrowser_cb_replace_with_selected_rows_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_dbbrowser_cb_replace_with_selected_rows (self);
 }
 
 
-static void _xfmpc_dbbrowser_cb_browse_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self) {
+static void _xfmpc_dbbrowser_cb_browse_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_dbbrowser_cb_browse (self);
 }
 
@@ -769,17 +775,17 @@ static void _xfmpc_dbbrowser_cb_row_activated_gtk_tree_view_row_activated (GtkTr
 }
 
 
-static gboolean _xfmpc_dbbrowser_cb_key_pressed_gtk_widget_key_press_event (GtkTreeView* _sender, const GdkEventKey* event, gpointer self) {
+static gboolean _xfmpc_dbbrowser_cb_key_pressed_gtk_widget_key_press_event (GtkWidget* _sender, const GdkEventKey* event, gpointer self) {
 	return xfmpc_dbbrowser_cb_key_pressed (self, event);
 }
 
 
-static gboolean _xfmpc_dbbrowser_cb_button_released_gtk_widget_button_press_event (GtkTreeView* _sender, const GdkEventButton* event, gpointer self) {
+static gboolean _xfmpc_dbbrowser_cb_button_released_gtk_widget_button_press_event (GtkWidget* _sender, const GdkEventButton* event, gpointer self) {
 	return xfmpc_dbbrowser_cb_button_released (self, event);
 }
 
 
-static gboolean _xfmpc_dbbrowser_cb_popup_menu_gtk_widget_popup_menu (GtkTreeView* _sender, gpointer self) {
+static gboolean _xfmpc_dbbrowser_cb_popup_menu_gtk_widget_popup_menu (GtkWidget* _sender, gpointer self) {
 	return xfmpc_dbbrowser_cb_popup_menu (self);
 }
 
@@ -789,17 +795,17 @@ static void _xfmpc_dbbrowser_cb_search_entry_activated_gtk_entry_activate (GtkEn
 }
 
 
-static gboolean _xfmpc_dbbrowser_cb_search_entry_key_released_gtk_widget_key_release_event (GtkEntry* _sender, const GdkEventKey* event, gpointer self) {
+static gboolean _xfmpc_dbbrowser_cb_search_entry_key_released_gtk_widget_key_release_event (GtkWidget* _sender, const GdkEventKey* event, gpointer self) {
 	return xfmpc_dbbrowser_cb_search_entry_key_released (self, event);
 }
 
 
-static void _xfmpc_dbbrowser_cb_search_entry_changed_gtk_editable_changed (GtkEntry* _sender, gpointer self) {
+static void _xfmpc_dbbrowser_cb_search_entry_changed_gtk_editable_changed (GtkEditable* _sender, gpointer self) {
 	xfmpc_dbbrowser_cb_search_entry_changed (self);
 }
 
 
-static void _xfmpc_dbbrowser_reload_g_object_notify (XfmpcPreferences* _sender, GParamSpec* pspec, gpointer self) {
+static void _xfmpc_dbbrowser_reload_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self) {
 	xfmpc_dbbrowser_reload (self);
 }
 

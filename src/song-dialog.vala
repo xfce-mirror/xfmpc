@@ -105,14 +105,14 @@ namespace Xfmpc {
 			show_all ();
 
 			/* Signals */
-			this.response += cb_response;
+			this.response.connect (cb_response);
 		}
 
 		/*
 		 * Signal callbacks
 		 */
 
-		private void cb_response (SongDialog source, int response) {
+		private void cb_response (int response) {
         		switch (response) {
         			case Gtk.ResponseType.CLOSE:
             	    	    	    destroy ();

@@ -94,17 +94,17 @@ namespace Xfmpc {
 
 			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_ADD, null);
 			this.menu.append (mi);
-			mi.activate += add_selected_rows;
+			mi.activate.connect (add_selected_rows);
 			mi = new Gtk.ImageMenuItem.with_mnemonic (_("Replace"));
 			var image = new Gtk.Image.from_stock (Gtk.STOCK_CUT, Gtk.IconSize.MENU);
 			mi.set_image (image);
 			this.menu.append (mi);
-			mi.activate += cb_replace_with_selected_rows;
+			mi.activate.connect (cb_replace_with_selected_rows);
 			this.mi_browse = new Gtk.ImageMenuItem.with_mnemonic (_("Browse"));
 			image = new Gtk.Image.from_stock (Gtk.STOCK_OPEN, Gtk.IconSize.MENU);
 			this.mi_browse.set_image (image);
 			this.menu.append (this.mi_browse);
-			this.mi_browse.activate += cb_browse;
+			this.mi_browse.activate.connect (cb_browse);
 
 			this.menu.show_all ();
 
@@ -115,21 +115,21 @@ namespace Xfmpc {
 			pack_start (this.search_entry, false, false, 0);
 
 			/* Signals */
-			this.mpdclient.connected += reload;
-			this.mpdclient.database_changed += reload;
-			this.mpdclient.playlist_changed += cb_playlist_changed;
+			this.mpdclient.connected.connect (reload);
+			this.mpdclient.database_changed.connect (reload);
+			this.mpdclient.playlist_changed.connect (cb_playlist_changed);
 
-			this.treeview.row_activated += cb_row_activated;
-			this.treeview.key_press_event += cb_key_pressed;
-			this.treeview.button_press_event += cb_button_released;
-			this.treeview.popup_menu += cb_popup_menu;
+			this.treeview.row_activated.connect (cb_row_activated);
+			this.treeview.key_press_event.connect (cb_key_pressed);
+			this.treeview.button_press_event.connect (cb_button_released);
+			this.treeview.popup_menu.connect (cb_popup_menu);
 
-			this.search_entry.activate += cb_search_entry_activated;
-			this.search_entry.key_release_event += cb_search_entry_key_released;
-			this.search_entry.changed += cb_search_entry_changed;
+			this.search_entry.activate.connect (cb_search_entry_activated);
+			this.search_entry.key_release_event.connect (cb_search_entry_key_released);
+			this.search_entry.changed.connect (cb_search_entry_changed);
 
-			this.preferences.notify["song-format"] += reload;
-			this.preferences.notify["song-format-custom"] += reload;
+			this.preferences.notify["song-format"].connect (reload);
+			this.preferences.notify["song-format-custom"].connect (reload);
 		}
 
 		public void reload () {

@@ -115,18 +115,18 @@ namespace Xfmpc {
 			vbox.add (this.subtitle);
 
   	  	  	/* === Signals === */
-			this.button_prev.clicked += cb_mpdclient_previous;
-			this.button_pp.clicked += pp_clicked;
-			this.button_next.clicked += cb_mpdclient_next;
-			this.button_volume.value_changed += volume_changed;
-			progress_box.button_release_event += cb_progress_box_release_event;
+			this.button_prev.clicked.connect (cb_mpdclient_previous);
+			this.button_pp.clicked.connect (pp_clicked);
+			this.button_next.clicked.connect (cb_mpdclient_next);
+			this.button_volume.value_changed.connect (volume_changed);
+			progress_box.button_release_event.connect (cb_progress_box_release_event);
 
-			this.mpdclient.connected += reconnect;
-			this.mpdclient.song_changed += cb_song_changed;
-			this.mpdclient.pp_changed += cb_pp_changed;
-			this.mpdclient.time_changed += cb_time_changed;
-			this.mpdclient.volume_changed += cb_volume_changed;
-			this.mpdclient.stopped += cb_stopped;
+			this.mpdclient.connected.connect (reconnect);
+			this.mpdclient.song_changed.connect (cb_song_changed);
+			this.mpdclient.pp_changed.connect (cb_pp_changed);
+			this.mpdclient.time_changed.connect (cb_time_changed);
+			this.mpdclient.volume_changed.connect (cb_volume_changed);
+			this.mpdclient.stopped.connect (cb_stopped);
 
   	  	  	/* === Timeout === */
 			Timeout.add (1000, refresh);

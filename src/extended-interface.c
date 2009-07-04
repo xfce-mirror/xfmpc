@@ -134,15 +134,15 @@ static void xfmpc_extended_interface_position_context_menu (GtkMenu* menu, gint 
 static void xfmpc_extended_interface_popup_context_menu (XfmpcExtendedInterface* self);
 static void xfmpc_extended_interface_menu_detach (XfmpcExtendedInterface* self, GtkWidget* attach_widget, GtkMenu* menu);
 static void xfmpc_extended_interface_cb_context_menu_deactivate (XfmpcExtendedInterface* self);
-static void _xfmpc_extended_interface_cb_context_menu_deactivate_gtk_menu_shell_deactivate (GtkMenu* _sender, gpointer self);
+static void _xfmpc_extended_interface_cb_context_menu_deactivate_gtk_menu_shell_deactivate (GtkMenuShell* _sender, gpointer self);
 static void xfmpc_extended_interface_cb_repeat_switch (XfmpcExtendedInterface* self);
-static void _xfmpc_extended_interface_cb_repeat_switch_gtk_menu_item_activate (GtkCheckMenuItem* _sender, gpointer self);
+static void _xfmpc_extended_interface_cb_repeat_switch_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void xfmpc_extended_interface_cb_random_switch (XfmpcExtendedInterface* self);
-static void _xfmpc_extended_interface_cb_random_switch_gtk_menu_item_activate (GtkCheckMenuItem* _sender, gpointer self);
+static void _xfmpc_extended_interface_cb_random_switch_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void xfmpc_extended_interface_cb_preferences (XfmpcExtendedInterface* self);
-static void _xfmpc_extended_interface_cb_preferences_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
+static void _xfmpc_extended_interface_cb_preferences_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void xfmpc_extended_interface_cb_about (XfmpcExtendedInterface* self);
-static void _xfmpc_extended_interface_cb_about_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self);
+static void _xfmpc_extended_interface_cb_about_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void xfmpc_extended_interface_cb_playlist_clear (XfmpcExtendedInterface* self);
 static void xfmpc_extended_interface_cb_database_refresh (XfmpcExtendedInterface* self);
 static void xfmpc_extended_interface_cb_interface_changed (XfmpcExtendedInterface* self);
@@ -247,27 +247,27 @@ static void xfmpc_extended_interface_position_context_menu (GtkMenu* menu, gint 
 }
 
 
-static void _xfmpc_extended_interface_cb_context_menu_deactivate_gtk_menu_shell_deactivate (GtkMenu* _sender, gpointer self) {
+static void _xfmpc_extended_interface_cb_context_menu_deactivate_gtk_menu_shell_deactivate (GtkMenuShell* _sender, gpointer self) {
 	xfmpc_extended_interface_cb_context_menu_deactivate (self);
 }
 
 
-static void _xfmpc_extended_interface_cb_repeat_switch_gtk_menu_item_activate (GtkCheckMenuItem* _sender, gpointer self) {
+static void _xfmpc_extended_interface_cb_repeat_switch_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_extended_interface_cb_repeat_switch (self);
 }
 
 
-static void _xfmpc_extended_interface_cb_random_switch_gtk_menu_item_activate (GtkCheckMenuItem* _sender, gpointer self) {
+static void _xfmpc_extended_interface_cb_random_switch_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_extended_interface_cb_random_switch (self);
 }
 
 
-static void _xfmpc_extended_interface_cb_preferences_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self) {
+static void _xfmpc_extended_interface_cb_preferences_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_extended_interface_cb_preferences (self);
 }
 
 
-static void _xfmpc_extended_interface_cb_about_gtk_menu_item_activate (GtkImageMenuItem* _sender, gpointer self) {
+static void _xfmpc_extended_interface_cb_about_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_extended_interface_cb_about (self);
 }
 
@@ -387,34 +387,16 @@ static void xfmpc_extended_interface_cb_preferences (XfmpcExtendedInterface* sel
 
 static void xfmpc_extended_interface_cb_about (XfmpcExtendedInterface* self) {
 	char** _tmp1_;
-	gint artists_size;
-	gint artists_length1;
-	char** _tmp0_;
-	char** artists;
-	char** _tmp3_;
 	gint authors_size;
 	gint authors_length1;
-	char** _tmp2_;
+	char** _tmp0_;
 	char** authors;
-	char** _tmp5_;
-	gint documenters_size;
-	gint documenters_length1;
-	char** _tmp4_;
-	char** documenters;
 	g_return_if_fail (self != NULL);
 	_tmp1_ = NULL;
 	_tmp0_ = NULL;
-	artists = (_tmp1_ = (_tmp0_ = g_new0 (char*, 1 + 1), _tmp0_[0] = NULL, _tmp0_), artists_length1 = 1, artists_size = artists_length1, _tmp1_);
-	_tmp3_ = NULL;
-	_tmp2_ = NULL;
-	authors = (_tmp3_ = (_tmp2_ = g_new0 (char*, 2 + 1), _tmp2_[0] = g_strdup ("Mike Massonnet <mmassonnet@xfce.org>"), _tmp2_[1] = g_strdup ("Vincent Legout <vincent@xfce.org>"), _tmp2_), authors_length1 = 2, authors_size = authors_length1, _tmp3_);
-	_tmp5_ = NULL;
-	_tmp4_ = NULL;
-	documenters = (_tmp5_ = (_tmp4_ = g_new0 (char*, 1 + 1), _tmp4_[0] = NULL, _tmp4_), documenters_length1 = 1, documenters_size = documenters_length1, _tmp5_);
-	gtk_show_about_dialog (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (self))), "artists", artists, "authors", authors, "comments", _ ("MPD client written in GTK+ for Xfce"), "copyright", "Copyright \302\251 2008-2009 Mike Massonnet, Vincent Legout", "documenters", documenters, "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL), "translator-credits", _ ("translator-credits"), "version", PACKAGE_VERSION, "website", "http://goodies.xfce.org/projects/applications/xfmpc", NULL, NULL);
-	artists = (_vala_array_free (artists, artists_length1, (GDestroyNotify) g_free), NULL);
+	authors = (_tmp1_ = (_tmp0_ = g_new0 (char*, 2 + 1), _tmp0_[0] = g_strdup ("Mike Massonnet <mmassonnet@xfce.org>"), _tmp0_[1] = g_strdup ("Vincent Legout <vincent@xfce.org>"), _tmp0_), authors_length1 = 2, authors_size = authors_length1, _tmp1_);
+	gtk_show_about_dialog (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (self))), "artists", NULL, "authors", authors, "comments", _ ("MPD client written in GTK+ for Xfce"), "copyright", "Copyright \302\251 2008-2009 Mike Massonnet, Vincent Legout", "documenters", NULL, "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL), "translator-credits", _ ("translator-credits"), "version", PACKAGE_VERSION, "website", "http://goodies.xfce.org/projects/applications/xfmpc", NULL, NULL);
 	authors = (_vala_array_free (authors, authors_length1, (GDestroyNotify) g_free), NULL);
-	documenters = (_vala_array_free (documenters, documenters_length1, (GDestroyNotify) g_free), NULL);
 }
 
 

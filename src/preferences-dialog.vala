@@ -69,7 +69,7 @@ namespace Xfmpc {
 			this.mpd_vbox = new Gtk.VBox (false, 6);
 			vbox2.pack_start (this.mpd_vbox, false, false, 0);
 
-			this.entry_use_defaults.toggled += cb_use_defaults_toggled;
+			this.entry_use_defaults.toggled.connect (cb_use_defaults_toggled);
 			this.mpd_vbox.set_sensitive (!this.entry_use_defaults.get_active ());
 
 			var hbox = new Gtk.HBox (false, 2);
@@ -101,7 +101,7 @@ namespace Xfmpc {
 			hbox.pack_start (this.entry_passwd, true, true, 0);
 
 			var button = new Gtk.Button.from_stock (Gtk.STOCK_APPLY);
-			button.clicked += cb_update_mpd;
+			button.clicked.connect (cb_update_mpd);
 			vbox2.pack_start (button, true, true, 0);
 
 			/* Display */
@@ -116,7 +116,7 @@ namespace Xfmpc {
 
 			this.show_statusbar = new Gtk.CheckButton.with_mnemonic (_("Show _stastusbar"));
 			this.show_statusbar.set_active (this.preferences.show_statusbar);
-			this.show_statusbar.toggled += cb_show_statusbar_toggled;
+			this.show_statusbar.toggled.connect (cb_show_statusbar_toggled);
 			vbox2.pack_start (this.show_statusbar, false, false, 0);
 
 			vbox2 = new Gtk.VBox (false, 6);
@@ -155,8 +155,8 @@ namespace Xfmpc {
 			this.entry_custom.set_sensitive (this.combo_format.get_active () == 6);
 			hbox.pack_start (this.entry_custom, true, true, 0);
 
-			this.combo_format.changed += cb_combo_format_changed;
-			this.entry_custom.changed += cb_entry_custom_changed;
+			this.combo_format.changed.connect (cb_combo_format_changed);
+			this.entry_custom.changed.connect (cb_entry_custom_changed);
 
 			vbox2.pack_start (hbox, true, true, 0);
 
@@ -211,14 +211,14 @@ namespace Xfmpc {
 			show_all ();
 
 			/* Signals */
-			this.response += cb_response;
+			this.response.connect (cb_response);
 		}
 
 		/*
 		 * Signal callbacks
 		 */
 
-		private void cb_response (PreferencesDialog source, int response) {
+		private void cb_response (int response) {
         		switch (response) {
         			case Gtk.ResponseType.CLOSE:
             	    	    	    destroy ();
@@ -226,7 +226,7 @@ namespace Xfmpc {
 			}
         	}
 
-		private void cb_use_defaults_toggled (Gtk.CheckButton source) {
+		private void cb_use_defaults_toggled () {
 			this.mpd_vbox.set_sensitive (!this.entry_use_defaults.get_active ());
         	}
 
@@ -242,7 +242,7 @@ namespace Xfmpc {
 			mpdclient.connect ();
 		}
 
-		private void cb_show_statusbar_toggled (Gtk.CheckButton source) {
+		private void cb_show_statusbar_toggled () {
 			this.preferences.show_statusbar = this.show_statusbar.get_active ();
 		}
 
@@ -263,7 +263,7 @@ namespace Xfmpc {
 			this.entry_custom.set_sensitive (this.combo_format.get_active () == 6);
 		}
 
-		private void cb_entry_custom_changed (Gtk.Entry source) {
+		private void cb_entry_custom_changed () {
 			if (this.format_timeout > 0)
 				GLib.Source.remove (this.format_timeout);
 
