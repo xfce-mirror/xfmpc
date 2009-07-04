@@ -519,6 +519,7 @@ static GObject * xfmpc_extended_interface_constructor (GType type, guint n_const
 		dbbrowser = GTK_WIDGET (g_object_ref_sink (xfmpc_dbbrowser_new ()));
 		xfmpc_extended_interface_append_child (self, dbbrowser, _ ("Browse database"));
 		g_object_set_data ((GObject*) playlist, "XfmpcDbbrowser", dbbrowser);
+		g_object_set_data ((GObject*) dbbrowser, "XfmpcPlaylist", playlist);
 		g_object_set_data ((GObject*) playlist, "XfmpcExtendedInterface", self);
 		(hbox == NULL) ? NULL : (hbox = (g_object_unref (hbox), NULL));
 		(button == NULL) ? NULL : (button = (g_object_unref (button), NULL));

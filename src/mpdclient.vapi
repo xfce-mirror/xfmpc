@@ -32,7 +32,6 @@ namespace Xfmpc {
 		public bool playlist_clear ();
 		public int playlist_get_length ();
 		public int playlist_get_total_time ();
-		public bool playlist_has_filename (string filename, bool is_dir);
 		public bool playlist_read (int *id, int *pos, string *filename, string *song, string *length);
 		public bool pp ();
 		public bool previous ();

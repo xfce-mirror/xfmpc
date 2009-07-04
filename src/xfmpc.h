@@ -258,6 +258,7 @@ void xfmpc_playlist_append (XfmpcPlaylist* self, gint id, gint pos, const char* 
 void xfmpc_playlist_refresh_current_song (XfmpcPlaylist* self);
 void xfmpc_playlist_select_row (XfmpcPlaylist* self, gint i);
 void xfmpc_playlist_delete_selection (XfmpcPlaylist* self);
+gboolean xfmpc_playlist_has_filename (XfmpcPlaylist* self, const char* filename, gboolean is_dir);
 XfmpcPlaylist* xfmpc_playlist_new (void);
 XfmpcPlaylist* xfmpc_playlist_construct (GType object_type);
 GType xfmpc_preferences_get_type (void);

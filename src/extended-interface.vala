@@ -95,6 +95,7 @@ namespace Xfmpc {
 			append_child (dbbrowser, _("Browse database"));
 
 			playlist.set_data ("XfmpcDbbrowser", dbbrowser);
+			dbbrowser.set_data ("XfmpcPlaylist", playlist);
 			playlist.set_data ("XfmpcExtendedInterface", this);
 		}
 

@@ -159,6 +159,7 @@ static gboolean xfmpc_playlist_cb_button_released (XfmpcPlaylist* self, const Gd
 static void xfmpc_playlist_cb_filter_entry_activated (XfmpcPlaylist* self);
 static gboolean xfmpc_playlist_cb_filter_entry_key_released (XfmpcPlaylist* self, const GdkEventKey* event);
 static void xfmpc_playlist_cb_filter_entry_changed (XfmpcPlaylist* self);
+gboolean xfmpc_playlist_has_filename (XfmpcPlaylist* self, const char* filename, gboolean is_dir);
 XfmpcPlaylist* xfmpc_playlist_new (void);
 XfmpcPlaylist* xfmpc_playlist_construct (GType object_type);
 XfmpcPlaylist* xfmpc_playlist_new (void);
@@ -653,6 +654,37 @@ void xfmpc_playlist_delete_selection (XfmpcPlaylist* self) {
 	xfmpc_mpdclient_queue_commit (self->priv->mpdclient);
 	(model == NULL) ? NULL : (model = (g_object_unref (model), NULL));
 	(list == NULL) ? NULL : (list = (_g_list_free_gtk_tree_path_free (list), NULL));
+}
+
+
+gboolean xfmpc_playlist_has_filename (XfmpcPlaylist* self, const char* filename, gboolean is_dir) {
+	GtkTreeIter iter = {0};
+	GtkTreePath* path;
+	char* name;
+	GtkTreePath* _tmp0_;
+	gboolean _tmp3_;
+	g_return_val_if_fail (self != NULL, FALSE);
+	g_return_val_if_fail (filename != NULL, FALSE);
+	path = NULL;
+	name = g_strdup ("");
+	_tmp0_ = NULL;
+	path = (_tmp0_ = gtk_tree_path_new_from_indices (0, -1, -1), (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp0_);
+	while (gtk_tree_model_get_iter ((GtkTreeModel*) self->priv->store, &iter, path)) {
+		gtk_tree_model_get ((GtkTreeModel*) self->priv->store, &iter, XFMPC_PLAYLIST_COLUMNS_COLUMN_FILENAME, &name, -1, -1);
+		if (is_dir) {
+			if (g_str_has_prefix (name, filename)) {
+				gboolean _tmp1_;
+				return (_tmp1_ = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), name = (g_free (name), NULL), _tmp1_);
+			}
+		} else {
+			if (_vala_strcmp0 (name, filename) == 0) {
+				gboolean _tmp2_;
+				return (_tmp2_ = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), name = (g_free (name), NULL), _tmp2_);
+			}
+		}
+		gtk_tree_path_next (path);
+	}
+	return (_tmp3_ = FALSE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), name = (g_free (name), NULL), _tmp3_);
 }
 
 

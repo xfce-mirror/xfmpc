@@ -52,6 +52,16 @@ typedef struct _XfmpcPreferencesClass XfmpcPreferencesClass;
 
 #define XFMPC_DBBROWSER_TYPE_COLUMNS (xfmpc_dbbrowser_columns_get_type ())
 
+#define XFMPC_TYPE_PLAYLIST (xfmpc_playlist_get_type ())
+#define XFMPC_PLAYLIST(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_PLAYLIST, XfmpcPlaylist))
+#define XFMPC_PLAYLIST_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_PLAYLIST, XfmpcPlaylistClass))
+#define XFMPC_IS_PLAYLIST(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_PLAYLIST))
+#define XFMPC_IS_PLAYLIST_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_PLAYLIST))
+#define XFMPC_PLAYLIST_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_PLAYLIST, XfmpcPlaylistClass))
+
+typedef struct _XfmpcPlaylist XfmpcPlaylist;
+typedef struct _XfmpcPlaylistClass XfmpcPlaylistClass;
+
 struct _XfmpcDbbrowser {
 	GtkVBox parent_instance;
 	XfmpcDbbrowserPrivate * priv;
@@ -94,10 +104,12 @@ enum  {
 	XFMPC_DBBROWSER_DUMMY_PROPERTY
 };
 static GType xfmpc_dbbrowser_columns_get_type (void);
+GType xfmpc_playlist_get_type (void);
 static void xfmpc_dbbrowser_clear (XfmpcDbbrowser* self);
 gboolean xfmpc_dbbrowser_wdir_is_root (XfmpcDbbrowser* self);
 char* xfmpc_dbbrowser_get_parent_wdir (XfmpcDbbrowser* self);
 void xfmpc_dbbrowser_append (XfmpcDbbrowser* self, const char* filename, const char* basename, gboolean is_dir, gboolean is_bold);
+gboolean xfmpc_playlist_has_filename (XfmpcPlaylist* self, const char* filename, gboolean is_dir);
 void xfmpc_dbbrowser_reload (XfmpcDbbrowser* self);
 void xfmpc_dbbrowser_set_wdir (XfmpcDbbrowser* self, const char* dir);
 static void _g_list_free_gtk_tree_path_free (GList* self);
@@ -159,32 +171,38 @@ void xfmpc_dbbrowser_reload (XfmpcDbbrowser* self) {
 	gboolean is_dir;
 	gboolean is_bold;
 	gint i;
+	XfmpcPlaylist* _tmp0_;
+	XfmpcPlaylist* playlist;
 	g_return_if_fail (self != NULL);
 	filename = g_strdup ("");
 	basename = g_strdup ("");
 	is_dir = FALSE;
 	is_bold = FALSE;
 	i = 0;
+	_tmp0_ = NULL;
+	playlist = (_tmp0_ = XFMPC_PLAYLIST (g_object_get_data ((GObject*) self, "XfmpcPlaylist")), (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
 	if (!xfmpc_mpdclient_is_connected (self->priv->mpdclient)) {
 		filename = (g_free (filename), NULL);
 		basename = (g_free (basename), NULL);
+		(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
 		return;
 	}
 	if (self->priv->is_searching) {
 		filename = (g_free (filename), NULL);
 		basename = (g_free (basename), NULL);
+		(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
 		return;
 	}
 	xfmpc_dbbrowser_clear (self);
 	if (!xfmpc_dbbrowser_wdir_is_root (self)) {
-		char* _tmp0_;
-		_tmp0_ = NULL;
-		filename = (_tmp0_ = xfmpc_dbbrowser_get_parent_wdir (self), filename = (g_free (filename), NULL), _tmp0_);
+		char* _tmp1_;
+		_tmp1_ = NULL;
+		filename = (_tmp1_ = xfmpc_dbbrowser_get_parent_wdir (self), filename = (g_free (filename), NULL), _tmp1_);
 		xfmpc_dbbrowser_append (self, filename, "..", TRUE, FALSE);
 		i++;
 	}
 	while (xfmpc_mpdclient_database_read (self->priv->mpdclient, self->priv->wdir, &filename, &basename, &is_dir)) {
-		is_bold = xfmpc_mpdclient_playlist_has_filename (self->priv->mpdclient, filename, is_dir);
+		is_bold = xfmpc_playlist_has_filename (playlist, filename, is_dir);
 		xfmpc_dbbrowser_append (self, filename, basename, is_dir, is_bold);
 		if (g_utf8_collate (filename, self->priv->last_wdir) == 0) {
 			GtkTreePath* path;
@@ -199,6 +217,7 @@ void xfmpc_dbbrowser_reload (XfmpcDbbrowser* self) {
 	}
 	filename = (g_free (filename), NULL);
 	basename = (g_free (basename), NULL);
+	(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
 }
 
 
@@ -438,31 +457,37 @@ static void xfmpc_dbbrowser_cb_playlist_changed (XfmpcDbbrowser* self) {
 	char* filename;
 	gboolean is_bold;
 	gboolean is_dir;
+	XfmpcPlaylist* _tmp1_;
+	XfmpcPlaylist* playlist;
 	g_return_if_fail (self != NULL);
 	_tmp0_ = NULL;
 	model = (_tmp0_ = (GtkTreeModel*) self->priv->store, (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
 	filename = g_strdup ("");
 	is_bold = FALSE;
 	is_dir = FALSE;
+	_tmp1_ = NULL;
+	playlist = (_tmp1_ = XFMPC_PLAYLIST (g_object_get_data ((GObject*) self, "XfmpcPlaylist")), (_tmp1_ == NULL) ? NULL : g_object_ref (_tmp1_));
 	if (!gtk_tree_model_get_iter_first (model, &iter)) {
 		(model == NULL) ? NULL : (model = (g_object_unref (model), NULL));
 		filename = (g_free (filename), NULL);
+		(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
 		return;
 	}
 	do {
-		PangoWeight _tmp1_;
+		PangoWeight _tmp2_;
 		gtk_tree_model_get (model, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_FILENAME, &filename, XFMPC_DBBROWSER_COLUMNS_COLUMN_IS_DIR, &is_dir, -1, -1);
-		is_bold = xfmpc_mpdclient_playlist_has_filename (self->priv->mpdclient, filename, is_dir);
-		_tmp1_ = 0;
+		is_bold = xfmpc_playlist_has_filename (playlist, filename, is_dir);
+		_tmp2_ = 0;
 		if (is_bold) {
-			_tmp1_ = PANGO_WEIGHT_BOLD;
+			_tmp2_ = PANGO_WEIGHT_BOLD;
 		} else {
-			_tmp1_ = PANGO_WEIGHT_NORMAL;
+			_tmp2_ = PANGO_WEIGHT_NORMAL;
 		}
-		gtk_list_store_set (self->priv->store, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_WEIGHT, _tmp1_, -1, -1);
+		gtk_list_store_set (self->priv->store, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_WEIGHT, _tmp2_, -1, -1);
 	} while (gtk_tree_model_iter_next (model, &iter));
 	(model == NULL) ? NULL : (model = (g_object_unref (model), NULL));
 	filename = (g_free (filename), NULL);
+	(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
 }
 
 

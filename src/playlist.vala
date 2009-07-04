@@ -403,6 +403,29 @@ namespace Xfmpc {
 
 			this.mpdclient.queue_commit ();
 		}
+
+		public bool has_filename (string filename, bool is_dir) {
+			Gtk.TreeIter iter;
+			Gtk.TreePath path;
+			string name = "";
+
+			path = new Gtk.TreePath.from_indices (0, -1);
+			while (this.store.get_iter (out iter, path)) {
+				this.store.get (iter, Columns.COLUMN_FILENAME, out name, -1);
+
+				if (is_dir) {
+					if (name.has_prefix (filename))
+						return true;
+				} else {
+					if (name == filename)
+						return true;
+				}
+
+				path.next ();
+			}
+
+			return false;
+		}
 	}
 }
 

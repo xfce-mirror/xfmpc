@@ -136,6 +136,7 @@ namespace Xfmpc {
 			string filename = "", basename = "";
 			bool is_dir = false, is_bold = false;
 			int i = 0;
+			Xfmpc.Playlist playlist = (Xfmpc.Playlist) get_data ("XfmpcPlaylist");
 
 			if (!this.mpdclient.is_connected ())
 				return;
@@ -151,7 +152,7 @@ namespace Xfmpc {
 			}
 
 			while (this.mpdclient.database_read (wdir, &filename, &basename, &is_dir)) {
-				is_bold = this.mpdclient.playlist_has_filename (filename, is_dir);
+				is_bold = playlist.has_filename (filename, is_dir);
 				append (filename, basename, is_dir, is_bold);
 
 				if (filename.collate (last_wdir) == 0) {
@@ -220,6 +221,7 @@ namespace Xfmpc {
 			string filename = "", basename = "";
 			bool is_bold;
 			int i = 0;
+			Xfmpc.Playlist playlist = (Xfmpc.Playlist) get_data ("XfmpcPlaylist");
 
 			if (!this.mpdclient.is_connected ())
 				return;
@@ -228,7 +230,7 @@ namespace Xfmpc {
 			clear ();
 
 			while (this.mpdclient.database_search (query, &filename, &basename)) {
-				is_bold = this.mpdclient.playlist_has_filename (filename, false);
+				is_bold = playlist.has_filename (filename, false);
 				append (filename, basename, false, is_bold);
 				i++;
 			}
@@ -304,6 +306,7 @@ namespace Xfmpc {
 			Gtk.TreeIter iter;
 			string filename = "";
 			bool is_bold = false, is_dir = false;
+			Xfmpc.Playlist playlist = (Xfmpc.Playlist) get_data ("XfmpcPlaylist");
 
 			if (!model.get_iter_first (out iter))
 				return;
@@ -314,7 +317,7 @@ namespace Xfmpc {
 					   Columns.COLUMN_IS_DIR, out is_dir,
 					   -1);
 
-				is_bold = this.mpdclient.playlist_has_filename (filename, is_dir);
+				is_bold = playlist.has_filename (filename, is_dir);
 				store.set (iter,
 					   Columns.COLUMN_WEIGHT,
 					   is_bold ? Pango.Weight.BOLD : Pango.Weight.NORMAL,
