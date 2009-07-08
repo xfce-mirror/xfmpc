@@ -21,10 +21,10 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <mpdclient.h>
-#include <gdk/gdk.h>
-#include <glib/gi18n-lib.h>
 #include <stdlib.h>
 #include <string.h>
+#include <gdk/gdk.h>
+#include <glib/gi18n-lib.h>
 #include <config.h>
 
 
@@ -59,16 +59,6 @@ typedef struct _XfmpcPreferencesClass XfmpcPreferencesClass;
 typedef struct _XfmpcInterface XfmpcInterface;
 typedef struct _XfmpcInterfaceClass XfmpcInterfaceClass;
 
-#define XFMPC_TYPE_STATUSBAR (xfmpc_statusbar_get_type ())
-#define XFMPC_STATUSBAR(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_STATUSBAR, XfmpcStatusbar))
-#define XFMPC_STATUSBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_STATUSBAR, XfmpcStatusbarClass))
-#define XFMPC_IS_STATUSBAR(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_STATUSBAR))
-#define XFMPC_IS_STATUSBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_STATUSBAR))
-#define XFMPC_STATUSBAR_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_STATUSBAR, XfmpcStatusbarClass))
-
-typedef struct _XfmpcStatusbar XfmpcStatusbar;
-typedef struct _XfmpcStatusbarClass XfmpcStatusbarClass;
-
 #define XFMPC_TYPE_EXTENDED_INTERFACE (xfmpc_extended_interface_get_type ())
 #define XFMPC_EXTENDED_INTERFACE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterface))
 #define XFMPC_EXTENDED_INTERFACE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_EXTENDED_INTERFACE, XfmpcExtendedInterfaceClass))
@@ -78,6 +68,16 @@ typedef struct _XfmpcStatusbarClass XfmpcStatusbarClass;
 
 typedef struct _XfmpcExtendedInterface XfmpcExtendedInterface;
 typedef struct _XfmpcExtendedInterfaceClass XfmpcExtendedInterfaceClass;
+
+#define XFMPC_TYPE_STATUSBAR (xfmpc_statusbar_get_type ())
+#define XFMPC_STATUSBAR(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_STATUSBAR, XfmpcStatusbar))
+#define XFMPC_STATUSBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_STATUSBAR, XfmpcStatusbarClass))
+#define XFMPC_IS_STATUSBAR(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_STATUSBAR))
+#define XFMPC_IS_STATUSBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_STATUSBAR))
+#define XFMPC_STATUSBAR_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_STATUSBAR, XfmpcStatusbarClass))
+
+typedef struct _XfmpcStatusbar XfmpcStatusbar;
+typedef struct _XfmpcStatusbarClass XfmpcStatusbarClass;
 
 struct _XfmpcMainWindow {
 	GtkWindow parent_instance;
@@ -91,6 +91,8 @@ struct _XfmpcMainWindowClass {
 struct _XfmpcMainWindowPrivate {
 	XfmpcMpdclient* mpdclient;
 	XfmpcPreferences* preferences;
+	XfmpcInterface* interface;
+	XfmpcExtendedInterface* extended_interface;
 	GtkVBox* vbox;
 	GtkActionGroup* action_group;
 	GtkWidget* statusbar;
@@ -101,6 +103,8 @@ struct _XfmpcMainWindowPrivate {
 
 GType xfmpc_main_window_get_type (void);
 GType xfmpc_preferences_get_type (void);
+GType xfmpc_interface_get_type (void);
+GType xfmpc_extended_interface_get_type (void);
 #define XFMPC_MAIN_WINDOW_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_MAIN_WINDOW, XfmpcMainWindowPrivate))
 enum  {
 	XFMPC_MAIN_WINDOW_DUMMY_PROPERTY
@@ -120,6 +124,11 @@ static void _xfmpc_main_window_action_next_gtk_action_callback (GtkAction* actio
 static void xfmpc_main_window_action_volume (XfmpcMainWindow* self);
 static void _xfmpc_main_window_action_volume_gtk_action_callback (GtkAction* action, gpointer self);
 #define XFMPC_MAIN_WINDOW_ui_string "\n<ui>\n  <accelerator action=\"quit\" />\n  <accelerator action=\"previous\" />\n  <accelerator action=\"pp\" />\n  <accelerator action=\"stop\" />\n  <accelerator action=\"next\" />\n  <accelerator action=\"volume\" />\n</ui>\n"
+void xfmpc_interface_clean (XfmpcInterface* self);
+GType xfmpc_statusbar_get_type (void);
+void xfmpc_statusbar_set_text (XfmpcStatusbar* self, const char* value);
+void xfmpc_interface_update_title (XfmpcInterface* self);
+static gboolean xfmpc_main_window_refresh (XfmpcMainWindow* self);
 void xfmpc_preferences_set_last_window_state_sticky (XfmpcPreferences* self, gboolean value);
 static gboolean xfmpc_main_window_cb_window_state_event (XfmpcMainWindow* self, const GdkEventWindowState* event);
 static void xfmpc_main_window_close_window (XfmpcMainWindow* self);
@@ -128,13 +137,10 @@ void xfmpc_preferences_set_last_window_posx (XfmpcPreferences* self, gint value)
 void xfmpc_preferences_set_last_window_posy (XfmpcPreferences* self, gint value);
 void xfmpc_preferences_set_last_window_width (XfmpcPreferences* self, gint value);
 void xfmpc_preferences_set_last_window_height (XfmpcPreferences* self, gint value);
-GType xfmpc_interface_get_type (void);
 void xfmpc_interface_pp_clicked (XfmpcInterface* self);
 void xfmpc_interface_popup_volume (XfmpcInterface* self);
 XfmpcStatusbar* xfmpc_statusbar_new (void);
 XfmpcStatusbar* xfmpc_statusbar_construct (GType object_type);
-GType xfmpc_statusbar_get_type (void);
-void xfmpc_statusbar_set_text (XfmpcStatusbar* self, const char* value);
 static void xfmpc_main_window_update_statusbar (XfmpcMainWindow* self);
 static void xfmpc_main_window_cb_playlist_changed (XfmpcMainWindow* self);
 gboolean xfmpc_preferences_get_show_statusbar (XfmpcPreferences* self);
@@ -154,9 +160,9 @@ XfmpcInterface* xfmpc_interface_new (void);
 XfmpcInterface* xfmpc_interface_construct (GType object_type);
 XfmpcExtendedInterface* xfmpc_extended_interface_new (void);
 XfmpcExtendedInterface* xfmpc_extended_interface_construct (GType object_type);
-GType xfmpc_extended_interface_get_type (void);
 static void _xfmpc_main_window_cb_playlist_changed_xfmpc_mpdclient_playlist_changed (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_main_window_cb_show_statusbar_changed_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self);
+static gboolean _xfmpc_main_window_refresh_gsource_func (gpointer self);
 static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static gpointer xfmpc_main_window_parent_class = NULL;
 static void xfmpc_main_window_finalize (GObject* obj);
@@ -197,6 +203,23 @@ static void _xfmpc_main_window_action_next_gtk_action_callback (GtkAction* actio
 
 static void _xfmpc_main_window_action_volume_gtk_action_callback (GtkAction* action, gpointer self) {
 	xfmpc_main_window_action_volume (self);
+}
+
+
+static gboolean xfmpc_main_window_refresh (XfmpcMainWindow* self) {
+	g_return_val_if_fail (self != NULL, FALSE);
+	if (xfmpc_mpdclient_is_connected (self->priv->mpdclient)) {
+		xfmpc_mpdclient_update_status (self->priv->mpdclient);
+	} else {
+		xfmpc_interface_clean (self->priv->interface);
+		xfmpc_mpdclient_reload (self->priv->mpdclient);
+		xfmpc_statusbar_set_text (XFMPC_STATUSBAR (self->priv->statusbar), "");
+		xfmpc_mpdclient_connect (self->priv->mpdclient);
+		if (xfmpc_mpdclient_is_connected (self->priv->mpdclient)) {
+			xfmpc_interface_update_title (self->priv->interface);
+		}
+	}
+	return TRUE;
 }
 
 
@@ -273,13 +296,8 @@ static void xfmpc_main_window_action_previous (XfmpcMainWindow* self) {
 
 
 static void xfmpc_main_window_action_pp (XfmpcMainWindow* self) {
-	XfmpcInterface* _tmp0_;
-	XfmpcInterface* interface;
 	g_return_if_fail (self != NULL);
-	_tmp0_ = NULL;
-	interface = (_tmp0_ = XFMPC_INTERFACE (g_object_get_data ((GObject*) self, "XfmpcInterface")), (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
-	xfmpc_interface_pp_clicked (interface);
-	(interface == NULL) ? NULL : (interface = (g_object_unref (interface), NULL));
+	xfmpc_interface_pp_clicked (self->priv->interface);
 }
 
 
@@ -296,13 +314,8 @@ static void xfmpc_main_window_action_next (XfmpcMainWindow* self) {
 
 
 static void xfmpc_main_window_action_volume (XfmpcMainWindow* self) {
-	XfmpcInterface* _tmp0_;
-	XfmpcInterface* interface;
 	g_return_if_fail (self != NULL);
-	_tmp0_ = NULL;
-	interface = (_tmp0_ = XFMPC_INTERFACE (g_object_get_data ((GObject*) self, "XfmpcInterface")), (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
-	xfmpc_interface_popup_volume (interface);
-	(interface == NULL) ? NULL : (interface = (g_object_unref (interface), NULL));
+	xfmpc_interface_popup_volume (self->priv->interface);
 }
 
 
@@ -421,6 +434,11 @@ static void _xfmpc_main_window_cb_show_statusbar_changed_g_object_notify (GObjec
 }
 
 
+static gboolean _xfmpc_main_window_refresh_gsource_func (gpointer self) {
+	return xfmpc_main_window_refresh (self);
+}
+
+
 static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties) {
 	GObject * obj;
 	XfmpcMainWindowClass * klass;
@@ -437,12 +455,12 @@ static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_pr
 		GtkVBox* _tmp0_;
 		gboolean _tmp1_;
 		gboolean _tmp2_;
-		XfmpcInterface* interface;
+		XfmpcInterface* _tmp3_;
 		GtkHSeparator* separator;
-		XfmpcExtendedInterface* extended_interface;
-		GtkUIManager* _tmp3_;
-		GtkActionGroup* _tmp4_;
-		GtkAccelGroup* _tmp5_;
+		XfmpcExtendedInterface* _tmp4_;
+		GtkUIManager* _tmp5_;
+		GtkActionGroup* _tmp6_;
+		GtkAccelGroup* _tmp7_;
 		GtkAccelGroup* accel_group;
 		self->priv->mpdclient = xfmpc_mpdclient_get ();
 		self->priv->preferences = xfmpc_preferences_get ();
@@ -479,21 +497,22 @@ static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_pr
 			gtk_window_stick ((GtkWindow*) self);
 		}
 		/* Interface */
-		interface = g_object_ref_sink (xfmpc_interface_new ());
-		g_object_set_data ((GObject*) self, "XfmpcInterface", interface);
-		gtk_box_pack_start ((GtkBox*) self->priv->vbox, (GtkWidget*) interface, FALSE, FALSE, (guint) 4);
+		_tmp3_ = NULL;
+		self->priv->interface = (_tmp3_ = g_object_ref_sink (xfmpc_interface_new ()), (self->priv->interface == NULL) ? NULL : (self->priv->interface = (g_object_unref (self->priv->interface), NULL)), _tmp3_);
+		gtk_box_pack_start ((GtkBox*) self->priv->vbox, (GtkWidget*) self->priv->interface, FALSE, FALSE, (guint) 4);
 		/* Separator */
 		separator = g_object_ref_sink ((GtkHSeparator*) gtk_hseparator_new ());
 		gtk_box_pack_start ((GtkBox*) self->priv->vbox, (GtkWidget*) separator, FALSE, FALSE, (guint) 0);
 		/* ExtendedInterface */
-		extended_interface = g_object_ref_sink (xfmpc_extended_interface_new ());
-		gtk_box_pack_start ((GtkBox*) self->priv->vbox, (GtkWidget*) extended_interface, TRUE, TRUE, (guint) 0);
-		/* Accelerators */
-		_tmp3_ = NULL;
-		self->priv->ui_manager = (_tmp3_ = gtk_ui_manager_new (), (self->priv->ui_manager == NULL) ? NULL : (self->priv->ui_manager = (g_object_unref (self->priv->ui_manager), NULL)), _tmp3_);
-		/* Action group */
 		_tmp4_ = NULL;
-		self->priv->action_group = (_tmp4_ = gtk_action_group_new ("XfmpcMainWindow"), (self->priv->action_group == NULL) ? NULL : (self->priv->action_group = (g_object_unref (self->priv->action_group), NULL)), _tmp4_);
+		self->priv->extended_interface = (_tmp4_ = g_object_ref_sink (xfmpc_extended_interface_new ()), (self->priv->extended_interface == NULL) ? NULL : (self->priv->extended_interface = (g_object_unref (self->priv->extended_interface), NULL)), _tmp4_);
+		gtk_box_pack_start ((GtkBox*) self->priv->vbox, (GtkWidget*) self->priv->extended_interface, TRUE, TRUE, (guint) 0);
+		/* Accelerators */
+		_tmp5_ = NULL;
+		self->priv->ui_manager = (_tmp5_ = gtk_ui_manager_new (), (self->priv->ui_manager == NULL) ? NULL : (self->priv->ui_manager = (g_object_unref (self->priv->ui_manager), NULL)), _tmp5_);
+		/* Action group */
+		_tmp6_ = NULL;
+		self->priv->action_group = (_tmp6_ = gtk_action_group_new ("XfmpcMainWindow"), (self->priv->action_group == NULL) ? NULL : (self->priv->action_group = (g_object_unref (self->priv->action_group), NULL)), _tmp6_);
 		gtk_action_group_add_actions (self->priv->action_group, XFMPC_MAIN_WINDOW_action_entries, G_N_ELEMENTS (XFMPC_MAIN_WINDOW_action_entries), self);
 		gtk_action_group_add_toggle_actions (self->priv->action_group, XFMPC_MAIN_WINDOW_toggle_action_entries, G_N_ELEMENTS (XFMPC_MAIN_WINDOW_toggle_action_entries), self);
 		gtk_ui_manager_insert_action_group (self->priv->ui_manager, self->priv->action_group, 0);
@@ -517,24 +536,22 @@ static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_pr
 		}
 		__finally0:
 		if (_inner_error_ != NULL) {
-			(interface == NULL) ? NULL : (interface = (g_object_unref (interface), NULL));
 			(separator == NULL) ? NULL : (separator = (g_object_unref (separator), NULL));
-			(extended_interface == NULL) ? NULL : (extended_interface = (g_object_unref (extended_interface), NULL));
 			g_critical ("file %s: line %d: uncaught error: %s", __FILE__, __LINE__, _inner_error_->message);
 			g_clear_error (&_inner_error_);
 		}
 		/* Accel group */
-		_tmp5_ = NULL;
-		accel_group = (_tmp5_ = gtk_ui_manager_get_accel_group (self->priv->ui_manager), (_tmp5_ == NULL) ? NULL : g_object_ref (_tmp5_));
+		_tmp7_ = NULL;
+		accel_group = (_tmp7_ = gtk_ui_manager_get_accel_group (self->priv->ui_manager), (_tmp7_ == NULL) ? NULL : g_object_ref (_tmp7_));
 		gtk_window_add_accel_group ((GtkWindow*) self, accel_group);
 		/* show-statusbar action */
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (gtk_action_group_get_action (self->priv->action_group, "view-statusbar")), xfmpc_preferences_get_show_statusbar (self->priv->preferences));
 		/* === Signals === */
 		g_signal_connect_object (self->priv->mpdclient, "playlist-changed", (GCallback) _xfmpc_main_window_cb_playlist_changed_xfmpc_mpdclient_playlist_changed, self, 0);
 		g_signal_connect_object ((GObject*) self->priv->preferences, "notify::show-statusbar", (GCallback) _xfmpc_main_window_cb_show_statusbar_changed_g_object_notify, self, 0);
-		(interface == NULL) ? NULL : (interface = (g_object_unref (interface), NULL));
+		/* === Timeout === */
+		g_timeout_add ((guint) 1000, _xfmpc_main_window_refresh_gsource_func, self);
 		(separator == NULL) ? NULL : (separator = (g_object_unref (separator), NULL));
-		(extended_interface == NULL) ? NULL : (extended_interface = (g_object_unref (extended_interface), NULL));
 		(accel_group == NULL) ? NULL : (accel_group = (g_object_unref (accel_group), NULL));
 	}
 	return obj;
@@ -557,6 +574,8 @@ static void xfmpc_main_window_instance_init (XfmpcMainWindow * self) {
 static void xfmpc_main_window_finalize (GObject* obj) {
 	XfmpcMainWindow * self;
 	self = XFMPC_MAIN_WINDOW (obj);
+	(self->priv->interface == NULL) ? NULL : (self->priv->interface = (g_object_unref (self->priv->interface), NULL));
+	(self->priv->extended_interface == NULL) ? NULL : (self->priv->extended_interface = (g_object_unref (self->priv->extended_interface), NULL));
 	(self->priv->vbox == NULL) ? NULL : (self->priv->vbox = (g_object_unref (self->priv->vbox), NULL));
 	(self->priv->action_group == NULL) ? NULL : (self->priv->action_group = (g_object_unref (self->priv->action_group), NULL));
 	(self->priv->statusbar == NULL) ? NULL : (self->priv->statusbar = (g_object_unref (self->priv->statusbar), NULL));

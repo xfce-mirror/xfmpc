@@ -248,6 +248,8 @@ void xfmpc_interface_volume_changed (XfmpcInterface* self, double value);
 void xfmpc_interface_set_volume (XfmpcInterface* self, gint volume);
 void xfmpc_interface_popup_volume (XfmpcInterface* self);
 void xfmpc_interface_set_time (XfmpcInterface* self, gint time, gint time_total);
+void xfmpc_interface_clean (XfmpcInterface* self);
+void xfmpc_interface_update_title (XfmpcInterface* self);
 XfmpcInterface* xfmpc_interface_new (void);
 XfmpcInterface* xfmpc_interface_construct (GType object_type);
 GType xfmpc_main_window_get_type (void);

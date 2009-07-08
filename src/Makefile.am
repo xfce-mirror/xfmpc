@@ -36,13 +36,15 @@ xfmpc_CFLAGS =								\
 	@GTK_CFLAGS@							\
 	@LIBXFCEGUI4_CFLAGS@						\
 	@LIBXFCE4UTIL_CFLAGS@						\
-	@LIBMPD_CFLAGS@
+	@LIBMPD_CFLAGS@							\
+	@GTHREAD_CFLAGS@
 
 xfmpc_LDADD =								\
 	@GTK_LIBS@							\
 	@LIBXFCEGUI4_LIBS@						\
 	@LIBXFCE4UTIL_LIBS@						\
-	@LIBMPD_LIBS@
+	@LIBMPD_LIBS@							\
+	@GTHREAD_LIBS@
 
 INCLUDES =								\
 	-I${top_srcdir}							\

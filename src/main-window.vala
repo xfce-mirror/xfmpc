@@ -26,6 +26,9 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
+		private Xfmpc.Interface interface;
+		private Xfmpc.ExtendedInterface extended_interface;
+
 		private Gtk.VBox vbox;
 		private Gtk.ActionGroup action_group;
 		private Gtk.Widget statusbar;
@@ -80,17 +83,16 @@ namespace Xfmpc {
 				stick ();
 
   	  	  	/* Interface */
-			var interface = new Xfmpc.Interface ();
-			set_data ("XfmpcInterface", interface);
-			this.vbox.pack_start (interface, false, false, 4);
+			this.interface = new Xfmpc.Interface ();
+			this.vbox.pack_start (this.interface, false, false, 4);
 
   	  	  	/* Separator */
 			var separator = new Gtk.HSeparator ();
 			this.vbox.pack_start (separator, false, false, 0);
 
   	  	  	/* ExtendedInterface */
-			var extended_interface = new Xfmpc.ExtendedInterface ();
-			this.vbox.pack_start (extended_interface, true, true, 0);
+			this.extended_interface = new Xfmpc.ExtendedInterface ();
+			this.vbox.pack_start (this.extended_interface, true, true, 0);
 
   	  	  	/* Accelerators */
 			this.ui_manager = new Gtk.UIManager ();
@@ -116,6 +118,24 @@ namespace Xfmpc {
   	  	  	/* === Signals === */
 			this.mpdclient.playlist_changed.connect (cb_playlist_changed);
 			this.preferences.notify["show-statusbar"].connect (cb_show_statusbar_changed);
+
+  	  	  	/* === Timeout === */
+			Timeout.add (1000, refresh);
+		}
+
+		private bool refresh () {
+			if (this.mpdclient.is_connected ()) {
+				this.mpdclient.update_status ();
+			} else {
+				this.interface.clean ();
+				this.mpdclient.reload ();
+				((Xfmpc.Statusbar) this.statusbar).text = "";
+				this.mpdclient.connect ();
+				if (this.mpdclient.is_connected ())
+					this.interface.update_title ();
+			}
+
+			return true;
 		}
 
 		private bool cb_window_state_event (Gdk.EventWindowState event) {
@@ -170,8 +190,7 @@ namespace Xfmpc {
 		}
 
 		private void action_pp () {
-			Xfmpc.Interface interface = (Xfmpc.Interface) get_data ("XfmpcInterface");
-			interface.pp_clicked ();
+			this.interface.pp_clicked ();
 		}
 
 		private void action_stop () {
@@ -183,8 +202,7 @@ namespace Xfmpc {
 		}
 
 		private void action_volume () {
-			Xfmpc.Interface interface = (Xfmpc.Interface) get_data ("XfmpcInterface");
-			interface.popup_volume ();
+			this.interface.popup_volume ();
 		}
 
 		private void action_statusbar (Action action) {

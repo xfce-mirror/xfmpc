@@ -138,12 +138,12 @@ namespace Xfmpc {
 			int i = 0;
 			Xfmpc.Playlist playlist = (Xfmpc.Playlist) get_data ("XfmpcPlaylist");
 
-			if (!this.mpdclient.is_connected ())
-				return;
 			if (this.is_searching)
 				return;
 
 			clear ();
+			if (!this.mpdclient.is_connected ())
+				return;
 
 			if (!this.wdir_is_root ()) {
 				filename = get_parent_wdir ();

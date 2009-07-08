@@ -71,7 +71,6 @@ struct _XfmpcInterfacePrivate {
 	GtkProgressBar* progress_bar;
 	GtkLabel* title;
 	GtkLabel* subtitle;
-	gboolean refresh_title;
 };
 
 
@@ -91,14 +90,13 @@ void xfmpc_interface_volume_changed (XfmpcInterface* self, double value);
 void xfmpc_interface_set_volume (XfmpcInterface* self, gint volume);
 void xfmpc_interface_popup_volume (XfmpcInterface* self);
 void xfmpc_interface_set_time (XfmpcInterface* self, gint time, gint time_total);
-static void xfmpc_interface_reconnect (XfmpcInterface* self);
-static gboolean xfmpc_interface_refresh (XfmpcInterface* self);
+void xfmpc_interface_clean (XfmpcInterface* self);
+void xfmpc_interface_update_title (XfmpcInterface* self);
 static void xfmpc_interface_cb_song_changed (XfmpcInterface* self);
-static void xfmpc_interface_cb_stopped (XfmpcInterface* self);
-static gboolean _xfmpc_interface_refresh_gsource_func (gpointer self);
 static void xfmpc_interface_cb_pp_changed (XfmpcInterface* self, gboolean is_playing);
 static void xfmpc_interface_cb_time_changed (XfmpcInterface* self, gint time, gint total_time);
 static void xfmpc_interface_cb_volume_changed (XfmpcInterface* self, gint volume);
+static void xfmpc_interface_cb_stopped (XfmpcInterface* self);
 static void xfmpc_interface_cb_mpdclient_previous (XfmpcInterface* self);
 static void xfmpc_interface_cb_mpdclient_next (XfmpcInterface* self);
 XfmpcInterface* xfmpc_interface_new (void);
@@ -110,7 +108,6 @@ static void _xfmpc_interface_pp_clicked_gtk_button_clicked (GtkButton* _sender, 
 static void _xfmpc_interface_cb_mpdclient_next_gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void _xfmpc_interface_volume_changed_gtk_scale_button_value_changed (GtkScaleButton* _sender, double value, gpointer self);
 static gboolean _xfmpc_interface_cb_progress_box_release_event_gtk_widget_button_release_event (GtkWidget* _sender, const GdkEventButton* event, gpointer self);
-static void _xfmpc_interface_reconnect_xfmpc_mpdclient_connected (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_interface_cb_song_changed_xfmpc_mpdclient_song_changed (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_interface_cb_pp_changed_xfmpc_mpdclient_pp_changed (XfmpcMpdclient* _sender, gboolean is_playing, gpointer self);
 static void _xfmpc_interface_cb_time_changed_xfmpc_mpdclient_time_changed (XfmpcMpdclient* _sender, gint time, gint total_time, gpointer self);
@@ -238,67 +235,41 @@ void xfmpc_interface_set_time (XfmpcInterface* self, gint time, gint time_total)
 }
 
 
-static gboolean xfmpc_interface_refresh (XfmpcInterface* self) {
-	g_return_val_if_fail (self != NULL, FALSE);
-	if (xfmpc_mpdclient_connect (self->priv->mpdclient) == FALSE) {
-		g_warning ("interface.vala:208: Failed to connect to MPD");
-		xfmpc_mpdclient_disconnect (self->priv->mpdclient);
-		xfmpc_interface_set_pp (self, FALSE);
-		xfmpc_interface_set_time (self, 0, 0);
-		xfmpc_interface_set_volume (self, 0);
-		xfmpc_interface_set_title (self, _ ("Not connected"));
-		xfmpc_interface_set_subtitle (self, PACKAGE_STRING);
-		g_timeout_add ((guint) 15000, (GSourceFunc) xfmpc_interface_reconnect, NULL);
-		return FALSE;
-	}
-	xfmpc_mpdclient_update_status (self->priv->mpdclient);
-	return TRUE;
-}
-
-
-static gboolean _xfmpc_interface_refresh_gsource_func (gpointer self) {
-	return xfmpc_interface_refresh (self);
-}
-
-
-static void xfmpc_interface_reconnect (XfmpcInterface* self) {
+void xfmpc_interface_clean (XfmpcInterface* self) {
 	g_return_if_fail (self != NULL);
-	if (xfmpc_mpdclient_connect (self->priv->mpdclient) == FALSE) {
-		return;
+	xfmpc_interface_set_pp (self, FALSE);
+	xfmpc_interface_set_time (self, 0, 0);
+	xfmpc_interface_set_volume (self, 0);
+	xfmpc_interface_set_title (self, _ ("Not connected"));
+	xfmpc_interface_set_subtitle (self, PACKAGE_STRING);
+}
+
+
+void xfmpc_interface_update_title (XfmpcInterface* self) {
+	g_return_if_fail (self != NULL);
+	if (xfmpc_mpdclient_get_title (self->priv->mpdclient) != NULL) {
+		GString* text;
+		xfmpc_interface_set_title (self, xfmpc_mpdclient_get_title (self->priv->mpdclient));
+		/* subtitle "by \"artist\" from \"album\" (year)" */
+		text = g_string_new ("");
+		g_string_append_printf (text, _ ("by \"%s\" from \"%s\" (%s)"), xfmpc_mpdclient_get_artist (self->priv->mpdclient), xfmpc_mpdclient_get_album (self->priv->mpdclient), xfmpc_mpdclient_get_date (self->priv->mpdclient));
+		/* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values, so far I don't care */
+		xfmpc_interface_set_subtitle (self, text->str);
+		(text == NULL) ? NULL : (text = (g_string_free (text, TRUE), NULL));
 	}
-	/* Refresh title/subtitle (bug #4975) */
-	self->priv->refresh_title = TRUE;
-	if (xfmpc_mpdclient_is_playing (self->priv->mpdclient)) {
-		xfmpc_interface_cb_song_changed (self);
-	} else {
-		xfmpc_interface_cb_stopped (self);
-	}
-	/* Return FALSE to kill the reconnection timeout and start a refresh timeout */
-	g_timeout_add ((guint) 1000, _xfmpc_interface_refresh_gsource_func, self);
 }
 
 
 static void xfmpc_interface_cb_song_changed (XfmpcInterface* self) {
-	GString* text;
 	g_return_if_fail (self != NULL);
-	/* title */
-	xfmpc_interface_set_title (self, xfmpc_mpdclient_get_title (self->priv->mpdclient));
-	/* subtitle "by \"artist\" from \"album\" (year)" */
-	text = g_string_new ("");
-	g_string_append_printf (text, _ ("by \"%s\" from \"%s\" (%s)"), xfmpc_mpdclient_get_artist (self->priv->mpdclient), xfmpc_mpdclient_get_album (self->priv->mpdclient), xfmpc_mpdclient_get_date (self->priv->mpdclient));
-	/* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values, so far I don't care */
-	xfmpc_interface_set_subtitle (self, text->str);
-	(text == NULL) ? NULL : (text = (g_string_free (text, TRUE), NULL));
+	xfmpc_interface_update_title (self);
 }
 
 
 static void xfmpc_interface_cb_pp_changed (XfmpcInterface* self, gboolean is_playing) {
 	g_return_if_fail (self != NULL);
 	xfmpc_interface_set_pp (self, is_playing);
-	if (self->priv->refresh_title) {
-		xfmpc_interface_cb_song_changed (self);
-		self->priv->refresh_title = FALSE;
-	}
+	xfmpc_interface_cb_song_changed (self);
 }
 
 
@@ -316,11 +287,7 @@ static void xfmpc_interface_cb_volume_changed (XfmpcInterface* self, gint volume
 
 static void xfmpc_interface_cb_stopped (XfmpcInterface* self) {
 	g_return_if_fail (self != NULL);
-	xfmpc_interface_set_pp (self, FALSE);
-	xfmpc_interface_set_time (self, 0, 0);
-	xfmpc_interface_set_title (self, _ ("Stopped"));
-	xfmpc_interface_set_subtitle (self, PACKAGE_STRING);
-	self->priv->refresh_title = TRUE;
+	xfmpc_interface_clean (self);
 }
 
 
@@ -370,11 +337,6 @@ static void _xfmpc_interface_volume_changed_gtk_scale_button_value_changed (GtkS
 
 static gboolean _xfmpc_interface_cb_progress_box_release_event_gtk_widget_button_release_event (GtkWidget* _sender, const GdkEventButton* event, gpointer self) {
 	return xfmpc_interface_cb_progress_box_release_event (self, event);
-}
-
-
-static void _xfmpc_interface_reconnect_xfmpc_mpdclient_connected (XfmpcMpdclient* _sender, gpointer self) {
-	xfmpc_interface_reconnect (self);
 }
 
 
@@ -512,14 +474,11 @@ static GObject * xfmpc_interface_constructor (GType type, guint n_construct_prop
 		g_signal_connect_object (self->priv->button_next, "clicked", (GCallback) _xfmpc_interface_cb_mpdclient_next_gtk_button_clicked, self, 0);
 		g_signal_connect_object ((GtkScaleButton*) self->priv->button_volume, "value-changed", (GCallback) _xfmpc_interface_volume_changed_gtk_scale_button_value_changed, self, 0);
 		g_signal_connect_object ((GtkWidget*) progress_box, "button-release-event", (GCallback) _xfmpc_interface_cb_progress_box_release_event_gtk_widget_button_release_event, self, 0);
-		g_signal_connect_object (self->priv->mpdclient, "connected", (GCallback) _xfmpc_interface_reconnect_xfmpc_mpdclient_connected, self, 0);
 		g_signal_connect_object (self->priv->mpdclient, "song-changed", (GCallback) _xfmpc_interface_cb_song_changed_xfmpc_mpdclient_song_changed, self, 0);
 		g_signal_connect_object (self->priv->mpdclient, "pp-changed", (GCallback) _xfmpc_interface_cb_pp_changed_xfmpc_mpdclient_pp_changed, self, 0);
 		g_signal_connect_object (self->priv->mpdclient, "time-changed", (GCallback) _xfmpc_interface_cb_time_changed_xfmpc_mpdclient_time_changed, self, 0);
 		g_signal_connect_object (self->priv->mpdclient, "volume-changed", (GCallback) _xfmpc_interface_cb_volume_changed_xfmpc_mpdclient_volume_changed, self, 0);
 		g_signal_connect_object (self->priv->mpdclient, "stopped", (GCallback) _xfmpc_interface_cb_stopped_xfmpc_mpdclient_stopped, self, 0);
-		/* === Timeout === */
-		g_timeout_add ((guint) 1000, _xfmpc_interface_refresh_gsource_func, self);
 		(image == NULL) ? NULL : (image = (g_object_unref (image), NULL));
 		(adjustment == NULL) ? NULL : (adjustment = (g_object_unref (adjustment), NULL));
 		(progress_box == NULL) ? NULL : (progress_box = (g_object_unref (progress_box), NULL));

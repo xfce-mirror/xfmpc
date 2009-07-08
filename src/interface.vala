@@ -33,7 +33,6 @@ namespace Xfmpc {
 		private Gtk.ProgressBar progress_bar;
 		private Gtk.Label title;
 		private Gtk.Label subtitle;
-		private bool refresh_title;
 
 		construct {
 			this.mpdclient = Xfmpc.Mpdclient.get ();
@@ -121,15 +120,11 @@ namespace Xfmpc {
 			this.button_volume.value_changed.connect (volume_changed);
 			progress_box.button_release_event.connect (cb_progress_box_release_event);
 
-			this.mpdclient.connected.connect (reconnect);
 			this.mpdclient.song_changed.connect (cb_song_changed);
 			this.mpdclient.pp_changed.connect (cb_pp_changed);
 			this.mpdclient.time_changed.connect (cb_time_changed);
 			this.mpdclient.volume_changed.connect (cb_volume_changed);
 			this.mpdclient.stopped.connect (cb_stopped);
-
-  	  	  	/* === Timeout === */
-			Timeout.add (1000, refresh);
 		}
 
 		public void set_title (string title) {
@@ -203,62 +198,38 @@ namespace Xfmpc {
 			this.progress_bar.set_fraction ((fraction <= 1.0) ? fraction : 1.0);
 		}
 
-		private bool refresh () {
-			if (this.mpdclient.connect () == false) {
-				warning ("Failed to connect to MPD");
-				this.mpdclient.disconnect ();
-
-				set_pp (false);
-				set_time (0, 0);
-				set_volume (0);
-				set_title (_("Not connected"));
-				set_subtitle (Config.PACKAGE_STRING);
-
-				GLib.Timeout.add (15000, (GLib.SourceFunc) reconnect);
-				return false;
-			}
-
-			this.mpdclient.update_status ();
-			return true;
+		public void clean () {
+			set_pp (false);
+			set_time (0, 0);
+			set_volume (0);
+			set_title (_("Not connected"));
+			set_subtitle (Config.PACKAGE_STRING);
 		}
 
-		private void reconnect () {
-			if (this.mpdclient.connect () == false)
-				return;
+		public void update_title () {
+			if (this.mpdclient.get_title () != null) {
+				set_title (this.mpdclient.get_title ());
 
-  	  	  	/* Refresh title/subtitle (bug #4975) */
-			this.refresh_title = true;
-			if (this.mpdclient.is_playing ())
-				cb_song_changed ();
-			else
-				cb_stopped ();
+  	  	  		/* subtitle "by \"artist\" from \"album\" (year)" */
+				GLib.StringBuilder text = new GLib.StringBuilder ();
+				text.append_printf (_("by \"%s\" from \"%s\" (%s)"),
+				     	    	    this.mpdclient.get_artist (),
+				     	    	    this.mpdclient.get_album (),
+				     	    	    this.mpdclient.get_date ());
 
-  	  	  	/* Return FALSE to kill the reconnection timeout and start a refresh timeout */
-			GLib.Timeout.add (1000, refresh);
+  	  	  		/* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values, so far I don't care */
+				set_subtitle (text.str);
+			}
 		}
 
 		private void cb_song_changed () {
-  	  	  	/* title */
-			set_title (this.mpdclient.get_title ());
-
-  	  	  	/* subtitle "by \"artist\" from \"album\" (year)" */
-			GLib.StringBuilder text = new GLib.StringBuilder ();
-			text.append_printf (_("by \"%s\" from \"%s\" (%s)"),
-				     	    this.mpdclient.get_artist (),
-				     	    this.mpdclient.get_album (),
-				     	    this.mpdclient.get_date ());
-
-  	  	  	/* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values, so far I don't care */
-			set_subtitle (text.str);
+  	  	  	update_title ();
 		}
 
 		private void cb_pp_changed (bool is_playing) {
 			set_pp (is_playing);
 
-			if (this.refresh_title) {
-				cb_song_changed ();
-				this.refresh_title = false;
-			}
+			cb_song_changed ();
 		}
 
 		private void cb_time_changed (int time, int total_time) {
@@ -270,12 +241,7 @@ namespace Xfmpc {
 		}
 
 		private void cb_stopped () {
-			set_pp (false);
-			set_time (0, 0);
-			set_title (_("Stopped"));
-			set_subtitle (Config.PACKAGE_STRING);
-
-			this.refresh_title = true;
+			clean ();
 		}
 
 		private void cb_mpdclient_previous () {

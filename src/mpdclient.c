@@ -98,6 +98,8 @@ struct _XfmpcMpdclientPrivate
   guint                     port;
   gchar                    *passwd;
   gboolean                  env_cached;
+  gboolean                  connecting;
+  GMutex                   *mutex;
 };
 
 
@@ -237,7 +239,12 @@ static void
 xfmpc_mpdclient_init (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = mpdclient->priv = GET_PRIVATE (mpdclient);
+
   priv->mi = mpd_new_default ();
+
+  if (!g_thread_supported ()) g_thread_init (NULL);
+  priv->mutex = g_mutex_new ();
+
   mpd_signal_connect_status_changed (priv->mi, (StatusChangedCallback)cb_status_changed, mpdclient);
 }
 
@@ -248,6 +255,8 @@ xfmpc_mpdclient_finalize (GObject *object)
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   mpd_free (priv->mi);
+  g_mutex_free (priv->mutex);
+
   (*G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
@@ -319,23 +328,59 @@ xfmpc_mpdclient_initenv (XfmpcMpdclient *mpdclient)
     }
 }
 
-gboolean
-xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
+static gpointer
+xfmpc_mpdclient_connect_thread (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
-
-  if (xfmpc_mpdclient_is_connected (mpdclient))
-    return TRUE;
+  mpd_Connection *connection;
 
   xfmpc_mpdclient_initenv (mpdclient);
   mpd_set_hostname (priv->mi, priv->host);
   mpd_set_port (priv->mi, priv->port);
   mpd_set_password (priv->mi, (priv->passwd != NULL) ? priv->passwd : "");
+  mpd_set_connection_timeout (priv->mi, 5.0);
 
-  if (mpd_connect (priv->mi) != MPD_OK)
+  connection = mpd_newConnection (priv->host, priv->port, 5.0);
+  if (mpd_connect_real (priv->mi, connection))
+    g_warning (_("Failed to connect to MPD"));
+
+  priv->connecting = FALSE;
+
+  g_mutex_unlock (priv->mutex);
+
+  return NULL;
+}
+
+gboolean
+xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
+
+  GThread *thread;
+
+  if (xfmpc_mpdclient_is_connected (mpdclient))
+    return TRUE;
+
+  /* return FALSE if a we are already trying to connect to mpd */
+  if (!g_mutex_trylock (priv->mutex))
+  {
+    g_warning ("Already connecting to mpd");
     return FALSE;
+  }
 
-  mpd_send_password (priv->mi);
+  priv->connecting = TRUE;
+
+  thread = g_thread_create ((GThreadFunc) xfmpc_mpdclient_connect_thread,
+          mpdclient, TRUE, NULL);
+
+  while (priv->connecting)
+  {
+    while (gtk_events_pending ())
+      gtk_main_iteration ();
+    g_usleep (200000);
+  }
+
+  g_thread_join (thread);
 
   g_signal_emit (mpdclient, signals[SIG_CONNECTED], 0);
 
@@ -744,7 +789,7 @@ xfmpc_mpdclient_playlist_read (XfmpcMpdclient *mpdclient,
       if (NULL != length)
         *length = g_strdup_printf ("%d:%02d", data->song->time / 60, data->song->time % 60);
       if (NULL != pos)
-      	*pos = data->song->pos;
+        *pos = data->song->pos;
       *id = data->song->id;
     }
 
@@ -875,6 +920,15 @@ xfmpc_mpdclient_database_search (XfmpcMpdclient *mpdclient,
     }
 
   return NULL != data;
+}
+
+
+
+void
+xfmpc_mpdclient_reload (XfmpcMpdclient *mpdclient)
+{
+  g_signal_emit (mpdclient, signals[SIG_DATABASE_CHANGED], 0);
+  g_signal_emit (mpdclient, signals[SIG_PLAYLIST_CHANGED], 0);
 }
 
 

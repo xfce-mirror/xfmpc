@@ -46,6 +46,7 @@ namespace Xfmpc {
 		public bool set_volume (uchar volume);
 		public bool stop ();
 		public void update_status ();
+		public void reload ();
 		public virtual signal void connected ();
 		public virtual signal void song_changed ();
 		public virtual signal void pp_changed (bool is_playing);

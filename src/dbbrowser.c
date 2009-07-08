@@ -181,12 +181,6 @@ void xfmpc_dbbrowser_reload (XfmpcDbbrowser* self) {
 	i = 0;
 	_tmp0_ = NULL;
 	playlist = (_tmp0_ = XFMPC_PLAYLIST (g_object_get_data ((GObject*) self, "XfmpcPlaylist")), (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
-	if (!xfmpc_mpdclient_is_connected (self->priv->mpdclient)) {
-		filename = (g_free (filename), NULL);
-		basename = (g_free (basename), NULL);
-		(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
-		return;
-	}
 	if (self->priv->is_searching) {
 		filename = (g_free (filename), NULL);
 		basename = (g_free (basename), NULL);
@@ -194,6 +188,12 @@ void xfmpc_dbbrowser_reload (XfmpcDbbrowser* self) {
 		return;
 	}
 	xfmpc_dbbrowser_clear (self);
+	if (!xfmpc_mpdclient_is_connected (self->priv->mpdclient)) {
+		filename = (g_free (filename), NULL);
+		basename = (g_free (basename), NULL);
+		(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
+		return;
+	}
 	if (!xfmpc_dbbrowser_wdir_is_root (self)) {
 		char* _tmp1_;
 		_tmp1_ = NULL;

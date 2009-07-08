@@ -116,6 +116,8 @@ gboolean                xfmpc_mpdclient_database_search         (XfmpcMpdclient 
                                                                  gchar **filename,
                                                                  gchar **basename);
 
+void                    xfmpc_mpdclient_reload                  (XfmpcMpdclient *mpdclient);
+
 XfmpcSongInfo *         xfmpc_mpdclient_get_song_info           (XfmpcMpdclient *mpdclient,
                                                                  gint id);
 
