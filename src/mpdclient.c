@@ -99,6 +99,7 @@ struct _XfmpcMpdclientPrivate
   gchar                    *passwd;
   gboolean                  env_cached;
   gboolean                  connecting;
+  guint                     connection_count;
   GMutex                   *mutex;
 };
 
@@ -342,7 +343,15 @@ xfmpc_mpdclient_connect_thread (XfmpcMpdclient *mpdclient)
 
   connection = mpd_newConnection (priv->host, priv->port, 5.0);
   if (mpd_connect_real (priv->mi, connection))
-    g_warning (_("Failed to connect to MPD"));
+    {
+      if ((priv->connection_count++) == 1)
+        g_message (_("Failed to connect to MPD"));
+    }
+  else
+    {
+      priv->connection_count = 0;
+      g_message (_("Connected to MPD"));
+    }
 
   priv->connecting = FALSE;
 

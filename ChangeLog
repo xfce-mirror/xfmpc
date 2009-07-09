@@ -1,3 +1,7 @@
+2009-07-09	Mike Massonnet <mmassonnet@xfce.org>
+
+Make the output of connection status on the terminal less verbose
+
 2009-07-08	Vincent Legout <vincent@legout.info>
 
 Improve interaction with mpd
