@@ -21,6 +21,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <mpdclient.h>
+#include <xfce-arrow-button.h>
 #include <stdlib.h>
 #include <string.h>
 #include <gdk/gdk.h>
@@ -28,7 +29,6 @@
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4util/libxfce4util.h>
 #include <config.h>
-#include <xfce-arrow-button.h>
 
 
 #define XFMPC_TYPE_EXTENDED_INTERFACE (xfmpc_extended_interface_get_type ())
@@ -116,6 +116,9 @@ typedef enum  {
 } XfmpcExtendedInterfaceExtendedInterfaceWidget;
 
 
+static XfceArrowButton* xfmpc_extended_interface_context_button;
+static XfceArrowButton* xfmpc_extended_interface_context_button = NULL;
+static gpointer xfmpc_extended_interface_parent_class = NULL;
 
 GType xfmpc_extended_interface_get_type (void);
 GType xfmpc_preferences_get_type (void);
@@ -125,8 +128,6 @@ enum  {
 };
 static GType xfmpc_extended_interface_columns_get_type (void);
 GType xfmpc_extended_interface_extended_interface_widget_get_type (void);
-static XfceArrowButton* xfmpc_extended_interface_context_button;
-static XfceArrowButton* xfmpc_extended_interface_context_button = NULL;
 void xfmpc_extended_interface_set_active (XfmpcExtendedInterface* self, XfmpcExtendedInterfaceExtendedInterfaceWidget active_widget);
 static void xfmpc_extended_interface_append_child (XfmpcExtendedInterface* self, GtkWidget* child, const char* title);
 static void xfmpc_extended_interface_context_menu_new (XfmpcExtendedInterface* self, GtkWidget* attach_widget);
@@ -166,7 +167,6 @@ XfmpcDbbrowser* xfmpc_dbbrowser_new (void);
 XfmpcDbbrowser* xfmpc_dbbrowser_construct (GType object_type);
 GType xfmpc_dbbrowser_get_type (void);
 static GObject * xfmpc_extended_interface_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
-static gpointer xfmpc_extended_interface_parent_class = NULL;
 static void xfmpc_extended_interface_finalize (GObject* obj);
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func);
 static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func);
@@ -233,7 +233,7 @@ static void xfmpc_extended_interface_position_context_menu (GtkMenu* menu, gint 
 	root_x = 0;
 	root_y = 0;
 	gtk_widget_size_request ((GtkWidget*) menu, &menu_req);
-	gdk_window_get_origin (gtk_widget_get_window (GTK_WIDGET (xfmpc_extended_interface_context_button)), &root_x, &root_y);
+	gdk_window_get_origin (GTK_WIDGET (xfmpc_extended_interface_context_button)->window, &root_x, &root_y);
 	x = root_x + GTK_WIDGET (xfmpc_extended_interface_context_button)->allocation.x;
 	y = root_y + GTK_WIDGET (xfmpc_extended_interface_context_button)->allocation.y;
 	if (y > (gdk_screen_height () - menu_req.height)) {

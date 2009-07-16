@@ -173,7 +173,7 @@ namespace Xfmpc {
 			if (selection.count_selected_rows () > 1)
 				return;
 
-			var model = this.store;
+			Gtk.TreeModel model = this.store;
 			var list = selection.get_selected_rows (out model);
 			if (list.length () == 0)
 				return;
@@ -198,7 +198,7 @@ namespace Xfmpc {
 			if (selection.count_selected_rows () > 1)
 				return;
 
-			var model = this.store;
+			Gtk.TreeModel model = this.store;
 			var list = selection.get_selected_rows (out model);
 			if (list.length () == 0)
 				return;
@@ -305,7 +305,8 @@ namespace Xfmpc {
 		}
 
 		private void cb_filter_entry_activated () {
-			var list = (this.treeview.get_selection ()).get_selected_rows (out filter);
+			Gtk.TreeModel model = filter;
+			var list = (this.treeview.get_selection ()).get_selected_rows (out model);
 			var path = list.nth_data (0);
 
 			if (list.length () > 0) {
@@ -390,7 +391,7 @@ namespace Xfmpc {
 		public void delete_selection () {
 			int id = 0;
 			Gtk.TreeIter iter;
-			var model = this.store;
+			Gtk.TreeModel model = this.store;
 
 			var list = (this.treeview.get_selection ()).get_selected_rows (out model);
 

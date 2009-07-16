@@ -23,6 +23,8 @@
 #include <mpdclient.h>
 #include <stdlib.h>
 #include <string.h>
+#include <float.h>
+#include <math.h>
 #include <gdk-pixbuf/gdk-pixdata.h>
 #include <pango/pango.h>
 #include <gdk/gdk.h>
@@ -96,6 +98,7 @@ typedef enum  {
 } XfmpcDbbrowserColumns;
 
 
+static gpointer xfmpc_dbbrowser_parent_class = NULL;
 
 GType xfmpc_dbbrowser_get_type (void);
 GType xfmpc_preferences_get_type (void);
@@ -148,7 +151,6 @@ static gboolean _xfmpc_dbbrowser_cb_search_entry_key_released_gtk_widget_key_rel
 static void _xfmpc_dbbrowser_cb_search_entry_changed_gtk_editable_changed (GtkEditable* _sender, gpointer self);
 static void _xfmpc_dbbrowser_reload_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self);
 static GObject * xfmpc_dbbrowser_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
-static gpointer xfmpc_dbbrowser_parent_class = NULL;
 static void xfmpc_dbbrowser_finalize (GObject* obj);
 static int _vala_strcmp0 (const char * str1, const char * str2);
 
@@ -201,7 +203,10 @@ void xfmpc_dbbrowser_reload (XfmpcDbbrowser* self) {
 		xfmpc_dbbrowser_append (self, filename, "..", TRUE, FALSE);
 		i++;
 	}
-	while (xfmpc_mpdclient_database_read (self->priv->mpdclient, self->priv->wdir, &filename, &basename, &is_dir)) {
+	while (TRUE) {
+		if (!xfmpc_mpdclient_database_read (self->priv->mpdclient, self->priv->wdir, &filename, &basename, &is_dir)) {
+			break;
+		}
 		is_bold = xfmpc_playlist_has_filename (playlist, filename, is_dir);
 		xfmpc_dbbrowser_append (self, filename, basename, is_dir, is_bold);
 		if (g_utf8_collate (filename, self->priv->last_wdir) == 0) {
@@ -222,25 +227,28 @@ void xfmpc_dbbrowser_reload (XfmpcDbbrowser* self) {
 
 
 gboolean xfmpc_dbbrowser_wdir_is_root (XfmpcDbbrowser* self) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
-	return _vala_strcmp0 (self->priv->wdir, "") == 0;
+	result = _vala_strcmp0 (self->priv->wdir, "") == 0;
+	return result;
 }
 
 
 char* xfmpc_dbbrowser_get_parent_wdir (XfmpcDbbrowser* self) {
+	char* result;
 	const char* _tmp0_;
 	char* filename;
 	g_return_val_if_fail (self != NULL, NULL);
 	_tmp0_ = NULL;
 	filename = (_tmp0_ = strstr (self->priv->wdir, "/"), (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_));
 	if (filename == NULL) {
-		char* _tmp1_;
-		_tmp1_ = NULL;
-		return (_tmp1_ = g_strdup (""), filename = (g_free (filename), NULL), _tmp1_);
+		result = g_strdup ("");
+		filename = (g_free (filename), NULL);
+		return result;
 	} else {
-		char* _tmp2_;
-		_tmp2_ = NULL;
-		return (_tmp2_ = g_path_get_dirname (self->priv->wdir), filename = (g_free (filename), NULL), _tmp2_);
+		result = g_path_get_dirname (self->priv->wdir);
+		filename = (g_free (filename), NULL);
+		return result;
 	}
 	filename = (g_free (filename), NULL);
 }
@@ -366,7 +374,10 @@ void xfmpc_dbbrowser_search (XfmpcDbbrowser* self, const char* query) {
 	}
 	self->priv->is_searching = TRUE;
 	xfmpc_dbbrowser_clear (self);
-	while (xfmpc_mpdclient_database_search (self->priv->mpdclient, query, &filename, &basename)) {
+	while (TRUE) {
+		if (!xfmpc_mpdclient_database_search (self->priv->mpdclient, query, &filename, &basename)) {
+			break;
+		}
 		is_bold = xfmpc_playlist_has_filename (playlist, filename, FALSE);
 		xfmpc_dbbrowser_append (self, filename, basename, FALSE, is_bold);
 		i++;
@@ -479,18 +490,28 @@ static void xfmpc_dbbrowser_cb_playlist_changed (XfmpcDbbrowser* self) {
 		(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
 		return;
 	}
-	do {
-		PangoWeight _tmp2_;
-		gtk_tree_model_get (model, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_FILENAME, &filename, XFMPC_DBBROWSER_COLUMNS_COLUMN_IS_DIR, &is_dir, -1, -1);
-		is_bold = xfmpc_playlist_has_filename (playlist, filename, is_dir);
-		_tmp2_ = 0;
-		if (is_bold) {
-			_tmp2_ = PANGO_WEIGHT_BOLD;
-		} else {
-			_tmp2_ = PANGO_WEIGHT_NORMAL;
+	{
+		gboolean _tmp2_;
+		_tmp2_ = TRUE;
+		while (TRUE) {
+			PangoWeight _tmp3_;
+			if (!_tmp2_) {
+				if (!gtk_tree_model_iter_next (model, &iter)) {
+					break;
+				}
+			}
+			_tmp2_ = FALSE;
+			gtk_tree_model_get (model, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_FILENAME, &filename, XFMPC_DBBROWSER_COLUMNS_COLUMN_IS_DIR, &is_dir, -1, -1);
+			is_bold = xfmpc_playlist_has_filename (playlist, filename, is_dir);
+			_tmp3_ = 0;
+			if (is_bold) {
+				_tmp3_ = PANGO_WEIGHT_BOLD;
+			} else {
+				_tmp3_ = PANGO_WEIGHT_NORMAL;
+			}
+			gtk_list_store_set (self->priv->store, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_WEIGHT, _tmp3_, -1, -1);
 		}
-		gtk_list_store_set (self->priv->store, &iter, XFMPC_DBBROWSER_COLUMNS_COLUMN_WEIGHT, _tmp2_, -1, -1);
-	} while (gtk_tree_model_iter_next (model, &iter));
+	}
 	(model == NULL) ? NULL : (model = (g_object_unref (model), NULL));
 	filename = (g_free (filename), NULL);
 	(playlist == NULL) ? NULL : (playlist = (g_object_unref (playlist), NULL));
@@ -498,29 +519,34 @@ static void xfmpc_dbbrowser_cb_playlist_changed (XfmpcDbbrowser* self) {
 
 
 static gboolean xfmpc_dbbrowser_cb_popup_menu (XfmpcDbbrowser* self) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
 	xfmpc_dbbrowser_menu_popup (self);
-	return TRUE;
+	result = TRUE;
+	return result;
 }
 
 
 static gboolean xfmpc_dbbrowser_cb_key_pressed (XfmpcDbbrowser* self, const GdkEventKey* event) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
 	if ((*event).type != GDK_KEY_PRESS) {
-		return FALSE;
+		result = FALSE;
+		return result;
 	}
 	switch ((*event).keyval) {
 		case 0xff0d:
 		{
-			GtkTreeSelection* _tmp1_;
+			GtkTreeSelection* _tmp0_;
 			GtkTreeSelection* selection;
-			_tmp1_ = NULL;
-			selection = (_tmp1_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp1_ == NULL) ? NULL : g_object_ref (_tmp1_));
+			_tmp0_ = NULL;
+			selection = (_tmp0_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp0_ == NULL) ? NULL : g_object_ref (_tmp0_));
 			if (gtk_tree_selection_count_selected_rows (selection) > 1) {
 				xfmpc_dbbrowser_add_selected_rows (self);
 			} else {
-				gboolean _tmp2_;
-				return (_tmp2_ = FALSE, (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp2_);
+				result = FALSE;
+				(selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL));
+				return result;
 			}
 			(selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL));
 			break;
@@ -536,22 +562,24 @@ static gboolean xfmpc_dbbrowser_cb_key_pressed (XfmpcDbbrowser* self, const GdkE
 		}
 		default:
 		{
-			return FALSE;
+			result = FALSE;
+			return result;
 		}
 	}
-	return TRUE;
+	result = TRUE;
+	return result;
 }
 
 
 static gboolean xfmpc_dbbrowser_cb_button_released (XfmpcDbbrowser* self, const GdkEventButton* event) {
+	gboolean result;
 	gboolean _tmp0_;
 	GtkTreePath* path;
-	GtkTreeSelection* _tmp2_;
+	GtkTreeSelection* _tmp1_;
 	GtkTreeSelection* selection;
-	GtkTreePath* _tmp6_;
-	gboolean _tmp5_;
 	GtkTreePath* _tmp4_;
-	gboolean _tmp7_;
+	gboolean _tmp3_;
+	GtkTreePath* _tmp2_;
 	g_return_val_if_fail (self != NULL, FALSE);
 	_tmp0_ = FALSE;
 	if ((*event).type != GDK_BUTTON_PRESS) {
@@ -560,25 +588,31 @@ static gboolean xfmpc_dbbrowser_cb_button_released (XfmpcDbbrowser* self, const 
 		_tmp0_ = (*event).button != 3;
 	}
 	if (_tmp0_) {
-		return FALSE;
+		result = FALSE;
+		return result;
 	}
 	path = NULL;
-	_tmp2_ = NULL;
-	selection = (_tmp2_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp2_ == NULL) ? NULL : g_object_ref (_tmp2_));
+	_tmp1_ = NULL;
+	selection = (_tmp1_ = gtk_tree_view_get_selection (self->priv->treeview), (_tmp1_ == NULL) ? NULL : g_object_ref (_tmp1_));
 	if (gtk_tree_selection_count_selected_rows (selection) < 1) {
-		gboolean _tmp3_;
-		return (_tmp3_ = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp3_);
+		result = TRUE;
+		(path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL));
+		(selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL));
+		return result;
 	}
-	_tmp6_ = NULL;
 	_tmp4_ = NULL;
-	if ((_tmp5_ = gtk_tree_view_get_path_at_pos (self->priv->treeview, (gint) (*event).x, (gint) (*event).y, &_tmp4_, NULL, NULL, NULL), path = (_tmp6_ = _tmp4_, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp6_), _tmp5_)) {
+	_tmp2_ = NULL;
+	if ((_tmp3_ = gtk_tree_view_get_path_at_pos (self->priv->treeview, (gint) (*event).x, (gint) (*event).y, &_tmp2_, NULL, NULL, NULL), path = (_tmp4_ = _tmp2_, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp4_), _tmp3_)) {
 		if (!gtk_tree_selection_path_is_selected (selection, path)) {
 			gtk_tree_selection_unselect_all (selection);
 			gtk_tree_selection_select_path (selection, path);
 		}
 	}
 	xfmpc_dbbrowser_menu_popup (self);
-	return (_tmp7_ = TRUE, (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), (selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL)), _tmp7_);
+	result = TRUE;
+	(path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL));
+	(selection == NULL) ? NULL : (selection = (g_object_unref (selection), NULL));
+	return result;
 }
 
 
@@ -695,15 +729,18 @@ static void xfmpc_dbbrowser_cb_search_entry_activated (XfmpcDbbrowser* self) {
 
 
 static gboolean xfmpc_dbbrowser_cb_search_entry_key_released (XfmpcDbbrowser* self, const GdkEventKey* event) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
 	if ((*event).type != GDK_KEY_RELEASE) {
-		return FALSE;
+		result = FALSE;
+		return result;
 	}
 	/* Escape */
 	if ((*event).keyval == 0xff1b) {
 		gtk_entry_set_text (self->priv->search_entry, "");
 	}
-	return TRUE;
+	result = TRUE;
+	return result;
 }
 
 
@@ -722,9 +759,11 @@ static void xfmpc_dbbrowser_cb_search_entry_changed (XfmpcDbbrowser* self) {
 
 
 static gboolean xfmpc_dbbrowser_timeout_search (XfmpcDbbrowser* self) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
 	xfmpc_dbbrowser_cb_search_entry_activated (self);
-	return FALSE;
+	result = FALSE;
+	return result;
 }
 
 

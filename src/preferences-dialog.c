@@ -25,6 +25,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n-lib.h>
+#include <float.h>
+#include <math.h>
 #include <pango/pango.h>
 
 
@@ -84,6 +86,7 @@ typedef enum  {
 } XfmpcPreferencesSongFormat;
 
 
+static gpointer xfmpc_preferences_dialog_parent_class = NULL;
 
 GType xfmpc_preferences_dialog_get_type (void);
 GType xfmpc_preferences_get_type (void);
@@ -125,7 +128,6 @@ static void _xfmpc_preferences_dialog_cb_combo_format_changed_gtk_combo_box_chan
 static void _xfmpc_preferences_dialog_cb_entry_custom_changed_gtk_editable_changed (GtkEditable* _sender, gpointer self);
 static void _xfmpc_preferences_dialog_cb_response_gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self);
 static GObject * xfmpc_preferences_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
-static gpointer xfmpc_preferences_dialog_parent_class = NULL;
 static void xfmpc_preferences_dialog_finalize (GObject* obj);
 
 
@@ -235,14 +237,16 @@ static void xfmpc_preferences_dialog_cb_entry_custom_changed (XfmpcPreferencesDi
 
 
 static gboolean xfmpc_preferences_dialog_timeout_format (XfmpcPreferencesDialog* self) {
+	gboolean result;
 	const char* _tmp0_;
 	char* custom_format;
-	gboolean _tmp1_;
 	g_return_val_if_fail (self != NULL, FALSE);
 	_tmp0_ = NULL;
 	custom_format = (_tmp0_ = gtk_entry_get_text (self->priv->entry_custom), (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_));
 	xfmpc_preferences_set_song_format_custom (self->priv->preferences, custom_format);
-	return (_tmp1_ = FALSE, custom_format = (g_free (custom_format), NULL), _tmp1_);
+	result = FALSE;
+	custom_format = (g_free (custom_format), NULL);
+	return result;
 }
 
 

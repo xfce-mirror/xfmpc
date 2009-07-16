@@ -52,6 +52,7 @@ struct _XfmpcSongDialogPrivate {
 };
 
 
+static gpointer xfmpc_song_dialog_parent_class = NULL;
 
 GType xfmpc_song_dialog_get_type (void);
 #define XFMPC_SONG_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_SONG_DIALOG, XfmpcSongDialogPrivate))
@@ -63,7 +64,6 @@ static void _xfmpc_song_dialog_cb_response_gtk_dialog_response (GtkDialog* _send
 XfmpcSongDialog* xfmpc_song_dialog_new (gint song_id);
 XfmpcSongDialog* xfmpc_song_dialog_construct (GType object_type, gint song_id);
 XfmpcSongDialog* xfmpc_song_dialog_new (gint song_id);
-static gpointer xfmpc_song_dialog_parent_class = NULL;
 static void xfmpc_song_dialog_finalize (GObject* obj);
 
 

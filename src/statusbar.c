@@ -50,6 +50,7 @@ struct _XfmpcStatusbarPrivate {
 };
 
 
+static gpointer xfmpc_statusbar_parent_class = NULL;
 
 GType xfmpc_statusbar_get_type (void);
 #define XFMPC_STATUSBAR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_STATUSBAR, XfmpcStatusbarPrivate))
@@ -62,7 +63,6 @@ XfmpcStatusbar* xfmpc_statusbar_construct (GType object_type);
 XfmpcStatusbar* xfmpc_statusbar_new (void);
 void xfmpc_statusbar_set_text (XfmpcStatusbar* self, const char* value);
 static GObject * xfmpc_statusbar_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
-static gpointer xfmpc_statusbar_parent_class = NULL;
 static void xfmpc_statusbar_finalize (GObject* obj);
 static void xfmpc_statusbar_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec);
 

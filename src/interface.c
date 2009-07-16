@@ -74,6 +74,7 @@ struct _XfmpcInterfacePrivate {
 };
 
 
+static gpointer xfmpc_interface_parent_class = NULL;
 
 GType xfmpc_interface_get_type (void);
 GType xfmpc_preferences_get_type (void);
@@ -114,7 +115,6 @@ static void _xfmpc_interface_cb_time_changed_xfmpc_mpdclient_time_changed (Xfmpc
 static void _xfmpc_interface_cb_volume_changed_xfmpc_mpdclient_volume_changed (XfmpcMpdclient* _sender, gint volume, gpointer self);
 static void _xfmpc_interface_cb_stopped_xfmpc_mpdclient_stopped (XfmpcMpdclient* _sender, gpointer self);
 static GObject * xfmpc_interface_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
-static gpointer xfmpc_interface_parent_class = NULL;
 static void xfmpc_interface_finalize (GObject* obj);
 
 
@@ -158,6 +158,7 @@ void xfmpc_interface_set_pp (XfmpcInterface* self, gboolean play) {
 
 
 static gboolean xfmpc_interface_cb_progress_box_release_event (XfmpcInterface* self, const GdkEventButton* event) {
+	gboolean result;
 	gboolean _tmp0_;
 	gint time_total;
 	double time;
@@ -169,16 +170,19 @@ static gboolean xfmpc_interface_cb_progress_box_release_event (XfmpcInterface* s
 		_tmp0_ = (*event).button != 1;
 	}
 	if (_tmp0_) {
-		return FALSE;
+		result = FALSE;
+		return result;
 	}
 	time_total = xfmpc_mpdclient_get_total_time (self->priv->mpdclient);
 	if (time_total < 0) {
-		return FALSE;
+		result = FALSE;
+		return result;
 	}
 	time = (*event).x / ((GtkWidget*) self->priv->progress_bar)->allocation.width;
 	time = time * ((double) time_total);
 	xfmpc_mpdclient_set_song_time (self->priv->mpdclient, (guint) ((gint) time));
-	return TRUE;
+	result = TRUE;
+	return result;
 }
 
 

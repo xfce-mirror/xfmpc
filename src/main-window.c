@@ -100,6 +100,7 @@ struct _XfmpcMainWindowPrivate {
 };
 
 
+static gpointer xfmpc_main_window_parent_class = NULL;
 
 GType xfmpc_main_window_get_type (void);
 GType xfmpc_preferences_get_type (void);
@@ -164,7 +165,6 @@ static void _xfmpc_main_window_cb_playlist_changed_xfmpc_mpdclient_playlist_chan
 static void _xfmpc_main_window_cb_show_statusbar_changed_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self);
 static gboolean _xfmpc_main_window_refresh_gsource_func (gpointer self);
 static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
-static gpointer xfmpc_main_window_parent_class = NULL;
 static void xfmpc_main_window_finalize (GObject* obj);
 
 static const GtkToggleActionEntry XFMPC_MAIN_WINDOW_toggle_action_entries[] = {{"view-statusbar", NULL, "", NULL, NULL, (GCallback) _xfmpc_main_window_action_statusbar_gtk_action_callback, FALSE}};
@@ -207,6 +207,7 @@ static void _xfmpc_main_window_action_volume_gtk_action_callback (GtkAction* act
 
 
 static gboolean xfmpc_main_window_refresh (XfmpcMainWindow* self) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
 	if (xfmpc_mpdclient_is_connected (self->priv->mpdclient)) {
 		xfmpc_mpdclient_update_status (self->priv->mpdclient);
@@ -219,29 +220,32 @@ static gboolean xfmpc_main_window_refresh (XfmpcMainWindow* self) {
 			xfmpc_interface_update_title (self->priv->interface);
 		}
 	}
-	return TRUE;
+	result = TRUE;
+	return result;
 }
 
 
 static gboolean xfmpc_main_window_cb_window_state_event (XfmpcMainWindow* self, const GdkEventWindowState* event) {
-	gboolean _tmp1_;
+	gboolean result;
+	gboolean _tmp0_;
 	g_return_val_if_fail (self != NULL, FALSE);
 	if ((*event).type != GDK_WINDOW_STATE) {
-		return FALSE;
+		result = FALSE;
+		return result;
 	}
-	_tmp1_ = FALSE;
+	_tmp0_ = FALSE;
 	if (((gboolean) (*event).changed_mask) & GDK_WINDOW_STATE_STICKY) {
-		gboolean _tmp2_;
-		_tmp1_ = (g_object_get ((GtkWidget*) self, "visible", &_tmp2_, NULL), _tmp2_);
+		gboolean _tmp1_;
+		_tmp0_ = (g_object_get ((GtkWidget*) self, "visible", &_tmp1_, NULL), _tmp1_);
 	} else {
-		_tmp1_ = FALSE;
+		_tmp0_ = FALSE;
 	}
 	/**
 	          * Hiding the top level window will unstick it too, and send a
 	          * window-state-event signal, so here we take the value only if
 	          * the window is visible
 	          **/
-	if (_tmp1_) {
+	if (_tmp0_) {
 		gboolean sticky;
 		sticky = FALSE;
 		if ((((gboolean) (*event).new_window_state) & GDK_WINDOW_STATE_STICKY) == FALSE) {
@@ -251,15 +255,18 @@ static gboolean xfmpc_main_window_cb_window_state_event (XfmpcMainWindow* self, 
 		}
 		xfmpc_preferences_set_last_window_state_sticky (self->priv->preferences, sticky);
 	}
-	return FALSE;
+	result = FALSE;
+	return result;
 }
 
 
 static gboolean xfmpc_main_window_cb_window_closed (XfmpcMainWindow* self, GdkEvent* event) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
 	g_return_val_if_fail (event != NULL, FALSE);
 	xfmpc_main_window_close_window (self);
-	return FALSE;
+	result = FALSE;
+	return result;
 }
 
 

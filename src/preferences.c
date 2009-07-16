@@ -74,6 +74,9 @@ struct _XfmpcPreferencesPrivate {
 };
 
 
+static XfmpcPreferences* xfmpc_preferences_preferences;
+static XfmpcPreferences* xfmpc_preferences_preferences = NULL;
+static gpointer xfmpc_preferences_parent_class = NULL;
 
 GType xfmpc_preferences_get_type (void);
 GType xfmpc_preferences_song_format_get_type (void);
@@ -95,8 +98,6 @@ enum  {
 	XFMPC_PREFERENCES_SONG_FORMAT,
 	XFMPC_PREFERENCES_SONG_FORMAT_CUSTOM
 };
-static XfmpcPreferences* xfmpc_preferences_preferences;
-static XfmpcPreferences* xfmpc_preferences_preferences = NULL;
 static void xfmpc_preferences_load (XfmpcPreferences* self);
 XfmpcPreferences* xfmpc_preferences_new (void);
 XfmpcPreferences* xfmpc_preferences_construct (GType object_type);
@@ -131,7 +132,6 @@ XfmpcPreferencesSongFormat xfmpc_preferences_get_song_format (XfmpcPreferences* 
 void xfmpc_preferences_set_song_format (XfmpcPreferences* self, XfmpcPreferencesSongFormat value);
 const char* xfmpc_preferences_get_song_format_custom (XfmpcPreferences* self);
 void xfmpc_preferences_set_song_format_custom (XfmpcPreferences* self, const char* value);
-static gpointer xfmpc_preferences_parent_class = NULL;
 static void xfmpc_preferences_finalize (GObject* obj);
 static void xfmpc_preferences_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec);
 static void xfmpc_preferences_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec);
@@ -186,6 +186,7 @@ XfmpcPreferences* xfmpc_preferences_new (void) {
 
 
 XfmpcPreferences* xfmpc_preferences_get (void) {
+	XfmpcPreferences* result;
 	if (xfmpc_preferences_preferences == NULL) {
 		XfmpcPreferences* _tmp0_;
 		_tmp0_ = NULL;
@@ -193,7 +194,8 @@ XfmpcPreferences* xfmpc_preferences_get (void) {
 	} else {
 		g_object_ref ((GObject*) xfmpc_preferences_preferences);
 	}
-	return xfmpc_preferences_preferences;
+	result = xfmpc_preferences_preferences;
+	return result;
 }
 
 
@@ -305,8 +307,10 @@ static void xfmpc_preferences_store (XfmpcPreferences* self) {
 
 
 gint xfmpc_preferences_get_last_window_posx (XfmpcPreferences* self) {
+	gint result;
 	g_return_val_if_fail (self != NULL, 0);
-	return self->priv->_last_window_posx;
+	result = self->priv->_last_window_posx;
+	return result;
 }
 
 
@@ -319,8 +323,10 @@ void xfmpc_preferences_set_last_window_posx (XfmpcPreferences* self, gint value)
 
 
 gint xfmpc_preferences_get_last_window_posy (XfmpcPreferences* self) {
+	gint result;
 	g_return_val_if_fail (self != NULL, 0);
-	return self->priv->_last_window_posy;
+	result = self->priv->_last_window_posy;
+	return result;
 }
 
 
@@ -333,8 +339,10 @@ void xfmpc_preferences_set_last_window_posy (XfmpcPreferences* self, gint value)
 
 
 gint xfmpc_preferences_get_last_window_width (XfmpcPreferences* self) {
+	gint result;
 	g_return_val_if_fail (self != NULL, 0);
-	return self->priv->_last_window_width;
+	result = self->priv->_last_window_width;
+	return result;
 }
 
 
@@ -347,8 +355,10 @@ void xfmpc_preferences_set_last_window_width (XfmpcPreferences* self, gint value
 
 
 gint xfmpc_preferences_get_last_window_height (XfmpcPreferences* self) {
+	gint result;
 	g_return_val_if_fail (self != NULL, 0);
-	return self->priv->_last_window_height;
+	result = self->priv->_last_window_height;
+	return result;
 }
 
 
@@ -361,8 +371,10 @@ void xfmpc_preferences_set_last_window_height (XfmpcPreferences* self, gint valu
 
 
 gboolean xfmpc_preferences_get_last_window_state_sticky (XfmpcPreferences* self) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
-	return self->priv->_last_window_state_sticky;
+	result = self->priv->_last_window_state_sticky;
+	return result;
 }
 
 
@@ -375,8 +387,10 @@ void xfmpc_preferences_set_last_window_state_sticky (XfmpcPreferences* self, gbo
 
 
 gboolean xfmpc_preferences_get_playlist_autocenter (XfmpcPreferences* self) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
-	return self->priv->_playlist_autocenter;
+	result = self->priv->_playlist_autocenter;
+	return result;
 }
 
 
@@ -389,44 +403,50 @@ void xfmpc_preferences_set_playlist_autocenter (XfmpcPreferences* self, gboolean
 
 
 const char* xfmpc_preferences_get_dbbrowser_last_path (XfmpcPreferences* self) {
+	const char* result;
 	g_return_val_if_fail (self != NULL, NULL);
-	return self->priv->_dbbrowser_last_path;
+	result = self->priv->_dbbrowser_last_path;
+	return result;
 }
 
 
 void xfmpc_preferences_set_dbbrowser_last_path (XfmpcPreferences* self, const char* value) {
-	char* _tmp2_;
-	const char* _tmp1_;
+	char* _tmp1_;
+	const char* _tmp0_;
 	g_return_if_fail (self != NULL);
-	_tmp2_ = NULL;
 	_tmp1_ = NULL;
-	self->priv->_dbbrowser_last_path = (_tmp2_ = (_tmp1_ = value, (_tmp1_ == NULL) ? NULL : g_strdup (_tmp1_)), self->priv->_dbbrowser_last_path = (g_free (self->priv->_dbbrowser_last_path), NULL), _tmp2_);
+	_tmp0_ = NULL;
+	self->priv->_dbbrowser_last_path = (_tmp1_ = (_tmp0_ = value, (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_)), self->priv->_dbbrowser_last_path = (g_free (self->priv->_dbbrowser_last_path), NULL), _tmp1_);
 	xfmpc_preferences_store (self);
 	g_object_notify ((GObject *) self, "dbbrowser-last-path");
 }
 
 
 const char* xfmpc_preferences_get_mpd_hostname (XfmpcPreferences* self) {
+	const char* result;
 	g_return_val_if_fail (self != NULL, NULL);
-	return self->priv->_mpd_hostname;
+	result = self->priv->_mpd_hostname;
+	return result;
 }
 
 
 void xfmpc_preferences_set_mpd_hostname (XfmpcPreferences* self, const char* value) {
-	char* _tmp2_;
-	const char* _tmp1_;
+	char* _tmp1_;
+	const char* _tmp0_;
 	g_return_if_fail (self != NULL);
-	_tmp2_ = NULL;
 	_tmp1_ = NULL;
-	self->priv->_mpd_hostname = (_tmp2_ = (_tmp1_ = value, (_tmp1_ == NULL) ? NULL : g_strdup (_tmp1_)), self->priv->_mpd_hostname = (g_free (self->priv->_mpd_hostname), NULL), _tmp2_);
+	_tmp0_ = NULL;
+	self->priv->_mpd_hostname = (_tmp1_ = (_tmp0_ = value, (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_)), self->priv->_mpd_hostname = (g_free (self->priv->_mpd_hostname), NULL), _tmp1_);
 	xfmpc_preferences_store (self);
 	g_object_notify ((GObject *) self, "mpd-hostname");
 }
 
 
 gint xfmpc_preferences_get_mpd_port (XfmpcPreferences* self) {
+	gint result;
 	g_return_val_if_fail (self != NULL, 0);
-	return self->priv->_mpd_port;
+	result = self->priv->_mpd_port;
+	return result;
 }
 
 
@@ -439,26 +459,30 @@ void xfmpc_preferences_set_mpd_port (XfmpcPreferences* self, gint value) {
 
 
 const char* xfmpc_preferences_get_mpd_password (XfmpcPreferences* self) {
+	const char* result;
 	g_return_val_if_fail (self != NULL, NULL);
-	return self->priv->_mpd_password;
+	result = self->priv->_mpd_password;
+	return result;
 }
 
 
 void xfmpc_preferences_set_mpd_password (XfmpcPreferences* self, const char* value) {
-	char* _tmp2_;
-	const char* _tmp1_;
+	char* _tmp1_;
+	const char* _tmp0_;
 	g_return_if_fail (self != NULL);
-	_tmp2_ = NULL;
 	_tmp1_ = NULL;
-	self->priv->_mpd_password = (_tmp2_ = (_tmp1_ = value, (_tmp1_ == NULL) ? NULL : g_strdup (_tmp1_)), self->priv->_mpd_password = (g_free (self->priv->_mpd_password), NULL), _tmp2_);
+	_tmp0_ = NULL;
+	self->priv->_mpd_password = (_tmp1_ = (_tmp0_ = value, (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_)), self->priv->_mpd_password = (g_free (self->priv->_mpd_password), NULL), _tmp1_);
 	xfmpc_preferences_store (self);
 	g_object_notify ((GObject *) self, "mpd-password");
 }
 
 
 gboolean xfmpc_preferences_get_mpd_use_defaults (XfmpcPreferences* self) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
-	return self->priv->_mpd_use_defaults;
+	result = self->priv->_mpd_use_defaults;
+	return result;
 }
 
 
@@ -471,8 +495,10 @@ void xfmpc_preferences_set_mpd_use_defaults (XfmpcPreferences* self, gboolean va
 
 
 gboolean xfmpc_preferences_get_show_statusbar (XfmpcPreferences* self) {
+	gboolean result;
 	g_return_val_if_fail (self != NULL, FALSE);
-	return self->priv->_show_statusbar;
+	result = self->priv->_show_statusbar;
+	return result;
 }
 
 
@@ -485,8 +511,10 @@ void xfmpc_preferences_set_show_statusbar (XfmpcPreferences* self, gboolean valu
 
 
 XfmpcPreferencesSongFormat xfmpc_preferences_get_song_format (XfmpcPreferences* self) {
+	XfmpcPreferencesSongFormat result;
 	g_return_val_if_fail (self != NULL, 0);
-	return self->priv->_song_format;
+	result = self->priv->_song_format;
+	return result;
 }
 
 
@@ -499,18 +527,20 @@ void xfmpc_preferences_set_song_format (XfmpcPreferences* self, XfmpcPreferences
 
 
 const char* xfmpc_preferences_get_song_format_custom (XfmpcPreferences* self) {
+	const char* result;
 	g_return_val_if_fail (self != NULL, NULL);
-	return self->priv->_song_format_custom;
+	result = self->priv->_song_format_custom;
+	return result;
 }
 
 
 void xfmpc_preferences_set_song_format_custom (XfmpcPreferences* self, const char* value) {
-	char* _tmp2_;
-	const char* _tmp1_;
+	char* _tmp1_;
+	const char* _tmp0_;
 	g_return_if_fail (self != NULL);
-	_tmp2_ = NULL;
 	_tmp1_ = NULL;
-	self->priv->_song_format_custom = (_tmp2_ = (_tmp1_ = value, (_tmp1_ == NULL) ? NULL : g_strdup (_tmp1_)), self->priv->_song_format_custom = (g_free (self->priv->_song_format_custom), NULL), _tmp2_);
+	_tmp0_ = NULL;
+	self->priv->_song_format_custom = (_tmp1_ = (_tmp0_ = value, (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_)), self->priv->_song_format_custom = (g_free (self->priv->_song_format_custom), NULL), _tmp1_);
 	xfmpc_preferences_store (self);
 	g_object_notify ((GObject *) self, "song-format-custom");
 }

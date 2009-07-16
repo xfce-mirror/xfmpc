@@ -78,10 +78,13 @@ void xfmpc_transform_string_to_enum (const GValue* src, GValue* dst) {
 	klass = (GEnumClass*) g_type_class_ref (G_VALUE_TYPE (&(*dst)));
 	i = 0;
 	enum_value = NULL;
-	while ((enum_value = g_enum_get_value (klass, i)) != NULL) {
+	while (TRUE) {
 		char* _tmp1_;
 		char* _tmp0_;
 		gboolean _tmp2_;
+		if (!((enum_value = g_enum_get_value (klass, i)) != NULL)) {
+			break;
+		}
 		_tmp1_ = NULL;
 		_tmp0_ = NULL;
 		if ((_tmp2_ = strcmp (_tmp0_ = g_utf8_casefold (enum_value->value_name, -1), _tmp1_ = g_utf8_casefold (g_value_get_string (&(*src)), -1)) == 0, _tmp1_ = (g_free (_tmp1_), NULL), _tmp0_ = (g_free (_tmp0_), NULL), _tmp2_)) {
@@ -95,8 +98,8 @@ void xfmpc_transform_string_to_enum (const GValue* src, GValue* dst) {
 
 
 gint xfmpc_main (char** args, int args_length1) {
+	gint result;
 	XfmpcMainWindow* window;
-	gint _tmp0_;
 	xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 	gtk_init (&args_length1, &args);
 	g_value_register_transform_func (G_TYPE_STRING, G_TYPE_INT, (GValueTransform) xfmpc_transform_string_to_int);
@@ -105,7 +108,9 @@ gint xfmpc_main (char** args, int args_length1) {
 	window = g_object_ref_sink (xfmpc_main_window_new ());
 	gtk_widget_show_all ((GtkWidget*) window);
 	gtk_main ();
-	return (_tmp0_ = 0, (window == NULL) ? NULL : (window = (g_object_unref (window), NULL)), _tmp0_);
+	result = 0;
+	(window == NULL) ? NULL : (window = (g_object_unref (window), NULL));
+	return result;
 }
 
 
