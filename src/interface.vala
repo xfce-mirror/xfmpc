@@ -124,6 +124,7 @@ namespace Xfmpc {
 			this.mpdclient.pp_changed.connect (cb_pp_changed);
 			this.mpdclient.time_changed.connect (cb_time_changed);
 			this.mpdclient.volume_changed.connect (cb_volume_changed);
+			this.mpdclient.playlist_changed.connect (cb_playlist_changed);
 			this.mpdclient.stopped.connect (cb_stopped);
 		}
 
@@ -238,6 +239,10 @@ namespace Xfmpc {
 
 		private void cb_volume_changed (int volume) {
 			set_volume (volume);
+		}
+
+		private void cb_playlist_changed () {
+			update_title ();
 		}
 
 		private void cb_stopped () {

@@ -97,6 +97,7 @@ static void xfmpc_interface_cb_song_changed (XfmpcInterface* self);
 static void xfmpc_interface_cb_pp_changed (XfmpcInterface* self, gboolean is_playing);
 static void xfmpc_interface_cb_time_changed (XfmpcInterface* self, gint time, gint total_time);
 static void xfmpc_interface_cb_volume_changed (XfmpcInterface* self, gint volume);
+static void xfmpc_interface_cb_playlist_changed (XfmpcInterface* self);
 static void xfmpc_interface_cb_stopped (XfmpcInterface* self);
 static void xfmpc_interface_cb_mpdclient_previous (XfmpcInterface* self);
 static void xfmpc_interface_cb_mpdclient_next (XfmpcInterface* self);
@@ -113,6 +114,7 @@ static void _xfmpc_interface_cb_song_changed_xfmpc_mpdclient_song_changed (Xfmpc
 static void _xfmpc_interface_cb_pp_changed_xfmpc_mpdclient_pp_changed (XfmpcMpdclient* _sender, gboolean is_playing, gpointer self);
 static void _xfmpc_interface_cb_time_changed_xfmpc_mpdclient_time_changed (XfmpcMpdclient* _sender, gint time, gint total_time, gpointer self);
 static void _xfmpc_interface_cb_volume_changed_xfmpc_mpdclient_volume_changed (XfmpcMpdclient* _sender, gint volume, gpointer self);
+static void _xfmpc_interface_cb_playlist_changed_xfmpc_mpdclient_playlist_changed (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_interface_cb_stopped_xfmpc_mpdclient_stopped (XfmpcMpdclient* _sender, gpointer self);
 static GObject * xfmpc_interface_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static void xfmpc_interface_finalize (GObject* obj);
@@ -289,6 +291,12 @@ static void xfmpc_interface_cb_volume_changed (XfmpcInterface* self, gint volume
 }
 
 
+static void xfmpc_interface_cb_playlist_changed (XfmpcInterface* self) {
+	g_return_if_fail (self != NULL);
+	xfmpc_interface_update_title (self);
+}
+
+
 static void xfmpc_interface_cb_stopped (XfmpcInterface* self) {
 	g_return_if_fail (self != NULL);
 	xfmpc_interface_clean (self);
@@ -361,6 +369,11 @@ static void _xfmpc_interface_cb_time_changed_xfmpc_mpdclient_time_changed (Xfmpc
 
 static void _xfmpc_interface_cb_volume_changed_xfmpc_mpdclient_volume_changed (XfmpcMpdclient* _sender, gint volume, gpointer self) {
 	xfmpc_interface_cb_volume_changed (self, volume);
+}
+
+
+static void _xfmpc_interface_cb_playlist_changed_xfmpc_mpdclient_playlist_changed (XfmpcMpdclient* _sender, gpointer self) {
+	xfmpc_interface_cb_playlist_changed (self);
 }
 
 
@@ -482,6 +495,7 @@ static GObject * xfmpc_interface_constructor (GType type, guint n_construct_prop
 		g_signal_connect_object (self->priv->mpdclient, "pp-changed", (GCallback) _xfmpc_interface_cb_pp_changed_xfmpc_mpdclient_pp_changed, self, 0);
 		g_signal_connect_object (self->priv->mpdclient, "time-changed", (GCallback) _xfmpc_interface_cb_time_changed_xfmpc_mpdclient_time_changed, self, 0);
 		g_signal_connect_object (self->priv->mpdclient, "volume-changed", (GCallback) _xfmpc_interface_cb_volume_changed_xfmpc_mpdclient_volume_changed, self, 0);
+		g_signal_connect_object (self->priv->mpdclient, "playlist-changed", (GCallback) _xfmpc_interface_cb_playlist_changed_xfmpc_mpdclient_playlist_changed, self, 0);
 		g_signal_connect_object (self->priv->mpdclient, "stopped", (GCallback) _xfmpc_interface_cb_stopped_xfmpc_mpdclient_stopped, self, 0);
 		(image == NULL) ? NULL : (image = (g_object_unref (image), NULL));
 		(adjustment == NULL) ? NULL : (adjustment = (g_object_unref (adjustment), NULL));
