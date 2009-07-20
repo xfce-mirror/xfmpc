@@ -1,3 +1,11 @@
+2009-07-20	Mike Massonnet <mmassonnet@xfce.org>
+
+Small fixes with Xfmpc.Statusbar
+
+Drop casting need by changing Gtk.Widget against Xfmpc.Statusbar, it is easier
+to handle objects in Vala source code this way.
+Add a check "if statusbar != null" before setting the text property.
+
 2009-07-16	Vincent Legout <vincent@legout.info>
 
 Update the title of the interface when the playlist has changed

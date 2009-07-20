@@ -31,8 +31,8 @@ namespace Xfmpc {
 
 		private Gtk.VBox vbox;
 		private Gtk.ActionGroup action_group;
-		private Gtk.Widget statusbar;
 		private Gtk.UIManager ui_manager;
+		private Xfmpc.Statusbar statusbar;
 
 		private const Gtk.ToggleActionEntry[] toggle_action_entries = {
 			{ "view-statusbar", null, "", null, null, action_statusbar, false }
@@ -129,7 +129,8 @@ namespace Xfmpc {
 			} else {
 				this.interface.clean ();
 				this.mpdclient.reload ();
-				((Xfmpc.Statusbar) this.statusbar).text = "";
+				if (this.statusbar != null)
+					this.statusbar.text = "";
 				this.mpdclient.connect ();
 				if (this.mpdclient.is_connected ())
 					this.interface.update_title ();
@@ -237,7 +238,7 @@ namespace Xfmpc {
 			else
 				text.append_printf (_("%d songs, %d minutes"), length, (seconds / 60) % 60);
 
-			((Xfmpc.Statusbar) this.statusbar).text = text.str;
+			this.statusbar.text = text.str;
 		}
 
 		private void cb_playlist_changed () {
