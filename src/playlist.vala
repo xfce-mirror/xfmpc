@@ -121,6 +121,7 @@ namespace Xfmpc {
 			pack_start (this.filter_entry, false, false, 0);
 
 			/* Signals */
+			this.mpdclient.pp_changed.connect (cb_pp_changed);
 			this.mpdclient.song_changed.connect (cb_song_changed);
 			this.mpdclient.playlist_changed.connect (cb_playlist_changed);
 
@@ -217,11 +218,18 @@ namespace Xfmpc {
 			return true;
 		}
 
+		private void cb_pp_changed (bool is_playing) {
+			/* This callback is needed cause there is an unknown state of the current
+			 * song when MPD is stopped and you run the client. When the client then
+			 * starts to play, the song-changed signal is not send and the current song
+			 * is kept on the first entry of te playlist. On another hand it also
+			 * refocus the current song in the playlist between play/pause which can be
+			 * nice ;-) */
+			refresh_current_song ();
+		}
+
 		private void cb_song_changed () {
 			refresh_current_song ();
-
-			if (filter_entry.get_text () == "" && this.autocenter)
-				select_row (this.current);
 		}
 
 		private void cb_playlist_changed () {
@@ -237,9 +245,6 @@ namespace Xfmpc {
 			}
 
 			refresh_current_song ();
-
-			if (filter_entry.get_text () != "" && this.autocenter)
-				select_row (this.current);
 		}
 
 		private void cb_row_activated (Gtk.TreePath path, Gtk.TreeViewColumn column) {
@@ -375,6 +380,9 @@ namespace Xfmpc {
 			path = new Gtk.TreePath.from_indices (this.current, -1);
 			if (this.store.get_iter (out iter, path))
 				this.store.set (iter, Columns.COLUMN_WEIGHT, Pango.Weight.BOLD, -1);
+
+			if (filter_entry.get_text () == "" && this.autocenter)
+				select_row (this.current);
 		}
 
 		public void select_row (int i) {

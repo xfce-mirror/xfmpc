@@ -199,27 +199,35 @@ namespace Xfmpc {
 			this.progress_bar.set_fraction ((fraction <= 1.0) ? fraction : 1.0);
 		}
 
-		public void clean () {
+		public void reset () {
 			set_pp (false);
 			set_time (0, 0);
 			set_volume (0);
-			set_title (_("Not connected"));
-			set_subtitle (Config.PACKAGE_STRING);
+			update_title ();
 		}
 
 		public void update_title () {
-			if (this.mpdclient.get_title () != null) {
+			if (this.mpdclient.is_playing ()) {
 				set_title (this.mpdclient.get_title ());
-
-  	  	  		/* subtitle "by \"artist\" from \"album\" (year)" */
-				GLib.StringBuilder text = new GLib.StringBuilder ();
-				text.append_printf (_("by \"%s\" from \"%s\" (%s)"),
-				     	    	    this.mpdclient.get_artist (),
-				     	    	    this.mpdclient.get_album (),
-				     	    	    this.mpdclient.get_date ());
-
-  	  	  		/* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values, so far I don't care */
-				set_subtitle (text.str);
+				/*
+				// write private function in case it is wished to avoid the
+				// "n/a" values, but no big deal IMO
+				text = get_subtitle (interface);
+				 */
+				/* TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)" */
+				string text = _("by \"%s\" from \"%s\" (%s)").printf (
+						this.mpdclient.get_artist (),
+						this.mpdclient.get_album (),
+						this.mpdclient.get_date ());
+				set_subtitle (text);
+			}
+			else if (this.mpdclient.is_stopped ()) {
+				set_title (_("Stopped"));
+				set_subtitle (Config.PACKAGE_STRING);
+			}
+			else if (!this.mpdclient.is_connected ()) {
+				set_title (_("Not connected"));
+				set_subtitle (Config.PACKAGE_STRING);
 			}
 		}
 
@@ -229,7 +237,6 @@ namespace Xfmpc {
 
 		private void cb_pp_changed (bool is_playing) {
 			set_pp (is_playing);
-
 			cb_song_changed ();
 		}
 
@@ -246,7 +253,8 @@ namespace Xfmpc {
 		}
 
 		private void cb_stopped () {
-			clean ();
+			set_pp (false);
+			update_title ();
 		}
 
 		private void cb_mpdclient_previous () {

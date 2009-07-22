@@ -26,7 +26,7 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
-		private Xfmpc.Interface interface;
+		private Xfmpc.Interface @interface;
 		private Xfmpc.ExtendedInterface extended_interface;
 
 		private Gtk.VBox vbox;
@@ -83,8 +83,8 @@ namespace Xfmpc {
 				stick ();
 
   	  	  	/* Interface */
-			this.interface = new Xfmpc.Interface ();
-			this.vbox.pack_start (this.interface, false, false, 4);
+			this.@interface = new Xfmpc.Interface ();
+			this.vbox.pack_start (this.@interface, false, false, 4);
 
   	  	  	/* Separator */
 			var separator = new Gtk.HSeparator ();
@@ -127,13 +127,13 @@ namespace Xfmpc {
 			if (this.mpdclient.is_connected ()) {
 				this.mpdclient.update_status ();
 			} else {
-				this.interface.clean ();
+				this.@interface.reset ();
 				this.mpdclient.reload ();
 				if (this.statusbar != null)
 					this.statusbar.text = "";
 				this.mpdclient.connect ();
 				if (this.mpdclient.is_connected ())
-					this.interface.update_title ();
+					this.@interface.update_title ();
 			}
 
 			return true;
@@ -191,7 +191,7 @@ namespace Xfmpc {
 		}
 
 		private void action_pp () {
-			this.interface.pp_clicked ();
+			this.@interface.pp_clicked ();
 		}
 
 		private void action_stop () {
@@ -203,7 +203,7 @@ namespace Xfmpc {
 		}
 
 		private void action_volume () {
-			this.interface.popup_volume ();
+			this.@interface.popup_volume ();
 		}
 
 		private void action_statusbar (Action action) {
