@@ -151,7 +151,7 @@ static void xfmpc_playlist_cb_info_selection (XfmpcPlaylist* self);
 static void xfmpc_playlist_menu_popup (XfmpcPlaylist* self);
 static gboolean xfmpc_playlist_cb_popup_menu (XfmpcPlaylist* self);
 void xfmpc_playlist_refresh_current_song (XfmpcPlaylist* self);
-void xfmpc_playlist_select_row (XfmpcPlaylist* self, gint i);
+static void xfmpc_playlist_cb_pp_changed (XfmpcPlaylist* self, gboolean is_playing);
 static void xfmpc_playlist_cb_song_changed (XfmpcPlaylist* self);
 void xfmpc_playlist_append (XfmpcPlaylist* self, gint id, gint pos, const char* filename, const char* song, const char* length);
 static void xfmpc_playlist_cb_playlist_changed (XfmpcPlaylist* self);
@@ -159,6 +159,7 @@ static void xfmpc_playlist_cb_row_activated (XfmpcPlaylist* self, const GtkTreeP
 void xfmpc_playlist_delete_selection (XfmpcPlaylist* self);
 static gboolean xfmpc_playlist_cb_key_released (XfmpcPlaylist* self, const GdkEventKey* event);
 static gboolean xfmpc_playlist_cb_button_released (XfmpcPlaylist* self, const GdkEventButton* event);
+void xfmpc_playlist_select_row (XfmpcPlaylist* self, gint i);
 static void xfmpc_playlist_cb_filter_entry_activated (XfmpcPlaylist* self);
 static gboolean xfmpc_playlist_cb_filter_entry_key_released (XfmpcPlaylist* self, const GdkEventKey* event);
 static void xfmpc_playlist_cb_filter_entry_changed (XfmpcPlaylist* self);
@@ -171,6 +172,7 @@ gboolean xfmpc_preferences_get_playlist_autocenter (XfmpcPreferences* self);
 static void _xfmpc_playlist_delete_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _xfmpc_playlist_cb_browse_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _xfmpc_playlist_cb_info_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _xfmpc_playlist_cb_pp_changed_xfmpc_mpdclient_pp_changed (XfmpcMpdclient* _sender, gboolean is_playing, gpointer self);
 static void _xfmpc_playlist_cb_song_changed_xfmpc_mpdclient_song_changed (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_playlist_cb_playlist_changed_xfmpc_mpdclient_playlist_changed (XfmpcMpdclient* _sender, gpointer self);
 static void _xfmpc_playlist_cb_row_activated_gtk_tree_view_row_activated (GtkTreeView* _sender, const GtkTreePath* path, GtkTreeViewColumn* column, gpointer self);
@@ -369,19 +371,21 @@ static gboolean xfmpc_playlist_cb_popup_menu (XfmpcPlaylist* self) {
 }
 
 
+static void xfmpc_playlist_cb_pp_changed (XfmpcPlaylist* self, gboolean is_playing) {
+	g_return_if_fail (self != NULL);
+	/* This callback is needed cause there is an unknown state of the current
+	 * song when MPD is stopped and you run the client. When the client then
+	 * starts to play, the song-changed signal is not send and the current song
+	 * is kept on the first entry of te playlist. On another hand it also
+	 * refocus the current song in the playlist between play/pause which can be
+	 * nice ;-) */
+	xfmpc_playlist_refresh_current_song (self);
+}
+
+
 static void xfmpc_playlist_cb_song_changed (XfmpcPlaylist* self) {
-	gboolean _tmp0_;
 	g_return_if_fail (self != NULL);
 	xfmpc_playlist_refresh_current_song (self);
-	_tmp0_ = FALSE;
-	if (_vala_strcmp0 (gtk_entry_get_text (xfmpc_playlist_filter_entry), "") == 0) {
-		_tmp0_ = self->priv->autocenter;
-	} else {
-		_tmp0_ = FALSE;
-	}
-	if (_tmp0_) {
-		xfmpc_playlist_select_row (self, self->priv->current);
-	}
 }
 
 
@@ -391,7 +395,6 @@ static void xfmpc_playlist_cb_playlist_changed (XfmpcPlaylist* self) {
 	char* length;
 	gint id;
 	gint pos;
-	gboolean _tmp0_;
 	g_return_if_fail (self != NULL);
 	filename = g_strdup ("");
 	song = g_strdup ("");
@@ -407,15 +410,6 @@ static void xfmpc_playlist_cb_playlist_changed (XfmpcPlaylist* self) {
 		xfmpc_playlist_append (self, id, pos, filename, song, length);
 	}
 	xfmpc_playlist_refresh_current_song (self);
-	_tmp0_ = FALSE;
-	if (_vala_strcmp0 (gtk_entry_get_text (xfmpc_playlist_filter_entry), "") != 0) {
-		_tmp0_ = self->priv->autocenter;
-	} else {
-		_tmp0_ = FALSE;
-	}
-	if (_tmp0_) {
-		xfmpc_playlist_select_row (self, self->priv->current);
-	}
 	filename = (g_free (filename), NULL);
 	song = (g_free (song), NULL);
 	length = (g_free (length), NULL);
@@ -609,6 +603,7 @@ void xfmpc_playlist_refresh_current_song (XfmpcPlaylist* self) {
 	GtkTreePath* path;
 	GtkTreePath* _tmp0_;
 	GtkTreePath* _tmp1_;
+	gboolean _tmp2_;
 	g_return_if_fail (self != NULL);
 	path = NULL;
 	if (self->priv->current < 0) {
@@ -624,6 +619,15 @@ void xfmpc_playlist_refresh_current_song (XfmpcPlaylist* self) {
 	path = (_tmp1_ = gtk_tree_path_new_from_indices (self->priv->current, -1, -1), (path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL)), _tmp1_);
 	if (gtk_tree_model_get_iter ((GtkTreeModel*) self->priv->store, &iter, path)) {
 		gtk_list_store_set (self->priv->store, &iter, XFMPC_PLAYLIST_COLUMNS_COLUMN_WEIGHT, PANGO_WEIGHT_BOLD, -1, -1);
+	}
+	_tmp2_ = FALSE;
+	if (_vala_strcmp0 (gtk_entry_get_text (xfmpc_playlist_filter_entry), "") == 0) {
+		_tmp2_ = self->priv->autocenter;
+	} else {
+		_tmp2_ = FALSE;
+	}
+	if (_tmp2_) {
+		xfmpc_playlist_select_row (self, self->priv->current);
 	}
 	(path == NULL) ? NULL : (path = (gtk_tree_path_free (path), NULL));
 }
@@ -753,6 +757,11 @@ static void _xfmpc_playlist_cb_browse_selection_gtk_menu_item_activate (GtkMenuI
 
 static void _xfmpc_playlist_cb_info_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
 	xfmpc_playlist_cb_info_selection (self);
+}
+
+
+static void _xfmpc_playlist_cb_pp_changed_xfmpc_mpdclient_pp_changed (XfmpcMpdclient* _sender, gboolean is_playing, gpointer self) {
+	xfmpc_playlist_cb_pp_changed (self, is_playing);
 }
 
 
@@ -889,6 +898,7 @@ static GObject * xfmpc_playlist_constructor (GType type, guint n_construct_prope
 		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) scrolled, TRUE, TRUE, (guint) 0);
 		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) xfmpc_playlist_filter_entry, FALSE, FALSE, (guint) 0);
 		/* Signals */
+		g_signal_connect_object (self->priv->mpdclient, "pp-changed", (GCallback) _xfmpc_playlist_cb_pp_changed_xfmpc_mpdclient_pp_changed, self, 0);
 		g_signal_connect_object (self->priv->mpdclient, "song-changed", (GCallback) _xfmpc_playlist_cb_song_changed_xfmpc_mpdclient_song_changed, self, 0);
 		g_signal_connect_object (self->priv->mpdclient, "playlist-changed", (GCallback) _xfmpc_playlist_cb_playlist_changed_xfmpc_mpdclient_playlist_changed, self, 0);
 		g_signal_connect_object (self->priv->treeview, "row-activated", (GCallback) _xfmpc_playlist_cb_row_activated_gtk_tree_view_row_activated, self, 0);

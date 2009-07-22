@@ -95,8 +95,8 @@ struct _XfmpcMainWindowPrivate {
 	XfmpcExtendedInterface* extended_interface;
 	GtkVBox* vbox;
 	GtkActionGroup* action_group;
-	GtkWidget* statusbar;
 	GtkUIManager* ui_manager;
+	XfmpcStatusbar* statusbar;
 };
 
 
@@ -106,6 +106,7 @@ GType xfmpc_main_window_get_type (void);
 GType xfmpc_preferences_get_type (void);
 GType xfmpc_interface_get_type (void);
 GType xfmpc_extended_interface_get_type (void);
+GType xfmpc_statusbar_get_type (void);
 #define XFMPC_MAIN_WINDOW_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_MAIN_WINDOW, XfmpcMainWindowPrivate))
 enum  {
 	XFMPC_MAIN_WINDOW_DUMMY_PROPERTY
@@ -125,8 +126,7 @@ static void _xfmpc_main_window_action_next_gtk_action_callback (GtkAction* actio
 static void xfmpc_main_window_action_volume (XfmpcMainWindow* self);
 static void _xfmpc_main_window_action_volume_gtk_action_callback (GtkAction* action, gpointer self);
 #define XFMPC_MAIN_WINDOW_ui_string "\n<ui>\n  <accelerator action=\"quit\" />\n  <accelerator action=\"previous\" />\n  <accelerator action=\"pp\" />\n  <accelerator action=\"stop\" />\n  <accelerator action=\"next\" />\n  <accelerator action=\"volume\" />\n</ui>\n"
-void xfmpc_interface_clean (XfmpcInterface* self);
-GType xfmpc_statusbar_get_type (void);
+void xfmpc_interface_reset (XfmpcInterface* self);
 void xfmpc_statusbar_set_text (XfmpcStatusbar* self, const char* value);
 void xfmpc_interface_update_title (XfmpcInterface* self);
 static gboolean xfmpc_main_window_refresh (XfmpcMainWindow* self);
@@ -212,9 +212,11 @@ static gboolean xfmpc_main_window_refresh (XfmpcMainWindow* self) {
 	if (xfmpc_mpdclient_is_connected (self->priv->mpdclient)) {
 		xfmpc_mpdclient_update_status (self->priv->mpdclient);
 	} else {
-		xfmpc_interface_clean (self->priv->interface);
+		xfmpc_interface_reset (self->priv->interface);
 		xfmpc_mpdclient_reload (self->priv->mpdclient);
-		xfmpc_statusbar_set_text (XFMPC_STATUSBAR (self->priv->statusbar), "");
+		if (self->priv->statusbar != NULL) {
+			xfmpc_statusbar_set_text (self->priv->statusbar, "");
+		}
 		xfmpc_mpdclient_connect (self->priv->mpdclient);
 		if (xfmpc_mpdclient_is_connected (self->priv->mpdclient)) {
 			xfmpc_interface_update_title (self->priv->interface);
@@ -339,7 +341,7 @@ static void xfmpc_main_window_action_statusbar (XfmpcMainWindow* self, GtkAction
 		_tmp0_ = FALSE;
 	}
 	if (_tmp0_) {
-		GtkWidget* _tmp1_;
+		XfmpcStatusbar* _tmp1_;
 		gtk_object_destroy ((GtkObject*) self->priv->statusbar);
 		_tmp1_ = NULL;
 		self->priv->statusbar = (_tmp1_ = NULL, (self->priv->statusbar == NULL) ? NULL : (self->priv->statusbar = (g_object_unref (self->priv->statusbar), NULL)), _tmp1_);
@@ -352,11 +354,11 @@ static void xfmpc_main_window_action_statusbar (XfmpcMainWindow* self, GtkAction
 			_tmp2_ = FALSE;
 		}
 		if (_tmp2_) {
-			GtkWidget* _tmp3_;
+			XfmpcStatusbar* _tmp3_;
 			_tmp3_ = NULL;
-			self->priv->statusbar = (_tmp3_ = (GtkWidget*) g_object_ref_sink (xfmpc_statusbar_new ()), (self->priv->statusbar == NULL) ? NULL : (self->priv->statusbar = (g_object_unref (self->priv->statusbar), NULL)), _tmp3_);
-			gtk_widget_show (self->priv->statusbar);
-			gtk_box_pack_start ((GtkBox*) self->priv->vbox, self->priv->statusbar, FALSE, FALSE, (guint) 0);
+			self->priv->statusbar = (_tmp3_ = g_object_ref_sink (xfmpc_statusbar_new ()), (self->priv->statusbar == NULL) ? NULL : (self->priv->statusbar = (g_object_unref (self->priv->statusbar), NULL)), _tmp3_);
+			gtk_widget_show ((GtkWidget*) self->priv->statusbar);
+			gtk_box_pack_start ((GtkBox*) self->priv->vbox, (GtkWidget*) self->priv->statusbar, FALSE, FALSE, (guint) 0);
 		}
 	}
 }
@@ -383,7 +385,7 @@ static void xfmpc_main_window_update_statusbar (XfmpcMainWindow* self) {
 	} else {
 		g_string_append_printf (text, _ ("%d songs, %d minutes"), length, (seconds / 60) % 60);
 	}
-	xfmpc_statusbar_set_text (XFMPC_STATUSBAR (self->priv->statusbar), text->str);
+	xfmpc_statusbar_set_text (self->priv->statusbar, text->str);
 	(text == NULL) ? NULL : (text = (g_string_free (text, TRUE), NULL));
 }
 
@@ -585,8 +587,8 @@ static void xfmpc_main_window_finalize (GObject* obj) {
 	(self->priv->extended_interface == NULL) ? NULL : (self->priv->extended_interface = (g_object_unref (self->priv->extended_interface), NULL));
 	(self->priv->vbox == NULL) ? NULL : (self->priv->vbox = (g_object_unref (self->priv->vbox), NULL));
 	(self->priv->action_group == NULL) ? NULL : (self->priv->action_group = (g_object_unref (self->priv->action_group), NULL));
-	(self->priv->statusbar == NULL) ? NULL : (self->priv->statusbar = (g_object_unref (self->priv->statusbar), NULL));
 	(self->priv->ui_manager == NULL) ? NULL : (self->priv->ui_manager = (g_object_unref (self->priv->ui_manager), NULL));
+	(self->priv->statusbar == NULL) ? NULL : (self->priv->statusbar = (g_object_unref (self->priv->statusbar), NULL));
 	G_OBJECT_CLASS (xfmpc_main_window_parent_class)->finalize (obj);
 }
 

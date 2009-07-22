@@ -91,8 +91,8 @@ void xfmpc_interface_volume_changed (XfmpcInterface* self, double value);
 void xfmpc_interface_set_volume (XfmpcInterface* self, gint volume);
 void xfmpc_interface_popup_volume (XfmpcInterface* self);
 void xfmpc_interface_set_time (XfmpcInterface* self, gint time, gint time_total);
-void xfmpc_interface_clean (XfmpcInterface* self);
 void xfmpc_interface_update_title (XfmpcInterface* self);
+void xfmpc_interface_reset (XfmpcInterface* self);
 static void xfmpc_interface_cb_song_changed (XfmpcInterface* self);
 static void xfmpc_interface_cb_pp_changed (XfmpcInterface* self, gboolean is_playing);
 static void xfmpc_interface_cb_time_changed (XfmpcInterface* self, gint time, gint total_time);
@@ -241,27 +241,39 @@ void xfmpc_interface_set_time (XfmpcInterface* self, gint time, gint time_total)
 }
 
 
-void xfmpc_interface_clean (XfmpcInterface* self) {
+void xfmpc_interface_reset (XfmpcInterface* self) {
 	g_return_if_fail (self != NULL);
 	xfmpc_interface_set_pp (self, FALSE);
 	xfmpc_interface_set_time (self, 0, 0);
 	xfmpc_interface_set_volume (self, 0);
-	xfmpc_interface_set_title (self, _ ("Not connected"));
-	xfmpc_interface_set_subtitle (self, PACKAGE_STRING);
+	xfmpc_interface_update_title (self);
 }
 
 
 void xfmpc_interface_update_title (XfmpcInterface* self) {
 	g_return_if_fail (self != NULL);
-	if (xfmpc_mpdclient_get_title (self->priv->mpdclient) != NULL) {
-		GString* text;
+	if (xfmpc_mpdclient_is_playing (self->priv->mpdclient)) {
+		char* text;
 		xfmpc_interface_set_title (self, xfmpc_mpdclient_get_title (self->priv->mpdclient));
-		/* subtitle "by \"artist\" from \"album\" (year)" */
-		text = g_string_new ("");
-		g_string_append_printf (text, _ ("by \"%s\" from \"%s\" (%s)"), xfmpc_mpdclient_get_artist (self->priv->mpdclient), xfmpc_mpdclient_get_album (self->priv->mpdclient), xfmpc_mpdclient_get_date (self->priv->mpdclient));
-		/* text = xfmpc_interface_get_subtitle (interface); to avoid "n/a" values, so far I don't care */
-		xfmpc_interface_set_subtitle (self, text->str);
-		(text == NULL) ? NULL : (text = (g_string_free (text, TRUE), NULL));
+		/*
+		// write private function in case it is wished to avoid the
+		// "n/a" values, but no big deal IMO
+		text = get_subtitle (interface);
+		 
+		 TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)" */
+		text = g_strdup_printf (_ ("by \"%s\" from \"%s\" (%s)"), xfmpc_mpdclient_get_artist (self->priv->mpdclient), xfmpc_mpdclient_get_album (self->priv->mpdclient), xfmpc_mpdclient_get_date (self->priv->mpdclient));
+		xfmpc_interface_set_subtitle (self, text);
+		text = (g_free (text), NULL);
+	} else {
+		if (xfmpc_mpdclient_is_stopped (self->priv->mpdclient)) {
+			xfmpc_interface_set_title (self, _ ("Stopped"));
+			xfmpc_interface_set_subtitle (self, PACKAGE_STRING);
+		} else {
+			if (!xfmpc_mpdclient_is_connected (self->priv->mpdclient)) {
+				xfmpc_interface_set_title (self, _ ("Not connected"));
+				xfmpc_interface_set_subtitle (self, PACKAGE_STRING);
+			}
+		}
 	}
 }
 
@@ -299,7 +311,8 @@ static void xfmpc_interface_cb_playlist_changed (XfmpcInterface* self) {
 
 static void xfmpc_interface_cb_stopped (XfmpcInterface* self) {
 	g_return_if_fail (self != NULL);
-	xfmpc_interface_clean (self);
+	xfmpc_interface_set_pp (self, FALSE);
+	xfmpc_interface_update_title (self);
 }
 
 
