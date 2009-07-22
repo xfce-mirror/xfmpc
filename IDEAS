@@ -1,7 +1,13 @@
+For 0.3.0
+
+  - XfmpcGoodies (display artwork, ...), a plugin interface
+
 Unpredictable future
 
+  - Replace the separator between Interface and ExtendedInterface against a
+    thin button that is used to show/hide ExtendedInterface
+  - Replace the progress bar against something fun, a somewhat better slider
   - Reorder a song in the playlist (with DnD)
   - Editable shortcuts (accelerator maps from file)
   - Document the code (with gtk-doc syntax)
-  - XfmpcGoodies (display artwork, ...), a plugin interface
 
