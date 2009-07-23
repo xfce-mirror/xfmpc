@@ -2,14 +2,7 @@ SUBDIRS =								\
 	src								\
 	po
 
-distclean-local:
-	rm -rf *.spec *.cache *~
-
-dist-bz2: dist
-	zcat $(PACKAGE)-$(VERSION).tar.gz | bzip2 --best -c > $(PACKAGE)-$(VERSION).tar.bz2
-
-distcheck-bz2: distcheck
-	zcat $(PACKAGE)-$(VERSION).tar.gz | bzip2 --best -c > $(PACKAGE)-$(VERSION).tar.bz2
+dist_man_MANS = xfmpc.1
 
 desktopdir = $(datadir)/applications
 desktop_in_files = xfmpc.desktop.in
@@ -31,7 +24,7 @@ EXTRA_DIST =								\
 	intltool-update.in						\
 	$(desktop_in_files)
 
-DISTCLEANFILES =							\
+MAINTAINERCLEANFILES =							\
         aclocal.m4                                                      \
         compile                                                         \
         config.guess                                                    \
@@ -46,9 +39,9 @@ DISTCLEANFILES =							\
         mkinstalldirs                                                   \
 	intltool-extract						\
 	intltool-merge							\
-	intltool-update							\
-	$(desktop_DATA)
+	intltool-update
 
-dist_man_MANS = xfmpc.1
+DISTCLEANFILES =							\
+	$(desktop_DATA)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:

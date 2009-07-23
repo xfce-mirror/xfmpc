@@ -66,7 +66,7 @@ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([LIBMPD], [libmpd], [0.15.0])
 
 dnl Check for valac
-valac_minimum_version=0.7.0
+valac_minimum_version=0.7.1
 if test "x$USE_MAINTAINER_MODE" = "xyes" ; then
 	AC_CHECK_PROG([has_valac], [valac], [yes], [no])
 	AC_PATH_PROG([VALAC], [valac], [valac])
@@ -84,17 +84,6 @@ dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
 XDT_FEATURE_DEBUG()
-
-dnl *********************************
-dnl *** Check for configure flags ***
-dnl *********************************
-AC_ARG_ENABLE([funky-colors],
-	      [AC_HELP_STRING([--enable-funky-colors], [Build with more funky colors])],
-	      [enable_funkycolors=$enableval],
-	      [enable_funkycolors=no])
-if test "x$enable_funkycolors" = "xyes" ; then
-	AC_DEFINE([MORE_FUNKY_COLOR_ON_SEARCH_ENTRY], [1], [""])
-fi
 
 AC_OUTPUT([
 Makefile
@@ -114,7 +103,6 @@ echo "    * Vala:               $has_valac"
 echo "      You need Vala $valac_minimum_version or higher (run $VALAC --version)"
 echo
 fi
-echo "* Debug Support:    $enable_debug"
-echo "* Funky Colors:     $enable_funkycolors"
+echo "* Debug Support:          $enable_debug"
 echo
 
