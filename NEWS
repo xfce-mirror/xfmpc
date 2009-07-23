@@ -1,3 +1,10 @@
+    0.2.0 (2009-0x-xx)
+
+- Rewrite into Vala
+- Install a manpage for xfmpc
+- Handle MPD connections through a thread
+- Fix misc bugs
+
     0.1.0 (2009-03-28)
 
 - Preferences dialog for the MPD server and the appearance
