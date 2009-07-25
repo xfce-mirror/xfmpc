@@ -1,253 +1,260 @@
+# Hungarian translation of xfmpc
+# Copyright 2009. Free Software Foundation, Inc.
+# This file is distributed under the same license as the xfmpc package.
+#
+# SZERVÁC Attila <sas@321.hu>, 2008.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-14 09:31+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
-"Language-Team: Hungarian <debian-l10n-hungarian@lists.debian.org>\n"
+"POT-Creation-Date: 2009-07-25 02:03+0200\n"
+"PO-Revision-Date: 2009-07-25 11:36+0200\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at gnome dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n>1;\n"
-"X-Poedit-Language: Hungarian\n"
-"X-Poedit-Country: HUNGARY\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#. Menu -> Replace
-#: ../src/dbbrowser.c:222
-msgid "_Replace"
-msgstr "_Csere"
+#: ../src/dbbrowser.c:914
+msgid "Replace"
+msgstr "Csere"
 
-#. Menu -> Browse (only shown on a search)
-#: ../src/dbbrowser.c:230
-#: ../src/playlist.c:237
-msgid "_Browse"
-msgstr "_Böngész"
+#: ../src/dbbrowser.c:920 ../src/playlist.c:885
+msgid "Browse"
+msgstr "Tallózás"
 
-#: ../src/extended-interface.c:165
-msgid "Clear Playlist"
-msgstr "Lista törlése"
-
-#: ../src/extended-interface.c:175
-msgid "Refresh Database"
-msgstr "Adatbázis frissítése"
-
-#: ../src/extended-interface.c:185
-msgid "Context Menu"
-msgstr "Helyi menü"
-
-#: ../src/extended-interface.c:217
-msgid "Current Playlist"
-msgstr "Jelenlegi lista"
-
-#: ../src/extended-interface.c:220
-msgid "Browse database"
-msgstr "Adatbázis böngészése"
-
-#: ../src/extended-interface.c:303
+#: ../src/extended-interface.c:289
 msgid "Repeat"
-msgstr "Ismétel"
+msgstr "Ismétlés"
 
-#: ../src/extended-interface.c:310
+#: ../src/extended-interface.c:294
 msgid "Random"
 msgstr "Véletlen"
 
-#: ../src/extended-interface.c:402
-#: ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:398 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "Egy GTK+ MPD kliens az Xfce-hez"
+msgstr "GTK+-t használó MPD-kliens az Xfce-hez"
 
-#: ../src/extended-interface.c:406
+#: ../src/extended-interface.c:398
 msgid "translator-credits"
-msgstr "SZERVÁC Attila"
+msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
 
-#: ../src/interface.c:156
-#: ../src/interface.c:364
-msgid "Not connected"
-msgstr "Nem kapcsolódik"
+#: ../src/extended-interface.c:467
+msgid "Clear Playlist"
+msgstr "Lejátszólista törlése"
 
-#. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:395
+#: ../src/extended-interface.c:474
+msgid "Refresh Database"
+msgstr "Adatbázis frissítése"
+
+#: ../src/extended-interface.c:482
+msgid "Context Menu"
+msgstr "Helyi menü"
+
+#: ../src/extended-interface.c:500
+msgid "Current Playlist"
+msgstr "Aktuális lejátszólista"
+
+#: ../src/extended-interface.c:502
+msgid "Browse database"
+msgstr "Adatbázis tallózása"
+
+#.
+#. // write private function in case it is wished to avoid the
+#. // "n/a" values, but no big deal IMO
+#. text = get_subtitle (interface);
+#.
+#. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:264
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "tőle: \"%s\" innen: \"%s\" (%s)"
+msgstr "„%s” előadó „%s” (%s) albumáról"
 
-#: ../src/interface.c:441
+#: ../src/interface.c:269
 msgid "Stopped"
 msgstr "Leállítva"
 
-#: ../src/main-window.c:393
+#: ../src/interface.c:273 ../src/interface.c:471
+msgid "Not connected"
+msgstr "Nincs kapcsolat"
+
+#: ../src/main-window.c:384
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr "%d dal, %d óra és %d perx"
+msgstr "%d szám, %d óra és %d perc"
 
-#: ../src/main-window.c:395
+#: ../src/main-window.c:386
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr "%d dal, %d perx"
+msgstr "%d szám, %d perc"
 
-#: ../src/mpdclient.c:515
-#: ../src/mpdclient.c:545
-#: ../src/mpdclient.c:560
+#: ../src/mpdclient.c:348
+msgid "Failed to connect to MPD"
+msgstr "Nem sikerült kapcsolódni az MPD-hez"
+
+#: ../src/mpdclient.c:353
+msgid "Connected to MPD"
+msgstr "Kapcsolódva az MPD-hez"
+
+#: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
-msgstr "n/a"
+msgstr "---"
 
-#: ../src/preferences.c:41
-#: ../src/song-dialog.c:173
-msgid "Title"
-msgstr "Cím"
-
-#: ../src/preferences.c:42
-msgid "Album - Title"
-msgstr "Album - Cím"
-
-#: ../src/preferences.c:43
-msgid "Artist - Title"
-msgstr "Művész - Cím"
-
-#: ../src/preferences.c:44
-msgid "Artist - Title (Date)"
-msgstr "Művész - Cím (Dátum)"
-
-#: ../src/preferences.c:45
-msgid "Artist - Album - Title"
-msgstr "Művész - Album - Cím"
-
-#: ../src/preferences.c:46
-msgid "Artist - Album - Track. Title"
-msgstr "Művész - Album - Szám. Cím"
-
-#: ../src/preferences.c:47
-msgid "Custom..."
-msgstr "Egyéni..."
-
-#: ../src/preferences-dialog.c:181
-msgid "Xfmpc Preferences"
-msgstr "Xfmpc Beállítások"
-
-#: ../src/preferences-dialog.c:197
+#: ../src/preferences-dialog.c:360
 msgid "MPD"
 msgstr "MPD"
 
-#: ../src/preferences-dialog.c:201
+#: ../src/preferences-dialog.c:364
 msgid "Connection"
 msgstr "Kapcsolat"
 
-#: ../src/preferences-dialog.c:204
+#: ../src/preferences-dialog.c:367
 msgid "Use _default system settings"
-msgstr "Használd az _alap rendszerbeállításokat"
+msgstr "_Alapértelmezett rendszerbeállítások használata"
 
-#: ../src/preferences-dialog.c:206
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
-msgstr "Kijelölve az Xfmpc megpróbálja újratölteni az MPD_HOST és MPD_PORT környezeti változókat vagy a helyi gépet használja"
+#: ../src/preferences-dialog.c:368
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr "Az Xfmpc megpróbálja beolvasni az MPD_HOST és MPD_PORT környezeti változókat, ellenkező esetben a localhostot fogja használni"
 
-#: ../src/preferences-dialog.c:221
+#: ../src/preferences-dialog.c:379
 msgid "Hostname:"
 msgstr "Gépnév:"
 
-#: ../src/preferences-dialog.c:228
+#: ../src/preferences-dialog.c:387
 msgid "Port:"
 msgstr "Port:"
 
-#: ../src/preferences-dialog.c:238
+#: ../src/preferences-dialog.c:398
 msgid "Password:"
 msgstr "Jelszó:"
 
-#: ../src/preferences-dialog.c:256
+#: ../src/preferences-dialog.c:415
 msgid "Appearance"
-msgstr "Megjelenés:"
+msgstr "Megjelenés"
 
-#: ../src/preferences-dialog.c:260
+#: ../src/preferences-dialog.c:421
 msgid "Statusbar"
-msgstr "Állapotsáv"
+msgstr "Állapotsor"
 
-#: ../src/preferences-dialog.c:263
-msgid "Show _statusbar"
-msgstr "Állapotsáv mutatása"
+#: ../src/preferences-dialog.c:424
+msgid "Show _stastusbar"
+msgstr "Állap_otsor megjelenítése"
 
-#: ../src/preferences-dialog.c:270
+#: ../src/preferences-dialog.c:432
 msgid "Song Format"
-msgstr "Dal formátum"
+msgstr "Számformátum"
 
-#: ../src/preferences-dialog.c:275
-msgid "Song format:"
-msgstr "Dal formátum:"
+#: ../src/preferences-dialog.c:437
+msgid "Song Format:"
+msgstr "Számformátum:"
 
-#: ../src/preferences-dialog.c:295
+#: ../src/preferences-dialog.c:442 ../src/song-dialog.c:140
+msgid "Title"
+msgstr "Cím"
+
+#: ../src/preferences-dialog.c:443
+msgid "Album - Title"
+msgstr "Album – Cím"
+
+#: ../src/preferences-dialog.c:444
+msgid "Artist - Title"
+msgstr "Előadó - Cím"
+
+#: ../src/preferences-dialog.c:445
+msgid "Artist - Title (Date)"
+msgstr "Előadó - Cím (Dátum)"
+
+#: ../src/preferences-dialog.c:446
+msgid "Artist - Album - Title"
+msgstr "Előadó - Album - Cím"
+
+#: ../src/preferences-dialog.c:447
+msgid "Artist - Album - Track. Title"
+msgstr "Előadó - Album - Sorszám. Cím"
+
+#: ../src/preferences-dialog.c:448
+msgid "Custom..."
+msgstr "Egyéni…"
+
+#: ../src/preferences-dialog.c:454
 msgid "Custom format:"
 msgstr "Egyéni formátum:"
 
-#: ../src/preferences-dialog.c:312
+#: ../src/preferences-dialog.c:467
 msgid "Available parameters:"
 msgstr "Elérhető paraméterek:"
 
-#: ../src/preferences-dialog.c:321
+#: ../src/preferences-dialog.c:473
 #, c-format
 msgid "%a: Artist"
-msgstr "%a: Művész"
+msgstr "%a: előadó"
 
-#: ../src/preferences-dialog.c:325
+#: ../src/preferences-dialog.c:478
 #, c-format
 msgid "%A: Album"
-msgstr "%A: Album"
+msgstr "%A: album"
 
-#: ../src/preferences-dialog.c:330
+#: ../src/preferences-dialog.c:483
 #, c-format
 msgid "%d: Date"
-msgstr "%d: Dátum"
+msgstr "%d: dátum"
 
-#: ../src/preferences-dialog.c:334
+#: ../src/preferences-dialog.c:488
 msgid "%D: Disc"
-msgstr "%D: Lemez"
+msgstr "%D: lemez"
 
-#: ../src/preferences-dialog.c:339
+#: ../src/preferences-dialog.c:493
 #, c-format
 msgid "%f: File"
-msgstr "%f: Fájl"
+msgstr "%f: fájl"
 
-#: ../src/preferences-dialog.c:343
+#: ../src/preferences-dialog.c:498
 #, c-format
 msgid "%g: Genre"
-msgstr "%g: Műfaj"
+msgstr "%g: műfaj"
 
-#: ../src/preferences-dialog.c:348
+#: ../src/preferences-dialog.c:503
 msgid "%t: Title"
-msgstr "%t: Cím"
+msgstr "%t: cím"
 
-#: ../src/preferences-dialog.c:352
+#: ../src/preferences-dialog.c:508
 msgid "%T: Track"
-msgstr "%T: Szám"
+msgstr "%T: sorszám"
 
-#: ../src/song-dialog.c:133
-#: ../xfmpc.desktop.in.h:3
-msgid "Xfmpc"
-msgstr "Xfmpc"
-
-#: ../src/song-dialog.c:153
+#: ../src/song-dialog.c:118
 msgid "File"
 msgstr "Fájl"
 
-#: ../src/song-dialog.c:163
+#: ../src/song-dialog.c:130
 msgid "Artist"
-msgstr "Művész"
+msgstr "Előadó"
 
-#: ../src/song-dialog.c:183
+#: ../src/song-dialog.c:150
 msgid "Album"
 msgstr "Album"
 
-#: ../src/song-dialog.c:193
+#: ../src/song-dialog.c:160
 msgid "Date"
 msgstr "Dátum"
 
-#: ../src/song-dialog.c:200
+#: ../src/song-dialog.c:167
 msgid "Track"
-msgstr "Szám"
+msgstr "Sorszám"
 
-#: ../src/song-dialog.c:211
+#: ../src/song-dialog.c:177
 msgid "Genre"
 msgstr "Műfaj"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
-msgstr "MPD kliens"
+msgstr "MPD-kliens"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
 
