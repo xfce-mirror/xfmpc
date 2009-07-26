@@ -30,7 +30,7 @@ namespace Xfmpc {
 		private Gtk.Notebook notebook;
 
 		public PanedInterface () {
-			preferences = Xfmpc.Preferences.get ();
+			preferences = Xfmpc.Preferences.get_default ();
 			plugin_loader = Xfmpc.PluginLoader.get_default ();
 
 			notebook = new Gtk.Notebook ();

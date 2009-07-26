@@ -30,7 +30,7 @@ if MAINTAINER_MODE
 
 BUILT_SOURCES =	vala.stamp
 vala.stamp: $(xfmpc_VALASOURCES)
-	$(VALAC) --vapidir=. --pkg=gee-1.0 --pkg=gmodule-2.0 --pkg=libxfcegui4-1.0 --pkg=config --pkg=mpdclient --pkg=xfce-arrow-button $^ -C -H xfmpc.h
+	$(VALAC) --vapidir=. --pkg=gmodule-2.0 --pkg=libxfcegui4-1.0 --pkg=config --pkg=mpdclient --pkg=xfce-arrow-button $^ -C -H xfmpc.h
 	touch $@
 
 endif
@@ -45,7 +45,6 @@ xfmpc_SOURCES = 							\
 xfmpc_CFLAGS =								\
 	@GTK_CFLAGS@							\
 	@GMODULE_CFLAGS@						\
-	@GEE_CFLAGS@							\
 	@LIBXFCEGUI4_CFLAGS@						\
 	@LIBXFCE4UTIL_CFLAGS@						\
 	@LIBMPD_CFLAGS@							\
@@ -54,7 +53,6 @@ xfmpc_CFLAGS =								\
 xfmpc_LDADD =								\
 	@GTK_LIBS@							\
 	@GMODULE_LIBS@ 							\
-	@GEE_LIBS@							\
 	@LIBXFCEGUI4_LIBS@						\
 	@LIBXFCE4UTIL_LIBS@						\
 	@LIBMPD_LIBS@							\

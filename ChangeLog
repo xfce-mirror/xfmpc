@@ -1,5 +1,11 @@
 2009-07-26	Mike Massonnet <mmassonnet@xfce.org>
 
+Drop Gee requirement (forgot to update a Makefile.am)
+
+- Also update PanedInterface to use Preferences.get_default.
+
+2009-07-26	Mike Massonnet <mmassonnet@xfce.org>
+
 Some fixes here and there
 
 - MainWindow had an unused preferences1 object.
