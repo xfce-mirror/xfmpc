@@ -44,7 +44,7 @@ namespace Xfmpc {
 			this.resizable = false;
 			this.title = "Xfmpc Preferences";
 
-			this.preferences = Xfmpc.Preferences.get ();
+			this.preferences = Xfmpc.Preferences.get_default ();
 
 			var notebook = new Gtk.Notebook ();
 			notebook.set_border_width (6);
@@ -231,7 +231,7 @@ namespace Xfmpc {
         	}
 
 		private void cb_update_mpd (Gtk.Button source) {
-			unowned Xfmpc.Mpdclient mpdclient = Xfmpc.Mpdclient.get ();
+			unowned Xfmpc.Mpdclient mpdclient = Xfmpc.Mpdclient.get_default ();
 
 			this.preferences.mpd_hostname = this.entry_host.get_text ();
 			this.preferences.mpd_port = this.entry_port.get_value_as_int ();

@@ -107,7 +107,7 @@ namespace Xfmpc {
 			set { _song_format_custom = value; store (); }
 		}
 
-		public Preferences () {
+		construct {
 			_last_window_posx = 200;
 			_last_window_posy = 100;
 			_last_window_width = 330;
@@ -121,14 +121,18 @@ namespace Xfmpc {
 			_mpd_use_defaults = true;
 			_show_statusbar = true;
 			_song_format = SongFormat.ARTIST_TITLE;
-			_song_format_custom = "";
+			_song_format_custom = "%a - %t";
+		}
 
+		public Preferences () {
 			load ();
 		}
 
-		public new static unowned Preferences get () {
-			if (preferences == null)
+		public static unowned Preferences get_default () {
+			if (preferences == null) {
 				preferences = new Preferences ();
+				preferences.add_weak_pointer (&preferences);
+			}
 			else
 				preferences.ref ();
 

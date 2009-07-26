@@ -44,8 +44,8 @@ namespace Xfmpc {
 		}
 
 		construct {
-			this.mpdclient = Xfmpc.Mpdclient.get ();
-			this.preferences = Xfmpc.Preferences.get ();
+			this.mpdclient = Xfmpc.Mpdclient.get_default ();
+			this.preferences = Xfmpc.Preferences.get_default ();
 
 			var hbox = new Gtk.HBox (false, 2);
 			pack_start (hbox, false, false, 2);

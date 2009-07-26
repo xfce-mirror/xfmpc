@@ -49,8 +49,8 @@ namespace Xfmpc {
 		}
 
 		construct {
-			this.mpdclient = Xfmpc.Mpdclient.get ();
-			this.preferences = Xfmpc.Preferences.get ();
+			this.mpdclient = Xfmpc.Mpdclient.get_default ();
+			this.preferences = Xfmpc.Preferences.get_default ();
 
 			this.autocenter = this.preferences.playlist_autocenter;
 
@@ -233,14 +233,14 @@ namespace Xfmpc {
 		}
 
 		private void cb_playlist_changed () {
-			string filename = "", song = "", length = "";
+			string filename = null, song = null, length = null;
 			int id = 0, pos = 0;
 
 			this.current = this.mpdclient.get_id ();
 
 			this.store.clear ();
 
-			while (this.mpdclient.playlist_read (&id, &pos, &filename, &song, &length)) {
+			while (this.mpdclient.playlist_read (out id, out pos, &filename, &song, &length)) {
 				append (id, pos, filename, song, length);
 			}
 

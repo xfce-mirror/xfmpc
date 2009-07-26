@@ -264,7 +264,7 @@ xfmpc_mpdclient_finalize (GObject *object)
 
 
 XfmpcMpdclient *
-xfmpc_mpdclient_get ()
+xfmpc_mpdclient_get_default ()
 {
   static XfmpcMpdclient *mpdclient = NULL;
 
@@ -283,7 +283,7 @@ static void
 xfmpc_mpdclient_initenv (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
-  XfmpcPreferences *preferences = xfmpc_preferences_get ();
+  XfmpcPreferences *preferences = xfmpc_preferences_get_default ();
   gboolean use_defaults;
 
   g_object_get (preferences, "mpd-use-defaults", &use_defaults, NULL);
@@ -945,7 +945,7 @@ xfmpc_mpdclient_reload (XfmpcMpdclient *mpdclient)
 static gchar *
 _get_formatted_name (mpd_Song *song)
 {
-  XfmpcPreferences *preferences = xfmpc_preferences_get ();
+  XfmpcPreferences *preferences = xfmpc_preferences_get_default ();
   XfmpcPreferencesSongFormat song_format;
   gchar *format_custom;
   gchar *formatted_name;

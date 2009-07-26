@@ -61,7 +61,7 @@ namespace Xfmpc {
 		public static unowned PluginLoader get_default () {
 			if (singleton == null) {
 				singleton = new PluginLoader ();
-				singleton.add_weak_pointer (singleton);
+				singleton.add_weak_pointer (&singleton);
 			}
 			else
 				singleton.ref ();

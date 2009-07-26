@@ -61,9 +61,9 @@ namespace Xfmpc {
 </ui>
 """;
 
-		public MainWindow () {
-			this.mpdclient = Xfmpc.Mpdclient.get ();
-			this.preferences = Xfmpc.Preferences.get ();
+		construct {
+			mpdclient = Xfmpc.Mpdclient.get_default ();
+			preferences = Xfmpc.Preferences.get_default ();
 
 			/* Window */
 			set_default_icon_name ("xfmpc");
