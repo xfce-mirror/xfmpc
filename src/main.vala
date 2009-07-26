@@ -42,20 +42,21 @@ namespace Xfmpc {
 		}
 
 		dst.set_enum (enum_value.value);
-  	}
+	}
 
 	public static int main (string[] args) {
 		Xfce.textdomain (Config.GETTEXT_PACKAGE, Config.PACKAGE_LOCALE_DIR, "UTF-8");
 
 		Gtk.init (ref args);
 
-  		GLib.Value.register_transform_func (typeof (string),
+
+		GLib.Value.register_transform_func (typeof (string),
 						    typeof (int),
 						    (GLib.ValueTransform) transform_string_to_int);
-  		GLib.Value.register_transform_func (typeof (string),
+		GLib.Value.register_transform_func (typeof (string),
 						    typeof (bool),
 						    (GLib.ValueTransform) transform_string_to_boolean);
-  		GLib.Value.register_transform_func (typeof (string),
+		GLib.Value.register_transform_func (typeof (string),
 						    typeof (Xfmpc.Preferences.SongFormat),
 						    (GLib.ValueTransform) transform_string_to_enum);
 

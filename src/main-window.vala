@@ -28,7 +28,9 @@ namespace Xfmpc {
 
 		private Xfmpc.Interface @interface;
 		private Xfmpc.ExtendedInterface extended_interface;
+		private Xfmpc.PanedInterface paned_interface;
 
+		private Gtk.HPaned paned_box;
 		private Gtk.VBox vbox;
 		private Gtk.ActionGroup action_group;
 		private Gtk.UIManager ui_manager;
@@ -59,21 +61,17 @@ namespace Xfmpc {
 </ui>
 """;
 
-		construct {
-			mpdclient = Xfmpc.Mpdclient.get ();
-			preferences = Xfmpc.Preferences.get ();
-			unowned Preferences preferences1 = Xfmpc.Preferences.get ();
+		public MainWindow () {
+			this.mpdclient = Xfmpc.Mpdclient.get ();
+			this.preferences = Xfmpc.Preferences.get ();
 
-  	  	  	/* Window */
+			/* Window */
 			set_default_icon_name ("xfmpc");
 			set_icon_name ("stock_volume");
 			set_title (Config.PACKAGE_NAME);
 			set_default_size (330, 330);
 			this.delete_event.connect (cb_window_closed);
 			this.window_state_event.connect (cb_window_state_event);
-
-			this.vbox = new Gtk.VBox (false, 0);
-			add (vbox);
 
 			if (this.preferences.last_window_posx != -1 && this.preferences.last_window_posy != -1)
 				move (this.preferences.last_window_posx, this.preferences.last_window_posy);
@@ -82,22 +80,35 @@ namespace Xfmpc {
 			if (this.preferences.last_window_state_sticky == true)
 				stick ();
 
-  	  	  	/* Interface */
+			/* Paned */
+			paned_box = new Gtk.HPaned ();
+			//paned_box.position = this.preferences.last_window_width;
+			add (paned_box);
+
+			/* VBox */
+			this.vbox = new Gtk.VBox (false, 0);
+			paned_box.pack1 (vbox, false, false);
+
+			/* Interface */
 			this.@interface = new Xfmpc.Interface ();
 			this.vbox.pack_start (this.@interface, false, false, 4);
 
-  	  	  	/* Separator */
+			/* Separator */
 			var separator = new Gtk.HSeparator ();
 			this.vbox.pack_start (separator, false, false, 0);
 
-  	  	  	/* ExtendedInterface */
+			/* ExtendedInterface */
 			this.extended_interface = new Xfmpc.ExtendedInterface ();
 			this.vbox.pack_start (this.extended_interface, true, true, 0);
 
-  	  	  	/* Accelerators */
+			/* PanedInterface */
+			paned_interface = new Xfmpc.PanedInterface ();
+			this.paned_box.add2 (paned_interface);
+
+			/* Accelerators */
 			this.ui_manager = new Gtk.UIManager ();
 
-  	  	  	/* Action group */
+			/* Action group */
 			this.action_group = new Gtk.ActionGroup ("XfmpcMainWindow");
 			this.action_group.add_actions (this.action_entries, this);
 			this.action_group.add_toggle_actions (this.toggle_action_entries, this);
@@ -108,18 +119,18 @@ namespace Xfmpc {
 				warning (e.message);
 			}
 
-  	  	  	/* Accel group */
+			/* Accel group */
 			var accel_group = this.ui_manager.get_accel_group ();
 			add_accel_group (accel_group);
 
-  	  	  	/* show-statusbar action */
+			/* show-statusbar action */
 			((Gtk.ToggleAction )(this.action_group.get_action ("view-statusbar"))).set_active (this.preferences.show_statusbar);
 
-  	  	  	/* === Signals === */
+			/* === Signals === */
 			this.mpdclient.playlist_changed.connect (cb_playlist_changed);
 			this.preferences.notify["show-statusbar"].connect (cb_show_statusbar_changed);
 
-  	  	  	/* === Timeout === */
+			/* === Timeout === */
 			Timeout.add (1000, refresh);
 		}
 
@@ -143,11 +154,11 @@ namespace Xfmpc {
 			if (event.type != Gdk.EventType.WINDOW_STATE)
 				return false;
 
-  	  	  	/**
-   	   	   	 * Hiding the top level window will unstick it too, and send a
-   	   	   	 * window-state-event signal, so here we take the value only if
-   	   	   	 * the window is visible
-   	   	   	 **/
+			/**
+			 * Hiding the top level window will unstick it too, and send a
+			 * window-state-event signal, so here we take the value only if
+			 * the window is visible
+			 **/
 			if ((bool) event.changed_mask & Gdk.WindowState.STICKY && this.visible){
 				bool sticky;
 				if (((bool) event.new_window_state & Gdk.WindowState.STICKY) == false)
@@ -252,6 +263,30 @@ namespace Xfmpc {
 			((Gtk.ToggleAction) action).set_active (active);
 			update_statusbar ();
 		}
+
+		/*private void add_paned_plugin (string name) {
+			PanedPlugin lyrics_plugin = this.registrar.load (name);
+			var vbox = new Gtk.VBox (true, 0);
+
+			if (lyrics_plugin == null) {
+				debug ("Can't load the plugin %s", name);
+				return;
+			}
+
+			plugins.set (name, vbox);
+
+			this.notebook.append_page (vbox, new Gtk.Label (lyrics_plugin.title));
+			lyrics_plugin.create_paned_widget (vbox);
+		}
+
+		private void remove_paned_plugin (string name) {
+			int i = this.notebook.page_num (this.plugins.get (name));
+
+			if (i == -1)
+				debug ("Can't remove the plugin %s", name);
+
+			this.notebook.remove_page (i);
+		}*/
 	}
 }
 

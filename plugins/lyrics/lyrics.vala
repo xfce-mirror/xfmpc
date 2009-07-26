@@ -17,18 +17,36 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-[CCode (cprefix="", lower_case_prefix="", cheader_filename="config.h")]
-namespace Config {
-	[CCode (cname = "GETTEXT_PACKAGE")]
-	public const string GETTEXT_PACKAGE;
-	[CCode (cname = "PACKAGE_LOCALE_DIR")]
-	public const string PACKAGE_LOCALE_DIR;
-	[CCode (cname = "PACKAGE_VERSION")]
-	public const string PACKAGE_VERSION;
-	[CCode (cname = "PACKAGE_STRING")]
-	public const string PACKAGE_STRING;
-	[CCode (cname = "PACKAGE_NAME")]
-	public const string PACKAGE_NAME;
-	[CCode (cname = "PLUGINDIR")]
-	public const string PLUGINDIR;
+using Gtk;
+
+namespace Xfmpc {
+
+	class LyricsPlugin : PanedPlugin {
+		construct {
+			name = _("Lyrics");
+			icon_name = "";
+			description = _("Display lyrics from the current playing song");
+			version = "0.1";
+			author = "Joe";
+		}
+
+		public override void create_paned_widget (Gtk.Bin bin) {
+			var vbox = new Gtk.VBox (false, 2);
+			var label = new Gtk.Label ("1");
+			vbox.pack_start (label, true, true, 0);
+			var label2 = new Gtk.Label ("2");
+			vbox.pack_start (label2, true, true, 0);
+			var label3 = new Gtk.Label ("3");
+			vbox.pack_start (label3, true, true, 0);
+			var label4 = new Gtk.Label ("4");
+			vbox.pack_start (label4, true, true, 0);
+			bin.add (vbox);
+		}
+	}
+
+	[ModuleInit]
+	public Type register_plugin () {
+		return typeof (LyricsPlugin);
+	}
+
 }

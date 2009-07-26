@@ -1,5 +1,6 @@
 SUBDIRS =								\
 	src								\
+	plugins								\
 	po
 
 dist_man_MANS = xfmpc.1

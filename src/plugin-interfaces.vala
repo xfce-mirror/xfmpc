@@ -17,18 +17,21 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-[CCode (cprefix="", lower_case_prefix="", cheader_filename="config.h")]
-namespace Config {
-	[CCode (cname = "GETTEXT_PACKAGE")]
-	public const string GETTEXT_PACKAGE;
-	[CCode (cname = "PACKAGE_LOCALE_DIR")]
-	public const string PACKAGE_LOCALE_DIR;
-	[CCode (cname = "PACKAGE_VERSION")]
-	public const string PACKAGE_VERSION;
-	[CCode (cname = "PACKAGE_STRING")]
-	public const string PACKAGE_STRING;
-	[CCode (cname = "PACKAGE_NAME")]
-	public const string PACKAGE_NAME;
-	[CCode (cname = "PLUGINDIR")]
-	public const string PLUGINDIR;
+using Gtk;
+
+namespace Xfmpc {
+
+	public abstract class BasePlugin : GLib.Object {
+		public unowned string name { get; set; }
+		public unowned string icon_name { get; set; }
+		public unowned string description { get; set; }
+		public unowned string version { get; set; }
+		public unowned string author { get; set; }
+		public unowned string title { get; set; }
+	}
+
+	public abstract class PanedPlugin : BasePlugin {
+		public abstract void create_paned_widget (Gtk.Bin bin);
+	}
+
 }
