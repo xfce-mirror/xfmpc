@@ -51,7 +51,7 @@ typedef struct _XfmpcMpdclientPrivate       XfmpcMpdclientPrivate;
 
 GType                   xfmpc_mpdclient_get_type                () G_GNUC_CONST;
 
-XfmpcMpdclient *        xfmpc_mpdclient_get                     ();
+XfmpcMpdclient *        xfmpc_mpdclient_get_default             ();
 gboolean                xfmpc_mpdclient_connect                 (XfmpcMpdclient *mpdclient);
 void                    xfmpc_mpdclient_disconnect              (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_is_connected            (XfmpcMpdclient *mpdclient);

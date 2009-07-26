@@ -1,3 +1,15 @@
+2009-07-26	Mike Massonnet <mmassonnet@xfce.org>
+
+Some fixes here and there
+
+- MainWindow had an unused preferences1 object.
+- The Preferences singleton function get_default missed a call to
+add_weak_pointer to reset the static variable to null once the ref count
+reaches 0.
+- The default custom format was empty.
+- Renamed singleton functions _get to _get_default in Preferences and
+Mpdclient.
+
 2009-07-23	Mike Massonnet <mmassonnet@xfce.org>
 
 Update NEWS and AUTHORS

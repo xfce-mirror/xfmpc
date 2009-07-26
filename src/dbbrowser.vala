@@ -49,8 +49,8 @@ namespace Xfmpc {
 		}
 
 		construct {
-			this.mpdclient = Xfmpc.Mpdclient.get ();
-			this.preferences = Xfmpc.Preferences.get ();
+			this.mpdclient = Xfmpc.Mpdclient.get_default ();
+			this.preferences = Xfmpc.Preferences.get_default ();
 
 			this.wdir = preferences.dbbrowser_last_path;
 			if (this.wdir != null)
@@ -133,7 +133,7 @@ namespace Xfmpc {
 		}
 
 		public void reload () {
-			string filename = "", basename = "";
+			string filename = null, basename = null;
 			bool is_dir = false, is_bold = false;
 			int i = 0;
 			Xfmpc.Playlist playlist = (Xfmpc.Playlist) get_data ("XfmpcPlaylist");
@@ -151,7 +151,7 @@ namespace Xfmpc {
 				i ++;
 			}
 
-			while (this.mpdclient.database_read (wdir, &filename, &basename, &is_dir)) {
+			while (this.mpdclient.database_read (wdir, &filename, &basename, out is_dir)) {
 				is_bold = playlist.has_filename (filename, is_dir);
 				append (filename, basename, is_dir, is_bold);
 
@@ -218,7 +218,7 @@ namespace Xfmpc {
 		}
 
 		public void search (string query) {
-			string filename = "", basename = "";
+			string filename = null, basename = null;
 			bool is_bold;
 			int i = 0;
 			Xfmpc.Playlist playlist = (Xfmpc.Playlist) get_data ("XfmpcPlaylist");

@@ -60,9 +60,8 @@ namespace Xfmpc {
 """;
 
 		construct {
-			mpdclient = Xfmpc.Mpdclient.get ();
-			preferences = Xfmpc.Preferences.get ();
-			unowned Preferences preferences1 = Xfmpc.Preferences.get ();
+			mpdclient = Xfmpc.Mpdclient.get_default ();
+			preferences = Xfmpc.Preferences.get_default ();
 
   	  	  	/* Window */
 			set_default_icon_name ("xfmpc");

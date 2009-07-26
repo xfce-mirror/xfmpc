@@ -35,8 +35,8 @@ namespace Xfmpc {
 		private Gtk.Label subtitle;
 
 		construct {
-			this.mpdclient = Xfmpc.Mpdclient.get ();
-			this.preferences = Xfmpc.Preferences.get ();
+			this.mpdclient = Xfmpc.Mpdclient.get_default ();
+			this.preferences = Xfmpc.Preferences.get_default ();
 
 			set_border_width (4);
 

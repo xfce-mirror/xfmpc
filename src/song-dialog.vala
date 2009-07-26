@@ -32,7 +32,7 @@ namespace Xfmpc {
 			this.icon_name = "stock_volume";
 			this.resizable = false;
 
-			this.mpdclient = Xfmpc.Mpdclient.get ();
+			this.mpdclient = Xfmpc.Mpdclient.get_default ();
 			this.song = mpdclient.get_song_info (song_id);
 
 			this.title = this.song.title;
