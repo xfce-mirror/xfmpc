@@ -29,7 +29,7 @@ EOF
 
 # substitute revision and linguas
 linguas=`sed -e '/^#/d' po/LINGUAS`
-if test -d .git/svn; then
+if test -d .git; then
   revision=`git log --pretty=format:%h -n 1`
 else
   revision=UNKNOWN
