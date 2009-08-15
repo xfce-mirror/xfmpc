@@ -15,5 +15,6 @@
 			<foaf:name>Vincent Legout</foaf:name>
 			<foaf:mbox>mailto:vincent@xfce.org</foaf:name>
 			<gnome:userid>vincent</gnome:userid>
+		</foaf:Person>
 	</developer>
 </Project>
