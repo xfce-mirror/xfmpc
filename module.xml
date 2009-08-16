@@ -13,7 +13,7 @@
 	<developer>
 		<foaf:Person>
 			<foaf:name>Vincent Legout</foaf:name>
-			<foaf:mbox>mailto:vincent@xfce.org</foaf:name>
+			<foaf:mbox>mailto:vincent@xfce.org</foaf:mbox>
 			<gnome:userid>vincent</gnome:userid>
 		</foaf:Person>
 	</developer>
