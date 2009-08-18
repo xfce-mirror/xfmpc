@@ -11,15 +11,16 @@ m4_define([xfmpc_version_major], [0])
 m4_define([xfmpc_version_minor], [2])
 m4_define([xfmpc_version_micro], [0])
 m4_define([xfmpc_version_build], [r@REVISION@])
-m4_define([xfmpc_version_tag], [svn]) # leave empty for release
-m4_define([xfmpc_version], [xfmpc_version_major().xfmpc_version_minor().xfmpc_version_micro()ifelse(xfmpc_version_tag(), [svn], [xfmpc_version_tag()-xfmpc_version_build()], [xfmpc_version_tag()])])
+m4_define([xfmpc_version_tag], [git]) # leave empty for release
+m4_define([xfmpc_version], [xfmpc_version_major().xfmpc_version_minor().xfmpc_version_micro()ifelse(xfmpc_version_tag(), [git], [xfmpc_version_tag()-xfmpc_version_build()], [xfmpc_version_tag()])])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2008
         The Xfce development team. All rights reserved.])
-AC_INIT([Xfmpc], [xfmpc_version], [http://bugzilla.xfce.org/], [xfmpc])
+AC_INIT([Xfmpc], [xfmpc_version], [http://bugzilla.xfce.org/], [xfmpc],
+        [http://goodies.xfce.org/projects/applications/xfmpc])
 AC_PREREQ([2.50])
 AC_CANONICAL_TARGET()
 AC_REVISION([$Id$])
