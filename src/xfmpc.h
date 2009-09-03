@@ -267,7 +267,7 @@ GType xfmpc_preferences_get_type (void);
 GType xfmpc_preferences_song_format_get_type (void);
 XfmpcPreferences* xfmpc_preferences_new (void);
 XfmpcPreferences* xfmpc_preferences_construct (GType object_type);
-XfmpcPreferences* xfmpc_preferences_get (void);
+XfmpcPreferences* xfmpc_preferences_get_default (void);
 gint xfmpc_preferences_get_last_window_posx (XfmpcPreferences* self);
 void xfmpc_preferences_set_last_window_posx (XfmpcPreferences* self, gint value);
 gint xfmpc_preferences_get_last_window_posy (XfmpcPreferences* self);

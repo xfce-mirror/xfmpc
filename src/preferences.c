@@ -101,8 +101,7 @@ enum  {
 static void xfmpc_preferences_load (XfmpcPreferences* self);
 XfmpcPreferences* xfmpc_preferences_new (void);
 XfmpcPreferences* xfmpc_preferences_construct (GType object_type);
-XfmpcPreferences* xfmpc_preferences_new (void);
-XfmpcPreferences* xfmpc_preferences_get (void);
+XfmpcPreferences* xfmpc_preferences_get_default (void);
 static void xfmpc_preferences_store (XfmpcPreferences* self);
 gint xfmpc_preferences_get_last_window_posx (XfmpcPreferences* self);
 void xfmpc_preferences_set_last_window_posx (XfmpcPreferences* self, gint value);
@@ -132,6 +131,7 @@ XfmpcPreferencesSongFormat xfmpc_preferences_get_song_format (XfmpcPreferences* 
 void xfmpc_preferences_set_song_format (XfmpcPreferences* self, XfmpcPreferencesSongFormat value);
 const char* xfmpc_preferences_get_song_format_custom (XfmpcPreferences* self);
 void xfmpc_preferences_set_song_format_custom (XfmpcPreferences* self, const char* value);
+static GObject * xfmpc_preferences_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static void xfmpc_preferences_finalize (GObject* obj);
 static void xfmpc_preferences_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec);
 static void xfmpc_preferences_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec);
@@ -152,29 +152,7 @@ GType xfmpc_preferences_song_format_get_type (void) {
 
 XfmpcPreferences* xfmpc_preferences_construct (GType object_type) {
 	XfmpcPreferences * self;
-	char* _tmp0_;
-	char* _tmp1_;
-	char* _tmp2_;
-	char* _tmp3_;
 	self = g_object_newv (object_type, 0, NULL);
-	self->priv->_last_window_posx = 200;
-	self->priv->_last_window_posy = 100;
-	self->priv->_last_window_width = 330;
-	self->priv->_last_window_height = 330;
-	self->priv->_last_window_state_sticky = TRUE;
-	self->priv->_playlist_autocenter = TRUE;
-	_tmp0_ = NULL;
-	self->priv->_dbbrowser_last_path = (_tmp0_ = g_strdup (""), self->priv->_dbbrowser_last_path = (g_free (self->priv->_dbbrowser_last_path), NULL), _tmp0_);
-	_tmp1_ = NULL;
-	self->priv->_mpd_hostname = (_tmp1_ = g_strdup ("localhost"), self->priv->_mpd_hostname = (g_free (self->priv->_mpd_hostname), NULL), _tmp1_);
-	self->priv->_mpd_port = 6600;
-	_tmp2_ = NULL;
-	self->priv->_mpd_password = (_tmp2_ = g_strdup (""), self->priv->_mpd_password = (g_free (self->priv->_mpd_password), NULL), _tmp2_);
-	self->priv->_mpd_use_defaults = TRUE;
-	self->priv->_show_statusbar = TRUE;
-	self->priv->_song_format = XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_TITLE;
-	_tmp3_ = NULL;
-	self->priv->_song_format_custom = (_tmp3_ = g_strdup (""), self->priv->_song_format_custom = (g_free (self->priv->_song_format_custom), NULL), _tmp3_);
 	xfmpc_preferences_load (self);
 	return self;
 }
@@ -185,12 +163,13 @@ XfmpcPreferences* xfmpc_preferences_new (void) {
 }
 
 
-XfmpcPreferences* xfmpc_preferences_get (void) {
+XfmpcPreferences* xfmpc_preferences_get_default (void) {
 	XfmpcPreferences* result;
 	if (xfmpc_preferences_preferences == NULL) {
 		XfmpcPreferences* _tmp0_;
 		_tmp0_ = NULL;
 		xfmpc_preferences_preferences = (_tmp0_ = xfmpc_preferences_new (), (xfmpc_preferences_preferences == NULL) ? NULL : (xfmpc_preferences_preferences = (g_object_unref (xfmpc_preferences_preferences), NULL)), _tmp0_);
+		g_object_add_weak_pointer ((GObject*) xfmpc_preferences_preferences, &xfmpc_preferences_preferences);
 	} else {
 		g_object_ref ((GObject*) xfmpc_preferences_preferences);
 	}
@@ -207,7 +186,7 @@ static void xfmpc_preferences_load (XfmpcPreferences* self) {
 	g_return_if_fail (self != NULL);
 	rc = xfce_rc_config_open (XFCE_RESOURCE_CONFIG, "xfce4/xfmpcrc", FALSE);
 	if (rc == NULL) {
-		g_warning ("preferences.vala:142: Failed to load the preferences");
+		g_warning ("preferences.vala:146: Failed to load the preferences");
 		(rc == NULL) ? NULL : (rc = (xfce_rc_close (rc), NULL));
 		return;
 	}
@@ -258,7 +237,7 @@ static void xfmpc_preferences_store (XfmpcPreferences* self) {
 	g_return_if_fail (self != NULL);
 	rc = xfce_rc_config_open (XFCE_RESOURCE_CONFIG, "xfce4/xfmpcrc", FALSE);
 	if (rc == NULL) {
-		g_warning ("preferences.vala:170: Failed to save the preferences");
+		g_warning ("preferences.vala:174: Failed to save the preferences");
 		(rc == NULL) ? NULL : (rc = (xfce_rc_close (rc), NULL));
 		return;
 	}
@@ -546,11 +525,49 @@ void xfmpc_preferences_set_song_format_custom (XfmpcPreferences* self, const cha
 }
 
 
+static GObject * xfmpc_preferences_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties) {
+	GObject * obj;
+	XfmpcPreferencesClass * klass;
+	GObjectClass * parent_class;
+	XfmpcPreferences * self;
+	klass = XFMPC_PREFERENCES_CLASS (g_type_class_peek (XFMPC_TYPE_PREFERENCES));
+	parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
+	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
+	self = XFMPC_PREFERENCES (obj);
+	{
+		char* _tmp0_;
+		char* _tmp1_;
+		char* _tmp2_;
+		char* _tmp3_;
+		self->priv->_last_window_posx = 200;
+		self->priv->_last_window_posy = 100;
+		self->priv->_last_window_width = 330;
+		self->priv->_last_window_height = 330;
+		self->priv->_last_window_state_sticky = TRUE;
+		self->priv->_playlist_autocenter = TRUE;
+		_tmp0_ = NULL;
+		self->priv->_dbbrowser_last_path = (_tmp0_ = g_strdup (""), self->priv->_dbbrowser_last_path = (g_free (self->priv->_dbbrowser_last_path), NULL), _tmp0_);
+		_tmp1_ = NULL;
+		self->priv->_mpd_hostname = (_tmp1_ = g_strdup ("localhost"), self->priv->_mpd_hostname = (g_free (self->priv->_mpd_hostname), NULL), _tmp1_);
+		self->priv->_mpd_port = 6600;
+		_tmp2_ = NULL;
+		self->priv->_mpd_password = (_tmp2_ = g_strdup (""), self->priv->_mpd_password = (g_free (self->priv->_mpd_password), NULL), _tmp2_);
+		self->priv->_mpd_use_defaults = TRUE;
+		self->priv->_show_statusbar = TRUE;
+		self->priv->_song_format = XFMPC_PREFERENCES_SONG_FORMAT_ARTIST_TITLE;
+		_tmp3_ = NULL;
+		self->priv->_song_format_custom = (_tmp3_ = g_strdup ("%a - %t"), self->priv->_song_format_custom = (g_free (self->priv->_song_format_custom), NULL), _tmp3_);
+	}
+	return obj;
+}
+
+
 static void xfmpc_preferences_class_init (XfmpcPreferencesClass * klass) {
 	xfmpc_preferences_parent_class = g_type_class_peek_parent (klass);
 	g_type_class_add_private (klass, sizeof (XfmpcPreferencesPrivate));
 	G_OBJECT_CLASS (klass)->get_property = xfmpc_preferences_get_property;
 	G_OBJECT_CLASS (klass)->set_property = xfmpc_preferences_set_property;
+	G_OBJECT_CLASS (klass)->constructor = xfmpc_preferences_constructor;
 	G_OBJECT_CLASS (klass)->finalize = xfmpc_preferences_finalize;
 	g_object_class_install_property (G_OBJECT_CLASS (klass), XFMPC_PREFERENCES_LAST_WINDOW_POSX, g_param_spec_int ("last-window-posx", "last-window-posx", "last-window-posx", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
 	g_object_class_install_property (G_OBJECT_CLASS (klass), XFMPC_PREFERENCES_LAST_WINDOW_POSY, g_param_spec_int ("last-window-posy", "last-window-posy", "last-window-posy", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));

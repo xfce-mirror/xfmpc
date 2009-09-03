@@ -11,7 +11,7 @@ m4_define([xfmpc_version_major], [0])
 m4_define([xfmpc_version_minor], [2])
 m4_define([xfmpc_version_micro], [0])
 m4_define([xfmpc_version_build], [r@REVISION@])
-m4_define([xfmpc_version_tag], [git]) # leave empty for release
+m4_define([xfmpc_version_tag], []) # leave empty for release
 m4_define([xfmpc_version], [xfmpc_version_major().xfmpc_version_minor().xfmpc_version_micro()ifelse(xfmpc_version_tag(), [git], [xfmpc_version_tag()-xfmpc_version_build()], [xfmpc_version_tag()])])
 
 dnl ***************************

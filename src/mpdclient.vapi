@@ -4,7 +4,6 @@
 
 [CCode (cprefix = "Xfmpc", lower_case_cprefix = "xfmpc_")]
 namespace Xfmpc {
-	[Compact]
 	[CCode (cheader_filename = "mpdclient.h")]
 	public class Mpdclient {
 		public bool connect ();

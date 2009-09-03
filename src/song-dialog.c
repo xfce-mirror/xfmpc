@@ -63,7 +63,6 @@ static void xfmpc_song_dialog_cb_response (XfmpcSongDialog* self, gint response)
 static void _xfmpc_song_dialog_cb_response_gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self);
 XfmpcSongDialog* xfmpc_song_dialog_new (gint song_id);
 XfmpcSongDialog* xfmpc_song_dialog_construct (GType object_type, gint song_id);
-XfmpcSongDialog* xfmpc_song_dialog_new (gint song_id);
 static void xfmpc_song_dialog_finalize (GObject* obj);
 
 
@@ -105,7 +104,7 @@ XfmpcSongDialog* xfmpc_song_dialog_construct (GType object_type, gint song_id) {
 	gtk_window_set_skip_taskbar_hint ((GtkWindow*) self, TRUE);
 	gtk_window_set_icon_name ((GtkWindow*) self, "stock_volume");
 	gtk_window_set_resizable ((GtkWindow*) self, FALSE);
-	self->priv->mpdclient = xfmpc_mpdclient_get ();
+	self->priv->mpdclient = xfmpc_mpdclient_get_default ();
 	self->priv->song = xfmpc_mpdclient_get_song_info (self->priv->mpdclient, song_id);
 	gtk_window_set_title ((GtkWindow*) self, self->priv->song->title);
 	gtk_box_set_spacing ((GtkBox*) ((GtkDialog*) self)->vbox, 0);

@@ -166,8 +166,7 @@ static void xfmpc_playlist_cb_filter_entry_changed (XfmpcPlaylist* self);
 gboolean xfmpc_playlist_has_filename (XfmpcPlaylist* self, const char* filename, gboolean is_dir);
 XfmpcPlaylist* xfmpc_playlist_new (void);
 XfmpcPlaylist* xfmpc_playlist_construct (GType object_type);
-XfmpcPlaylist* xfmpc_playlist_new (void);
-XfmpcPreferences* xfmpc_preferences_get (void);
+XfmpcPreferences* xfmpc_preferences_get_default (void);
 gboolean xfmpc_preferences_get_playlist_autocenter (XfmpcPreferences* self);
 static void _xfmpc_playlist_delete_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _xfmpc_playlist_cb_browse_selection_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
@@ -223,11 +222,11 @@ static gboolean xfmpc_playlist_visible_func_filter_tree (GtkTreeModel* model, Gt
 	_tmp0_ = NULL;
 	search = (_tmp1_ = (_tmp0_ = gtk_entry_get_text (xfmpc_playlist_filter_entry), (_tmp0_ == NULL) ? NULL : g_strdup (_tmp0_)), search = (g_free (search), NULL), _tmp1_);
 	_tmp2_ = NULL;
-	search = (_tmp2_ = g_utf8_casefold (search, (glong) (-1)), search = (g_free (search), NULL), _tmp2_);
+	search = (_tmp2_ = g_utf8_casefold (search, (gssize) (-1)), search = (g_free (search), NULL), _tmp2_);
 	if (_vala_strcmp0 (search, "") != 0) {
 		char* _tmp3_;
 		_tmp3_ = NULL;
-		song = (_tmp3_ = g_utf8_casefold (song, (glong) (-1)), song = (g_free (song), NULL), _tmp3_);
+		song = (_tmp3_ = g_utf8_casefold (song, (gssize) (-1)), song = (g_free (song), NULL), _tmp3_);
 		if (strstr (song, search) == NULL) {
 			_result_ = FALSE;
 		}
@@ -396,9 +395,9 @@ static void xfmpc_playlist_cb_playlist_changed (XfmpcPlaylist* self) {
 	gint id;
 	gint pos;
 	g_return_if_fail (self != NULL);
-	filename = g_strdup ("");
-	song = g_strdup ("");
-	length = g_strdup ("");
+	filename = NULL;
+	song = NULL;
+	length = NULL;
 	id = 0;
 	pos = 0;
 	self->priv->current = xfmpc_mpdclient_get_id (self->priv->mpdclient);
@@ -842,8 +841,8 @@ static GObject * xfmpc_playlist_constructor (GType type, guint n_construct_prope
 		GtkImage* image;
 		GtkImageMenuItem* _tmp10_;
 		GtkEntry* _tmp11_;
-		self->priv->mpdclient = xfmpc_mpdclient_get ();
-		self->priv->preferences = xfmpc_preferences_get ();
+		self->priv->mpdclient = xfmpc_mpdclient_get_default ();
+		self->priv->preferences = xfmpc_preferences_get_default ();
 		self->priv->autocenter = xfmpc_preferences_get_playlist_autocenter (self->priv->preferences);
 		_tmp0_ = NULL;
 		self->priv->store = (_tmp0_ = gtk_list_store_new ((gint) XFMPC_PLAYLIST_COLUMNS_N_COLUMNS, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT, NULL), (self->priv->store == NULL) ? NULL : (self->priv->store = (g_object_unref (self->priv->store), NULL)), _tmp0_);

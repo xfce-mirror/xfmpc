@@ -148,8 +148,7 @@ gboolean xfmpc_preferences_get_show_statusbar (XfmpcPreferences* self);
 static void xfmpc_main_window_cb_show_statusbar_changed (XfmpcMainWindow* self, GParamSpec* pspec);
 XfmpcMainWindow* xfmpc_main_window_new (void);
 XfmpcMainWindow* xfmpc_main_window_construct (GType object_type);
-XfmpcMainWindow* xfmpc_main_window_new (void);
-XfmpcPreferences* xfmpc_preferences_get (void);
+XfmpcPreferences* xfmpc_preferences_get_default (void);
 static gboolean _xfmpc_main_window_cb_window_closed_gtk_widget_delete_event (GtkWidget* _sender, GdkEvent* event, gpointer self);
 static gboolean _xfmpc_main_window_cb_window_state_event_gtk_widget_window_state_event (GtkWidget* _sender, const GdkEventWindowState* event, gpointer self);
 gint xfmpc_preferences_get_last_window_posx (XfmpcPreferences* self);
@@ -460,7 +459,6 @@ static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_pr
 	self = XFMPC_MAIN_WINDOW (obj);
 	_inner_error_ = NULL;
 	{
-		XfmpcPreferences* preferences1;
 		GtkVBox* _tmp0_;
 		gboolean _tmp1_;
 		gboolean _tmp2_;
@@ -471,9 +469,8 @@ static GObject * xfmpc_main_window_constructor (GType type, guint n_construct_pr
 		GtkActionGroup* _tmp6_;
 		GtkAccelGroup* _tmp7_;
 		GtkAccelGroup* accel_group;
-		self->priv->mpdclient = xfmpc_mpdclient_get ();
-		self->priv->preferences = xfmpc_preferences_get ();
-		preferences1 = xfmpc_preferences_get ();
+		self->priv->mpdclient = xfmpc_mpdclient_get_default ();
+		self->priv->preferences = xfmpc_preferences_get_default ();
 		/* Window */
 		gtk_window_set_default_icon_name ("xfmpc");
 		gtk_window_set_icon_name ((GtkWindow*) self, "stock_volume");

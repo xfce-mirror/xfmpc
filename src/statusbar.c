@@ -60,7 +60,6 @@ enum  {
 };
 XfmpcStatusbar* xfmpc_statusbar_new (void);
 XfmpcStatusbar* xfmpc_statusbar_construct (GType object_type);
-XfmpcStatusbar* xfmpc_statusbar_new (void);
 void xfmpc_statusbar_set_text (XfmpcStatusbar* self, const char* value);
 static GObject * xfmpc_statusbar_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static void xfmpc_statusbar_finalize (GObject* obj);

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-14 09:31+0100\n"
+"POT-Creation-Date: 2009-09-03 13:24+0200\n"
 "PO-Revision-Date: 2009-03-14 12:03+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -19,51 +19,29 @@ msgstr ""
 "X-Poedit-Country: DENMARK\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#. Menu -> Replace
-#: ../src/dbbrowser.c:222
-msgid "_Replace"
+#: ../src/dbbrowser.c:913
+#, fuzzy
+msgid "Replace"
 msgstr "_Erstat"
 
-#. Menu -> Browse (only shown on a search)
-#: ../src/dbbrowser.c:230
-#: ../src/playlist.c:237
-msgid "_Browse"
+#: ../src/dbbrowser.c:919 ../src/playlist.c:884
+#, fuzzy
+msgid "Browse"
 msgstr "_Gennemse"
 
-#: ../src/extended-interface.c:165
-msgid "Clear Playlist"
-msgstr "Ryd spilleliste"
-
-#: ../src/extended-interface.c:175
-msgid "Refresh Database"
-msgstr "Genopfrisk database"
-
-#: ../src/extended-interface.c:185
-msgid "Context Menu"
-msgstr "Kontekstmenu"
-
-#: ../src/extended-interface.c:217
-msgid "Current Playlist"
-msgstr "Aktuel spilleliste"
-
-#: ../src/extended-interface.c:220
-msgid "Browse database"
-msgstr "Gennemse database"
-
-#: ../src/extended-interface.c:303
+#: ../src/extended-interface.c:288
 msgid "Repeat"
 msgstr "Gentag"
 
-#: ../src/extended-interface.c:310
+#: ../src/extended-interface.c:293
 msgid "Random"
 msgstr "Tilfældig"
 
-#: ../src/extended-interface.c:402
-#: ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:397 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD-klient skrevet i GTK+ til Xfce"
 
-#: ../src/extended-interface.c:406
+#: ../src/extended-interface.c:397
 msgid "translator-credits"
 msgstr ""
 "Per Kongstad <p_kongstad@op.pl>\n"
@@ -71,195 +49,232 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/interface.c:156
-#: ../src/interface.c:364
-msgid "Not connected"
-msgstr "Ikke tilsluttet"
+#: ../src/extended-interface.c:466
+msgid "Clear Playlist"
+msgstr "Ryd spilleliste"
 
-#. subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:395
+#: ../src/extended-interface.c:473
+msgid "Refresh Database"
+msgstr "Genopfrisk database"
+
+#: ../src/extended-interface.c:481
+msgid "Context Menu"
+msgstr "Kontekstmenu"
+
+#: ../src/extended-interface.c:499
+msgid "Current Playlist"
+msgstr "Aktuel spilleliste"
+
+#: ../src/extended-interface.c:501
+msgid "Browse database"
+msgstr "Gennemse database"
+
+#.
+#. // write private function in case it is wished to avoid the
+#. // "n/a" values, but no big deal IMO
+#. text = get_subtitle (interface);
+#.
+#. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:263
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "af \"%s\" fra \"%s\" (%s)"
 
-#: ../src/interface.c:441
+#: ../src/interface.c:268
 msgid "Stopped"
 msgstr "Stoppet"
 
-#: ../src/main-window.c:393
+#: ../src/interface.c:272 ../src/interface.c:470
+msgid "Not connected"
+msgstr "Ikke tilsluttet"
+
+#: ../src/main-window.c:383
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d sange, %d timer og %d minutter"
 
-#: ../src/main-window.c:395
+#: ../src/main-window.c:385
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d sange, %d minutter"
 
-#: ../src/mpdclient.c:515
-#: ../src/mpdclient.c:545
-#: ../src/mpdclient.c:560
+#: ../src/mpdclient.c:348
+msgid "Failed to connect to MPD"
+msgstr ""
+
+#: ../src/mpdclient.c:353
+#, fuzzy
+msgid "Connected to MPD"
+msgstr "Forbindelse"
+
+#: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
 msgstr "-"
 
-#: ../src/preferences.c:41
-#: ../src/song-dialog.c:173
-msgid "Title"
-msgstr "Titel"
-
-#: ../src/preferences.c:42
-msgid "Album - Title"
-msgstr "Album - titel"
-
-#: ../src/preferences.c:43
-msgid "Artist - Title"
-msgstr "Kunstner - titel"
-
-#: ../src/preferences.c:44
-msgid "Artist - Title (Date)"
-msgstr "Kunstner - titel (dato)"
-
-#: ../src/preferences.c:45
-msgid "Artist - Album - Title"
-msgstr "Kunstner - album - titel"
-
-#: ../src/preferences.c:46
-msgid "Artist - Album - Track. Title"
-msgstr "Kunstner - album - spor. Titel"
-
-#: ../src/preferences.c:47
-msgid "Custom..."
-msgstr "Tilpasset..."
-
-#: ../src/preferences-dialog.c:181
-msgid "Xfmpc Preferences"
-msgstr "Indstillinger Xfmpc"
-
-#: ../src/preferences-dialog.c:197
+#: ../src/preferences-dialog.c:359
 msgid "MPD"
 msgstr "MPD"
 
-#: ../src/preferences-dialog.c:201
+#: ../src/preferences-dialog.c:363
 msgid "Connection"
 msgstr "Forbindelse"
 
-#: ../src/preferences-dialog.c:204
+#: ../src/preferences-dialog.c:366
 msgid "Use _default system settings"
 msgstr "Brug standardsys_temindstillinger"
 
-#: ../src/preferences-dialog.c:206
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
-msgstr "Hvis afkrydset vil Xfmpc prøve at læse miljøvariabler MPD_HOST og MPD_PORT, ellers vil blive brugt localhost"
+#: ../src/preferences-dialog.c:367
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr ""
+"Hvis afkrydset vil Xfmpc prøve at læse miljøvariabler MPD_HOST og MPD_PORT, "
+"ellers vil blive brugt localhost"
 
-#: ../src/preferences-dialog.c:221
+#: ../src/preferences-dialog.c:378
 msgid "Hostname:"
 msgstr "Værtsnavn:"
 
-#: ../src/preferences-dialog.c:228
+#: ../src/preferences-dialog.c:386
 msgid "Port:"
 msgstr "Port:"
 
-#: ../src/preferences-dialog.c:238
+#: ../src/preferences-dialog.c:397
 msgid "Password:"
 msgstr "Adgangskode:"
 
-#: ../src/preferences-dialog.c:256
+#: ../src/preferences-dialog.c:414
 msgid "Appearance"
 msgstr "Udseende"
 
-#: ../src/preferences-dialog.c:260
+#: ../src/preferences-dialog.c:420
 msgid "Statusbar"
 msgstr "Statusfelt"
 
-#: ../src/preferences-dialog.c:263
-msgid "Show _statusbar"
+#: ../src/preferences-dialog.c:423
+#, fuzzy
+msgid "Show _stastusbar"
 msgstr "Vis _statusfelt"
 
-#: ../src/preferences-dialog.c:270
+#: ../src/preferences-dialog.c:431
 msgid "Song Format"
 msgstr "Sangformat"
 
-#: ../src/preferences-dialog.c:275
-msgid "Song format:"
-msgstr "Sangformat:"
+#: ../src/preferences-dialog.c:436
+#, fuzzy
+msgid "Song Format:"
+msgstr "Sangformat"
 
-#: ../src/preferences-dialog.c:295
+#: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
+msgid "Title"
+msgstr "Titel"
+
+#: ../src/preferences-dialog.c:442
+msgid "Album - Title"
+msgstr "Album - titel"
+
+#: ../src/preferences-dialog.c:443
+msgid "Artist - Title"
+msgstr "Kunstner - titel"
+
+#: ../src/preferences-dialog.c:444
+msgid "Artist - Title (Date)"
+msgstr "Kunstner - titel (dato)"
+
+#: ../src/preferences-dialog.c:445
+msgid "Artist - Album - Title"
+msgstr "Kunstner - album - titel"
+
+#: ../src/preferences-dialog.c:446
+msgid "Artist - Album - Track. Title"
+msgstr "Kunstner - album - spor. Titel"
+
+#: ../src/preferences-dialog.c:447
+msgid "Custom..."
+msgstr "Tilpasset..."
+
+#: ../src/preferences-dialog.c:453
 msgid "Custom format:"
 msgstr "Tilpasset format:"
 
-#: ../src/preferences-dialog.c:312
+#: ../src/preferences-dialog.c:466
 msgid "Available parameters:"
 msgstr "Tilgængelige parametre:"
 
-#: ../src/preferences-dialog.c:321
+#: ../src/preferences-dialog.c:472
 #, c-format
 msgid "%a: Artist"
 msgstr "%a: Kunstner"
 
-#: ../src/preferences-dialog.c:325
+#: ../src/preferences-dialog.c:477
 #, c-format
 msgid "%A: Album"
 msgstr "%A: Album"
 
-#: ../src/preferences-dialog.c:330
+#: ../src/preferences-dialog.c:482
 #, c-format
 msgid "%d: Date"
 msgstr "%d: Dato"
 
-#: ../src/preferences-dialog.c:334
+#: ../src/preferences-dialog.c:487
 msgid "%D: Disc"
 msgstr "%D: Disk"
 
-#: ../src/preferences-dialog.c:339
+#: ../src/preferences-dialog.c:492
 #, c-format
 msgid "%f: File"
 msgstr "%f: Fil"
 
-#: ../src/preferences-dialog.c:343
+#: ../src/preferences-dialog.c:497
 #, c-format
 msgid "%g: Genre"
 msgstr "%g: Genre"
 
-#: ../src/preferences-dialog.c:348
+#: ../src/preferences-dialog.c:502
 msgid "%t: Title"
 msgstr "%t: Titel"
 
-#: ../src/preferences-dialog.c:352
+#: ../src/preferences-dialog.c:507
 msgid "%T: Track"
 msgstr "%T: Spor"
 
-#: ../src/song-dialog.c:133
-#: ../xfmpc.desktop.in.h:3
-msgid "Xfmpc"
-msgstr "Xfmpc"
-
-#: ../src/song-dialog.c:153
+#: ../src/song-dialog.c:117
 msgid "File"
 msgstr "Fil"
 
-#: ../src/song-dialog.c:163
+#: ../src/song-dialog.c:129
 msgid "Artist"
 msgstr "Kunstner"
 
-#: ../src/song-dialog.c:183
+#: ../src/song-dialog.c:149
 msgid "Album"
 msgstr "Album"
 
-#: ../src/song-dialog.c:193
+#: ../src/song-dialog.c:159
 msgid "Date"
 msgstr "Dato"
 
-#: ../src/song-dialog.c:200
+#: ../src/song-dialog.c:166
 msgid "Track"
 msgstr "Spor"
 
-#: ../src/song-dialog.c:211
+#: ../src/song-dialog.c:176
 msgid "Genre"
 msgstr "Genre"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
 msgstr "MPD-klient"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
+#~ msgid "Xfmpc Preferences"
+#~ msgstr "Indstillinger Xfmpc"
+
+#~ msgid "Song format:"
+#~ msgstr "Sangformat:"
 
 #~ msgid "MPD Settings"
 #~ msgstr "MPD-indstillinger"

@@ -112,8 +112,7 @@ static void xfmpc_preferences_dialog_cb_entry_custom_changed (XfmpcPreferencesDi
 void xfmpc_preferences_set_song_format_custom (XfmpcPreferences* self, const char* value);
 XfmpcPreferencesDialog* xfmpc_preferences_dialog_new (void);
 XfmpcPreferencesDialog* xfmpc_preferences_dialog_construct (GType object_type);
-XfmpcPreferencesDialog* xfmpc_preferences_dialog_new (void);
-XfmpcPreferences* xfmpc_preferences_get (void);
+XfmpcPreferences* xfmpc_preferences_get_default (void);
 gboolean xfmpc_preferences_get_mpd_use_defaults (XfmpcPreferences* self);
 static void _xfmpc_preferences_dialog_cb_use_defaults_toggled_gtk_toggle_button_toggled (GtkToggleButton* _sender, gpointer self);
 const char* xfmpc_preferences_get_mpd_hostname (XfmpcPreferences* self);
@@ -157,7 +156,7 @@ static void xfmpc_preferences_dialog_cb_update_mpd (XfmpcPreferencesDialog* self
 	XfmpcMpdclient* mpdclient;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (source != NULL);
-	mpdclient = xfmpc_mpdclient_get ();
+	mpdclient = xfmpc_mpdclient_get_default ();
 	xfmpc_preferences_set_mpd_hostname (self->priv->preferences, gtk_entry_get_text (self->priv->entry_host));
 	xfmpc_preferences_set_mpd_port (self->priv->preferences, gtk_spin_button_get_value_as_int (self->priv->entry_port));
 	xfmpc_preferences_set_mpd_password (self->priv->preferences, gtk_entry_get_text (self->priv->entry_passwd));
@@ -350,7 +349,7 @@ static GObject * xfmpc_preferences_dialog_constructor (GType type, guint n_const
 		gtk_window_set_icon_name ((GtkWindow*) self, "stock_volume");
 		gtk_window_set_resizable ((GtkWindow*) self, FALSE);
 		gtk_window_set_title ((GtkWindow*) self, "Xfmpc Preferences");
-		self->priv->preferences = xfmpc_preferences_get ();
+		self->priv->preferences = xfmpc_preferences_get_default ();
 		notebook = g_object_ref_sink ((GtkNotebook*) gtk_notebook_new ());
 		gtk_container_set_border_width ((GtkContainer*) notebook, (guint) 6);
 		gtk_box_pack_start ((GtkBox*) ((GtkDialog*) self)->vbox, (GtkWidget*) notebook, TRUE, TRUE, (guint) 0);
