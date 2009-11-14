@@ -1,0 +1,252 @@
+# Slovak translations for xfmpc package.
+# Copyright (C) 2008 the xfmpc's copyright holder
+# This file is distributed under the same license as the xfmpc package.
+# Robert Hartl <hartl.robert@gmail.com>, 2009.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: xfmpc 0.2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-03-14 09:31+0100\n"
+"PO-Revision-Date: 2009-11-14 11:20Centra4l\n"
+"Last-Translator: Robert Hartl <hartl.robert@gmail.com>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Menu -> Replace
+#: ../src/dbbrowser.c:222
+msgid "_Replace"
+msgstr "_Nahradiť"
+
+#. Menu -> Browse (only shown on a search)
+#: ../src/dbbrowser.c:230 ../src/playlist.c:237
+msgid "_Browse"
+msgstr "_Prehliadať"
+
+#: ../src/extended-interface.c:165
+msgid "Clear Playlist"
+msgstr "Vyčistiť zoznam skladieb"
+
+#: ../src/extended-interface.c:175
+msgid "Refresh Database"
+msgstr "Obnoviť databázu"
+
+#: ../src/extended-interface.c:185
+msgid "Context Menu"
+msgstr "Miestna ponuka"
+
+#: ../src/extended-interface.c:217
+msgid "Current Playlist"
+msgstr "Súčasný zozanam skladieb"
+
+#: ../src/extended-interface.c:220
+msgid "Browse database"
+msgstr "Prechádzať databázu"
+
+#: ../src/extended-interface.c:303
+msgid "Repeat"
+msgstr "Opakovať"
+
+#: ../src/extended-interface.c:310
+msgid "Random"
+msgstr "Náhodne"
+
+#: ../src/extended-interface.c:402 ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "MPD klient napísany v GTK+ pre Xfce"
+
+#: ../src/extended-interface.c:406
+msgid "translator-credits"
+msgstr "Robert Hartl <hartl.robert@gmail.com>"
+
+#: ../src/interface.c:156 ../src/interface.c:364
+msgid "Not connected"
+msgstr "Nepripojené"
+
+#. subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:395
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "od \"%s\" z albumu \"%s\" (%s)"
+
+#: ../src/interface.c:441
+msgid "Stopped"
+msgstr "Zastavené"
+
+#: ../src/main-window.c:393
+#, c-format
+msgid "%d songs, %d hours and %d minutes"
+msgstr "%d skladieb, %d hodín a %d minút"
+
+#: ../src/main-window.c:395
+#, c-format
+msgid "%d songs, %d minutes"
+msgstr "%d skladieb, %d minút"
+
+#: ../src/mpdclient.c:515 ../src/mpdclient.c:545 ../src/mpdclient.c:560
+msgid "n/a"
+msgstr "nedostupné"
+
+#: ../src/preferences.c:41 ../src/song-dialog.c:173
+msgid "Title"
+msgstr "Názov"
+
+#: ../src/preferences.c:42
+msgid "Album - Title"
+msgstr "Album - Názov"
+
+#: ../src/preferences.c:43
+msgid "Artist - Title"
+msgstr "Umelec - Názov"
+
+#: ../src/preferences.c:44
+msgid "Artist - Title (Date)"
+msgstr "Umelec - Názov (Dátum)"
+
+#: ../src/preferences.c:45
+msgid "Artist - Album - Title"
+msgstr "Umelec - Album - Názov"
+
+#: ../src/preferences.c:46
+msgid "Artist - Album - Track. Title"
+msgstr "Umelec - Album - Stopa. Názov"
+
+#: ../src/preferences.c:47
+msgid "Custom..."
+msgstr "Vlastné..."
+
+#: ../src/preferences-dialog.c:181
+msgid "Xfmpc Preferences"
+msgstr "Predvoľby Xfmpc"
+
+#: ../src/preferences-dialog.c:197
+msgid "MPD"
+msgstr "MPD"
+
+#: ../src/preferences-dialog.c:201
+msgid "Connection"
+msgstr "Pripojenie"
+
+#: ../src/preferences-dialog.c:204
+msgid "Use _default system settings"
+msgstr "Použiť _predvolené nastavenie systému"
+
+#: ../src/preferences-dialog.c:206
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr ""
+"Ak je zaškrtnutá voľba, aplikácia Xfmpc sa pokúsi prečítať premenné "
+"prostredia MPD_HOST a MPD_PORT, v opačnom prípade použije tento počítač "
+"(localhost)"
+
+#: ../src/preferences-dialog.c:221
+msgid "Hostname:"
+msgstr "Názov hostiteľa:"
+
+#: ../src/preferences-dialog.c:228
+msgid "Port:"
+msgstr "Port:"
+
+#: ../src/preferences-dialog.c:238
+msgid "Password:"
+msgstr "Heslo:"
+
+#: ../src/preferences-dialog.c:256
+msgid "Appearance"
+msgstr "Vzhľad"
+
+#: ../src/preferences-dialog.c:260
+msgid "Statusbar"
+msgstr "Stavový riadok"
+
+#: ../src/preferences-dialog.c:263
+msgid "Show _statusbar"
+msgstr "Zobraziť _stavový riadok"
+
+#: ../src/preferences-dialog.c:270
+msgid "Song Format"
+msgstr "Formát skladby"
+
+#: ../src/preferences-dialog.c:275
+msgid "Song format:"
+msgstr "Formát skladby:"
+
+#: ../src/preferences-dialog.c:295
+msgid "Custom format:"
+msgstr "Vlastný formát:"
+
+#: ../src/preferences-dialog.c:312
+msgid "Available parameters:"
+msgstr "Dostupné parametre:"
+
+#: ../src/preferences-dialog.c:321
+#, c-format
+msgid "%a: Artist"
+msgstr "%a: Umelec"
+
+#: ../src/preferences-dialog.c:325
+#, c-format
+msgid "%A: Album"
+msgstr "%A: Album"
+
+#: ../src/preferences-dialog.c:330
+#, c-format
+msgid "%d: Date"
+msgstr "%d: Dátum"
+
+#: ../src/preferences-dialog.c:334
+msgid "%D: Disc"
+msgstr "%D: Disk"
+
+#: ../src/preferences-dialog.c:339
+#, c-format
+msgid "%f: File"
+msgstr "%f: Súbor"
+
+#: ../src/preferences-dialog.c:343
+#, c-format
+msgid "%g: Genre"
+msgstr "%g: Žáner"
+
+#: ../src/preferences-dialog.c:348
+msgid "%t: Title"
+msgstr "%t: Názov"
+
+#: ../src/preferences-dialog.c:352
+msgid "%T: Track"
+msgstr "%T: Stopa"
+
+#: ../src/song-dialog.c:133 ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
+#: ../src/song-dialog.c:153
+msgid "File"
+msgstr "Súbor"
+
+#: ../src/song-dialog.c:163
+msgid "Artist"
+msgstr "Umelec"
+
+#: ../src/song-dialog.c:183
+msgid "Album"
+msgstr "Album"
+
+#: ../src/song-dialog.c:193
+msgid "Date"
+msgstr "Dátum"
+
+#: ../src/song-dialog.c:200
+msgid "Track"
+msgstr "Stopa"
+
+#: ../src/song-dialog.c:211
+msgid "Genre"
+msgstr "Žáner"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD klient"
