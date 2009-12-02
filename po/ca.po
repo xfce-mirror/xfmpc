@@ -18,14 +18,13 @@ msgstr ""
 "X-Poedit-Country: Spain\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
-msgstr "_Reemplaçar"
+msgstr "Reemplaçar"
 
-#: ../src/dbbrowser.c:919 ../src/playlist.c:884
-#, fuzzy
+#: ../src/dbbrowser.c:919
+#: ../src/playlist.c:884
 msgid "Browse"
-msgstr "_Navegar"
+msgstr "Navegar"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
@@ -35,7 +34,8 @@ msgstr "Repetir"
 msgid "Random"
 msgstr "Aleatori"
 
-#: ../src/extended-interface.c:397 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:397
+#: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Client MPD escrit en GTK+ per a Xfce"
 
@@ -78,7 +78,8 @@ msgstr "per \"%s\" de \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Aturat"
 
-#: ../src/interface.c:272 ../src/interface.c:470
+#: ../src/interface.c:272
+#: ../src/interface.c:470
 msgid "Not connected"
 msgstr "No connectat"
 
@@ -94,14 +95,15 @@ msgstr "%d cançons, %d minuts"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "No s'ha pogut connectar a MPD"
 
 #: ../src/mpdclient.c:353
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "Connexió"
+msgstr "Connectat a MPD"
 
-#: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
+#: ../src/mpdclient.c:569
+#: ../src/mpdclient.c:599
+#: ../src/mpdclient.c:614
 msgid "n/a"
 msgstr "n/d"
 
@@ -118,12 +120,8 @@ msgid "Use _default system settings"
 msgstr "Usar preferències per _defecte del sistema"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Si està activat, Xfmpc intentarà llegir les variables d'entorn MPD_HOST i "
-"MPD_PORT, altrament usarà localhost."
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Si està activat, Xfmpc intentarà llegir les variables d'entorn MPD_HOST i MPD_PORT, altrament usarà localhost."
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
@@ -146,7 +144,6 @@ msgid "Statusbar"
 msgstr "Barra d'estat"
 
 #: ../src/preferences-dialog.c:423
-#, fuzzy
 msgid "Show _stastusbar"
 msgstr "Mostrar _barra d'estat"
 
@@ -155,11 +152,11 @@ msgid "Song Format"
 msgstr "Format de la cançó"
 
 #: ../src/preferences-dialog.c:436
-#, fuzzy
 msgid "Song Format:"
-msgstr "Format de la cançó"
+msgstr "Format de la cançó:"
 
-#: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
+#: ../src/preferences-dialog.c:441
+#: ../src/song-dialog.c:139
 msgid "Title"
 msgstr "Títol"
 
@@ -266,6 +263,6 @@ msgstr "Xfmpc"
 
 #~ msgid "Xfmpc Preferences"
 #~ msgstr "Preferències de Xfmpc"
-
 #~ msgid "Song format:"
 #~ msgstr "Format de la cançó:"
+
