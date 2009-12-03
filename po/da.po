@@ -5,10 +5,10 @@
 # Per Kongstad <p_kongstad@op.pl>, 2008, 09.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc 0.1.0\n"
+"Project-Id-Version: xfmpc 0.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-03 13:24+0200\n"
-"PO-Revision-Date: 2009-03-14 12:03+0100\n"
+"PO-Revision-Date: 2009-12-03 13:11+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -20,14 +20,13 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
-msgstr "_Erstat"
+msgstr "Erstat"
 
-#: ../src/dbbrowser.c:919 ../src/playlist.c:884
-#, fuzzy
+#: ../src/dbbrowser.c:919
+#: ../src/playlist.c:884
 msgid "Browse"
-msgstr "_Gennemse"
+msgstr "Gennemse"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
@@ -37,7 +36,8 @@ msgstr "Gentag"
 msgid "Random"
 msgstr "Tilfældig"
 
-#: ../src/extended-interface.c:397 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:397
+#: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD-klient skrevet i GTK+ til Xfce"
 
@@ -84,7 +84,8 @@ msgstr "af \"%s\" fra \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Stoppet"
 
-#: ../src/interface.c:272 ../src/interface.c:470
+#: ../src/interface.c:272
+#: ../src/interface.c:470
 msgid "Not connected"
 msgstr "Ikke tilsluttet"
 
@@ -100,14 +101,15 @@ msgstr "%d sange, %d minutter"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "Kunne ikke forbinde til MPD"
 
 #: ../src/mpdclient.c:353
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "Forbindelse"
+msgstr "Forbundet til MPD"
 
-#: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
+#: ../src/mpdclient.c:569
+#: ../src/mpdclient.c:599
+#: ../src/mpdclient.c:614
 msgid "n/a"
 msgstr "-"
 
@@ -124,12 +126,8 @@ msgid "Use _default system settings"
 msgstr "Brug standardsys_temindstillinger"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Hvis afkrydset vil Xfmpc prøve at læse miljøvariabler MPD_HOST og MPD_PORT, "
-"ellers vil blive brugt localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Hvis afkrydset vil Xfmpc prøve at læse miljøvariabler MPD_HOST og MPD_PORT, ellers vil blive brugt localhost"
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
@@ -152,7 +150,6 @@ msgid "Statusbar"
 msgstr "Statusfelt"
 
 #: ../src/preferences-dialog.c:423
-#, fuzzy
 msgid "Show _stastusbar"
 msgstr "Vis _statusfelt"
 
@@ -163,9 +160,10 @@ msgstr "Sangformat"
 #: ../src/preferences-dialog.c:436
 #, fuzzy
 msgid "Song Format:"
-msgstr "Sangformat"
+msgstr "Sangformat:"
 
-#: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
+#: ../src/preferences-dialog.c:441
+#: ../src/song-dialog.c:139
 msgid "Title"
 msgstr "Titel"
 
@@ -272,9 +270,8 @@ msgstr "Xfmpc"
 
 #~ msgid "Xfmpc Preferences"
 #~ msgstr "Indstillinger Xfmpc"
-
 #~ msgid "Song format:"
 #~ msgstr "Sangformat:"
-
 #~ msgid "MPD Settings"
 #~ msgstr "MPD-indstillinger"
+
