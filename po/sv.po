@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-03 13:24+0200\n"
-"PO-Revision-Date: 2009-03-19 23:13+0100\n"
+"PO-Revision-Date: 2009-12-16 18:18+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -17,14 +17,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
-msgstr "_Ersätt"
+msgstr "Ersätt"
 
-#: ../src/dbbrowser.c:919 ../src/playlist.c:884
-#, fuzzy
+#: ../src/dbbrowser.c:919
+#: ../src/playlist.c:884
 msgid "Browse"
-msgstr "_Bläddra"
+msgstr "Bläddra"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
@@ -34,7 +33,8 @@ msgstr "Upprepa"
 msgid "Random"
 msgstr "Slumpmässigt"
 
-#: ../src/extended-interface.c:397 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:397
+#: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD-klient skriven i GTK+ för Xfce"
 
@@ -81,7 +81,8 @@ msgstr "av \"%s\" från \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Stoppad"
 
-#: ../src/interface.c:272 ../src/interface.c:470
+#: ../src/interface.c:272
+#: ../src/interface.c:470
 msgid "Not connected"
 msgstr "Inte ansluten"
 
@@ -97,14 +98,15 @@ msgstr "%d låtar, %d minuter"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "Misslyckades med att ansluta till MPD"
 
 #: ../src/mpdclient.c:353
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "Anslutning"
+msgstr "Ansluten till MPD"
 
-#: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
+#: ../src/mpdclient.c:569
+#: ../src/mpdclient.c:599
+#: ../src/mpdclient.c:614
 msgid "n/a"
 msgstr "inte tillgänglig"
 
@@ -121,12 +123,8 @@ msgid "Use _default system settings"
 msgstr "Använd s_ystemets standardinställningar"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Om kryssad kommer Xfmpc att försöka att läsa miljövariablerna MPD_HOST och "
-"MPD_PORT, annars kommer localhost att användas"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Om kryssad kommer Xfmpc att försöka att läsa miljövariablerna MPD_HOST och MPD_PORT, annars kommer localhost att användas"
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
@@ -149,7 +147,6 @@ msgid "Statusbar"
 msgstr "Statusrad"
 
 #: ../src/preferences-dialog.c:423
-#, fuzzy
 msgid "Show _stastusbar"
 msgstr "Visa _statusrad"
 
@@ -158,11 +155,11 @@ msgid "Song Format"
 msgstr "Låtformat"
 
 #: ../src/preferences-dialog.c:436
-#, fuzzy
 msgid "Song Format:"
-msgstr "Låtformat"
+msgstr "Låtformat:"
 
-#: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
+#: ../src/preferences-dialog.c:441
+#: ../src/song-dialog.c:139
 msgid "Title"
 msgstr "Titel"
 
@@ -269,9 +266,8 @@ msgstr "Xfmpc"
 
 #~ msgid "Xfmpc Preferences"
 #~ msgstr "Inställningar för Xfmpc"
-
 #~ msgid "Song format:"
 #~ msgstr "Låtformat:"
-
 #~ msgid "MPD Settings"
 #~ msgstr "Inställningar för MPD"
+
