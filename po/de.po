@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: xfmpc 0.0.5svn-r\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-03 13:24+0200\n"
-"PO-Revision-Date: 2009-04-14 22:47+0200\n"
+"PO-Revision-Date: 2009-12-26 13:35+0100\n"
 "Last-Translator: Simon Schneider <simon@schneiderimtal.de>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "_Durchsuchen"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
-msgstr "Widerholen"
+msgstr "Wiederholen"
 
 #: ../src/extended-interface.c:293
 msgid "Random"
@@ -281,4 +281,4 @@ msgstr "Xfmpc"
 #~ "geladen werden"
 
 #~ msgid "MPD Settings"
-#~ msgstr "MPD Einstellung"
+#~ msgstr "MPD Einstellungen"
