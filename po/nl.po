@@ -4,7 +4,7 @@
 # This file is distributed under the same license as the xfmpc package.
 # Stephan Arts <stephan@xfce.org>, 2008.
 # Mike Massonnet <mmassonnet@xfce.org>, 2008-2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
@@ -19,13 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
 msgstr "_Vervangen"
 
 #: ../src/dbbrowser.c:919 ../src/playlist.c:884
 msgid "Browse"
-msgstr ""
+msgstr "Bladeren"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
@@ -63,11 +62,10 @@ msgstr "Huidige afspeellijst"
 msgid "Browse database"
 msgstr "Databasebrowser"
 
-#.
 #. // write private function in case it is wished to avoid the
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
-#.
+#. 
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:263
 #, c-format
@@ -83,31 +81,31 @@ msgid "Not connected"
 msgstr "Niet verbonden"
 
 #: ../src/main-window.c:383
-#, c-format
+#, c-format, fuzzy
 msgid "%d songs, %d hours and %d minutes"
-msgstr ""
+msgstr "%d nummers ,%d uur en %d minuten"
 
 #: ../src/main-window.c:385
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr ""
+msgstr "%d liedjes,%d minuten"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "Mislukt verbinding te maken met MPD"
 
 #: ../src/mpdclient.c:353
 msgid "Connected to MPD"
-msgstr ""
+msgstr "Verbonden met MPD"
 
 #: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
-#, fuzzy
 msgid "n/a"
 msgstr "n/a"
 
 #: ../src/preferences-dialog.c:359
+#, fuzzy
 msgid "MPD"
-msgstr ""
+msgstr "MPD"
 
 #: ../src/preferences-dialog.c:363
 msgid "Connection"
@@ -120,9 +118,7 @@ msgstr "Standaard systeeminstellingen gebruiken"
 
 #: ../src/preferences-dialog.c:367
 #, fuzzy
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
 msgstr "Indien geselecteerd, "
 
 #: ../src/preferences-dialog.c:378
@@ -139,120 +135,124 @@ msgstr "Wachtwoord:"
 
 #: ../src/preferences-dialog.c:414
 msgid "Appearance"
-msgstr ""
+msgstr "Uiterlijk"
 
 #: ../src/preferences-dialog.c:420
+#, fuzzy
 msgid "Statusbar"
-msgstr ""
+msgstr "Statusbar"
 
 #: ../src/preferences-dialog.c:423
+#, fuzzy
 msgid "Show _stastusbar"
-msgstr ""
+msgstr "Toon _stastusbar"
 
 #: ../src/preferences-dialog.c:431
+#, fuzzy
 msgid "Song Format"
-msgstr ""
+msgstr "Liedje Formaat"
 
 #: ../src/preferences-dialog.c:436
+#, fuzzy
 msgid "Song Format:"
-msgstr ""
+msgstr "Liedje Formaat:"
 
 #: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: ../src/preferences-dialog.c:442
 msgid "Album - Title"
-msgstr ""
+msgstr "Album - Titel"
 
 #: ../src/preferences-dialog.c:443
 msgid "Artist - Title"
-msgstr ""
+msgstr "Artiest - Titel"
 
 #: ../src/preferences-dialog.c:444
 msgid "Artist - Title (Date)"
-msgstr ""
+msgstr "Artiest - Titel (datum)"
 
 #: ../src/preferences-dialog.c:445
 msgid "Artist - Album - Title"
-msgstr ""
+msgstr "Artiest - Album - Titel"
 
 #: ../src/preferences-dialog.c:446
 msgid "Artist - Album - Track. Title"
-msgstr ""
+msgstr "Artiest - Album - Track. Titel"
 
 #: ../src/preferences-dialog.c:447
 msgid "Custom..."
-msgstr ""
+msgstr "Aangepast ..."
 
 #: ../src/preferences-dialog.c:453
 msgid "Custom format:"
-msgstr ""
+msgstr "Aangepast formaat:"
 
 #: ../src/preferences-dialog.c:466
 msgid "Available parameters:"
-msgstr ""
+msgstr "Beschikbare parameters:"
 
 #: ../src/preferences-dialog.c:472
 #, c-format
 msgid "%a: Artist"
-msgstr ""
+msgstr "%a: Artist"
 
 #: ../src/preferences-dialog.c:477
 #, c-format
 msgid "%A: Album"
-msgstr ""
+msgstr "%A: Album"
 
 #: ../src/preferences-dialog.c:482
 #, c-format
 msgid "%d: Date"
-msgstr ""
+msgstr "%d: Datum"
 
 #: ../src/preferences-dialog.c:487
 msgid "%D: Disc"
-msgstr ""
+msgstr "%D: Disc"
 
 #: ../src/preferences-dialog.c:492
 #, c-format
 msgid "%f: File"
-msgstr ""
+msgstr "%f: File"
 
 #: ../src/preferences-dialog.c:497
 #, c-format
 msgid "%g: Genre"
-msgstr ""
+msgstr "%g: Genre"
 
 #: ../src/preferences-dialog.c:502
 msgid "%t: Title"
-msgstr ""
+msgstr "%t: Titel"
 
 #: ../src/preferences-dialog.c:507
 msgid "%T: Track"
-msgstr ""
+msgstr "%T: Track"
 
 #: ../src/song-dialog.c:117
 msgid "File"
-msgstr ""
+msgstr "Bestand"
 
 #: ../src/song-dialog.c:129
 msgid "Artist"
-msgstr ""
+msgstr "Artiest"
 
 #: ../src/song-dialog.c:149
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: ../src/song-dialog.c:159
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: ../src/song-dialog.c:166
 msgid "Track"
-msgstr ""
+msgstr "Track"
 
 #: ../src/song-dialog.c:176
 msgid "Genre"
-msgstr ""
+msgstr "Genre"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
