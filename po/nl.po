@@ -40,7 +40,7 @@ msgstr "MPD client geschreven in GTK+ voor Xfce"
 
 #: ../src/extended-interface.c:397
 msgid "translator-credits"
-msgstr ""
+msgstr "timo verbeek<timoverbeek10@hotmail.com>"
 
 #: ../src/extended-interface.c:466
 msgid "Clear Playlist"
@@ -81,7 +81,7 @@ msgid "Not connected"
 msgstr "Niet verbonden"
 
 #: ../src/main-window.c:383
-#, c-format, fuzzy
+#, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d nummers ,%d uur en %d minuten"
 
@@ -103,13 +103,13 @@ msgid "n/a"
 msgstr "n/a"
 
 #: ../src/preferences-dialog.c:359
-#, fuzzy
 msgid "MPD"
 msgstr "MPD"
 
 #: ../src/preferences-dialog.c:363
+#, fuzzy
 msgid "Connection"
-msgstr ""
+msgstr "Verbinding"
 
 #: ../src/preferences-dialog.c:366
 #, fuzzy
@@ -138,14 +138,12 @@ msgid "Appearance"
 msgstr "Uiterlijk"
 
 #: ../src/preferences-dialog.c:420
-#, fuzzy
 msgid "Statusbar"
-msgstr "Statusbar"
+msgstr "Statusbalk"
 
 #: ../src/preferences-dialog.c:423
-#, fuzzy
 msgid "Show _stastusbar"
-msgstr "Toon _stastusbar"
+msgstr "Toon _stastusbalk"
 
 #: ../src/preferences-dialog.c:431
 #, fuzzy
@@ -196,7 +194,7 @@ msgstr "Beschikbare parameters:"
 #: ../src/preferences-dialog.c:472
 #, c-format
 msgid "%a: Artist"
-msgstr "%a: Artist"
+msgstr "%a: Artiest"
 
 #: ../src/preferences-dialog.c:477
 #, c-format
@@ -210,12 +208,12 @@ msgstr "%d: Datum"
 
 #: ../src/preferences-dialog.c:487
 msgid "%D: Disc"
-msgstr "%D: Disc"
+msgstr "%D: Schijf"
 
 #: ../src/preferences-dialog.c:492
 #, c-format
 msgid "%f: File"
-msgstr "%f: File"
+msgstr "%f: Bestand"
 
 #: ../src/preferences-dialog.c:497
 #, c-format
