@@ -117,9 +117,8 @@ msgid "Use _default system settings"
 msgstr "Standaard systeeminstellingen gebruiken"
 
 #: ../src/preferences-dialog.c:367
-#, fuzzy
 msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
-msgstr "Indien geselecteerd, "
+msgstr "Indien geselecteerd, zal Xfmpc proberen de omgevings variabelen MPD_HOST en anders MPD_PORT als die niet leesbaar zijn word localhost gebruikt"
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
