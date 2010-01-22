@@ -70,15 +70,15 @@ namespace Xfmpc {
 
   	  	  	/* Title */
 			var attrs = new Pango.AttrList ();
-			unowned Pango.Attribute attr = Pango.attr_weight_new (Pango.Weight.BOLD);
+			var attr = Pango.attr_weight_new (Pango.Weight.BOLD);
 			attr.start_index = 0;
 			attr.end_index = -1;
-			attrs.insert (attr);
+			attrs.insert (attr.copy ());
 
 			attr = Pango.attr_scale_new ((double) Pango.Scale.X_LARGE);
 			attr.start_index = 0;
 			attr.end_index = -1;
-			attrs.insert (attr);
+			attrs.insert (attr.copy ());
 
 			title = new Gtk.Label (_("Not connected"));
 			title.set_attributes (attrs);
@@ -91,7 +91,7 @@ namespace Xfmpc {
 			attr = Pango.attr_scale_new ((double) Pango.Scale.SMALL);
 			attr.start_index = 0;
 			attr.end_index = -1;
-			attrs.insert (attr);
+			attrs.insert (attr.copy ());
 
 			this.subtitle = new Gtk.Label (Config.PACKAGE_STRING);
 			this.subtitle.set_attributes (attrs);
