@@ -1,6 +1,6 @@
 /*
- *  Copyright (c) 2009 Mike Massonnet <mmassonnet@xfce.org>
- *  Copyright (c) 2009 Vincent Legout <vincent@xfce.org>
+ *  Copyright (c) 2009-2010 Mike Massonnet <mmassonnet@xfce.org>
+ *  Copyright (c) 2009-2010 Vincent Legout <vincent@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -238,7 +238,7 @@ namespace Xfmpc {
 					       "artists", null,
 					       "authors", authors,
 					       "comments", _("MPD client written in GTK+ for Xfce"),
-					       "copyright", "Copyright \xc2\xa9 2008-2009 Mike Massonnet, Vincent Legout",
+					       "copyright", "Copyright \xc2\xa9 2008-2010 Mike Massonnet, Vincent Legout",
                          	 	       "documenters", null,
                          	 	       "license", Xfce.get_license_text (Xfce.LicenseTextType.GPL),
                          	 	       "translator-credits", _("translator-credits"),
