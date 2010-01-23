@@ -28,9 +28,10 @@ AC_REVISION([$Id$])
 dnl ***************************
 dnl *** Initialize automake ***
 dnl ***************************
-AM_INIT_AUTOMAKE([1.8 dist-bzip2 tar-ustar])
+AM_INIT_AUTOMAKE([1.11 dist-bzip2 tar-ustar])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE()
+AM_SILENT_RULES([yes])
 
 dnl ********************************
 dnl *** Check for basic programs ***
@@ -67,18 +68,17 @@ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([LIBMPD], [libmpd], [0.15.0])
 
 dnl Check for valac
-valac_minimum_version=0.7.1
 if test "x$USE_MAINTAINER_MODE" = "xyes" ; then
-	AC_CHECK_PROG([has_valac], [valac], [yes], [no])
-	AC_PATH_PROG([VALAC], [valac], [valac])
-	AC_SUBST(VALAC)
-	if test "x$has_valac" != "xyes" ; then
-		echo "***"
-		echo "*** You need the valac compiler in order to compile parts of the project"
-		echo "***"
-		echo
+	AM_PROG_VALAC([0.7.1])
+	if test "x$VALAC" = "x" ; then
+		AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])
 	fi
-	XDT_CHECK_PACKAGE([XFCE4VALA], [xfce4-vala], [0.1])
+
+	XDT_CHECK_PACKAGE([XFCE4VALA], [xfce4-vala], [4.6])
+	PKG_CHECK_EXISTS([xfce4-vala >= 4.7],
+				AC_ERROR([
+	*** Build configured for Xfce Panel 4.6 but  ***
+	*** Xfce Vala bindings for 4.7 are installed ***]), [])
 fi
 
 dnl ***********************************
@@ -97,13 +97,12 @@ dnl *** Print configuration ***
 dnl ***************************
 echo
 echo "Build Configuration:"
-echo 
+echo
 echo "* Maintainer Mode:        $USE_MAINTAINER_MODE"
 if test "x$USE_MAINTAINER_MODE" = "xyes" ; then
-echo "    * Vala:               $has_valac"
-echo "      You need Vala $valac_minimum_version or higher (run $VALAC --version)"
+echo
+echo "    * Vala:               $VALAC $am__vala_version"
 echo
 fi
 echo "* Debug Support:          $enable_debug"
 echo
-

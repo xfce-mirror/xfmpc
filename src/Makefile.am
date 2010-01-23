@@ -12,14 +12,21 @@ xfmpc_VALASOURCES =							\
 	preferences.vala						\
 	main.vala
 
+xfmpc_VALAFLAGS =							\
+	--vapidir=.							\
+	--pkg=libxfcegui4-1.0						\
+	--pkg=config							\
+	--pkg=mpdclient							\
+	--pkg=xfce-arrow-button
+
 vala_built_SOURCES =							\
-	$(xfmpc_VALASOURCES:.vala=.c)
+	$(xfmpc_VALASOURCES:.vala=.c) xfmpc.h
 
 if MAINTAINER_MODE
 
 BUILT_SOURCES =	vala.stamp
 vala.stamp: $(xfmpc_VALASOURCES)
-	$(VALAC) --vapidir=. --pkg=libxfcegui4-1.0 --pkg=config --pkg=mpdclient --pkg=xfce-arrow-button $^ -C -H xfmpc.h
+	$(VALAC) $(xfmpc_VALAFLAGS) $^ -C -h xfmpc.h
 	touch $@
 
 endif
@@ -28,8 +35,7 @@ xfmpc_SOURCES = 							\
 	mpdclient.c							\
 	mpdclient.h							\
 	xfce-arrow-button.c						\
-	xfce-arrow-button.h						\
-	xfmpc.h
+	xfce-arrow-button.h
 xfmpc_SOURCES += $(vala_built_SOURCES)
 
 xfmpc_CFLAGS =								\
@@ -60,3 +66,4 @@ EXTRA_DIST =								\
 CLEANFILES =								\
 	$(BUILT_SOURCES)
 
+# vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
