@@ -198,5 +198,3 @@ namespace Xfmpc {
 		}
 	}
 }
-
-/* vi:set ts=8 sw=8: */
