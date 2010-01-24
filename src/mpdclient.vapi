@@ -26,6 +26,7 @@ namespace Xfmpc {
 		public uchar get_volume ();
 		public bool is_connected ();
 		public bool is_playing ();
+		public bool is_paused ();
 		public bool is_stopped ();
 		public bool next ();
 		public bool pause ();

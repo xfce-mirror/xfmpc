@@ -84,6 +84,7 @@ guint8                  xfmpc_mpdclient_get_volume              (XfmpcMpdclient 
 gboolean                xfmpc_mpdclient_get_repeat              (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_get_random              (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_is_playing              (XfmpcMpdclient *mpdclient);
+gboolean                xfmpc_mpdclient_is_paused               (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_is_stopped              (XfmpcMpdclient *mpdclient);
 
 void                    xfmpc_mpdclient_update_status           (XfmpcMpdclient *mpdclient);

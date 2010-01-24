@@ -660,6 +660,13 @@ xfmpc_mpdclient_is_playing (XfmpcMpdclient *mpdclient)
 }
 
 gboolean
+xfmpc_mpdclient_is_paused (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
+  return mpd_player_get_state (priv->mi) == MPD_PLAYER_PAUSE;
+}
+
+gboolean
 xfmpc_mpdclient_is_stopped (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
