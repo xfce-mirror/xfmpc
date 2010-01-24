@@ -115,9 +115,9 @@ namespace Xfmpc {
 			((Gtk.ToggleAction )(this.action_group.get_action ("view-statusbar"))).set_active (this.preferences.show_statusbar);
 
   	  	  	/* === Signals === */
-			this.mpdclient.pp_changed.connect (cb_update_title);
-			this.mpdclient.stopped.connect (cb_update_title);
-			this.mpdclient.song_changed.connect (cb_update_title);
+			this.mpdclient.pp_changed.connect (update_window_title);
+			this.mpdclient.stopped.connect (update_window_title);
+			this.mpdclient.song_changed.connect (update_window_title);
 			this.mpdclient.playlist_changed.connect (cb_playlist_changed);
 			this.preferences.notify["show-statusbar"].connect (cb_show_statusbar_changed);
 
@@ -245,29 +245,28 @@ namespace Xfmpc {
 
 		private void cb_playlist_changed () {
 			update_statusbar ();
-
-			cb_update_title ();
+			update_window_title ();
 		}
 
-		private void cb_update_title () {
-			if (this.mpdclient.is_playing ())
-				set_title (get_updated_title ());
-			else if (this.mpdclient.is_paused ())
-				set_title ("[" + get_updated_title () + "]");
-			else
-				set_title (Config.PACKAGE_NAME);
-		}
+		private void update_window_title () {
+			string _title;
 
-		private string get_updated_title () {
 			if (this.mpdclient.get_artist () != "n/a" && this.mpdclient.get_title () != "n/a")
-				return ("%s - %s").printf (this.mpdclient.get_artist (),
-							   this.mpdclient.get_title ());
+				_title = ("%s - %s").printf (this.mpdclient.get_artist (),
+							     this.mpdclient.get_title ());
 			else if (this.mpdclient.get_artist () == "n/a")
-				return ("%s").printf (this.mpdclient.get_title ());
+				_title = ("%s").printf (this.mpdclient.get_title ());
 			else if (this.mpdclient.get_title () == "n/a")
-				return ("%s").printf (this.mpdclient.get_artist ());
+				_title = ("%s").printf (this.mpdclient.get_artist ());
 			else
-				return Config.PACKAGE_NAME;
+				_title = Config.PACKAGE_NAME;
+
+			if (this.mpdclient.is_playing ())
+				title = _title + " - " + Config.PACKAGE_NAME;
+			else if (this.mpdclient.is_paused ())
+				title = "[" + _title + "] - " + Config.PACKAGE_NAME;
+			else
+				title = Config.PACKAGE_NAME;
 		}
 
 		private void cb_show_statusbar_changed (ParamSpec pspec) {
