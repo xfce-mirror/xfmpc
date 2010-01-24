@@ -1,6 +1,14 @@
+INCLUDES =								\
+	-I${top_srcdir}							\
+	-DGETTEXT_PACKAGE=\""$(GETTEXT_PACKAGE)"\"			\
+	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"				\
+	-DLOCALEDIR=\""$(localedir)"\"					\
+	-DDATADIR=\""$(datadir)"\"					\
+	-DSRCDIR=\""$(top_srcdir)"\"
+
 bin_PROGRAMS = xfmpc
 
-xfmpc_VALASOURCES =							\
+xfmpc_SOURCES =								\
 	preferences-dialog.vala						\
 	song-dialog.vala						\
 	statusbar.vala							\
@@ -10,60 +18,32 @@ xfmpc_VALASOURCES =							\
 	main-window.vala						\
 	playlist.vala							\
 	preferences.vala						\
-	main.vala
+	main.vala							\
+	mpdclient.c							\
+	xfce-arrow-button.c
 
 xfmpc_VALAFLAGS =							\
+	--header=xfmpc.h						\
 	--vapidir=.							\
 	--pkg=libxfcegui4-1.0						\
 	--pkg=config							\
 	--pkg=mpdclient							\
 	--pkg=xfce-arrow-button
 
-vala_built_SOURCES =							\
-	$(xfmpc_VALASOURCES:.vala=.c) xfmpc.h
-
-if MAINTAINER_MODE
-
-BUILT_SOURCES =	vala.stamp
-vala.stamp: $(xfmpc_VALASOURCES)
-	$(VALAC) $(xfmpc_VALAFLAGS) $^ -C -h xfmpc.h
-	touch $@
-
-endif
-
-xfmpc_SOURCES = 							\
-	mpdclient.c							\
-	mpdclient.h							\
-	xfce-arrow-button.c						\
-	xfce-arrow-button.h
-xfmpc_SOURCES += $(vala_built_SOURCES)
-
 xfmpc_CFLAGS =								\
+	@GTHREAD_CFLAGS@						\
+	@LIBX11_CFLAGS@							\
 	@GTK_CFLAGS@							\
 	@LIBXFCEGUI4_CFLAGS@						\
 	@LIBXFCE4UTIL_CFLAGS@						\
-	@LIBMPD_CFLAGS@							\
-	@GTHREAD_CFLAGS@
+	@LIBMPD_CFLAGS@
 
 xfmpc_LDADD =								\
+	@GTHREAD_LIBS@							\
+	@LIBX11_LIBS@							\
 	@GTK_LIBS@							\
 	@LIBXFCEGUI4_LIBS@						\
 	@LIBXFCE4UTIL_LIBS@						\
-	@LIBMPD_LIBS@							\
-	@GTHREAD_LIBS@
-
-INCLUDES =								\
-	-I${top_srcdir}							\
-	-DGETTEXT_PACKAGE=\""$(GETTEXT_PACKAGE)"\"			\
-	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"				\
-	-DLOCALEDIR=\""$(localedir)"\"					\
-	-DDATADIR=\""$(datadir)"\"					\
-	-DSRCDIR=\""$(top_srcdir)"\"
-
-EXTRA_DIST =								\
-	$(xfmpc_VALASOURCES)
-
-CLEANFILES =								\
-	$(BUILT_SOURCES)
+	@LIBMPD_LIBS@
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:

@@ -9,9 +9,9 @@ dnl *** Version information ***
 dnl ***************************
 m4_define([xfmpc_version_major], [0])
 m4_define([xfmpc_version_minor], [2])
-m4_define([xfmpc_version_micro], [0])
-m4_define([xfmpc_version_build], [r@REVISION@])
-m4_define([xfmpc_version_tag], []) # leave empty for release
+m4_define([xfmpc_version_micro], [1])
+m4_define([xfmpc_version_build], [@REVISION@])
+m4_define([xfmpc_version_tag], [git]) # leave empty for release
 m4_define([xfmpc_version], [xfmpc_version_major().xfmpc_version_minor().xfmpc_version_micro()ifelse(xfmpc_version_tag(), [git], [xfmpc_version_tag()-xfmpc_version_build()], [xfmpc_version_tag()])])
 
 dnl ***************************
@@ -23,12 +23,12 @@ AC_INIT([Xfmpc], [xfmpc_version], [http://bugzilla.xfce.org/], [xfmpc],
         [http://goodies.xfce.org/projects/applications/xfmpc])
 AC_PREREQ([2.50])
 AC_CANONICAL_TARGET()
-AC_REVISION([$Id$])
+AC_REVISION([xfmpc_version_build])
 
 dnl ***************************
 dnl *** Initialize automake ***
 dnl ***************************
-AM_INIT_AUTOMAKE([1.11 dist-bzip2 tar-ustar])
+AM_INIT_AUTOMAKE([1.11 dist-bzip2])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE()
 AM_SILENT_RULES([yes])
@@ -36,6 +36,7 @@ AM_SILENT_RULES([yes])
 dnl ********************************
 dnl *** Check for basic programs ***
 dnl ********************************
+AC_PROG_CC()
 AM_PROG_CC_C_O()
 AC_PROG_LIBTOOL()
 AC_PROG_LD()
@@ -47,39 +48,31 @@ dnl *** Check for standard headers ***
 dnl **********************************
 AC_HEADER_STDC()
 
-dnl 
-dnl *******************************
-dnl *** Check for X11 installed ***
-dnl *******************************
-XDT_CHECK_LIBX11_REQUIRE()
-
-dnl ******************************
-dnl *** Check for i18n support ***
-dnl ******************************
-XDT_I18N([@LINGUAS@])
-
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
+XDT_CHECK_LIBX11_REQUIRE()
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.12.0])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.12.0])
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([LIBMPD], [libmpd], [0.15.0])
 
-dnl Check for valac
+dnl ***********************
+dnl *** Check for valac ***
+dnl ***********************
 if test "x$USE_MAINTAINER_MODE" = "xyes" ; then
-	AM_PROG_VALAC([0.7.1])
+	AM_PROG_VALAC([0.7.9])
 	if test "x$VALAC" = "x" ; then
 		AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])
 	fi
-
 	XDT_CHECK_PACKAGE([XFCE4VALA], [xfce4-vala], [4.6])
-	PKG_CHECK_EXISTS([xfce4-vala >= 4.7],
-				AC_ERROR([
-	*** Build configured for Xfce Panel 4.6 but  ***
-	*** Xfce Vala bindings for 4.7 are installed ***]), [])
 fi
+
+dnl ******************************
+dnl *** Check for i18n support ***
+dnl ******************************
+XDT_I18N([@LINGUAS@])
 
 dnl ***********************************
 dnl *** Check for debugging support ***
