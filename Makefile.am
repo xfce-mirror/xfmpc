@@ -10,6 +10,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST =								\
+	third-party							\
 	AUTHORS								\
 	ChangeLog							\
 	ChangeLog.pre-r7517						\

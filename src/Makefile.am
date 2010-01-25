@@ -25,6 +25,7 @@ xfmpc_SOURCES =								\
 xfmpc_VALAFLAGS =							\
 	--header=xfmpc.h						\
 	--vapidir=.							\
+	--vapidir=$(top_srcdir)/third-party				\
 	--pkg=libxfcegui4-1.0						\
 	--pkg=config							\
 	--pkg=mpdclient							\
