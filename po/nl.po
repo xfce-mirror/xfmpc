@@ -100,25 +100,23 @@ msgstr "Verbonden met MPD"
 
 #: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
-msgstr "n/a"
+msgstr "n/b"
 
 #: ../src/preferences-dialog.c:359
 msgid "MPD"
 msgstr "MPD"
 
 #: ../src/preferences-dialog.c:363
-#, fuzzy
 msgid "Connection"
 msgstr "Verbinding"
 
 #: ../src/preferences-dialog.c:366
-#, fuzzy
 msgid "Use _default system settings"
-msgstr "Standaard systeeminstellingen gebruiken"
+msgstr "_Standaard systeeminstellingen gebruiken"
 
 #: ../src/preferences-dialog.c:367
 msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
-msgstr "Indien geselecteerd, zal Xfmpc proberen de omgevings variabelen MPD_HOST en anders MPD_PORT als die niet leesbaar zijn word localhost gebruikt"
+msgstr "Indien geselecteerd, zal Xfmpc proberen de omgevings variabelen MPD_HOST en anders MPD_PORT lezen, als die niet leesbaar zijn word localhost gebruikt"
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
@@ -145,14 +143,12 @@ msgid "Show _stastusbar"
 msgstr "Toon _stastusbalk"
 
 #: ../src/preferences-dialog.c:431
-#, fuzzy
 msgid "Song Format"
-msgstr "Liedje Formaat"
+msgstr "Liedje soort "
 
 #: ../src/preferences-dialog.c:436
-#, fuzzy
 msgid "Song Format:"
-msgstr "Liedje Formaat:"
+msgstr "Liedje soort::"
 
 #: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
 msgid "Title"
