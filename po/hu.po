@@ -1,7 +1,7 @@
 # Hungarian translation of xfmpc
 # Copyright 2009. Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfmpc package.
-#
+# 
 # SZERVÁC Attila <sas@321.hu>, 2008.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
 msgid ""
@@ -15,16 +15,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
 msgstr "Csere"
 
 #: ../src/dbbrowser.c:919 ../src/playlist.c:884
-#, fuzzy
 msgid "Browse"
 msgstr "Tallózás"
 
@@ -64,11 +62,10 @@ msgstr "Aktuális lejátszólista"
 msgid "Browse database"
 msgstr "Adatbázis tallózása"
 
-#.
 #. // write private function in case it is wished to avoid the
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
-#.
+#. 
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:263
 #, c-format
@@ -118,12 +115,8 @@ msgid "Use _default system settings"
 msgstr "_Alapértelmezett rendszerbeállítások használata"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Az Xfmpc megpróbálja beolvasni az MPD_HOST és MPD_PORT környezeti "
-"változókat, ellenkező esetben a localhostot fogja használni"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Az Xfmpc megpróbálja beolvasni az MPD_HOST és MPD_PORT környezeti változókat, ellenkező esetben a localhostot fogja használni"
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
@@ -264,6 +257,5 @@ msgstr "MPD-kliens"
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#, fuzzy
 #~ msgid "Song format:"
 #~ msgstr "Számformátum:"
