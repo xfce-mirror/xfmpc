@@ -139,7 +139,6 @@ msgid "Statusbar"
 msgstr "Állapotsor"
 
 #: ../src/preferences-dialog.c:423
-#, fuzzy
 msgid "Show _stastusbar"
 msgstr "Állap_otsor megjelenítése"
 
@@ -148,9 +147,8 @@ msgid "Song Format"
 msgstr "Számformátum"
 
 #: ../src/preferences-dialog.c:436
-#, fuzzy
 msgid "Song Format:"
-msgstr "Számformátum"
+msgstr "Számformátum:"
 
 #: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
 msgid "Title"
