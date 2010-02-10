@@ -7,9 +7,9 @@ namespace Xfmpc {
 	[CCode (cheader_filename = "mpdclient.h")]
 	public class Mpdclient {
 		public bool connect ();
-		public bool database_read (string dir, string *filename, string *basename, out bool is_dir);
+		public bool database_read (string dir, out string filename, out string basename, out bool is_dir);
 		public bool database_refresh ();
-		public bool database_search (string query, string *filename, string *basename);
+		public bool database_search (string query, out string filename, out string basename);
 		public void disconnect ();
 		public static unowned Xfmpc.Mpdclient get_default ();
 		public unowned string get_album ();
@@ -34,7 +34,7 @@ namespace Xfmpc {
 		public bool playlist_clear ();
 		public int playlist_get_length ();
 		public int playlist_get_total_time ();
-		public bool playlist_read (out int id, out int pos, string *filename, string *song, string *length);
+		public bool playlist_read (out int id, out int pos, out string filename, out string song, out string length);
 		public bool pp ();
 		public bool previous ();
 		public bool queue_add (string path);

@@ -240,7 +240,7 @@ namespace Xfmpc {
 
 			this.store.clear ();
 
-			while (this.mpdclient.playlist_read (out id, out pos, &filename, &song, &length)) {
+			while (this.mpdclient.playlist_read (out id, out pos, out filename, out song, out length)) {
 				append (id, pos, filename, song, length);
 			}
 

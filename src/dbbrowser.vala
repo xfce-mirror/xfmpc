@@ -151,7 +151,7 @@ namespace Xfmpc {
 				i ++;
 			}
 
-			while (this.mpdclient.database_read (wdir, &filename, &basename, out is_dir)) {
+			while (this.mpdclient.database_read (wdir, out filename, out basename, out is_dir)) {
 				is_bold = playlist.has_filename (filename, is_dir);
 				append (filename, basename, is_dir, is_bold);
 
@@ -229,7 +229,7 @@ namespace Xfmpc {
 			this.is_searching = true;
 			clear ();
 
-			while (this.mpdclient.database_search (query, &filename, &basename)) {
+			while (this.mpdclient.database_search (query, out filename, out basename)) {
 				is_bold = playlist.has_filename (filename, false);
 				append (filename, basename, false, is_bold);
 				i++;
