@@ -71,6 +71,10 @@ gboolean                xfmpc_mpdclient_set_repeat              (XfmpcMpdclient 
                                                                  gboolean repeat);
 gboolean                xfmpc_mpdclient_set_random              (XfmpcMpdclient *mpdclient,
                                                                  gboolean random);
+gboolean                xfmpc_mpdclient_set_single              (XfmpcMpdclient *mpdclient,
+                                                                 gboolean single);
+gboolean                xfmpc_mpdclient_set_consume             (XfmpcMpdclient *mpdclient,
+                                                                 gboolean consume);
 
 gint                    xfmpc_mpdclient_get_pos                 (XfmpcMpdclient *mpdclient);
 gint                    xfmpc_mpdclient_get_id                  (XfmpcMpdclient *mpdclient);
@@ -83,6 +87,8 @@ gint                    xfmpc_mpdclient_get_total_time          (XfmpcMpdclient 
 guint8                  xfmpc_mpdclient_get_volume              (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_get_repeat              (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_get_random              (XfmpcMpdclient *mpdclient);
+gboolean                xfmpc_mpdclient_get_single              (XfmpcMpdclient *mpdclient);
+gboolean                xfmpc_mpdclient_get_consume             (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_is_playing              (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_is_paused               (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_is_stopped              (XfmpcMpdclient *mpdclient);

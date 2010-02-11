@@ -19,6 +19,8 @@ namespace Xfmpc {
 		public int get_pos ();
 		public bool get_random ();
 		public bool get_repeat ();
+		public bool get_single ();
+		public bool get_consume ();
 		public unowned Xfmpc.SongInfo get_song_info (int id);
 		public int get_time ();
 		public unowned string get_title ();
@@ -44,6 +46,8 @@ namespace Xfmpc {
 		public bool set_id (int id);
 		public bool set_random (bool random);
 		public bool set_repeat (bool repeat);
+		public bool set_single (bool single);
+		public bool set_consume (bool consume);
 		public bool set_song_time (uint time);
 		public bool set_volume (uchar volume);
 		public bool stop ();
@@ -59,6 +63,8 @@ namespace Xfmpc {
 		public virtual signal void playlist_changed ();
 		public virtual signal void repeat ();
 		public virtual signal void random ();
+		public virtual signal void single ();
+		public virtual signal void consume ();
 	}
 	[Compact]
 	[CCode (cheader_filename = "mpdclient.h")]

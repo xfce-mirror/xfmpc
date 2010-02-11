@@ -44,6 +44,8 @@ enum
   SIG_PLAYLIST_CHANGED,
   SIG_REPEAT,
   SIG_RANDOM,
+  SIG_SINGLE,
+  SIG_CONSUME,
   LAST_SIGNAL
 };
 
@@ -82,6 +84,8 @@ struct _XfmpcMpdclientClass
   void (*playlist_changed)  (XfmpcMpdclient *mpdclient, gpointer user_data);
   void (*repeat)            (XfmpcMpdclient *mpdclient, gboolean repeat, gpointer user_data);
   void (*random)            (XfmpcMpdclient *mpdclient, gboolean random, gpointer user_data);
+  void (*single)            (XfmpcMpdclient *mpdclient, gboolean single, gpointer user_data);
+  void (*consume)           (XfmpcMpdclient *mpdclient, gboolean consume, gpointer user_data);
 };
 
 struct _XfmpcMpdclient
@@ -230,6 +234,24 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
     g_signal_new ("random", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, random),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__BOOLEAN,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_BOOLEAN);
+
+  signals[SIG_SINGLE] =
+    g_signal_new ("single", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, single),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__BOOLEAN,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_BOOLEAN);
+
+  signals[SIG_CONSUME] =
+    g_signal_new ("consume", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, consume),
                   NULL, NULL,
                   g_cclosure_marshal_VOID__BOOLEAN,
                   G_TYPE_NONE, 1,
@@ -534,6 +556,30 @@ xfmpc_mpdclient_set_random (XfmpcMpdclient *mpdclient,
     return TRUE;
 }
 
+gboolean
+xfmpc_mpdclient_set_single (XfmpcMpdclient *mpdclient,
+                            gboolean single)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
+
+  if (MPD_OK != mpd_player_set_single (priv->mi, single))
+    return FALSE;
+  else
+    return TRUE;
+}
+
+gboolean
+xfmpc_mpdclient_set_consume (XfmpcMpdclient *mpdclient,
+                             gboolean consume)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
+
+  if (MPD_OK != mpd_player_set_consume (priv->mi, consume))
+    return FALSE;
+  else
+    return TRUE;
+}
+
 
 
 gint
@@ -653,6 +699,20 @@ xfmpc_mpdclient_get_random (XfmpcMpdclient *mpdclient)
 }
 
 gboolean
+xfmpc_mpdclient_get_single (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
+  return mpd_player_get_single (priv->mi);
+}
+
+gboolean
+xfmpc_mpdclient_get_consume (XfmpcMpdclient *mpdclient)
+{
+  XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
+  return mpd_player_get_consume (priv->mi);
+}
+
+gboolean
 xfmpc_mpdclient_is_playing (XfmpcMpdclient *mpdclient)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
@@ -725,6 +785,14 @@ cb_status_changed (MpdObj *mi,
   if (what & MPD_CST_RANDOM)
     g_signal_emit (mpdclient, signals[SIG_RANDOM], 0,
                    xfmpc_mpdclient_get_random (mpdclient));
+
+  if (what & MPD_CST_SINGLE_MODE)
+    g_signal_emit (mpdclient, signals[SIG_SINGLE], 0,
+                   xfmpc_mpdclient_get_single (mpdclient));
+
+  if (what & MPD_CST_CONSUME_MODE)
+    g_signal_emit (mpdclient, signals[SIG_CONSUME], 0,
+                   xfmpc_mpdclient_get_consume (mpdclient));
 }
 
 
