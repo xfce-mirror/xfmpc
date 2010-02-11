@@ -32,6 +32,11 @@ namespace Xfmpc {
 		private Gtk.Notebook notebook;
 		private Gtk.Menu context_menu;
 
+		private Gtk.CheckMenuItem random;
+		private Gtk.CheckMenuItem repeat;
+		private Gtk.CheckMenuItem single;
+		private Gtk.CheckMenuItem consume;
+
 		private enum Columns {
   	  	  COLUMN_STRING,
   	  	  COLUMN_POINTER,
@@ -123,6 +128,11 @@ namespace Xfmpc {
 			if (this.context_menu == null)
 				this.context_menu_new ((Gtk.Widget) this.context_button);
 
+			this.repeat.set_active (this.mpdclient.get_repeat ());
+			this.random.set_active (this.mpdclient.get_random ());
+			this.single.set_active (this.mpdclient.get_single ());
+			this.consume.set_active (this.mpdclient.get_consume ());
+
 			this.context_menu.popup (null, null,
 					    (Gtk.MenuPositionFunc) this.position_context_menu,
 					    0, get_current_event_time ());
@@ -153,15 +163,21 @@ namespace Xfmpc {
 			this.context_menu.attach_to_widget (attach_widget, (Gtk.MenuDetachFunc) menu_detach);
 			this.context_menu.deactivate.connect (cb_context_menu_deactivate);
 
-			var mi = new Gtk.CheckMenuItem.with_label (_("Repeat"));
-			mi.set_active (this.mpdclient.get_repeat ());
-			mi.activate.connect (cb_repeat_switch);
-			this.context_menu.append (mi);
+			this.repeat = new Gtk.CheckMenuItem.with_label (_("Repeat"));
+			this.repeat.activate.connect (cb_repeat_switch);
+			this.context_menu.append (this.repeat);
 
-			mi = new Gtk.CheckMenuItem.with_label (_("Random"));
-			mi.set_active (this.mpdclient.get_random ());
-			mi.activate.connect (cb_random_switch);
-			this.context_menu.append (mi);
+			this.random = new Gtk.CheckMenuItem.with_label (_("Random"));
+			this.random.activate.connect (cb_random_switch);
+			this.context_menu.append (this.random);
+
+			this.single = new Gtk.CheckMenuItem.with_label (_("Single Mode"));
+			this.single.activate.connect (cb_single_switch);
+			this.context_menu.append (this.single);
+
+			this.consume = new Gtk.CheckMenuItem.with_label (_("Consume"));
+			this.consume.toggled.connect (cb_consume_switch);
+			this.context_menu.append (this.consume);
 
 			var separator = new Gtk.SeparatorMenuItem ();
 			this.context_menu.append (separator);
@@ -218,11 +234,19 @@ namespace Xfmpc {
 		}
 
 		private void cb_repeat_switch () {
-			this.mpdclient.set_repeat (!this.mpdclient.get_repeat ());
+			this.mpdclient.set_repeat (this.repeat.get_active ());
 		}
 
 		private void cb_random_switch () {
-			this.mpdclient.set_random (!this.mpdclient.get_random ());
+			this.mpdclient.set_random (this.random.get_active ());
+		}
+
+		private void cb_single_switch () {
+			this.mpdclient.set_single (this.single.get_active ());
+		}
+
+		private void cb_consume_switch () {
+			this.mpdclient.set_consume (this.consume.get_active ());
 		}
 
 		private void cb_preferences () {
