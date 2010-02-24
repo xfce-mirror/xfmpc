@@ -97,9 +97,8 @@ msgid "Failed to connect to MPD"
 msgstr "Povezava z MPD-jem ni uspela"
 
 #: ../src/mpdclient.c:353
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "Povezava"
+msgstr "Povezan z MPD-jem"
 
 #: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
@@ -142,7 +141,6 @@ msgid "Statusbar"
 msgstr "Vrstica stanja"
 
 #: ../src/preferences-dialog.c:423
-#, fuzzy
 msgid "Show _stastusbar"
 msgstr "Pokaži vrstico _stanja"
 
