@@ -1,0 +1,261 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-03 13:24+0200\n"
+"PO-Revision-Date: 2010-03-03 15:43+0200\n"
+"Last-Translator: Dima Smirnov <arch@cnc-parts.info>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/dbbrowser.c:913
+msgid "Replace"
+msgstr "Замена"
+
+#: ../src/dbbrowser.c:919
+#: ../src/playlist.c:884
+msgid "Browse"
+msgstr "Просмотр"
+
+#: ../src/extended-interface.c:288
+msgid "Repeat"
+msgstr "Повтор"
+
+#: ../src/extended-interface.c:293
+msgid "Random"
+msgstr "Случайно"
+
+#: ../src/extended-interface.c:397
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "Клиент для MPD для Xfce "
+
+#: ../src/extended-interface.c:397
+msgid "translator-credits"
+msgstr "Переводчики"
+
+#: ../src/extended-interface.c:466
+msgid "Clear Playlist"
+msgstr "Очистить плейлист"
+
+#: ../src/extended-interface.c:473
+msgid "Refresh Database"
+msgstr "Обновить базу"
+
+#: ../src/extended-interface.c:481
+msgid "Context Menu"
+msgstr "Контекстное меню"
+
+#: ../src/extended-interface.c:499
+msgid "Current Playlist"
+msgstr "Текущий плейлист"
+
+#: ../src/extended-interface.c:501
+msgid "Browse database"
+msgstr "Просмотреть базу"
+
+#.
+#. // write private function in case it is wished to avoid the
+#. // "n/a" values, but no big deal IMO
+#. text = get_subtitle (interface);
+#.
+#. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:263
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "\"%s\" из \"%s\" (%s)"
+
+#: ../src/interface.c:268
+msgid "Stopped"
+msgstr "Остановлен"
+
+#: ../src/interface.c:272
+#: ../src/interface.c:470
+msgid "Not connected"
+msgstr "Нет соединения"
+
+#: ../src/main-window.c:383
+#, c-format
+msgid "%d songs, %d hours and %d minutes"
+msgstr "%d песен, %d часов %d минут"
+
+#: ../src/main-window.c:385
+#, c-format
+msgid "%d songs, %d minutes"
+msgstr "%d песен, %d минут"
+
+#: ../src/mpdclient.c:348
+msgid "Failed to connect to MPD"
+msgstr "Не удается соединиться с MPD"
+
+#: ../src/mpdclient.c:353
+msgid "Connected to MPD"
+msgstr "Соединено с MPD"
+
+#: ../src/mpdclient.c:569
+#: ../src/mpdclient.c:599
+#: ../src/mpdclient.c:614
+msgid "n/a"
+msgstr "н/д"
+
+#: ../src/preferences-dialog.c:359
+msgid "MPD"
+msgstr "MPD"
+
+#: ../src/preferences-dialog.c:363
+msgid "Connection"
+msgstr "Соединение"
+
+#: ../src/preferences-dialog.c:366
+msgid "Use _default system settings"
+msgstr "Использовать настройки _по умолчанию"
+
+#: ../src/preferences-dialog.c:367
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Если отмечено, то Xfmpc будет пытаться прочитать переменные MPD_HOST и MPD_PORT, иначе будет считаться, что MPD установлен на данной машине"
+
+#: ../src/preferences-dialog.c:378
+msgid "Hostname:"
+msgstr "Имя хоста:"
+
+#: ../src/preferences-dialog.c:386
+msgid "Port:"
+msgstr "Порт:"
+
+#: ../src/preferences-dialog.c:397
+msgid "Password:"
+msgstr "Пароль:"
+
+#: ../src/preferences-dialog.c:414
+msgid "Appearance"
+msgstr "Внешний вид"
+
+#: ../src/preferences-dialog.c:420
+msgid "Statusbar"
+msgstr "Строка состояния"
+
+#: ../src/preferences-dialog.c:423
+msgid "Show _stastusbar"
+msgstr "Показать _строку состояния"
+
+#: ../src/preferences-dialog.c:431
+msgid "Song Format"
+msgstr "Формат песни"
+
+#: ../src/preferences-dialog.c:436
+msgid "Song Format:"
+msgstr "Формат песни:"
+
+#: ../src/preferences-dialog.c:441
+#: ../src/song-dialog.c:139
+msgid "Title"
+msgstr "Название"
+
+#: ../src/preferences-dialog.c:442
+msgid "Album - Title"
+msgstr "Альбом - Название"
+
+#: ../src/preferences-dialog.c:443
+msgid "Artist - Title"
+msgstr "Артист - Название"
+
+#: ../src/preferences-dialog.c:444
+msgid "Artist - Title (Date)"
+msgstr "Артист - Название (Дата)"
+
+#: ../src/preferences-dialog.c:445
+msgid "Artist - Album - Title"
+msgstr "Артист - Альбом - Название"
+
+#: ../src/preferences-dialog.c:446
+msgid "Artist - Album - Track. Title"
+msgstr "Артист - Альбом - Трек. Название"
+
+#: ../src/preferences-dialog.c:447
+msgid "Custom..."
+msgstr "Другое..."
+
+#: ../src/preferences-dialog.c:453
+msgid "Custom format:"
+msgstr "Пользовательский формат:"
+
+#: ../src/preferences-dialog.c:466
+msgid "Available parameters:"
+msgstr "Доступные параметры:"
+
+#: ../src/preferences-dialog.c:472
+#, c-format
+msgid "%a: Artist"
+msgstr "%a: Артист"
+
+#: ../src/preferences-dialog.c:477
+#, c-format
+msgid "%A: Album"
+msgstr "%A: Альбом"
+
+#: ../src/preferences-dialog.c:482
+#, c-format
+msgid "%d: Date"
+msgstr "%d: Дата"
+
+#: ../src/preferences-dialog.c:487
+msgid "%D: Disc"
+msgstr "%D: Диск"
+
+#: ../src/preferences-dialog.c:492
+#, c-format
+msgid "%f: File"
+msgstr "%f: Файл"
+
+#: ../src/preferences-dialog.c:497
+#, c-format
+msgid "%g: Genre"
+msgstr "%g: Жанр"
+
+#: ../src/preferences-dialog.c:502
+msgid "%t: Title"
+msgstr "%t: Название"
+
+#: ../src/preferences-dialog.c:507
+msgid "%T: Track"
+msgstr "%T: Трек"
+
+#: ../src/song-dialog.c:117
+msgid "File"
+msgstr "Файл"
+
+#: ../src/song-dialog.c:129
+msgid "Artist"
+msgstr "Артист"
+
+#: ../src/song-dialog.c:149
+msgid "Album"
+msgstr "Альбом"
+
+#: ../src/song-dialog.c:159
+msgid "Date"
+msgstr "Дата"
+
+#: ../src/song-dialog.c:166
+msgid "Track"
+msgstr "Трек"
+
+#: ../src/song-dialog.c:176
+msgid "Genre"
+msgstr "Жанр"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD клиент"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
