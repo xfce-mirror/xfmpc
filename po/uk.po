@@ -1,7 +1,7 @@
 # Ukrainian translation of xfmpc.
 # Copyright (C) 2008 Mike Massonnet <mmassonnet@xfce.org>
 # This file is distributed under the same license as the xfmpc package.
-#
+# 
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2008.
 msgid ""
 msgstr ""
@@ -17,13 +17,12 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
-msgstr "_Замінити"
+msgstr "Замінити"
 
 #: ../src/dbbrowser.c:919 ../src/playlist.c:884
 msgid "Browse"
-msgstr ""
+msgstr "Переглянути"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
@@ -39,7 +38,7 @@ msgstr "Клієнт MPD написаний в GTK+ для Xfce"
 
 #: ../src/extended-interface.c:397
 msgid "translator-credits"
-msgstr ""
+msgstr "Дмитро Нікітін <luckas_fb@mail.ru>"
 
 #: ../src/extended-interface.c:466
 msgid "Clear Playlist"
@@ -61,11 +60,10 @@ msgstr "Поточний список програвання"
 msgid "Browse database"
 msgstr "Вибрати базу даних"
 
-#.
 #. // write private function in case it is wished to avoid the
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
-#.
+#. 
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:263
 #, c-format
@@ -83,20 +81,20 @@ msgstr "Не з'єднаний"
 #: ../src/main-window.c:383
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr ""
+msgstr "%d пісень, %d годин і %d хвилин"
 
 #: ../src/main-window.c:385
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr ""
+msgstr "%d пісень, %d хвилин"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "Не вдалось з'єднатись з MPD"
 
 #: ../src/mpdclient.c:353
 msgid "Connected to MPD"
-msgstr ""
+msgstr "З'єднаний з MPD"
 
 #: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
@@ -104,24 +102,19 @@ msgstr "н/д"
 
 #: ../src/preferences-dialog.c:359
 msgid "MPD"
-msgstr ""
+msgstr "Плеєр MPD"
 
 #: ../src/preferences-dialog.c:363
 msgid "Connection"
-msgstr ""
+msgstr "З'єднання"
 
 #: ../src/preferences-dialog.c:366
-#, fuzzy
 msgid "Use _default system settings"
-msgstr "Використовувати типові налаштування системи"
+msgstr "Використовувати типо_ві налаштування системи"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Якщо відмічено, Xfmpc спробує прочитати змінні середовища MPD_HOST і "
-"MPD_PORT інакше буде використовувати localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Якщо відмічено, Xfmpc спробує прочитати змінні середовища MPD_HOST і MPD_PORT інакше буде використовувати localhost"
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
@@ -137,120 +130,120 @@ msgstr "Пароль:"
 
 #: ../src/preferences-dialog.c:414
 msgid "Appearance"
-msgstr ""
+msgstr "Зовнішній вигляд"
 
 #: ../src/preferences-dialog.c:420
 msgid "Statusbar"
-msgstr ""
+msgstr "Панель стану"
 
 #: ../src/preferences-dialog.c:423
 msgid "Show _stastusbar"
-msgstr ""
+msgstr "В_ідображати панель стану"
 
 #: ../src/preferences-dialog.c:431
 msgid "Song Format"
-msgstr ""
+msgstr "Формат пісні"
 
 #: ../src/preferences-dialog.c:436
 msgid "Song Format:"
-msgstr ""
+msgstr "Формат пісні:"
 
 #: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
 msgid "Title"
-msgstr ""
+msgstr "Назва"
 
 #: ../src/preferences-dialog.c:442
 msgid "Album - Title"
-msgstr ""
+msgstr "Альбом - Назва"
 
 #: ../src/preferences-dialog.c:443
 msgid "Artist - Title"
-msgstr ""
+msgstr "Артист - Назва"
 
 #: ../src/preferences-dialog.c:444
 msgid "Artist - Title (Date)"
-msgstr ""
+msgstr "Артист - Назва (Дата)"
 
 #: ../src/preferences-dialog.c:445
 msgid "Artist - Album - Title"
-msgstr ""
+msgstr "Артист - Альбом - Назва"
 
 #: ../src/preferences-dialog.c:446
 msgid "Artist - Album - Track. Title"
-msgstr ""
+msgstr "Артист - Альбом - Трек. Назва"
 
 #: ../src/preferences-dialog.c:447
 msgid "Custom..."
-msgstr ""
+msgstr "Довільний..."
 
 #: ../src/preferences-dialog.c:453
 msgid "Custom format:"
-msgstr ""
+msgstr "Довільний формат:"
 
 #: ../src/preferences-dialog.c:466
 msgid "Available parameters:"
-msgstr ""
+msgstr "Доступні параметри:"
 
 #: ../src/preferences-dialog.c:472
 #, c-format
 msgid "%a: Artist"
-msgstr ""
+msgstr "%a: Артист"
 
 #: ../src/preferences-dialog.c:477
 #, c-format
 msgid "%A: Album"
-msgstr ""
+msgstr "%A: Альбом"
 
 #: ../src/preferences-dialog.c:482
 #, c-format
 msgid "%d: Date"
-msgstr ""
+msgstr "%d: Дата"
 
 #: ../src/preferences-dialog.c:487
 msgid "%D: Disc"
-msgstr ""
+msgstr "%D: Диск"
 
 #: ../src/preferences-dialog.c:492
 #, c-format
 msgid "%f: File"
-msgstr ""
+msgstr "%f: Файл"
 
 #: ../src/preferences-dialog.c:497
 #, c-format
 msgid "%g: Genre"
-msgstr ""
+msgstr "%g: Жанр"
 
 #: ../src/preferences-dialog.c:502
 msgid "%t: Title"
-msgstr ""
+msgstr "%t: Назва"
 
 #: ../src/preferences-dialog.c:507
 msgid "%T: Track"
-msgstr ""
+msgstr "%T: Трек"
 
 #: ../src/song-dialog.c:117
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 #: ../src/song-dialog.c:129
 msgid "Artist"
-msgstr ""
+msgstr "Артист"
 
 #: ../src/song-dialog.c:149
 msgid "Album"
-msgstr ""
+msgstr "Альбом"
 
 #: ../src/song-dialog.c:159
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: ../src/song-dialog.c:166
 msgid "Track"
-msgstr ""
+msgstr "Трек"
 
 #: ../src/song-dialog.c:176
 msgid "Genre"
-msgstr ""
+msgstr "Жанр"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
