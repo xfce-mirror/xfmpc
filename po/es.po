@@ -3,7 +3,7 @@
 # Copyright (C) 2009 THE xfmpc'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfmpc package.
 #  <abel.martin.ruiz@gmail.com>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
@@ -18,14 +18,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
-msgstr "_Reemplazar"
+msgstr "Sustituir"
 
 #: ../src/dbbrowser.c:919 ../src/playlist.c:884
-#, fuzzy
 msgid "Browse"
-msgstr "_Navegar"
+msgstr "Navegar"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
@@ -63,11 +61,10 @@ msgstr "Lista de reproducción actual"
 msgid "Browse database"
 msgstr "Explorar la base de datos"
 
-#.
 #. // write private function in case it is wished to avoid the
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
-#.
+#. 
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:263
 #, c-format
@@ -94,12 +91,11 @@ msgstr "%d canciones, %d minutos"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "Fallo al conectarse a MPD"
 
 #: ../src/mpdclient.c:353
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "Conexión"
+msgstr "Conectado a MPD"
 
 #: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
@@ -118,12 +114,8 @@ msgid "Use _default system settings"
 msgstr "Utilizar la configuración pre_determinada del sistema"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Si está activado Xfmpc intentará leer las variables de entorno MPD_HOST y "
-"MPD_PORT, de lo contrario utilizará localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Si está activado Xfmpc intentará leer las variables de entorno MPD_HOST y MPD_PORT, de lo contrario utilizará localhost"
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
@@ -146,7 +138,6 @@ msgid "Statusbar"
 msgstr "Barra de estado"
 
 #: ../src/preferences-dialog.c:423
-#, fuzzy
 msgid "Show _stastusbar"
 msgstr "Mostrar _barra de estado"
 
@@ -155,9 +146,8 @@ msgid "Song Format"
 msgstr "Formato de canción"
 
 #: ../src/preferences-dialog.c:436
-#, fuzzy
 msgid "Song Format:"
-msgstr "Formato de canción"
+msgstr "Formato de canción:"
 
 #: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
 msgid "Title"
