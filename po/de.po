@@ -251,7 +251,7 @@ msgstr "Genre"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
-msgstr "MPD Client"
+msgstr "MPD-Client"
 
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
