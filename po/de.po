@@ -6,7 +6,7 @@
 # Fabian Nowak <timystery@arcor.de>, 2008.
 # Mike Massonnet <mmassonnet@xfce.org>, 2009.
 # Simon Schneider <simon@schneiderimtal.de>, 2009
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.5svn-r\n"
@@ -21,14 +21,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
-msgstr "_Ersetzen"
+msgstr "Ersetzen"
 
 #: ../src/dbbrowser.c:919 ../src/playlist.c:884
-#, fuzzy
 msgid "Browse"
-msgstr "_Durchsuchen"
+msgstr "Durchsuchen"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
@@ -66,11 +64,10 @@ msgstr "Aktuelle Wiedergabeliste"
 msgid "Browse database"
 msgstr "Datenbank durchsuchen"
 
-#.
 #. // write private function in case it is wished to avoid the
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
-#.
+#. 
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:263
 #, c-format
@@ -97,12 +94,11 @@ msgstr "%d Lieder, %d Minuten"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "Konnte keine Verbindung zu MPD aufbauen."
 
 #: ../src/mpdclient.c:353
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "Verbindung"
+msgstr "Verbunden mit MPD"
 
 #: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
@@ -121,12 +117,8 @@ msgid "Use _default system settings"
 msgstr "_Standardeinstellung verwenden"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Falls dies ausgewählt ist, wird Xfpmc versuchen, die Umgebungsvariablen "
-"MPD_HOST und MPD_PORT auszulesen, sonst wird localhost verwendet."
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Falls dies ausgewählt ist, wird Xfpmc versuchen, die Umgebungsvariablen MPD_HOST und MPD_PORT auszulesen, sonst wird localhost verwendet."
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
@@ -149,18 +141,16 @@ msgid "Statusbar"
 msgstr "Statusleiste"
 
 #: ../src/preferences-dialog.c:423
-#, fuzzy
 msgid "Show _stastusbar"
-msgstr "_Statusleiste anzeigen"
+msgstr "_Statusleiste zeigen"
 
 #: ../src/preferences-dialog.c:431
 msgid "Song Format"
 msgstr "Liedformat"
 
 #: ../src/preferences-dialog.c:436
-#, fuzzy
 msgid "Song Format:"
-msgstr "Liedformat"
+msgstr "Liedformat:"
 
 #: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
 msgid "Title"
@@ -273,12 +263,8 @@ msgstr "Xfmpc"
 #~ msgid "Song format:"
 #~ msgstr "Liedformat:"
 
-#~ msgid ""
-#~ "Please stand by while the connection is established and the files are "
-#~ "loaded"
-#~ msgstr ""
-#~ "Bitte warten Sie, während die Verbindung hergestellt wird und die Dateien "
-#~ "geladen werden"
+#~ msgid "Please stand by while the connection is established and the files are loaded"
+#~ msgstr "Bitte warten Sie, während die Verbindung hergestellt wird und die Dateien geladen werden"
 
 #~ msgid "MPD Settings"
 #~ msgstr "MPD Einstellungen"
