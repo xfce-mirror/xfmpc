@@ -174,76 +174,76 @@ msgstr "Artista - Albuma - Pista. Izenburua"
 
 #: ../src/preferences-dialog.c:447
 msgid "Custom..."
-msgstr ""
+msgstr "Pertsonalizatu..."
 
 #: ../src/preferences-dialog.c:453
 msgid "Custom format:"
-msgstr ""
+msgstr "Pertsonalizatutako formatua:"
 
 #: ../src/preferences-dialog.c:466
 msgid "Available parameters:"
-msgstr ""
+msgstr "Parametro erabilgarriak:"
 
 #: ../src/preferences-dialog.c:472
 #, c-format
 msgid "%a: Artist"
-msgstr ""
+msgstr "%a: Artista"
 
 #: ../src/preferences-dialog.c:477
 #, c-format
 msgid "%A: Album"
-msgstr ""
+msgstr "%A: Albuma"
 
 #: ../src/preferences-dialog.c:482
 #, c-format
 msgid "%d: Date"
-msgstr ""
+msgstr "%d: Data"
 
 #: ../src/preferences-dialog.c:487
 msgid "%D: Disc"
-msgstr ""
+msgstr "%D: Diskoa"
 
 #: ../src/preferences-dialog.c:492
 #, c-format
 msgid "%f: File"
-msgstr ""
+msgstr "%f: Fitxategia"
 
 #: ../src/preferences-dialog.c:497
 #, c-format
 msgid "%g: Genre"
-msgstr ""
+msgstr "%g: Generoa"
 
 #: ../src/preferences-dialog.c:502
 msgid "%t: Title"
-msgstr ""
+msgstr "%t: Izenburua"
 
 #: ../src/preferences-dialog.c:507
 msgid "%T: Track"
-msgstr ""
+msgstr "%T: Pista"
 
 #: ../src/song-dialog.c:117
 msgid "File"
-msgstr ""
+msgstr "Fitxategia"
 
 #: ../src/song-dialog.c:129
 msgid "Artist"
-msgstr ""
+msgstr "Artista"
 
 #: ../src/song-dialog.c:149
 msgid "Album"
-msgstr ""
+msgstr "Albuma"
 
 #: ../src/song-dialog.c:159
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: ../src/song-dialog.c:166
 msgid "Track"
-msgstr ""
+msgstr "Pista"
 
 #: ../src/song-dialog.c:176
 msgid "Genre"
-msgstr ""
+msgstr "Generoa"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
