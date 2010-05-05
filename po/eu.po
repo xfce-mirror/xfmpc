@@ -1,7 +1,7 @@
 # translation of xfmpc.po to Euskara
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Piarres Beobide <pi@beobide.net>, 2008.
 msgid ""
 msgstr ""
@@ -17,13 +17,12 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
-msgstr "Errepikatu"
+msgstr "Ordeztu"
 
 #: ../src/dbbrowser.c:919 ../src/playlist.c:884
 msgid "Browse"
-msgstr ""
+msgstr "Arakatu"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
@@ -39,7 +38,7 @@ msgstr "Xfce-ren GTK+en idatzitako MPD bezeroa"
 
 #: ../src/extended-interface.c:397
 msgid "translator-credits"
-msgstr ""
+msgstr "Piarres Beobide"
 
 #: ../src/extended-interface.c:466
 msgid "Clear Playlist"
@@ -61,11 +60,10 @@ msgstr "Uneko erreprodukzio-zerrenda"
 msgid "Browse database"
 msgstr "Arakatu datu-basea"
 
-#.
 #. // write private function in case it is wished to avoid the
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
-#.
+#. 
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:263
 #, c-format
@@ -83,20 +81,20 @@ msgstr "Konexio gabe"
 #: ../src/main-window.c:383
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr ""
+msgstr "%d abesti, %d ordu eta %d minutu"
 
 #: ../src/main-window.c:385
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr ""
+msgstr "%d abesti, %d minutu"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "Huts MPD-rekin konektatzean"
 
 #: ../src/mpdclient.c:353
 msgid "Connected to MPD"
-msgstr ""
+msgstr "MPD-reki konektaturik"
 
 #: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
@@ -104,77 +102,75 @@ msgstr "e/g"
 
 #: ../src/preferences-dialog.c:359
 msgid "MPD"
-msgstr ""
+msgstr "MPD"
 
 #: ../src/preferences-dialog.c:363
 msgid "Connection"
-msgstr ""
+msgstr "Konexioa"
 
 #: ../src/preferences-dialog.c:366
 msgid "Use _default system settings"
-msgstr ""
+msgstr "Erabili _lehentsitako sistema ezarpenak"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Hautaturik badago, Xfmpc MPD_HOST eta MPD_PORT aldagaiak irakurtzen saiatuko da."
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
-msgstr ""
+msgstr "Ostalari-izena:"
 
 #: ../src/preferences-dialog.c:386
 msgid "Port:"
-msgstr ""
+msgstr "Ataka:"
 
 #: ../src/preferences-dialog.c:397
 msgid "Password:"
-msgstr ""
+msgstr "Pasahitza:"
 
 #: ../src/preferences-dialog.c:414
 msgid "Appearance"
-msgstr ""
+msgstr "Itxura"
 
 #: ../src/preferences-dialog.c:420
 msgid "Statusbar"
-msgstr ""
+msgstr "Egoera-barra"
 
 #: ../src/preferences-dialog.c:423
 msgid "Show _stastusbar"
-msgstr ""
+msgstr "Ikusi _egoera-barra"
 
 #: ../src/preferences-dialog.c:431
 msgid "Song Format"
-msgstr ""
+msgstr "Abesti formatua"
 
 #: ../src/preferences-dialog.c:436
 msgid "Song Format:"
-msgstr ""
+msgstr "Abesti formatua:"
 
 #: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
 msgid "Title"
-msgstr ""
+msgstr "Izenburua"
 
 #: ../src/preferences-dialog.c:442
 msgid "Album - Title"
-msgstr ""
+msgstr "Albuma - Izenburua"
 
 #: ../src/preferences-dialog.c:443
 msgid "Artist - Title"
-msgstr ""
+msgstr "Artista - Izenburua"
 
 #: ../src/preferences-dialog.c:444
 msgid "Artist - Title (Date)"
-msgstr ""
+msgstr "Artista - Izenburua (data)"
 
 #: ../src/preferences-dialog.c:445
 msgid "Artist - Album - Title"
-msgstr ""
+msgstr "Artista - Albuma - Izenburua"
 
 #: ../src/preferences-dialog.c:446
 msgid "Artist - Album - Track. Title"
-msgstr ""
+msgstr "Artista - Albuma - Pista. Izenburua"
 
 #: ../src/preferences-dialog.c:447
 msgid "Custom..."
