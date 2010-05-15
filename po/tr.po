@@ -1,9 +1,9 @@
 # Turkish translation of xfmpc package.
 # Copyright (C) 2008 THE XFMPC'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the XFMPC package.
-#
+# 
 # Gökmen Görgen <gkmngrgn@gmail.com>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.7\n"
@@ -17,14 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
-msgstr "_Değiştir"
+msgstr "Değiştir"
 
 #: ../src/dbbrowser.c:919 ../src/playlist.c:884
-#, fuzzy
 msgid "Browse"
-msgstr "_Araştır"
+msgstr "Araştır"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
@@ -64,11 +62,10 @@ msgstr "Etkin Çalma Listesi"
 msgid "Browse database"
 msgstr "Veritabanında Arama"
 
-#.
 #. // write private function in case it is wished to avoid the
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
-#.
+#. 
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:263
 #, c-format
@@ -95,12 +92,11 @@ msgstr "%d şarkı, %d dakika"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "MPD'ye bağlanılamadı"
 
 #: ../src/mpdclient.c:353
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "Bağlantı"
+msgstr "MPD'ye Bağlandı"
 
 #: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
@@ -119,12 +115,8 @@ msgid "Use _default system settings"
 msgstr "Öntanımlı sistem ayarlarını _kullan"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Seçili ise, Xfmpc MPD_HOST ve MPD_PORT ortam değişkenlerini okuyacaktır, "
-"aksi takdirde localhost kullanacaktır"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Seçili ise, Xfmpc MPD_HOST ve MPD_PORT ortam değişkenlerini okuyacaktır, aksi takdirde localhost kullanacaktır"
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
@@ -147,7 +139,6 @@ msgid "Statusbar"
 msgstr "Durum çubuğu"
 
 #: ../src/preferences-dialog.c:423
-#, fuzzy
 msgid "Show _stastusbar"
 msgstr "Durum çubuğunu gö_ster"
 
@@ -156,9 +147,8 @@ msgid "Song Format"
 msgstr "Şarkı Biçimi"
 
 #: ../src/preferences-dialog.c:436
-#, fuzzy
 msgid "Song Format:"
-msgstr "Şarkı Biçimi"
+msgstr "Şarkı Biçimi:"
 
 #: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
 msgid "Title"
