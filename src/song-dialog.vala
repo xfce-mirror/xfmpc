@@ -40,7 +40,7 @@ namespace Xfmpc {
 			this.vbox.set_spacing (0);
 
 			var vbox2 = new Gtk.VBox (false, 0);
-			var frame = Xfce.WidgetHelpers.create_framebox_with_content ("", vbox2);
+			var frame = Xfce.gtk_frame_box_new_with_content ("", vbox2);
 
 			var attrs = new Pango.AttrList ();
 			attrs.insert (Pango.attr_weight_new (Pango.Weight.BOLD));

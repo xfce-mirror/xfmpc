@@ -57,7 +57,7 @@ namespace Xfmpc {
 			notebook.append_page (vbox, label);
 
 			var vbox2 = new Gtk.VBox (false, 6);
-			var frame = Xfce.WidgetHelpers.create_framebox_with_content (_("Connection"), vbox2);
+			var frame = Xfce.gtk_frame_box_new_with_content (_("Connection"), vbox2);
 			vbox.pack_start (frame, false, false, 0);
 
 			this.entry_use_defaults = new Gtk.CheckButton.with_mnemonic (_("Use _default system settings"));
@@ -111,7 +111,7 @@ namespace Xfmpc {
 			notebook.append_page (vbox, label);
 
 			vbox2 = new Gtk.VBox (false, 6);
-			frame = Xfce.WidgetHelpers.create_framebox_with_content (_("Statusbar"), vbox2);
+			frame = Xfce.gtk_frame_box_new_with_content (_("Statusbar"), vbox2);
 			vbox.pack_start (frame, false, false, 0);
 
 			this.show_statusbar = new Gtk.CheckButton.with_mnemonic (_("Show _stastusbar"));
@@ -120,7 +120,7 @@ namespace Xfmpc {
 			vbox2.pack_start (this.show_statusbar, false, false, 0);
 
 			vbox2 = new Gtk.VBox (false, 6);
-			frame = Xfce.WidgetHelpers.create_framebox_with_content (_("Song Format"), vbox2);
+			frame = Xfce.gtk_frame_box_new_with_content (_("Song Format"), vbox2);
 			vbox.pack_start (frame, false, false, 0);
 
 			hbox = new Gtk.HBox (false, 2);

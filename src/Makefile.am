@@ -26,7 +26,7 @@ xfmpc_VALAFLAGS =							\
 	--header=xfmpc.h						\
 	--vapidir=.							\
 	--vapidir=$(top_srcdir)/third-party				\
-	--pkg=libxfcegui4-1.0						\
+	--pkg=libxfce4ui-1						\
 	--pkg=config							\
 	--pkg=mpdclient							\
 	--pkg=xfce-arrow-button
@@ -35,7 +35,7 @@ xfmpc_CFLAGS =								\
 	@GTHREAD_CFLAGS@						\
 	@LIBX11_CFLAGS@							\
 	@GTK_CFLAGS@							\
-	@LIBXFCEGUI4_CFLAGS@						\
+	@LIBXFCE4UI_CFLAGS@						\
 	@LIBXFCE4UTIL_CFLAGS@						\
 	@LIBMPD_CFLAGS@
 
@@ -43,7 +43,7 @@ xfmpc_LDADD =								\
 	@GTHREAD_LIBS@							\
 	@LIBX11_LIBS@							\
 	@GTK_LIBS@							\
-	@LIBXFCEGUI4_LIBS@						\
+	@LIBXFCE4UI_LIBS@						\
 	@LIBXFCE4UTIL_LIBS@						\
 	@LIBMPD_LIBS@
 
