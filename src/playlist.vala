@@ -167,8 +167,8 @@ namespace Xfmpc {
 			unowned Xfmpc.Dbbrowser dbbrowser;
 			unowned Xfmpc.ExtendedInterface extended_interface;
 
-			dbbrowser = (Xfmpc.Dbbrowser) get_data ("XfmpcDbbrowser");
-			extended_interface = (Xfmpc.ExtendedInterface) get_data ("XfmpcExtendedInterface");
+			dbbrowser = get_data ("XfmpcDbbrowser");
+			extended_interface = get_data ("XfmpcExtendedInterface");
 
 			var selection = this.treeview.get_selection ();
 			if (selection.count_selected_rows () > 1)

@@ -136,7 +136,7 @@ namespace Xfmpc {
 			string filename = null, basename = null;
 			bool is_dir = false, is_bold = false;
 			int i = 0;
-			Xfmpc.Playlist playlist = (Xfmpc.Playlist) get_data ("XfmpcPlaylist");
+			Xfmpc.Playlist playlist = get_data ("XfmpcPlaylist");
 
 			if (this.is_searching)
 				return;
@@ -221,7 +221,7 @@ namespace Xfmpc {
 			string filename = null, basename = null;
 			bool is_bold;
 			int i = 0;
-			Xfmpc.Playlist playlist = (Xfmpc.Playlist) get_data ("XfmpcPlaylist");
+			Xfmpc.Playlist playlist = get_data ("XfmpcPlaylist");
 
 			if (!this.mpdclient.is_connected ())
 				return;
@@ -306,7 +306,7 @@ namespace Xfmpc {
 			Gtk.TreeIter iter;
 			string filename = "";
 			bool is_bold = false, is_dir = false;
-			Xfmpc.Playlist playlist = (Xfmpc.Playlist) get_data ("XfmpcPlaylist");
+			Xfmpc.Playlist playlist = get_data ("XfmpcPlaylist");
 
 			if (!model.get_iter_first (out iter))
 				return;
