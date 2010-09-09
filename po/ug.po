@@ -57,7 +57,7 @@ msgstr "سانداننى كور"
 #. 
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:263
-#, c-format, fuzzy
+#, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "by \"%s\" from \"%s\" (%s)"
 
