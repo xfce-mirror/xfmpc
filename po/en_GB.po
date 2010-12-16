@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Jeff Bailes <thepizzaking@gmail.com>
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
@@ -18,14 +18,12 @@ msgstr ""
 "X-Poedit-Country: UNITED KINGDOM\n"
 
 #: ../src/dbbrowser.c:913
-#, fuzzy
 msgid "Replace"
-msgstr "_Replace"
+msgstr "Replace"
 
 #: ../src/dbbrowser.c:919 ../src/playlist.c:884
-#, fuzzy
 msgid "Browse"
-msgstr "_Browse"
+msgstr "Browse"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
@@ -63,11 +61,10 @@ msgstr "Current Playlist"
 msgid "Browse database"
 msgstr "Browse database"
 
-#.
 #. // write private function in case it is wished to avoid the
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
-#.
+#. 
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:263
 #, c-format
@@ -94,12 +91,11 @@ msgstr "%d songs, %d minutes"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "Failed to connect to MPD"
 
 #: ../src/mpdclient.c:353
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "Connection"
+msgstr "Connected to MPD"
 
 #: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
@@ -118,12 +114,8 @@ msgid "Use _default system settings"
 msgstr "Use _default system settings"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"If ticked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "If ticked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
@@ -146,18 +138,16 @@ msgid "Statusbar"
 msgstr "Statusbar"
 
 #: ../src/preferences-dialog.c:423
-#, fuzzy
 msgid "Show _stastusbar"
-msgstr "Show _statusbar"
+msgstr "Show _stastusbar"
 
 #: ../src/preferences-dialog.c:431
 msgid "Song Format"
 msgstr "Song Format"
 
 #: ../src/preferences-dialog.c:436
-#, fuzzy
 msgid "Song Format:"
-msgstr "Song Format"
+msgstr "Song Format:"
 
 #: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
 msgid "Title"
