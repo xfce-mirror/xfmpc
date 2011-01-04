@@ -38,6 +38,7 @@ enum
   SIG_SONG_CHANGED,
   SIG_PP_CHANGED,
   SIG_TIME_CHANGED,
+  SIG_TOTAL_TIME_CHANGED,
   SIG_VOLUME_CHANGED,
   SIG_STOPPED,
   SIG_DATABASE_CHANGED,
@@ -77,7 +78,8 @@ struct _XfmpcMpdclientClass
   void (*connected)         (XfmpcMpdclient *mpdclient, gpointer user_data);
   void (*song_changed)      (XfmpcMpdclient *mpdclient, gpointer user_data);
   void (*pp_changed)        (XfmpcMpdclient *mpdclient, gboolean is_playing, gpointer user_data);
-  void (*time_changed)      (XfmpcMpdclient *mpdclient, gint time, gint total_time, gpointer user_data);
+  void (*time_changed)      (XfmpcMpdclient *mpdclient, gint time, gpointer user_data);
+  void (*total_time_changed)(XfmpcMpdclient *mpdclient, gint total_time, gpointer user_data);
   void (*volume_changed)    (XfmpcMpdclient *mpdclient, gint volume, gpointer user_data);
   void (*stopped)           (XfmpcMpdclient *mpdclient, gpointer user_data);
   void (*database_changed)  (XfmpcMpdclient *mpdclient, gpointer user_data);
@@ -183,9 +185,17 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (XfmpcMpdclientClass, time_changed),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__UINT_POINTER,
-                  G_TYPE_NONE, 2,
-                  G_TYPE_INT,
+                  g_cclosure_marshal_VOID__INT,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_INT);
+
+  signals[SIG_TOTAL_TIME_CHANGED] =
+    g_signal_new ("total-time-changed", G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (XfmpcMpdclientClass, total_time_changed),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__INT,
+                  G_TYPE_NONE, 1,
                   G_TYPE_INT);
 
   signals[SIG_VOLUME_CHANGED] =
@@ -773,9 +783,12 @@ cb_status_changed (MpdObj *mi,
     g_signal_emit (mpdclient, signals[SIG_VOLUME_CHANGED], 0,
                    xfmpc_mpdclient_get_volume (mpdclient));
 
-  if (what & (MPD_CST_ELAPSED_TIME|MPD_CST_TOTAL_TIME))
+  if (what & MPD_CST_ELAPSED_TIME)
     g_signal_emit (mpdclient, signals[SIG_TIME_CHANGED], 0,
-                   xfmpc_mpdclient_get_time (mpdclient),
+                   xfmpc_mpdclient_get_time (mpdclient));
+
+  if (what & MPD_CST_TOTAL_TIME)
+    g_signal_emit (mpdclient, signals[SIG_TOTAL_TIME_CHANGED], 0,
                    xfmpc_mpdclient_get_total_time (mpdclient));
 
   if (what & MPD_CST_REPEAT)

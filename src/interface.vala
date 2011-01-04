@@ -123,6 +123,7 @@ namespace Xfmpc {
 			this.mpdclient.song_changed.connect (cb_song_changed);
 			this.mpdclient.pp_changed.connect (cb_pp_changed);
 			this.mpdclient.time_changed.connect (cb_time_changed);
+			this.mpdclient.total_time_changed.connect (cb_total_time_changed);
 			this.mpdclient.volume_changed.connect (cb_volume_changed);
 			this.mpdclient.playlist_changed.connect (cb_playlist_changed);
 			this.mpdclient.stopped.connect (cb_stopped);
@@ -240,8 +241,12 @@ namespace Xfmpc {
 			cb_song_changed ();
 		}
 
-		private void cb_time_changed (int time, int total_time) {
-			set_time (time, total_time);
+		private void cb_time_changed (int time) {
+			set_time (time, mpdclient.get_total_time());
+		}
+
+		private void cb_total_time_changed (int total_time) {
+			set_time (mpdclient.get_time(), total_time);
 		}
 
 		private void cb_volume_changed (int volume) {

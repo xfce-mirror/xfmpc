@@ -56,7 +56,8 @@ namespace Xfmpc {
 		public virtual signal void connected ();
 		public virtual signal void song_changed ();
 		public virtual signal void pp_changed (bool is_playing);
-		public virtual signal void time_changed (int time, int total_time);
+		public virtual signal void time_changed (int time);
+		public virtual signal void total_time_changed (int total_time);
 		public virtual signal void volume_changed (int volume);
 		public virtual signal void stopped ();
 		public virtual signal void database_changed ();
