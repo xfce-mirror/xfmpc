@@ -54,7 +54,7 @@ namespace Xfmpc {
 
 			this.wdir = preferences.dbbrowser_last_path;
 			if (this.wdir != null)
-				this.last_wdir = this.wdir.ndup (this.wdir.len ());
+				this.last_wdir = this.wdir.ndup (this.wdir.length);
 			else
 				this.last_wdir = "";
 
