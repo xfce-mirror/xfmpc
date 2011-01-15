@@ -1,3 +1,4 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce\n"
@@ -13,19 +14,19 @@ msgstr ""
 
 #: ../src/dbbrowser.c:913
 msgid "Replace"
-msgstr ""
+msgstr "إستبدال"
 
 #: ../src/dbbrowser.c:919 ../src/playlist.c:884
 msgid "Browse"
-msgstr ""
+msgstr "تصفح"
 
 #: ../src/extended-interface.c:288
 msgid "Repeat"
-msgstr ""
+msgstr "إصلاح"
 
 #: ../src/extended-interface.c:293
 msgid "Random"
-msgstr ""
+msgstr "عشوائي"
 
 #: ../src/extended-interface.c:397 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -33,94 +34,91 @@ msgstr ""
 
 #: ../src/extended-interface.c:397
 msgid "translator-credits"
-msgstr ""
+msgstr "Karim Oulad Chalha <herr.linux88@gmail.com>"
 
 #: ../src/extended-interface.c:466
 msgid "Clear Playlist"
-msgstr ""
+msgstr "محو قائمة التشغيل"
 
 #: ../src/extended-interface.c:473
 msgid "Refresh Database"
-msgstr ""
+msgstr "إنعاش قاعدة البيانات"
 
 #: ../src/extended-interface.c:481
 msgid "Context Menu"
-msgstr ""
+msgstr "صياق القائمة"
 
 #: ../src/extended-interface.c:499
 msgid "Current Playlist"
-msgstr ""
+msgstr "قائمة التشغيل الحالية"
 
 #: ../src/extended-interface.c:501
 msgid "Browse database"
-msgstr ""
+msgstr "تصفح قاعدة البيانات"
 
-#.
 #. // write private function in case it is wished to avoid the
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
-#.
+#. 
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:263
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr ""
+msgstr "بـ \"%s\" إلى \"%s\" (%s)"
 
 #: ../src/interface.c:268
 msgid "Stopped"
-msgstr ""
+msgstr "موقف"
 
 #: ../src/interface.c:272 ../src/interface.c:470
 msgid "Not connected"
-msgstr ""
+msgstr "ليس متصل"
 
 #: ../src/main-window.c:383
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr ""
+msgstr "%d أنغام, %d ساعات و %d دقائق"
 
 #: ../src/main-window.c:385
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr ""
+msgstr "%d أنغام, %d دقائق"
 
 #: ../src/mpdclient.c:348
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "فشل الإتصال بـ MPD"
 
 #: ../src/mpdclient.c:353
 msgid "Connected to MPD"
-msgstr ""
+msgstr "تم الإتصال بـ MPD"
 
 #: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: ../src/preferences-dialog.c:359
 msgid "MPD"
-msgstr ""
+msgstr "MPD"
 
 #: ../src/preferences-dialog.c:363
 msgid "Connection"
-msgstr ""
+msgstr "إتصال"
 
 #: ../src/preferences-dialog.c:366
 msgid "Use _default system settings"
-msgstr ""
+msgstr "إ_ستعمل إعدادات النظام الإفتراضية"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
 msgstr ""
 
 #: ../src/preferences-dialog.c:378
 msgid "Hostname:"
-msgstr ""
+msgstr "إسم المستضيف:"
 
 #: ../src/preferences-dialog.c:386
 msgid "Port:"
-msgstr ""
+msgstr "منفد:"
 
 #: ../src/preferences-dialog.c:397
 msgid "Password:"
