@@ -122,100 +122,100 @@ msgstr "منفد:"
 
 #: ../src/preferences-dialog.c:397
 msgid "Password:"
-msgstr ""
+msgstr "كلمة السر:"
 
 #: ../src/preferences-dialog.c:414
 msgid "Appearance"
-msgstr ""
+msgstr "مظهر"
 
 #: ../src/preferences-dialog.c:420
 msgid "Statusbar"
-msgstr ""
+msgstr "شريط الحالة"
 
 #: ../src/preferences-dialog.c:423
 msgid "Show _stastusbar"
-msgstr ""
+msgstr "_أظهر شريط الحالة"
 
 #: ../src/preferences-dialog.c:431
 msgid "Song Format"
-msgstr ""
+msgstr "صيغة الصوت"
 
 #: ../src/preferences-dialog.c:436
 msgid "Song Format:"
-msgstr ""
+msgstr "صيغة الصوت:"
 
 #: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
 msgid "Title"
-msgstr ""
+msgstr "عنوان"
 
 #: ../src/preferences-dialog.c:442
 msgid "Album - Title"
-msgstr ""
+msgstr "ألبوم - عنوان"
 
 #: ../src/preferences-dialog.c:443
 msgid "Artist - Title"
-msgstr ""
+msgstr "فنان - عنوان"
 
 #: ../src/preferences-dialog.c:444
 msgid "Artist - Title (Date)"
-msgstr ""
+msgstr "فنان - عنوان (تاريخ)"
 
 #: ../src/preferences-dialog.c:445
 msgid "Artist - Album - Title"
-msgstr ""
+msgstr "فنان - ألبوم - عنوان"
 
 #: ../src/preferences-dialog.c:446
 msgid "Artist - Album - Track. Title"
-msgstr ""
+msgstr "فنان - ألبوم - صوت. عنوان"
 
 #: ../src/preferences-dialog.c:447
 msgid "Custom..."
-msgstr ""
+msgstr "خصص..."
 
 #: ../src/preferences-dialog.c:453
 msgid "Custom format:"
-msgstr ""
+msgstr "صيغة مخصصة:"
 
 #: ../src/preferences-dialog.c:466
 msgid "Available parameters:"
-msgstr ""
+msgstr "إعدادات المتوفرة:"
 
 #: ../src/preferences-dialog.c:472
 #, c-format
 msgid "%a: Artist"
-msgstr ""
+msgstr "%a: فنان"
 
 #: ../src/preferences-dialog.c:477
 #, c-format
 msgid "%A: Album"
-msgstr ""
+msgstr "%A: ألبوم"
 
 #: ../src/preferences-dialog.c:482
 #, c-format
 msgid "%d: Date"
-msgstr ""
+msgstr "%d: تاريخ"
 
 #: ../src/preferences-dialog.c:487
 msgid "%D: Disc"
-msgstr ""
+msgstr "%D: أسطوانة"
 
 #: ../src/preferences-dialog.c:492
 #, c-format
 msgid "%f: File"
-msgstr ""
+msgstr "%f: ملف"
 
 #: ../src/preferences-dialog.c:497
 #, c-format
 msgid "%g: Genre"
-msgstr ""
+msgstr "%g: نوع"
 
 #: ../src/preferences-dialog.c:502
 msgid "%t: Title"
-msgstr ""
+msgstr "%t: عنوان"
 
 #: ../src/preferences-dialog.c:507
 msgid "%T: Track"
-msgstr ""
+msgstr "%T: صوت"
 
 #: ../src/song-dialog.c:117
 msgid "File"
