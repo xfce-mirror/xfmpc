@@ -219,32 +219,33 @@ msgstr "%T: صوت"
 
 #: ../src/song-dialog.c:117
 msgid "File"
-msgstr ""
+msgstr "ملف"
 
 #: ../src/song-dialog.c:129
 msgid "Artist"
-msgstr ""
+msgstr "فنان"
 
 #: ../src/song-dialog.c:149
 msgid "Album"
-msgstr ""
+msgstr "ألبوم"
 
 #: ../src/song-dialog.c:159
 msgid "Date"
-msgstr ""
+msgstr "تاريخ"
 
 #: ../src/song-dialog.c:166
 msgid "Track"
-msgstr ""
+msgstr "صوت"
 
 #: ../src/song-dialog.c:176
 msgid "Genre"
-msgstr ""
+msgstr "نوع"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
 msgstr ""
 
 #: ../xfmpc.desktop.in.h:3
+#, fuzzy
 msgid "Xfmpc"
-msgstr ""
+msgstr "Xfmpc"
