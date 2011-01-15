@@ -246,6 +246,5 @@ msgid "MPD client"
 msgstr ""
 
 #: ../xfmpc.desktop.in.h:3
-#, fuzzy
 msgid "Xfmpc"
 msgstr "Xfmpc"
