@@ -9,6 +9,8 @@ configure.in
 depcomp
 install-sh
 intltool-*
+libtool
+ltmain.sh
 missing
 mkinstalldirs
 stamp-h1
@@ -20,3 +22,8 @@ autom4te.cache
 po/Makefile.in.in
 po/POTFILES
 po/stamp-it
+src/*.c
+src/*.h
+src/xfmpc
+src/xfmpc_vala.stamp
+xfmpc.desktop
