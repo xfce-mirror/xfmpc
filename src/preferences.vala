@@ -66,11 +66,6 @@ namespace Xfmpc {
 			get { return _playlist_autocenter; }
 			set { _playlist_autocenter = value; store (); }
 		}
-		private string _dbbrowser_last_path;
-		public string dbbrowser_last_path {
-			get { return _dbbrowser_last_path; }
-			set { _dbbrowser_last_path = value; store (); }
-		}
 		private string _mpd_hostname;
 		public string mpd_hostname {
 			get { return _mpd_hostname; }
@@ -114,7 +109,6 @@ namespace Xfmpc {
 			_last_window_height = 330;
 			_last_window_state_sticky = true;
 			_playlist_autocenter = true;
-			_dbbrowser_last_path = "";
 			_mpd_hostname = "localhost";
 			_mpd_port = 6600;
 			_mpd_password = "";

@@ -52,11 +52,8 @@ namespace Xfmpc {
 			this.mpdclient = Xfmpc.Mpdclient.get_default ();
 			this.preferences = Xfmpc.Preferences.get_default ();
 
-			this.wdir = preferences.dbbrowser_last_path;
-			if (this.wdir != null)
-				this.last_wdir = this.wdir.ndup (this.wdir.length);
-			else
-				this.last_wdir = "";
+			this.wdir = "";
+			this.last_wdir = "";
 
 			this.store = new Gtk.ListStore (Columns.N_COLUMNS,
 					       	    	typeof (int),
