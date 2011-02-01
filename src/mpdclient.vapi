@@ -48,7 +48,7 @@ namespace Xfmpc {
 		public bool set_repeat (bool repeat);
 		public bool set_single (bool single);
 		public bool set_consume (bool consume);
-		public bool set_song_time (uint time);
+		public bool set_song_time (uint song_time);
 		public bool set_volume (uchar volume);
 		public bool stop ();
 		public void update_status ();
@@ -56,7 +56,7 @@ namespace Xfmpc {
 		public virtual signal void connected ();
 		public virtual signal void song_changed ();
 		public virtual signal void pp_changed (bool is_playing);
-		public virtual signal void time_changed (int time);
+		public virtual signal void time_changed (int song_time);
 		public virtual signal void total_time_changed (int total_time);
 		public virtual signal void volume_changed (int volume);
 		public virtual signal void stopped ();

@@ -160,10 +160,10 @@ namespace Xfmpc {
 			if (time_total < 0)
 				return false;
 
-			double time = event.x / this.progress_bar.allocation.width;
-			time *= time_total;
+			double song_time = event.x / this.progress_bar.allocation.width;
+			song_time *= time_total;
 
-			this.mpdclient.set_song_time ((int) time);
+			this.mpdclient.set_song_time ((int) song_time);
 
 			return true;
 		}
@@ -180,12 +180,12 @@ namespace Xfmpc {
 			GLib.Signal.emit_by_name (this.button_volume, "popup", null);
 		}
 
-		public void set_time (int time, int time_total) {
+		public void set_time (int song_time, int time_total) {
 			int min, sec, min_total, sec_total;
 			double fraction = 1.0;
 
-			min = time / 60;
-			sec = time % 60;
+			min = song_time / 60;
+			sec = song_time % 60;
 
   	  	  	min_total = time_total / 60;
   	  	  	sec_total = time_total % 60;
@@ -195,7 +195,7 @@ namespace Xfmpc {
 			this.progress_bar.set_text (text.str);
 
 			if (time_total > 0)
-				fraction = (float)time / (float)time_total;
+				fraction = (float)song_time / (float)time_total;
 
 			this.progress_bar.set_fraction ((fraction <= 1.0) ? fraction : 1.0);
 		}
@@ -241,8 +241,8 @@ namespace Xfmpc {
 			cb_song_changed ();
 		}
 
-		private void cb_time_changed (int time) {
-			set_time (time, mpdclient.get_total_time());
+		private void cb_time_changed (int song_time) {
+			set_time (song_time, mpdclient.get_total_time());
 		}
 
 		private void cb_total_time_changed (int total_time) {
