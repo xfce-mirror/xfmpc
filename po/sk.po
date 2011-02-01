@@ -6,103 +6,107 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-03 13:24+0200\n"
+"POT-Creation-Date: 2011-02-01 19:55+0100\n"
 "PO-Revision-Date: 2009-11-14 11:20Centra4l\n"
 "Last-Translator: Robert Hartl <hartl.robert@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/dbbrowser.c:913
+#: ../src/dbbrowser.c:873
 msgid "Replace"
 msgstr "Nahradiť"
 
-#: ../src/dbbrowser.c:919 ../src/playlist.c:884
+#: ../src/dbbrowser.c:878 ../src/playlist.c:835
 msgid "Browse"
 msgstr "Prehliadať"
 
-#: ../src/extended-interface.c:288
+#: ../src/extended-interface.c:316
 msgid "Repeat"
 msgstr "Opakovať"
 
-#: ../src/extended-interface.c:293
+#: ../src/extended-interface.c:319
 msgid "Random"
 msgstr "Náhodne"
 
-#: ../src/extended-interface.c:397 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:322
+msgid "Single Mode"
+msgstr ""
+
+#: ../src/extended-interface.c:325
+msgid "Consume"
+msgstr ""
+
+#: ../src/extended-interface.c:433 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD klient napísany v GTK+ pre Xfce"
 
-#: ../src/extended-interface.c:397
+#: ../src/extended-interface.c:433
 msgid "translator-credits"
 msgstr "Robert Hartl <hartl.robert@gmail.com>"
 
-#: ../src/extended-interface.c:466
+#: ../src/extended-interface.c:505
 msgid "Clear Playlist"
 msgstr "Vyčistiť zoznam skladieb"
 
-#: ../src/extended-interface.c:473
+#: ../src/extended-interface.c:511
 msgid "Refresh Database"
 msgstr "Obnoviť databázu"
 
-#: ../src/extended-interface.c:481
+#: ../src/extended-interface.c:517
 msgid "Context Menu"
 msgstr "Miestna ponuka"
 
-#: ../src/extended-interface.c:499
+#: ../src/extended-interface.c:532
 msgid "Current Playlist"
 msgstr "Súčasný zozanam skladieb"
 
-#: ../src/extended-interface.c:501
+#: ../src/extended-interface.c:534
 msgid "Browse database"
 msgstr "Prechádzať databázu"
 
-#. // write private function in case it is wished to avoid the
-#. // "n/a" values, but no big deal IMO
-#. text = get_subtitle (interface);
-#. 
-#. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.c:263
+#: ../src/interface.c:264
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "od \"%s\" z albumu \"%s\" (%s)"
 
-#: ../src/interface.c:268
+#: ../src/interface.c:269
 msgid "Stopped"
 msgstr "Zastavené"
 
-#: ../src/interface.c:272 ../src/interface.c:470
+#: ../src/interface.c:273 ../src/interface.c:473
 msgid "Not connected"
 msgstr "Nepripojené"
 
-#: ../src/main-window.c:383
+#: ../src/main-window.c:385
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d skladieb, %d hodín a %d minút"
 
-#: ../src/main-window.c:385
+#: ../src/main-window.c:387
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d skladieb, %d minút"
 
-#: ../src/mpdclient.c:348
+#: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
 msgstr "Nepodarilo sa pripojiť na MPD"
 
-#: ../src/mpdclient.c:353
+#: ../src/mpdclient.c:387
 msgid "Connected to MPD"
 msgstr "Pripojené na MPD"
 
-#: ../src/mpdclient.c:569 ../src/mpdclient.c:599 ../src/mpdclient.c:614
+#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "nedostupné"
 
-#: ../src/preferences-dialog.c:359
+#: ../src/preferences-dialog.c:361
 msgid "MPD"
 msgstr "MPD"
 
-#: ../src/preferences-dialog.c:363
+#: ../src/preferences-dialog.c:364
 msgid "Connection"
 msgstr "Pripojenie"
 
@@ -111,135 +115,140 @@ msgid "Use _default system settings"
 msgstr "Použiť _predvolené nastavenie systému"
 
 #: ../src/preferences-dialog.c:367
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
-msgstr "Ak je zaškrtnutá voľba, aplikácia Xfmpc sa pokúsi prečítať premenné prostredia MPD_HOST a MPD_PORT, v opačnom prípade použije tento počítač (localhost)"
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr ""
+"Ak je zaškrtnutá voľba, aplikácia Xfmpc sa pokúsi prečítať premenné "
+"prostredia MPD_HOST a MPD_PORT, v opačnom prípade použije tento počítač "
+"(localhost)"
 
-#: ../src/preferences-dialog.c:378
+#: ../src/preferences-dialog.c:377
 msgid "Hostname:"
 msgstr "Názov hostiteľa:"
 
-#: ../src/preferences-dialog.c:386
+#: ../src/preferences-dialog.c:383
 msgid "Port:"
 msgstr "Port:"
 
-#: ../src/preferences-dialog.c:397
+#: ../src/preferences-dialog.c:391
 msgid "Password:"
 msgstr "Heslo:"
 
-#: ../src/preferences-dialog.c:414
+#: ../src/preferences-dialog.c:404
 msgid "Appearance"
 msgstr "Vzhľad"
 
-#: ../src/preferences-dialog.c:420
+#: ../src/preferences-dialog.c:407
 msgid "Statusbar"
 msgstr "Stavový riadok"
 
-#: ../src/preferences-dialog.c:423
+#: ../src/preferences-dialog.c:409
 msgid "Show _stastusbar"
 msgstr "Zobraziť _stavový riadok"
 
-#: ../src/preferences-dialog.c:431
+#: ../src/preferences-dialog.c:414
 msgid "Song Format"
 msgstr "Formát skladby"
 
-#: ../src/preferences-dialog.c:436
+#: ../src/preferences-dialog.c:417
 msgid "Song Format:"
 msgstr "Formát skladby:"
 
-#: ../src/preferences-dialog.c:441 ../src/song-dialog.c:139
+#: ../src/preferences-dialog.c:421 ../src/song-dialog.c:141
 msgid "Title"
 msgstr "Názov"
 
-#: ../src/preferences-dialog.c:442
+#: ../src/preferences-dialog.c:422
 msgid "Album - Title"
 msgstr "Album - Názov"
 
-#: ../src/preferences-dialog.c:443
+#: ../src/preferences-dialog.c:423
 msgid "Artist - Title"
 msgstr "Umelec - Názov"
 
-#: ../src/preferences-dialog.c:444
+#: ../src/preferences-dialog.c:424
 msgid "Artist - Title (Date)"
 msgstr "Umelec - Názov (Dátum)"
 
-#: ../src/preferences-dialog.c:445
+#: ../src/preferences-dialog.c:425
 msgid "Artist - Album - Title"
 msgstr "Umelec - Album - Názov"
 
-#: ../src/preferences-dialog.c:446
+#: ../src/preferences-dialog.c:426
 msgid "Artist - Album - Track. Title"
 msgstr "Umelec - Album - Stopa. Názov"
 
-#: ../src/preferences-dialog.c:447
+#: ../src/preferences-dialog.c:427
 msgid "Custom..."
 msgstr "Vlastné..."
 
-#: ../src/preferences-dialog.c:453
+#: ../src/preferences-dialog.c:431
 msgid "Custom format:"
 msgstr "Vlastný formát:"
 
-#: ../src/preferences-dialog.c:466
+#: ../src/preferences-dialog.c:442
 msgid "Available parameters:"
 msgstr "Dostupné parametre:"
 
-#: ../src/preferences-dialog.c:472
+#: ../src/preferences-dialog.c:447
 #, c-format
 msgid "%a: Artist"
 msgstr "%a: Umelec"
 
-#: ../src/preferences-dialog.c:477
+#: ../src/preferences-dialog.c:451
 #, c-format
 msgid "%A: Album"
 msgstr "%A: Album"
 
-#: ../src/preferences-dialog.c:482
+#: ../src/preferences-dialog.c:455
 #, c-format
 msgid "%d: Date"
 msgstr "%d: Dátum"
 
-#: ../src/preferences-dialog.c:487
+#: ../src/preferences-dialog.c:459
 msgid "%D: Disc"
 msgstr "%D: Disk"
 
-#: ../src/preferences-dialog.c:492
+#: ../src/preferences-dialog.c:463
 #, c-format
 msgid "%f: File"
 msgstr "%f: Súbor"
 
-#: ../src/preferences-dialog.c:497
+#: ../src/preferences-dialog.c:467
 #, c-format
 msgid "%g: Genre"
 msgstr "%g: Žáner"
 
-#: ../src/preferences-dialog.c:502
+#: ../src/preferences-dialog.c:471
 msgid "%t: Title"
 msgstr "%t: Názov"
 
-#: ../src/preferences-dialog.c:507
+#: ../src/preferences-dialog.c:475
 msgid "%T: Track"
 msgstr "%T: Stopa"
 
-#: ../src/song-dialog.c:117
+#: ../src/song-dialog.c:126
 msgid "File"
 msgstr "Súbor"
 
-#: ../src/song-dialog.c:129
+#: ../src/song-dialog.c:134
 msgid "Artist"
 msgstr "Umelec"
 
-#: ../src/song-dialog.c:149
+#: ../src/song-dialog.c:148
 msgid "Album"
 msgstr "Album"
 
-#: ../src/song-dialog.c:159
+#: ../src/song-dialog.c:155
 msgid "Date"
 msgstr "Dátum"
 
-#: ../src/song-dialog.c:166
+#: ../src/song-dialog.c:160
 msgid "Track"
 msgstr "Stopa"
 
-#: ../src/song-dialog.c:176
+#: ../src/song-dialog.c:167
 msgid "Genre"
 msgstr "Žáner"
 
