@@ -34,14 +34,16 @@ namespace Xfmpc {
 		int i = 0;
 		unowned EnumValue enum_value;
 
-		while ((enum_value = klass.get_value (i)) != null)
+		while (klass.get_value (i) != null)
 		{
+			enum_value = klass.get_value (i);
 			if (GLib.strcmp ((enum_value.value_name).casefold (), (src.get_string ()).casefold ()) == 0)
+			{
+				dst.set_enum (enum_value.value);
 				break;
-			i ++;
+			}
+			i++;
 		}
-
-		dst.set_enum (enum_value.value);
   	}
 
 	public static int main (string[] args) {
