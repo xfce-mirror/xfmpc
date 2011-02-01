@@ -262,7 +262,7 @@ namespace Xfmpc {
 					       "artists", null,
 					       "authors", authors,
 					       "comments", _("MPD client written in GTK+ for Xfce"),
-					       "copyright", "Copyright \xc2\xa9 2008-2010 Mike Massonnet, Vincent Legout",
+					       "copyright", "Copyright \xc2\xa9 2008-2011 Mike Massonnet, Vincent Legout",
                          	 	       "documenters", null,
                          	 	       "license", Xfce.get_license_text (Xfce.LicenseTextType.GPL),
                          	 	       "translator-credits", _("translator-credits"),
