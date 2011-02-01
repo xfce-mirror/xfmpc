@@ -116,7 +116,7 @@ static GObjectClass *parent_class = NULL;
 
 
 GType
-xfmpc_mpdclient_get_type ()
+xfmpc_mpdclient_get_type (void)
 {
   static GType xfmpc_mpdclient_type = G_TYPE_INVALID;
 
@@ -296,7 +296,7 @@ xfmpc_mpdclient_finalize (GObject *object)
 
 
 XfmpcMpdclient *
-xfmpc_mpdclient_get_default ()
+xfmpc_mpdclient_get_default (void)
 {
   static XfmpcMpdclient *mpdclient = NULL;
 
@@ -337,14 +337,16 @@ xfmpc_mpdclient_initenv (XfmpcMpdclient *mpdclient)
             6600;
 
           priv->passwd = NULL;
-          gchar **split = g_strsplit (priv->host, "@", 2);
-          if (g_strv_length (split) == 2)
-            {
-              g_free (priv->host);
-              priv->host = g_strdup (split[1]);
-              priv->passwd = g_strdup (split[0]);
-            }
-          g_strfreev (split);
+	  {
+            gchar **split = g_strsplit (priv->host, "@", 2);
+            if (g_strv_length (split) == 2)
+              {
+                g_free (priv->host);
+                priv->host = g_strdup (split[1]);
+                priv->passwd = g_strdup (split[0]);
+              }
+            g_strfreev (split);
+	  }
         }
     }
   else
@@ -520,11 +522,11 @@ xfmpc_mpdclient_set_id (XfmpcMpdclient *mpdclient,
 
 gboolean
 xfmpc_mpdclient_set_song_time (XfmpcMpdclient *mpdclient,
-                               guint time)
+                               guint song_time)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
-  if (mpd_player_seek (priv->mi, time) != MPD_OK)
+  if (mpd_player_seek (priv->mi, song_time) != MPD_OK)
     return FALSE;
   else
     return TRUE;
@@ -556,11 +558,11 @@ xfmpc_mpdclient_set_repeat (XfmpcMpdclient *mpdclient,
 
 gboolean
 xfmpc_mpdclient_set_random (XfmpcMpdclient *mpdclient,
-                            gboolean random)
+                            gboolean random_)
 {
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
-  if (MPD_OK != mpd_player_set_random (priv->mi, random))
+  if (MPD_OK != mpd_player_set_random (priv->mi, random_))
     return FALSE;
   else
     return TRUE;
@@ -758,7 +760,7 @@ cb_status_changed (MpdObj *mi,
                    gpointer user_data)
 {
   XfmpcMpdclient *mpdclient = XFMPC_MPDCLIENT (user_data);
-  g_return_if_fail (G_LIKELY (NULL != user_data));
+  g_return_if_fail (NULL != user_data);
 
   if (what & MPD_CST_DATABASE)
     g_signal_emit (mpdclient, signals[SIG_DATABASE_CHANGED], 0);
@@ -1176,7 +1178,7 @@ _get_formatted_name_custom (mpd_Song *song,
 {
   gchar *formatted_name, *tmp;
 
-  g_return_val_if_fail (G_LIKELY (format != NULL), NULL);
+  g_return_val_if_fail (format != NULL, NULL);
 
   formatted_name = g_strdup ("");
 
