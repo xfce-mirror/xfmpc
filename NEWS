@@ -1,3 +1,13 @@
+    0.2.1 (2011-02-01)
+
+- Add support for consume and single modes
+- Set Xfmpc window title to what is currently playing in mpd
+- Remove dbbrowser-last-entry preference
+- Port to libxfce4ui
+- Port to automake 1.11
+- Remove dependency on xfce4-vala (Add vapi files in the source directory)
+- Fix misc bugs
+
     0.2.0 (2009-09-03)
 
 - Rewrite into Vala
