@@ -47,4 +47,11 @@ xfmpc_LDADD =								\
 	@LIBXFCE4UTIL_LIBS@						\
 	@LIBMPD_LIBS@
 
+EXTRA_DIST =								\
+	mpdclient.h							\
+	mpdclient.vapi							\
+	xfce-arrow-button.h						\
+	xfce-arrow-button.vapi						\
+	xfmpc.h
+
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
