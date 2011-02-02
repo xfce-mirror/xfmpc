@@ -11,14 +11,14 @@ msgstr ""
 "PO-Revision-Date: 2009-12-03 13:14+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
-"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Danish\n"
-"X-Poedit-Country: DENMARK\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Country: DENMARK\n"
 
 #: ../src/dbbrowser.c:873
 msgid "Replace"
@@ -38,11 +38,11 @@ msgstr "Tilfældig"
 
 #: ../src/extended-interface.c:322
 msgid "Single Mode"
-msgstr ""
+msgstr "Enkelttilstand"
 
 #: ../src/extended-interface.c:325
 msgid "Consume"
-msgstr ""
+msgstr "Forbrug"
 
 #: ../src/extended-interface.c:433 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -124,12 +124,8 @@ msgid "Use _default system settings"
 msgstr "Brug standardsys_temindstillinger"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Hvis afkrydset vil Xfmpc prøve at læse miljøvariabler MPD_HOST og MPD_PORT, "
-"ellers vil blive brugt localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Hvis afkrydset vil Xfmpc prøve at læse miljøvariabler MPD_HOST og MPD_PORT, ellers vil blive brugt localhost"
 
 #: ../src/preferences-dialog.c:377
 msgid "Hostname:"
