@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-01 19:55+0100\n"
-"PO-Revision-Date: 2009-09-03 22:07+0900\n"
+"POT-Creation-Date: 2011-02-08 15:30+0900\n"
+"PO-Revision-Date: 2011-02-08 15:30+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
 "Language: \n"
@@ -36,11 +36,11 @@ msgstr "ランダム"
 
 #: ../src/extended-interface.c:322
 msgid "Single Mode"
-msgstr ""
+msgstr "一曲のみ"
 
 #: ../src/extended-interface.c:325
 msgid "Consume"
-msgstr ""
+msgstr "使い捨て"
 
 #: ../src/extended-interface.c:433 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
