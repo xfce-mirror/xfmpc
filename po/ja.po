@@ -2,7 +2,7 @@
 # Copyright (C) 2008 the xfmpc's copyright holder
 # This file is distributed under the same license as the xfmpc package.
 # Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
@@ -11,10 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2011-02-08 15:30+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-Country: JAPAN\n"
 
@@ -40,7 +40,7 @@ msgstr "一曲のみ"
 
 #: ../src/extended-interface.c:325
 msgid "Consume"
-msgstr "使い捨て"
+msgstr "使いきり"
 
 #: ../src/extended-interface.c:433 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -120,12 +120,8 @@ msgid "Use _default system settings"
 msgstr "デフォルトのシステム設定を使用する(_D)"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"このオプションを有効にすると、Xfmpc は環境変数 MPD_HOST および MPD_PORT を読"
-"み込もうとし、なければ localhost を使用します"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "このオプションを有効にすると、Xfmpc は環境変数 MPD_HOST および MPD_PORT を読み込もうとし、なければ localhost を使用します"
 
 #: ../src/preferences-dialog.c:377
 msgid "Hostname:"
