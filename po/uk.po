@@ -38,9 +38,8 @@ msgid "Single Mode"
 msgstr "Одиночний режим"
 
 #: ../src/extended-interface.c:325
-#, fuzzy
 msgid "Consume"
-msgstr "Споживати"
+msgstr "Споживання"
 
 #: ../src/extended-interface.c:433 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
