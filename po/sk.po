@@ -2,24 +2,27 @@
 # Copyright (C) 2008 the xfmpc's copyright holder
 # This file is distributed under the same license as the xfmpc package.
 # Robert Hartl <hartl.robert@gmail.com>, 2009.
+# Tomáš Vadina <kyberdev@gmail.com>, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-01 19:55+0100\n"
-"PO-Revision-Date: 2009-11-14 11:20Centra4l\n"
-"Last-Translator: Robert Hartl <hartl.robert@gmail.com>\n"
+"PO-Revision-Date: 2011-05-20 18:19+0100\n"
+"Last-Translator: Tomáš Vadina <kyberdev@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
-"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
 
 #: ../src/dbbrowser.c:873
 msgid "Replace"
 msgstr "Nahradiť"
 
-#: ../src/dbbrowser.c:878 ../src/playlist.c:835
+#: ../src/dbbrowser.c:878
+#: ../src/playlist.c:835
 msgid "Browse"
 msgstr "Prehliadať"
 
@@ -33,19 +36,22 @@ msgstr "Náhodne"
 
 #: ../src/extended-interface.c:322
 msgid "Single Mode"
-msgstr ""
+msgstr "Jednoduchý režim"
 
 #: ../src/extended-interface.c:325
 msgid "Consume"
-msgstr ""
+msgstr "Spotreba"
 
-#: ../src/extended-interface.c:433 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:433
+#: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD klient napísany v GTK+ pre Xfce"
 
 #: ../src/extended-interface.c:433
 msgid "translator-credits"
-msgstr "Robert Hartl <hartl.robert@gmail.com>"
+msgstr ""
+"Robert Hartl <hartl.robert@gmail.com>\n"
+"Tomáš Vadina <kyberdev@gmail.com>"
 
 #: ../src/extended-interface.c:505
 msgid "Clear Playlist"
@@ -61,7 +67,7 @@ msgstr "Miestna ponuka"
 
 #: ../src/extended-interface.c:532
 msgid "Current Playlist"
-msgstr "Súčasný zozanam skladieb"
+msgstr "Súčasný zoznam skladieb"
 
 #: ../src/extended-interface.c:534
 msgid "Browse database"
@@ -76,7 +82,8 @@ msgstr "od \"%s\" z albumu \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Zastavené"
 
-#: ../src/interface.c:273 ../src/interface.c:473
+#: ../src/interface.c:273
+#: ../src/interface.c:473
 msgid "Not connected"
 msgstr "Nepripojené"
 
@@ -98,7 +105,9 @@ msgstr "Nepodarilo sa pripojiť na MPD"
 msgid "Connected to MPD"
 msgstr "Pripojené na MPD"
 
-#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627
+#: ../src/mpdclient.c:657
+#: ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "nedostupné"
 
@@ -115,13 +124,8 @@ msgid "Use _default system settings"
 msgstr "Použiť _predvolené nastavenie systému"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Ak je zaškrtnutá voľba, aplikácia Xfmpc sa pokúsi prečítať premenné "
-"prostredia MPD_HOST a MPD_PORT, v opačnom prípade použije tento počítač "
-"(localhost)"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Ak je zaškrtnutá voľba, aplikácia Xfmpc sa pokúsi prečítať premenné prostredia MPD_HOST a MPD_PORT, v opačnom prípade použije tento počítač (localhost)"
 
 #: ../src/preferences-dialog.c:377
 msgid "Hostname:"
@@ -155,7 +159,8 @@ msgstr "Formát skladby"
 msgid "Song Format:"
 msgstr "Formát skladby:"
 
-#: ../src/preferences-dialog.c:421 ../src/song-dialog.c:141
+#: ../src/preferences-dialog.c:421
+#: ../src/song-dialog.c:141
 msgid "Title"
 msgstr "Názov"
 
