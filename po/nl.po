@@ -17,12 +17,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
+"Language: nl (Dutch)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:873
 msgid "Replace"
-msgstr "_Vervangen"
+msgstr "Vervangen"
 
 #: ../src/dbbrowser.c:878 ../src/playlist.c:835
 msgid "Browse"
@@ -58,7 +58,7 @@ msgstr
 
 #: ../src/extended-interface.c:505
 msgid "Clear Playlist"
-msgstr "Afspeellijst wissen"
+msgstr "Speellijst wissen"
 
 #: ../src/extended-interface.c:511
 msgid "Refresh Database"
