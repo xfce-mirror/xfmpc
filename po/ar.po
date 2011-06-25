@@ -246,9 +246,8 @@ msgid "Genre"
 msgstr "نوع"
 
 #: ../xfmpc.desktop.in.h:1
-#, fuzzy
 msgid "MPD client"
-msgstr "MPD العميل"
+msgstr "MPD عميل"
 
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
