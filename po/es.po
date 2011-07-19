@@ -39,7 +39,6 @@ msgid "Single Mode"
 msgstr "Modo Único"
 
 #: ../src/extended-interface.c:325
-#, fuzzy
 msgid "Consume"
 msgstr "Consumir"
 
