@@ -86,6 +86,11 @@ namespace Xfmpc {
 			get { return _mpd_use_defaults; }
 			set { _mpd_use_defaults = value; store (); }
 		}
+		private bool _show_status_icon;
+		public bool show_status_icon {
+			get { return _show_status_icon; }
+			set { _show_status_icon = value; store (); }
+		}
 		private bool _show_statusbar;
 		public bool show_statusbar {
 			get { return _show_statusbar; }
@@ -113,6 +118,7 @@ namespace Xfmpc {
 			_mpd_port = 6600;
 			_mpd_password = "";
 			_mpd_use_defaults = true;
+			_show_status_icon = false;
 			_show_statusbar = true;
 			_song_format = SongFormat.ARTIST_TITLE;
 			_song_format_custom = "%a - %t";

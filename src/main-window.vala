@@ -23,6 +23,8 @@ namespace Xfmpc {
 
 	public class MainWindow : Window {
 
+		private Gtk.StatusIcon status_icon;
+
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
@@ -62,6 +64,12 @@ namespace Xfmpc {
 		construct {
 			mpdclient = Xfmpc.Mpdclient.get_default ();
 			preferences = Xfmpc.Preferences.get_default ();
+
+			/* StatusIcon */
+			this.status_icon = new Gtk.StatusIcon.from_icon_name ("stock_volume");
+			show_hide_status_icon ();
+			this.status_icon.activate.connect (status_icon_activated);
+			this.preferences.notify["show-status-icon"].connect (show_hide_status_icon);
 
   	  	  	/* Window */
 			set_default_icon_name ("xfmpc");
@@ -125,6 +133,19 @@ namespace Xfmpc {
 			Timeout.add (1000, refresh);
 		}
 
+		private void show_hide_status_icon () {
+			this.status_icon.set_visible (this.preferences.show_status_icon);
+		}
+
+		private void status_icon_activated () {
+			if (!this.visible) {
+				this.show ();
+				this.deiconify ();
+			} else {
+				this.hide ();
+			}
+		}
+
 		private bool refresh () {
 			if (this.mpdclient.is_connected ()) {
 				this.mpdclient.update_status ();
@@ -150,13 +171,12 @@ namespace Xfmpc {
    	   	   	 * window-state-event signal, so here we take the value only if
    	   	   	 * the window is visible
    	   	   	 **/
-			if ((bool) event.changed_mask & Gdk.WindowState.STICKY && this.visible){
+			if ((bool) event.changed_mask & Gdk.WindowState.STICKY && this.visible) {
 				bool sticky;
 				if (((bool) event.new_window_state & Gdk.WindowState.STICKY) == false)
 					sticky = false;
 				else
 					sticky = true;
-
 				this.preferences.last_window_state_sticky = sticky;
 			}
 
