@@ -29,6 +29,7 @@ namespace Xfmpc {
 		private Gtk.Entry entry_host;
 		private Gtk.Entry entry_passwd;
 		private Gtk.SpinButton entry_port;
+		private Gtk.CheckButton show_status_icon;
 		private Gtk.CheckButton show_statusbar;
 		private Gtk.ComboBox combo_format;
 		private Gtk.Entry entry_custom;
@@ -111,8 +112,13 @@ namespace Xfmpc {
 			notebook.append_page (vbox, label);
 
 			vbox2 = new Gtk.VBox (false, 6);
-			frame = Xfce.gtk_frame_box_new_with_content (_("Statusbar"), vbox2);
+			frame = Xfce.gtk_frame_box_new_with_content (_("General"), vbox2);
 			vbox.pack_start (frame, false, false, 0);
+
+			this.show_status_icon = new Gtk.CheckButton.with_mnemonic (_("Close window into notification area"));
+			this.show_status_icon.set_active (this.preferences.show_status_icon);
+			this.show_status_icon.toggled.connect (cb_show_status_icon_toggled);
+			vbox2.pack_start (this.show_status_icon, false, false, 0);
 
 			this.show_statusbar = new Gtk.CheckButton.with_mnemonic (_("Show _stastusbar"));
 			this.show_statusbar.set_active (this.preferences.show_statusbar);
@@ -240,6 +246,10 @@ namespace Xfmpc {
 
 			mpdclient.disconnect ();
 			mpdclient.connect ();
+		}
+
+		private void cb_show_status_icon_toggled () {
+			this.preferences.show_status_icon = this.show_status_icon.get_active ();
 		}
 
 		private void cb_show_statusbar_toggled () {

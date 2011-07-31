@@ -186,7 +186,11 @@ namespace Xfmpc {
 		private bool cb_window_closed (Gdk.Event event) {
 			close_window ();
 
-			return false;
+			/* Return true in case the window should not be destroyed,
+			 * and there is currently one case when this should be done:
+			 * the user choosed to "close into notification area," that
+			 * is when the status icon is visible. */
+			return this.status_icon.visible;
 		}
 
 		private void action_close () {
@@ -196,6 +200,11 @@ namespace Xfmpc {
 		private void close_window () {
 			int posx, posy;
 			int width, height;
+
+			if (this.status_icon.visible) {
+				this.hide ();
+				return;
+			}
 
 			get_position (out posx, out posy);
 			get_size (out width, out height);
