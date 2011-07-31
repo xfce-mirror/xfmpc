@@ -107,7 +107,7 @@ namespace Xfmpc {
 			_last_window_posy = 100;
 			_last_window_width = 330;
 			_last_window_height = 330;
-			_last_window_state_sticky = true;
+			_last_window_state_sticky = false;
 			_playlist_autocenter = true;
 			_mpd_hostname = "localhost";
 			_mpd_port = 6600;
