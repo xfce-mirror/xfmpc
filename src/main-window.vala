@@ -24,6 +24,7 @@ namespace Xfmpc {
 	public class MainWindow : Window {
 
 		private Gtk.StatusIcon status_icon;
+		private Gtk.Menu status_icon_menu;
 
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
@@ -69,6 +70,7 @@ namespace Xfmpc {
 			this.status_icon = new Gtk.StatusIcon.from_icon_name ("stock_volume");
 			show_hide_status_icon ();
 			this.status_icon.activate.connect (status_icon_activated);
+			this.status_icon.popup_menu.connect (status_icon_popup_menu);
 			this.preferences.notify["show-status-icon"].connect (show_hide_status_icon);
 
   	  	  	/* Window */
@@ -144,6 +146,18 @@ namespace Xfmpc {
 			} else {
 				this.hide ();
 			}
+		}
+
+		private void status_icon_popup_menu (uint button, uint activate_time) {
+			if (this.status_icon_menu == null) {
+				this.status_icon_menu = new Gtk.Menu ();
+				var mi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_QUIT, null);
+				mi.activate.connect (Gtk.main_quit);
+				this.status_icon_menu.add (mi);
+				this.status_icon_menu.show_all ();
+			}
+
+			this.status_icon_menu.popup (null, null, this.status_icon.position_menu, button, activate_time);
 		}
 
 		private bool refresh () {
