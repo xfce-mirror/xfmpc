@@ -359,8 +359,6 @@ namespace Xfmpc {
 
 			Gtk.TreePath path;
 			var selection = this.treeview.get_selection ();
-			if (selection.count_selected_rows () < 1)
-				return true;
 
 			if (this.treeview.get_path_at_pos ((int) event.x, (int) event.y,
 						           out path, null, null, null))
@@ -370,6 +368,9 @@ namespace Xfmpc {
 					selection.select_path (path);
 				}
 			}
+
+			if (selection.count_selected_rows () < 1)
+				return true;
 
 			menu_popup ();
 

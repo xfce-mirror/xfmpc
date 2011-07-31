@@ -284,8 +284,6 @@ namespace Xfmpc {
 				return false;
 
 			selection = this.treeview.get_selection ();
-			if (selection.count_selected_rows () < 1)
-				return true;
 
 			bool sensitive = selection.count_selected_rows () == 1;
 			this.mi_browse.set_sensitive (sensitive);
@@ -299,6 +297,9 @@ namespace Xfmpc {
 					selection.select_path (path);
 				}
 			}
+
+			if (selection.count_selected_rows () < 1)
+				return true;
 
 			menu_popup ();
 
