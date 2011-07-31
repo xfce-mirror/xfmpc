@@ -296,6 +296,8 @@ namespace Xfmpc {
 				title = "[" + _title + "] - " + Config.PACKAGE_NAME;
 			else
 				title = Config.PACKAGE_NAME;
+
+			this.status_icon.set_tooltip_text (title);
 		}
 
 		private void cb_show_statusbar_changed (ParamSpec pspec) {
