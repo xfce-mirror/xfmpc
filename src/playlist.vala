@@ -115,6 +115,8 @@ namespace Xfmpc {
 			this.menu.show_all ();
 
 			this.filter_entry = new Entry ();
+			this.filter_entry.set_icon_from_stock (EntryIconPosition.PRIMARY, Gtk.STOCK_FIND);
+			this.filter_entry.set_icon_activatable (EntryIconPosition.PRIMARY, false);
 
 			scrolled.add (this.treeview);
 			pack_start (scrolled, true, true, 0);
