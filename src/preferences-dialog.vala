@@ -44,6 +44,7 @@ namespace Xfmpc {
 			this.icon_name = "stock_volume";
 			this.resizable = false;
 			this.title = "Xfmpc Preferences";
+			this.subtitle = "Customize your MPD client";
 
 			this.preferences = Xfmpc.Preferences.get_default ();
 
