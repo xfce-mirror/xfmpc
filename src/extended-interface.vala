@@ -175,7 +175,7 @@ namespace Xfmpc {
 			this.single.activate.connect (cb_single_switch);
 			this.context_menu.append (this.single);
 
-			this.consume = new Gtk.CheckMenuItem.with_label (_("Consume"));
+			this.consume = new Gtk.CheckMenuItem.with_label (_("Consume Mode"));
 			this.consume.toggled.connect (cb_consume_switch);
 			this.context_menu.append (this.consume);
 
