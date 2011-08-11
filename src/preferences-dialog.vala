@@ -43,8 +43,8 @@ namespace Xfmpc {
 			this.skip_taskbar_hint = true;
 			this.icon_name = "stock_volume";
 			this.resizable = false;
-			this.title = "Xfmpc Preferences";
-			this.subtitle = "Customize your MPD client";
+			this.title = _("Xfmpc Preferences");
+			this.subtitle = _("Customize your MPD client");
 
 			this.preferences = Xfmpc.Preferences.get_default ();
 
