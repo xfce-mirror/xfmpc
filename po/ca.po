@@ -9,12 +9,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-01 19:55+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Harald Servat <redcrash@gmail.com>\n"
+"Last-Translator: Pol Ruzafa <kiari62@gmail.com>\n"
 "Language-Team: Harald Servat <redcrash@gmail.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Poedit-Language: Catalan\n"
 "X-Poedit-Country: Spain\n"
 
@@ -22,7 +22,8 @@ msgstr ""
 msgid "Replace"
 msgstr "Reemplaçar"
 
-#: ../src/dbbrowser.c:878 ../src/playlist.c:835
+#: ../src/dbbrowser.c:878
+#: ../src/playlist.c:835
 msgid "Browse"
 msgstr "Navegar"
 
@@ -36,13 +37,14 @@ msgstr "Aleatori"
 
 #: ../src/extended-interface.c:322
 msgid "Single Mode"
-msgstr ""
+msgstr "Monomode"
 
 #: ../src/extended-interface.c:325
 msgid "Consume"
-msgstr ""
+msgstr "Consum"
 
-#: ../src/extended-interface.c:433 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:433
+#: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Client MPD escrit en GTK+ per a Xfce"
 
@@ -79,7 +81,8 @@ msgstr "per \"%s\" de \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Aturat"
 
-#: ../src/interface.c:273 ../src/interface.c:473
+#: ../src/interface.c:273
+#: ../src/interface.c:473
 msgid "Not connected"
 msgstr "No connectat"
 
@@ -101,7 +104,9 @@ msgstr "No s'ha pogut connectar a MPD"
 msgid "Connected to MPD"
 msgstr "Connectat a MPD"
 
-#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627
+#: ../src/mpdclient.c:657
+#: ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "n/d"
 
@@ -118,12 +123,8 @@ msgid "Use _default system settings"
 msgstr "Usar preferències per _defecte del sistema"
 
 #: ../src/preferences-dialog.c:367
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Si està activat, Xfmpc intentarà llegir les variables d'entorn MPD_HOST i "
-"MPD_PORT, altrament usarà localhost."
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Si està activat, Xfmpc intentarà llegir les variables d'entorn MPD_HOST i MPD_PORT, altrament usarà localhost."
 
 #: ../src/preferences-dialog.c:377
 msgid "Hostname:"
@@ -157,7 +158,8 @@ msgstr "Format de la cançó"
 msgid "Song Format:"
 msgstr "Format de la cançó:"
 
-#: ../src/preferences-dialog.c:421 ../src/song-dialog.c:141
+#: ../src/preferences-dialog.c:421
+#: ../src/song-dialog.c:141
 msgid "Title"
 msgstr "Títol"
 
