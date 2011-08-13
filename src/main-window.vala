@@ -42,7 +42,7 @@ namespace Xfmpc {
 		};
 
 		private const Gtk.ActionEntry[] action_entries = {
-			{ "quit", null, "", "<control>q", null, action_close },
+			{ "quit", null, "", "<control>q", null, action_quit },
 			{ "previous", null, "", "<control>b", null, action_previous },
 			{ "pp", null, "", "<control>p", null, action_pp },
 			{ "stop", null, "", "<control>s", null, action_stop },
@@ -207,7 +207,8 @@ namespace Xfmpc {
 			return this.status_icon.visible;
 		}
 
-		private void action_close () {
+		private void action_quit () {
+			this.status_icon.set_visible (false);
 			close_window ();
 		}
 
