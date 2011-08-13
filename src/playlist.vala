@@ -258,6 +258,7 @@ namespace Xfmpc {
 				return;
 
 			this.filter.get (iter, Columns.COLUMN_ID, out id, -1);
+			this.filter_entry.set_text ("");
 			this.mpdclient.set_id (id);
 		}
 
