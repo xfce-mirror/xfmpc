@@ -170,46 +170,48 @@ namespace Xfmpc {
 			label = new Gtk.Label (_("Available parameters:"));
 			vbox2.pack_start (label, true, true, 0);
 
-			var table = new Gtk.Table (4, 6, true);
+			var table = new Gtk.Table (2, 6, true);
+			table.set_col_spacings (6);
+			table.set_row_spacings (6);
 
 			var attrs = new Pango.AttrList ();
 			attrs.insert (Pango.attr_scale_new ((double) Pango.Scale.SMALL));
 
 			label = new Gtk.Label (_("%a: Artist"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, (float) 0.5);
-			table.attach_defaults (label, 1, 3, 0, 1);
+			label.set_alignment (0, 0.5f);
+			table.attach_defaults (label, 1, 2, 0, 1);
 			label = new Gtk.Label (_("%A: Album"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, (float) 0.5);
-			table.attach_defaults (label, 4, 6, 0, 1);
-
-			label = new Gtk.Label (_("%d: Date"));
-			label.set_attributes (attrs);
-			label.set_alignment (0, (float) 0.5);
-			table.attach_defaults (label, 1, 3, 1, 2);
-			label = new Gtk.Label (_("%D: Disc"));
-			label.set_attributes (attrs);
-			label.set_alignment (0, (float) 0.5);
-			table.attach_defaults (label, 4, 6, 1, 2);
-
-			label = new Gtk.Label (_("%f: File"));
-			label.set_attributes (attrs);
-			label.set_alignment (0, (float) 0.5);
-			table.attach_defaults (label, 1, 3, 2, 3);
-			label = new Gtk.Label (_("%g: Genre"));
-			label.set_attributes (attrs);
-			label.set_alignment (0, (float) 0.5);
-			table.attach_defaults (label, 4, 6, 2, 3);
+			label.set_alignment (0, 0.5f);
+			table.attach_defaults (label, 1, 2, 1, 2);
 
 			label = new Gtk.Label (_("%t: Title"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, (float) 0.5);
-			table.attach_defaults (label, 1, 3, 3, 4);
+			label.set_alignment (0, 0.5f);
+			table.attach_defaults (label, 2, 3, 0, 1);
+			label = new Gtk.Label (_("%D: Disc"));
+			label.set_attributes (attrs);
+			label.set_alignment (0, 0.5f);
+			table.attach_defaults (label, 2, 3, 1, 2);
+
+			label = new Gtk.Label (_("%f: File"));
+			label.set_attributes (attrs);
+			label.set_alignment (0, 0.5f);
+			table.attach_defaults (label, 3, 4, 0, 1);
+			label = new Gtk.Label (_("%g: Genre"));
+			label.set_attributes (attrs);
+			label.set_alignment (0, 0.5f);
+			table.attach_defaults (label, 3, 4, 1, 2);
+
+			label = new Gtk.Label (_("%d: Date"));
+			label.set_attributes (attrs);
+			label.set_alignment (0, 0.5f);
+			table.attach_defaults (label, 4, 5, 0, 1);
 			label = new Gtk.Label (_("%T: Track"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, (float) 0.5);
-			table.attach_defaults (label, 4, 6, 3, 4);
+			label.set_alignment (0, 0.5f);
+			table.attach_defaults (label, 4, 5, 1, 2);
 
 			vbox2.pack_start (table, true, true, 0);
 
