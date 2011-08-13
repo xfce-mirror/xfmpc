@@ -186,6 +186,10 @@ namespace Xfmpc {
 			imi.activate.connect (cb_preferences);
 			this.context_menu.append (imi);
 
+			var mi = new Gtk.MenuItem.with_mnemonic (_("_Shortcuts"));
+			mi.activate.connect (cb_shortcuts);
+			this.context_menu.append (mi);
+
 			imi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_ABOUT, null);
 			imi.activate.connect (cb_about);
 			this.context_menu.append (imi);
@@ -252,6 +256,11 @@ namespace Xfmpc {
 		private void cb_preferences () {
 			var dialog = new Xfmpc.PreferencesDialog ();
 			dialog.show ();
+		}
+
+		private void cb_shortcuts () {
+			var dialog = new Xfmpc.ShortcutsDialog ();
+			dialog.show();
 		}
 
 		private void cb_about () {

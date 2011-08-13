@@ -9,6 +9,7 @@ INCLUDES =								\
 bin_PROGRAMS = xfmpc
 
 xfmpc_SOURCES =								\
+	shortcuts-dialog.vala						\
 	preferences-dialog.vala						\
 	song-dialog.vala						\
 	statusbar.vala							\
