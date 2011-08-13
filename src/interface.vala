@@ -34,6 +34,8 @@ namespace Xfmpc {
 		private Gtk.Label title;
 		private Gtk.Label subtitle;
 
+		private bool progress_bar_sync = true;
+
 		construct {
 			this.mpdclient = Xfmpc.Mpdclient.get_default ();
 			this.preferences = Xfmpc.Preferences.get_default ();
@@ -118,6 +120,8 @@ namespace Xfmpc {
 			this.button_pp.clicked.connect (pp_clicked);
 			this.button_next.clicked.connect (cb_mpdclient_next);
 			this.button_volume.value_changed.connect (volume_changed);
+			progress_box.motion_notify_event.connect (cb_progress_box_motion_event);
+			progress_box.button_press_event.connect (cb_progress_box_press_event);
 			progress_box.button_release_event.connect (cb_progress_box_release_event);
 
 			this.mpdclient.song_changed.connect (cb_song_changed);
@@ -152,9 +156,38 @@ namespace Xfmpc {
 				image.set_from_stock (Gtk.STOCK_MEDIA_PLAY, Gtk.IconSize.BUTTON);
 		}
 
+		private bool cb_progress_box_motion_event (Gdk.EventMotion event) {
+			/* This event is started only after a press-event signal,
+			 * we use it to update the progress bar with the position
+			 * of the mouse. */
+			int time_total = this.mpdclient.get_total_time ();
+			if (time_total < 0)
+				return false;
+
+			double song_time = event.x / this.progress_bar.allocation.width;
+			song_time *= time_total;
+
+			if (song_time < 0)
+				song_time = 0;
+			else if (song_time > time_total)
+				song_time = time_total;
+
+			set_time ((int)song_time, time_total);
+			return false;
+		}
+
+		private bool cb_progress_box_press_event (Gdk.EventButton event) {
+			/* Block MPD signals from updating the progress bar */
+			this.progress_bar_sync = false;
+			return false;
+		}
+
 		private bool cb_progress_box_release_event (Gdk.EventButton event) {
 			if (event.type != Gdk.EventType.BUTTON_RELEASE || event.button != 1)
 				return false;
+
+			/* Unblock MPD signals to update the progress bar */
+			this.progress_bar_sync = true;
 
 			int time_total = this.mpdclient.get_total_time ();
 			if (time_total < 0)
@@ -242,10 +275,14 @@ namespace Xfmpc {
 		}
 
 		private void cb_time_changed (int song_time) {
+			if (this.progress_bar_sync == false)
+				return;
 			set_time (song_time, mpdclient.get_total_time());
 		}
 
 		private void cb_total_time_changed (int total_time) {
+			if (this.progress_bar_sync == false)
+				return;
 			set_time (mpdclient.get_time(), total_time);
 		}
 
