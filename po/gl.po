@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-01 19:55+0100\n"
+"POT-Creation-Date: 2011-08-13 19:02+0200\n"
 "PO-Revision-Date: 2009-07-15 18:21+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -21,57 +21,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: ../src/dbbrowser.c:873
+#: ../src/dbbrowser.c:863
 msgid "Replace"
 msgstr "Substituír"
 
-#: ../src/dbbrowser.c:878 ../src/playlist.c:835
+#: ../src/dbbrowser.c:868 ../src/playlist.c:828
 msgid "Browse"
 msgstr "Explorar"
 
-#: ../src/extended-interface.c:316
+#: ../src/extended-interface.c:337
 msgid "Repeat"
 msgstr "Repetir"
 
-#: ../src/extended-interface.c:319
+#: ../src/extended-interface.c:340
 msgid "Random"
 msgstr "Aleatorio"
 
-#: ../src/extended-interface.c:322
+#: ../src/extended-interface.c:343
 msgid "Single Mode"
 msgstr ""
 
-#: ../src/extended-interface.c:325
-msgid "Consume"
+#: ../src/extended-interface.c:346
+msgid "Consume Mode"
 msgstr ""
 
-#: ../src/extended-interface.c:433 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:354
+msgid "_Shortcuts"
+msgstr ""
+
+#: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Cliente de MPD escrito en GTK+ para Xfce"
 
-#: ../src/extended-interface.c:433
+#: ../src/extended-interface.c:467
 msgid "translator-credits"
 msgstr ""
 "Se está marcado, Xfmpc intentará ler as variables de contorno MPD_HOST e "
 "MPD_PORT ou usará localhost"
 
-#: ../src/extended-interface.c:505
+#: ../src/extended-interface.c:539
 msgid "Clear Playlist"
 msgstr "Limpar a lista de reprodución"
 
-#: ../src/extended-interface.c:511
+#: ../src/extended-interface.c:545
 msgid "Refresh Database"
 msgstr "Actualizar a base de datos"
 
-#: ../src/extended-interface.c:517
+#: ../src/extended-interface.c:551
 msgid "Context Menu"
 msgstr "Menú de contexto"
 
-#: ../src/extended-interface.c:532
+#: ../src/extended-interface.c:566
 msgid "Current Playlist"
 msgstr "Lista de reprodución actual"
 
-#: ../src/extended-interface.c:534
+#: ../src/extended-interface.c:568
 msgid "Browse database"
 msgstr "Ver a base de datos"
 
@@ -84,16 +88,16 @@ msgstr "por \"%s\" de \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Parado"
 
-#: ../src/interface.c:273 ../src/interface.c:473
+#: ../src/interface.c:273 ../src/interface.c:471
 msgid "Not connected"
 msgstr "Non conectado"
 
-#: ../src/main-window.c:385
+#: ../src/main-window.c:444
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d cancións, %d horas e %d minutos"
 
-#: ../src/main-window.c:387
+#: ../src/main-window.c:446
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d cancións, %d minutos"
@@ -110,19 +114,27 @@ msgstr "Conectado a MPD"
 msgid "n/a"
 msgstr "n/d"
 
-#: ../src/preferences-dialog.c:361
+#: ../src/preferences-dialog.c:369
+msgid "Xfmpc Preferences"
+msgstr "Preferencias de Xfmpc"
+
+#: ../src/preferences-dialog.c:370
+msgid "Customize your MPD client"
+msgstr ""
+
+#: ../src/preferences-dialog.c:377
 msgid "MPD"
 msgstr "MPD"
 
-#: ../src/preferences-dialog.c:364
+#: ../src/preferences-dialog.c:380
 msgid "Connection"
 msgstr "Conexión"
 
-#: ../src/preferences-dialog.c:366
+#: ../src/preferences-dialog.c:382
 msgid "Use _default system settings"
 msgstr "Usar a _configuración predeterminada do sistema"
 
-#: ../src/preferences-dialog.c:367
+#: ../src/preferences-dialog.c:383
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
@@ -130,108 +142,112 @@ msgstr ""
 "Se está marcado, Xfmpc intentará ler as variables de contorno MPD_HOST e "
 "MPD_PORT e se non usará localhost"
 
-#: ../src/preferences-dialog.c:377
+#: ../src/preferences-dialog.c:393
 msgid "Hostname:"
 msgstr "Nome de máquina:"
 
-#: ../src/preferences-dialog.c:383
+#: ../src/preferences-dialog.c:399
 msgid "Port:"
 msgstr "Porto:"
 
-#: ../src/preferences-dialog.c:391
+#: ../src/preferences-dialog.c:407
 msgid "Password:"
 msgstr "Contrasinal:"
 
-#: ../src/preferences-dialog.c:404
+#: ../src/preferences-dialog.c:420
 msgid "Appearance"
 msgstr "Aparencia"
 
-#: ../src/preferences-dialog.c:407
-msgid "Statusbar"
-msgstr "Barra de estado"
+#: ../src/preferences-dialog.c:423
+msgid "General"
+msgstr ""
 
-#: ../src/preferences-dialog.c:409
+#: ../src/preferences-dialog.c:425
+msgid "Close window into notification area"
+msgstr ""
+
+#: ../src/preferences-dialog.c:429
 msgid "Show _stastusbar"
 msgstr "Mostrar a barra de e_stado"
 
-#: ../src/preferences-dialog.c:414
+#: ../src/preferences-dialog.c:434
 msgid "Song Format"
 msgstr "Formato da canción"
 
-#: ../src/preferences-dialog.c:417
+#: ../src/preferences-dialog.c:437
 msgid "Song Format:"
 msgstr "Formato da canción:"
 
-#: ../src/preferences-dialog.c:421 ../src/song-dialog.c:141
+#: ../src/preferences-dialog.c:441 ../src/song-dialog.c:141
 msgid "Title"
 msgstr "Título"
 
-#: ../src/preferences-dialog.c:422
+#: ../src/preferences-dialog.c:442
 msgid "Album - Title"
 msgstr "Álbum - Título"
 
-#: ../src/preferences-dialog.c:423
+#: ../src/preferences-dialog.c:443
 msgid "Artist - Title"
 msgstr "Artista - Título"
 
-#: ../src/preferences-dialog.c:424
+#: ../src/preferences-dialog.c:444
 msgid "Artist - Title (Date)"
 msgstr "Artista - Título (Data)"
 
-#: ../src/preferences-dialog.c:425
+#: ../src/preferences-dialog.c:445
 msgid "Artist - Album - Title"
 msgstr "Artista - Álbum - Título"
 
-#: ../src/preferences-dialog.c:426
+#: ../src/preferences-dialog.c:446
 msgid "Artist - Album - Track. Title"
 msgstr "Artista - Álbum - Pista. Título"
 
-#: ../src/preferences-dialog.c:427
+#: ../src/preferences-dialog.c:447
 msgid "Custom..."
 msgstr "Personalizado..."
 
-#: ../src/preferences-dialog.c:431
+#: ../src/preferences-dialog.c:451
 msgid "Custom format:"
 msgstr "Formato personalizado:"
 
-#: ../src/preferences-dialog.c:442
+#: ../src/preferences-dialog.c:462
 msgid "Available parameters:"
 msgstr "Parámetros dispoñibles:"
 
-#: ../src/preferences-dialog.c:447
+#: ../src/preferences-dialog.c:469
 #, c-format
 msgid "%a: Artist"
 msgstr "%a: Artista"
 
-#: ../src/preferences-dialog.c:451
+#: ../src/preferences-dialog.c:473
 #, c-format
 msgid "%A: Album"
 msgstr "%A: Álbum"
 
-#: ../src/preferences-dialog.c:455
-#, c-format
-msgid "%d: Date"
-msgstr "%d: Data"
+#: ../src/preferences-dialog.c:477
+msgid "%t: Title"
+msgstr "%t: Título"
 
-#: ../src/preferences-dialog.c:459
+#: ../src/preferences-dialog.c:481
 msgid "%D: Disc"
 msgstr "%D: Disco"
 
-#: ../src/preferences-dialog.c:463
+#: ../src/preferences-dialog.c:485
 #, c-format
 msgid "%f: File"
 msgstr "%f: Ficheiro"
 
-#: ../src/preferences-dialog.c:467
+#: ../src/preferences-dialog.c:489
 #, c-format
 msgid "%g: Genre"
 msgstr "%g: Xénero"
 
-#: ../src/preferences-dialog.c:471
-msgid "%t: Title"
-msgstr "%t: Título"
+#: ../src/preferences-dialog.c:493
+#, c-format
+msgid "%d: Date"
+msgstr "%d: Data"
 
-#: ../src/preferences-dialog.c:475
+#: ../src/preferences-dialog.c:497
 msgid "%T: Track"
 msgstr "%T: Pista"
 
@@ -267,8 +283,8 @@ msgstr "Cliente de MPD"
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#~ msgid "Xfmpc Preferences"
-#~ msgstr "Preferencias de Xfmpc"
+#~ msgid "Statusbar"
+#~ msgstr "Barra de estado"
 
 #~ msgid "Song format:"
 #~ msgstr "Formato da canción:"

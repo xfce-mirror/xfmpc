@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-01 19:55+0100\n"
+"POT-Creation-Date: 2011-08-13 19:02+0200\n"
 "PO-Revision-Date: 2009-09-03 22:07+0900\n"
 "Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -16,55 +16,59 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/dbbrowser.c:873
+#: ../src/dbbrowser.c:863
 msgid "Replace"
 msgstr "ئالماشتۇرۇش"
 
-#: ../src/dbbrowser.c:878 ../src/playlist.c:835
+#: ../src/dbbrowser.c:868 ../src/playlist.c:828
 msgid "Browse"
 msgstr "كۆز يۈگۈرت"
 
-#: ../src/extended-interface.c:316
+#: ../src/extended-interface.c:337
 msgid "Repeat"
 msgstr "قايتىلا"
 
-#: ../src/extended-interface.c:319
+#: ../src/extended-interface.c:340
 msgid "Random"
 msgstr "ئىختىيارىي"
 
-#: ../src/extended-interface.c:322
+#: ../src/extended-interface.c:343
 msgid "Single Mode"
 msgstr ""
 
-#: ../src/extended-interface.c:325
-msgid "Consume"
+#: ../src/extended-interface.c:346
+msgid "Consume Mode"
 msgstr ""
 
-#: ../src/extended-interface.c:433 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:354
+msgid "_Shortcuts"
+msgstr ""
+
+#: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Xfce ئۈچۈن GTK+ دا يېزىلغان MPD client پروگراممىسى"
 
-#: ../src/extended-interface.c:433
+#: ../src/extended-interface.c:467
 msgid "translator-credits"
 msgstr "Gheyret T.Kenji <gheyret@gmail.com> 2010"
 
-#: ../src/extended-interface.c:505
+#: ../src/extended-interface.c:539
 msgid "Clear Playlist"
 msgstr "Playlist نى تازىلا"
 
-#: ../src/extended-interface.c:511
+#: ../src/extended-interface.c:545
 msgid "Refresh Database"
 msgstr "سانداننى يېڭىلا"
 
-#: ../src/extended-interface.c:517
+#: ../src/extended-interface.c:551
 msgid "Context Menu"
 msgstr "مەزمۇن Menu سى"
 
-#: ../src/extended-interface.c:532
+#: ../src/extended-interface.c:566
 msgid "Current Playlist"
 msgstr "ھازىرقى Playlist"
 
-#: ../src/extended-interface.c:534
+#: ../src/extended-interface.c:568
 msgid "Browse database"
 msgstr "سانداننى كور"
 
@@ -77,16 +81,16 @@ msgstr "by \"%s\" from \"%s\" (%s)"
 msgid "Stopped"
 msgstr "توختىدى"
 
-#: ../src/interface.c:273 ../src/interface.c:473
+#: ../src/interface.c:273 ../src/interface.c:471
 msgid "Not connected"
 msgstr "باغلانمىدى"
 
-#: ../src/main-window.c:385
+#: ../src/main-window.c:444
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d ناخشا, %d سائەت %d مىنۇت"
 
-#: ../src/main-window.c:387
+#: ../src/main-window.c:446
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d ناخشا, %d مىنۇت"
@@ -103,19 +107,27 @@ msgstr "MPD غا باغلاندى"
 msgid "n/a"
 msgstr "n/a"
 
-#: ../src/preferences-dialog.c:361
+#: ../src/preferences-dialog.c:369
+msgid "Xfmpc Preferences"
+msgstr "Xfmpc 設定"
+
+#: ../src/preferences-dialog.c:370
+msgid "Customize your MPD client"
+msgstr ""
+
+#: ../src/preferences-dialog.c:377
 msgid "MPD"
 msgstr "MPD"
 
-#: ../src/preferences-dialog.c:364
+#: ../src/preferences-dialog.c:380
 msgid "Connection"
 msgstr "باغلىنىش"
 
-#: ../src/preferences-dialog.c:366
+#: ../src/preferences-dialog.c:382
 msgid "Use _default system settings"
 msgstr "كۆڭۈلدىكى سىستېما تەڭشىكىنى ئىشلەت(_D)"
 
-#: ../src/preferences-dialog.c:367
+#: ../src/preferences-dialog.c:383
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
@@ -123,108 +135,112 @@ msgstr ""
 "تاللانسا، Xfmpc مۇھىت ئۆزگەرگۈچىلىرى MPD_HOST ۋە MPD_PORT نى ئوقۇيدۇ، "
 "بولمىسا localhost نى ئىشلىتىدۇ"
 
-#: ../src/preferences-dialog.c:377
+#: ../src/preferences-dialog.c:393
 msgid "Hostname:"
 msgstr "Hostname:"
 
-#: ../src/preferences-dialog.c:383
+#: ../src/preferences-dialog.c:399
 msgid "Port:"
 msgstr "ئېغىز:"
 
-#: ../src/preferences-dialog.c:391
+#: ../src/preferences-dialog.c:407
 msgid "Password:"
 msgstr "ئىم:"
 
-#: ../src/preferences-dialog.c:404
+#: ../src/preferences-dialog.c:420
 msgid "Appearance"
 msgstr "كۆرۈنۈشى"
 
-#: ../src/preferences-dialog.c:407
-msgid "Statusbar"
-msgstr "ھالەت تاياقچىسى"
+#: ../src/preferences-dialog.c:423
+msgid "General"
+msgstr ""
 
-#: ../src/preferences-dialog.c:409
+#: ../src/preferences-dialog.c:425
+msgid "Close window into notification area"
+msgstr ""
+
+#: ../src/preferences-dialog.c:429
 msgid "Show _stastusbar"
 msgstr "ھالەت تاياقچىسىنى كۆرسەت"
 
-#: ../src/preferences-dialog.c:414
+#: ../src/preferences-dialog.c:434
 msgid "Song Format"
 msgstr "ناخشا فورماتى"
 
-#: ../src/preferences-dialog.c:417
+#: ../src/preferences-dialog.c:437
 msgid "Song Format:"
 msgstr "ناخشا فورماتى:"
 
-#: ../src/preferences-dialog.c:421 ../src/song-dialog.c:141
+#: ../src/preferences-dialog.c:441 ../src/song-dialog.c:141
 msgid "Title"
 msgstr "ماۋزۇ"
 
-#: ../src/preferences-dialog.c:422
+#: ../src/preferences-dialog.c:442
 msgid "Album - Title"
 msgstr "ئالبوم - ماۋزۇ"
 
-#: ../src/preferences-dialog.c:423
+#: ../src/preferences-dialog.c:443
 msgid "Artist - Title"
 msgstr "ئارتىس - ماۋزۇ"
 
-#: ../src/preferences-dialog.c:424
+#: ../src/preferences-dialog.c:444
 msgid "Artist - Title (Date)"
 msgstr "ئارتىس - ماۋزۇ(چېسلا)"
 
-#: ../src/preferences-dialog.c:425
+#: ../src/preferences-dialog.c:445
 msgid "Artist - Album - Title"
 msgstr "ئارتىس - ئالبوم - ماۋزۇ"
 
-#: ../src/preferences-dialog.c:426
+#: ../src/preferences-dialog.c:446
 msgid "Artist - Album - Track. Title"
 msgstr "ئارتىس - ئالبوم - رېلىس. ماۋزۇ"
 
-#: ../src/preferences-dialog.c:427
+#: ../src/preferences-dialog.c:447
 msgid "Custom..."
 msgstr "ئادەت..."
 
-#: ../src/preferences-dialog.c:431
+#: ../src/preferences-dialog.c:451
 msgid "Custom format:"
 msgstr "ئادەتلەنگەن فورمات: "
 
-#: ../src/preferences-dialog.c:442
+#: ../src/preferences-dialog.c:462
 msgid "Available parameters:"
 msgstr "ئىشلەتكىلى بولىدىغان پارامېتىرلار: "
 
-#: ../src/preferences-dialog.c:447
+#: ../src/preferences-dialog.c:469
 #, c-format
 msgid "%a: Artist"
 msgstr "%a: ئارتىس"
 
-#: ../src/preferences-dialog.c:451
+#: ../src/preferences-dialog.c:473
 #, c-format
 msgid "%A: Album"
 msgstr "%A: ئالبوم"
 
-#: ../src/preferences-dialog.c:455
-#, c-format
-msgid "%d: Date"
-msgstr "%d: چېسلا"
+#: ../src/preferences-dialog.c:477
+msgid "%t: Title"
+msgstr "%t: ماۋزۇ"
 
-#: ../src/preferences-dialog.c:459
+#: ../src/preferences-dialog.c:481
 msgid "%D: Disc"
 msgstr "%D: دىسكا"
 
-#: ../src/preferences-dialog.c:463
+#: ../src/preferences-dialog.c:485
 #, c-format
 msgid "%f: File"
 msgstr "%f: ھۆججەت"
 
-#: ../src/preferences-dialog.c:467
+#: ../src/preferences-dialog.c:489
 #, c-format
 msgid "%g: Genre"
 msgstr "%g: ئېقىم"
 
-#: ../src/preferences-dialog.c:471
-msgid "%t: Title"
-msgstr "%t: ماۋزۇ"
+#: ../src/preferences-dialog.c:493
+#, c-format
+msgid "%d: Date"
+msgstr "%d: چېسلا"
 
-#: ../src/preferences-dialog.c:475
+#: ../src/preferences-dialog.c:497
 msgid "%T: Track"
 msgstr "%T: رېلىس"
 
@@ -260,8 +276,8 @@ msgstr "MPD client"
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#~ msgid "Xfmpc Preferences"
-#~ msgstr "Xfmpc 設定"
+#~ msgid "Statusbar"
+#~ msgstr "ھالەت تاياقچىسى"
 
 #~ msgid "Song format:"
 #~ msgstr "楽曲のフォーマット:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-01 19:55+0100\n"
+"POT-Creation-Date: 2011-08-13 19:02+0200\n"
 "PO-Revision-Date: 2009-05-14 03:31+0500\n"
 "Last-Translator: Muhammad Ali Makki <makki.ma@gmail.com>\n"
 "Language-Team: Urdu <makki.ma@gmail.com>\n"
@@ -20,37 +20,41 @@ msgstr ""
 "X-Poedit-Country: PAKISTAN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../src/dbbrowser.c:873
+#: ../src/dbbrowser.c:863
 #, fuzzy
 msgid "Replace"
 msgstr "_تبدیل کریں"
 
-#: ../src/dbbrowser.c:878 ../src/playlist.c:835
+#: ../src/dbbrowser.c:868 ../src/playlist.c:828
 #, fuzzy
 msgid "Browse"
 msgstr "_انتخاب"
 
-#: ../src/extended-interface.c:316
+#: ../src/extended-interface.c:337
 msgid "Repeat"
 msgstr "دہرائیں"
 
-#: ../src/extended-interface.c:319
+#: ../src/extended-interface.c:340
 msgid "Random"
 msgstr "رینڈم"
 
-#: ../src/extended-interface.c:322
+#: ../src/extended-interface.c:343
 msgid "Single Mode"
 msgstr ""
 
-#: ../src/extended-interface.c:325
-msgid "Consume"
+#: ../src/extended-interface.c:346
+msgid "Consume Mode"
 msgstr ""
 
-#: ../src/extended-interface.c:433 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:354
+msgid "_Shortcuts"
+msgstr ""
+
+#: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "ایم پی ڈی MPD کلائنٹ جو ایکسفس کے لیے GTK+ میں لکھا گیا ہے"
 
-#: ../src/extended-interface.c:433
+#: ../src/extended-interface.c:467
 msgid "translator-credits"
 msgstr ""
 "محمد علی مکی\n"
@@ -60,23 +64,23 @@ msgstr ""
 "مکی کا بلاگ\n"
 "http://makki.urducoder.com"
 
-#: ../src/extended-interface.c:505
+#: ../src/extended-interface.c:539
 msgid "Clear Playlist"
 msgstr "پلے لسٹ صاف کریں"
 
-#: ../src/extended-interface.c:511
+#: ../src/extended-interface.c:545
 msgid "Refresh Database"
 msgstr "ڈیٹا بیس تازہ کریں"
 
-#: ../src/extended-interface.c:517
+#: ../src/extended-interface.c:551
 msgid "Context Menu"
 msgstr "کونٹیکسٹ مینیو"
 
-#: ../src/extended-interface.c:532
+#: ../src/extended-interface.c:566
 msgid "Current Playlist"
 msgstr "حالیہ پلے لسٹ"
 
-#: ../src/extended-interface.c:534
+#: ../src/extended-interface.c:568
 msgid "Browse database"
 msgstr "ڈیٹا بیس براؤز کریں"
 
@@ -89,16 +93,16 @@ msgstr "\"%s\" کی طرف سے از \"%s\" (%s)"
 msgid "Stopped"
 msgstr "رکا ہوا"
 
-#: ../src/interface.c:273 ../src/interface.c:473
+#: ../src/interface.c:273 ../src/interface.c:471
 msgid "Not connected"
 msgstr "غیر متصل ہے"
 
-#: ../src/main-window.c:385
+#: ../src/main-window.c:444
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d گانے، %d گھنٹے اور %d منٹ"
 
-#: ../src/main-window.c:387
+#: ../src/main-window.c:446
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d گانے، %d منٹ"
@@ -116,19 +120,27 @@ msgstr "کنکشن"
 msgid "n/a"
 msgstr "غ/م"
 
-#: ../src/preferences-dialog.c:361
+#: ../src/preferences-dialog.c:369
+msgid "Xfmpc Preferences"
+msgstr "ترجیحات برائے Xfmpc"
+
+#: ../src/preferences-dialog.c:370
+msgid "Customize your MPD client"
+msgstr ""
+
+#: ../src/preferences-dialog.c:377
 msgid "MPD"
 msgstr "ایم پی ڈی"
 
-#: ../src/preferences-dialog.c:364
+#: ../src/preferences-dialog.c:380
 msgid "Connection"
 msgstr "کنکشن"
 
-#: ../src/preferences-dialog.c:366
+#: ../src/preferences-dialog.c:382
 msgid "Use _default system settings"
 msgstr "نظام کی _طے شدہ ترتیبات استعمال کریں"
 
-#: ../src/preferences-dialog.c:367
+#: ../src/preferences-dialog.c:383
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
@@ -136,110 +148,114 @@ msgstr ""
 "اگر منتخب کیا گیا تو Xfmpc ماحول متغیر MPD_HOST اور MPD_PORT پڑھنے کی کوشش "
 "کرے گا، دوسری صورت میں یہ localhost استعمال کرے گا"
 
-#: ../src/preferences-dialog.c:377
+#: ../src/preferences-dialog.c:393
 msgid "Hostname:"
 msgstr "ہوسٹ نیم:"
 
-#: ../src/preferences-dialog.c:383
+#: ../src/preferences-dialog.c:399
 msgid "Port:"
 msgstr "پورٹ:"
 
-#: ../src/preferences-dialog.c:391
+#: ../src/preferences-dialog.c:407
 msgid "Password:"
 msgstr "پاس ورڈ:"
 
-#: ../src/preferences-dialog.c:404
+#: ../src/preferences-dialog.c:420
 msgid "Appearance"
 msgstr "مظہر"
 
-#: ../src/preferences-dialog.c:407
-msgid "Statusbar"
-msgstr "حالت پٹی"
+#: ../src/preferences-dialog.c:423
+msgid "General"
+msgstr ""
 
-#: ../src/preferences-dialog.c:409
+#: ../src/preferences-dialog.c:425
+msgid "Close window into notification area"
+msgstr ""
+
+#: ../src/preferences-dialog.c:429
 #, fuzzy
 msgid "Show _stastusbar"
 msgstr "_حالت پٹی دکھائیں"
 
-#: ../src/preferences-dialog.c:414
+#: ../src/preferences-dialog.c:434
 msgid "Song Format"
 msgstr "گانے کا فارمیٹ"
 
-#: ../src/preferences-dialog.c:417
+#: ../src/preferences-dialog.c:437
 #, fuzzy
 msgid "Song Format:"
 msgstr "گانے کا فارمیٹ"
 
-#: ../src/preferences-dialog.c:421 ../src/song-dialog.c:141
+#: ../src/preferences-dialog.c:441 ../src/song-dialog.c:141
 msgid "Title"
 msgstr "عنوان"
 
-#: ../src/preferences-dialog.c:422
+#: ../src/preferences-dialog.c:442
 msgid "Album - Title"
 msgstr "ایلبم - عنوان"
 
-#: ../src/preferences-dialog.c:423
+#: ../src/preferences-dialog.c:443
 msgid "Artist - Title"
 msgstr "فنکار - عنوان"
 
-#: ../src/preferences-dialog.c:424
+#: ../src/preferences-dialog.c:444
 msgid "Artist - Title (Date)"
 msgstr "فنکار - عنوان (تاریخ)"
 
-#: ../src/preferences-dialog.c:425
+#: ../src/preferences-dialog.c:445
 msgid "Artist - Album - Title"
 msgstr "فنکار - ایلبم - عنوان"
 
-#: ../src/preferences-dialog.c:426
+#: ../src/preferences-dialog.c:446
 msgid "Artist - Album - Track. Title"
 msgstr "فنکار - ایلبم - ٹریک. عنوان"
 
-#: ../src/preferences-dialog.c:427
+#: ../src/preferences-dialog.c:447
 msgid "Custom..."
 msgstr "صوابدیدی..."
 
-#: ../src/preferences-dialog.c:431
+#: ../src/preferences-dialog.c:451
 msgid "Custom format:"
 msgstr "صوابدیدی فارمیٹ:"
 
-#: ../src/preferences-dialog.c:442
+#: ../src/preferences-dialog.c:462
 msgid "Available parameters:"
 msgstr "دستیاب پیرامیٹر:"
 
-#: ../src/preferences-dialog.c:447
+#: ../src/preferences-dialog.c:469
 #, c-format
 msgid "%a: Artist"
 msgstr "%a: فنکار"
 
-#: ../src/preferences-dialog.c:451
+#: ../src/preferences-dialog.c:473
 #, c-format
 msgid "%A: Album"
 msgstr "%A: ایلبم"
 
-#: ../src/preferences-dialog.c:455
-#, c-format
-msgid "%d: Date"
-msgstr "%d: تاریخ"
+#: ../src/preferences-dialog.c:477
+msgid "%t: Title"
+msgstr "%t: عنوان"
 
-#: ../src/preferences-dialog.c:459
+#: ../src/preferences-dialog.c:481
 msgid "%D: Disc"
 msgstr "%D: ڈسک"
 
-#: ../src/preferences-dialog.c:463
+#: ../src/preferences-dialog.c:485
 #, c-format
 msgid "%f: File"
 msgstr "%f: فائل"
 
-#: ../src/preferences-dialog.c:467
+#: ../src/preferences-dialog.c:489
 #, c-format
 msgid "%g: Genre"
 msgstr "%g: نوعیت"
 
-#: ../src/preferences-dialog.c:471
-msgid "%t: Title"
-msgstr "%t: عنوان"
+#: ../src/preferences-dialog.c:493
+#, c-format
+msgid "%d: Date"
+msgstr "%d: تاریخ"
 
-#: ../src/preferences-dialog.c:475
+#: ../src/preferences-dialog.c:497
 msgid "%T: Track"
 msgstr "%T: ٹریک"
 
@@ -275,8 +291,8 @@ msgstr "ایم پی ڈی کلائنٹ"
 msgid "Xfmpc"
 msgstr "Xfmpc"
 
-#~ msgid "Xfmpc Preferences"
-#~ msgstr "ترجیحات برائے Xfmpc"
+#~ msgid "Statusbar"
+#~ msgstr "حالت پٹی"
 
 #~ msgid "Song format:"
 #~ msgstr "گانے کا فارمیٹ:"
