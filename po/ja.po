@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-13 19:02+0200\n"
-"PO-Revision-Date: 2011-02-08 15:30+0900\n"
+"PO-Revision-Date: 2011-08-16 21:57+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
 "Language: \n"
@@ -22,7 +22,8 @@ msgstr ""
 msgid "Replace"
 msgstr "置換"
 
-#: ../src/dbbrowser.c:868 ../src/playlist.c:828
+#: ../src/dbbrowser.c:868
+#: ../src/playlist.c:828
 msgid "Browse"
 msgstr "参照"
 
@@ -39,15 +40,15 @@ msgid "Single Mode"
 msgstr "一曲のみ"
 
 #: ../src/extended-interface.c:346
-#, fuzzy
 msgid "Consume Mode"
 msgstr "使いきり"
 
 #: ../src/extended-interface.c:354
 msgid "_Shortcuts"
-msgstr ""
+msgstr "ショートカット(_S)"
 
-#: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:467
+#: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Xfce 向けの GTK+ で書かれた MPD クライアントです。"
 
@@ -86,7 +87,8 @@ msgstr "by \"%s\" from \"%s\" (%s)"
 msgid "Stopped"
 msgstr "停止"
 
-#: ../src/interface.c:273 ../src/interface.c:471
+#: ../src/interface.c:273
+#: ../src/interface.c:471
 msgid "Not connected"
 msgstr "未接続"
 
@@ -108,7 +110,9 @@ msgstr "MPD への接続に失敗しました"
 msgid "Connected to MPD"
 msgstr "MPD に接続しました"
 
-#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627
+#: ../src/mpdclient.c:657
+#: ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "N/A"
 
@@ -118,7 +122,7 @@ msgstr "Xfmpc 設定"
 
 #: ../src/preferences-dialog.c:370
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "MPD クライアントの設定"
 
 #: ../src/preferences-dialog.c:377
 msgid "MPD"
@@ -133,12 +137,8 @@ msgid "Use _default system settings"
 msgstr "デフォルトのシステム設定を使用する(_D)"
 
 #: ../src/preferences-dialog.c:383
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"このオプションを有効にすると、Xfmpc は環境変数 MPD_HOST および MPD_PORT を読"
-"み込もうとし、なければ localhost を使用します"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "このオプションを有効にすると、Xfmpc は環境変数 MPD_HOST および MPD_PORT を読み込もうとし、なければ localhost を使用します"
 
 #: ../src/preferences-dialog.c:393
 msgid "Hostname:"
@@ -158,11 +158,11 @@ msgstr "外観"
 
 #: ../src/preferences-dialog.c:423
 msgid "General"
-msgstr ""
+msgstr "全般"
 
 #: ../src/preferences-dialog.c:425
 msgid "Close window into notification area"
-msgstr ""
+msgstr "ウィンドウを閉じたら通知エリアに隠す"
 
 #: ../src/preferences-dialog.c:429
 msgid "Show _stastusbar"
@@ -176,7 +176,8 @@ msgstr "楽曲のフォーマット"
 msgid "Song Format:"
 msgstr "楽曲のフォーマット"
 
-#: ../src/preferences-dialog.c:441 ../src/song-dialog.c:141
+#: ../src/preferences-dialog.c:441
+#: ../src/song-dialog.c:141
 msgid "Title"
 msgstr "タイトル"
 
