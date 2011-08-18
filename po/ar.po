@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
@@ -7,10 +7,10 @@ msgstr ""
 "PO-Revision-Date: 2011-08-08 17:30-0000\n"
 "Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
 "Language-Team: Arabic Xfce Translation Team <herr.linux88@gmail.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Poedit-Language: Arabic\n"
 "X-Poedit-Country: Morocco\n"
 
@@ -35,13 +35,12 @@ msgid "Single Mode"
 msgstr "وضع واحد"
 
 #: ../src/extended-interface.c:346
-#, fuzzy
 msgid "Consume Mode"
-msgstr "تستهلك"
+msgstr "وضع تستهلك"
 
 #: ../src/extended-interface.c:354
 msgid "_Shortcuts"
-msgstr ""
+msgstr "_إختصار"
 
 #: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -111,11 +110,11 @@ msgstr "n/a"
 
 #: ../src/preferences-dialog.c:369
 msgid "Xfmpc Preferences"
-msgstr ""
+msgstr "تفضيلات Xfmpc"
 
 #: ../src/preferences-dialog.c:370
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "تخصيص عميل MPD الخاص بك"
 
 #: ../src/preferences-dialog.c:377
 msgid "MPD"
@@ -130,12 +129,8 @@ msgid "Use _default system settings"
 msgstr "إ_ستعمل إعدادات النظام الافتراضية"
 
 #: ../src/preferences-dialog.c:383
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"إذا حدد ،  Xfmpc سيحاول قراءة متغيرات البيئة وMPD_HOST MPD_PORT وما عدا ذلك "
-"سيستخدم المضيف المحلي"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "إذا حدد ،  Xfmpc سيحاول قراءة متغيرات البيئة وMPD_HOST MPD_PORT وما عدا ذلك سيستخدم المضيف المحلي"
 
 #: ../src/preferences-dialog.c:393
 msgid "Hostname:"
@@ -155,11 +150,11 @@ msgstr "مظهر"
 
 #: ../src/preferences-dialog.c:423
 msgid "General"
-msgstr ""
+msgstr "عام"
 
 #: ../src/preferences-dialog.c:425
 msgid "Close window into notification area"
-msgstr ""
+msgstr "إغلاق نافذة إلى منطقة الإشعار"
 
 #: ../src/preferences-dialog.c:429
 msgid "Show _stastusbar"
