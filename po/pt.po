@@ -2,7 +2,7 @@
 # Copyright (C) 2008 THE Xfmpc'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Xfmpc package.
 # Nuno Miguel <nunis@netcabo.pt>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
@@ -11,10 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2009-12-14 16:22-0000\n"
 "Last-Translator: Sergio Marques <smarquespt@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../src/dbbrowser.c:863
@@ -38,13 +38,12 @@ msgid "Single Mode"
 msgstr "Modo único"
 
 #: ../src/extended-interface.c:346
-#, fuzzy
 msgid "Consume Mode"
-msgstr "Consumir"
+msgstr "Modo de Consumo"
 
 #: ../src/extended-interface.c:354
 msgid "_Shortcuts"
-msgstr ""
+msgstr "Atalho_s"
 
 #: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -115,7 +114,7 @@ msgstr "Preferências Xfmpc"
 
 #: ../src/preferences-dialog.c:370
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "Personalizar o cliente MPD"
 
 #: ../src/preferences-dialog.c:377
 msgid "MPD"
@@ -130,12 +129,8 @@ msgid "Use _default system settings"
 msgstr "Usar as _definições do sistema"
 
 #: ../src/preferences-dialog.c:383
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Se activo, o Xfmpc irá tentar ler as variáveis de ambiente MPD_HOST e "
-"MPD_PORT, caso contrário usará o servidor local"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Se activo, o Xfmpc irá tentar ler as variáveis de ambiente MPD_HOST e MPD_PORT, caso contrário usará o servidor local"
 
 #: ../src/preferences-dialog.c:393
 msgid "Hostname:"
@@ -155,11 +150,11 @@ msgstr "Aparência"
 
 #: ../src/preferences-dialog.c:423
 msgid "General"
-msgstr ""
+msgstr "Geral"
 
 #: ../src/preferences-dialog.c:425
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Fechar para a área de notificação"
 
 #: ../src/preferences-dialog.c:429
 msgid "Show _stastusbar"
