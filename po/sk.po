@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the xfmpc package.
 # Robert Hartl <hartl.robert@gmail.com>, 2009.
 # Tomáš Vadina <kyberdev@gmail.com>, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.2.0\n"
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2011-05-20 18:19+0100\n"
 "Last-Translator: Tomáš Vadina <kyberdev@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
-"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
 
 #: ../src/dbbrowser.c:863
 msgid "Replace"
@@ -38,13 +38,12 @@ msgid "Single Mode"
 msgstr "Jednoduchý režim"
 
 #: ../src/extended-interface.c:346
-#, fuzzy
 msgid "Consume Mode"
 msgstr "Spotreba"
 
 #: ../src/extended-interface.c:354
 msgid "_Shortcuts"
-msgstr ""
+msgstr "Klávesové _skratky"
 
 #: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -117,7 +116,7 @@ msgstr "Predvoľby Xfmpc"
 
 #: ../src/preferences-dialog.c:370
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "Prispôsobenie MPD klienta"
 
 #: ../src/preferences-dialog.c:377
 msgid "MPD"
@@ -132,13 +131,8 @@ msgid "Use _default system settings"
 msgstr "Použiť _predvolené nastavenie systému"
 
 #: ../src/preferences-dialog.c:383
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Ak je zaškrtnutá voľba, aplikácia Xfmpc sa pokúsi prečítať premenné "
-"prostredia MPD_HOST a MPD_PORT, v opačnom prípade použije tento počítač "
-"(localhost)"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Ak je zaškrtnutá voľba, aplikácia Xfmpc sa pokúsi prečítať premenné prostredia MPD_HOST a MPD_PORT, v opačnom prípade použije tento počítač (localhost)"
 
 #: ../src/preferences-dialog.c:393
 msgid "Hostname:"
@@ -158,11 +152,11 @@ msgstr "Vzhľad"
 
 #: ../src/preferences-dialog.c:423
 msgid "General"
-msgstr ""
+msgstr "Všeobecné"
 
 #: ../src/preferences-dialog.c:425
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Zatvoriť okno do oznamovacej oblasti"
 
 #: ../src/preferences-dialog.c:429
 msgid "Show _stastusbar"
