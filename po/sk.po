@@ -39,7 +39,7 @@ msgstr "Jednoduchý režim"
 
 #: ../src/extended-interface.c:346
 msgid "Consume Mode"
-msgstr "Spotreba"
+msgstr "Režim spotreby"
 
 #: ../src/extended-interface.c:354
 msgid "_Shortcuts"
