@@ -6,7 +6,7 @@
 # Fabian Nowak <timystery@arcor.de>, 2008.
 # Mike Massonnet <mmassonnet@xfce.org>, 2009.
 # Simon Schneider <simon@schneiderimtal.de>, 2009
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.5svn-r\n"
@@ -15,10 +15,10 @@ msgstr ""
 "PO-Revision-Date: 2009-12-26 13:35+0100\n"
 "Last-Translator: Simon Schneider <simon@schneiderimtal.de>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:863
@@ -49,7 +49,7 @@ msgstr "Verbrauchenmodus"
 
 #: ../src/extended-interface.c:354
 msgid "_Shortcuts"
-msgstr ""
+msgstr "_Tastenkürzel"
 
 #: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -120,7 +120,7 @@ msgstr "Optionen für Xfmpc"
 
 #: ../src/preferences-dialog.c:370
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "MPD-Client anpassen"
 
 #: ../src/preferences-dialog.c:377
 msgid "MPD"
@@ -135,12 +135,8 @@ msgid "Use _default system settings"
 msgstr "_Standardeinstellung verwenden"
 
 #: ../src/preferences-dialog.c:383
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Falls dies ausgewählt ist, wird Xfpmc versuchen, die Umgebungsvariablen "
-"MPD_HOST und MPD_PORT auszulesen, sonst wird localhost verwendet."
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Falls dies ausgewählt ist, wird Xfpmc versuchen, die Umgebungsvariablen MPD_HOST und MPD_PORT auszulesen, sonst wird localhost verwendet."
 
 #: ../src/preferences-dialog.c:393
 msgid "Hostname:"
@@ -160,11 +156,11 @@ msgstr "Darstellung"
 
 #: ../src/preferences-dialog.c:423
 msgid "General"
-msgstr ""
+msgstr "Allgemein"
 
 #: ../src/preferences-dialog.c:425
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Fenster in die Benachrichtigungsfläche minimieren"
 
 #: ../src/preferences-dialog.c:429
 msgid "Show _stastusbar"
@@ -289,12 +285,8 @@ msgstr "Xfmpc"
 #~ msgid "Song format:"
 #~ msgstr "Liedformat:"
 
-#~ msgid ""
-#~ "Please stand by while the connection is established and the files are "
-#~ "loaded"
-#~ msgstr ""
-#~ "Bitte warten Sie, während die Verbindung hergestellt wird und die Dateien "
-#~ "geladen werden"
+#~ msgid "Please stand by while the connection is established and the files are loaded"
+#~ msgstr "Bitte warten Sie, während die Verbindung hergestellt wird und die Dateien geladen werden"
 
 #~ msgid "MPD Settings"
 #~ msgstr "MPD Einstellungen"
