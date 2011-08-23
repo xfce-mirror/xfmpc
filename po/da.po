@@ -11,10 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2009-12-03 13:14+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
-"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Danish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -41,13 +41,12 @@ msgid "Single Mode"
 msgstr "Enkelttilstand"
 
 #: ../src/extended-interface.c:346
-#, fuzzy
 msgid "Consume Mode"
-msgstr "Forbrug"
+msgstr "Forbrugstilstand"
 
 #: ../src/extended-interface.c:354
 msgid "_Shortcuts"
-msgstr ""
+msgstr "_Genveje"
 
 #: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -122,7 +121,7 @@ msgstr "Indstillinger Xfmpc"
 
 #: ../src/preferences-dialog.c:370
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "Tilret din MPD-klient"
 
 #: ../src/preferences-dialog.c:377
 msgid "MPD"
@@ -137,12 +136,8 @@ msgid "Use _default system settings"
 msgstr "Brug standardsys_temindstillinger"
 
 #: ../src/preferences-dialog.c:383
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Hvis afkrydset vil Xfmpc prøve at læse miljøvariabler MPD_HOST og MPD_PORT, "
-"ellers vil blive brugt localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Hvis afkrydset vil Xfmpc prøve at læse miljøvariabler MPD_HOST og MPD_PORT, ellers vil blive brugt localhost"
 
 #: ../src/preferences-dialog.c:393
 msgid "Hostname:"
@@ -162,11 +157,11 @@ msgstr "Udseende"
 
 #: ../src/preferences-dialog.c:423
 msgid "General"
-msgstr ""
+msgstr "Generelt"
 
 #: ../src/preferences-dialog.c:425
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Luk vindue ind i beskedsområdet"
 
 #: ../src/preferences-dialog.c:429
 msgid "Show _stastusbar"
