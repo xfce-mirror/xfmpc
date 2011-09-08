@@ -1,4 +1,4 @@
-# Dutch translation for the xfmpc package.
+# Dutch translation of the xfmpc package.
 # Copyright (C) The Xfce development team.
 # This file is distributed under the same license as the xfmpc package.
 # Stephan Arts <stephan@xfce.org>, 2008.
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-13 19:02+0200\n"
-"PO-Revision-Date: 2011-06-16 13:12+0200\n"
+"PO-Revision-Date: 2011-09-08 13:12+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Willekeurig"
 
 #: ../src/extended-interface.c:343
 msgid "Single Mode"
-msgstr "Enkele Modus"
+msgstr "Enkele modus"
 
 #: ../src/extended-interface.c:346
 msgid "Consume Mode"
@@ -74,7 +74,7 @@ msgstr "Contextmenu"
 
 #: ../src/extended-interface.c:566
 msgid "Current Playlist"
-msgstr "Huidige Speellijst"
+msgstr "Huidige speellijst"
 
 #: ../src/extended-interface.c:568
 msgid "Browse database"
