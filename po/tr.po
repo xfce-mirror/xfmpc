@@ -1,9 +1,9 @@
 # Turkish translation of xfmpc package.
 # Copyright (C) 2008 THE XFMPC'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the XFMPC package.
-#
+# 
 # Gökmen Görgen <gkmngrgn@gmail.com>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.7\n"
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2009-03-14 11:41+0200\n"
 "Last-Translator: Samed Beyribey <ras0ir@eventualis.org>\n"
 "Language-Team: Turkish <turkce@pardus.org.tr>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
 
 #: ../src/dbbrowser.c:863
 msgid "Replace"
@@ -40,11 +40,11 @@ msgstr "Tekli Kip"
 #: ../src/extended-interface.c:346
 #, fuzzy
 msgid "Consume Mode"
-msgstr "Sürekli"
+msgstr "Tüketim Modu"
 
 #: ../src/extended-interface.c:354
 msgid "_Shortcuts"
-msgstr ""
+msgstr "_Kısayollar"
 
 #: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -117,7 +117,7 @@ msgstr "Xfmpc Tercihleri"
 
 #: ../src/preferences-dialog.c:370
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "MPD istemcinizi özelleştirin"
 
 #: ../src/preferences-dialog.c:377
 msgid "MPD"
@@ -132,12 +132,8 @@ msgid "Use _default system settings"
 msgstr "Öntanımlı sistem ayarlarını _kullan"
 
 #: ../src/preferences-dialog.c:383
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Seçili ise, Xfmpc MPD_HOST ve MPD_PORT ortam değişkenlerini okuyacaktır, "
-"aksi takdirde localhost kullanacaktır"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Seçili ise, Xfmpc MPD_HOST ve MPD_PORT ortam değişkenlerini okuyacaktır, aksi takdirde localhost kullanacaktır"
 
 #: ../src/preferences-dialog.c:393
 msgid "Hostname:"
@@ -157,11 +153,12 @@ msgstr "Görünüm"
 
 #: ../src/preferences-dialog.c:423
 msgid "General"
-msgstr ""
+msgstr "Genel"
 
 #: ../src/preferences-dialog.c:425
+#, fuzzy
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Bildirim alana Pencereyi Kapat"
 
 #: ../src/preferences-dialog.c:429
 msgid "Show _stastusbar"
