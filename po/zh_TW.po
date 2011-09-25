@@ -1,0 +1,280 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfmpc master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-13 19:02+0200\n"
+"PO-Revision-Date: 2011-09-25 14:24+0800\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"Language-Team: chinese-l10n <chinese-l10n@googlegroups.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/dbbrowser.c:863
+msgid "Replace"
+msgstr "替換"
+
+#: ../src/dbbrowser.c:868
+#: ../src/playlist.c:828
+msgid "Browse"
+msgstr "瀏覽"
+
+#: ../src/extended-interface.c:337
+msgid "Repeat"
+msgstr "返復"
+
+#: ../src/extended-interface.c:340
+msgid "Random"
+msgstr "隨機"
+
+#: ../src/extended-interface.c:343
+msgid "Single Mode"
+msgstr "單一模式"
+
+#: ../src/extended-interface.c:346
+msgid "Consume Mode"
+msgstr "耗盡模式"
+
+#: ../src/extended-interface.c:354
+msgid "_Shortcuts"
+msgstr "捷徑(_S)"
+
+#: ../src/extended-interface.c:467
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "以 GTK+ 寫成的，為 Xfce 設計的 MPD 客戶端"
+
+#: ../src/extended-interface.c:467
+msgid "translator-credits"
+msgstr "Cheng-Chia Tseng <pswo10680@gmail.com>, 2011."
+
+#: ../src/extended-interface.c:539
+msgid "Clear Playlist"
+msgstr "清除播放清單"
+
+#: ../src/extended-interface.c:545
+msgid "Refresh Database"
+msgstr "重新整理資料庫"
+
+#: ../src/extended-interface.c:551
+msgid "Context Menu"
+msgstr "情境選單"
+
+#: ../src/extended-interface.c:566
+msgid "Current Playlist"
+msgstr "目前的播放清單"
+
+#: ../src/extended-interface.c:568
+msgid "Browse database"
+msgstr "瀏覽資料庫"
+
+#: ../src/interface.c:264
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "來自「%s」專輯「%s」(%s)"
+
+#: ../src/interface.c:269
+msgid "Stopped"
+msgstr "已停止"
+
+#: ../src/interface.c:273
+#: ../src/interface.c:471
+msgid "Not connected"
+msgstr "未連接"
+
+#: ../src/main-window.c:444
+#, c-format
+msgid "%d songs, %d hours and %d minutes"
+msgstr "%d 首歌，%d 小時 %d 分鐘"
+
+#: ../src/main-window.c:446
+#, c-format
+msgid "%d songs, %d minutes"
+msgstr "%d 首歌，%d 分鐘"
+
+#: ../src/mpdclient.c:382
+msgid "Failed to connect to MPD"
+msgstr "無法連接至 MPD"
+
+#: ../src/mpdclient.c:387
+msgid "Connected to MPD"
+msgstr "已連接至 MPD"
+
+#: ../src/mpdclient.c:627
+#: ../src/mpdclient.c:657
+#: ../src/mpdclient.c:672
+msgid "n/a"
+msgstr "不可用"
+
+#: ../src/preferences-dialog.c:369
+msgid "Xfmpc Preferences"
+msgstr "Xfmpc 偏好設定"
+
+#: ../src/preferences-dialog.c:370
+msgid "Customize your MPD client"
+msgstr "自訂您的 MPD 客戶端"
+
+#: ../src/preferences-dialog.c:377
+msgid "MPD"
+msgstr "MPD"
+
+#: ../src/preferences-dialog.c:380
+msgid "Connection"
+msgstr "連線"
+
+#: ../src/preferences-dialog.c:382
+msgid "Use _default system settings"
+msgstr "使用預設系統設定值(_D)f"
+
+#: ../src/preferences-dialog.c:383
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "若勾選，Xfmpc 會先嘗試讀取環境變數 MPD_HOST 與 HPD_PORT，否則會使用本地端主機"
+
+#: ../src/preferences-dialog.c:393
+msgid "Hostname:"
+msgstr "主機名稱："
+
+#: ../src/preferences-dialog.c:399
+msgid "Port:"
+msgstr "連接埠："
+
+#: ../src/preferences-dialog.c:407
+msgid "Password:"
+msgstr "密碼："
+
+#: ../src/preferences-dialog.c:420
+msgid "Appearance"
+msgstr "外觀"
+
+#: ../src/preferences-dialog.c:423
+msgid "General"
+msgstr "一般"
+
+#: ../src/preferences-dialog.c:425
+msgid "Close window into notification area"
+msgstr "關閉視窗時縮入通知區域"
+
+#: ../src/preferences-dialog.c:429
+msgid "Show _stastusbar"
+msgstr "顯示狀態列(_S)"
+
+#: ../src/preferences-dialog.c:434
+msgid "Song Format"
+msgstr "歌曲格式"
+
+#: ../src/preferences-dialog.c:437
+msgid "Song Format:"
+msgstr "歌曲格式："
+
+#: ../src/preferences-dialog.c:441
+#: ../src/song-dialog.c:141
+msgid "Title"
+msgstr "標題"
+
+#: ../src/preferences-dialog.c:442
+msgid "Album - Title"
+msgstr "專輯 - 標題"
+
+#: ../src/preferences-dialog.c:443
+msgid "Artist - Title"
+msgstr "演出者 - 標題"
+
+#: ../src/preferences-dialog.c:444
+msgid "Artist - Title (Date)"
+msgstr "演出者 - 標題 (日期)"
+
+#: ../src/preferences-dialog.c:445
+msgid "Artist - Album - Title"
+msgstr "演出者 - 專輯 - 標題"
+
+#: ../src/preferences-dialog.c:446
+msgid "Artist - Album - Track. Title"
+msgstr "演出者 - 專輯 - 軌道. 標題"
+
+#: ../src/preferences-dialog.c:447
+msgid "Custom..."
+msgstr "自訂..."
+
+#: ../src/preferences-dialog.c:451
+msgid "Custom format:"
+msgstr "自訂格式："
+
+#: ../src/preferences-dialog.c:462
+msgid "Available parameters:"
+msgstr "可用參數："
+
+#: ../src/preferences-dialog.c:469
+#, c-format
+msgid "%a: Artist"
+msgstr "%a：演出者"
+
+#: ../src/preferences-dialog.c:473
+#, c-format
+msgid "%A: Album"
+msgstr "%A：專輯"
+
+#: ../src/preferences-dialog.c:477
+msgid "%t: Title"
+msgstr "%t：標題"
+
+#: ../src/preferences-dialog.c:481
+msgid "%D: Disc"
+msgstr "%D：碟片"
+
+#: ../src/preferences-dialog.c:485
+#, c-format
+msgid "%f: File"
+msgstr "%f：檔案"
+
+#: ../src/preferences-dialog.c:489
+#, c-format
+msgid "%g: Genre"
+msgstr "%g：曲風"
+
+#: ../src/preferences-dialog.c:493
+#, c-format
+msgid "%d: Date"
+msgstr "%d：日期"
+
+#: ../src/preferences-dialog.c:497
+msgid "%T: Track"
+msgstr "%T：軌道"
+
+#: ../src/song-dialog.c:126
+msgid "File"
+msgstr "檔案"
+
+#: ../src/song-dialog.c:134
+msgid "Artist"
+msgstr "演出者"
+
+#: ../src/song-dialog.c:148
+msgid "Album"
+msgstr "專輯"
+
+#: ../src/song-dialog.c:155
+msgid "Date"
+msgstr "日期"
+
+#: ../src/song-dialog.c:160
+msgid "Track"
+msgstr "軌道"
+
+#: ../src/song-dialog.c:167
+msgid "Genre"
+msgstr "曲風"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD 客戶端"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
