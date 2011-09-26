@@ -40,7 +40,7 @@ msgstr "Tekli Kip"
 #: ../src/extended-interface.c:346
 #, fuzzy
 msgid "Consume Mode"
-msgstr "Tüketim Modu"
+msgstr "Modu tüketin"
 
 #: ../src/extended-interface.c:354
 msgid "_Shortcuts"
