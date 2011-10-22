@@ -145,7 +145,7 @@ namespace Xfmpc {
 			bool result = true;
 
 			model.get (iter, Columns.COLUMN_SONG, &song, -1);
-			if (song == "")
+			if (song == null || song == "")
 				return true;
 
 			search = filter_entry.get_text ();
@@ -176,16 +176,16 @@ namespace Xfmpc {
 			if (selection.count_selected_rows () > 1)
 				return;
 
-			Gtk.TreeModel model = this.store;
+			Gtk.TreeModel model = this.filter;
 			var list = selection.get_selected_rows (out model);
 			if (list.length () == 0)
 				return;
 
 			Gtk.TreeIter iter;
 			var path = list.nth_data (0);
-			if (this.store.get_iter (out iter, path)) {
+			if (this.filter.get_iter (out iter, path)) {
 				string filename = "", dir;
-				store.get (iter, Columns.COLUMN_FILENAME, out filename, -1);
+				filter.get (iter, Columns.COLUMN_FILENAME, out filename, -1);
 				dir = GLib.Path.get_dirname (filename);
 				dbbrowser.set_wdir (dir);
 				dbbrowser.reload ();
@@ -201,15 +201,15 @@ namespace Xfmpc {
 			if (selection.count_selected_rows () > 1)
 				return;
 
-			Gtk.TreeModel model = this.store;
+			Gtk.TreeModel model = this.filter;
 			var list = selection.get_selected_rows (out model);
 			if (list.length () == 0)
 				return;
 
 			var path = list.nth_data (0);
 
-			if (this.store.get_iter (out iter, path)) {
-				this.store.get (iter, Columns.COLUMN_ID, out id, -1);
+			if (this.filter.get_iter (out iter, path)) {
+				this.filter.get (iter, Columns.COLUMN_ID, out id, -1);
 				var dialog = new Xfmpc.SongDialog (id);
 				dialog.show_all ();
 			}
@@ -403,13 +403,13 @@ namespace Xfmpc {
 		public void delete_selection () {
 			int id = 0;
 			Gtk.TreeIter iter;
-			Gtk.TreeModel model = this.store;
+			Gtk.TreeModel model = this.filter;
 
 			var list = (this.treeview.get_selection ()).get_selected_rows (out model);
 
 			foreach (Gtk.TreePath path in list) {
-				if (this.store.get_iter (out iter, path)) {
-					this.store.get (iter, Columns.COLUMN_ID, out id, -1);
+				if (this.filter.get_iter (out iter, path)) {
+					this.filter.get (iter, Columns.COLUMN_ID, out id, -1);
 					this.mpdclient.queue_remove_id (id);
 				}
 			}
