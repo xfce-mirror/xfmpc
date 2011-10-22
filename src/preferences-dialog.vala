@@ -102,7 +102,7 @@ namespace Xfmpc {
 				this.entry_passwd.set_text (this.preferences.mpd_password);
 			hbox.pack_start (this.entry_passwd, true, true, 0);
 
-			var button = new Gtk.Button.from_stock (Gtk.STOCK_APPLY);
+			var button = new Gtk.Button.from_stock (Gtk.Stock.APPLY);
 			button.clicked.connect (cb_update_mpd);
 			vbox2.pack_start (button, true, true, 0);
 
@@ -215,7 +215,7 @@ namespace Xfmpc {
 
 			vbox2.pack_start (table, true, true, 0);
 
-        		add_button (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE);
+			add_button (Gtk.Stock.CLOSE, Gtk.ResponseType.CLOSE);
 
 			show_all ();
 

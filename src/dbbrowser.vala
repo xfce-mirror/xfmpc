@@ -89,16 +89,16 @@ namespace Xfmpc {
 
 			this.menu = new Gtk.Menu ();
 
-			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_ADD, null);
+			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.ADD, null);
 			this.menu.append (mi);
 			mi.activate.connect (add_selected_rows);
 			mi = new Gtk.ImageMenuItem.with_mnemonic (_("Replace"));
-			var image = new Gtk.Image.from_stock (Gtk.STOCK_CUT, Gtk.IconSize.MENU);
+			var image = new Gtk.Image.from_stock (Gtk.Stock.CUT, Gtk.IconSize.MENU);
 			mi.set_image (image);
 			this.menu.append (mi);
 			mi.activate.connect (cb_replace_with_selected_rows);
 			this.mi_browse = new Gtk.ImageMenuItem.with_mnemonic (_("Browse"));
-			image = new Gtk.Image.from_stock (Gtk.STOCK_OPEN, Gtk.IconSize.MENU);
+			image = new Gtk.Image.from_stock (Gtk.Stock.OPEN, Gtk.IconSize.MENU);
 			this.mi_browse.set_image (image);
 			this.menu.append (this.mi_browse);
 			this.mi_browse.activate.connect (cb_browse);
@@ -106,7 +106,7 @@ namespace Xfmpc {
 			this.menu.show_all ();
 
 			this.search_entry = new Entry ();
-			this.search_entry.set_icon_from_stock (EntryIconPosition.PRIMARY, Gtk.STOCK_FIND);
+			this.search_entry.set_icon_from_stock (EntryIconPosition.PRIMARY, Gtk.Stock.FIND);
 			this.search_entry.set_icon_activatable (EntryIconPosition.PRIMARY, false);
 
 			scrolled.add (this.treeview);
@@ -170,9 +170,7 @@ namespace Xfmpc {
 		}
 
 		public string get_parent_wdir () {
-			string filename = wdir.str ("/");
-
-			if (filename == null)
+			if (wdir.index_of("/", 0) == -1)
 				return "";
 			else
 				return GLib.Path.get_dirname (wdir);
@@ -181,7 +179,7 @@ namespace Xfmpc {
 		public void append (string filename, string basename, bool is_dir, bool is_bold) {
 			Gtk.TreeIter iter;
 
-			var pixbuf = this.treeview.render_icon (is_dir ? Gtk.STOCK_DIRECTORY : Gtk.STOCK_FILE,
+			var pixbuf = this.treeview.render_icon (is_dir ? Gtk.Stock.DIRECTORY : Gtk.Stock.FILE,
 					                        Gtk.IconSize.MENU, null);
 
 			this.store.append (out iter);

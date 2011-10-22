@@ -100,7 +100,7 @@ namespace Xfmpc {
 
 			vbox.pack_start (frame, true, true, 0);
 
-        		add_button (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE);
+			add_button (Gtk.Stock.CLOSE, Gtk.ResponseType.CLOSE);
 
 			show_all ();
 

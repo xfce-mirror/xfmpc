@@ -100,22 +100,22 @@ namespace Xfmpc {
 
 			this.menu = new Menu ();
 
-			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_REMOVE, null);
+			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.REMOVE, null);
 			this.menu.append (mi);
 			mi.activate.connect (delete_selection);
 			this.mi_browse = new Gtk.ImageMenuItem.with_mnemonic (_("Browse"));
-			var image = new Gtk.Image.from_stock (Gtk.STOCK_OPEN, Gtk.IconSize.MENU);
+			var image = new Gtk.Image.from_stock (Gtk.Stock.OPEN, Gtk.IconSize.MENU);
 			this.mi_browse.set_image (image);
 			this.menu.append (this.mi_browse);
 			this.mi_browse.activate.connect (cb_browse_selection);
-			this.mi_information = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_INFO, null);
+			this.mi_information = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.INFO, null);
 			this.menu.append (mi_information);
 			this.mi_information.activate.connect (cb_info_selection);
 
 			this.menu.show_all ();
 
 			this.filter_entry = new Entry ();
-			this.filter_entry.set_icon_from_stock (EntryIconPosition.PRIMARY, Gtk.STOCK_FIND);
+			this.filter_entry.set_icon_from_stock (EntryIconPosition.PRIMARY, Gtk.Stock.FIND);
 			this.filter_entry.set_icon_activatable (EntryIconPosition.PRIMARY, false);
 
 			scrolled.add (this.treeview);
@@ -140,7 +140,7 @@ namespace Xfmpc {
 			this.preferences.notify["song-format-custom"].connect (cb_playlist_changed);
 		}
 
-		private static bool visible_func_filter_tree (Gtk.TreeModel model, out Gtk.TreeIter iter) {
+		private static bool visible_func_filter_tree (Gtk.TreeModel model, Gtk.TreeIter iter) {
   			string song = "", search = "";
 			bool result = true;
 
@@ -154,7 +154,7 @@ namespace Xfmpc {
 			if (search != "") {
 				song = song.casefold (-1);
 
-				if (song.str (search) == null)
+				if (song.index_of (search, 0) == -1)
 					result = false;
 			}
 

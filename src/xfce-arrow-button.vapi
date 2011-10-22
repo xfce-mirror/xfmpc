@@ -2,9 +2,8 @@
 
 [CCode (cprefix = "Xfce", lower_case_cprefix = "xfce_")]
 namespace Xfce {
-	[CCode (free_function = "")]
+	[CCode (unref_function = "", free_function = "", cheader_filename = "xfce-arrow-button.h")]
 	[Compact]
-	[CCode (cheader_filename = "xfce-arrow-button.h")]
 	public class ArrowButton {
 		public Gtk.ArrowType arrow_type;
 		public weak Gtk.ToggleButton parent;

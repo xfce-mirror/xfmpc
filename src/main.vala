@@ -21,15 +21,15 @@ using Gtk;
 
 namespace Xfmpc {
 
-	static void transform_string_to_int (GLib.Value src, out GLib.Value dst) {
-		dst.set_int ((int) (src.get_string ()).to_ulong ());
+	static void transform_string_to_int (GLib.Value src, GLib.Value dst) {
+		dst.set_int (int.parse (src.get_string ()));
 	}
 
-	static void transform_string_to_boolean (GLib.Value src, out GLib.Value dst) {
+	static void transform_string_to_boolean (GLib.Value src, GLib.Value dst) {
 		dst.set_boolean ((src.get_string ()).collate ("FALSE") != 0);
 	}
 
-	static void transform_string_to_enum (GLib.Value src, out GLib.Value dst) {
+	static void transform_string_to_enum (GLib.Value src, GLib.Value dst) {
 		GLib.EnumClass klass = (GLib.EnumClass) (dst.type ()).class_ref ();
 		int i = 0;
 		unowned EnumValue enum_value;

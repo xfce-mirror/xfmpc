@@ -151,7 +151,7 @@ namespace Xfmpc {
 		private void status_icon_popup_menu (uint button, uint activate_time) {
 			if (this.status_icon_menu == null) {
 				this.status_icon_menu = new Gtk.Menu ();
-				var mi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_QUIT, null);
+				var mi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.QUIT, null);
 				mi.activate.connect (Gtk.main_quit);
 				this.status_icon_menu.add (mi);
 				this.status_icon_menu.show_all ();
@@ -252,7 +252,7 @@ namespace Xfmpc {
 			this.@interface.popup_volume ();
 		}
 
-		private void action_statusbar (Action action) {
+		private void action_statusbar (Gtk.Action action) {
 			bool active = ((Gtk.ToggleAction) action).get_active ();
 
 			if (!active && this.statusbar != null) {

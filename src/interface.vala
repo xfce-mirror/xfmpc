@@ -42,17 +42,17 @@ namespace Xfmpc {
 
 			set_border_width (4);
 
-			var image = new Gtk.Image.from_stock (Gtk.STOCK_MEDIA_PREVIOUS, Gtk.IconSize.BUTTON);
+			var image = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_PREVIOUS, Gtk.IconSize.BUTTON);
 			this.button_prev = new Gtk.Button ();
 			this.button_prev.set_relief (Gtk.ReliefStyle.NONE);
 			this.button_prev.add (image);
 
-			image = new Gtk.Image.from_stock (Gtk.STOCK_MEDIA_PLAY, Gtk.IconSize.BUTTON);
+			image = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.BUTTON);
 			this.button_pp = new Gtk.Button ();
 			this.button_pp.set_relief (Gtk.ReliefStyle.NONE);
 			this.button_pp.add (image);
 
-			image = new Gtk.Image.from_stock (Gtk.STOCK_MEDIA_NEXT, Gtk.IconSize.BUTTON);
+			image = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_NEXT, Gtk.IconSize.BUTTON);
 			this.button_next = new Gtk.Button ();
 			this.button_next.set_relief (Gtk.ReliefStyle.NONE);
 			this.button_next.add (image);
@@ -151,9 +151,9 @@ namespace Xfmpc {
 			var image = (Gtk.Image) this.button_pp.get_child ();
 
 			if (play == true)
-				image.set_from_stock (Gtk.STOCK_MEDIA_PAUSE, Gtk.IconSize.BUTTON);
+				image.set_from_stock (Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.BUTTON);
 			else
-				image.set_from_stock (Gtk.STOCK_MEDIA_PLAY, Gtk.IconSize.BUTTON);
+				image.set_from_stock (Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.BUTTON);
 		}
 
 		private bool cb_progress_box_motion_event (Gdk.EventMotion event) {

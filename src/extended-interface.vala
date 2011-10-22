@@ -60,7 +60,7 @@ namespace Xfmpc {
 			button.clicked.connect (cb_playlist_clear);
 			hbox.pack_start (button, false, false, 0);
 
-			var image = new Gtk.Image.from_stock (Gtk.STOCK_NEW, Gtk.IconSize.MENU);
+			var image = new Gtk.Image.from_stock (Gtk.Stock.NEW, Gtk.IconSize.MENU);
 			button.set_image (image);
 
 			button = new Gtk.Button ();
@@ -68,7 +68,7 @@ namespace Xfmpc {
 			button.clicked.connect (cb_database_refresh);
 			hbox.pack_start (button, false, false, 0);
 
-			image = new Gtk.Image.from_stock (Gtk.STOCK_REFRESH, Gtk.IconSize.MENU);
+			image = new Gtk.Image.from_stock (Gtk.Stock.REFRESH, Gtk.IconSize.MENU);
 			button.set_image (image);
 
 			this.context_button = new Xfce.ArrowButton (Gtk.ArrowType.DOWN);
@@ -182,7 +182,7 @@ namespace Xfmpc {
 			var separator = new Gtk.SeparatorMenuItem ();
 			this.context_menu.append (separator);
 
-			var imi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_PREFERENCES, null);
+			var imi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.PREFERENCES, null);
 			imi.activate.connect (cb_preferences);
 			this.context_menu.append (imi);
 
@@ -190,7 +190,7 @@ namespace Xfmpc {
 			mi.activate.connect (cb_shortcuts);
 			this.context_menu.append (mi);
 
-			imi = new Gtk.ImageMenuItem.from_stock (Gtk.STOCK_ABOUT, null);
+			imi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.ABOUT, null);
 			imi.activate.connect (cb_about);
 			this.context_menu.append (imi);
 
