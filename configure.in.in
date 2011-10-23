@@ -9,9 +9,9 @@ dnl *** Version information ***
 dnl ***************************
 m4_define([xfmpc_version_major], [0])
 m4_define([xfmpc_version_minor], [2])
-m4_define([xfmpc_version_micro], [1])
+m4_define([xfmpc_version_micro], [2])
 m4_define([xfmpc_version_build], [@REVISION@])
-m4_define([xfmpc_version_tag], [git]) # leave empty for release
+m4_define([xfmpc_version_tag], []) # leave empty for release
 m4_define([xfmpc_version], [xfmpc_version_major().xfmpc_version_minor().xfmpc_version_micro()ifelse(xfmpc_version_tag(), [git], [xfmpc_version_tag()-xfmpc_version_build()], [xfmpc_version_tag()])])
 
 dnl ***************************
@@ -28,7 +28,7 @@ AC_REVISION([xfmpc_version_build])
 dnl ***************************
 dnl *** Initialize automake ***
 dnl ***************************
-AM_INIT_AUTOMAKE([1.11 dist-bzip2])
+AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-bzip2])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE()
 AM_SILENT_RULES([yes])
@@ -52,7 +52,7 @@ dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
 XDT_CHECK_LIBX11_REQUIRE()
-XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.14.0])
+XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.16.0])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.18.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.8.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.8.0])

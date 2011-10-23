@@ -13,7 +13,7 @@ http://goodies.xfce.org/projects/applications/xfmpc
  Dependencies
 --------------
 
-* libgtk+2 2.14
+* libgtk+2 2.16
 * libxfce4ui 4.8.0
 * libxfce4util 4.8.0
 * libmpd 0.15.0
