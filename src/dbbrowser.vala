@@ -108,6 +108,7 @@ namespace Xfmpc {
 			this.search_entry = new Entry ();
 			this.search_entry.set_icon_from_stock (EntryIconPosition.PRIMARY, Gtk.Stock.FIND);
 			this.search_entry.set_icon_activatable (EntryIconPosition.PRIMARY, false);
+			this.search_entry.set_icon_activatable (EntryIconPosition.SECONDARY, true);
 
 			scrolled.add (this.treeview);
 			pack_start (scrolled, true, true, 0);
@@ -126,6 +127,7 @@ namespace Xfmpc {
 			this.search_entry.activate.connect (cb_search_entry_activated);
 			this.search_entry.key_release_event.connect (cb_search_entry_key_released);
 			this.search_entry.changed.connect (cb_search_entry_changed);
+			this.search_entry.icon_release.connect (cb_search_entry_icon_activated);
 
 			this.preferences.notify["song-format"].connect (reload);
 			this.preferences.notify["song-format-custom"].connect (reload);
@@ -457,6 +459,13 @@ namespace Xfmpc {
 		}
 
 		private void cb_search_entry_changed () {
+			if (search_entry.get_text () != "") {
+				search_entry.set_icon_from_stock (EntryIconPosition.SECONDARY, Gtk.Stock.CLEAR);
+			}
+			else {
+				search_entry.set_icon_from_stock (EntryIconPosition.SECONDARY, null);
+			}
+
 			if (this.search_timeout > 0)
 				GLib.Source.remove (search_timeout);
 
@@ -466,6 +475,12 @@ namespace Xfmpc {
 		private bool timeout_search () {
 			cb_search_entry_activated ();
 			return false;
+		}
+
+		private void cb_search_entry_icon_activated (Gtk.EntryIconPosition icon_pos, Gdk.Event event) {
+			if (icon_pos != Gtk.EntryIconPosition.SECONDARY)
+				return;
+			search_entry.set_text ("");
 		}
 	}
 }

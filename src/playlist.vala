@@ -117,6 +117,7 @@ namespace Xfmpc {
 			this.filter_entry = new Entry ();
 			this.filter_entry.set_icon_from_stock (EntryIconPosition.PRIMARY, Gtk.Stock.FIND);
 			this.filter_entry.set_icon_activatable (EntryIconPosition.PRIMARY, false);
+			this.filter_entry.set_icon_activatable (EntryIconPosition.SECONDARY, true);
 
 			scrolled.add (this.treeview);
 			pack_start (scrolled, true, true, 0);
@@ -135,6 +136,7 @@ namespace Xfmpc {
 			this.filter_entry.activate.connect (cb_filter_entry_activated);
 			this.filter_entry.key_release_event.connect (cb_filter_entry_key_released);
 			this.filter_entry.changed.connect (cb_filter_entry_changed);
+			this.filter_entry.icon_release.connect (cb_filter_entry_icon_activated);
 
 			this.preferences.notify["song-format"].connect (cb_playlist_changed);
 			this.preferences.notify["song-format-custom"].connect (cb_playlist_changed);
@@ -347,7 +349,19 @@ namespace Xfmpc {
 		}
 
 		private void cb_filter_entry_changed () {
+			if (filter_entry.get_text () != "") {
+				filter_entry.set_icon_from_stock (EntryIconPosition.SECONDARY, Gtk.Stock.CLEAR);
+			}
+			else {
+				filter_entry.set_icon_from_stock (EntryIconPosition.SECONDARY, null);
+			}
   			this.filter.refilter ();
+		}
+
+		private void cb_filter_entry_icon_activated (Gtk.EntryIconPosition icon_pos, Gdk.Event event) {
+			if (icon_pos != Gtk.EntryIconPosition.SECONDARY)
+				return;
+			filter_entry.set_text ("");
 		}
 
 		/*
