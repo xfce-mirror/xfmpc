@@ -7,6 +7,7 @@ src/mpdclient.c
 src/playlist.c
 src/preferences.c
 src/preferences-dialog.c
+src/shortcuts-dialog.c
 src/song-dialog.c
 src/statusbar.c
 src/xfce-arrow-button.c
