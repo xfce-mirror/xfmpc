@@ -144,7 +144,8 @@ namespace Xfmpc {
 				this.show ();
 				this.deiconify ();
 			} else {
-				this.hide ();
+				this.close_window ();
+				move (this.preferences.last_window_posx, this.preferences.last_window_posy);
 			}
 		}
 
@@ -216,11 +217,6 @@ namespace Xfmpc {
 			int posx, posy;
 			int width, height;
 
-			if (this.status_icon.visible) {
-				this.hide ();
-				return;
-			}
-
 			get_position (out posx, out posy);
 			get_size (out width, out height);
 
@@ -228,6 +224,11 @@ namespace Xfmpc {
 			this.preferences.last_window_posy = posy;
 			this.preferences.last_window_width = width;
 			this.preferences.last_window_height = height;
+
+			if (this.status_icon.visible) {
+				this.hide ();
+				return;
+			}
 
 			main_quit ();
 		}
