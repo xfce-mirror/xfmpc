@@ -145,7 +145,6 @@ namespace Xfmpc {
 				this.deiconify ();
 			} else {
 				this.close_window ();
-				move (this.preferences.last_window_posx, this.preferences.last_window_posy);
 			}
 		}
 
@@ -227,6 +226,7 @@ namespace Xfmpc {
 
 			if (this.status_icon.visible) {
 				this.hide ();
+				move (this.preferences.last_window_posx, this.preferences.last_window_posy);
 				return;
 			}
 
