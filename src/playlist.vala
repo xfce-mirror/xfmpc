@@ -362,6 +362,7 @@ namespace Xfmpc {
 			if (icon_pos != Gtk.EntryIconPosition.SECONDARY)
 				return;
 			filter_entry.set_text ("");
+			select_row (current);
 		}
 
 		/*
