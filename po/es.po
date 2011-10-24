@@ -3,7 +3,7 @@
 # Copyright (C) 2009 THE xfmpc'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfmpc package.
 #  <abel.martin.ruiz@gmail.com>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
@@ -12,15 +12,15 @@ msgstr ""
 "PO-Revision-Date: 2009-06-13 19:28-0300\n"
 "Last-Translator: elega <elega@elega.com.ar>\n"
 "Language-Team: Spanish\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
-msgstr "Sustituir"
+msgstr "Reemplazar"
 
 #: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
@@ -36,15 +36,15 @@ msgstr "Aleatorio"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr "Modo Único"
+msgstr "Modo único"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr "Modo de Consumo"
+msgstr "Modo de consumo"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
-msgstr "_Accesos Directos"
+msgstr "_Atajos"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -52,7 +52,9 @@ msgstr "Cliente MPD escrito en GTK+ para Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr "Elega <elega@elega.com.ar>"
+msgstr ""
+"Elega <elega@elega.com.ar>\r\n"
+"Fitoschido <fitoschido@gmail.com>"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
@@ -77,11 +79,11 @@ msgstr "Explorar la base de datos"
 #: ../src/interface.c:467
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "por \"%s\" de \"%s\" (%s)"
+msgstr "por «%s» de «%s» (%s)"
 
 #: ../src/interface.c:486
 msgid "Stopped"
-msgstr "Parado"
+msgstr "Detenido"
 
 #: ../src/interface.c:496 ../src/interface.c:916
 msgid "Not connected"
@@ -99,23 +101,23 @@ msgstr "%d canciones, %d minutos"
 
 #: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
-msgstr "Fallo al conectarse a MPD"
+msgstr "No se pudo conectar al MPD"
 
 #: ../src/mpdclient.c:387
 msgid "Connected to MPD"
-msgstr "Conectado a MPD"
+msgstr "Conectado al MPD"
 
 #: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
-msgstr "n/a"
+msgstr "n/d"
 
 #: ../src/preferences-dialog.c:701
 msgid "Xfmpc Preferences"
-msgstr "Preferencias Xfmpc"
+msgstr "Preferencias de Xfmpc"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr "Peronalizar su cliente MPD"
+msgstr "Personalizar su cliente MPD"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -139,7 +141,7 @@ msgstr ""
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
-msgstr "Hostname:"
+msgstr "Nombre de host:"
 
 #: ../src/preferences-dialog.c:797
 msgid "Port:"
@@ -195,7 +197,7 @@ msgstr "Artista - Álbum - Título"
 
 #: ../src/preferences-dialog.c:971
 msgid "Artist - Album - Track. Title"
-msgstr "Artista - Álbum - Tema. Título"
+msgstr "Artista - Álbum - Pista. Título"
 
 #: ../src/preferences-dialog.c:974
 msgid "Custom..."
@@ -247,37 +249,36 @@ msgid "%T: Track"
 msgstr "%P: Pista"
 
 #: ../src/shortcuts-dialog.c:161
-#, fuzzy
 msgid "Xfmpc Shortcuts"
-msgstr "_Accesos Directos"
+msgstr "Atajos de Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "Controle su cliente de MPD con su teclado"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Salir: Ctrl+Q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr ""
+msgstr "Anterior: Ctrl+B"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
-msgstr ""
+msgstr "Reproducir/pausar: Ctrl+P"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Detener: Ctrl+S"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr ""
+msgstr "Siguiente: Ctrl+F"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr ""
+msgstr "Volumen: Ctrl+V"
 
 #: ../src/song-dialog.c:239
 msgid "File"
