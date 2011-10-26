@@ -5,7 +5,7 @@
 # Og Maciel <ogmaciel@gnome.org>, 2008.
 # Filipe Rosset <rosset.filipe@gmail.com>, 2009.
 # Frederico Schardong <frede.sch@gmail.com>, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
@@ -14,10 +14,10 @@ msgstr ""
 "PO-Revision-Date: 2011-10-02 23:18-0300\n"
 "Last-Translator: Filipe Rosset <rosset.filipe@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../src/dbbrowser.c:1508
@@ -249,37 +249,36 @@ msgid "%T: Track"
 msgstr "%T: Faixa"
 
 #: ../src/shortcuts-dialog.c:161
-#, fuzzy
 msgid "Xfmpc Shortcuts"
-msgstr "_Atalhos"
+msgstr "Atalhos Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "Controle seu cliente MPD com o teclado"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Sair: CTRL+q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr ""
+msgstr "Anterior: CTRL+b"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
-msgstr ""
+msgstr "Tocar/Pausar: CTRL+p"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Parar: CTRL+s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr ""
+msgstr "Próximo: CTRL+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr ""
+msgstr "Volume: CTRL+v"
 
 #: ../src/song-dialog.c:239
 msgid "File"
