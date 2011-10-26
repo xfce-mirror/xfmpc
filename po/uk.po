@@ -1,7 +1,7 @@
 # Ukrainian translation of xfmpc.
 # Copyright (C) 2008 Mike Massonnet <mmassonnet@xfce.org>
 # This file is distributed under the same license as the xfmpc package.
-#
+# 
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2008.
 msgid ""
 msgstr ""
@@ -11,10 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2009-02-24 20:34+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../src/dbbrowser.c:1508
@@ -246,37 +246,36 @@ msgid "%T: Track"
 msgstr "%T: Трек"
 
 #: ../src/shortcuts-dialog.c:161
-#, fuzzy
 msgid "Xfmpc Shortcuts"
-msgstr "_Ярлики"
+msgstr "Швидкі клавіші Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "Контролювати Ваш MPD клієнт за допомогою клавіатури"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Вийти: CTRL+q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr ""
+msgstr "Попереднє: CTRL+b"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
-msgstr ""
+msgstr "Програти/Пауза: CTRL+p"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Стоп: CTRL+s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr ""
+msgstr "Наступне: CTRL+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr ""
+msgstr "Гучність: CTRL+v"
 
 #: ../src/song-dialog.c:239
 msgid "File"
