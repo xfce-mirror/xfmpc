@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2009-12-16 21:51+0100\n"
-"Last-Translator: gianluca foddis <gianluca.foddis@gmail.com>\n"
+"PO-Revision-Date: 2011-11-05 10:12+0100\n"
+"Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: Italian <xfce-it-translators@googlegroups.com>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,8 @@ msgstr ""
 msgid "Replace"
 msgstr "Sostituisci"
 
-#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
+#: ../src/dbbrowser.c:1524
+#: ../src/playlist.c:1511
 msgid "Browse"
 msgstr "Sfoglia"
 
@@ -38,17 +39,18 @@ msgstr "Casuale"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr ""
+msgstr "Modalità singolo"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr ""
+msgstr "Modalità consumo"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
-msgstr ""
+msgstr "_Scorciatoie"
 
-#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:747
+#: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Client MPD scritto in GTK+ per Xfce"
 
@@ -87,7 +89,8 @@ msgstr "di \" %s\" da \" %s\" (%s)"
 msgid "Stopped"
 msgstr "Interrotto"
 
-#: ../src/interface.c:496 ../src/interface.c:916
+#: ../src/interface.c:496
+#: ../src/interface.c:916
 msgid "Not connected"
 msgstr "Non connesso"
 
@@ -109,7 +112,9 @@ msgstr "Errore nella connessione a MPD"
 msgid "Connected to MPD"
 msgstr "Connesso a MPD"
 
-#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627
+#: ../src/mpdclient.c:657
+#: ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "n/d"
 
@@ -119,7 +124,7 @@ msgstr "Preferenze di Xfmpc"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "Personalizzazione del client MPD"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -134,12 +139,8 @@ msgid "Use _default system settings"
 msgstr "Usa le impostazioni _predefinite di sistema"
 
 #: ../src/preferences-dialog.c:745
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Se abilitata, Xfmpc tenterà di leggere le variabili MPD_HOST e MPD_PORT; "
-"diversamente utilizzerà localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Se abilitata, Xfmpc tenterà di leggere le variabili MPD_HOST e MPD_PORT; diversamente utilizzerà localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -159,11 +160,11 @@ msgstr "Aspetto"
 
 #: ../src/preferences-dialog.c:884
 msgid "General"
-msgstr ""
+msgstr "Generali"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Chiudi la finestra nell'area di notifica"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
@@ -177,7 +178,8 @@ msgstr "Formato della canzone"
 msgid "Song Format:"
 msgstr "Formato della canzone:"
 
-#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
+#: ../src/preferences-dialog.c:956
+#: ../src/song-dialog.c:291
 msgid "Title"
 msgstr "Titolo"
 
@@ -252,35 +254,35 @@ msgstr "%T: traccia"
 
 #: ../src/shortcuts-dialog.c:161
 msgid "Xfmpc Shortcuts"
-msgstr ""
+msgstr "Scorciatoie di Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "Come controllare il client MPD con la tastiera"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Esci: CTRL+q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr ""
+msgstr "Precedente: CTRL+b"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
-msgstr ""
+msgstr "Riproduci/Pausa: CTRL+p"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Stop: CTRL+s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr ""
+msgstr "Successivo: CTRL+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr ""
+msgstr "Volume: CTRL+v"
 
 #: ../src/song-dialog.c:239
 msgid "File"
