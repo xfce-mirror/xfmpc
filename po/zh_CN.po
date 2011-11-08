@@ -43,7 +43,7 @@ msgstr "消耗模式"
 
 #: ../src/extended-interface.c:354
 msgid "_Shortcuts"
-msgstr "快捷键"
+msgstr "快捷键(_S)"
 
 #: ../src/extended-interface.c:467 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
