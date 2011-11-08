@@ -1,7 +1,7 @@
 # Chinese translations for PACKAGE package
 # PACKAGE 软件包的简体中文翻译.
-# Copyright (C) 2009 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2009 THE xfmpc'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfmpc package.
 # Hunt Xu <huntxu@live.cn>, 2009.
 # Chipong Luo <chipong_l@yahoo.com>, 2011.
 msgid ""
