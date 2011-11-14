@@ -11,12 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2010-06-11 19:30+0200\n"
 "Last-Translator: Ivica Kolić<ikoli@yahoo.com> <>\n"
 "Language-Team: Croatian <>\n"
-"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
@@ -44,7 +43,7 @@ msgstr ""
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
-msgstr ""
+msgstr "_Prečaci"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -111,7 +110,7 @@ msgstr "n / a"
 
 #: ../src/preferences-dialog.c:701
 msgid "Xfmpc Preferences"
-msgstr ""
+msgstr "Xfmpc osobitosti"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
@@ -153,11 +152,11 @@ msgstr "Izgled"
 
 #: ../src/preferences-dialog.c:884
 msgid "General"
-msgstr ""
+msgstr "Općenito"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Zatvori prozor u području obavijesti"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
@@ -246,7 +245,7 @@ msgstr "%T: Zapis"
 
 #: ../src/shortcuts-dialog.c:161
 msgid "Xfmpc Shortcuts"
-msgstr ""
+msgstr "Xfmpc prečaci"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
@@ -254,7 +253,7 @@ msgstr ""
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Isključi: CTRL + Q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
@@ -266,7 +265,7 @@ msgstr ""
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Stop: Ctrl + s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
