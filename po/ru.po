@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
@@ -7,10 +7,10 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: Urmas <davian818@gmail.com>\n"
 "Language-Team: None <->\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 
@@ -31,18 +31,16 @@ msgid "Random"
 msgstr "Случайный порядок"
 
 #: ../src/extended-interface.c:515
-#, fuzzy
 msgid "Single Mode"
 msgstr "Одиночный режим"
 
 #: ../src/extended-interface.c:525
-#, fuzzy
 msgid "Consume Mode"
-msgstr "Потребление"
+msgstr "Режим потребления"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
-msgstr ""
+msgstr "Со_четания клавиш"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -109,11 +107,11 @@ msgstr "нет"
 
 #: ../src/preferences-dialog.c:701
 msgid "Xfmpc Preferences"
-msgstr ""
+msgstr "Настройки Xfmpc"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "Настройка MPD-клиента"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -153,11 +151,11 @@ msgstr "Внешний вид"
 
 #: ../src/preferences-dialog.c:884
 msgid "General"
-msgstr ""
+msgstr "Общие"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr ""
+msgstr "При закрытии сворачивать в область уведомлений"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
@@ -246,35 +244,35 @@ msgstr "%T: дорожка"
 
 #: ../src/shortcuts-dialog.c:161
 msgid "Xfmpc Shortcuts"
-msgstr ""
+msgstr "Сочетания клавиш"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "Управление MPD-клиентом с клавиатуры"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Выход: CTRL+q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr ""
+msgstr "Назад: CTRL+b"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
-msgstr ""
+msgstr "Воспроизведение, пауза: CTRL+p"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Останов: CTRL+s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr ""
+msgstr "Вперед: CTRL+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr ""
+msgstr "Громкость: CTRL+v"
 
 #: ../src/song-dialog.c:239
 msgid "File"
