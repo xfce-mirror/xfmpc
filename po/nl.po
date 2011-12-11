@@ -66,7 +66,7 @@ msgstr "Speellijst wissen"
 
 #: ../src/extended-interface.c:908
 msgid "Refresh Database"
-msgstr "Database vernieuwen"
+msgstr "Gegevensbank verversen"
 
 #: ../src/extended-interface.c:926
 msgid "Context Menu"
