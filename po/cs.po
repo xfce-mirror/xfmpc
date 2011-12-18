@@ -1,14 +1,14 @@
 # Czech translations for xfce-i package.
 # Copyright (C) 2008 THE xfce-i'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce-i package.
-# Michal Várady <miko.vaji@gmail.com>, 2008-2009.
+# Michal Várady <miko.vaji@gmail.com>, 2008-2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce-i 18n\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2009-12-04 14:20+0100\n"
+"PO-Revision-Date: 2011-12-18 16:23+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech\n"
 "Language: \n"
@@ -21,7 +21,8 @@ msgstr ""
 msgid "Replace"
 msgstr "Nahradit"
 
-#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
+#: ../src/dbbrowser.c:1524
+#: ../src/playlist.c:1511
 msgid "Browse"
 msgstr "Procházet"
 
@@ -35,17 +36,18 @@ msgstr "Náhodně"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr ""
+msgstr "Jednoduchý režim"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr ""
+msgstr "Spotřební režim"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
-msgstr ""
+msgstr "_Klávesové zkratky"
 
-#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:747
+#: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Klient MPD napsaný v GTK+ pro prostředí Xfce"
 
@@ -82,7 +84,8 @@ msgstr "od \"%s\" z alba \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Zastaveno"
 
-#: ../src/interface.c:496 ../src/interface.c:916
+#: ../src/interface.c:496
+#: ../src/interface.c:916
 msgid "Not connected"
 msgstr "Nepřipojeno"
 
@@ -104,7 +107,9 @@ msgstr "Připojení k démonu MPD se nezdařilo"
 msgid "Connected to MPD"
 msgstr "Připojeno k démonu MPD"
 
-#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627
+#: ../src/mpdclient.c:657
+#: ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "n/a"
 
@@ -114,7 +119,7 @@ msgstr "Předvolby aplikace Xfmpc"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "Přizpůsobte si klienta MPD"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -129,13 +134,8 @@ msgid "Use _default system settings"
 msgstr "Použít _výchozí nastavení systému"
 
 #: ../src/preferences-dialog.c:745
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Pokud je volba zaškrtnuta, pokusí se aplikace Xfmpc přečíst proměnné "
-"prostředí MPD_HOST a MPD_PORT, v opačném případě použije tento počítač "
-"(localhost)"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Pokud je volba zaškrtnuta, pokusí se aplikace Xfmpc přečíst proměnné prostředí MPD_HOST a MPD_PORT, v opačném případě použije tento počítač (localhost)"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -155,11 +155,11 @@ msgstr "Vzhled"
 
 #: ../src/preferences-dialog.c:884
 msgid "General"
-msgstr ""
+msgstr "Obecné"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Zavřít okno do oznamovací oblasti"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
@@ -173,7 +173,8 @@ msgstr "Formát skladby"
 msgid "Song Format:"
 msgstr "Formát skladby:"
 
-#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
+#: ../src/preferences-dialog.c:956
+#: ../src/song-dialog.c:291
 msgid "Title"
 msgstr "Název"
 
@@ -248,35 +249,35 @@ msgstr "%T: Stopa"
 
 #: ../src/shortcuts-dialog.c:161
 msgid "Xfmpc Shortcuts"
-msgstr ""
+msgstr "Klávesové zkratky Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "Ovládejte klienta MPD pomocí klávesnice"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Ukončit: CTRL+q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr ""
+msgstr "Předchozí: CTRL+b"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
-msgstr ""
+msgstr "Přehrát/pozastavit: CTRL+p"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Zastavit: CTRL+s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr ""
+msgstr "Další: CTRL+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr ""
+msgstr "Hlasitost: CTRL+v"
 
 #: ../src/song-dialog.c:239
 msgid "File"
