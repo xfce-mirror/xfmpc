@@ -3,7 +3,7 @@
 # This file is distributed under the same license as
 # the xfmpc package.
 # Hunt Xu <huntxu@live.cn>, 2009.
-# Chipong Luo <chipong_l@yahoo.com>, 2011.
+# Chipong Luo <chipong_l@yahoo.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
@@ -54,7 +54,7 @@ msgstr "使用 GTK+ 编写的用于 Xfce 的 MPD 客户端"
 msgid "translator-credits"
 msgstr ""
 "Hunt Xu <huntxu@live.cn>, 2009.\n"
-"Chipong Luo <chipong_l@yahoo.com>, 2011."
+"Chipong Luo <chipong_l@yahoo.com>, 2011, 2012."
 
 #: ../src/extended-interface.c:539
 msgid "Clear Playlist"
@@ -79,7 +79,7 @@ msgstr "浏览数据库"
 #: ../src/interface.c:264
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "“%s” 创作的 “%s”(%s)"
+msgstr "由 “%s” 从 “%s”(%s)"
 
 #: ../src/interface.c:269
 msgid "Stopped"
@@ -92,12 +92,12 @@ msgstr "未连接"
 #: ../src/main-window.c:444
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr "%d 首歌，%d 小时 %d 分钟"
+msgstr "%d 首歌曲，%d 小时 %d 分钟"
 
 #: ../src/main-window.c:446
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr "%d 首歌，%d 分钟"
+msgstr "%d 首歌曲，%d 分钟"
 
 #: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
@@ -105,7 +105,7 @@ msgstr "无法与 MPD 连接"
 
 #: ../src/mpdclient.c:387
 msgid "Connected to MPD"
-msgstr "已连接至 MPD"
+msgstr "与 MPD 已连接"
 
 #: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
@@ -136,7 +136,8 @@ msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
 msgstr ""
-"选中此项，Xfmpc 将尝试读取环境变量 MPD_HOST 和 MPD_PORT，否则使用"
+"选中此项，Xfmpc 将尝试读取环境变量 "
+"MPD_HOST 和 MPD_PORT，否则使用"
 "本地主机"
 
 #: ../src/preferences-dialog.c:393
@@ -181,23 +182,23 @@ msgstr "标题"
 
 #: ../src/preferences-dialog.c:442
 msgid "Album - Title"
-msgstr "专辑 - 标题"
+msgstr "专辑-标题"
 
 #: ../src/preferences-dialog.c:443
 msgid "Artist - Title"
-msgstr "艺术家 - 标题"
+msgstr "艺术家-标题"
 
 #: ../src/preferences-dialog.c:444
 msgid "Artist - Title (Date)"
-msgstr "艺术家 - 标题(日期)"
+msgstr "艺术家-标题(日期)"
 
 #: ../src/preferences-dialog.c:445
 msgid "Artist - Album - Title"
-msgstr "艺术家 - 专辑 - 标题"
+msgstr "艺术家-专辑-标题"
 
 #: ../src/preferences-dialog.c:446
 msgid "Artist - Album - Track. Title"
-msgstr "艺术家 - 专辑 - 音轨。标题"
+msgstr "艺术家-专辑-音轨。标题"
 
 #: ../src/preferences-dialog.c:447
 msgid "Custom..."
@@ -278,4 +279,4 @@ msgstr "MPD 客户端"
 
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
-msgstr "Xfmpc"
+msgstr "Xfmpc 客户端"
