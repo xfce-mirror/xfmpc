@@ -40,12 +40,12 @@ msgstr "Zufall"
 #: ../src/extended-interface.c:515
 #, fuzzy
 msgid "Single Mode"
-msgstr "Einzelabspielmodus"
+msgstr "Einzelmodus"
 
 #: ../src/extended-interface.c:525
 #, fuzzy
 msgid "Consume Mode"
-msgstr "Verbrauchenmodus"
+msgstr "Verbrauchsmodus"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
@@ -254,7 +254,7 @@ msgstr "%T: Titelnummer"
 #: ../src/shortcuts-dialog.c:161
 #, fuzzy
 msgid "Xfmpc Shortcuts"
-msgstr "_Tastenkürzel"
+msgstr "Xfmpc-Tastenkürzel"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
