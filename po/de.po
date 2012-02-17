@@ -38,12 +38,10 @@ msgid "Random"
 msgstr "Zufall"
 
 #: ../src/extended-interface.c:515
-#, fuzzy
 msgid "Single Mode"
 msgstr "Einzelmodus"
 
 #: ../src/extended-interface.c:525
-#, fuzzy
 msgid "Consume Mode"
 msgstr "Verbrauchsmodus"
 
@@ -252,7 +250,6 @@ msgid "%T: Track"
 msgstr "%T: Titelnummer"
 
 #: ../src/shortcuts-dialog.c:161
-#, fuzzy
 msgid "Xfmpc Shortcuts"
 msgstr "Xfmpc-Tastenkürzel"
 
