@@ -1,0 +1,259 @@
+# Korean translation for xfmpc.xfmpc-plugins.master package.
+# Copyright (C) 2008-2012 Mike Massonnet et al.
+# This file is distributed under the same license as the xfmpc.xfmpc-plugins.master package.
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfmpc.xfmpc-plugins\n"
+"Report-Msgid-Bugs-To: xfce4-users-ko-i18n <xfce4-users-ko-i18n@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2009-03-14 09:31+0100\n"
+"PO-Revision-Date: 2012-02-21 03:42+0900\n"
+"Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
+"Language-Team: xfce4-users-ko-i18n <xfce4-users-ko-i18n@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Korean\n"
+"X-Poedit-Country: KOREA, REPUBLIC OF\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. Menu -> Replace
+#: ../src/dbbrowser.c:222
+msgid "_Replace"
+msgstr "바꾸기(_R)"
+
+#. Menu -> Browse (only shown on a search)
+#: ../src/dbbrowser.c:230
+#: ../src/playlist.c:237
+msgid "_Browse"
+msgstr "찾아보기(_B)"
+
+#: ../src/extended-interface.c:165
+msgid "Clear Playlist"
+msgstr "재생 목록 지우기"
+
+#: ../src/extended-interface.c:175
+msgid "Refresh Database"
+msgstr "데이터베이스 새로 고침"
+
+#: ../src/extended-interface.c:185
+msgid "Context Menu"
+msgstr "문맥 메뉴"
+
+#: ../src/extended-interface.c:217
+msgid "Current Playlist"
+msgstr "현재 재생 목록"
+
+#: ../src/extended-interface.c:220
+msgid "Browse database"
+msgstr "데이터베이스 찾아보기"
+
+#: ../src/extended-interface.c:303
+msgid "Repeat"
+msgstr "반복"
+
+#: ../src/extended-interface.c:310
+msgid "Random"
+msgstr "임의재생"
+
+#: ../src/extended-interface.c:402
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "Xfce를 위한 GTK+로 작성된 MPD 클라이언트"
+
+#: ../src/extended-interface.c:406
+msgid "translator-credits"
+msgstr "Seong-ho Cho <darkcircle.0426@gmail.com>"
+
+#: ../src/interface.c:156
+#: ../src/interface.c:364
+msgid "Not connected"
+msgstr "연결 안 됨"
+
+#. subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.c:395
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "\"%s\"이(가)  \"%s\"(으)로 부터 (%s)"
+
+#: ../src/interface.c:441
+msgid "Stopped"
+msgstr "정지됨"
+
+#: ../src/main-window.c:393
+#, c-format
+msgid "%d songs, %d hours and %d minutes"
+msgstr "%d개의 노래, %d시간 %d분"
+
+#: ../src/main-window.c:395
+#, c-format
+msgid "%d songs, %d minutes"
+msgstr "%d개의 노래, %d분"
+
+#: ../src/mpdclient.c:515
+#: ../src/mpdclient.c:545
+#: ../src/mpdclient.c:560
+msgid "n/a"
+msgstr "없음"
+
+#: ../src/preferences.c:41
+#: ../src/song-dialog.c:173
+msgid "Title"
+msgstr "제목"
+
+#: ../src/preferences.c:42
+msgid "Album - Title"
+msgstr "앨범 - 제목"
+
+#: ../src/preferences.c:43
+msgid "Artist - Title"
+msgstr "음악가 - 제목"
+
+#: ../src/preferences.c:44
+msgid "Artist - Title (Date)"
+msgstr "음악가 - 제목 (날짜)"
+
+#: ../src/preferences.c:45
+msgid "Artist - Album - Title"
+msgstr "음악가 - 앨범 - 제목"
+
+#: ../src/preferences.c:46
+msgid "Artist - Album - Track. Title"
+msgstr "음악가 - 앨범 - 트랙. 제목"
+
+#: ../src/preferences.c:47
+msgid "Custom..."
+msgstr "사용자정의..."
+
+#: ../src/preferences-dialog.c:181
+msgid "Xfmpc Preferences"
+msgstr "Xfmpc 기본 설정"
+
+#: ../src/preferences-dialog.c:197
+msgid "MPD"
+msgstr "MPD"
+
+#: ../src/preferences-dialog.c:201
+msgid "Connection"
+msgstr "연결"
+
+#: ../src/preferences-dialog.c:204
+msgid "Use _default system settings"
+msgstr "기본 시스템 설정 사용(_D)"
+
+#: ../src/preferences-dialog.c:206
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "이것을 선택하면, Xfmpc는 MPD_HOST 환경변수와 MPD_PORT 환경변수를 읽어들이려 하거나 localhost를 사용할 것입니다"
+
+#: ../src/preferences-dialog.c:221
+msgid "Hostname:"
+msgstr "호스트이름:"
+
+#: ../src/preferences-dialog.c:228
+msgid "Port:"
+msgstr "포트:"
+
+#: ../src/preferences-dialog.c:238
+msgid "Password:"
+msgstr "암호:"
+
+#: ../src/preferences-dialog.c:256
+msgid "Appearance"
+msgstr "모양새"
+
+#: ../src/preferences-dialog.c:260
+msgid "Statusbar"
+msgstr "상태 표시줄"
+
+#: ../src/preferences-dialog.c:263
+msgid "Show _statusbar"
+msgstr "상태 표시줄 보이기(_S)"
+
+#: ../src/preferences-dialog.c:270
+msgid "Song Format"
+msgstr "노래 형식"
+
+#: ../src/preferences-dialog.c:275
+msgid "Song format:"
+msgstr "노래 형식:"
+
+#: ../src/preferences-dialog.c:295
+msgid "Custom format:"
+msgstr "사용자정의 형식:"
+
+#: ../src/preferences-dialog.c:312
+msgid "Available parameters:"
+msgstr "사용가능한 변수들:"
+
+#: ../src/preferences-dialog.c:321
+#, c-format
+msgid "%a: Artist"
+msgstr "%a: 음악가"
+
+#: ../src/preferences-dialog.c:325
+#, c-format
+msgid "%A: Album"
+msgstr "%A: 앨범"
+
+#: ../src/preferences-dialog.c:330
+#, c-format
+msgid "%d: Date"
+msgstr "%d: 날짜"
+
+#: ../src/preferences-dialog.c:334
+msgid "%D: Disc"
+msgstr "%D: 디스크"
+
+#: ../src/preferences-dialog.c:339
+#, c-format
+msgid "%f: File"
+msgstr "%f: 파일"
+
+#: ../src/preferences-dialog.c:343
+#, c-format
+msgid "%g: Genre"
+msgstr "%g: 장르"
+
+#: ../src/preferences-dialog.c:348
+msgid "%t: Title"
+msgstr "%t: 제목"
+
+#: ../src/preferences-dialog.c:352
+msgid "%T: Track"
+msgstr "%T: 트랙"
+
+#: ../src/song-dialog.c:133
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
+#: ../src/song-dialog.c:153
+msgid "File"
+msgstr "파일"
+
+#: ../src/song-dialog.c:163
+msgid "Artist"
+msgstr "음악가"
+
+#: ../src/song-dialog.c:183
+msgid "Album"
+msgstr "앨범"
+
+#: ../src/song-dialog.c:193
+msgid "Date"
+msgstr "날짜"
+
+#: ../src/song-dialog.c:200
+msgid "Track"
+msgstr "트랙"
+
+#: ../src/song-dialog.c:211
+msgid "Genre"
+msgstr "장르"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD 클라이언트"
+
