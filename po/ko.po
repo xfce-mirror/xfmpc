@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfmpc.master\n"
 "Report-Msgid-Bugs-To: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge.net>\n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2012-02-21 01:37+0900\n"
+"PO-Revision-Date: 2012-02-21 14:44+0900\n"
 "Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge.net>\n"
 "Language: \n"
@@ -118,7 +118,7 @@ msgstr "없음"
 
 #: ../src/preferences-dialog.c:701
 msgid "Xfmpc Preferences"
-msgstr "Xfmpe 기본 설정"
+msgstr "Xfmpc 기본 설정"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
