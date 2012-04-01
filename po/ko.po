@@ -175,7 +175,7 @@ msgstr "상태 표시줄"
 
 #: ../src/preferences-dialog.c:263
 msgid "Show _statusbar"
-msgstr "상태 표시줄 보이기(_S)"
+msgstr "상태 표시줄 보기(_S)"
 
 #: ../src/preferences-dialog.c:270
 msgid "Song Format"
