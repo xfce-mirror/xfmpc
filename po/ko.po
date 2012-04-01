@@ -172,7 +172,7 @@ msgstr "알림 영역으로 창 숨기기"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
-msgstr "상태 표시줄 보이기(_S)"
+msgstr "상태 표시줄 보기(_S)"
 
 #: ../src/preferences-dialog.c:927
 msgid "Song Format"
