@@ -16,7 +16,7 @@ msgstr ""
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
 "PO-Revision-Date: 2012-02-21 14:44+0900\n"
 "Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
-"Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge.net>\n"
+"Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -217,7 +217,7 @@ msgstr "사용자정의 형식:"
 
 #: ../src/preferences-dialog.c:1023
 msgid "Available parameters:"
-msgstr "사용가능한 변수들:"
+msgstr "사용가능한 변수:"
 
 #: ../src/preferences-dialog.c:1043
 #, c-format
