@@ -191,7 +191,7 @@ msgstr "사용자정의 형식:"
 
 #: ../src/preferences-dialog.c:312
 msgid "Available parameters:"
-msgstr "사용가능한 변수들:"
+msgstr "사용가능한 변수:"
 
 #: ../src/preferences-dialog.c:321
 #, c-format
