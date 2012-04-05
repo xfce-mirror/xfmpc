@@ -67,7 +67,7 @@ msgstr "임의재생"
 #: ../src/extended-interface.c:402
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "Xfce를 위한 GTK+로 작성된 MPD 클라이언트"
+msgstr "Xfce를 위해 GTK+로 작성한 MPD 클라이언트"
 
 #: ../src/extended-interface.c:406
 msgid "translator-credits"
@@ -76,7 +76,7 @@ msgstr "Seong-ho Cho <darkcircle.0426@gmail.com>"
 #: ../src/interface.c:156
 #: ../src/interface.c:364
 msgid "Not connected"
-msgstr "연결 안 됨"
+msgstr "연결 안함"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:395
@@ -86,7 +86,7 @@ msgstr "\"%s\"이(가)  \"%s\"(으)로 부터 (%s)"
 
 #: ../src/interface.c:441
 msgid "Stopped"
-msgstr "정지됨"
+msgstr "정지함"
 
 #: ../src/main-window.c:393
 #, c-format
