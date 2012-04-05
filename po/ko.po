@@ -77,7 +77,7 @@ msgstr "Seong-ho Cho <darkcircle.0426@gmail.com>"
 #: ../src/interface.c:156
 #: ../src/interface.c:364
 msgid "Not connected"
-msgstr "연결 안됨"
+msgstr "연결 안함"
 
 #. subtitle "by \"artist\" from \"album\" (year)"
 #: ../src/interface.c:395
