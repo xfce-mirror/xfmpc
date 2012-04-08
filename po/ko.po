@@ -58,7 +58,7 @@ msgstr "바로 가기(_S)"
 #: ../src/extended-interface.c:747
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "Xfce 기반 GTK+로 작성된 MPD 클라이언트"
+msgstr "GTK+로 작성된 Xfce용 MPD 클라이언트"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
