@@ -286,7 +286,7 @@ msgstr "다음: CTRL+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr "소리 크기: CTRL+v"
+msgstr "음량: CTRL+v"
 
 #: ../src/song-dialog.c:239
 msgid "File"
