@@ -68,7 +68,7 @@ msgstr "임의"
 #: ../src/extended-interface.c:402
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "GTK+로 작성된 Xfce MPD 클라이언트"
+msgstr "GTK+로 작성된 Xfce용 MPD 클라이언트"
 
 #: ../src/extended-interface.c:406
 msgid "translator-credits"
