@@ -257,7 +257,7 @@ msgstr "Atallos de Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "Controle o cliente de MPD co teclado"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
