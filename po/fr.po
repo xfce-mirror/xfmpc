@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2010-02-11 15:35+0100\n"
-"Last-Translator: Douart Patrick <patrick.2@laposte.net>\n"
+"PO-Revision-Date: 2012-04-14 01:26+0100\n"
+"Last-Translator: Iliyas Jorio <inv.jorio@gmail.com>\n"
 "Language-Team: French\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,8 @@ msgstr ""
 msgid "Replace"
 msgstr "_Remplacer"
 
-#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
+#: ../src/dbbrowser.c:1524
+#: ../src/playlist.c:1511
 msgid "Browse"
 msgstr "_Parcourir"
 
@@ -45,9 +46,10 @@ msgstr ""
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
-msgstr ""
+msgstr "_Raccourcis"
 
-#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:747
+#: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Client MPD écrit en GTK+ pour Xfce"
 
@@ -84,7 +86,8 @@ msgstr "par « %s » de « %s » (%s)"
 msgid "Stopped"
 msgstr "Stoppé"
 
-#: ../src/interface.c:496 ../src/interface.c:916
+#: ../src/interface.c:496
+#: ../src/interface.c:916
 msgid "Not connected"
 msgstr "Déconnecté"
 
@@ -106,7 +109,9 @@ msgstr "Impossible de se connecter à MPD"
 msgid "Connected to MPD"
 msgstr "Connecté à MPD"
 
-#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627
+#: ../src/mpdclient.c:657
+#: ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "n/a"
 
@@ -116,7 +121,7 @@ msgstr "Préférences de Xfmpc"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "Personnalisation du client MPD"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -131,12 +136,8 @@ msgid "Use _default system settings"
 msgstr "Utiliser les paramètres par _défaut du système"
 
 #: ../src/preferences-dialog.c:745
-msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Si coché, Xfmpc utilisera les variables d'environnements MPD_HOST et "
-"MPD_PORT sinon localhost"
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Si coché, Xfmpc utilisera les variables d'environnements MPD_HOST et MPD_PORT sinon localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -156,11 +157,11 @@ msgstr "Apparence"
 
 #: ../src/preferences-dialog.c:884
 msgid "General"
-msgstr ""
+msgstr "Général"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Placer Xfmpc dans la zone de notification lorsque la fenêtre est fermée"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
@@ -174,7 +175,8 @@ msgstr "Format de la chanson"
 msgid "Song Format:"
 msgstr "Format de la chanson :"
 
-#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
+#: ../src/preferences-dialog.c:956
+#: ../src/song-dialog.c:291
 msgid "Title"
 msgstr "Titre"
 
@@ -249,35 +251,35 @@ msgstr "%T : N° Piste"
 
 #: ../src/shortcuts-dialog.c:161
 msgid "Xfmpc Shortcuts"
-msgstr ""
+msgstr "Raccourcis Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "Contrôler le client MPD au clavier"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Quitter : Ctrl+Q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr ""
+msgstr "Précédent : Ctrl+B"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
-msgstr ""
+msgstr "Lecture/Pause : Ctrl+P"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Stop : Ctrl+S"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr ""
+msgstr "Suivant : Ctrl+F"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr ""
+msgstr "Volume : Ctrl+V"
 
 #: ../src/song-dialog.c:239
 msgid "File"
