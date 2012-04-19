@@ -51,7 +51,7 @@ msgstr "_Tastenkürzel"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "MPD Client geschrieben in GTK+ für Xfce"
+msgstr "MPD-Client geschrieben in GTK+ für Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
@@ -102,7 +102,7 @@ msgstr "%d Lieder, %d Minuten"
 
 #: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
-msgstr "Konnte keine Verbindung zu MPD aufbauen."
+msgstr "Es konnte keine Verbindung zu MPD aufgebaut werden."
 
 #: ../src/mpdclient.c:387
 msgid "Connected to MPD"
@@ -202,7 +202,7 @@ msgstr "Künstler - Album - Nummer. Titel"
 
 #: ../src/preferences-dialog.c:974
 msgid "Custom..."
-msgstr "Benutzerdefiniert..."
+msgstr "Benutzerdefiniert …"
 
 #: ../src/preferences-dialog.c:988
 msgid "Custom format:"
@@ -279,7 +279,7 @@ msgstr "Nächster: STRG+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr "Lautstärke: CTRL+v"
+msgstr "Lautstärke: STRG+v"
 
 #: ../src/song-dialog.c:239
 msgid "File"
