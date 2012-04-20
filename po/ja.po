@@ -1,14 +1,15 @@
 # Japanese translations for xfmpc package
-# Copyright (C) 2008 the xfmpc's copyright holder
+# Copyright (C) 2008-2012 the xfmpc's copyright holder
 # This file is distributed under the same license as the xfmpc package.
 # Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008.
+# Masato Hashimoto <cabezon.hashimoto@gmail.com>, 2010-2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-26 20:28+0900\n"
-"PO-Revision-Date: 2011-10-26 20:28+0900\n"
+"PO-Revision-Date: 2012-04-20 19:34+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: JAPANESE <xfce-i18n@xfce.org>\n"
 "Language: \n"
@@ -58,7 +59,7 @@ msgstr ""
 
 #: ../src/extended-interface.c:647
 msgid "Clear Playlist"
-msgstr "プレイリストのクリア"
+msgstr "プレイリストのクリアー"
 
 #: ../src/extended-interface.c:657
 msgid "Refresh Database"
@@ -209,7 +210,7 @@ msgstr "カスタムフォーマット:"
 
 #: ../src/preferences-dialog.c:638
 msgid "Available parameters:"
-msgstr "利用可能なパラメータ:"
+msgstr "利用可能なパラメーター:"
 
 #: ../src/preferences-dialog.c:651
 #, c-format
