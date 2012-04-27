@@ -1,15 +1,15 @@
 # Finnish translations for xfmpc.
-# Copyright (C) 2008-2009 Mike Masonnet
+# Copyright (C) 2008-2011 Mike Masonnet, Vincent Legout
 # This file is distributed under the same license as the xfmpc package.
 # Miia Ranta <myrtti@ubuntu.com>, 2008.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2009
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2009-2012
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2009-03-16 21:05+0200\n"
+"PO-Revision-Date: 2012-04-27 14:51+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish\n"
 "Language: \n"
@@ -20,14 +20,12 @@ msgstr ""
 "X-Poedit-Country: Finland\n"
 
 #: ../src/dbbrowser.c:1508
-#, fuzzy
 msgid "Replace"
-msgstr "_Korvaa"
+msgstr "Korvaa"
 
 #: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
-#, fuzzy
 msgid "Browse"
-msgstr "_Selaa"
+msgstr "Selaa"
 
 #: ../src/extended-interface.c:495
 msgid "Repeat"
@@ -39,15 +37,15 @@ msgstr "Satunnainen"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr ""
+msgstr "Yksi kappale"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr ""
+msgstr "Poista soitetut"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
-msgstr ""
+msgstr "_Pikanäppäimet"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -104,12 +102,11 @@ msgstr "%d kappaletta, %d minuuttia"
 
 #: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "MPD-yhteys epäonnistui"
 
 #: ../src/mpdclient.c:387
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "Yhteys"
+msgstr "MPD-yhteys muodostettu"
 
 #: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
@@ -121,7 +118,7 @@ msgstr "Xfmpc:n asetukset"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "Mukauta MPD-asiakasohjelmaa"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -161,25 +158,23 @@ msgstr "Ulkoasu"
 
 #: ../src/preferences-dialog.c:884
 msgid "General"
-msgstr ""
+msgstr "Yleiset"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Sulje ikkuna ilmoitusalueelle"
 
 #: ../src/preferences-dialog.c:908
-#, fuzzy
 msgid "Show _stastusbar"
 msgstr "Näytä _tilapalkki"
 
 #: ../src/preferences-dialog.c:927
 msgid "Song Format"
-msgstr "Kappaleen esitystapa"
+msgstr "Kappaleen muotoilu"
 
 #: ../src/preferences-dialog.c:940
-#, fuzzy
 msgid "Song Format:"
-msgstr "Kappaleen esitystapa"
+msgstr "Kappaleen muotoilu:"
 
 #: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
@@ -211,7 +206,7 @@ msgstr "Mukautettu..."
 
 #: ../src/preferences-dialog.c:988
 msgid "Custom format:"
-msgstr "Mukautettu esitystapa:"
+msgstr "Mukautettu muotoilu:"
 
 #: ../src/preferences-dialog.c:1023
 msgid "Available parameters:"
@@ -256,35 +251,35 @@ msgstr "%T: Raitanro"
 
 #: ../src/shortcuts-dialog.c:161
 msgid "Xfmpc Shortcuts"
-msgstr ""
+msgstr "Xfmpc:n pikanäppäimet"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "Ohjaa MPD-asiakasohjelmaa näppäimistöllä"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Lopeta: CTRL+q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr ""
+msgstr "Edellinen: CTRL+b"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
-msgstr ""
+msgstr "Soita/keskeytä: CTRL+p"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Pysäytä: CTRL+s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr ""
+msgstr "Seuraava: CTRL+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr ""
+msgstr "Äänenvoimakkuus: CTRL+v"
 
 #: ../src/song-dialog.c:239
 msgid "File"
@@ -317,9 +312,3 @@ msgstr "MPD-asiakasohjelma"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
-#~ msgid "Statusbar"
-#~ msgstr "Tilapalkki"
-
-#~ msgid "Song format:"
-#~ msgstr "Kappaleen esitystapa:"
