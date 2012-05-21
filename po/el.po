@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2012-05-21 03:21+0300\n"
+"PO-Revision-Date: 2012-05-21 03:22+0300\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Ελληνικά, Σύγχρονα <opensuse-translation-el@opensuse.org>\n"
 "Language: el\n"
@@ -51,7 +51,9 @@ msgstr "Πελάτης MPD γραμμένος σε GTK+ για το XFCE"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr "Βασιλάκος Γεώργιος <forfolias@gmail.com>"
+msgstr ""
+"Βασιλάκος Γεώργιος <forfolias@gmail.com>\n"
+"Ευστάθιος Ιωσηφίδης <iosifidis@opensuse.org>"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
