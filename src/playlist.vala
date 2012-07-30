@@ -98,7 +98,7 @@ namespace Xfmpc {
 							       new Gtk.Adjustment (0, 0, 0, 0, 0, 0));
 			scrolled.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.ALWAYS);
 
-			this.menu = new Menu ();
+			this.menu = new Gtk.Menu ();
 
 			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.REMOVE, null);
 			this.menu.append (mi);

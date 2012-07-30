@@ -197,7 +197,7 @@ namespace Xfmpc {
 			this.context_menu.show_all ();
 		}
 
-		private void menu_detach (Widget attach_widget, Menu menu) {
+		private void menu_detach (Gtk.Widget attach_widget, Gtk.Menu menu) {
 		}
 
 		/*
