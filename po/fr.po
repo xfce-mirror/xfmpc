@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2012-04-14 01:26+0100\n"
-"Last-Translator: Iliyas Jorio <inv.jorio@gmail.com>\n"
+"PO-Revision-Date: 2012-08-26 14:15+0100\n"
+"Last-Translator: \n"
 "Language-Team: French\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -38,11 +38,11 @@ msgstr "Aléatoire"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr ""
+msgstr "Monomode"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr ""
+msgstr "Mode de consommation"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
