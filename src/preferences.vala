@@ -66,6 +66,11 @@ namespace Xfmpc {
 			get { return _playlist_autocenter; }
 			set { _playlist_autocenter = value; store (); }
 		}
+		private bool _playlist_show_position;
+		public bool playlist_show_position {
+			get { return _playlist_show_position; }
+			set { _playlist_show_position = value; store (); }
+		}
 		private string _mpd_hostname;
 		public string mpd_hostname {
 			get { return _mpd_hostname; }
@@ -114,6 +119,7 @@ namespace Xfmpc {
 			_last_window_height = 330;
 			_last_window_state_sticky = false;
 			_playlist_autocenter = true;
+			_playlist_show_position = false;
 			_mpd_hostname = "localhost";
 			_mpd_port = 6600;
 			_mpd_password = "";

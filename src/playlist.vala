@@ -75,18 +75,22 @@ namespace Xfmpc {
 
 			var cell = new Gtk.CellRendererText ();
 			cell.xalign = 1;
-			this.treeview.insert_column_with_attributes (-1, "Length", cell,
-							             "text", Columns.COLUMN_POSITION,
-							             "weight", Columns.COLUMN_WEIGHT,
-							             null);
+			var column = new Gtk.TreeViewColumn.with_attributes ("Position", cell,
+									     "text", Columns.COLUMN_POSITION,
+									     "weight", Columns.COLUMN_WEIGHT,
+									     null);
+			column.visible = this.preferences.playlist_show_position;
+			this.treeview.append_column (column);
+
 			cell = new Gtk.CellRendererText ();
 			cell.ellipsize = Pango.EllipsizeMode.END;
-			var column = new Gtk.TreeViewColumn.with_attributes ("Song", cell,
-								             "text", Columns.COLUMN_SONG,
-								             "weight", Columns.COLUMN_WEIGHT,
-			        				             null);
+			column = new Gtk.TreeViewColumn.with_attributes ("Song", cell,
+									 "text", Columns.COLUMN_SONG,
+									 "weight", Columns.COLUMN_WEIGHT,
+									 null);
 			column.expand = true;
 			this.treeview.append_column (column);
+
 			cell = new Gtk.CellRendererText ();
 			cell.xalign = 1;
 			this.treeview.insert_column_with_attributes (-1, "Length", cell,
