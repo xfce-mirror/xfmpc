@@ -1,11 +1,12 @@
 # mohammad <malham1@gmail.com>, 2012.
+# محمد الحرقان <malham1@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2012-05-21 21:52+0300\n"
-"Last-Translator: mohammad <malham1@gmail.com>\n"
+"PO-Revision-Date: 2012-11-10 05:38+0300\n"
+"Last-Translator: محمد الحرقان <malham1@gmail.com>\n"
 "Language-Team: http://www.vertaal.com.ar/files/factory/ar/list/\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +24,7 @@ msgstr "استبدال"
 
 #: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
-msgstr "تصفح"
+msgstr "استعراض"
 
 #: ../src/extended-interface.c:495
 msgid "Repeat"
@@ -39,15 +40,15 @@ msgstr "وضع واحد"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr "وضع تستهلك"
+msgstr "وضع الاستهلاك"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
-msgstr "_إختصار"
+msgstr "_إختصارات"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "MPD عميل مكتوبـ جتك+ لإكسفس"
+msgstr "عميل MPD مكتوبـ GTK+ لإكسفس"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
@@ -55,11 +56,11 @@ msgstr "Karim Oulad Chalha كريم اولاد الشلحة Mohamed Al Hargan م
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
-msgstr "محو قائمة التشغيل"
+msgstr "مسح قائمة التشغيل"
 
 #: ../src/extended-interface.c:908
 msgid "Refresh Database"
-msgstr "إنعاش قاعدة البيانات"
+msgstr "تجديد قاعدة البيانات"
 
 #: ../src/extended-interface.c:926
 msgid "Context Menu"
@@ -71,16 +72,16 @@ msgstr "قائمة التشغيل الحالية"
 
 #: ../src/extended-interface.c:975
 msgid "Browse database"
-msgstr "تصفح قاعدة البيانات"
+msgstr "استعراض قاعدة البيانات"
 
 #: ../src/interface.c:467
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "بـ \"%s\" إلى \"%s\" (%s)"
+msgstr "بواسطة \"%s\" إلى \"%s\" (%s)"
 
 #: ../src/interface.c:486
 msgid "Stopped"
-msgstr "موقوف"
+msgstr "متوقف"
 
 #: ../src/interface.c:496 ../src/interface.c:916
 msgid "Not connected"
@@ -146,11 +147,11 @@ msgstr "منفد:"
 
 #: ../src/preferences-dialog.c:826
 msgid "Password:"
-msgstr "كلمة السر:"
+msgstr "كلمة المرور:"
 
 #: ../src/preferences-dialog.c:871
 msgid "Appearance"
-msgstr "مظهر"
+msgstr "المظهر"
 
 #: ../src/preferences-dialog.c:884
 msgid "General"
@@ -158,7 +159,7 @@ msgstr "عام"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr "إغلاق نافذة إلى منطقة الإشعار"
+msgstr "إغلاق النافذة في منطقة الإشعار"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
@@ -206,7 +207,7 @@ msgstr "صيغة مخصصة:"
 
 #: ../src/preferences-dialog.c:1023
 msgid "Available parameters:"
-msgstr "إعدادات المتوفرة:"
+msgstr "الإعدادات المتوفرة:"
 
 #: ../src/preferences-dialog.c:1043
 #, c-format
@@ -251,7 +252,7 @@ msgstr "اختصارات Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr "تحكم بعميلك MPD الخاص مع لوحة المفاتيح"
+msgstr "تحكم بعميل MPD الخاص بك مع لوحة المفاتيح"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
@@ -275,7 +276,7 @@ msgstr "التالي: CTRL + f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr "المجلد: CTRL + v"
+msgstr "الحجم: CTRL + v"
 
 #: ../src/song-dialog.c:239
 msgid "File"
