@@ -51,7 +51,7 @@ msgstr "Клієнт MPD написаний в GTK+ для Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr "Дмитро Нікітін <luckas_fb@mail.ru>"
+msgstr "Дмитро Нікітін <luckas_fb@mail.ru>/nЯрема aka Knedlyk <yupadmin@gmail.com>"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
