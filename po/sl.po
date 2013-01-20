@@ -1,321 +1,752 @@
-# Slovenian translations for Xfmpc package
-# Slovenski prevodi paketa Xfmpc.
-# Copyright (C) 2009 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the Xfmpc package.
-# Alan Pepelko <alan.pepelko@gmail.com>, 2009.
+# Slovenian translations for ristretto package
+# Slovenski prevodi paketa ristretto.
+# Copyright (C) 2011 THE ristretto'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the ristretto package.
+#  <gasper@gmx.com>, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfmpc\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2009-05-08 18:36+0100\n"
-"Last-Translator: Alan Pepelko <alan.pepelko@gmail.com>\n"
+"Project-Id-Version: ristretto 0.0.93-dev\n"
+"Report-Msgid-Bugs-To: xfce-i18n@xfce.org\n"
+"POT-Creation-Date: 2012-02-20 19:45+0100\n"
+"PO-Revision-Date: 2011-06-18 22:39+0200\n"
+"Last-Translator: <gasper@gmx.com>\n"
 "Language-Team: Slovenian\n"
-"Language: \n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
-"X-Poedit-Language: Slovenian\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Country: SLOVENIA\n"
+"X-Language: sl_SI\n"
+"X-Source-Language: C\n"
 
-#: ../src/dbbrowser.c:1508
-msgid "Replace"
-msgstr "Zamenjaj"
+#: ../src/main.c:61
+msgid "Version information"
+msgstr "Informacije o različici"
 
-#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
-msgid "Browse"
-msgstr "Brskaj"
+#: ../src/main.c:65
+msgid "Start in fullscreen mode"
+msgstr "Zaženi v celozaslonskem načinu"
 
-#: ../src/extended-interface.c:495
-msgid "Repeat"
-msgstr "Ponovi"
+#: ../src/main.c:69
+msgid "Start a slideshow"
+msgstr "Zaženi projekcijo"
 
-#: ../src/extended-interface.c:505
-msgid "Random"
-msgstr "Naključno"
+#: ../src/main.c:77
+msgid "Show settings dialog"
+msgstr "Prikaži nastavitveni dialog"
 
-#: ../src/extended-interface.c:515
-msgid "Single Mode"
-msgstr ""
-
-#: ../src/extended-interface.c:525
-msgid "Consume Mode"
-msgstr ""
-
-#: ../src/extended-interface.c:548
-msgid "_Shortcuts"
-msgstr ""
-
-#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
-msgid "MPD client written in GTK+ for Xfce"
-msgstr "MPD odjemalec spisan v GTK+ za Xfce"
-
-#: ../src/extended-interface.c:749
-msgid "translator-credits"
-msgstr "Alan Pepelko <alan.pepelko@gmail.com>"
-
-#: ../src/extended-interface.c:890
-msgid "Clear Playlist"
-msgstr "Počisti seznam predvajanja"
-
-#: ../src/extended-interface.c:908
-msgid "Refresh Database"
-msgstr "Osveži podatkovno zbirko"
-
-#: ../src/extended-interface.c:926
-msgid "Context Menu"
-msgstr ""
-
-#: ../src/extended-interface.c:969
-msgid "Current Playlist"
-msgstr "Trenutni seznam predvajanja"
-
-#: ../src/extended-interface.c:975
-msgid "Browse database"
-msgstr "Prebrskaj podatkovno zbirko"
-
-#: ../src/interface.c:467
-#, c-format
-msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "od \"%s\" z albuma \"%s\" (%s)"
-
-#: ../src/interface.c:486
-msgid "Stopped"
-msgstr "Zaustavljeno"
-
-#: ../src/interface.c:496 ../src/interface.c:916
-msgid "Not connected"
-msgstr "Ni povezave"
-
-#: ../src/main-window.c:641
-#, c-format
-msgid "%d songs, %d hours and %d minutes"
-msgstr "%d skladb, %d ur in %d minut "
-
-#: ../src/main-window.c:652
-#, c-format
-msgid "%d songs, %d minutes"
-msgstr "%d skladb, %d minut "
-
-#: ../src/mpdclient.c:382
-msgid "Failed to connect to MPD"
-msgstr "Povezava z MPD-jem ni uspela"
-
-#: ../src/mpdclient.c:387
-msgid "Connected to MPD"
-msgstr "Povezan z MPD-jem"
-
-#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
-msgid "n/a"
-msgstr "ni na voljo"
-
-#: ../src/preferences-dialog.c:701
-msgid "Xfmpc Preferences"
-msgstr "Xfmpc nastavitve"
-
-#: ../src/preferences-dialog.c:703
-msgid "Customize your MPD client"
-msgstr ""
-
-#: ../src/preferences-dialog.c:720
-msgid "MPD"
-msgstr "MPD"
-
-#: ../src/preferences-dialog.c:731
-msgid "Connection"
-msgstr "Povezava"
-
-#: ../src/preferences-dialog.c:739
-msgid "Use _default system settings"
-msgstr "Uporabi _privzete nastavitve za sistem"
-
-#: ../src/preferences-dialog.c:745
+#: ../src/main.c:105
+#, fuzzy, c-format
 msgid ""
-"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
-"MPD_PORT otherwise it will use localhost"
+"%s: %s\n"
+"\n"
+"Try %s --help to see a full list of\n"
+"available command line options.\n"
 msgstr ""
-"Če je označeno, bo Xfmpc poskusil prebrati spremenljivke okolja MPD_HOST in "
-"MPD_PORT, sicer bo uporabil localhost."
+"%s: %s\n"
+"Uporabi %s --help za celoten seznam razpoložljivih možnosti.\n"
 
-#: ../src/preferences-dialog.c:775
-msgid "Hostname:"
-msgstr "Ime gostitelja:"
+#: ../src/main_window.c:53 ../ristretto.desktop.in.h:1
+msgid "Image Viewer"
+msgstr "Pregledovalnik Slik"
 
-#: ../src/preferences-dialog.c:797
-msgid "Port:"
-msgstr "Vrata:"
+#. File Menu
+#: ../src/main_window.c:332
+msgid "_File"
+msgstr "_Datoteka"
 
-#: ../src/preferences-dialog.c:826
-msgid "Password:"
-msgstr "Geslo:"
+#: ../src/main_window.c:333
+msgid "_Open"
+msgstr "_Odpri"
 
-#: ../src/preferences-dialog.c:871
-msgid "Appearance"
-msgstr "Videz"
+#: ../src/main_window.c:333
+msgid "Open an image"
+msgstr "Odpri sliko"
 
-#: ../src/preferences-dialog.c:884
+#: ../src/main_window.c:334
+msgid "_Save copy"
+msgstr "_Shrani kopijo"
+
+#: ../src/main_window.c:334
+msgid "Save a copy of the image"
+msgstr "Shrani kopijo slike"
+
+#: ../src/main_window.c:335
+msgid "_Properties"
+msgstr "_Nastavitve"
+
+#: ../src/main_window.c:335
+msgid "Show file properties"
+msgstr "Prikaži nastavitve datoteke"
+
+#: ../src/main_window.c:336
+msgid "_Close"
+msgstr "_Zapri"
+
+#: ../src/main_window.c:336
+msgid "Close this image"
+msgstr "Zapri sliko"
+
+#: ../src/main_window.c:337
+msgid "_Quit"
+msgstr "_Izhod"
+
+#: ../src/main_window.c:337
+msgid "Quit Ristretto"
+msgstr "Izhod iz Ristretta"
+
+#. Edit Menu
+#: ../src/main_window.c:339
+msgid "_Edit"
+msgstr "_Uredi"
+
+#: ../src/main_window.c:340
+msgid "_Open with..."
+msgstr "_Za odprianje uporabi..."
+
+#: ../src/main_window.c:341
+msgid "_Sorting"
+msgstr "_Razvrščanje"
+
+#: ../src/main_window.c:342
+msgid "_Delete"
+msgstr "_Izbriši"
+
+#: ../src/main_window.c:342
+#, fuzzy
+msgid "Delete this image from disk"
+msgstr "Izbriši to sliko z diska"
+
+#: ../src/main_window.c:343
+msgid "_Clear private data"
+msgstr "P_očisti zasebne podatke"
+
+#: ../src/main_window.c:344
+msgid "_Preferences"
+msgstr "_Nastavitve"
+
+#. View Menu
+#: ../src/main_window.c:346
+msgid "_View"
+msgstr "_Pogled"
+
+#: ../src/main_window.c:347
+msgid "_Fullscreen"
+msgstr "_Celozaslonski način"
+
+#: ../src/main_window.c:348
+msgid "_Leave Fullscreen"
+msgstr "_Zapusti Celozaslonski način"
+
+#: ../src/main_window.c:349
+msgid "_Set as Wallpaper"
+msgstr "Nastavi kot _Ozadje"
+
+#. Zoom submenu
+#: ../src/main_window.c:351
+#, fuzzy
+msgid "_Zoom"
+msgstr "_Povečava"
+
+#: ../src/main_window.c:352
+msgid "Zoom _In"
+msgstr "_Povečaj"
+
+#: ../src/main_window.c:353
+msgid "Zoom _Out"
+msgstr "_Pomanjšaj"
+
+#: ../src/main_window.c:354
+msgid "Zoom _Fit"
+msgstr "_Prilagoditev povečave"
+
+#: ../src/main_window.c:355
+msgid "_Normal Size"
+msgstr "_Originalna velikost"
+
+#. Rotation submenu
+#: ../src/main_window.c:357
+msgid "_Rotation"
+msgstr "Vrten_je"
+
+#: ../src/main_window.c:358
+msgid "Rotate _Right"
+msgstr "Zavrti _Desno"
+
+#: ../src/main_window.c:359
+msgid "Rotate _Left"
+msgstr "Zavrti _Levo"
+
+#. Go Menu
+#: ../src/main_window.c:361
+msgid "_Go"
+msgstr "Poj_di"
+
+#: ../src/main_window.c:362
+msgid "_Forward"
+msgstr "_Naprej"
+
+#: ../src/main_window.c:363
+msgid "_Back"
+msgstr "_Nazaj"
+
+#: ../src/main_window.c:364
+msgid "_First"
+msgstr "_Prvi"
+
+#: ../src/main_window.c:365
+msgid "_Last"
+msgstr "_Zadnji"
+
+#. Help Menu
+#: ../src/main_window.c:367
+msgid "_Help"
+msgstr "Po_moč"
+
+#: ../src/main_window.c:369
+msgid "_Contents"
+msgstr "_Vsebina"
+
+# Pokaže?
+#: ../src/main_window.c:371
+msgid "Display ristretto user manual"
+msgstr "Odpri ristretto uporabniški priročnik"
+
+#: ../src/main_window.c:374
+msgid "_About"
+msgstr "_O programu"
+
+#: ../src/main_window.c:376
+msgid "Display information about ristretto"
+msgstr "Pokaži informacije o programu ristretto"
+
+#. Position Menu
+#: ../src/main_window.c:379
+msgid "_Position"
+msgstr "_Položaj"
+
+#: ../src/main_window.c:380
+msgid "_Size"
+msgstr "_Velikost"
+
+#: ../src/main_window.c:381
+#, fuzzy
+msgid "Thumbnail Bar _Position"
+msgstr "Položaj orodne vrstice sličic"
+
+#: ../src/main_window.c:382
+#, fuzzy
+msgid "Thumbnail _Size"
+msgstr "Velikost s_ličic"
+
+#. Misc
+#: ../src/main_window.c:384
+msgid "Leave _Fullscreen"
+msgstr "Zapusti _Celozaslonski način"
+
+#. Toggle visibility of the main file toolbar
+#: ../src/main_window.c:392
+msgid "Show _File Toolbar"
+msgstr "Pokaži _Datotečno Orodno vrstico"
+
+#. Toggle visibility of the main navigation toolbar
+#: ../src/main_window.c:394
+msgid "Show _Navigation Toolbar"
+msgstr "Pokaži _Navigacijsko Orodno vrstico"
+
+#. Toggle visibility of the thumbnailbar
+#: ../src/main_window.c:396
+#, fuzzy
+msgid "Show _Thumbnail Bar"
+msgstr "Pokaži _Vrstico s sličicami"
+
+#. Toggle visibility of the statusbar
+#: ../src/main_window.c:398
+#, fuzzy
+msgid "Show _Status Bar"
+msgstr "Pokaži _Vrstico s sličicami"
+
+#. Sort by Filename
+#: ../src/main_window.c:405
+msgid "sort by filename"
+msgstr "razvrsti po imenu datoteke"
+
+#. Sort by Date
+#: ../src/main_window.c:407
+msgid "sort by date"
+msgstr "razvrsti po datumu"
+
+#: ../src/main_window.c:413
+msgid "Left"
+msgstr "Leva"
+
+#: ../src/main_window.c:414
+msgid "Right"
+msgstr "Desna"
+
+#: ../src/main_window.c:415
+msgid "Top"
+msgstr "Vrh"
+
+#: ../src/main_window.c:416
+msgid "Bottom"
+msgstr "Dno"
+
+#: ../src/main_window.c:422
+msgid "Very Small"
+msgstr ""
+
+#: ../src/main_window.c:423
+msgid "Smaller"
+msgstr "Manjše"
+
+#: ../src/main_window.c:424
+msgid "Small"
+msgstr "Majhno"
+
+#: ../src/main_window.c:425
+#, fuzzy
+msgid "Normal"
+msgstr "_Originalna velikost"
+
+#: ../src/main_window.c:426
+msgid "Large"
+msgstr "Veliko"
+
+#: ../src/main_window.c:427
+msgid "Larger"
+msgstr "Večje"
+
+#: ../src/main_window.c:428
+msgid "Very Large"
+msgstr "Zelo veliko"
+
+#. Create Play/Pause Slideshow actions
+#: ../src/main_window.c:572
+msgid "_Play"
+msgstr "_Zaženi"
+
+#: ../src/main_window.c:572
+msgid "Play slideshow"
+msgstr "Zaženi diaprojekcijo"
+
+#: ../src/main_window.c:573
+msgid "_Pause"
+msgstr "_Ustavi"
+
+#: ../src/main_window.c:573
+msgid "Pause slideshow"
+msgstr "Ustavi diaprojekcijo"
+
+#. Create Recently used items Action
+#: ../src/main_window.c:576
+msgid "_Recently used"
+msgstr "_Nedavno uporabljene"
+
+#: ../src/main_window.c:576
+msgid "Recently used"
+msgstr "Nedavno uporabljene"
+
+#: ../src/main_window.c:672 ../src/main_window.c:1170
+msgid "Press open to select an image"
+msgstr "Klikni odpri za izbiro slike"
+
+#: ../src/main_window.c:1074 ../src/main_window.c:1080
+msgid "Empty"
+msgstr "Prazno"
+
+#: ../src/main_window.c:2109
+msgid "Choose 'set wallpaper' method"
+msgstr "Izberi metodo nastavitve ozadja"
+
+#: ../src/main_window.c:2124 ../src/preferences_dialog.c:349
+msgid ""
+"Configure which system is currently managing your desktop.\n"
+"This setting determines the method <i>Ristretto</i> will use\n"
+"to configure the desktop wallpaper."
+msgstr ""
+"Nastavi sistem, ki trenutno upravlja z vašim namizjem. \n"
+"Ta nastavitev določi metodo, ki jo bo <i>Ristretto</i> uporabil\n"
+"za nastavitev ozadja namizja."
+
+#: ../src/main_window.c:2149 ../src/preferences_dialog.c:373
+msgid "None"
+msgstr "Noben"
+
+#: ../src/main_window.c:2153 ../src/preferences_dialog.c:377
+msgid "Xfce"
+msgstr "Xfce"
+
+#: ../src/main_window.c:2157 ../src/preferences_dialog.c:381
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../src/main_window.c:2613
+msgid "Developer:"
+msgstr "Razvijalec:"
+
+#: ../src/main_window.c:2622
+#, fuzzy
+msgid "Ristretto is an image viewer for the Xfce desktop environment."
+msgstr "Ristretto je pregledovalnik slik za Xfce okolje."
+
+#: ../src/main_window.c:2630
+msgid "translator-credits"
+msgstr "zasluge prevajalcev"
+"Prevedel:\n"
+"Gašper <gasper@gmx.com> & Nenad <nenadlatinovic@lavabit.com>"
+
+#: ../src/main_window.c:2920
+msgid "Open image"
+msgstr "Odpri sliko"
+
+#: ../src/main_window.c:2939
+msgid "Images"
+msgstr "Slike"
+
+#: ../src/main_window.c:2944
+msgid ".jp(e)g"
+msgstr ".jp(e)g"
+
+#: ../src/main_window.c:2971 ../src/main_window.c:3073
+msgid "Could not open file"
+msgstr "Ne morem odpreti slike"
+
+#: ../src/main_window.c:3106
+msgid "Save copy"
+msgstr "Shrani kopijo"
+
+#: ../src/main_window.c:3132
+#, fuzzy
+msgid "Could not save file"
+msgstr "Ne morem shraniti slike"
+
+#: ../src/main_window.c:3249
+#, c-format
+msgid "Are you sure you want to delete image '%s' from disk?"
+msgstr "Ali ste prepričani, da želite izbrisati sliko '%s' z diska?"
+
+#: ../src/privacy_dialog.c:151
+msgid "Time range to clear:"
+msgstr "Časovno obdobje za izbris:"
+
+#: ../src/privacy_dialog.c:155
+msgid "Cleanup"
+msgstr "Čiščenje"
+
+#: ../src/privacy_dialog.c:157
+msgid "Last Hour"
+msgstr "Zadnja ura"
+
+#: ../src/privacy_dialog.c:158
+msgid "Last Two Hours"
+msgstr "Zadnji dve uri"
+
+#: ../src/privacy_dialog.c:159
+msgid "Last Four Hours"
+msgstr "Zadnje štiri ure"
+
+#: ../src/privacy_dialog.c:160
+msgid "Today"
+msgstr "Danes"
+
+#: ../src/privacy_dialog.c:161
+msgid "Everything"
+msgstr "Vse"
+
+#: ../src/privacy_dialog.c:459
+msgid "Clear private data"
+msgstr "Počisti zasebne podatke"
+
+#: ../src/preferences_dialog.c:196
+msgid "Display"
+msgstr "Prikaz"
+
+#: ../src/preferences_dialog.c:202
+msgid "Background color"
+msgstr "Barva ozadja"
+
+#: ../src/preferences_dialog.c:204
+msgid "Toolbars"
+msgstr "Orodne vrstice"
+
+#: ../src/preferences_dialog.c:209
+msgid "Override background color:"
+msgstr "Zamenjaj barvo ozadja:"
+
+#: ../src/preferences_dialog.c:220
+msgid "Merge toolbars"
+msgstr "Združi orodne vrstice"
+
+#: ../src/preferences_dialog.c:225
+msgid "Thumbnails"
+msgstr "Sličice"
+
+#: ../src/preferences_dialog.c:228
+#, fuzzy
+msgid ""
+"The thumbnail bar can be automatically hidden \n"
+"when the window is fullscreen."
+msgstr ""
+"Vrstica s sličicami se lahko samodejno skirje, ko je pregledovalnik slik v "
+"celozaslonskem načinu."
+
+#: ../src/preferences_dialog.c:230
+#, fuzzy
+msgid "Hide thumbnail bar when fullscreen"
+msgstr "V celozaslonskem načinu skrij vrstico s sličicami"
+
+#: ../src/preferences_dialog.c:266
+msgid "Slideshow"
+msgstr "Diaprojekcija"
+
+#: ../src/preferences_dialog.c:270
+msgid "Timeout"
+msgstr "Časovna omejitev"
+
+#: ../src/preferences_dialog.c:273
+msgid ""
+"The time period an individual image is displayed during a slideshow\n"
+"(in seconds)"
+msgstr ""
+"Časovno obdobje v kateri je prikazana posamezna slika med projekcijo (v "
+"skundah)"
+
+#: ../src/preferences_dialog.c:289
+msgid "Control"
+msgstr "Nadzor"
+
+#: ../src/preferences_dialog.c:293
+#, fuzzy
+msgid "Scroll wheel"
+msgstr "Miškin kolešček"
+
+#: ../src/preferences_dialog.c:296
+msgid "Invert zoom direction"
+msgstr "Obrni smer povečave"
+
+#: ../src/preferences_dialog.c:306
+msgid "Behaviour"
+msgstr "Obnašanje"
+
+#: ../src/preferences_dialog.c:311
+msgid "Startup"
+msgstr "Zagon"
+
+#: ../src/preferences_dialog.c:313
+#, fuzzy
+msgid "Maximize window on startup when opening an image"
+msgstr "Ob zagonu razširi okno pri odpiranju slike"
+
+#: ../src/preferences_dialog.c:319
+msgid "Wrap around images"
+msgstr "Ovij okoli slik"
+
+#: ../src/preferences_dialog.c:338
+msgid "Desktop"
+msgstr "Namizje"
+
+#: ../src/preferences_dialog.c:460
+#, fuzzy
+msgid "Image Viewer Preferences"
+msgstr "Pregledovalnik Slik"
+
+#: ../src/properties_dialog.c:180
+msgid "<b>Name:</b>"
+msgstr "<b>Ime:</b>"
+
+#: ../src/properties_dialog.c:181
+msgid "<b>Kind:</b>"
+msgstr "<b>Vrsta:</b>"
+
+#: ../src/properties_dialog.c:182
+msgid "<b>Modified:</b>"
+msgstr "<b>Spremenjeno:</b>"
+
+#: ../src/properties_dialog.c:183
+msgid "<b>Accessed:</b>"
+msgstr "<b>Naložena:</b>"
+
+#: ../src/properties_dialog.c:184
+msgid "<b>Size:</b>"
+msgstr "<b>Velikost:</b>"
+
+#: ../src/properties_dialog.c:308
 msgid "General"
-msgstr ""
+msgstr "Splošno"
 
-#: ../src/preferences-dialog.c:893
-msgid "Close window into notification area"
-msgstr ""
+#: ../src/properties_dialog.c:312
+#, fuzzy
+msgid "Image"
+msgstr "Slika"
 
-#: ../src/preferences-dialog.c:908
-msgid "Show _stastusbar"
-msgstr "Pokaži vrstico _stanja"
-
-#: ../src/preferences-dialog.c:927
-msgid "Song Format"
-msgstr "Oblika skladbe"
-
-#: ../src/preferences-dialog.c:940
-msgid "Song Format:"
-msgstr "Oblika skladbe:"
-
-#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
-msgid "Title"
-msgstr "Naslov"
-
-#: ../src/preferences-dialog.c:959
-msgid "Album - Title"
-msgstr "Album - Naslov"
-
-#: ../src/preferences-dialog.c:962
-msgid "Artist - Title"
-msgstr "Izvajalec - Naslov"
-
-#: ../src/preferences-dialog.c:965
-msgid "Artist - Title (Date)"
-msgstr "Izvajalec - Naslov (Datum)"
-
-#: ../src/preferences-dialog.c:968
-msgid "Artist - Album - Title"
-msgstr "Izvajalec - Album - Naslov"
-
-#: ../src/preferences-dialog.c:971
-msgid "Artist - Album - Track. Title"
-msgstr "Izvajalec - Album - Sled. Naslov"
-
-#: ../src/preferences-dialog.c:974
-msgid "Custom..."
-msgstr "Po meri ..."
-
-#: ../src/preferences-dialog.c:988
-msgid "Custom format:"
-msgstr "Oblika po meri:"
-
-#: ../src/preferences-dialog.c:1023
-msgid "Available parameters:"
-msgstr "Parametri na voljo:"
-
-#: ../src/preferences-dialog.c:1043
+#: ../src/properties_dialog.c:525
 #, c-format
-msgid "%a: Artist"
-msgstr "%a: Izvajalec"
+msgid "<b>Date taken:</b>"
+msgstr "<b>Datum posnetka:</b>"
 
-#: ../src/preferences-dialog.c:1056
+#: ../src/properties_dialog.c:537 ../src/properties_dialog.c:549
+#: ../src/properties_dialog.c:561
 #, c-format
-msgid "%A: Album"
-msgstr "%A: Album"
+msgid "<b>%s</b>"
+msgstr "<b>%s</b>"
 
-#: ../src/preferences-dialog.c:1069
-msgid "%t: Title"
-msgstr "%t: Naslov"
-
-#: ../src/preferences-dialog.c:1082
-msgid "%D: Disc"
-msgstr "%D: Disk"
-
-#: ../src/preferences-dialog.c:1095
+#: ../src/properties_dialog.c:623
 #, c-format
-msgid "%f: File"
-msgstr "%f: Datoteka"
+msgid "%s - Properties"
+msgstr "%s - Nastavitve"
 
-#: ../src/preferences-dialog.c:1108
-#, c-format
-msgid "%g: Genre"
-msgstr "%g: Žanr"
-
-#: ../src/preferences-dialog.c:1121
-#, c-format
-msgid "%d: Date"
-msgstr "%d: Datum"
-
-#: ../src/preferences-dialog.c:1134
-msgid "%T: Track"
-msgstr "%T: Sled"
-
-#: ../src/shortcuts-dialog.c:161
-msgid "Xfmpc Shortcuts"
+#: ../src/thumbnailer.c:430
+msgid ""
+"The thumbnailer-service can not be reached,\n"
+"for this reason, the thumbnails can not be\n"
+"created.\n"
+"\n"
+"Install <b>Tumbler</b> or another <i>thumbnailing daemon</i>\n"
+"to resolve this issue."
 msgstr ""
+"Nastavitelj sličic je nedostopen,\n"
+"zaradi tega sličic ni možno\n"
+"ustvariti.\n"
+"Inštaliraj <b>Tumblerja</b> ali kateri drug <i>pritajeni strežnik sličic</i>\n" 
+"za razrešitev te težave.\n"
 
-#: ../src/shortcuts-dialog.c:163
-msgid "Control your MPD client with your keyboard"
-msgstr ""
+#: ../src/thumbnailer.c:440
+msgid "Do _not show this message again"
+msgstr "Ne prikaži več tega spo_ročila"
 
-#: ../src/shortcuts-dialog.c:178
-msgid "Quit: CTRL+q"
-msgstr ""
+#: ../src/xfce_wallpaper_manager.c:335 ../src/gnome_wallpaper_manager.c:234
+msgid "Style:"
+msgstr "Slog:"
 
-#: ../src/shortcuts-dialog.c:187
-msgid "Previous: CTRL+b"
-msgstr ""
+#: ../src/xfce_wallpaper_manager.c:336
+msgid "Brightness:"
+msgstr "Svetlost:"
 
-#: ../src/shortcuts-dialog.c:197
-msgid "Play/Pause: CTRL+p"
-msgstr ""
+#: ../src/xfce_wallpaper_manager.c:337
+msgid "Saturation:"
+msgstr "Nasičenost:"
 
-#: ../src/shortcuts-dialog.c:207
-msgid "Stop: CTRL+s"
-msgstr ""
+#: ../src/xfce_wallpaper_manager.c:354 ../src/gnome_wallpaper_manager.c:245
+msgid "Set as wallpaper"
+msgstr "Nastavi kot ozadje"
 
-#: ../src/shortcuts-dialog.c:217
-msgid "Next: CTRL+f"
-msgstr ""
+#: ../src/xfce_wallpaper_manager.c:512 ../src/gnome_wallpaper_manager.c:312
+msgid "Auto"
+msgstr "Samodejno"
 
-#: ../src/shortcuts-dialog.c:227
-msgid "Volume: CTRL+v"
-msgstr ""
+#: ../src/xfce_wallpaper_manager.c:515
+msgid "Centered"
+msgstr "Centrirano"
 
-#: ../src/song-dialog.c:239
-msgid "File"
-msgstr "Datoteka"
+#: ../src/xfce_wallpaper_manager.c:518
+msgid "Tiled"
+msgstr "Poploščano"
 
-#: ../src/song-dialog.c:266
-msgid "Artist"
-msgstr "Izvajalec"
+#: ../src/xfce_wallpaper_manager.c:521
+msgid "Stretched"
+msgstr "Raztegnjeno"
 
-#: ../src/song-dialog.c:316
-msgid "Album"
-msgstr "Album"
+#: ../src/xfce_wallpaper_manager.c:524
+msgid "Scaled"
+msgstr "Pomanjšano"
 
-#: ../src/song-dialog.c:341
-msgid "Date"
-msgstr "Datum"
+#: ../src/xfce_wallpaper_manager.c:527
+msgid "Zoomed"
+msgstr "Povečano"
 
-#: ../src/song-dialog.c:360
-msgid "Track"
-msgstr "Sled"
+#: ../ristretto.desktop.in.h:2
+#, fuzzy
+msgid "Look at your images easily"
+msgstr "Na preprost način si oglejte svoje fotografije"
 
-#: ../src/song-dialog.c:385
-msgid "Genre"
-msgstr "Žanr"
+#: ../ristretto.desktop.in.h:3
+#, fuzzy
+msgid "Ristretto Image Viewer"
+msgstr "Ristretto Pregledovalnik Slik"
 
-#: ../xfmpc.desktop.in.h:1
-msgid "MPD client"
-msgstr "MPD odjemalec"
+#~ msgid "Spacing"
+#~ msgstr "Razmik"
 
-#: ../xfmpc.desktop.in.h:3
-msgid "Xfmpc"
-msgstr "Xfmpc"
+#~ msgid "The amount of space between the thumbnails"
+#~ msgstr "Razmik med sličicami"
 
-#~ msgid "Statusbar"
-#~ msgstr "Vrstica stanja"
+#~ msgid "border width"
+#~ msgstr "širina roba"
 
-#~ msgid "Song format:"
-#~ msgstr "Oblika skladbe:"
+#, fuzzy
+#~ msgid "the border width of the thumbnail bar"
+#~ msgstr "širina roba vrstice s sličicami"
+
+#~ msgid "Preferences"
+#~ msgstr "Nastavitve"
+
+#, fuzzy
+#~ msgid "Image viewer"
+#~ msgstr "Pregledovalnik Slik"
+
+#~ msgid "Open _Folder"
+#~ msgstr "Odpri _Mapo"
+
+#~ msgid "Open a folder"
+#~ msgstr "Odpre mapo"
+
+#~ msgid "_Close All"
+#~ msgstr "Zapri _Vse"
+
+#~ msgid "Close all images"
+#~ msgstr "Zapre vse slike"
+
+#~ msgid "Open folder"
+#~ msgstr "Odpri mapo"
+
+#~ msgid "Open entire folder on startup"
+#~ msgstr "Ob zagonu odpri celo mapo"
+
+#~ msgid "Monitor:"
+#~ msgstr "Zaslon:"
+
+#, fuzzy
+#~ msgid "Two"
+#~ msgstr "Dva"
+
+#~ msgid "Show preview when loading image"
+#~ msgstr "Pokaži predogled ob nalaganju slike"
+
+#~ msgid "No action"
+#~ msgstr "Ne stori ničesar"
+
+#~ msgid "Zoom in and out"
+#~ msgstr "Povečaj in pomanjšaj"
+
+#~ msgid "Switch images"
+#~ msgstr "Zamenjaj slike"
+
+#~ msgid "Memory"
+#~ msgstr "Pomnilnik"
+
+#~ msgid "Image cache"
+#~ msgstr "Slikovni predpomnilnik"
+
+#~ msgid "Cache size"
+#~ msgstr "Velikost predpomnilnika"
+
+#~ msgid "MB"
+#~ msgstr "MB"
+
+#~ msgid "Enable cache"
+#~ msgstr "Omogoči predpomnilnik"
+
+#~ msgid "Enable preloading"
+#~ msgstr "Pomogoči prednalaganje"
+
+#~ msgid "filmstrip width"
+#~ msgstr "Širina filmskega traku"
+
+#~ msgid "_Print"
+#~ msgstr "_Natisni"
+
+#~ msgid "Print the image"
+#~ msgstr "Natistni sliko"
