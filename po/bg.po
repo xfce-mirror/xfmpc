@@ -1,0 +1,316 @@
+# Bulgarian translations for xfmpc package
+# Bulgarian messages for xfmpc.
+# Copyright (C) 2008 THE xfmpc'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfmpc package.
+# Kiril Kirilov (Cybercop) <cybercop_montana@abv.bg>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfmpc 0.0.5svn-r\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-10-23 17:29+0200\n"
+"PO-Revision-Date: 2013-02-13 11:30+0200\n"
+"Last-Translator: Kiril Kirilov (Cybercop) <cybercop_montana@abv.bg>\n"
+"Language-Team: Bulgarian <xfce-i18n-bg@xfce.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../src/dbbrowser.c:1508
+msgid "Replace"
+msgstr "Замяна"
+
+#: ../src/dbbrowser.c:1524
+#: ../src/playlist.c:1511
+msgid "Browse"
+msgstr "Преглед"
+
+#: ../src/extended-interface.c:495
+msgid "Repeat"
+msgstr "Повторение"
+
+#: ../src/extended-interface.c:505
+msgid "Random"
+msgstr "Случаен ред"
+
+#: ../src/extended-interface.c:515
+msgid "Single Mode"
+msgstr "Еднократен режим"
+
+#: ../src/extended-interface.c:525
+msgid "Consume Mode"
+msgstr "Потребителски режим"
+
+#: ../src/extended-interface.c:548
+msgid "_Shortcuts"
+msgstr "Клавишна комбинация"
+
+#: ../src/extended-interface.c:747
+#: ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "MPD-клиент (използващ GTK+) за Xfce"
+
+#: ../src/extended-interface.c:749
+msgid "translator-credits"
+msgstr "Kiril Kirilov (Cybercop) <cybercop_montana@abv.bg>"
+
+#: ../src/extended-interface.c:890
+msgid "Clear Playlist"
+msgstr "Изчистване на списъка за изпълнение"
+
+#: ../src/extended-interface.c:908
+msgid "Refresh Database"
+msgstr "Обновяване на базата с данни"
+
+#: ../src/extended-interface.c:926
+msgid "Context Menu"
+msgstr "Контекстно меню"
+
+#: ../src/extended-interface.c:969
+msgid "Current Playlist"
+msgstr "Текущ списък за изпълнение"
+
+#: ../src/extended-interface.c:975
+msgid "Browse database"
+msgstr "Преглед на базата с данни"
+
+#: ../src/interface.c:467
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "от \"%s\" от албум \"%s\" (%s)"
+
+#: ../src/interface.c:486
+msgid "Stopped"
+msgstr "Спряно"
+
+#: ../src/interface.c:496
+#: ../src/interface.c:916
+msgid "Not connected"
+msgstr "Не е свързан"
+
+#: ../src/main-window.c:641
+#, c-format
+msgid "%d songs, %d hours and %d minutes"
+msgstr "%d песни, %d часа и %d минути"
+
+#: ../src/main-window.c:652
+#, c-format
+msgid "%d songs, %d minutes"
+msgstr "%d песни, %d минути"
+
+#: ../src/mpdclient.c:382
+msgid "Failed to connect to MPD"
+msgstr "Неуспех при свързване с MPD"
+
+#: ../src/mpdclient.c:387
+msgid "Connected to MPD"
+msgstr "Връзката с MPD е осъществена"
+
+#: ../src/mpdclient.c:627
+#: ../src/mpdclient.c:657
+#: ../src/mpdclient.c:672
+msgid "n/a"
+msgstr "н/д"
+
+#: ../src/preferences-dialog.c:701
+msgid "Xfmpc Preferences"
+msgstr "Настройки на Xfmpc"
+
+#: ../src/preferences-dialog.c:703
+msgid "Customize your MPD client"
+msgstr "Оформление на MPD-клиента"
+
+#: ../src/preferences-dialog.c:720
+msgid "MPD"
+msgstr "MPD"
+
+#: ../src/preferences-dialog.c:731
+msgid "Connection"
+msgstr "Връзка"
+
+#: ../src/preferences-dialog.c:739
+msgid "Use _default system settings"
+msgstr "Използване на системните настройки"
+
+#: ../src/preferences-dialog.c:745
+msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgstr "Ако е избрано, Xfmpc ще се опита да чете  променливите от графичната среда MPD_HOST и MPD_PORT в противен случай ще използва Localhost"
+
+#: ../src/preferences-dialog.c:775
+msgid "Hostname:"
+msgstr "Име на хост:"
+
+#: ../src/preferences-dialog.c:797
+msgid "Port:"
+msgstr "Порт:"
+
+#: ../src/preferences-dialog.c:826
+msgid "Password:"
+msgstr "Парола:"
+
+#: ../src/preferences-dialog.c:871
+msgid "Appearance"
+msgstr "Външен вид"
+
+#: ../src/preferences-dialog.c:884
+msgid "General"
+msgstr "Общи"
+
+#: ../src/preferences-dialog.c:893
+msgid "Close window into notification area"
+msgstr "Затвори прозореца в областта за уведомяване"
+
+#: ../src/preferences-dialog.c:908
+msgid "Show _stastusbar"
+msgstr "Покажи лентата на състоянието"
+
+#: ../src/preferences-dialog.c:927
+msgid "Song Format"
+msgstr "Формат на песента"
+
+#: ../src/preferences-dialog.c:940
+msgid "Song Format:"
+msgstr "Формат на песента:"
+
+#: ../src/preferences-dialog.c:956
+#: ../src/song-dialog.c:291
+msgid "Title"
+msgstr "Заглавие"
+
+#: ../src/preferences-dialog.c:959
+msgid "Album - Title"
+msgstr "Албум - Заглавие"
+
+#: ../src/preferences-dialog.c:962
+msgid "Artist - Title"
+msgstr "Изпълнител - Заглавие"
+
+#: ../src/preferences-dialog.c:965
+msgid "Artist - Title (Date)"
+msgstr "Изпълнител - Заглавие (Дата)"
+
+#: ../src/preferences-dialog.c:968
+msgid "Artist - Album - Title"
+msgstr "Изпълнител - Албум - Заглавие"
+
+#: ../src/preferences-dialog.c:971
+msgid "Artist - Album - Track. Title"
+msgstr "Изпълнител - Албум - Запис. Заглавие"
+
+#: ../src/preferences-dialog.c:974
+msgid "Custom..."
+msgstr "Потребителски..."
+
+#: ../src/preferences-dialog.c:988
+msgid "Custom format:"
+msgstr "Потребителски формат:"
+
+#: ../src/preferences-dialog.c:1023
+msgid "Available parameters:"
+msgstr "Достъпни параметри:"
+
+#: ../src/preferences-dialog.c:1043
+#, c-format
+msgid "%a: Artist"
+msgstr "%a: Изпълнител"
+
+#: ../src/preferences-dialog.c:1056
+#, c-format
+msgid "%A: Album"
+msgstr "%A: Албум"
+
+#: ../src/preferences-dialog.c:1069
+msgid "%t: Title"
+msgstr "%t: Заглавие"
+
+#: ../src/preferences-dialog.c:1082
+msgid "%D: Disc"
+msgstr "%D: Диск"
+
+#: ../src/preferences-dialog.c:1095
+#, c-format
+msgid "%f: File"
+msgstr "%f: Файл"
+
+#: ../src/preferences-dialog.c:1108
+#, c-format
+msgid "%g: Genre"
+msgstr "%g: Жанр"
+
+#: ../src/preferences-dialog.c:1121
+#, c-format
+msgid "%d: Date"
+msgstr "%d: Дата"
+
+#: ../src/preferences-dialog.c:1134
+msgid "%T: Track"
+msgstr "%T: Запис"
+
+#: ../src/shortcuts-dialog.c:161
+msgid "Xfmpc Shortcuts"
+msgstr "Xfmpc Клавишна комбинация"
+
+#: ../src/shortcuts-dialog.c:163
+msgid "Control your MPD client with your keyboard"
+msgstr "Управлявайте Вашият MPD-клиент с клавиатурата"
+
+#: ../src/shortcuts-dialog.c:178
+msgid "Quit: CTRL+q"
+msgstr "Изход: CTRL+q"
+
+#: ../src/shortcuts-dialog.c:187
+msgid "Previous: CTRL+b"
+msgstr "Предишен: CTRL+b"
+
+#: ../src/shortcuts-dialog.c:197
+msgid "Play/Pause: CTRL+p"
+msgstr "Изпълнение/Пауза: CTRL+p"
+
+#: ../src/shortcuts-dialog.c:207
+msgid "Stop: CTRL+s"
+msgstr "Спиране: CTRL+s"
+
+#: ../src/shortcuts-dialog.c:217
+msgid "Next: CTRL+f"
+msgstr "Следващ: CTRL+f"
+
+#: ../src/shortcuts-dialog.c:227
+msgid "Volume: CTRL+v"
+msgstr "Сила на звука: CTRL+v"
+
+#: ../src/song-dialog.c:239
+msgid "File"
+msgstr "Файл"
+
+#: ../src/song-dialog.c:266
+msgid "Artist"
+msgstr "Изпълнител"
+
+#: ../src/song-dialog.c:316
+msgid "Album"
+msgstr "Албум"
+
+#: ../src/song-dialog.c:341
+msgid "Date"
+msgstr "Дата"
+
+#: ../src/song-dialog.c:360
+msgid "Track"
+msgstr "Запис"
+
+#: ../src/song-dialog.c:385
+msgid "Genre"
+msgstr "Жанр"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD клиент"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
+#~ msgid "Statusbar"
+#~ msgstr "Лента на състоянието"
