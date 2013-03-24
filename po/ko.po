@@ -1,7 +1,7 @@
 # Translation of xfmpc to Korean.
 # Copyright (C) 2008-2012 Mike Massonnet et al.
 # This file is distributed under the same license as the xfmpc package.
-# Seong ho, Cho <darkcircle.0426@gmail.com>, 2012.
+# Seong-ho, Cho <darkcircle.0426@gmail.com>, 2012, 2013.
 #
 # Please write your name and e-mail into "translator-credits" if you update this translation script.
 #
@@ -58,7 +58,7 @@ msgstr "바로 가기(_S)"
 #: ../src/extended-interface.c:747
 #: ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "GTK+로 작성된 Xfce용 MPD 클라이언트"
+msgstr "GTK+로 작성한 Xfce용 MPD 클라이언트"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
@@ -101,12 +101,12 @@ msgstr "연결 안함"
 #: ../src/main-window.c:641
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr "%d개의 노래 %d시간 %d분"
+msgstr "노래 %d곡, %d시간 %d분"
 
 #: ../src/main-window.c:652
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr "%d개의 노래, %d분"
+msgstr "노개 %d곡, %d분"
 
 #: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
@@ -128,7 +128,7 @@ msgstr "Xfmpc 기본 설정"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr "MPD 클라이언트 사용자정의"
+msgstr "MPD 클라이언트 사용자 정의"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -144,11 +144,11 @@ msgstr "기본 시스템 설정 사용(_D)"
 
 #: ../src/preferences-dialog.c:745
 msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
-msgstr "이것을 선택하면, Xfmpc는 MPD_HOST 환경변수와 MPD_PORT 환경변수를 읽어들이려 하거나 localhost를 사용할 것입니다"
+msgstr "이것을 선택하면, Xfmpc는 MPD_HOST 환경변수와 MPD_PORT 환경변수를 읽어들이려 하거나 localhost를 사용합니다"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
-msgstr "호스트이름:"
+msgstr "호스트 이름:"
 
 #: ../src/preferences-dialog.c:797
 msgid "Port:"
@@ -197,7 +197,7 @@ msgstr "음악가 - 제목"
 
 #: ../src/preferences-dialog.c:965
 msgid "Artist - Title (Date)"
-msgstr "음악가 - 제목 (날짜)"
+msgstr "음악가 - 제목(날짜)"
 
 #: ../src/preferences-dialog.c:968
 msgid "Artist - Album - Title"
@@ -209,15 +209,15 @@ msgstr "음악가 - 앨범 - 트랙. 제목"
 
 #: ../src/preferences-dialog.c:974
 msgid "Custom..."
-msgstr "사용자정의..."
+msgstr "사용자 정의..."
 
 #: ../src/preferences-dialog.c:988
 msgid "Custom format:"
-msgstr "사용자정의 형식:"
+msgstr "사용자 정의 형식:"
 
 #: ../src/preferences-dialog.c:1023
 msgid "Available parameters:"
-msgstr "사용가능한 변수:"
+msgstr "사용 가능한 변수:"
 
 #: ../src/preferences-dialog.c:1043
 #, c-format
