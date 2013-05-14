@@ -1,21 +1,24 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Slovenian translation for xfmpc.
+# Copyright (C) 2013 The Xfce Development Team.
+# This file is distributed under the same license as the xfmpc package.
 #
-#, fuzzy
+# Nenad Latinović <nenadlatinovic@lavabit.com>, 2013.
+# Klemen Košir <klemen913@gmail.com>, 2013.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: xfmpc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2013-05-14 12:26+0100\n"
+"Last-Translator: Klemen Košir <klemen913@gmail.com>\n"
+"Language-Team: Slovenian <lugos-slo@lugos.si>\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
@@ -23,11 +26,11 @@ msgstr "Zamenjaj"
 
 #: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
-msgstr "Prebrskaj"
+msgstr "Brskaj"
 
 #: ../src/extended-interface.c:495
 msgid "Repeat"
-msgstr "Ponovi"
+msgstr "Ponavljaj"
 
 #: ../src/extended-interface.c:505
 msgid "Random"
@@ -35,11 +38,11 @@ msgstr "Naključno"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr "Enojni način"
+msgstr "Ponavljaj eno"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr ""
+msgstr "Potrošni način"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
@@ -47,11 +50,13 @@ msgstr "_Bližnjice"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "MPD odjemalec napisan v GTK+ za Xfce"
+msgstr "Odjemalec za MPD, napisan v GTK+ za Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr "nenadlatinovic@lavabit.com"
+msgstr ""
+"Klemen Košir <klemen913@gmail.com>\n"
+"Nenad Latinovič <nenadlatinovic@lavabit.com>"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
@@ -59,62 +64,62 @@ msgstr "Počisti seznam predvajanja"
 
 #: ../src/extended-interface.c:908
 msgid "Refresh Database"
-msgstr "Osveži bazo podatkov"
+msgstr "Osveži podatkovno zbirko"
 
 #: ../src/extended-interface.c:926
 msgid "Context Menu"
-msgstr "Kontekstni meni"
+msgstr "Vsebinski meni"
 
 #: ../src/extended-interface.c:969
 msgid "Current Playlist"
-msgstr "Trenuten seznam predvajanja"
+msgstr "Trenutni seznam predvajanja"
 
 #: ../src/extended-interface.c:975
 msgid "Browse database"
-msgstr "Brskaj po bazi podatkov"
+msgstr "Podatkovna zbirka"
 
 #: ../src/interface.c:467
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "od \"%s\" od \"%s\" (%s)"
+msgstr "- \"%s\" - \"%s\" (%s)"
 
 #: ../src/interface.c:486
 msgid "Stopped"
-msgstr "Ustavljeno"
+msgstr "Zaustavljeno"
 
 #: ../src/interface.c:496 ../src/interface.c:916
 msgid "Not connected"
-msgstr "Ni povezan"
+msgstr "Brez povezave"
 
 #: ../src/main-window.c:641
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr "%d pesmi, %d ur in %d minut"
+msgstr "%d skladb, %d ur in %d minut"
 
 #: ../src/main-window.c:652
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr "%d pesmi, %d minut"
+msgstr "%d skladb, %d minut"
 
 #: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
-msgstr "Neuspešna povezava z MPD"
+msgstr "Povezava z MPD ni uspela"
 
 #: ../src/mpdclient.c:387
 msgid "Connected to MPD"
-msgstr "Povezan z MPD"
+msgstr "Povezan s strežnikom MPD"
 
 #: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
-msgstr "n/a"
+msgstr "N/A"
 
 #: ../src/preferences-dialog.c:701
 msgid "Xfmpc Preferences"
-msgstr "Xfmpc nastavitve"
+msgstr "Nastavitve Xfmpc"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr "Prilagodite svoj MPD odjemalec"
+msgstr "Prilagodite odjemalec za MPD"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -126,19 +131,19 @@ msgstr "Povezava"
 
 #: ../src/preferences-dialog.c:739
 msgid "Use _default system settings"
-msgstr "Uporabi _privzete sistemske nastavitve"
+msgstr "Uporabi _privzete nastavitve sistema"
 
 #: ../src/preferences-dialog.c:745
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
 msgstr ""
-"Če označite to opcijo, bo Xfmpc poskusil prebrati spremenljivke okolja MPD_HOST in"
-"MPD_PORT, sicer bo uporabil localhost"
+"Če je ta možnost izbrana, bo program Xfmpc poskusil prebrati okoljski "
+"spremenljivki MPD_HOST in MPD_PORT, sicer bo uporabljen naslov localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
-msgstr "Gostiteljsko ime:"
+msgstr "Ime gostitelja:"
 
 #: ../src/preferences-dialog.c:797
 msgid "Port:"
@@ -158,19 +163,19 @@ msgstr "Splošno"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr "Zapri okno v območje obvestil"
+msgstr "Zapri okno v obvestilno področje"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
-msgstr "Prikaži _vrstico stanja"
+msgstr "Pokaži vrstico stanja"
 
 #: ../src/preferences-dialog.c:927
 msgid "Song Format"
-msgstr "Format glasbe"
+msgstr "Oblika skladbe"
 
 #: ../src/preferences-dialog.c:940
 msgid "Song Format:"
-msgstr "Format glasbe:"
+msgstr "Oblika skladbe"
 
 #: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
@@ -194,19 +199,19 @@ msgstr "Izvajalec - Album - Naslov"
 
 #: ../src/preferences-dialog.c:971
 msgid "Artist - Album - Track. Title"
-msgstr "Izvajalec - Naslov - Skladba. Naslov"
+msgstr "Izvajalec - Album - Št. skladbe. Naslov"
 
 #: ../src/preferences-dialog.c:974
 msgid "Custom..."
-msgstr "Prilagodi..."
+msgstr "Po meri ..."
 
 #: ../src/preferences-dialog.c:988
 msgid "Custom format:"
-msgstr "Prilagojeni format:"
+msgstr "Oblika po meri:"
 
 #: ../src/preferences-dialog.c:1023
 msgid "Available parameters:"
-msgstr "Dostopni parametri:"
+msgstr "Razpoložljivi parametri:"
 
 #: ../src/preferences-dialog.c:1043
 #, c-format
@@ -243,15 +248,15 @@ msgstr "%d: Datum"
 
 #: ../src/preferences-dialog.c:1134
 msgid "%T: Track"
-msgstr "%T: Skladba"
+msgstr "%T: Št. skladbe"
 
 #: ../src/shortcuts-dialog.c:161
 msgid "Xfmpc Shortcuts"
-msgstr "Xfmpc bližnjice"
+msgstr "Bližnjice"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr "Upravljajte MPD odjemalec s tipkovnico"
+msgstr "Upravljajte odjemalec za MPD s tipkovnico"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
@@ -259,19 +264,19 @@ msgstr "Končaj: CTRL+q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr "Prejšnja: CTRL+b"
+msgstr "Predhodna skladba: CTRL+b"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
-msgstr "Predvajaj/Ustavi: CTRL+p"
+msgstr "Predvajaj/premor: CTRL+p"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr "Prekini: CTRL+s"
+msgstr "Zaustavi: CTRL+s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr "Naslednja: CTRL+f"
+msgstr "Naslednja skladba: CTRL+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
@@ -295,7 +300,7 @@ msgstr "Datum"
 
 #: ../src/song-dialog.c:360
 msgid "Track"
-msgstr "Skladba"
+msgstr "Št. skladbe"
 
 #: ../src/song-dialog.c:385
 msgid "Genre"
@@ -303,7 +308,7 @@ msgstr "Zvrst"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
-msgstr "MPD odjemalec"
+msgstr "Odjemalec za MPD"
 
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
