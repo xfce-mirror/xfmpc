@@ -1,30 +1,28 @@
-# French translations for xfmpc package
-# Traductions françaises du paquet xfmpc.
-# Copyright (C) 2008 THE xfmpc'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfmpc package.
-# Mike Massonnet <mmassonnet@gmail.com>, 2008-2009.
-# Douart Patrick <patrick.2@laposte.net> 2010.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# jc1 <jc1.quebecos@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2012-08-26 14:15+0100\n"
-"Last-Translator: \n"
-"Language-Team: French\n"
-"Language: \n"
+"PO-Revision-Date: 2013-08-04 09:23+0000\n"
+"Last-Translator: jc1 <jc1.quebecos@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/xfce/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
 msgstr "_Remplacer"
 
-#: ../src/dbbrowser.c:1524
-#: ../src/playlist.c:1511
+#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
 msgstr "_Parcourir"
 
@@ -48,8 +46,7 @@ msgstr "Mode de consommation"
 msgid "_Shortcuts"
 msgstr "_Raccourcis"
 
-#: ../src/extended-interface.c:747
-#: ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Client MPD écrit en GTK+ pour Xfce"
 
@@ -71,11 +68,11 @@ msgstr "Menu contextuel"
 
 #: ../src/extended-interface.c:969
 msgid "Current Playlist"
-msgstr "Liste de lecture"
+msgstr "Liste de lecture actuelle"
 
 #: ../src/extended-interface.c:975
 msgid "Browse database"
-msgstr "Base de données"
+msgstr "Parcourir la base de données"
 
 #: ../src/interface.c:467
 #, c-format
@@ -86,8 +83,7 @@ msgstr "par « %s » de « %s » (%s)"
 msgid "Stopped"
 msgstr "Stoppé"
 
-#: ../src/interface.c:496
-#: ../src/interface.c:916
+#: ../src/interface.c:496 ../src/interface.c:916
 msgid "Not connected"
 msgstr "Déconnecté"
 
@@ -109,9 +105,7 @@ msgstr "Impossible de se connecter à MPD"
 msgid "Connected to MPD"
 msgstr "Connecté à MPD"
 
-#: ../src/mpdclient.c:627
-#: ../src/mpdclient.c:657
-#: ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "n/a"
 
@@ -121,7 +115,7 @@ msgstr "Préférences de Xfmpc"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr "Personnalisation du client MPD"
+msgstr "Personnaliser votre client MPD"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -136,8 +130,10 @@ msgid "Use _default system settings"
 msgstr "Utiliser les paramètres par _défaut du système"
 
 #: ../src/preferences-dialog.c:745
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
-msgstr "Si coché, Xfmpc utilisera les variables d'environnements MPD_HOST et MPD_PORT sinon localhost"
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr "Si coché, Xfmpc utilisera les variables d'environnements MPD_HOST et MPD_PORT sinon il utilisera localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -175,8 +171,7 @@ msgstr "Format de la chanson"
 msgid "Song Format:"
 msgstr "Format de la chanson :"
 
-#: ../src/preferences-dialog.c:956
-#: ../src/song-dialog.c:291
+#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
 msgstr "Titre"
 
@@ -206,7 +201,7 @@ msgstr "Personnalisé..."
 
 #: ../src/preferences-dialog.c:988
 msgid "Custom format:"
-msgstr "Personnalisé :"
+msgstr "Format personnalisé :"
 
 #: ../src/preferences-dialog.c:1023
 msgid "Available parameters:"
@@ -255,7 +250,7 @@ msgstr "Raccourcis Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr "Contrôler le client MPD au clavier"
+msgstr "Contrôlez votre client MPD avec votre clavier"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
@@ -312,9 +307,3 @@ msgstr "Client MPD"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
-#~ msgid "Statusbar"
-#~ msgstr "Barre de statut"
-
-#~ msgid "Song format:"
-#~ msgstr "Format :"
