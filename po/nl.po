@@ -1,23 +1,21 @@
-# Dutch translation of the xfmpc package.
-# Copyright (C) The Xfce development team.
-# This file is distributed under the same license as the xfmpc package.
-# Stephan Arts <stephan@xfce.org>, 2008.
-# Mike Massonnet <mmassonnet@xfce.org>, 2008-2009.
-# Timo Verbeek
-# Pjotr <pjotrvertaalt@gmail.com> , 2011 - 2013.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Stephan Arts <stephan@xfce.org>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2011-09-08 13:12+0200\n"
-"Last-Translator: Pjotr pjotrvertaalt@gmail.com\n"
-"Language-Team: Dutch (Flemish)\n"
+"PO-Revision-Date: 2013-09-19 14:33+0000\n"
+"Last-Translator: Pjotr123 <pjotrvertaalt@gmail.com>\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/xfce/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl (Dutch)\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:1508
@@ -46,7 +44,7 @@ msgstr "Verbruikmodus"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
-msgstr "_Snelkoppelingen"
+msgstr "_Sneltoetsen"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -54,11 +52,7 @@ msgstr "MPD client geschreven in GTK+ voor Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr ""
-"Stephan Arts <stephan@xfce.org>\n"
-"Mike Massonnet <mmassonnet@xfce.org>\n"
-"Timo Verbeek <timoverbeek10@hotmail.com>\n"
-"Pjotr <pjotrvertaalt@gmail.com>"
+msgstr "Stephan Arts <stephan@xfce.org>\nMike Massonnet <mmassonnet@xfce.org>\nTimo Verbeek <timoverbeek10@hotmail.com>\nPjotr <pjotrvertaalt@gmail.com>"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
@@ -139,9 +133,7 @@ msgstr "Gebruik _standaard-systeeminstellingen"
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Indien geselecteerd, zal Xfmpc proberen de omgevingsvariabelen MPD_HOST en "
-"anders MPD_PORT te lezen; als die niet leesbaar zijn, gebruikt hij localhost"
+msgstr "Indien geselecteerd, zal Xfmpc proberen de omgevingsvariabelen MPD_HOST en anders MPD_PORT te lezen; als die niet leesbaar zijn, gebruikt hij localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -315,9 +307,3 @@ msgstr "MPD-client"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
-#~ msgid "Statusbar"
-#~ msgstr "Statusbalk"
-
-#~ msgid "MPD Settings"
-#~ msgstr "MPD-instellingen"
