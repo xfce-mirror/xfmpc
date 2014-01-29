@@ -1,30 +1,28 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Piotr Strębski <strebski@o2.pl>, 2013.
-#
+# 
+# Translators:
+# Piotr Strębski <strebski@o2.pl>, 2013-2014
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc 1\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2013-01-08 18:15+0100\n"
+"PO-Revision-Date: 2014-01-29 13:42+0000\n"
 "Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
-"Language-Team: PL <LL@li.org>\n"
-"Language: \n"
+"Language-Team: Polish (http://www.transifex.com/projects/p/xfce/language/pl/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Polish\n"
-"X-Poedit-Country: POLAND\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
 msgstr "Zastąp"
 
-#: ../src/dbbrowser.c:1524
-#: ../src/playlist.c:1511
+#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
 msgstr "Przeglądaj"
 
@@ -38,18 +36,17 @@ msgstr "Losowo"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr ""
+msgstr "Tryb pojedynczy"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr ""
+msgstr "Tryb użytkowy"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
 msgstr "_Skróty"
 
-#: ../src/extended-interface.c:747
-#: ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Klient MPD napisany w GTK+ dla Xfce"
 
@@ -86,8 +83,7 @@ msgstr "autorstwa \"%s\" z \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Zatrzymano"
 
-#: ../src/interface.c:496
-#: ../src/interface.c:916
+#: ../src/interface.c:496 ../src/interface.c:916
 msgid "Not connected"
 msgstr "Nie połączono"
 
@@ -109,9 +105,7 @@ msgstr "Błąd przy łączeniu z MPD"
 msgid "Connected to MPD"
 msgstr "Połączono z MPD"
 
-#: ../src/mpdclient.c:627
-#: ../src/mpdclient.c:657
-#: ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "b/d"
 
@@ -136,8 +130,10 @@ msgid "Use _default system settings"
 msgstr "Użyj _domyślnych ustawień systemowych"
 
 #: ../src/preferences-dialog.c:745
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
-msgstr ""
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr "Jeśli zaznaczone, Xfmpc będzie próbować odczytać zmienne środowiskowe MPD_HOST i MPD_PORT, w przeciwnym wypadku użyje komputera lokalnego."
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -175,8 +171,7 @@ msgstr "Format utworu"
 msgid "Song Format:"
 msgstr "Format utworu:"
 
-#: ../src/preferences-dialog.c:956
-#: ../src/song-dialog.c:291
+#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
 msgstr "Tytuł"
 
@@ -312,4 +307,3 @@ msgstr "Klient MPD"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
