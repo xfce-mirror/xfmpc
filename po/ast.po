@@ -1,26 +1,30 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Tornes Llume <l.lumex03.tornes@gmail.com>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2009-07-13 19:55+0100\n"
-"Last-Translator: Marcos Antonio Alvarez Costales <marcoscostales@gmail.com>\n"
-"Language-Team: Asturian <alministradores@softastur.org>\n"
-"Language: ast\n"
+"PO-Revision-Date: 2014-04-14 15:33+0000\n"
+"Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
+"Language-Team: Asturian (http://www.transifex.com/projects/p/xfce/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ast\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:1508
-#, fuzzy
 msgid "Replace"
-msgstr "_Trocar"
+msgstr "Trocar"
 
 #: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
-#, fuzzy
 msgid "Browse"
-msgstr "_Restolar"
+msgstr "Restolar"
 
 #: ../src/extended-interface.c:495
 msgid "Repeat"
@@ -32,15 +36,15 @@ msgstr "Al debalu"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr ""
+msgstr "Mou simple"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr ""
+msgstr "Mou consumu"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
-msgstr ""
+msgstr "_Accesos direutos"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
@@ -48,11 +52,11 @@ msgstr "Veceru MPD escritu en GTK+ pa Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr "Astur <malditoastur@gmail.com>"
+msgstr "Softastur www.softastur.org"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
-msgstr "Llimpiar llista reproducción"
+msgstr "Llimpiar llista de reproducción"
 
 #: ../src/extended-interface.c:908
 msgid "Refresh Database"
@@ -64,11 +68,11 @@ msgstr "Menú contestual"
 
 #: ../src/extended-interface.c:969
 msgid "Current Playlist"
-msgstr "Llista reproducción actual"
+msgstr "Llista reproducción d'anguaño"
 
 #: ../src/extended-interface.c:975
 msgid "Browse database"
-msgstr "Esplorar la base datos"
+msgstr "Retolar la base de datos"
 
 #: ../src/interface.c:467
 #, c-format
@@ -95,12 +99,11 @@ msgstr "%d canciones, %d minutos"
 
 #: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "Fallu al coneutar a MPD"
 
 #: ../src/mpdclient.c:387
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "Conexón"
+msgstr "Coneutáu a MPD"
 
 #: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
@@ -112,7 +115,7 @@ msgstr "Preferencies Xfmpc"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "Personaliza'l to veceru MPD"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -130,13 +133,11 @@ msgstr "Usar la configuración pre_determinada del sistema"
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Si ta activáu Xfmpc tentará lleer les variables d'entornu MPD_HOST y "
-"MPD_PORT, a la escontra usará localhost"
+msgstr "Si ta conseñá, Xfmpc intentará lleer les variables d'entornu MPD_HOST y MPD_PORT, a la escontra usará localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
-msgstr "Hostname:"
+msgstr "Nome d'equipu:"
 
 #: ../src/preferences-dialog.c:797
 msgid "Port:"
@@ -152,25 +153,23 @@ msgstr "Aspeutu"
 
 #: ../src/preferences-dialog.c:884
 msgid "General"
-msgstr ""
+msgstr "Xeneral"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Zarar ventana a la estaya de notificación"
 
 #: ../src/preferences-dialog.c:908
-#, fuzzy
 msgid "Show _stastusbar"
-msgstr "Amosar _barra d'estáu"
+msgstr "Amosar barra d'e_stáu"
 
 #: ../src/preferences-dialog.c:927
 msgid "Song Format"
-msgstr "Formatu canción"
+msgstr "Formatu de canción"
 
 #: ../src/preferences-dialog.c:940
-#, fuzzy
 msgid "Song Format:"
-msgstr "Formatu canción"
+msgstr "Formatu de canción:"
 
 #: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
@@ -247,35 +246,35 @@ msgstr "%P: Pista"
 
 #: ../src/shortcuts-dialog.c:161
 msgid "Xfmpc Shortcuts"
-msgstr ""
+msgstr "Atayos de Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "Controla'l to veceru MPD col tecláu"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Colar: CTRL+q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr ""
+msgstr "Anterior: CTRL+b"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
-msgstr ""
+msgstr "Reproducir/Posar: CTRL+p"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Aparar: CTRL+s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr ""
+msgstr "Siguiente: CTRL+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
-msgstr ""
+msgstr "Volume: CTRL+v"
 
 #: ../src/song-dialog.c:239
 msgid "File"
@@ -308,12 +307,3 @@ msgstr "Veceru MPD"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
-#~ msgid "Statusbar"
-#~ msgstr "Barra d'estáu"
-
-#~ msgid "Song format:"
-#~ msgstr "Formatu canción:"
-
-#~ msgid "MPD Settings"
-#~ msgstr "Configuración MPD"
