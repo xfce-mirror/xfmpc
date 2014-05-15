@@ -1,0 +1,310 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# kingu <comradekingu@gmail.com>, 2014
+# haarek <haarektrans@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Apps\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-10-23 17:29+0200\n"
+"PO-Revision-Date: 2014-05-15 20:08+0000\n"
+"Last-Translator: kingu <comradekingu@gmail.com>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/xfce-apps/language/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../src/dbbrowser.c:1508
+msgid "Replace"
+msgstr "Erstatt"
+
+#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
+msgid "Browse"
+msgstr "Bla gjennom"
+
+#: ../src/extended-interface.c:495
+msgid "Repeat"
+msgstr "Gjenta"
+
+#: ../src/extended-interface.c:505
+msgid "Random"
+msgstr "Tilfeldig"
+
+#: ../src/extended-interface.c:515
+msgid "Single Mode"
+msgstr "Enkeltvis"
+
+#: ../src/extended-interface.c:525
+msgid "Consume Mode"
+msgstr "Forbruksvis"
+
+#: ../src/extended-interface.c:548
+msgid "_Shortcuts"
+msgstr "_Snarveier"
+
+#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "MPD-klient skrevet i GTK+ for Xfce"
+
+#: ../src/extended-interface.c:749
+msgid "translator-credits"
+msgstr "haarek - Harald <https://www.transifex.com/accounts/profile/haarek/>\nkingu - Allan Nordhøy <https://www.transifex.com/accounts/profile/kingu/>\npapparonny - Ronny K. M. Olufsen <https://www.transifex.com/accounts/profile/papparonny/>"
+
+#: ../src/extended-interface.c:890
+msgid "Clear Playlist"
+msgstr "Tøm spilleliste"
+
+#: ../src/extended-interface.c:908
+msgid "Refresh Database"
+msgstr "Gjenoppfrisk database"
+
+#: ../src/extended-interface.c:926
+msgid "Context Menu"
+msgstr "Sammenhengsmeny"
+
+#: ../src/extended-interface.c:969
+msgid "Current Playlist"
+msgstr "Aktuell spilleliste"
+
+#: ../src/extended-interface.c:975
+msgid "Browse database"
+msgstr "Bla i database"
+
+#: ../src/interface.c:467
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "av \"%s\" fra \"%s\" (%s)"
+
+#: ../src/interface.c:486
+msgid "Stopped"
+msgstr "Stoppet"
+
+#: ../src/interface.c:496 ../src/interface.c:916
+msgid "Not connected"
+msgstr "Ikke tilkoblet"
+
+#: ../src/main-window.c:641
+#, c-format
+msgid "%d songs, %d hours and %d minutes"
+msgstr "%d sanger, %d timer og %d minutter"
+
+#: ../src/main-window.c:652
+#, c-format
+msgid "%d songs, %d minutes"
+msgstr "%d sanger, %d minutter"
+
+#: ../src/mpdclient.c:382
+msgid "Failed to connect to MPD"
+msgstr "Kunne ikke koble til MPD"
+
+#: ../src/mpdclient.c:387
+msgid "Connected to MPD"
+msgstr "Tilkoblet MPD"
+
+#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
+msgid "n/a"
+msgstr "i/t"
+
+#: ../src/preferences-dialog.c:701
+msgid "Xfmpc Preferences"
+msgstr "Xfmpc-innstillinger"
+
+#: ../src/preferences-dialog.c:703
+msgid "Customize your MPD client"
+msgstr "Skreddersy din MPD-klient"
+
+#: ../src/preferences-dialog.c:720
+msgid "MPD"
+msgstr "MPD"
+
+#: ../src/preferences-dialog.c:731
+msgid "Connection"
+msgstr "Tilkobling"
+
+#: ../src/preferences-dialog.c:739
+msgid "Use _default system settings"
+msgstr "Bruk _forvalgte innstillinger"
+
+#: ../src/preferences-dialog.c:745
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr "Hvis huket av, vil Xfmpc prøve å lese miljøvariablene MPD_HOST og MPD_PORT, ellers vil localhost brukes"
+
+#: ../src/preferences-dialog.c:775
+msgid "Hostname:"
+msgstr "Vertsnavn:"
+
+#: ../src/preferences-dialog.c:797
+msgid "Port:"
+msgstr "Port:"
+
+#: ../src/preferences-dialog.c:826
+msgid "Password:"
+msgstr "Passord:"
+
+#: ../src/preferences-dialog.c:871
+msgid "Appearance"
+msgstr "Utseende"
+
+#: ../src/preferences-dialog.c:884
+msgid "General"
+msgstr "Generelt"
+
+#: ../src/preferences-dialog.c:893
+msgid "Close window into notification area"
+msgstr "Lukk vindu til varslingsområde"
+
+#: ../src/preferences-dialog.c:908
+msgid "Show _stastusbar"
+msgstr "Vis _statusbar"
+
+#: ../src/preferences-dialog.c:927
+msgid "Song Format"
+msgstr "Sangformat"
+
+#: ../src/preferences-dialog.c:940
+msgid "Song Format:"
+msgstr "Sangformat:"
+
+#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
+msgid "Title"
+msgstr "Tittel"
+
+#: ../src/preferences-dialog.c:959
+msgid "Album - Title"
+msgstr "Album - Tittel"
+
+#: ../src/preferences-dialog.c:962
+msgid "Artist - Title"
+msgstr "Artist - Tittel"
+
+#: ../src/preferences-dialog.c:965
+msgid "Artist - Title (Date)"
+msgstr "Artist - Tittel (Dato)"
+
+#: ../src/preferences-dialog.c:968
+msgid "Artist - Album - Title"
+msgstr "Artist - Album - Tittel"
+
+#: ../src/preferences-dialog.c:971
+msgid "Artist - Album - Track. Title"
+msgstr "Artist - Album - Sportittel"
+
+#: ../src/preferences-dialog.c:974
+msgid "Custom..."
+msgstr "Egendefinert ..."
+
+#: ../src/preferences-dialog.c:988
+msgid "Custom format:"
+msgstr "Egendefinert format:"
+
+#: ../src/preferences-dialog.c:1023
+msgid "Available parameters:"
+msgstr "Tilgjengelige parameter:"
+
+#: ../src/preferences-dialog.c:1043
+#, c-format
+msgid "%a: Artist"
+msgstr "%a: Artist"
+
+#: ../src/preferences-dialog.c:1056
+#, c-format
+msgid "%A: Album"
+msgstr "%A: Album"
+
+#: ../src/preferences-dialog.c:1069
+msgid "%t: Title"
+msgstr "%t: Tittel"
+
+#: ../src/preferences-dialog.c:1082
+msgid "%D: Disc"
+msgstr "%D: Disk"
+
+#: ../src/preferences-dialog.c:1095
+#, c-format
+msgid "%f: File"
+msgstr "%f: Fil"
+
+#: ../src/preferences-dialog.c:1108
+#, c-format
+msgid "%g: Genre"
+msgstr "%g: Sjanger"
+
+#: ../src/preferences-dialog.c:1121
+#, c-format
+msgid "%d: Date"
+msgstr "%d: Dato"
+
+#: ../src/preferences-dialog.c:1134
+msgid "%T: Track"
+msgstr "%T: Spor"
+
+#: ../src/shortcuts-dialog.c:161
+msgid "Xfmpc Shortcuts"
+msgstr "Xfmpc-snarveier"
+
+#: ../src/shortcuts-dialog.c:163
+msgid "Control your MPD client with your keyboard"
+msgstr "Kontroller din MPD-klient med tastaturet"
+
+#: ../src/shortcuts-dialog.c:178
+msgid "Quit: CTRL+q"
+msgstr "Avslutt: CTRL+q"
+
+#: ../src/shortcuts-dialog.c:187
+msgid "Previous: CTRL+b"
+msgstr "Forrige: CTRL+b"
+
+#: ../src/shortcuts-dialog.c:197
+msgid "Play/Pause: CTRL+p"
+msgstr "Spill/Pause: Ctrl+p"
+
+#: ../src/shortcuts-dialog.c:207
+msgid "Stop: CTRL+s"
+msgstr "Stopp: CTRL+s"
+
+#: ../src/shortcuts-dialog.c:217
+msgid "Next: CTRL+f"
+msgstr "Neste: CTRL+f"
+
+#: ../src/shortcuts-dialog.c:227
+msgid "Volume: CTRL+v"
+msgstr "Lydstyrke: CTRL+v"
+
+#: ../src/song-dialog.c:239
+msgid "File"
+msgstr "Fil"
+
+#: ../src/song-dialog.c:266
+msgid "Artist"
+msgstr "Artist"
+
+#: ../src/song-dialog.c:316
+msgid "Album"
+msgstr "Album"
+
+#: ../src/song-dialog.c:341
+msgid "Date"
+msgstr "Dato"
+
+#: ../src/song-dialog.c:360
+msgid "Track"
+msgstr "Spor"
+
+#: ../src/song-dialog.c:385
+msgid "Genre"
+msgstr "Sjanger"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "MPD-klient"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
