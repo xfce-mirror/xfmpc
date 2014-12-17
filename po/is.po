@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Sveinn í Felli <sv1@fellsnet.is>, 2013
+# Sveinn í Felli <sv1@fellsnet.is>, 2013-2014
 # Sveinn í Felli <sveinki@nett.is>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2014-01-23 20:17+0000\n"
+"PO-Revision-Date: 2014-12-17 11:30+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
-"Language-Team: Icelandic (http://www.transifex.com/projects/p/xfce/language/is/)\n"
+"Language-Team: Icelandic (http://www.transifex.com/projects/p/xfce-apps/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,11 +37,11 @@ msgstr "Slembið"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr ""
+msgstr "Eins-lags-hamur"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr ""
+msgstr "Fjarlægja-spiluð-lög-hamur"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
@@ -49,7 +49,7 @@ msgstr "_Flýtileiðir"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr ""
+msgstr "MPD forrit skrifað í GTK+ fyrir Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
@@ -116,7 +116,7 @@ msgstr "Kjörstillingar XFMPC"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "Sérsníddu MPD forritið"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -128,13 +128,13 @@ msgstr "Tenging"
 
 #: ../src/preferences-dialog.c:739
 msgid "Use _default system settings"
-msgstr ""
+msgstr "_Nota sjálfgefnar stillingar kerfis"
 
 #: ../src/preferences-dialog.c:745
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr ""
+msgstr "Ef hakað er við þetta, mun Xfmpc reyna að lesa umhverfisbreyturnar MPD_HOST og MPD_PORT en annars nota localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -158,7 +158,7 @@ msgstr "Almennt"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Loka glugga inn á tilkynningasvæði"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
@@ -166,11 +166,11 @@ msgstr "Birta _stöðustiku"
 
 #: ../src/preferences-dialog.c:927
 msgid "Song Format"
-msgstr ""
+msgstr "Snið lags"
 
 #: ../src/preferences-dialog.c:940
 msgid "Song Format:"
-msgstr ""
+msgstr "Snið lags:"
 
 #: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
