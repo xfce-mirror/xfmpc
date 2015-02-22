@@ -1,0 +1,310 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2015
+# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Apps\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-10-23 17:29+0200\n"
+"PO-Revision-Date: 2015-02-22 10:36+0000\n"
+"Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
+"Language-Team: Thai (http://www.transifex.com/projects/p/xfce-apps/language/th/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../src/dbbrowser.c:1508
+msgid "Replace"
+msgstr "เลือกทับ"
+
+#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
+msgid "Browse"
+msgstr "ท่องดู"
+
+#: ../src/extended-interface.c:495
+msgid "Repeat"
+msgstr "เล่นซ้ำ"
+
+#: ../src/extended-interface.c:505
+msgid "Random"
+msgstr "สุ่ม"
+
+#: ../src/extended-interface.c:515
+msgid "Single Mode"
+msgstr "โหมดเล่นเพลงเดียว"
+
+#: ../src/extended-interface.c:525
+msgid "Consume Mode"
+msgstr "โหมดเล่นแล้วตัดออก"
+
+#: ../src/extended-interface.c:548
+msgid "_Shortcuts"
+msgstr "ปุ่ม_ลัด"
+
+#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "ลูกข่าย MPD เขียนด้วย GTK+ สำหรับ Xfce"
+
+#: ../src/extended-interface.c:749
+msgid "translator-credits"
+msgstr "Theppitak Karoonboonyanan <theppitak@gmail.com>"
+
+#: ../src/extended-interface.c:890
+msgid "Clear Playlist"
+msgstr "ล้างผังเล่น"
+
+#: ../src/extended-interface.c:908
+msgid "Refresh Database"
+msgstr "ปรับแสดงฐานข้อมูล"
+
+#: ../src/extended-interface.c:926
+msgid "Context Menu"
+msgstr "เมนูบริบท"
+
+#: ../src/extended-interface.c:969
+msgid "Current Playlist"
+msgstr "ผังเล่นปัจจุบัน"
+
+#: ../src/extended-interface.c:975
+msgid "Browse database"
+msgstr "ท่องดูฐานข้อมูล"
+
+#: ../src/interface.c:467
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "โดย \"%s\" จาก \"%s\" (%s)"
+
+#: ../src/interface.c:486
+msgid "Stopped"
+msgstr "หยุด"
+
+#: ../src/interface.c:496 ../src/interface.c:916
+msgid "Not connected"
+msgstr "ไม่ได้เชื่อมต่อ"
+
+#: ../src/main-window.c:641
+#, c-format
+msgid "%d songs, %d hours and %d minutes"
+msgstr "%d เพลง, %d ชั่วโมง %d นาที"
+
+#: ../src/main-window.c:652
+#, c-format
+msgid "%d songs, %d minutes"
+msgstr "%d เพลง, %d นาที"
+
+#: ../src/mpdclient.c:382
+msgid "Failed to connect to MPD"
+msgstr "เชื่อมต่อกับ MPD ไม่สำเร็จ"
+
+#: ../src/mpdclient.c:387
+msgid "Connected to MPD"
+msgstr "เชื่อมต่อกับ MPD แล้ว"
+
+#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
+msgid "n/a"
+msgstr "n/a"
+
+#: ../src/preferences-dialog.c:701
+msgid "Xfmpc Preferences"
+msgstr "ปรับแต่ง Xfmpc"
+
+#: ../src/preferences-dialog.c:703
+msgid "Customize your MPD client"
+msgstr "ปรับแต่งลูกข่าย MPD ของคุณ"
+
+#: ../src/preferences-dialog.c:720
+msgid "MPD"
+msgstr "MPD"
+
+#: ../src/preferences-dialog.c:731
+msgid "Connection"
+msgstr "การเชื่อมต่อ"
+
+#: ../src/preferences-dialog.c:739
+msgid "Use _default system settings"
+msgstr "ใช้ค่า_ปริยายของระบบ"
+
+#: ../src/preferences-dialog.c:745
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr "ถ้าเลือกตัวเลือกนี้ Xfmpc จะพยายามอ่านค่าตัวแปรสภาพแวดล้อม MPD_HOST และ MPD_PORT หรือมิฉะนั้นก็จะใช้ localhost"
+
+#: ../src/preferences-dialog.c:775
+msgid "Hostname:"
+msgstr "ชื่อโฮสต์:"
+
+#: ../src/preferences-dialog.c:797
+msgid "Port:"
+msgstr "พอร์ค:"
+
+#: ../src/preferences-dialog.c:826
+msgid "Password:"
+msgstr "รหัสผ่าน:"
+
+#: ../src/preferences-dialog.c:871
+msgid "Appearance"
+msgstr "รูปลักษณ์"
+
+#: ../src/preferences-dialog.c:884
+msgid "General"
+msgstr "ทั่วไป"
+
+#: ../src/preferences-dialog.c:893
+msgid "Close window into notification area"
+msgstr "ปิดหน้าต่างลงสู่พื้นที่แจ้งเหตุ"
+
+#: ../src/preferences-dialog.c:908
+msgid "Show _stastusbar"
+msgstr "แสดงแถบ_สถานะ"
+
+#: ../src/preferences-dialog.c:927
+msgid "Song Format"
+msgstr "รูปแบบเพลง"
+
+#: ../src/preferences-dialog.c:940
+msgid "Song Format:"
+msgstr "รูปแบบเพลง:"
+
+#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
+msgid "Title"
+msgstr "ชื่อเพลง"
+
+#: ../src/preferences-dialog.c:959
+msgid "Album - Title"
+msgstr "อัลบั้ม - ชื่อเพลง"
+
+#: ../src/preferences-dialog.c:962
+msgid "Artist - Title"
+msgstr "ศิลปิน - ชื่อเพลง"
+
+#: ../src/preferences-dialog.c:965
+msgid "Artist - Title (Date)"
+msgstr "ศิลปิน - ชื่อเพลง (วันที่)"
+
+#: ../src/preferences-dialog.c:968
+msgid "Artist - Album - Title"
+msgstr "ศิลปิน - อัลบั้ม - ชื่อเพลง"
+
+#: ../src/preferences-dialog.c:971
+msgid "Artist - Album - Track. Title"
+msgstr "ศิลปิน - อัลบั้ม - ลำดับเพลง. ชื่อเพลง"
+
+#: ../src/preferences-dialog.c:974
+msgid "Custom..."
+msgstr "กำหนดเอง..."
+
+#: ../src/preferences-dialog.c:988
+msgid "Custom format:"
+msgstr "รูปแบบกำหนดเอง:"
+
+#: ../src/preferences-dialog.c:1023
+msgid "Available parameters:"
+msgstr "พารามิเตอร์ที่ใช้ได้:"
+
+#: ../src/preferences-dialog.c:1043
+#, c-format
+msgid "%a: Artist"
+msgstr "%a: ศิลปิน"
+
+#: ../src/preferences-dialog.c:1056
+#, c-format
+msgid "%A: Album"
+msgstr "%A: อัลบั้ม"
+
+#: ../src/preferences-dialog.c:1069
+msgid "%t: Title"
+msgstr "%t: ชื่อเพลง"
+
+#: ../src/preferences-dialog.c:1082
+msgid "%D: Disc"
+msgstr "%D: แผ่น"
+
+#: ../src/preferences-dialog.c:1095
+#, c-format
+msgid "%f: File"
+msgstr "%f: แฟ้ม"
+
+#: ../src/preferences-dialog.c:1108
+#, c-format
+msgid "%g: Genre"
+msgstr "%g: แนวเพลง"
+
+#: ../src/preferences-dialog.c:1121
+#, c-format
+msgid "%d: Date"
+msgstr "%d: วันที่"
+
+#: ../src/preferences-dialog.c:1134
+msgid "%T: Track"
+msgstr "%T: ลำดับเพลง"
+
+#: ../src/shortcuts-dialog.c:161
+msgid "Xfmpc Shortcuts"
+msgstr "ปุ่มลัด Xfmpc"
+
+#: ../src/shortcuts-dialog.c:163
+msgid "Control your MPD client with your keyboard"
+msgstr "ควบคุมลูกข่าย MPD ของคุณด้วยแป้นพิมพ์"
+
+#: ../src/shortcuts-dialog.c:178
+msgid "Quit: CTRL+q"
+msgstr "ออก: CTRL+q"
+
+#: ../src/shortcuts-dialog.c:187
+msgid "Previous: CTRL+b"
+msgstr "เพลงก่อนหน้า: CTRL+b"
+
+#: ../src/shortcuts-dialog.c:197
+msgid "Play/Pause: CTRL+p"
+msgstr "เล่น/พัก: CTRL+p"
+
+#: ../src/shortcuts-dialog.c:207
+msgid "Stop: CTRL+s"
+msgstr "หยุด: CTRL+s"
+
+#: ../src/shortcuts-dialog.c:217
+msgid "Next: CTRL+f"
+msgstr "เพลงถัดไป: CTRL+f"
+
+#: ../src/shortcuts-dialog.c:227
+msgid "Volume: CTRL+v"
+msgstr "ความดัง: CTRL+v"
+
+#: ../src/song-dialog.c:239
+msgid "File"
+msgstr "แฟ้ม"
+
+#: ../src/song-dialog.c:266
+msgid "Artist"
+msgstr "ศิลปิน"
+
+#: ../src/song-dialog.c:316
+msgid "Album"
+msgstr "อัลบั้ม"
+
+#: ../src/song-dialog.c:341
+msgid "Date"
+msgstr "วันที่"
+
+#: ../src/song-dialog.c:360
+msgid "Track"
+msgstr "ลำดับเพลง"
+
+#: ../src/song-dialog.c:385
+msgid "Genre"
+msgstr "แนวเพลง"
+
+#: ../xfmpc.desktop.in.h:1
+msgid "MPD client"
+msgstr "ลูกข่าย MPD"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "Xfmpc"
+msgstr "Xfmpc"
