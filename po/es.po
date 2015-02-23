@@ -1,26 +1,26 @@
-# Spanish translations for xfmpc package
-# Traducciones al español para el paquete xfmpc.
-# Copyright (C) 2009 THE xfmpc'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfmpc package.
-#  <abel.martin.ruiz@gmail.com>, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+#  <abel.martin.ruiz@gmail.com>, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2009-06-13 19:28-0300\n"
-"Last-Translator: elega <elega@elega.com.ar>\n"
-"Language-Team: Spanish\n"
+"PO-Revision-Date: 2015-02-23 17:32+0000\n"
+"Last-Translator: Manolo Díaz <diaz.manolo@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/xfce-apps/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
-msgstr "Reemplazar"
+msgstr "Remplazar"
 
 #: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
@@ -52,13 +52,11 @@ msgstr "Cliente MPD escrito en GTK+ para Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr ""
-"Elega <elega@elega.com.ar>\r\n"
-"Fitoschido <fitoschido@gmail.com>"
+msgstr "Elega <elega@elega.com.ar>\r\nFitoschido <fitoschido@gmail.com>"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
-msgstr "Limpiar lista de reproducción"
+msgstr "Vaciar la lista de reproducción"
 
 #: ../src/extended-interface.c:908
 msgid "Refresh Database"
@@ -101,11 +99,11 @@ msgstr "%d canciones, %d minutos"
 
 #: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
-msgstr "No se pudo conectar al MPD"
+msgstr "No se pudo conectar con MPD"
 
 #: ../src/mpdclient.c:387
 msgid "Connected to MPD"
-msgstr "Conectado al MPD"
+msgstr "Conectado con MPD"
 
 #: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
@@ -135,9 +133,7 @@ msgstr "Utilizar la configuración pre_determinada del sistema"
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Si está activado Xfmpc intentará leer las variables de entorno MPD_HOST y "
-"MPD_PORT, de lo contrario utilizará localhost"
+msgstr "Si está activado, Xfmpc intentará leer las variables de entorno MPD_HOST y MPD_PORT, de lo contrario utilizará localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -311,12 +307,3 @@ msgstr "Cliente MPD"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
-#~ msgid "Statusbar"
-#~ msgstr "Barra de estado"
-
-#~ msgid "Song format:"
-#~ msgstr "Formato de canción:"
-
-#~ msgid "MPD Settings"
-#~ msgstr "Configuración MPD"
