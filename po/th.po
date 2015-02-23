@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2015-02-22 10:36+0000\n"
+"PO-Revision-Date: 2015-02-23 03:40+0000\n"
 "Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/projects/p/xfce-apps/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgstr "ชื่อโฮสต์:"
 
 #: ../src/preferences-dialog.c:797
 msgid "Port:"
-msgstr "พอร์ค:"
+msgstr "พอร์ต:"
 
 #: ../src/preferences-dialog.c:826
 msgid "Password:"
