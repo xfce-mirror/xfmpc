@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2015-02-23 17:32+0000\n"
+"PO-Revision-Date: 2015-02-24 19:43+0000\n"
 "Last-Translator: Manolo Díaz <diaz.manolo@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/xfce-apps/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -197,7 +197,7 @@ msgstr "Artista - Álbum - Pista. Título"
 
 #: ../src/preferences-dialog.c:974
 msgid "Custom..."
-msgstr "Personalizado..."
+msgstr "Personalizado…"
 
 #: ../src/preferences-dialog.c:988
 msgid "Custom format:"
