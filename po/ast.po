@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2015-02-21 15:11+0000\n"
+"PO-Revision-Date: 2015-11-15 00:08+0000\n"
 "Last-Translator: enolp <enolp@softastur.org>\n"
-"Language-Team: Asturian (http://www.transifex.com/projects/p/xfce-apps/language/ast/)\n"
+"Language-Team: Asturian (http://www.transifex.com/xfce/xfce-apps/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -79,7 +79,7 @@ msgstr "Restolar base de datos"
 #: ../src/interface.c:467
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "por \"%s\" de \"%s\" (%s)"
+msgstr "por «%s» de «%s» (%s)"
 
 #: ../src/interface.c:486
 msgid "Stopped"
