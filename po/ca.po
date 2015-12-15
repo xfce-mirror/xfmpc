@@ -1,32 +1,30 @@
-# Catalan translations for xfmpc package
-# Copyright (C) 2009 THE xfmpc'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfmpc package.
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2012.
-# Pol Ruzafa <kiari62@gmail.com>, 2011.
-# Harald Servat <redcrash@gmail.com>, 2009.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2012
+# Harald Servat <redcrash@gmail.com>, 2009
+# Pol Ruzafa <kiari62@gmail.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
-"Language-Team: catalan\n"
-"Language: ca\n"
+"PO-Revision-Date: 2015-12-15 17:25+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Catalan\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
 msgstr "Reemplaçar"
 
-#: ../src/dbbrowser.c:1524
-#: ../src/playlist.c:1511
+#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
 msgstr "Navegar"
 
@@ -50,8 +48,7 @@ msgstr "Mode de consum"
 msgid "_Shortcuts"
 msgstr "_Dreceres"
 
-#: ../src/extended-interface.c:747
-#: ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Client MPD escrit en GTK+ per a Xfce"
 
@@ -88,8 +85,7 @@ msgstr "per \"%s\" de \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Aturat"
 
-#: ../src/interface.c:496
-#: ../src/interface.c:916
+#: ../src/interface.c:496 ../src/interface.c:916
 msgid "Not connected"
 msgstr "No connectat"
 
@@ -111,9 +107,7 @@ msgstr "No s'ha pogut connectar a MPD"
 msgid "Connected to MPD"
 msgstr "Connectat a MPD"
 
-#: ../src/mpdclient.c:627
-#: ../src/mpdclient.c:657
-#: ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "n/d"
 
@@ -138,7 +132,9 @@ msgid "Use _default system settings"
 msgstr "Usar preferències per _defecte del sistema"
 
 #: ../src/preferences-dialog.c:745
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
 msgstr "Si està activat, Xfmpc intentarà llegir les variables d'entorn MPD_HOST i MPD_PORT, altrament usarà localhost."
 
 #: ../src/preferences-dialog.c:775
@@ -177,8 +173,7 @@ msgstr "Format de la cançó"
 msgid "Song Format:"
 msgstr "Format de la cançó:"
 
-#: ../src/preferences-dialog.c:956
-#: ../src/song-dialog.c:291
+#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
 msgstr "Títol"
 
@@ -314,9 +309,3 @@ msgstr "Client MPD"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
-#~ msgid "Statusbar"
-#~ msgstr "Barra d'estat"
-
-#~ msgid "Song format:"
-#~ msgstr "Format de la cançó:"
