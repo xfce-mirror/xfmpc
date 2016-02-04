@@ -1,21 +1,22 @@
-#
-# Efstathios Iosifidis <iosifidis@opensuse.org>, 2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2012-05-21 03:22+0300\n"
-"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
-"Language-Team: Ελληνικά, Σύγχρονα <opensuse-translation-el@opensuse.org>\n"
-"Language: el\n"
+"PO-Revision-Date: 2016-02-03 23:40+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Greek (http://www.transifex.com/xfce/xfce-apps/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
-"X-Poedit-Country: GREECE\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Poedit-Language: Greek\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
@@ -51,9 +52,7 @@ msgstr "Πελάτης MPD γραμμένος σε GTK+ για το XFCE"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr ""
-"Βασιλάκος Γεώργιος <forfolias@gmail.com>\n"
-"Ευστάθιος Ιωσηφίδης <iosifidis@opensuse.org>"
+msgstr "Βασιλάκος Γεώργιος <forfolias@gmail.com>\nΕυστάθιος Ιωσηφίδης <iosifidis@opensuse.org>"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
@@ -134,9 +133,7 @@ msgstr "Χρήση των _προεπιλεγμένων ρυθμίσεων"
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Εάν επιλεγεί, το Xfmpc θα προσπαθήσει να διαβάσει τις μεταβλητές του "
-"περιβάλλοντος MPD_HOST και MPD_PORT αλλιώς θα χρησιμοποιήσει το localhost"
+msgstr "Εάν επιλεγεί, το Xfmpc θα προσπαθήσει να διαβάσει τις μεταβλητές του περιβάλλοντος MPD_HOST και MPD_PORT αλλιώς θα χρησιμοποιήσει το localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -310,6 +307,3 @@ msgstr "Πελάτης MPD"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
-#~ msgid "Statusbar"
-#~ msgstr "Γραμμή κατάστασης"
