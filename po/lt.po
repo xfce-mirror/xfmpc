@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2016-01-13 01:09+0000\n"
+"PO-Revision-Date: 2016-03-17 17:58+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-apps/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -158,7 +158,7 @@ msgstr "Bendra"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr "Uždaryti į pranešimų srity"
+msgstr "Užverti į pranešimų sritį"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
