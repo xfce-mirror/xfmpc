@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2016-04-30 22:10+0000\n"
+"PO-Revision-Date: 2016-05-01 13:40+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Navegar la base de dades"
 #: ../src/interface.c:467
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "per \"%s\" de \"%s\" (%s)"
+msgstr "per «%s» de «%s» (%s)"
 
 #: ../src/interface.c:486
 msgid "Stopped"
@@ -184,7 +184,7 @@ msgstr "Àlbum - Títol"
 
 #: ../src/preferences-dialog.c:962
 msgid "Artist - Title"
-msgstr "Artista - Titol"
+msgstr "Artista - Títol"
 
 #: ../src/preferences-dialog.c:965
 msgid "Artist - Title (Date)"
