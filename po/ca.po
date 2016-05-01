@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2016-05-01 13:40+0000\n"
+"PO-Revision-Date: 2016-05-01 20:31+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgstr "Si està activat, Xfmpc intentarà llegir les variables d'entorn MPD_HOS
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
-msgstr "Nom de l'ordinador:"
+msgstr "Nom d'amfitrió:"
 
 #: ../src/preferences-dialog.c:797
 msgid "Port:"
