@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2016-05-02 10:05+0000\n"
+"PO-Revision-Date: 2016-05-02 13:10+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgstr "Connexió"
 
 #: ../src/preferences-dialog.c:739
 msgid "Use _default system settings"
-msgstr "Utilitza les preferències per _defecte del sistema"
+msgstr "Utilitza els ajusts pre_determinats del sistema"
 
 #: ../src/preferences-dialog.c:745
 msgid ""
