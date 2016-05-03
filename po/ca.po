@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2016-05-02 13:10+0000\n"
+"PO-Revision-Date: 2016-05-03 12:50+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -27,11 +27,11 @@ msgstr "Substitueix"
 
 #: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
-msgstr "Navegar"
+msgstr "Navega"
 
 #: ../src/extended-interface.c:495
 msgid "Repeat"
-msgstr "Repetir"
+msgstr "Repeteix"
 
 #: ../src/extended-interface.c:505
 msgid "Random"
@@ -39,7 +39,7 @@ msgstr "Aleatori"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr "Monomode"
+msgstr "Mode individual"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
@@ -59,11 +59,11 @@ msgstr "Harald Servat"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
-msgstr "Netejar llista de reproducció"
+msgstr "Neteja la llista de reproducció"
 
 #: ../src/extended-interface.c:908
 msgid "Refresh Database"
-msgstr "Refrescar la base de dades"
+msgstr "Refresca la base de dades"
 
 #: ../src/extended-interface.c:926
 msgid "Context Menu"
@@ -75,7 +75,7 @@ msgstr "Llista de reproducció actual"
 
 #: ../src/extended-interface.c:975
 msgid "Browse database"
-msgstr "Navegar la base de dades"
+msgstr "Navega per la base de dades"
 
 #: ../src/interface.c:467
 #, c-format
@@ -118,7 +118,7 @@ msgstr "Preferències de Xfmpc"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr "Personalitza el client MPD"
+msgstr "Personalitzeu el client MPD"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -200,7 +200,7 @@ msgstr "Artista - Àlbum - Pista. Títol"
 
 #: ../src/preferences-dialog.c:974
 msgid "Custom..."
-msgstr "Personalitzar..."
+msgstr "Personalitza..."
 
 #: ../src/preferences-dialog.c:988
 msgid "Custom format:"
@@ -249,7 +249,7 @@ msgstr "%T: Pista"
 
 #: ../src/shortcuts-dialog.c:161
 msgid "Xfmpc Shortcuts"
-msgstr "Dreceres Xfmpc"
+msgstr "Dreceres de Xfmpc"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
@@ -269,7 +269,7 @@ msgstr "Reprodueix/pausa: Ctrl+p"
 
 #: ../src/shortcuts-dialog.c:207
 msgid "Stop: CTRL+s"
-msgstr "Para: Ctrl+s"
+msgstr "Atura: Ctrl+s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
