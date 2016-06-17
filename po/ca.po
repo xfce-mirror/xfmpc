@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2016-05-03 12:50+0000\n"
+"PO-Revision-Date: 2016-06-17 07:54+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr "%d cançons, %d minuts"
 
 #: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
-msgstr "No s'ha pogut connectar a MPD"
+msgstr "Ha fallat la connexió a MPD"
 
 #: ../src/mpdclient.c:387
 msgid "Connected to MPD"
