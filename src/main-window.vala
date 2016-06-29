@@ -132,7 +132,7 @@ namespace Xfmpc {
 			this.preferences.notify["show-statusbar"].connect (cb_show_statusbar_changed);
 
   	  	  	/* === Timeout === */
-			Timeout.add (1000, refresh);
+			Gtk.Timeout.add (1000, refresh);
 		}
 
 		private void show_hide_status_icon () {
