@@ -389,8 +389,6 @@ xfmpc_mpdclient_connect_thread (XfmpcMpdclient *mpdclient)
 
   priv->connecting = FALSE;
 
-  g_mutex_unlock (priv->mutex);
-
   return NULL;
 }
 
@@ -426,6 +424,8 @@ xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
   g_thread_join (thread);
 
   g_signal_emit (mpdclient, signals[SIG_CONNECTED], 0);
+
+  g_mutex_unlock (priv->mutex);
 
   return TRUE;
 }
