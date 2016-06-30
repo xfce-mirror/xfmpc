@@ -1,0 +1,8 @@
+src/dbbrowser.c
+src/extended-interface.c
+src/interface.c
+src/main-window.c
+src/playlist.c
+src/preferences-dialog.c
+src/shortcuts-dialog.c
+src/song-dialog.c
