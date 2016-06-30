@@ -1,3 +1,10 @@
+    0.2.3 (2016-06-30)
+
+- Fix ambiguity between GLib.Timeout and Gtk.Timeout (#11062)
+- Use AC_CONFIG_HEADERS in configure.in.in (#11063)
+- Unlock mutex in connect instead of connect_thread, otherwise we'd try to unlock an unlocked mutex (#10366)
+- Tons of translation updates!
+
     0.2.2 (2011-10-23)
 
 - Add status-icon to hide Xfmpc and keep it running in the background
