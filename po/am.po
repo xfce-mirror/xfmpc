@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# samson <sambelet@yahoo.com>, 2016
+# samson <sambelet@yahoo.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2016-02-26 12:35+0000\n"
+"PO-Revision-Date: 2017-01-23 22:07+0000\n"
 "Last-Translator: samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic (http://www.transifex.com/xfce/xfce-apps/language/am/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "በ ነጠላ ዘዴ"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr ""
+msgstr "ዘዴ መውሰጃ"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
@@ -99,11 +99,11 @@ msgstr "%d ዘፈኖች: %d ደቂቃዎች"
 
 #: ../src/mpdclient.c:382
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "መገናኘት አልቻለም ወደ MPD"
 
 #: ../src/mpdclient.c:387
 msgid "Connected to MPD"
-msgstr ""
+msgstr "ተገናኝቷል ከ MPD"
 
 #: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
@@ -111,7 +111,7 @@ msgstr "ከ/የ"
 
 #: ../src/preferences-dialog.c:701
 msgid "Xfmpc Preferences"
-msgstr ""
+msgstr "Xfmpc ምርጫዎች"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
@@ -137,11 +137,11 @@ msgstr ""
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
-msgstr ""
+msgstr "የ ጋባዥ ስም:"
 
 #: ../src/preferences-dialog.c:797
 msgid "Port:"
-msgstr ""
+msgstr "Port:"
 
 #: ../src/preferences-dialog.c:826
 msgid "Password:"
@@ -157,11 +157,11 @@ msgstr "ባጠቃላይ"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr ""
+msgstr "በ ማስታወቂያ አካባቢ ያሉ መስኮቶትች  መዝጊያ"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
-msgstr ""
+msgstr "የ _ሁኔታዎች መደርደሪያ ማሳያ"
 
 #: ../src/preferences-dialog.c:927
 msgid "Song Format"
@@ -205,7 +205,7 @@ msgstr "አቀራረብ ማስተካከያ:"
 
 #: ../src/preferences-dialog.c:1023
 msgid "Available parameters:"
-msgstr ""
+msgstr "ዝግጁ ደንቦች:"
 
 #: ../src/preferences-dialog.c:1043
 #, c-format
@@ -233,7 +233,7 @@ msgstr "%f: ፋይል"
 #: ../src/preferences-dialog.c:1108
 #, c-format
 msgid "%g: Genre"
-msgstr ""
+msgstr "%g: Genre"
 
 #: ../src/preferences-dialog.c:1121
 #, c-format
@@ -298,11 +298,11 @@ msgstr "ተረኛ"
 
 #: ../src/song-dialog.c:385
 msgid "Genre"
-msgstr ""
+msgstr "Genre"
 
 #: ../xfmpc.desktop.in.h:1
 msgid "MPD client"
-msgstr ""
+msgstr "MPD client"
 
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
