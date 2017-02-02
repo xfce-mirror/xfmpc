@@ -1,28 +1,29 @@
-# European Portuguese translations for Xfmpc package.
-# Copyright (C) 2008 THE Xfmpc'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the Xfmpc package.
-# Nuno Miguel <nunis@netcabo.pt>, 2008.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Nuno Miguel <nunis@netcabo.pt>, 2008
+# Nuno Miguel <nunomgue@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2012-01-12 13:13-0000\n"
-"Last-Translator: Sérgio Marques <smarquespt@gmail.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2017-02-02 19:19+0000\n"
+"Last-Translator: Nuno Miguel <nunomgue@gmail.com>\n"
+"Language-Team: Portuguese (http://www.transifex.com/xfce/xfce-apps/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
 msgstr "Substituir"
 
-#: ../src/dbbrowser.c:1524
-#: ../src/playlist.c:1511
+#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
 msgstr "Explorar"
 
@@ -46,14 +47,13 @@ msgstr "Modo de consumo"
 msgid "_Shortcuts"
 msgstr "Atalho_s"
 
-#: ../src/extended-interface.c:747
-#: ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Cliente MPD escrito em GTK+ para Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr "Nuno Miguel <nunis@netcabo.pt>"
+msgstr "Nuno Miguel <nunomgue@gmail.com>"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
@@ -84,8 +84,7 @@ msgstr "por \"%s\" de \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Parado"
 
-#: ../src/interface.c:496
-#: ../src/interface.c:916
+#: ../src/interface.c:496 ../src/interface.c:916
 msgid "Not connected"
 msgstr "Não ligado"
 
@@ -107,9 +106,7 @@ msgstr "Falha ao ligar ao MPD"
 msgid "Connected to MPD"
 msgstr "Ligado ao MPD"
 
-#: ../src/mpdclient.c:627
-#: ../src/mpdclient.c:657
-#: ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "n/d"
 
@@ -134,7 +131,9 @@ msgid "Use _default system settings"
 msgstr "Utilizar _definições do sistema"
 
 #: ../src/preferences-dialog.c:745
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
 msgstr "Se ativo, o Xfmpc irá tentar ler as variáveis de ambiente MPD_HOST e MPD_PORT, caso contrário usará o servidor local"
 
 #: ../src/preferences-dialog.c:775
@@ -173,8 +172,7 @@ msgstr "Formato da música"
 msgid "Song Format:"
 msgstr "Formato da música:"
 
-#: ../src/preferences-dialog.c:956
-#: ../src/song-dialog.c:291
+#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
 msgstr "Título"
 
@@ -310,4 +308,3 @@ msgstr "Cliente MPD"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
