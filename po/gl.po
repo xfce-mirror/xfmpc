@@ -1,25 +1,23 @@
-# Galician translation of xfmpc
-# Copyright (C) 2008-2009 Leandro Regueiro
-# This file is distributed under the same license as the xfce package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
-# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008, 2009.
-# 
-# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
-# colaborar connosco, podes atopar máis información en <http://trasno.net>
-# 
+# Translators:
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008-2009
+# Xosé <xosecalvo@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2009-07-15 18:21+0100\n"
-"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
-"Language-Team: Galician <proxecto@trasno.net>\n"
+"PO-Revision-Date: 2017-03-20 22:11+0000\n"
+"Last-Translator: Xosé <xosecalvo@gmail.com>\n"
+"Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
@@ -39,7 +37,7 @@ msgstr "Aleatorio"
 
 #: ../src/extended-interface.c:515
 msgid "Single Mode"
-msgstr ""
+msgstr "Modo único"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
@@ -55,9 +53,7 @@ msgstr "Cliente de MPD escrito en GTK+ para Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr ""
-"Se está marcado, Xfmpc intentará ler as variables de contorno MPD_HOST e "
-"MPD_PORT ou usará localhost"
+msgstr "Se está marcado, Xfmpc intentará ler as variables de contorno MPD_HOST e MPD_PORT ou usará localhost"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
@@ -138,9 +134,7 @@ msgstr "Usar a _configuración predeterminada do sistema"
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Se está marcado, Xfmpc intentará ler as variables de contorno MPD_HOST e "
-"MPD_PORT e se non usará localhost"
+msgstr "Se está marcado, Xfmpc intentará ler as variables de contorno MPD_HOST e MPD_PORT e se non usará localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -164,7 +158,7 @@ msgstr "Xeral"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Pechar a xanela na área de notificación"
 
 #: ../src/preferences-dialog.c:908
 msgid "Show _stastusbar"
@@ -314,12 +308,3 @@ msgstr "Cliente de MPD"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
-#~ msgid "Statusbar"
-#~ msgstr "Barra de estado"
-
-#~ msgid "Song format:"
-#~ msgstr "Formato da canción:"
-
-#~ msgid "MPD Settings"
-#~ msgstr "Configuración de MPD"
