@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2017-09-10 22:58+0000\n"
+"PO-Revision-Date: 2017-09-13 16:30+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "Per Kongstad <p_kongstad@op.pl>\n\nDansk-gruppen <dansk@dansk-gruppen.dk
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
-msgstr "Ryd spilleliste"
+msgstr "Ryd afspilningsliste"
 
 #: ../src/extended-interface.c:908
 msgid "Refresh Database"
@@ -69,7 +69,7 @@ msgstr "Kontekstmenu"
 
 #: ../src/extended-interface.c:969
 msgid "Current Playlist"
-msgstr "Aktuel spilleliste"
+msgstr "Aktuel afspilningsliste"
 
 #: ../src/extended-interface.c:975
 msgid "Browse database"
@@ -112,7 +112,7 @@ msgstr "-"
 
 #: ../src/preferences-dialog.c:701
 msgid "Xfmpc Preferences"
-msgstr "Indstillinger Xfmpc"
+msgstr "Xfmpc-præferencer"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
