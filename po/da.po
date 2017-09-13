@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2017-09-13 16:30+0000\n"
+"PO-Revision-Date: 2017-09-13 19:08+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -247,11 +247,11 @@ msgstr "%T: Spor"
 
 #: ../src/shortcuts-dialog.c:161
 msgid "Xfmpc Shortcuts"
-msgstr "_Genveje i Xfmpc"
+msgstr "Xfmpc-genveje"
 
 #: ../src/shortcuts-dialog.c:163
 msgid "Control your MPD client with your keyboard"
-msgstr "Kontrollér din MPD-klient med dit tastatur"
+msgstr "Styr din MPD-klient med dit tastatur"
 
 #: ../src/shortcuts-dialog.c:178
 msgid "Quit: CTRL+q"
