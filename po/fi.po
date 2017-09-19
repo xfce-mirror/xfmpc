@@ -1,23 +1,22 @@
-# Finnish translations for xfmpc.
-# Copyright (C) 2008-2011 Mike Masonnet, Vincent Legout
-# This file is distributed under the same license as the xfmpc package.
-# Miia Ranta <myrtti@ubuntu.com>, 2008.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2009-2012
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Miia Ranta <myrtti@ubuntu.com>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2012-04-27 14:51+0300\n"
-"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
-"Language-Team: Finnish\n"
-"Language: \n"
+"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Finnish (http://www.transifex.com/xfce/xfce-apps/language/fi/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Finland\n"
-"X-Poedit-Country: Finland\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
@@ -53,9 +52,7 @@ msgstr "GTK+-pohjainen MPD-asiakasohjelma Xfce:lle"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr ""
-"Miia Ranta <myrtti@ubuntu.com>\n"
-"Jari Rahkonen <jari.rahkonen@pp1.inet.fi>"
+msgstr "Miia Ranta <myrtti@ubuntu.com>\nJari Rahkonen <jari.rahkonen@pp1.inet.fi>"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
@@ -136,9 +133,7 @@ msgstr "Käytä järjestelmän _oletuksia"
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr ""
-"Jos valitset tämän, Xfmpc yrittää lukea ympäristömuuttujat MPD_HOST sekä "
-"MPD_PORT; niiden puuttuessa olettaa, että palvelimen osoite on localhost"
+msgstr "Jos valitset tämän, Xfmpc yrittää lukea ympäristömuuttujat MPD_HOST sekä MPD_PORT; niiden puuttuessa olettaa, että palvelimen osoite on localhost"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
