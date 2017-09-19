@@ -1,27 +1,28 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Walter Cheuk <wwycheuk@gmail.com>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc master\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2011-11-14 23:29+0800\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: chinese-l10n <chinese-l10n@googlegroups.com>\n"
-"Language: \n"
+"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/xfce/xfce-apps/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
 msgstr "替換"
 
-#: ../src/dbbrowser.c:1524
-#: ../src/playlist.c:1511
+#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
 msgstr "瀏覽"
 
@@ -45,8 +46,7 @@ msgstr "耗盡模式"
 msgid "_Shortcuts"
 msgstr "捷徑(_S)"
 
-#: ../src/extended-interface.c:747
-#: ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "以 GTK+ 寫成的，為 Xfce 設計的 MPD 客戶端"
 
@@ -83,8 +83,7 @@ msgstr "來自「%s」專輯「%s」(%s)"
 msgid "Stopped"
 msgstr "已停止"
 
-#: ../src/interface.c:496
-#: ../src/interface.c:916
+#: ../src/interface.c:496 ../src/interface.c:916
 msgid "Not connected"
 msgstr "未連接"
 
@@ -106,9 +105,7 @@ msgstr "無法連接至 MPD"
 msgid "Connected to MPD"
 msgstr "已連接至 MPD"
 
-#: ../src/mpdclient.c:627
-#: ../src/mpdclient.c:657
-#: ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "不可用"
 
@@ -130,10 +127,12 @@ msgstr "連線"
 
 #: ../src/preferences-dialog.c:739
 msgid "Use _default system settings"
-msgstr "使用預設系統設定值(_D)f"
+msgstr "使用預設系統設定值(_D)"
 
 #: ../src/preferences-dialog.c:745
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
 msgstr "若勾選，Xfmpc 會先嘗試讀取環境變數 MPD_HOST 與 HPD_PORT，否則會使用本地端主機"
 
 #: ../src/preferences-dialog.c:775
@@ -172,8 +171,7 @@ msgstr "歌曲格式"
 msgid "Song Format:"
 msgstr "歌曲格式："
 
-#: ../src/preferences-dialog.c:956
-#: ../src/song-dialog.c:291
+#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
 msgstr "標題"
 
@@ -260,7 +258,7 @@ msgstr "退出：CTRL+q"
 
 #: ../src/shortcuts-dialog.c:187
 msgid "Previous: CTRL+b"
-msgstr "上一個：CTRL+b"
+msgstr "上一首：CTRL+b"
 
 #: ../src/shortcuts-dialog.c:197
 msgid "Play/Pause: CTRL+p"
@@ -272,7 +270,7 @@ msgstr "停止：CTRL+s"
 
 #: ../src/shortcuts-dialog.c:217
 msgid "Next: CTRL+f"
-msgstr "下一個：CTRL+f"
+msgstr "下一首：CTRL+f"
 
 #: ../src/shortcuts-dialog.c:227
 msgid "Volume: CTRL+v"
@@ -309,4 +307,3 @@ msgstr "MPD 客戶端"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
