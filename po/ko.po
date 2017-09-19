@@ -1,37 +1,28 @@
-# Translation of xfmpc to Korean.
-# Copyright (C) 2008-2012 Mike Massonnet et al.
-# This file is distributed under the same license as the xfmpc package.
-# Seong-ho, Cho <darkcircle.0426@gmail.com>, 2012, 2013.
-#
-# Please write your name and e-mail into "translator-credits" if you update this translation script.
-#
-# ex ) msgstr ""
-#      "Gil-dong Hong <gdhong0101@gmail.com>\n"
-#      "YourName Kim <ynkim@gmail.com>"
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2012-2013
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc.master\n"
-"Report-Msgid-Bugs-To: xfce-i18n <xfce-i18n@xfce.org>\n"
+"Project-Id-Version: Xfce Apps\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2012-02-21 14:44+0900\n"
-"Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
-"Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
-"Language: ko\n"
+"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Korean (http://www.transifex.com/xfce/xfce-apps/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-Language: Korean\n"
-"X-Poedit-Country: KOREA, REPUBLIC OF\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
 msgstr "바꾸기"
 
-#: ../src/dbbrowser.c:1524
-#: ../src/playlist.c:1511
+#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
 msgstr "찾아보기"
 
@@ -55,8 +46,7 @@ msgstr "컨슘 모드"
 msgid "_Shortcuts"
 msgstr "바로 가기(_S)"
 
-#: ../src/extended-interface.c:747
-#: ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "GTK+로 작성한 Xfce용 MPD 클라이언트"
 
@@ -93,8 +83,7 @@ msgstr "\"%s\"이(가)  \"%s\"(으)로 부터 (%s)"
 msgid "Stopped"
 msgstr "멈춤"
 
-#: ../src/interface.c:496
-#: ../src/interface.c:916
+#: ../src/interface.c:496 ../src/interface.c:916
 msgid "Not connected"
 msgstr "연결 안함"
 
@@ -116,9 +105,7 @@ msgstr "MPD에 연결하는데 실패"
 msgid "Connected to MPD"
 msgstr "MPD에 연결했습니다"
 
-#: ../src/mpdclient.c:627
-#: ../src/mpdclient.c:657
-#: ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "없음"
 
@@ -143,7 +130,9 @@ msgid "Use _default system settings"
 msgstr "기본 시스템 설정 사용(_D)"
 
 #: ../src/preferences-dialog.c:745
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
 msgstr "이것을 선택하면, Xfmpc는 MPD_HOST 환경변수와 MPD_PORT 환경변수를 읽어들이려 하거나 localhost를 사용합니다"
 
 #: ../src/preferences-dialog.c:775
@@ -182,8 +171,7 @@ msgstr "노래 형식"
 msgid "Song Format:"
 msgstr "노래 형식:"
 
-#: ../src/preferences-dialog.c:956
-#: ../src/song-dialog.c:291
+#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
 msgstr "제목"
 
@@ -319,4 +307,3 @@ msgstr "MPD 클라이언트"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
