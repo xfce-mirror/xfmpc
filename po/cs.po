@@ -1,28 +1,27 @@
-# Czech translations for xfce-i package.
-# Copyright (C) 2008 THE xfce-i'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfce-i package.
-# Michal Várady <miko.vaji@gmail.com>, 2008-2011.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce-i 18n\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2011-12-18 16:23+0100\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
-"Language-Team: Czech\n"
-"Language: \n"
+"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Czech (http://www.transifex.com/xfce/xfce-apps/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: ../src/dbbrowser.c:1508
 msgid "Replace"
 msgstr "Nahradit"
 
-#: ../src/dbbrowser.c:1524
-#: ../src/playlist.c:1511
+#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
 msgid "Browse"
 msgstr "Procházet"
 
@@ -46,8 +45,7 @@ msgstr "Spotřební režim"
 msgid "_Shortcuts"
 msgstr "_Klávesové zkratky"
 
-#: ../src/extended-interface.c:747
-#: ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Klient MPD napsaný v GTK+ pro prostředí Xfce"
 
@@ -84,8 +82,7 @@ msgstr "od \"%s\" z alba \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Zastaveno"
 
-#: ../src/interface.c:496
-#: ../src/interface.c:916
+#: ../src/interface.c:496 ../src/interface.c:916
 msgid "Not connected"
 msgstr "Nepřipojeno"
 
@@ -107,9 +104,7 @@ msgstr "Připojení k démonu MPD se nezdařilo"
 msgid "Connected to MPD"
 msgstr "Připojeno k démonu MPD"
 
-#: ../src/mpdclient.c:627
-#: ../src/mpdclient.c:657
-#: ../src/mpdclient.c:672
+#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
 msgstr "n/a"
 
@@ -134,7 +129,9 @@ msgid "Use _default system settings"
 msgstr "Použít _výchozí nastavení systému"
 
 #: ../src/preferences-dialog.c:745
-msgid "If checked, Xfmpc will try to read the environment variables MPD_HOST and MPD_PORT otherwise it will use localhost"
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
 msgstr "Pokud je volba zaškrtnuta, pokusí se aplikace Xfmpc přečíst proměnné prostředí MPD_HOST a MPD_PORT, v opačném případě použije tento počítač (localhost)"
 
 #: ../src/preferences-dialog.c:775
@@ -173,8 +170,7 @@ msgstr "Formát skladby"
 msgid "Song Format:"
 msgstr "Formát skladby:"
 
-#: ../src/preferences-dialog.c:956
-#: ../src/song-dialog.c:291
+#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
 msgstr "Název"
 
@@ -310,12 +306,3 @@ msgstr "Klient MPD"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
-#~ msgid "Statusbar"
-#~ msgstr "Stavový řádek"
-
-#~ msgid "Song format:"
-#~ msgstr "Formát skladby:"
-
-#~ msgid "MPD Settings"
-#~ msgstr "Nastavení MPD"
