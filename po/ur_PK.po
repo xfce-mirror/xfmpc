@@ -1,34 +1,29 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfmpc\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2009-05-14 03:31+0500\n"
-"Last-Translator: Muhammad Ali Makki <makki.ma@gmail.com>\n"
-"Language-Team: Urdu <makki.ma@gmail.com>\n"
-"Language: ur\n"
+"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Urdu (Pakistan) (http://www.transifex.com/xfce/xfce-apps/language/ur_PK/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: Urdu\n"
-"X-Poedit-Country: PAKISTAN\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Language: ur_PK\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/dbbrowser.c:1508
-#, fuzzy
 msgid "Replace"
-msgstr "_تبدیل کریں"
+msgstr ""
 
 #: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
-#, fuzzy
 msgid "Browse"
-msgstr "_انتخاب"
+msgstr ""
 
 #: ../src/extended-interface.c:495
 msgid "Repeat"
@@ -56,13 +51,7 @@ msgstr "ایم پی ڈی MPD کلائنٹ جو ایکسفس کے لیے GTK+ م�
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
-msgstr ""
-"محمد علی مکی\n"
-"makki.ma@gmail.com\n"
-"اردو کوڈر لینکس فورم\n"
-"http://www.urducoder.com\n"
-"مکی کا بلاگ\n"
-"http://makki.urducoder.com"
+msgstr "محمد علی مکی\nmakki.ma@gmail.com\nاردو کوڈر لینکس فورم\nhttp://www.urducoder.com\nمکی کا بلاگ\nhttp://makki.urducoder.com"
 
 #: ../src/extended-interface.c:890
 msgid "Clear Playlist"
@@ -112,9 +101,8 @@ msgid "Failed to connect to MPD"
 msgstr ""
 
 #: ../src/mpdclient.c:387
-#, fuzzy
 msgid "Connected to MPD"
-msgstr "کنکشن"
+msgstr ""
 
 #: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
 msgid "n/a"
@@ -144,9 +132,7 @@ msgstr "نظام کی _طے شدہ ترتیبات استعمال کریں"
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr ""
-"اگر منتخب کیا گیا تو Xfmpc ماحول متغیر MPD_HOST اور MPD_PORT پڑھنے کی کوشش "
-"کرے گا، دوسری صورت میں یہ localhost استعمال کرے گا"
+msgstr "اگر منتخب کیا گیا تو Xfmpc ماحول متغیر MPD_HOST اور MPD_PORT پڑھنے کی کوشش کرے گا، دوسری صورت میں یہ localhost استعمال کرے گا"
 
 #: ../src/preferences-dialog.c:775
 msgid "Hostname:"
@@ -173,18 +159,16 @@ msgid "Close window into notification area"
 msgstr ""
 
 #: ../src/preferences-dialog.c:908
-#, fuzzy
 msgid "Show _stastusbar"
-msgstr "_حالت پٹی دکھائیں"
+msgstr ""
 
 #: ../src/preferences-dialog.c:927
 msgid "Song Format"
 msgstr "گانے کا فارمیٹ"
 
 #: ../src/preferences-dialog.c:940
-#, fuzzy
 msgid "Song Format:"
-msgstr "گانے کا فارمیٹ"
+msgstr ""
 
 #: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
 msgid "Title"
@@ -322,9 +306,3 @@ msgstr "ایم پی ڈی کلائنٹ"
 #: ../xfmpc.desktop.in.h:3
 msgid "Xfmpc"
 msgstr "Xfmpc"
-
-#~ msgid "Statusbar"
-#~ msgstr "حالت پٹی"
-
-#~ msgid "Song format:"
-#~ msgstr "گانے کا فارمیٹ:"
