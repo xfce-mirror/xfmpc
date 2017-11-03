@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2017-10-31 21:37+0000\n"
+"PO-Revision-Date: 2017-11-03 18:31+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "Genopfrisk database"
 
 #: ../src/extended-interface.c:926
 msgid "Context Menu"
-msgstr "Kontekstmenu"
+msgstr "Genvejsmenu"
 
 #: ../src/extended-interface.c:969
 msgid "Current Playlist"
