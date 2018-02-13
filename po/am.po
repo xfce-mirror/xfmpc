@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# samson <sambelet@yahoo.com>, 2016-2017
+# samson <sambelet@yahoo.com>, 2016-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"PO-Revision-Date: 2018-02-13 01:55+0000\n"
 "Last-Translator: samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic (http://www.transifex.com/xfce/xfce-apps/language/am/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "_አቋራጮች"
 
 #: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr ""
+msgstr "MPD client written in GTK+ for Xfce"
 
 #: ../src/extended-interface.c:749
 msgid "translator-credits"
@@ -115,7 +115,7 @@ msgstr "Xfmpc ምርጫዎች"
 
 #: ../src/preferences-dialog.c:703
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "የ እርስዎን የ MPD ደንበኛ ያስተካክሉ"
 
 #: ../src/preferences-dialog.c:720
 msgid "MPD"
@@ -127,7 +127,7 @@ msgstr "ግንኙነት"
 
 #: ../src/preferences-dialog.c:739
 msgid "Use _default system settings"
-msgstr ""
+msgstr "_ነባር የ ስርአት ማሰናጃ ይጠቀሙ"
 
 #: ../src/preferences-dialog.c:745
 msgid ""
