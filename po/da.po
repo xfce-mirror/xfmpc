@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Jens Hyllegaard <jens.hyllegaard@gmail.com>, 2008
-# scootergrisen, 2017
+# scootergrisen, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2017-11-03 18:31+0000\n"
+"PO-Revision-Date: 2018-03-04 08:10+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr "Genvejsmenu"
 
 #: ../src/extended-interface.c:969
 msgid "Current Playlist"
-msgstr "Aktuel afspilningsliste"
+msgstr "Nuværende afspilningsliste"
 
 #: ../src/extended-interface.c:975
 msgid "Browse database"
