@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Daniel Muñiz Fontoira <dani@damufo.com>, 2018
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2008-2009
-# Xosé <xosecalvo@gmail.com>, 2017
+# Xosé, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
-"Last-Translator: Xosé <xosecalvo@gmail.com>\n"
+"PO-Revision-Date: 2018-08-01 14:52+0000\n"
+"Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +42,7 @@ msgstr "Modo único"
 
 #: ../src/extended-interface.c:525
 msgid "Consume Mode"
-msgstr ""
+msgstr "Modo de consumo"
 
 #: ../src/extended-interface.c:548
 msgid "_Shortcuts"
