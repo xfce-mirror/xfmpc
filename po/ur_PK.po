@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"PO-Revision-Date: 2018-09-14 00:15+0000\n"
 "Last-Translator: Nick Schermer <nick@xfce.org>\n"
 "Language-Team: Urdu (Pakistan) (http://www.transifex.com/xfce/xfce-apps/language/ur_PK/)\n"
 "MIME-Version: 1.0\n"
@@ -152,7 +152,7 @@ msgstr "مظہر"
 
 #: ../src/preferences-dialog.c:884
 msgid "General"
-msgstr ""
+msgstr "عام"
 
 #: ../src/preferences-dialog.c:893
 msgid "Close window into notification area"
