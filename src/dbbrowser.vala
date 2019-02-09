@@ -404,8 +404,12 @@ namespace Xfmpc {
 		}
 
 		private void cb_replace_with_selected_rows () {
+			var playing = this.mpdclient.is_playing ();
 			this.mpdclient.queue_clear ();
 			add_selected_rows ();
+			if (playing) {
+				this.mpdclient.play ();
+			}
 		}
 
 		private void cb_browse () {
