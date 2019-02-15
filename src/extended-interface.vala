@@ -21,7 +21,7 @@ using Gtk;
 
 namespace Xfmpc {
 
-	public class ExtendedInterface : VBox {
+	public class ExtendedInterface : Box {
 
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
@@ -52,6 +52,8 @@ namespace Xfmpc {
 			this.mpdclient = Xfmpc.Mpdclient.get_default ();
 			this.preferences = Xfmpc.Preferences.get_default ();
 
+			set_orientation (Gtk.Orientation.VERTICAL);
+
 			var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 			pack_start (hbox, false, false, 2);
 
@@ -60,7 +62,7 @@ namespace Xfmpc {
 			button.clicked.connect (cb_playlist_clear);
 			hbox.pack_start (button, false, false, 0);
 
-			var image = new Gtk.Image.from_stock (Gtk.Stock.NEW, Gtk.IconSize.MENU);
+			var image = new Gtk.Image.from_icon_name ("document-new", Gtk.IconSize.MENU);
 			button.set_image (image);
 
 			button = new Gtk.Button ();
@@ -68,7 +70,7 @@ namespace Xfmpc {
 			button.clicked.connect (cb_database_refresh);
 			hbox.pack_start (button, false, false, 0);
 
-			image = new Gtk.Image.from_stock (Gtk.Stock.REFRESH, Gtk.IconSize.MENU);
+			image = new Gtk.Image.from_icon_name ("view-refresh", Gtk.IconSize.MENU);
 			button.set_image (image);
 
 			this.context_button = new Xfce.ArrowButton (Gtk.ArrowType.DOWN);
@@ -134,32 +136,10 @@ namespace Xfmpc {
 			this.single.set_active (this.mpdclient.get_single ());
 			this.consume.set_active (this.mpdclient.get_consume ());
 
-			this.context_menu.popup (null, null,
-					    (Gtk.MenuPositionFunc) this.position_context_menu,
-					    0, get_current_event_time ());
-		}
-
-		private static void position_context_menu (Gtk.Menu menu, int x, int y, bool push_in) {
-			Gtk.Allocation allocation;
-			int root_x;
-			int root_y;
-			int pref_height;
-
-			menu.get_preferred_height (null, out pref_height);
-			(((Gtk.Widget) context_button).get_window ()).get_origin (out root_x, out root_y);
-			((Gtk.Widget) context_button).get_allocation (out allocation);
-
-			x = root_x + allocation.x;
-			y = root_y + allocation.y;
-			x = 0;
-			y = 0;
-
-			if (y > Gdk.Screen.height () - pref_height)
-				y = Gdk.Screen.height () - pref_height;
-			else if (y < 0)
-				y = 0;
-
-			push_in = false;
+			this.context_menu.popup_at_widget ((Gtk.Widget) this.context_button,
+							   Gdk.Gravity.SOUTH_WEST,
+							   Gdk.Gravity.NORTH_WEST,
+							   null);
 		}
 
 		private void context_menu_new (Gtk.Widget attach_widget) {
@@ -187,7 +167,7 @@ namespace Xfmpc {
 			var separator = new Gtk.SeparatorMenuItem ();
 			this.context_menu.append (separator);
 
-			var imi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.PREFERENCES, null);
+			var imi = new Gtk.MenuItem.with_mnemonic (_("_Preferences"));
 			imi.activate.connect (cb_preferences);
 			this.context_menu.append (imi);
 
@@ -195,7 +175,7 @@ namespace Xfmpc {
 			mi.activate.connect (cb_shortcuts);
 			this.context_menu.append (mi);
 
-			imi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.ABOUT, null);
+			imi = new Gtk.MenuItem.with_mnemonic (_("_About"));
 			imi.activate.connect (cb_about);
 			this.context_menu.append (imi);
 

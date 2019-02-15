@@ -52,28 +52,34 @@ enum
     PROP_ARROW_TYPE
 };
 
-static void   xfce_arrow_button_class_init    (XfceArrowButtonClass  *klass);
-static void   xfce_arrow_button_init          (XfceArrowButton       *button);
-static void   xfce_arrow_button_set_property  (GObject               *object,
-                                               guint                  prop_id,
-                                               const GValue          *value,
-                                               GParamSpec            *pspec);
-static void   xfce_arrow_button_get_property  (GObject               *object,
-                                               guint                  prop_id,
-                                               GValue                *value,
-                                               GParamSpec            *pspec);
-static gint   xfce_arrow_button_draw          (GtkWidget             *widget,
-                                               cairo_t               *cr,
-                                               gpointer               user_data);
-static void   xfce_arrow_button_add           (GtkContainer          *container,
-                                               GtkWidget             *child);
-static GType  xfce_arrow_button_child_type    (GtkContainer          *container);
-static void   xfce_arrow_button_get_preferred_width  (GtkWidget      *widget,
-                                                      gint           *minimal_width,
-                                                      gint           *natural_width);
-static void   xfce_arrow_button_get_preferred_height (GtkWidget      *widget,
-                                                      gint           *minimal_height,
-                                                      gint           *natural_height);
+typedef struct {
+    gint x;
+    gint y;
+} xfce_arrow_button_thickness;
+
+static void      xfce_arrow_button_class_init    (XfceArrowButtonClass  *klass);
+static void      xfce_arrow_button_init          (XfceArrowButton       *button);
+static void      xfce_arrow_button_set_property  (GObject               *object,
+                                                  guint                  prop_id,
+                                                  const GValue          *value,
+                                                  GParamSpec            *pspec);
+static void      xfce_arrow_button_get_property  (GObject               *object,
+                                                  guint                  prop_id,
+                                                  GValue                *value,
+                                                  GParamSpec            *pspec);
+static gboolean  xfce_arrow_button_draw          (GtkWidget             *widget,
+                                                  cairo_t               *cr);
+static void      xfce_arrow_button_add           (GtkContainer          *container,
+                                                  GtkWidget             *child);
+static void      xfce_arrow_button_get_thickness (GtkStyleContext *context,
+                                                  xfce_arrow_button_thickness *thickness);
+static GType     xfce_arrow_button_child_type    (GtkContainer          *container);
+static void      xfce_arrow_button_get_preferred_width  (GtkWidget      *widget,
+                                                         gint           *minimal_width,
+                                                         gint           *natural_width);
+static void      xfce_arrow_button_get_preferred_height (GtkWidget      *widget,
+                                                         gint           *minimal_height,
+                                                         gint           *natural_height);
 
 
 /* global vars */
@@ -221,25 +227,23 @@ xfce_arrow_button_get_property (GObject    *object,
 
 
 
-static gint
+static gboolean
 xfce_arrow_button_draw (GtkWidget      *widget,
-                        cairo_t        *cr,
-                        gpointer        user_data)
+                        cairo_t        *cr)
 {
     gint x, y, w;
-    GtkStyle *style;
     GtkStyleContext *context;
+    xfce_arrow_button_thickness thickness;
     GtkAllocation allocation;
 
     if (G_LIKELY (gtk_widget_is_drawable (widget)))
     {
-        style = gtk_widget_get_style (widget);
         context = gtk_widget_get_style_context (widget);
-
+        xfce_arrow_button_get_thickness (context, &thickness);
         gtk_widget_get_allocation (widget, &allocation);
 
-        w = MIN (allocation.height - 2 * style->ythickness,
-                 allocation.width  - 2 * style->xthickness);
+        w = MIN (allocation.height - 2 * thickness.y,
+                 allocation.width  - 2 * thickness.x);
         w = MIN (w, ARROW_WIDTH);
 
         x = (allocation.width - w) / 2;
@@ -265,13 +269,15 @@ xfce_arrow_button_get_preferred_width (GtkWidget *widget,
                                        gint      *minimal_width,
                                        gint      *natural_width)
 {
-    GtkStyle *style;
+    GtkStyleContext *context;
+    xfce_arrow_button_thickness thickness;
     gint size;
 
-    style = gtk_widget_get_style (widget);
+    context = gtk_widget_get_style_context (widget);
+    xfce_arrow_button_get_thickness (context, &thickness);
 
     size = ARROW_WIDTH + ARROW_PADDING +
-                2 * MAX (style->xthickness, style->ythickness);
+                2 * MAX (thickness.x, thickness.y);
 
     *minimal_width = *natural_width = size;
 }
@@ -283,15 +289,38 @@ xfce_arrow_button_get_preferred_height (GtkWidget *widget,
                                         gint      *minimal_height,
                                         gint      *natural_height)
 {
-    GtkStyle *style;
+    GtkStyleContext *context;
+    xfce_arrow_button_thickness thickness;
     gint size;
 
-    style = gtk_widget_get_style (widget);
+    context = gtk_widget_get_style_context (widget);
+    xfce_arrow_button_get_thickness (context, &thickness);
 
     size = ARROW_WIDTH + ARROW_PADDING +
-                2 * MAX (style->xthickness, style->ythickness);
+                2 * MAX (thickness.x, thickness.y);
 
     *minimal_height = *natural_height = size;
+}
+
+
+
+static void
+xfce_arrow_button_get_thickness (GtkStyleContext *context, xfce_arrow_button_thickness *thickness)
+{
+    GtkBorder border;
+    GtkBorder margin;
+    GtkBorder padding;
+    gint xthickness;
+    gint ythickness;
+
+    gtk_style_context_get_border (context, GTK_STATE_FLAG_NORMAL, &border);
+    gtk_style_context_get_margin (context, GTK_STATE_FLAG_NORMAL, &margin);
+    gtk_style_context_get_padding (context, GTK_STATE_FLAG_NORMAL, &padding);
+
+    thickness->x = MAX (border.left + margin.left + padding.left,
+                        border.right + margin.right + padding.right);
+    thickness->y = MAX (border.top + margin.top + padding.top,
+                        border.bottom + margin.bottom + padding.bottom);
 }
 
 

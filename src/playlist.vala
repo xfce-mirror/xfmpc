@@ -21,7 +21,7 @@ using Gtk;
 
 namespace Xfmpc {
 
-	public class Playlist : VBox {
+	public class Playlist : Box {
 
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
@@ -32,8 +32,8 @@ namespace Xfmpc {
 		private Gtk.Menu menu;
 		private static Gtk.Entry filter_entry;
 
-		private Gtk.ImageMenuItem mi_browse;
-		private Gtk.ImageMenuItem mi_information;
+		private Gtk.MenuItem mi_browse;
+		private Gtk.MenuItem mi_information;
 
 		private int current = 0;
 		private bool autocenter;
@@ -51,6 +51,8 @@ namespace Xfmpc {
 		construct {
 			this.mpdclient = Xfmpc.Mpdclient.get_default ();
 			this.preferences = Xfmpc.Preferences.get_default ();
+
+			set_orientation (Gtk.Orientation.VERTICAL);
 
 			this.autocenter = this.preferences.playlist_autocenter;
 
@@ -70,7 +72,6 @@ namespace Xfmpc {
 			this.treeview.set_rubber_banding (true);
   			this.treeview.set_enable_search (false);
 			this.treeview.set_headers_visible (false);
-			this.treeview.set_rules_hint (true);
 			this.treeview.set_model (this.filter);
 
 			var cell = new Gtk.CellRendererText ();
@@ -104,22 +105,20 @@ namespace Xfmpc {
 
 			this.menu = new Gtk.Menu ();
 
-			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.REMOVE, null);
+			var mi = new Gtk.MenuItem.with_mnemonic (_("Remove"));
 			this.menu.append (mi);
 			mi.activate.connect (delete_selection);
-			this.mi_browse = new Gtk.ImageMenuItem.with_mnemonic (_("Browse"));
-			var image = new Gtk.Image.from_stock (Gtk.Stock.OPEN, Gtk.IconSize.MENU);
-			this.mi_browse.set_image (image);
+			this.mi_browse = new Gtk.MenuItem.with_mnemonic (_("Browse"));
 			this.menu.append (this.mi_browse);
 			this.mi_browse.activate.connect (cb_browse_selection);
-			this.mi_information = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.INFO, null);
+			this.mi_information = new Gtk.MenuItem.with_mnemonic (_("Info"));
 			this.menu.append (mi_information);
 			this.mi_information.activate.connect (cb_info_selection);
 
 			this.menu.show_all ();
 
 			this.filter_entry = new Entry ();
-			this.filter_entry.set_icon_from_stock (EntryIconPosition.PRIMARY, Gtk.Stock.FIND);
+			this.filter_entry.set_icon_from_icon_name (EntryIconPosition.PRIMARY, "edit-find");
 			this.filter_entry.set_icon_activatable (EntryIconPosition.PRIMARY, false);
 			this.filter_entry.set_icon_activatable (EntryIconPosition.SECONDARY, true);
 
@@ -316,7 +315,7 @@ namespace Xfmpc {
 		}
 
 		private void menu_popup () {
-			menu.popup (null, null, null, 0, get_current_event_time ());
+			menu.popup_at_pointer (null);
 		}
 
 		private void cb_filter_entry_activated () {
@@ -354,10 +353,10 @@ namespace Xfmpc {
 
 		private void cb_filter_entry_changed () {
 			if (filter_entry.get_text () != "") {
-				filter_entry.set_icon_from_stock (EntryIconPosition.SECONDARY, Gtk.Stock.CLEAR);
+				filter_entry.set_icon_from_icon_name (EntryIconPosition.SECONDARY, "edit-clear");
 			}
 			else {
-				filter_entry.set_icon_from_stock (EntryIconPosition.SECONDARY, null);
+				filter_entry.set_icon_from_icon_name (EntryIconPosition.SECONDARY, null);
 			}
   			this.filter.refilter ();
 		}

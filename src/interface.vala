@@ -21,7 +21,7 @@ using Gtk;
 
 namespace Xfmpc {
 
-	public class Interface : VBox {
+	public class Interface : Box {
 
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
@@ -40,19 +40,20 @@ namespace Xfmpc {
 			this.mpdclient = Xfmpc.Mpdclient.get_default ();
 			this.preferences = Xfmpc.Preferences.get_default ();
 
+			set_orientation (Gtk.Orientation.VERTICAL);
 			set_border_width (4);
 
-			var image = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_PREVIOUS, Gtk.IconSize.BUTTON);
+			var image = new Gtk.Image.from_icon_name ("media-skip-backward", Gtk.IconSize.BUTTON);
 			this.button_prev = new Gtk.Button ();
 			this.button_prev.set_relief (Gtk.ReliefStyle.NONE);
 			this.button_prev.add (image);
 
-			image = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.BUTTON);
+			image = new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.BUTTON);
 			this.button_pp = new Gtk.Button ();
 			this.button_pp.set_relief (Gtk.ReliefStyle.NONE);
 			this.button_pp.add (image);
 
-			image = new Gtk.Image.from_stock (Gtk.Stock.MEDIA_NEXT, Gtk.IconSize.BUTTON);
+			image = new Gtk.Image.from_icon_name ("media-skip-forward", Gtk.IconSize.BUTTON);
 			this.button_next = new Gtk.Button ();
 			this.button_next.set_relief (Gtk.ReliefStyle.NONE);
 			this.button_next.add (image);
@@ -86,7 +87,8 @@ namespace Xfmpc {
 			title.set_attributes (attrs);
 			title.set_selectable (true);
 			title.set_ellipsize (Pango.EllipsizeMode.END);
-			title.set_alignment (0, (float) 0.5);
+			title.xalign = 0.0f;
+			title.yalign = 0.5f;
 
   	  	  	/* Subtitle */
 			attrs = new Pango.AttrList ();
@@ -99,7 +101,8 @@ namespace Xfmpc {
 			this.subtitle.set_attributes (attrs);
 			this.subtitle.set_selectable (true);
 			this.subtitle.set_ellipsize (Pango.EllipsizeMode.END);
-			this.subtitle.set_alignment (0, (float) 0.5);
+			this.subtitle.xalign = 0.0f;
+			this.subtitle.yalign = 0.5f;
 
   	  	  	/* === Containers === */
 			var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -151,9 +154,9 @@ namespace Xfmpc {
 			var image = (Gtk.Image) this.button_pp.get_child ();
 
 			if (play == true)
-				image.set_from_stock (Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.BUTTON);
+				image.set_from_icon_name ("media-playback-pause", Gtk.IconSize.BUTTON);
 			else
-				image.set_from_stock (Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.BUTTON);
+				image.set_from_icon_name ("media-playback-start", Gtk.IconSize.BUTTON);
 		}
 
 		private bool cb_progress_box_motion_event (Gdk.EventMotion event) {

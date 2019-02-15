@@ -102,7 +102,7 @@ namespace Xfmpc {
 				this.entry_passwd.set_text (this.preferences.mpd_password);
 			hbox.pack_start (this.entry_passwd, true, true, 0);
 
-			var button = new Gtk.Button.from_stock (Gtk.Stock.APPLY);
+			var button = new Gtk.Button.with_label (_("Apply"));
 			button.clicked.connect (cb_update_mpd);
 			vbox2.pack_start (button, true, true, 0);
 
@@ -172,52 +172,61 @@ namespace Xfmpc {
 			label = new Gtk.Label (_("Available parameters:"));
 			vbox2.pack_start (label, true, true, 0);
 
-			var table = new Gtk.Table (2, 6, true);
-			table.set_col_spacings (6);
-			table.set_row_spacings (6);
+			var grid = new Gtk.Grid();
+			grid.set_column_spacing (6);
+			grid.set_row_spacing (6);
+			grid.set_column_homogeneous(true);
 
 			var attrs = new Pango.AttrList ();
 			attrs.insert (Pango.attr_scale_new ((double) Pango.Scale.SMALL));
 
 			label = new Gtk.Label (_("%a: Artist"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, 0.5f);
-			table.attach_defaults (label, 1, 2, 0, 1);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			grid.attach (label, 1, 0, 1, 1);
 			label = new Gtk.Label (_("%A: Album"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, 0.5f);
-			table.attach_defaults (label, 1, 2, 1, 2);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			grid.attach (label, 1, 1, 1, 1);
 
 			label = new Gtk.Label (_("%t: Title"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, 0.5f);
-			table.attach_defaults (label, 2, 3, 0, 1);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			grid.attach (label, 2, 0, 1, 1);
 			label = new Gtk.Label (_("%D: Disc"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, 0.5f);
-			table.attach_defaults (label, 2, 3, 1, 2);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			grid.attach (label, 2, 1, 1, 1);
 
 			label = new Gtk.Label (_("%f: File"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, 0.5f);
-			table.attach_defaults (label, 3, 4, 0, 1);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			grid.attach (label, 3, 0, 1, 1);
 			label = new Gtk.Label (_("%g: Genre"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, 0.5f);
-			table.attach_defaults (label, 3, 4, 1, 2);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			grid.attach (label, 3, 1, 1, 1);
 
 			label = new Gtk.Label (_("%d: Date"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, 0.5f);
-			table.attach_defaults (label, 4, 5, 0, 1);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			grid.attach (label, 4, 0, 1, 1);
 			label = new Gtk.Label (_("%T: Track"));
 			label.set_attributes (attrs);
-			label.set_alignment (0, 0.5f);
-			table.attach_defaults (label, 4, 5, 1, 2);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			grid.attach (label, 4, 1, 1, 1);
 
-			vbox2.pack_start (table, true, true, 0);
+			vbox2.pack_start (grid, true, true, 0);
 
-			add_button (Gtk.Stock.CLOSE, Gtk.ResponseType.CLOSE);
+			add_button (_("Close"), Gtk.ResponseType.CLOSE);
 
 			show_all ();
 

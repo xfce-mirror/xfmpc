@@ -106,7 +106,7 @@ struct _XfmpcMpdclientPrivate
   gboolean                  env_cached;
   gboolean                  connecting;
   guint                     connection_count;
-  GMutex                   *mutex;
+  GMutex                    mutex;
 };
 
 
@@ -274,9 +274,7 @@ xfmpc_mpdclient_init (XfmpcMpdclient *mpdclient)
   XfmpcMpdclientPrivate *priv = mpdclient->priv = GET_PRIVATE (mpdclient);
 
   priv->mi = mpd_new_default ();
-
-  if (!g_thread_supported ()) g_thread_init (NULL);
-  priv->mutex = g_mutex_new ();
+  g_mutex_init (&priv->mutex);
 
   mpd_signal_connect_status_changed (priv->mi, (StatusChangedCallback)cb_status_changed, mpdclient);
 }
@@ -288,7 +286,7 @@ xfmpc_mpdclient_finalize (GObject *object)
   XfmpcMpdclientPrivate *priv = XFMPC_MPDCLIENT (mpdclient)->priv;
 
   mpd_free (priv->mi);
-  g_mutex_free (priv->mutex);
+  g_mutex_clear (&priv->mutex);
 
   (*G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
@@ -403,7 +401,7 @@ xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
     return TRUE;
 
   /* return FALSE if a we are already trying to connect to mpd */
-  if (!g_mutex_trylock (priv->mutex))
+  if (!g_mutex_trylock (&priv->mutex))
   {
     g_warning ("Already connecting to mpd");
     return FALSE;
@@ -411,8 +409,8 @@ xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
 
   priv->connecting = TRUE;
 
-  thread = g_thread_create ((GThreadFunc) xfmpc_mpdclient_connect_thread,
-          mpdclient, TRUE, NULL);
+  thread = g_thread_new ("connection thread", (GThreadFunc) xfmpc_mpdclient_connect_thread,
+          mpdclient);
 
   while (priv->connecting)
   {
@@ -425,7 +423,7 @@ xfmpc_mpdclient_connect (XfmpcMpdclient *mpdclient)
 
   g_signal_emit (mpdclient, signals[SIG_CONNECTED], 0);
 
-  g_mutex_unlock (priv->mutex);
+  g_mutex_unlock (&priv->mutex);
 
   return TRUE;
 }

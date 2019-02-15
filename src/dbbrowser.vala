@@ -21,7 +21,7 @@ using Gtk;
 
 namespace Xfmpc {
 
-	public class Dbbrowser : VBox {
+	public class Dbbrowser : Box {
 
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
@@ -30,7 +30,7 @@ namespace Xfmpc {
 		private Gtk.TreeView treeview;
 		private Gtk.Menu menu;
 		private Gtk.Entry search_entry;
-		private Gtk.ImageMenuItem mi_browse;
+		private Gtk.MenuItem mi_browse;
 
 		private string wdir;
 		private string last_wdir;
@@ -55,6 +55,8 @@ namespace Xfmpc {
 			this.wdir = "";
 			this.last_wdir = "";
 
+			set_orientation (Gtk.Orientation.VERTICAL);
+
 			this.store = new Gtk.ListStore (Columns.N_COLUMNS,
 					       	    	typeof (int),
 					       	    	typeof (Gdk.Pixbuf),
@@ -69,7 +71,6 @@ namespace Xfmpc {
   			this.treeview.set_enable_search (true);
 			this.treeview.set_search_column (Columns.COLUMN_BASENAME);
 			this.treeview.set_headers_visible (false);
-			this.treeview.set_rules_hint (true);
 			this.treeview.set_model (this.store);
 
 			var cell_pixbuf = new Gtk.CellRendererPixbuf ();
@@ -89,24 +90,20 @@ namespace Xfmpc {
 
 			this.menu = new Gtk.Menu ();
 
-			var mi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.ADD, null);
+			var mi = new Gtk.MenuItem.with_mnemonic (_("Add"));
 			this.menu.append (mi);
 			mi.activate.connect (add_selected_rows);
-			mi = new Gtk.ImageMenuItem.with_mnemonic (_("Replace"));
-			var image = new Gtk.Image.from_stock (Gtk.Stock.CUT, Gtk.IconSize.MENU);
-			mi.set_image (image);
+			mi = new Gtk.MenuItem.with_mnemonic (_("Replace"));
 			this.menu.append (mi);
 			mi.activate.connect (cb_replace_with_selected_rows);
-			this.mi_browse = new Gtk.ImageMenuItem.with_mnemonic (_("Browse"));
-			image = new Gtk.Image.from_stock (Gtk.Stock.OPEN, Gtk.IconSize.MENU);
-			this.mi_browse.set_image (image);
+			this.mi_browse = new Gtk.MenuItem.with_mnemonic (_("Browse"));
 			this.menu.append (this.mi_browse);
 			this.mi_browse.activate.connect (cb_browse);
 
 			this.menu.show_all ();
 
 			this.search_entry = new Entry ();
-			this.search_entry.set_icon_from_stock (EntryIconPosition.PRIMARY, Gtk.Stock.FIND);
+			this.search_entry.set_icon_from_icon_name (EntryIconPosition.PRIMARY, "edit-find");
 			this.search_entry.set_icon_activatable (EntryIconPosition.PRIMARY, false);
 			this.search_entry.set_icon_activatable (EntryIconPosition.SECONDARY, true);
 
@@ -181,8 +178,9 @@ namespace Xfmpc {
 		public void append (string filename, string basename, bool is_dir, bool is_bold) {
 			Gtk.TreeIter iter;
 
-			var pixbuf = this.treeview.render_icon (is_dir ? Gtk.Stock.DIRECTORY : Gtk.Stock.FILE,
-					                        Gtk.IconSize.MENU, null);
+			var pixbuf = Gtk.IconTheme.get_default ()
+				.load_icon(is_dir ? "folder" : "text-x-generic",
+					   Gtk.IconSize.MENU, 0);
 
 			this.store.append (out iter);
 			this.store.set (iter,
@@ -236,11 +234,8 @@ namespace Xfmpc {
 
 			bool no_result_buf = false, no_result = false;
 
-			Gdk.Color color;
-			Gdk.Color.parse ("white", out color);
-			color.red = 0xFFFF;
-			color.green = 0x6666;
-			color.blue = 0x6666;
+			var color = new Gdk.RGBA ();
+			color.parse ("#F66");
 
 			if (i == 0)
 				no_result = true;
@@ -251,30 +246,30 @@ namespace Xfmpc {
 #if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
 				this.search_entry.modify_base (Gtk.StateType.NORMAL, color);
 #endif
-				this.search_entry.modify_bg (Gtk.StateType.NORMAL, color);
-				this.search_entry.modify_bg (Gtk.StateType.SELECTED, color);
+				this.search_entry.override_background_color (Gtk.StateFlags.NORMAL, color);
+				this.search_entry.override_background_color (Gtk.StateFlags.SELECTED, color);
 			}
 			else if (no_result == no_result_buf && !no_result) {
 #if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-				this.search_entry.modify_base (Gtk.StateType.NORMAL, null);
+				this.search_entry.modify_base (Gtk.StateFlags.NORMAL, null);
 #endif
-				this.search_entry.modify_bg (Gtk.StateType.NORMAL, null);
-				this.search_entry.modify_bg (Gtk.StateType.SELECTED, null);
+				this.search_entry.override_background_color (Gtk.StateFlags.NORMAL, null);
+				this.search_entry.override_background_color (Gtk.StateFlags.SELECTED, null);
 			}
 
 			if (i == 0) {
 #if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-      				this.search_entry.modify_base (Gtk.StateType.NORMAL, color);
+      				this.search_entry.modify_base (Gtk.StateFlags.NORMAL, color);
 #endif
-				this.search_entry.modify_bg (Gtk.StateType.NORMAL, color);
-				this.search_entry.modify_bg (Gtk.StateType.SELECTED, color);
+				this.search_entry.override_background_color (Gtk.StateFlags.NORMAL, color);
+				this.search_entry.override_background_color (Gtk.StateFlags.SELECTED, color);
 			}
 			else if (no_result) {
 #if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-      				this.search_entry.modify_base (Gtk.StateType.NORMAL, null);
+      				this.search_entry.modify_base (Gtk.StateFlags.NORMAL, null);
 #endif
-				this.search_entry.modify_bg (Gtk.StateType.NORMAL, null);
-				this.search_entry.modify_bg (Gtk.StateType.SELECTED, null);
+				this.search_entry.override_background_color (Gtk.StateFlags.NORMAL, null);
+				this.search_entry.override_background_color (Gtk.StateFlags.SELECTED, null);
 			}
 		}
 
@@ -293,7 +288,7 @@ namespace Xfmpc {
 			else
 				this.mi_browse.hide ();
 
-			this.menu.popup (null, null, null, 0, get_current_event_time ());
+			this.menu.popup_at_pointer (null);
 		}
 
 		/*
@@ -440,10 +435,10 @@ namespace Xfmpc {
 
       	      	      	      	/* revert possible previous applied color */
 #if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-				this.search_entry.modify_base (Gtk.StateType.NORMAL, null);
+				this.search_entry.modify_base (Gtk.StateFlags.NORMAL, null);
 #endif
-				this.search_entry.modify_bg (Gtk.StateType.NORMAL, null);
-				this.search_entry.modify_bg (Gtk.StateType.SELECTED, null);
+				this.search_entry.override_background_color (Gtk.StateFlags.NORMAL, null);
+				this.search_entry.override_background_color (Gtk.StateFlags.SELECTED, null);
 
 				return;
 			}
@@ -464,10 +459,10 @@ namespace Xfmpc {
 
 		private void cb_search_entry_changed () {
 			if (search_entry.get_text () != "") {
-				search_entry.set_icon_from_stock (EntryIconPosition.SECONDARY, Gtk.Stock.CLEAR);
+				search_entry.set_icon_from_icon_name (EntryIconPosition.SECONDARY, "edit-clear");
 			}
 			else {
-				search_entry.set_icon_from_stock (EntryIconPosition.SECONDARY, null);
+				search_entry.set_icon_from_icon_name (EntryIconPosition.SECONDARY, null);
 			}
 
 			if (this.search_timeout > 0)

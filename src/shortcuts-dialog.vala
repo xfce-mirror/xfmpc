@@ -28,7 +28,7 @@ namespace Xfmpc {
 			this.title = _("Xfmpc Shortcuts");
 			this.subtitle = _("Control your MPD client with your keyboard");
 
-			add_button (Gtk.Stock.CLOSE, Gtk.ResponseType.CLOSE);
+			add_button (_("Close"), Gtk.ResponseType.CLOSE);
 			this.response.connect ((response) => {
 				switch (response) {
 					case Gtk.ResponseType.CLOSE:
@@ -46,27 +46,33 @@ namespace Xfmpc {
 
 			/* Shortcuts labels */
 			var label = new Gtk.Label (_("Quit: CTRL+q"));
-			label.set_alignment (0.0f, 0.5f);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
 			vbox.add (label);
 
 			label = new Gtk.Label (_("Previous: CTRL+b"));
-			label.set_alignment (0.0f, 0.5f);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
 			vbox.add (label);
 
 			label = new Gtk.Label (_("Play/Pause: CTRL+p"));
-			label.set_alignment (0.0f, 0.5f);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
 			vbox.add (label);
 
 			label = new Gtk.Label (_("Stop: CTRL+s"));
-			label.set_alignment (0.0f, 0.5f);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
 			vbox.add (label);
 
 			label = new Gtk.Label (_("Next: CTRL+f"));
-			label.set_alignment (0.0f, 0.5f);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
 			vbox.add (label);
 
 			label = new Gtk.Label (_("Volume: CTRL+v"));
-			label.set_alignment (0.0f, 0.5f);
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
 			vbox.add (label);
 
 			show_all ();

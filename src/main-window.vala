@@ -96,7 +96,7 @@ namespace Xfmpc {
 			this.vbox.pack_start (this.@interface, false, false, 4);
 
   	  	  	/* Separator */
-			var separator = new Gtk.HSeparator ();
+			var separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
 			this.vbox.pack_start (separator, false, false, 0);
 
   	  	  	/* ExtendedInterface */
@@ -151,7 +151,7 @@ namespace Xfmpc {
 		private void status_icon_popup_menu (uint button, uint activate_time) {
 			if (this.status_icon_menu == null) {
 				this.status_icon_menu = new Gtk.Menu ();
-				var mi = new Gtk.ImageMenuItem.from_stock (Gtk.Stock.QUIT, null);
+				var mi = new Gtk.MenuItem.with_mnemonic (_("Quit"));
 				mi.activate.connect (Gtk.main_quit);
 				this.status_icon_menu.add (mi);
 				this.status_icon_menu.show_all ();
