@@ -31,15 +31,14 @@ namespace Xfmpc {
 		private Gtk.SpinButton entry_port;
 		private Gtk.CheckButton show_status_icon;
 		private Gtk.CheckButton show_statusbar;
-		private Gtk.ComboBox combo_format;
+		private Gtk.ComboBoxText combo_format;
 		private Gtk.Entry entry_custom;
 
 		private uint format_timeout;
 
-		private Gtk.VBox mpd_vbox;
+		private Gtk.Box mpd_vbox;
 
 		construct {
-			this.has_separator = true;
 			this.skip_taskbar_hint = true;
 			this.icon_name = "stock_volume";
 			this.resizable = false;
@@ -50,16 +49,17 @@ namespace Xfmpc {
 
 			var notebook = new Gtk.Notebook ();
 			notebook.set_border_width (6);
-			this.vbox.pack_start (notebook, true, true, 0);
+			this.get_content_area ().pack_start (notebook, true, true, 0);
 
 			/* Mpd Settings */
-			var vbox = new Gtk.VBox (false, 6);
+			var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
 			vbox.set_border_width (6);
 			var label = new Gtk.Label (_("MPD"));
 			notebook.append_page (vbox, label);
 
-			var vbox2 = new Gtk.VBox (false, 6);
+			var vbox2 = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
 			var frame = Xfce.gtk_frame_box_new_with_content (_("Connection"), vbox2);
+			frame.ref_sink ();
 			vbox.pack_start (frame, false, false, 0);
 
 			this.entry_use_defaults = new Gtk.CheckButton.with_mnemonic (_("Use _default system settings"));
@@ -68,13 +68,13 @@ namespace Xfmpc {
 
 			vbox2.pack_start (this.entry_use_defaults, false, false, 0);
 
-			this.mpd_vbox = new Gtk.VBox (false, 6);
+			this.mpd_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
 			vbox2.pack_start (this.mpd_vbox, false, false, 0);
 
 			this.entry_use_defaults.toggled.connect (cb_use_defaults_toggled);
 			this.mpd_vbox.set_sensitive (!this.entry_use_defaults.get_active ());
 
-			var hbox = new Gtk.HBox (false, 2);
+			var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 			this.mpd_vbox.pack_start (hbox, false, false, 0);
 
 			label = new Gtk.Label (_("Hostname:"));
@@ -91,7 +91,7 @@ namespace Xfmpc {
 			this.entry_port.set_value (this.preferences.mpd_port);
 			hbox.pack_start (this.entry_port, true, true, 0);
 
-			hbox = new Gtk.HBox (false, 2);
+			hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 			this.mpd_vbox.pack_start (hbox, false, false, 0);
 
 			label = new Gtk.Label (_("Password:"));
@@ -107,13 +107,14 @@ namespace Xfmpc {
 			vbox2.pack_start (button, true, true, 0);
 
 			/* Display */
-			vbox = new Gtk.VBox (false, 6);
+			vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
 			vbox.set_border_width (6);
 			label = new Gtk.Label (_("Appearance"));
 			notebook.append_page (vbox, label);
 
-			vbox2 = new Gtk.VBox (false, 6);
+			vbox2 = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
 			frame = Xfce.gtk_frame_box_new_with_content (_("General"), vbox2);
+			frame.ref_sink ();
 			vbox.pack_start (frame, false, false, 0);
 
 			this.show_status_icon = new Gtk.CheckButton.with_mnemonic (_("Close window into notification area"));
@@ -126,31 +127,32 @@ namespace Xfmpc {
 			this.show_statusbar.toggled.connect (cb_show_statusbar_toggled);
 			vbox2.pack_start (this.show_statusbar, false, false, 0);
 
-			vbox2 = new Gtk.VBox (false, 6);
+			vbox2 = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
 			frame = Xfce.gtk_frame_box_new_with_content (_("Song Format"), vbox2);
+			frame.ref_sink ();
 			vbox.pack_start (frame, false, false, 0);
 
-			hbox = new Gtk.HBox (false, 2);
+			hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 
 			label = new Gtk.Label (_("Song Format:"));
 			hbox.pack_start (label, false, false, 0);
 
-			this.combo_format = new Gtk.ComboBox.text ();
+			this.combo_format = new Gtk.ComboBoxText ();
 			hbox.pack_start (this.combo_format, true, true, 0);
 
-			this.combo_format.append_text (_("Title"));
-			this.combo_format.append_text (_("Album - Title"));
-			this.combo_format.append_text (_("Artist - Title"));
-			this.combo_format.append_text (_("Artist - Title (Date)"));
-			this.combo_format.append_text (_("Artist - Album - Title"));
-			this.combo_format.append_text (_("Artist - Album - Track. Title"));
-			this.combo_format.append_text (_("Custom..."));
+			this.combo_format.append (null, _("Title"));
+			this.combo_format.append (null, _("Album - Title"));
+			this.combo_format.append (null, _("Artist - Title"));
+			this.combo_format.append (null, _("Artist - Title (Date)"));
+			this.combo_format.append (null, _("Artist - Album - Title"));
+			this.combo_format.append (null, _("Artist - Album - Track. Title"));
+			this.combo_format.append (null, _("Custom..."));
 
 			this.combo_format.set_active (this.preferences.song_format);
 
 			vbox2.pack_start (hbox, true, true, 0);
 
-			hbox = new Gtk.HBox (false, 2);
+			hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 
 			label = new Gtk.Label (_("Custom format:"));
 			hbox.pack_start (label, false, false, 0);

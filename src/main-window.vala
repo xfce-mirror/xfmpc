@@ -32,7 +32,7 @@ namespace Xfmpc {
 		private Xfmpc.Interface @interface;
 		private Xfmpc.ExtendedInterface extended_interface;
 
-		private Gtk.VBox vbox;
+		private Gtk.Box vbox;
 		private Gtk.ActionGroup action_group;
 		private Gtk.UIManager ui_manager;
 		private Xfmpc.Statusbar statusbar;
@@ -81,7 +81,7 @@ namespace Xfmpc {
 			this.delete_event.connect (cb_window_closed);
 			this.window_state_event.connect (cb_window_state_event);
 
-			this.vbox = new Gtk.VBox (false, 0);
+			this.vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 			add (vbox);
 
 			if (this.preferences.last_window_posx != -1 && this.preferences.last_window_posy != -1)
@@ -132,7 +132,7 @@ namespace Xfmpc {
 			this.preferences.notify["show-statusbar"].connect (cb_show_statusbar_changed);
 
   	  	  	/* === Timeout === */
-			Gtk.Timeout.add (1000, refresh);
+			Gdk.threads_add_timeout (1000, refresh);
 		}
 
 		private void show_hide_status_icon () {

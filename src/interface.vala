@@ -102,7 +102,7 @@ namespace Xfmpc {
 			this.subtitle.set_alignment (0, (float) 0.5);
 
   	  	  	/* === Containers === */
-			var box = new Gtk.HBox (false, 0);
+			var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 			pack_start (box, false, false, 0);
 			box.pack_start (this.button_prev, false, false, 0);
 			box.pack_start (this.button_pp, false, false, 0);
@@ -110,7 +110,7 @@ namespace Xfmpc {
 			box.pack_start (progress_box, true, true, 4);
 			box.pack_start (this.button_volume, false, false, 0);
 
-			var vbox = new Gtk.VBox (false, 0);
+			var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 			pack_start (vbox, false, true, 0);
 			vbox.add (this.title);
 			vbox.add (this.subtitle);
@@ -164,7 +164,9 @@ namespace Xfmpc {
 			if (time_total < 0)
 				return false;
 
-			double song_time = event.x / this.progress_bar.allocation.width;
+			Gtk.Allocation allocation;
+			this.progress_bar.get_allocation (out allocation);
+			double song_time = event.x / allocation.width;
 			song_time *= time_total;
 
 			if (song_time < 0)
@@ -193,7 +195,9 @@ namespace Xfmpc {
 			if (time_total < 0)
 				return false;
 
-			double song_time = event.x / this.progress_bar.allocation.width;
+			Gtk.Allocation allocation;
+			this.progress_bar.get_allocation (out allocation);
+			double song_time = event.x / allocation.width;
 			song_time *= time_total;
 
 			this.mpdclient.set_song_time ((int) song_time);

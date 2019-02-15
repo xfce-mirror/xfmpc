@@ -52,7 +52,7 @@ namespace Xfmpc {
 			this.mpdclient = Xfmpc.Mpdclient.get_default ();
 			this.preferences = Xfmpc.Preferences.get_default ();
 
-			var hbox = new Gtk.HBox (false, 2);
+			var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 			pack_start (hbox, false, false, 2);
 
 			var button = new Gtk.Button ();
@@ -121,7 +121,8 @@ namespace Xfmpc {
 				this.combobox.set_active (0);
 
 			this.notebook.append_page (child, null);
-			this.notebook.set_tab_label_packing (child, true, true, Gtk.PackType.START);
+			this.notebook.child_set_property (child, "tab-expand", true);
+			this.notebook.child_set_property (child, "tab-fill", true);
 		}
 
 		private void popup_context_menu () {
@@ -139,18 +140,22 @@ namespace Xfmpc {
 		}
 
 		private static void position_context_menu (Gtk.Menu menu, int x, int y, bool push_in) {
-			Gtk.Requisition menu_req;
+			Gtk.Allocation allocation;
 			int root_x;
 			int root_y;
+			int pref_height;
 
-			menu.size_request (out menu_req);
-			(((Gtk.Widget) context_button).window).get_origin (out root_x, out root_y);
+			menu.get_preferred_height (null, out pref_height);
+			(((Gtk.Widget) context_button).get_window ()).get_origin (out root_x, out root_y);
+			((Gtk.Widget) context_button).get_allocation (out allocation);
 
-			x = root_x + (((Gtk.Widget) context_button).allocation).x;
-			y = root_y + (((Gtk.Widget) context_button).allocation).y;
+			x = root_x + allocation.x;
+			y = root_y + allocation.y;
+			x = 0;
+			y = 0;
 
-			if (y > Gdk.Screen.height () - menu_req.height)
-				y = Gdk.Screen.height () - menu_req.height;
+			if (y > Gdk.Screen.height () - pref_height)
+				y = Gdk.Screen.height () - pref_height;
 			else if (y < 0)
 				y = 0;
 

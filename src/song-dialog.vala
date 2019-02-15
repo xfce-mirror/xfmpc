@@ -27,7 +27,6 @@ namespace Xfmpc {
 		private unowned Xfmpc.SongInfo song;
 
 		public SongDialog (int song_id) {
-			this.has_separator = true;
 			this.skip_taskbar_hint = true;
 			this.icon_name = "stock_volume";
 			this.resizable = false;
@@ -37,15 +36,15 @@ namespace Xfmpc {
 
 			this.title = this.song.title;
 
-			this.vbox.set_spacing (0);
+			this.get_content_area ().set_spacing (0);
 
-			var vbox2 = new Gtk.VBox (false, 0);
+			var vbox2 = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 			var frame = Xfce.gtk_frame_box_new_with_content ("", vbox2);
 
 			var attrs = new Pango.AttrList ();
 			attrs.insert (Pango.attr_weight_new (Pango.Weight.BOLD));
 
-			var hbox = new Gtk.HBox (false, 0);
+			var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 			var label = new Gtk.Label (_("File"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
@@ -53,7 +52,7 @@ namespace Xfmpc {
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			hbox = new Gtk.HBox (false, 0);
+			hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 			label = new Gtk.Label (_("Artist"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
@@ -61,7 +60,7 @@ namespace Xfmpc {
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			hbox = new Gtk.HBox (false, 0);
+			hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 			label = new Gtk.Label (_("Title"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
@@ -69,7 +68,7 @@ namespace Xfmpc {
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			hbox = new Gtk.HBox (false, 0);
+			hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 			label = new Gtk.Label (_("Album"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
@@ -77,7 +76,7 @@ namespace Xfmpc {
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			hbox = new Gtk.HBox (false, 0);
+			hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 			label = new Gtk.Label (_("Date"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
@@ -90,7 +89,7 @@ namespace Xfmpc {
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			hbox = new Gtk.HBox (false, 0);
+			hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 			label = new Gtk.Label (_("Genre"));
 			label.set_attributes (attrs);
 			hbox.pack_start (label, false, false, 5);
@@ -98,7 +97,7 @@ namespace Xfmpc {
 			hbox.pack_start (label, false, false, 5);
 			vbox2.pack_start (hbox, false, false, 6);
 
-			vbox.pack_start (frame, true, true, 0);
+			get_content_area ().pack_start (frame, true, true, 0);
 
 			add_button (Gtk.Stock.CLOSE, Gtk.ResponseType.CLOSE);
 

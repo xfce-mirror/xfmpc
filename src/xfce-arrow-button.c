@@ -62,14 +62,18 @@ static void   xfce_arrow_button_get_property  (GObject               *object,
                                                guint                  prop_id,
                                                GValue                *value,
                                                GParamSpec            *pspec);
-static gint   xfce_arrow_button_expose        (GtkWidget             *widget,
-                                               GdkEventExpose        *event);
-static void   xfce_arrow_button_size_request  (GtkWidget             *widget,
-                                               GtkRequisition        *requisition);
+static gint   xfce_arrow_button_draw          (GtkWidget             *widget,
+                                               cairo_t               *cr,
+                                               gpointer               user_data);
 static void   xfce_arrow_button_add           (GtkContainer          *container,
                                                GtkWidget             *child);
 static GType  xfce_arrow_button_child_type    (GtkContainer          *container);
-
+static void   xfce_arrow_button_get_preferred_width  (GtkWidget      *widget,
+                                                      gint           *minimal_width,
+                                                      gint           *natural_width);
+static void   xfce_arrow_button_get_preferred_height (GtkWidget      *widget,
+                                                      gint           *minimal_height,
+                                                      gint           *natural_height);
 
 
 /* global vars */
@@ -81,7 +85,7 @@ static guint                 arrow_button_signals[LAST_SIGNAL] = { 0 };
 GType
 xfce_arrow_button_get_type (void)
 {
-    static GtkType type = G_TYPE_INVALID;
+    static GType type = G_TYPE_INVALID;
 
     if (G_UNLIKELY (type == G_TYPE_INVALID))
     {
@@ -120,8 +124,9 @@ xfce_arrow_button_class_init (XfceArrowButtonClass * klass)
     gobject_class->set_property = xfce_arrow_button_set_property;
 
     widget_class = GTK_WIDGET_CLASS (klass);
-    widget_class->expose_event  = xfce_arrow_button_expose;
-    widget_class->size_request  = xfce_arrow_button_size_request;
+    widget_class->draw  = xfce_arrow_button_draw;
+    widget_class->get_preferred_width = xfce_arrow_button_get_preferred_width;
+    widget_class->get_preferred_height = xfce_arrow_button_get_preferred_height;
 
     container_class = GTK_CONTAINER_CLASS (klass);
     container_class->add        = xfce_arrow_button_add;
@@ -169,9 +174,7 @@ xfce_arrow_button_class_init (XfceArrowButtonClass * klass)
 static void
 xfce_arrow_button_init (XfceArrowButton * arrow_button)
 {
-    GTK_WIDGET_SET_FLAGS (GTK_WIDGET (arrow_button), GTK_NO_WINDOW);
 
-    arrow_button->arrow_type = DEFAULT_ARROW_TYPE;
 }
 
 
@@ -219,27 +222,37 @@ xfce_arrow_button_get_property (GObject    *object,
 
 
 static gint
-xfce_arrow_button_expose (GtkWidget      *widget,
-                          GdkEventExpose *event)
+xfce_arrow_button_draw (GtkWidget      *widget,
+                        cairo_t        *cr,
+                        gpointer        user_data)
 {
     gint x, y, w;
+    GtkStyle *style;
+    GtkStyleContext *context;
+    GtkAllocation allocation;
 
-    if (G_LIKELY (GTK_WIDGET_DRAWABLE (widget)))
+    if (G_LIKELY (gtk_widget_is_drawable (widget)))
     {
-        w = MIN (widget->allocation.height - 2 * widget->style->ythickness,
-                 widget->allocation.width  - 2 * widget->style->xthickness);
+        style = gtk_widget_get_style (widget);
+        context = gtk_widget_get_style_context (widget);
+
+        gtk_widget_get_allocation (widget, &allocation);
+
+        w = MIN (allocation.height - 2 * style->ythickness,
+                 allocation.width  - 2 * style->xthickness);
         w = MIN (w, ARROW_WIDTH);
 
-        x = widget->allocation.x + (widget->allocation.width - w) / 2;
-        y = widget->allocation.y + (widget->allocation.height - w) / 2;
+        x = (allocation.width - w) / 2;
+        y = (allocation.height - w) / 2;
 
-        GTK_WIDGET_CLASS (parent_class)->expose_event (widget, event);
+        GTK_WIDGET_CLASS (parent_class)->draw (widget, cr);
 
-        gtk_paint_arrow (widget->style, widget->window,
-                         GTK_WIDGET_STATE (widget), GTK_SHADOW_NONE,
-                         &(event->area), widget, "xfce_arrow_button",
-                         XFCE_ARROW_BUTTON (widget)->arrow_type, FALSE,
-                         x, y, w, w);
+        gtk_style_context_save (context);
+        gtk_style_context_set_state (context, gtk_widget_get_state_flags (widget));
+
+        gtk_render_arrow (context, cr, G_PI, x, y, w);
+
+        gtk_style_context_restore (context);
     }
 
     return TRUE;
@@ -248,13 +261,37 @@ xfce_arrow_button_expose (GtkWidget      *widget,
 
 
 static void
-xfce_arrow_button_size_request (GtkWidget      *widget,
-                                GtkRequisition *requisition)
+xfce_arrow_button_get_preferred_width (GtkWidget *widget,
+                                       gint      *minimal_width,
+                                       gint      *natural_width)
 {
-    gint size = ARROW_WIDTH + ARROW_PADDING +
-                2 * MAX (widget->style->xthickness, widget->style->ythickness);
+    GtkStyle *style;
+    gint size;
 
-    requisition->width = requisition->height = size;
+    style = gtk_widget_get_style (widget);
+
+    size = ARROW_WIDTH + ARROW_PADDING +
+                2 * MAX (style->xthickness, style->ythickness);
+
+    *minimal_width = *natural_width = size;
+}
+
+
+
+static void
+xfce_arrow_button_get_preferred_height (GtkWidget *widget,
+                                        gint      *minimal_height,
+                                        gint      *natural_height)
+{
+    GtkStyle *style;
+    gint size;
+
+    style = gtk_widget_get_style (widget);
+
+    size = ARROW_WIDTH + ARROW_PADDING +
+                2 * MAX (style->xthickness, style->ythickness);
+
+    *minimal_height = *natural_height = size;
 }
 
 
@@ -271,7 +308,7 @@ xfce_arrow_button_add (GtkContainer *container,
 static GType
 xfce_arrow_button_child_type (GtkContainer *container)
 {
-    return GTK_TYPE_NONE;
+    return G_TYPE_NONE;
 }
 
 

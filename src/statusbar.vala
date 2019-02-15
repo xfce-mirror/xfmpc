@@ -35,7 +35,6 @@ namespace Xfmpc {
 		}
 
 		construct {
-			set_has_resize_grip (false);
 			this.context_id = get_context_id ("Main text");
 		}
 	}

@@ -22,7 +22,6 @@ namespace Xfmpc {
 	public class ShortcutsDialog : Xfce.TitledDialog {
 
 		construct {
-			this.has_separator = true;
 			this.skip_taskbar_hint = true;
 			this.icon_name = "stock_volume";
 			this.resizable = false;
@@ -38,9 +37,10 @@ namespace Xfmpc {
 				}
 			});
 
-			var content_area = (Gtk.VBox)get_content_area ();
+			var content_area = (Gtk.Box)get_content_area ();
 
-			var vbox = new Gtk.VBox (true, 6);
+			var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
+			vbox.set_homogeneous (true);
 			vbox.set_border_width (6);
 			content_area.add (vbox);
 
