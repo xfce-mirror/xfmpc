@@ -66,6 +66,8 @@ namespace Xfmpc {
 			mpdclient = Xfmpc.Mpdclient.get_default ();
 			preferences = Xfmpc.Preferences.get_default ();
 
+			MainWindow.load_css ();
+
 			/* StatusIcon */
 			this.status_icon = new Gtk.StatusIcon.from_icon_name ("stock_volume");
 			show_hide_status_icon ();
@@ -133,6 +135,18 @@ namespace Xfmpc {
 
   	  	  	/* === Timeout === */
 			Gdk.threads_add_timeout (1000, refresh);
+		}
+
+		private static void load_css () {
+			var provider = new Gtk.CssProvider ();
+			provider.load_from_data (
+				".primary-button { padding-left: 8px; padding-right: 8px; }" +
+				".red { background-color: #FF6666; }",
+				-1);
+			Gtk.StyleContext.add_provider_for_screen (
+				Gdk.Screen.get_default (),
+				provider,
+				Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 		}
 
 		private void show_hide_status_icon () {

@@ -30,7 +30,7 @@ namespace Xfmpc {
 		private Gtk.Button button_pp;
 		private Gtk.Button button_next;
 		private Gtk.VolumeButton button_volume;
-		private Gtk.ProgressBar progress_bar;
+		private Xfmpc.ProgressBar progress_bar;
 		private Gtk.Label title;
 		private Gtk.Label subtitle;
 
@@ -47,29 +47,34 @@ namespace Xfmpc {
 			this.button_prev = new Gtk.Button ();
 			this.button_prev.set_relief (Gtk.ReliefStyle.NONE);
 			this.button_prev.add (image);
+			this.button_prev.get_style_context ().add_class ("primary-button");
 
 			image = new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.BUTTON);
 			this.button_pp = new Gtk.Button ();
 			this.button_pp.set_relief (Gtk.ReliefStyle.NONE);
 			this.button_pp.add (image);
+			this.button_pp.get_style_context ().add_class ("primary-button");
 
 			image = new Gtk.Image.from_icon_name ("media-skip-forward", Gtk.IconSize.BUTTON);
 			this.button_next = new Gtk.Button ();
 			this.button_next.set_relief (Gtk.ReliefStyle.NONE);
 			this.button_next.add (image);
+			this.button_next.get_style_context ().add_class ("primary-button");
 
 			this.button_volume = new Gtk.VolumeButton ();
 			this.button_volume.set_relief (Gtk.ReliefStyle.NONE);
+			this.button_volume.get_style_context ().add_class ("primary-button");
 			var adjustment = button_volume.get_adjustment ();
 			adjustment.upper *= 100;
 			adjustment.step_increment *= 100;
 			adjustment.page_increment *= 100;
 
 			var progress_box = new Gtk.EventBox ();
-			progress_bar = new Gtk.ProgressBar ();
+			progress_bar = new Xfmpc.ProgressBar ();
 			progress_bar.set_text ("0:00 / 0:00");
 			progress_bar.set_fraction (1.0);
 			progress_box.add (progress_bar);
+			progress_box.set_above_child (true);
 
   	  	  	/* Title */
 			var attrs = new Pango.AttrList ();

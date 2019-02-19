@@ -19,6 +19,7 @@ xfmpc_SOURCES =								\
 	main-window.vala						\
 	playlist.vala							\
 	preferences.vala						\
+	progress-bar.vala						\
 	main.vala							\
 	mpdclient.c							\
 	xfce-arrow-button.c

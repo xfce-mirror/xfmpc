@@ -234,42 +234,23 @@ namespace Xfmpc {
 
 			bool no_result_buf = false, no_result = false;
 
-			var color = new Gdk.RGBA ();
-			color.parse ("#F66");
-
 			if (i == 0)
 				no_result = true;
 			else if (no_result)
 				no_result = false;
 
 			if (no_result == no_result_buf && no_result) {
-#if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-				this.search_entry.modify_base (Gtk.StateType.NORMAL, color);
-#endif
-				this.search_entry.override_background_color (Gtk.StateFlags.NORMAL, color);
-				this.search_entry.override_background_color (Gtk.StateFlags.SELECTED, color);
+				this.search_entry.get_style_context ().add_class ("red");
 			}
 			else if (no_result == no_result_buf && !no_result) {
-#if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-				this.search_entry.modify_base (Gtk.StateFlags.NORMAL, null);
-#endif
-				this.search_entry.override_background_color (Gtk.StateFlags.NORMAL, null);
-				this.search_entry.override_background_color (Gtk.StateFlags.SELECTED, null);
+				this.search_entry.get_style_context ().remove_class ("red");
 			}
 
 			if (i == 0) {
-#if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-      				this.search_entry.modify_base (Gtk.StateFlags.NORMAL, color);
-#endif
-				this.search_entry.override_background_color (Gtk.StateFlags.NORMAL, color);
-				this.search_entry.override_background_color (Gtk.StateFlags.SELECTED, color);
+				this.search_entry.get_style_context ().add_class ("red");
 			}
 			else if (no_result) {
-#if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-      				this.search_entry.modify_base (Gtk.StateFlags.NORMAL, null);
-#endif
-				this.search_entry.override_background_color (Gtk.StateFlags.NORMAL, null);
-				this.search_entry.override_background_color (Gtk.StateFlags.SELECTED, null);
+				this.search_entry.get_style_context ().remove_class ("red");
 			}
 		}
 
@@ -434,11 +415,7 @@ namespace Xfmpc {
 				reload ();
 
       	      	      	      	/* revert possible previous applied color */
-#if MORE_FUNKY_COLOR_ON_SEARCH_ENTRY
-				this.search_entry.modify_base (Gtk.StateFlags.NORMAL, null);
-#endif
-				this.search_entry.override_background_color (Gtk.StateFlags.NORMAL, null);
-				this.search_entry.override_background_color (Gtk.StateFlags.SELECTED, null);
+				this.search_entry.get_style_context ().remove_class ("red");
 
 				return;
 			}
@@ -473,6 +450,7 @@ namespace Xfmpc {
 
 		private bool timeout_search () {
 			cb_search_entry_activated ();
+			this.search_timeout = 0;
 			return false;
 		}
 
