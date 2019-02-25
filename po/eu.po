@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# beriain <beriain@bitmessage.ch>, 2019
 # Piarres Beobide <pi@beobide.net>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2018-09-14 00:15+0000\n"
-"Last-Translator: Piarres Beobide <pi@beobide.net>\n"
+"POT-Creation-Date: 2019-02-24 00:31+0100\n"
+"PO-Revision-Date: 2019-02-25 16:27+0000\n"
+"Last-Translator: beriain <beriain@bitmessage.ch>\n"
 "Language-Team: Basque (http://www.transifex.com/xfce/xfce-apps/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,292 +19,330 @@ msgstr ""
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/dbbrowser.c:1508
+#: ../src/dbbrowser.vala:93
+msgid "Add"
+msgstr "Gehitu"
+
+#: ../src/dbbrowser.vala:96
 msgid "Replace"
 msgstr "Ordeztu"
 
-#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
+#: ../src/dbbrowser.vala:99 ../src/playlist.vala:111
 msgid "Browse"
 msgstr "Arakatu"
 
-#: ../src/extended-interface.c:495
-msgid "Repeat"
-msgstr "Errepikatu"
-
-#: ../src/extended-interface.c:505
-msgid "Random"
-msgstr "Ausaz"
-
-#: ../src/extended-interface.c:515
-msgid "Single Mode"
-msgstr "Modu soila"
-
-#: ../src/extended-interface.c:525
-msgid "Consume Mode"
-msgstr "Kontsumo modua"
-
-#: ../src/extended-interface.c:548
-msgid "_Shortcuts"
-msgstr "_Lasterteklak"
-
-#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
-msgid "MPD client written in GTK+ for Xfce"
-msgstr "Xfce-ren GTK+en idatzitako MPD bezeroa"
-
-#: ../src/extended-interface.c:749
-msgid "translator-credits"
-msgstr "Piarres Beobide"
-
-#: ../src/extended-interface.c:890
+#: ../src/extended-interface.vala:61
 msgid "Clear Playlist"
 msgstr "Garbitu erreprodukzio-zerrenda"
 
-#: ../src/extended-interface.c:908
+#: ../src/extended-interface.vala:69
 msgid "Refresh Database"
 msgstr "Freskatu datu-basea"
 
-#: ../src/extended-interface.c:926
+#: ../src/extended-interface.vala:77
 msgid "Context Menu"
 msgstr "Kontestu menua"
 
-#: ../src/extended-interface.c:969
+#: ../src/extended-interface.vala:99
 msgid "Current Playlist"
 msgstr "Uneko erreprodukzio-zerrenda"
 
-#: ../src/extended-interface.c:975
+#: ../src/extended-interface.vala:102
 msgid "Browse database"
 msgstr "Arakatu datu-basea"
 
-#: ../src/interface.c:467
+#: ../src/extended-interface.vala:151
+msgid "Repeat"
+msgstr "Errepikatu"
+
+#: ../src/extended-interface.vala:155
+msgid "Random"
+msgstr "Ausaz"
+
+#: ../src/extended-interface.vala:159
+msgid "Single Mode"
+msgstr "Modu soila"
+
+#: ../src/extended-interface.vala:163
+msgid "Consume Mode"
+msgstr "Kontsumo modua"
+
+#: ../src/extended-interface.vala:170
+msgid "_Preferences"
+msgstr "_Hobespenak"
+
+#: ../src/extended-interface.vala:174
+msgid "_Shortcuts"
+msgstr "_Lasterteklak"
+
+#: ../src/extended-interface.vala:178
+msgid "_About"
+msgstr "_Honi buruz"
+
+#: ../src/extended-interface.vala:258 ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "Xfce-ren GTK+en idatzitako MPD bezeroa"
+
+#: ../src/extended-interface.vala:262
+msgid "translator-credits"
+msgstr "Piarres Beobide"
+
+#: ../src/interface.vala:91 ../src/interface.vala:275
+msgid "Not connected"
+msgstr "Konexio gabe"
+
+#. // write private function in case it is wished to avoid the
+#. // "n/a" values, but no big deal IMO
+#. text = get_subtitle (interface);
+#. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.vala:264
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "\"%s\"-ek \"%s\" (%s)-etik"
 
-#: ../src/interface.c:486
+#: ../src/interface.vala:271
 msgid "Stopped"
 msgstr "Gelditurik"
 
-#: ../src/interface.c:496 ../src/interface.c:916
-msgid "Not connected"
-msgstr "Konexio gabe"
+#: ../src/main-window.vala:168
+msgid "Quit"
+msgstr "Irten"
 
-#: ../src/main-window.c:641
+#: ../src/main-window.vala:298
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d abesti, %d ordu eta %d minutu"
 
-#: ../src/main-window.c:652
+#: ../src/main-window.vala:300
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d abesti, %d minutu"
 
-#: ../src/mpdclient.c:382
-msgid "Failed to connect to MPD"
-msgstr "Huts MPD-rekin konektatzean"
+#: ../src/playlist.vala:108
+msgid "Remove"
+msgstr "Ezabatu"
 
-#: ../src/mpdclient.c:387
-msgid "Connected to MPD"
-msgstr "MPD-reki konektaturik"
+#: ../src/playlist.vala:114
+msgid "Info"
+msgstr "Informazioa"
 
-#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
-msgid "n/a"
-msgstr "e/g"
-
-#: ../src/preferences-dialog.c:701
+#: ../src/preferences-dialog.vala:45
 msgid "Xfmpc Preferences"
 msgstr "Xfmpc hobespenak"
 
-#: ../src/preferences-dialog.c:703
+#: ../src/preferences-dialog.vala:46
 msgid "Customize your MPD client"
 msgstr "Pertsonalizatu zure MPD bezeroa"
 
-#: ../src/preferences-dialog.c:720
+#: ../src/preferences-dialog.vala:57
 msgid "MPD"
 msgstr "MPD"
 
-#: ../src/preferences-dialog.c:731
+#: ../src/preferences-dialog.vala:61
 msgid "Connection"
 msgstr "Konexioa"
 
-#: ../src/preferences-dialog.c:739
+#: ../src/preferences-dialog.vala:65
 msgid "Use _default system settings"
 msgstr "Erabili _lehentsitako sistema ezarpenak"
 
-#: ../src/preferences-dialog.c:745
+#: ../src/preferences-dialog.vala:66
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
 msgstr "Hautaturik badago, Xfmpc MPD_HOST eta MPD_PORT aldagaiak irakurtzen saiatuko da."
 
-#: ../src/preferences-dialog.c:775
+#: ../src/preferences-dialog.vala:80
 msgid "Hostname:"
 msgstr "Ostalari-izena:"
 
-#: ../src/preferences-dialog.c:797
+#: ../src/preferences-dialog.vala:87
 msgid "Port:"
 msgstr "Ataka:"
 
-#: ../src/preferences-dialog.c:826
+#: ../src/preferences-dialog.vala:97
 msgid "Password:"
 msgstr "Pasahitza:"
 
-#: ../src/preferences-dialog.c:871
+#: ../src/preferences-dialog.vala:105
+msgid "Apply"
+msgstr "Aplikatu"
+
+#: ../src/preferences-dialog.vala:112
 msgid "Appearance"
 msgstr "Itxura"
 
-#: ../src/preferences-dialog.c:884
+#: ../src/preferences-dialog.vala:116
 msgid "General"
 msgstr "Orokorra"
 
-#: ../src/preferences-dialog.c:893
+#: ../src/preferences-dialog.vala:120
 msgid "Close window into notification area"
 msgstr "Itxi leihoa berri-emate eremura"
 
-#: ../src/preferences-dialog.c:908
+#: ../src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
 msgstr "Ikusi _egoera-barra"
 
-#: ../src/preferences-dialog.c:927
+#: ../src/preferences-dialog.vala:131
 msgid "Song Format"
 msgstr "Abesti formatua"
 
-#: ../src/preferences-dialog.c:940
+#: ../src/preferences-dialog.vala:137
 msgid "Song Format:"
 msgstr "Abesti formatua:"
 
-#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
+#: ../src/preferences-dialog.vala:143 ../src/song-dialog.vala:64
 msgid "Title"
 msgstr "Izenburua"
 
-#: ../src/preferences-dialog.c:959
+#: ../src/preferences-dialog.vala:144
 msgid "Album - Title"
 msgstr "Albuma - Izenburua"
 
-#: ../src/preferences-dialog.c:962
+#: ../src/preferences-dialog.vala:145
 msgid "Artist - Title"
 msgstr "Artista - Izenburua"
 
-#: ../src/preferences-dialog.c:965
+#: ../src/preferences-dialog.vala:146
 msgid "Artist - Title (Date)"
 msgstr "Artista - Izenburua (data)"
 
-#: ../src/preferences-dialog.c:968
+#: ../src/preferences-dialog.vala:147
 msgid "Artist - Album - Title"
 msgstr "Artista - Albuma - Izenburua"
 
-#: ../src/preferences-dialog.c:971
+#: ../src/preferences-dialog.vala:148
 msgid "Artist - Album - Track. Title"
 msgstr "Artista - Albuma - Pista. Izenburua"
 
-#: ../src/preferences-dialog.c:974
+#: ../src/preferences-dialog.vala:149
 msgid "Custom..."
 msgstr "Pertsonalizatu..."
 
-#: ../src/preferences-dialog.c:988
+#: ../src/preferences-dialog.vala:157
 msgid "Custom format:"
 msgstr "Pertsonalizatutako formatua:"
 
-#: ../src/preferences-dialog.c:1023
+#: ../src/preferences-dialog.vala:172
 msgid "Available parameters:"
 msgstr "Parametro erabilgarriak:"
 
-#: ../src/preferences-dialog.c:1043
+#: ../src/preferences-dialog.vala:183
 #, c-format
 msgid "%a: Artist"
 msgstr "%a: Artista"
 
-#: ../src/preferences-dialog.c:1056
+#: ../src/preferences-dialog.vala:188
 #, c-format
 msgid "%A: Album"
 msgstr "%A: Albuma"
 
-#: ../src/preferences-dialog.c:1069
+#: ../src/preferences-dialog.vala:194
 msgid "%t: Title"
 msgstr "%t: Izenburua"
 
-#: ../src/preferences-dialog.c:1082
+#: ../src/preferences-dialog.vala:199
 msgid "%D: Disc"
 msgstr "%D: Diskoa"
 
-#: ../src/preferences-dialog.c:1095
+#: ../src/preferences-dialog.vala:205
 #, c-format
 msgid "%f: File"
 msgstr "%f: Fitxategia"
 
-#: ../src/preferences-dialog.c:1108
+#: ../src/preferences-dialog.vala:210
 #, c-format
 msgid "%g: Genre"
 msgstr "%g: Generoa"
 
-#: ../src/preferences-dialog.c:1121
+#: ../src/preferences-dialog.vala:216
 #, c-format
 msgid "%d: Date"
 msgstr "%d: Data"
 
-#: ../src/preferences-dialog.c:1134
+#: ../src/preferences-dialog.vala:221
 msgid "%T: Track"
 msgstr "%T: Pista"
 
-#: ../src/shortcuts-dialog.c:161
+#: ../src/preferences-dialog.vala:229 ../src/shortcuts-dialog.vala:31
+#: ../src/song-dialog.vala:102
+msgid "Close"
+msgstr "Itxi"
+
+#: ../src/shortcuts-dialog.vala:28
 msgid "Xfmpc Shortcuts"
 msgstr "Xfmpc laster-teklak"
 
-#: ../src/shortcuts-dialog.c:163
+#: ../src/shortcuts-dialog.vala:29
 msgid "Control your MPD client with your keyboard"
 msgstr "Kontrolatu zure MPD bezeroa teklatuaren bidez"
 
-#: ../src/shortcuts-dialog.c:178
+#. Shortcuts labels
+#: ../src/shortcuts-dialog.vala:48
 msgid "Quit: CTRL+q"
 msgstr "Itxi: Ktrl+Q"
 
-#: ../src/shortcuts-dialog.c:187
+#: ../src/shortcuts-dialog.vala:53
 msgid "Previous: CTRL+b"
 msgstr "Aurrekoa: Ktrl+b"
 
-#: ../src/shortcuts-dialog.c:197
+#: ../src/shortcuts-dialog.vala:58
 msgid "Play/Pause: CTRL+p"
 msgstr "Jo/pausatu: Ktrl+p"
 
-#: ../src/shortcuts-dialog.c:207
+#: ../src/shortcuts-dialog.vala:63
 msgid "Stop: CTRL+s"
 msgstr "Gelditu: Ktrl+s"
 
-#: ../src/shortcuts-dialog.c:217
+#: ../src/shortcuts-dialog.vala:68
 msgid "Next: CTRL+f"
 msgstr "Hurrengoa: Ktrl+f"
 
-#: ../src/shortcuts-dialog.c:227
+#: ../src/shortcuts-dialog.vala:73
 msgid "Volume: CTRL+v"
 msgstr "Bolumena: KTRL+v"
 
-#: ../src/song-dialog.c:239
+#: ../src/song-dialog.vala:48
 msgid "File"
 msgstr "Fitxategia"
 
-#: ../src/song-dialog.c:266
+#: ../src/song-dialog.vala:56
 msgid "Artist"
 msgstr "Artista"
 
-#: ../src/song-dialog.c:316
+#: ../src/song-dialog.vala:72
 msgid "Album"
 msgstr "Albuma"
 
-#: ../src/song-dialog.c:341
+#: ../src/song-dialog.vala:80
 msgid "Date"
 msgstr "Data"
 
-#: ../src/song-dialog.c:360
+#: ../src/song-dialog.vala:85
 msgid "Track"
 msgstr "Pista"
 
-#: ../src/song-dialog.c:385
+#: ../src/song-dialog.vala:93
 msgid "Genre"
 msgstr "Generoa"
 
-#: ../xfmpc.desktop.in.h:1
-msgid "MPD client"
-msgstr "MPD bezeroa"
+#: ../src/mpdclient.c:380
+msgid "Failed to connect to MPD"
+msgstr "Huts MPD-rekin konektatzean"
 
-#: ../xfmpc.desktop.in.h:3
+#: ../src/mpdclient.c:385
+msgid "Connected to MPD"
+msgstr "MPD-reki konektaturik"
+
+#: ../src/mpdclient.c:625 ../src/mpdclient.c:655 ../src/mpdclient.c:670
+msgid "n/a"
+msgstr "e/g"
+
+#: ../xfmpc.desktop.in.h:1
 msgid "Xfmpc"
 msgstr "Xfmpc"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "MPD client"
+msgstr "MPD bezeroa"
