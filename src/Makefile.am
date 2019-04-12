@@ -1,4 +1,4 @@
-INCLUDES =								\
+AM_CPPFLAGS =								\
 	-I${top_srcdir}							\
 	-DGETTEXT_PACKAGE=\""$(GETTEXT_PACKAGE)"\"			\
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"				\

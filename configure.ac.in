@@ -22,6 +22,7 @@ AC_COPYRIGHT([Copyright (c) 2008
 AC_INIT([Xfmpc], [xfmpc_version], [http://bugzilla.xfce.org/], [xfmpc],
         [http://goodies.xfce.org/projects/applications/xfmpc])
 AC_PREREQ([2.50])
+AC_CONFIG_MACRO_DIR([m4])
 AC_CANONICAL_TARGET()
 AC_REVISION([xfmpc_version_build])
 
@@ -40,7 +41,7 @@ AC_PROG_CC()
 AM_PROG_CC_C_O()
 AC_PROG_LD()
 AC_PROG_INSTALL()
-AC_PROG_INTLTOOL()
+IT_PROG_INTLTOOL([0.35.0])
 
 dnl **************************
 dnl *** Initialize libtool ***
