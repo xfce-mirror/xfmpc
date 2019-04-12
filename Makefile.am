@@ -1,7 +1,7 @@
-SUBDIRS =								\
-	src								\
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
+SUBDIRS =									\
+	src										\
 	po
 
 dist_man_MANS = xfmpc.1
@@ -21,26 +21,26 @@ ChangeLog: Makefile
 dist-hook: ChangeLog
 
 EXTRA_DIST =								\
-	third-party							\
-	IDEAS								\
+	third-party								\
+	IDEAS									\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in						\
 	$(desktop_in_files)
 
-MAINTAINERCLEANFILES =							\
-        aclocal.m4                                                      \
-        compile                                                         \
-        config.guess                                                    \
-        config.h.in                                                     \
-        config.sub                                                      \
-        configure                                                       \
-        configure.ac                                                    \
-        depcomp                                                         \
-        install-sh                                                      \
-        ltmain.sh                                                       \
-        missing                                                         \
-        mkinstalldirs                                                   \
+MAINTAINERCLEANFILES =						\
+	aclocal.m4								\
+	compile									\
+	config.guess							\
+	config.h.in								\
+	config.sub								\
+	configure								\
+	configure.ac							\
+	depcomp									\
+	install-sh								\
+	ltmain.sh								\
+	missing									\
+	mkinstalldirs							\
 	intltool-extract						\
 	intltool-merge							\
 	intltool-update
