@@ -5,7 +5,7 @@ aclocal.m4
 compile
 config.*
 configure
-configure.in
+configure.ac
 depcomp
 install-sh
 intltool-*
