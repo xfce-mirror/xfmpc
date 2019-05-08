@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-23 17:29+0200\n"
-"PO-Revision-Date: 2018-09-14 00:15+0000\n"
-"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"POT-Creation-Date: 2019-02-24 00:31+0100\n"
+"PO-Revision-Date: 2019-02-23 23:31+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Icelandic (http://www.transifex.com/xfce/xfce-apps/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,292 +19,330 @@ msgstr ""
 "Language: is\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
-#: ../src/dbbrowser.c:1508
+#: ../src/dbbrowser.vala:93
+msgid "Add"
+msgstr "Bæta við"
+
+#: ../src/dbbrowser.vala:96
 msgid "Replace"
 msgstr "Skipta út"
 
-#: ../src/dbbrowser.c:1524 ../src/playlist.c:1511
+#: ../src/dbbrowser.vala:99 ../src/playlist.vala:111
 msgid "Browse"
 msgstr "Flakka"
 
-#: ../src/extended-interface.c:495
-msgid "Repeat"
-msgstr "Endurtaka"
-
-#: ../src/extended-interface.c:505
-msgid "Random"
-msgstr "Slembið"
-
-#: ../src/extended-interface.c:515
-msgid "Single Mode"
-msgstr "Eins-lags-hamur"
-
-#: ../src/extended-interface.c:525
-msgid "Consume Mode"
-msgstr "Fjarlægja-spiluð-lög-hamur"
-
-#: ../src/extended-interface.c:548
-msgid "_Shortcuts"
-msgstr "_Flýtileiðir"
-
-#: ../src/extended-interface.c:747 ../xfmpc.desktop.in.h:2
-msgid "MPD client written in GTK+ for Xfce"
-msgstr "MPD forrit skrifað í GTK+ fyrir Xfce"
-
-#: ../src/extended-interface.c:749
-msgid "translator-credits"
-msgstr "Sveinn í Felli, sv1@fellsnet.is, 2013"
-
-#: ../src/extended-interface.c:890
+#: ../src/extended-interface.vala:61
 msgid "Clear Playlist"
 msgstr "Hreinsa spilunarlista"
 
-#: ../src/extended-interface.c:908
+#: ../src/extended-interface.vala:69
 msgid "Refresh Database"
 msgstr "Endurlesa gagnagrunn"
 
-#: ../src/extended-interface.c:926
+#: ../src/extended-interface.vala:77
 msgid "Context Menu"
 msgstr "Samhengisvalmynd"
 
-#: ../src/extended-interface.c:969
+#: ../src/extended-interface.vala:99
 msgid "Current Playlist"
 msgstr "Núverandi spilunarlisti"
 
-#: ../src/extended-interface.c:975
+#: ../src/extended-interface.vala:102
 msgid "Browse database"
 msgstr "Fletta í gagnagrunni"
 
-#: ../src/interface.c:467
+#: ../src/extended-interface.vala:151
+msgid "Repeat"
+msgstr "Endurtaka"
+
+#: ../src/extended-interface.vala:155
+msgid "Random"
+msgstr "Slembið"
+
+#: ../src/extended-interface.vala:159
+msgid "Single Mode"
+msgstr "Eins-lags-hamur"
+
+#: ../src/extended-interface.vala:163
+msgid "Consume Mode"
+msgstr "Fjarlægja-spiluð-lög-hamur"
+
+#: ../src/extended-interface.vala:170
+msgid "_Preferences"
+msgstr "_Kjörstillingar"
+
+#: ../src/extended-interface.vala:174
+msgid "_Shortcuts"
+msgstr "_Flýtileiðir"
+
+#: ../src/extended-interface.vala:178
+msgid "_About"
+msgstr "_Um forritið"
+
+#: ../src/extended-interface.vala:258 ../xfmpc.desktop.in.h:2
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "MPD forrit skrifað í GTK+ fyrir Xfce"
+
+#: ../src/extended-interface.vala:262
+msgid "translator-credits"
+msgstr "Sveinn í Felli, sv1@fellsnet.is, 2013"
+
+#: ../src/interface.vala:91 ../src/interface.vala:275
+msgid "Not connected"
+msgstr "Ekki tengt"
+
+#. // write private function in case it is wished to avoid the
+#. // "n/a" values, but no big deal IMO
+#. text = get_subtitle (interface);
+#. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
+#: ../src/interface.vala:264
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "eftir \"%s\" af \"%s\" (%s)"
 
-#: ../src/interface.c:486
+#: ../src/interface.vala:271
 msgid "Stopped"
 msgstr "Stöðvað"
 
-#: ../src/interface.c:496 ../src/interface.c:916
-msgid "Not connected"
-msgstr "Ekki tengt"
+#: ../src/main-window.vala:168
+msgid "Quit"
+msgstr "Hætta"
 
-#: ../src/main-window.c:641
+#: ../src/main-window.vala:298
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d lög, %d klukkustundir og %d mínútur"
 
-#: ../src/main-window.c:652
+#: ../src/main-window.vala:300
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d lög, %d mínútur"
 
-#: ../src/mpdclient.c:382
-msgid "Failed to connect to MPD"
-msgstr "Gat ekki tengst MPD"
+#: ../src/playlist.vala:108
+msgid "Remove"
+msgstr "Fjarlægja"
 
-#: ../src/mpdclient.c:387
-msgid "Connected to MPD"
-msgstr "Tengt við MPD"
+#: ../src/playlist.vala:114
+msgid "Info"
+msgstr ""
 
-#: ../src/mpdclient.c:627 ../src/mpdclient.c:657 ../src/mpdclient.c:672
-msgid "n/a"
-msgstr "ekki tiltækt"
-
-#: ../src/preferences-dialog.c:701
+#: ../src/preferences-dialog.vala:45
 msgid "Xfmpc Preferences"
 msgstr "Kjörstillingar XFMPC"
 
-#: ../src/preferences-dialog.c:703
+#: ../src/preferences-dialog.vala:46
 msgid "Customize your MPD client"
 msgstr "Sérsníddu MPD forritið"
 
-#: ../src/preferences-dialog.c:720
+#: ../src/preferences-dialog.vala:57
 msgid "MPD"
 msgstr "MPD"
 
-#: ../src/preferences-dialog.c:731
+#: ../src/preferences-dialog.vala:61
 msgid "Connection"
 msgstr "Tenging"
 
-#: ../src/preferences-dialog.c:739
+#: ../src/preferences-dialog.vala:65
 msgid "Use _default system settings"
 msgstr "_Nota sjálfgefnar stillingar kerfis"
 
-#: ../src/preferences-dialog.c:745
+#: ../src/preferences-dialog.vala:66
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
 msgstr "Ef hakað er við þetta, mun Xfmpc reyna að lesa umhverfisbreyturnar MPD_HOST og MPD_PORT en annars nota localhost"
 
-#: ../src/preferences-dialog.c:775
+#: ../src/preferences-dialog.vala:80
 msgid "Hostname:"
 msgstr "Vélarheiti:"
 
-#: ../src/preferences-dialog.c:797
+#: ../src/preferences-dialog.vala:87
 msgid "Port:"
 msgstr "Gátt:"
 
-#: ../src/preferences-dialog.c:826
+#: ../src/preferences-dialog.vala:97
 msgid "Password:"
 msgstr "Lykilorð:"
 
-#: ../src/preferences-dialog.c:871
+#: ../src/preferences-dialog.vala:105
+msgid "Apply"
+msgstr ""
+
+#: ../src/preferences-dialog.vala:112
 msgid "Appearance"
 msgstr "Útlit"
 
-#: ../src/preferences-dialog.c:884
+#: ../src/preferences-dialog.vala:116
 msgid "General"
 msgstr "Almennt"
 
-#: ../src/preferences-dialog.c:893
+#: ../src/preferences-dialog.vala:120
 msgid "Close window into notification area"
 msgstr "Loka glugga inn á tilkynningasvæði"
 
-#: ../src/preferences-dialog.c:908
+#: ../src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
 msgstr "Birta _stöðustiku"
 
-#: ../src/preferences-dialog.c:927
+#: ../src/preferences-dialog.vala:131
 msgid "Song Format"
 msgstr "Snið lags"
 
-#: ../src/preferences-dialog.c:940
+#: ../src/preferences-dialog.vala:137
 msgid "Song Format:"
 msgstr "Snið lags:"
 
-#: ../src/preferences-dialog.c:956 ../src/song-dialog.c:291
+#: ../src/preferences-dialog.vala:143 ../src/song-dialog.vala:64
 msgid "Title"
 msgstr "Titill"
 
-#: ../src/preferences-dialog.c:959
+#: ../src/preferences-dialog.vala:144
 msgid "Album - Title"
 msgstr "Albúm - Titill"
 
-#: ../src/preferences-dialog.c:962
+#: ../src/preferences-dialog.vala:145
 msgid "Artist - Title"
 msgstr "Flytjandi - Titill"
 
-#: ../src/preferences-dialog.c:965
+#: ../src/preferences-dialog.vala:146
 msgid "Artist - Title (Date)"
 msgstr "Flytjandi - Titill (dagsetning)"
 
-#: ../src/preferences-dialog.c:968
+#: ../src/preferences-dialog.vala:147
 msgid "Artist - Album - Title"
 msgstr "Flytjandi - Albúm - Titill"
 
-#: ../src/preferences-dialog.c:971
+#: ../src/preferences-dialog.vala:148
 msgid "Artist - Album - Track. Title"
 msgstr "Flytjandi - Albúm - Spor, Titill"
 
-#: ../src/preferences-dialog.c:974
+#: ../src/preferences-dialog.vala:149
 msgid "Custom..."
 msgstr "Sérsniðið..."
 
-#: ../src/preferences-dialog.c:988
+#: ../src/preferences-dialog.vala:157
 msgid "Custom format:"
 msgstr "Sérsnið:"
 
-#: ../src/preferences-dialog.c:1023
+#: ../src/preferences-dialog.vala:172
 msgid "Available parameters:"
 msgstr "Tiltækar breytur:"
 
-#: ../src/preferences-dialog.c:1043
+#: ../src/preferences-dialog.vala:183
 #, c-format
 msgid "%a: Artist"
 msgstr "%a: flytjandi"
 
-#: ../src/preferences-dialog.c:1056
+#: ../src/preferences-dialog.vala:188
 #, c-format
 msgid "%A: Album"
 msgstr "%A: albúm"
 
-#: ../src/preferences-dialog.c:1069
+#: ../src/preferences-dialog.vala:194
 msgid "%t: Title"
 msgstr "%t: titill"
 
-#: ../src/preferences-dialog.c:1082
+#: ../src/preferences-dialog.vala:199
 msgid "%D: Disc"
 msgstr "%D: diskur/plata"
 
-#: ../src/preferences-dialog.c:1095
+#: ../src/preferences-dialog.vala:205
 #, c-format
 msgid "%f: File"
 msgstr "%f: skrá"
 
-#: ../src/preferences-dialog.c:1108
+#: ../src/preferences-dialog.vala:210
 #, c-format
 msgid "%g: Genre"
 msgstr "%g: tegund"
 
-#: ../src/preferences-dialog.c:1121
+#: ../src/preferences-dialog.vala:216
 #, c-format
 msgid "%d: Date"
 msgstr "%d: dagsetning"
 
-#: ../src/preferences-dialog.c:1134
+#: ../src/preferences-dialog.vala:221
 msgid "%T: Track"
 msgstr "%T: spor"
 
-#: ../src/shortcuts-dialog.c:161
+#: ../src/preferences-dialog.vala:229 ../src/shortcuts-dialog.vala:31
+#: ../src/song-dialog.vala:102
+msgid "Close"
+msgstr "Loka"
+
+#: ../src/shortcuts-dialog.vala:28
 msgid "Xfmpc Shortcuts"
 msgstr "Flýtilyklar XFMPC"
 
-#: ../src/shortcuts-dialog.c:163
+#: ../src/shortcuts-dialog.vala:29
 msgid "Control your MPD client with your keyboard"
 msgstr "Stjórnaðu MPD forritinu með lyklaborðinu"
 
-#: ../src/shortcuts-dialog.c:178
+#. Shortcuts labels
+#: ../src/shortcuts-dialog.vala:48
 msgid "Quit: CTRL+q"
 msgstr "Hætta: CTRL+q"
 
-#: ../src/shortcuts-dialog.c:187
+#: ../src/shortcuts-dialog.vala:53
 msgid "Previous: CTRL+b"
 msgstr "Fyrra: CTRL+b"
 
-#: ../src/shortcuts-dialog.c:197
+#: ../src/shortcuts-dialog.vala:58
 msgid "Play/Pause: CTRL+p"
 msgstr "Spila/Bíða: CTRL+p"
 
-#: ../src/shortcuts-dialog.c:207
+#: ../src/shortcuts-dialog.vala:63
 msgid "Stop: CTRL+s"
 msgstr "Stöðva: CTRL+s"
 
-#: ../src/shortcuts-dialog.c:217
+#: ../src/shortcuts-dialog.vala:68
 msgid "Next: CTRL+f"
 msgstr "Næsta: CTRL+f"
 
-#: ../src/shortcuts-dialog.c:227
+#: ../src/shortcuts-dialog.vala:73
 msgid "Volume: CTRL+v"
 msgstr "Hljóðstyrkur: CTRL+v"
 
-#: ../src/song-dialog.c:239
+#: ../src/song-dialog.vala:48
 msgid "File"
 msgstr "Skrá"
 
-#: ../src/song-dialog.c:266
+#: ../src/song-dialog.vala:56
 msgid "Artist"
 msgstr "Flytjandi"
 
-#: ../src/song-dialog.c:316
+#: ../src/song-dialog.vala:72
 msgid "Album"
 msgstr "Albúm"
 
-#: ../src/song-dialog.c:341
+#: ../src/song-dialog.vala:80
 msgid "Date"
 msgstr "Dagsetning"
 
-#: ../src/song-dialog.c:360
+#: ../src/song-dialog.vala:85
 msgid "Track"
 msgstr "Spor"
 
-#: ../src/song-dialog.c:385
+#: ../src/song-dialog.vala:93
 msgid "Genre"
 msgstr "Tegund"
 
-#: ../xfmpc.desktop.in.h:1
-msgid "MPD client"
-msgstr "MPD biðlari"
+#: ../src/mpdclient.c:380
+msgid "Failed to connect to MPD"
+msgstr "Gat ekki tengst MPD"
 
-#: ../xfmpc.desktop.in.h:3
+#: ../src/mpdclient.c:385
+msgid "Connected to MPD"
+msgstr "Tengt við MPD"
+
+#: ../src/mpdclient.c:625 ../src/mpdclient.c:655 ../src/mpdclient.c:670
+msgid "n/a"
+msgstr "ekki tiltækt"
+
+#: ../xfmpc.desktop.in.h:1
 msgid "Xfmpc"
 msgstr "XFMPC"
+
+#: ../xfmpc.desktop.in.h:3
+msgid "MPD client"
+msgstr "MPD biðlari"
