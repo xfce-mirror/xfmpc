@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-05-10 10:22+0000\n"
+"PO-Revision-Date: 2019-05-10 11:26+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic (http://www.transifex.com/xfce/xfce-apps/language/is/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "Samhengisvalmynd"
 
 #: ../src/extended-interface.vala:99
 msgid "Current Playlist"
-msgstr "Núverandi spilunarlisti"
+msgstr "Núgildandi spilunarlisti"
 
 #: ../src/extended-interface.vala:102
 msgid "Browse database"
