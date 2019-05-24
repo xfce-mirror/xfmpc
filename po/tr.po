@@ -5,13 +5,14 @@
 # Translators:
 # Demiray Muhterem <mdemiray@msn.com>, 2019
 # Gökmen Görgen <gkmngrgn@gmail.com>, 2008
+# Serdar Sağlam <teknomobil@msn.com>, 2019
 # Volkan Gezer <volkangezer@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-05-23 15:41+0000\n"
+"PO-Revision-Date: 2019-05-24 01:08+0000\n"
 "Last-Translator: Serdar Sağlam <teknomobil@msn.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/xfce/xfce-apps/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +43,7 @@ msgstr "Veritabanını Yenile"
 
 #: ../src/extended-interface.vala:77
 msgid "Context Menu"
-msgstr "Toplu Menü"
+msgstr "Bağlam Menüsü"
 
 #: ../src/extended-interface.vala:99
 msgid "Current Playlist"
@@ -50,7 +51,7 @@ msgstr "Etkin Çalma Listesi"
 
 #: ../src/extended-interface.vala:102
 msgid "Browse database"
-msgstr "Veritabanında Arama"
+msgstr "Veritabanına göz at"
 
 #: ../src/extended-interface.vala:151
 msgid "Repeat"
@@ -86,7 +87,7 @@ msgstr "Xfce için GTK+ ile yazılmış MPD istemcisi"
 
 #: ../src/extended-interface.vala:262
 msgid "translator-credits"
-msgstr "Gökmen Görgen <gkmngrgn@gmail.com>, 2008\nSamed Beyribey <ras0ir@eventualis.org>, 2009"
+msgstr "Gökmen Görgen <gkmngrgn@gmail.com>, 2008\nSamed Beyribey <ras0ir@eventualis.org>, 2009\nSerdar Sağlam <teknomobil@yandex.com>, 2019"
 
 #: ../src/interface.vala:91 ../src/interface.vala:275
 msgid "Not connected"
