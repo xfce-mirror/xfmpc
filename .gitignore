@@ -20,6 +20,7 @@ autom4te.cache
 *.swp
 *.o
 *.gmo
+po/.intltool-merge-cache
 po/Makefile.in.in
 po/POTFILES
 po/stamp-it
