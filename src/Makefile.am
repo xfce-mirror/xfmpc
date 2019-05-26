@@ -49,6 +49,8 @@ xfmpc_LDADD =								\
 	@LIBXFCE4UTIL_LIBS@						\
 	@LIBMPD_LIBS@
 
+BUILT_SOURCES = xfmpc_vala.stamp
+
 EXTRA_DIST =								\
 	mpdclient.h							\
 	mpdclient.vapi							\
