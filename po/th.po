@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2015
+# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2015,2019
 # Theppitak Karoonboonyanan <theppitak@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-02-23 23:31+0000\n"
+"PO-Revision-Date: 2019-05-27 08:05+0000\n"
 "Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/xfce/xfce-apps/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -120,11 +120,11 @@ msgstr "%d เพลง, %d นาที"
 
 #: ../src/playlist.vala:108
 msgid "Remove"
-msgstr "ลบ"
+msgstr "ลบออก"
 
 #: ../src/playlist.vala:114
 msgid "Info"
-msgstr ""
+msgstr "ข้อมูล"
 
 #: ../src/preferences-dialog.vala:45
 msgid "Xfmpc Preferences"
@@ -166,7 +166,7 @@ msgstr "รหัสผ่าน:"
 
 #: ../src/preferences-dialog.vala:105
 msgid "Apply"
-msgstr ""
+msgstr "เริ่มใช้"
 
 #: ../src/preferences-dialog.vala:112
 msgid "Appearance"
