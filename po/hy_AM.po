@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Hayk Andreasyan <hayk.andreasyan@realschool.am>, 2019
 # Real School <translator_students@realschool.am>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-06-14 12:04+0000\n"
+"PO-Revision-Date: 2019-06-16 18:09+0000\n"
 "Last-Translator: Hayk Andreasyan <hayk.andreasyan@realschool.am>\n"
 "Language-Team: Armenian (Armenia) (http://www.transifex.com/xfce/xfce-apps/language/hy_AM/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +37,7 @@ msgstr "Մաքրել նուագացուցակը"
 
 #: ../src/extended-interface.vala:69
 msgid "Refresh Database"
-msgstr "Թարմեցնել Տուեալների շտեմարանը"
+msgstr "Թարմեցնել տուեալների շտեմարանը"
 
 #: ../src/extended-interface.vala:77
 msgid "Context Menu"
@@ -80,11 +81,11 @@ msgstr "_Ծրագրի մասին"
 
 #: ../src/extended-interface.vala:258 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "MPD սպասառուն գրուած է GTK+ ֊ում Xfce֊ի համար"
+msgstr "MPD սպասառու՝ գրուած GTK+ ֊ում, Xfce֊ի համար"
 
 #: ../src/extended-interface.vala:262
 msgid "translator-credits"
-msgstr "E-Hayq LLC, 2018"
+msgstr "E-Hayq LLC, 2019"
 
 #: ../src/interface.vala:91 ../src/interface.vala:275
 msgid "Not connected"
@@ -110,12 +111,12 @@ msgstr "Լքել"
 #: ../src/main-window.vala:298
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr "%d երգ, %d ժամ եւ %d րոպե"
+msgstr "%d երգ, %d ժամ եւ %d րոպէ"
 
 #: ../src/main-window.vala:300
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr "%d երգ, %d րոպե"
+msgstr "%d երգ, %d րոպէ"
 
 #: ../src/playlist.vala:108
 msgid "Remove"
@@ -123,15 +124,15 @@ msgstr "Հեռացնել"
 
 #: ../src/playlist.vala:114
 msgid "Info"
-msgstr "Տեղեկութիւն"
+msgstr "Տեղեկոյթ"
 
 #: ../src/preferences-dialog.vala:45
 msgid "Xfmpc Preferences"
-msgstr "Xfmpc նախընտրութիւններ"
+msgstr "Xfmpc֊ի կարգաւորումներ"
 
 #: ../src/preferences-dialog.vala:46
 msgid "Customize your MPD client"
-msgstr "Յարմարեցնել Ձեր  MPD հաճախորդը"
+msgstr "Կարգաւորել MPD֊ին "
 
 #: ../src/preferences-dialog.vala:57
 msgid "MPD"
@@ -143,17 +144,17 @@ msgstr "Միացում"
 
 #: ../src/preferences-dialog.vala:65
 msgid "Use _default system settings"
-msgstr "Աւգտագործել _լռելեայն համակարգի կարգաւորումներ"
+msgstr "Աւգտագործել համակարգի _լռելեայն կարգաւորումները"
 
 #: ../src/preferences-dialog.vala:66
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr "Եթե ստուգուած է, Xfmpc֊ն կփորձի ընթերցել ապահովման MPD_HOST and MPD_PORT փոփոխականները, այլ դեպքում այն կաւգտագործի տեղային խնամորդը։"
+msgstr "Xfmpc֊ին կը փորձի ընթերցել ապահովման MPD_HOST եւ MPD_PORT փոփոխականները, այլ դէպքում՝ կաւգտագործուիի տեղային խնամորդը։"
 
 #: ../src/preferences-dialog.vala:80
 msgid "Hostname:"
-msgstr "Խնամորգի անուն․"
+msgstr "Խնամորդի անուն․"
 
 #: ../src/preferences-dialog.vala:87
 msgid "Port:"
@@ -177,11 +178,11 @@ msgstr "Ընդհանուր"
 
 #: ../src/preferences-dialog.vala:120
 msgid "Close window into notification area"
-msgstr "Փակել պատուհանը դեպի ծանուցումների դաշտ"
+msgstr "Փակել պատուհանը դէպի ծանուցումների դաշտ"
 
 #: ../src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
-msgstr "Ցուցադրել _վիճակագոտին"
+msgstr "Ցուցադրել _վիճակագաւտին"
 
 #: ../src/preferences-dialog.vala:131
 msgid "Song Format"
@@ -217,15 +218,15 @@ msgstr "Հեղինակ ֊ Հաւաքածու ֊ Շաւիղ․ Անուն"
 
 #: ../src/preferences-dialog.vala:149
 msgid "Custom..."
-msgstr "Հարմարեցուած․․․"
+msgstr "Ընտրովի․․․"
 
 #: ../src/preferences-dialog.vala:157
 msgid "Custom format:"
-msgstr "Հարմարեցուած ձեւաչափ․"
+msgstr "Ընտրովի ձեւաչափ․"
 
 #: ../src/preferences-dialog.vala:172
 msgid "Available parameters:"
-msgstr "Հասանելի ընտրանքներ․"
+msgstr "Հասանելի ընտրանք․"
 
 #: ../src/preferences-dialog.vala:183
 #, c-format
@@ -275,7 +276,7 @@ msgstr "Xfmpc Դիւրանցում"
 
 #: ../src/shortcuts-dialog.vala:29
 msgid "Control your MPD client with your keyboard"
-msgstr "Կառավարեք Ձեր MPD սպասառուն ստեղնաշարով"
+msgstr "Կառավարէք MPD սպասառուն ստեղնաշարով"
 
 #. Shortcuts labels
 #: ../src/shortcuts-dialog.vala:48
@@ -332,7 +333,7 @@ msgstr "Չյաջողուեց միանալ MPD֊ին"
 
 #: ../src/mpdclient.c:385
 msgid "Connected to MPD"
-msgstr "Միացած է MPD ֊ին"
+msgstr "Միացում MPD ֊ին"
 
 #: ../src/mpdclient.c:625 ../src/mpdclient.c:655 ../src/mpdclient.c:670
 msgid "n/a"
