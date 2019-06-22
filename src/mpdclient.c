@@ -27,9 +27,6 @@
 #include "mpdclient.h"
 #include "xfmpc.h"
 
-#define GET_PRIVATE(o) \
-    (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclientPrivate))
-
 
 
 enum
@@ -115,31 +112,7 @@ static GObjectClass *parent_class = NULL;
 
 
 
-GType
-xfmpc_mpdclient_get_type (void)
-{
-  static GType xfmpc_mpdclient_type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (xfmpc_mpdclient_type == G_TYPE_INVALID))
-    {
-      static const GTypeInfo xfmpc_mpdclient_info =
-        {
-          sizeof (XfmpcMpdclientClass),
-          (GBaseInitFunc) NULL,
-          (GBaseFinalizeFunc) NULL,
-          (GClassInitFunc) xfmpc_mpdclient_class_init,
-          (GClassFinalizeFunc) NULL,
-          NULL,
-          sizeof (XfmpcMpdclient),
-          0,
-          (GInstanceInitFunc) xfmpc_mpdclient_init,
-          NULL
-        };
-      xfmpc_mpdclient_type = g_type_register_static (G_TYPE_OBJECT, "XfmpcMpdclient", &xfmpc_mpdclient_info, 0);
-    }
-
-  return xfmpc_mpdclient_type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfmpcMpdclient, xfmpc_mpdclient, G_TYPE_OBJECT)
 
 
 
@@ -147,8 +120,6 @@ static void
 xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
 {
   GObjectClass *gobject_class;
-
-  g_type_class_add_private (klass, sizeof (XfmpcMpdclientPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
 
@@ -271,7 +242,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
 static void
 xfmpc_mpdclient_init (XfmpcMpdclient *mpdclient)
 {
-  XfmpcMpdclientPrivate *priv = mpdclient->priv = GET_PRIVATE (mpdclient);
+  XfmpcMpdclientPrivate *priv = mpdclient->priv = xfmpc_mpdclient_get_instance_private (mpdclient);
 
   priv->mi = mpd_new_default ();
   g_mutex_init (&priv->mutex);
