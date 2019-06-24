@@ -69,7 +69,7 @@ namespace Xfmpc {
 			MainWindow.load_css ();
 
 			/* StatusIcon */
-			this.status_icon = new Gtk.StatusIcon.from_icon_name ("stock_volume");
+			this.status_icon = new Gtk.StatusIcon.from_icon_name ("multimedia-player");
 			show_hide_status_icon ();
 			this.status_icon.activate.connect (status_icon_activated);
 			this.status_icon.popup_menu.connect (status_icon_popup_menu);
@@ -77,7 +77,7 @@ namespace Xfmpc {
 
   	  	  	/* Window */
 			set_default_icon_name ("xfmpc");
-			set_icon_name ("stock_volume");
+			set_icon_name ("multimedia-player");
 			set_title (Config.PACKAGE_NAME);
 			set_default_size (330, 330);
 			this.delete_event.connect (cb_window_closed);

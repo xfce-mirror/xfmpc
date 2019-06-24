@@ -23,7 +23,7 @@ namespace Xfmpc {
 
 		construct {
 			this.skip_taskbar_hint = true;
-			this.icon_name = "stock_volume";
+			this.icon_name = "multimedia-player";
 			this.resizable = false;
 			this.title = _("Xfmpc Shortcuts");
 			this.subtitle = _("Control your MPD client with your keyboard");

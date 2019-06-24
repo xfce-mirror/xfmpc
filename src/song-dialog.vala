@@ -28,7 +28,7 @@ namespace Xfmpc {
 
 		public SongDialog (int song_id) {
 			this.skip_taskbar_hint = true;
-			this.icon_name = "stock_volume";
+			this.icon_name = "multimedia-player";
 			this.resizable = false;
 
 			this.mpdclient = Xfmpc.Mpdclient.get_default ();
