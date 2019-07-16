@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Miia Ranta <myrtti@ubuntu.com>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-02-23 23:31+0000\n"
+"PO-Revision-Date: 2019-07-16 20:45+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/xfce/xfce-apps/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -165,7 +166,7 @@ msgstr "Salasana:"
 
 #: ../src/preferences-dialog.vala:105
 msgid "Apply"
-msgstr ""
+msgstr "Toteuta"
 
 #: ../src/preferences-dialog.vala:112
 msgid "Appearance"
