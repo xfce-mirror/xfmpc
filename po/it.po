@@ -5,12 +5,13 @@
 # Translators:
 # Cristian Marchi <cri.penta@gmail.com>, 2009
 # Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2018-2019
+# Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-02-24 10:42+0000\n"
+"PO-Revision-Date: 2019-07-23 17:00+0000\n"
 "Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +86,7 @@ msgstr "Client MPD scritto in GTK+ per Xfce"
 
 #: ../src/extended-interface.vala:262
 msgid "translator-credits"
-msgstr "Emanuele Petriglia <inbox@emanuelepetriglia.me>, 2018\nCristian Marchi <cri.penta@gmail.com>, 2009\nGianluca Foddis <gianluca.foddis@gmail.com>, 2009"
+msgstr "Emanuele Petriglia <inbox@emanuelepetriglia.com> 2018-2019\nCristian Marchi <cri.penta@gmail.com>, 2009\nGianluca Foddis <gianluca.foddis@gmail.com>, 2009"
 
 #: ../src/interface.vala:91 ../src/interface.vala:275
 msgid "Not connected"
