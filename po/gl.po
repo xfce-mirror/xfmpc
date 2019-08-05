@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-03-10 00:15+0000\n"
+"PO-Revision-Date: 2019-08-05 05:47+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Lista de reprodución actual"
 
 #: ../src/extended-interface.vala:102
 msgid "Browse database"
-msgstr "Ver a base de datos"
+msgstr "Navegar pola base de datos"
 
 #: ../src/extended-interface.vala:151
 msgid "Repeat"
