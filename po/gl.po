@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-08-05 05:47+0000\n"
+"PO-Revision-Date: 2019-08-15 05:52+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -151,7 +151,7 @@ msgstr "Usar a _configuración predeterminada do sistema"
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr "Se está marcado, Xfmpc intentará ler as variables de contorno MPD_HOST e MPD_PORT e se non usará localhost"
+msgstr "Se está marcado, o Xfmpc intentará ler as variábeis de contorno MPD_HOST e MPD_PORT, caso contrario usará localhost"
 
 #: ../src/preferences-dialog.vala:80
 msgid "Hostname:"
@@ -183,7 +183,7 @@ msgstr "Pechar a xanela na área de notificación"
 
 #: ../src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
-msgstr "Mostrar a barra de e_stado"
+msgstr "Amosar a barra de e_stado"
 
 #: ../src/preferences-dialog.vala:131
 msgid "Song Format"
@@ -227,7 +227,7 @@ msgstr "Formato personalizado:"
 
 #: ../src/preferences-dialog.vala:172
 msgid "Available parameters:"
-msgstr "Parámetros dispoñibles:"
+msgstr "Parámetros dispoñíbeis:"
 
 #: ../src/preferences-dialog.vala:183
 #, c-format
