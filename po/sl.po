@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Arnold Marko <arnold.marko@gmail.com>, 2019
 # Klemen Košir <klemen.kosir@kream.io>, 2013
 # Nenad Latinović <latinovic87@gmail.com>, 2013
 msgid ""
@@ -10,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-02-23 23:31+0000\n"
-"Last-Translator: Aljoša Žagar <anthon.manix@gmail.com>\n"
+"PO-Revision-Date: 2019-10-24 18:18+0000\n"
+"Last-Translator: Arnold Marko <arnold.marko@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/xfce/xfce-apps/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,7 +125,7 @@ msgstr "Odstrani"
 
 #: ../src/playlist.vala:114
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: ../src/preferences-dialog.vala:45
 msgid "Xfmpc Preferences"
@@ -166,7 +167,7 @@ msgstr "Geslo:"
 
 #: ../src/preferences-dialog.vala:105
 msgid "Apply"
-msgstr ""
+msgstr "Uporabi"
 
 #: ../src/preferences-dialog.vala:112
 msgid "Appearance"
