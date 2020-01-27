@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Besnik <besnik@programeshqip.org>, 2019
+# Besnik <besnik@programeshqip.org>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-02-24 10:38+0000\n"
+"PO-Revision-Date: 2020-01-27 21:58+0000\n"
 "Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/xfce-apps/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +33,7 @@ msgstr "Shfletoni"
 
 #: ../src/extended-interface.vala:61
 msgid "Clear Playlist"
-msgstr "Pastroje Luajlistën"
+msgstr "Spastroje Luajlistën"
 
 #: ../src/extended-interface.vala:69
 msgid "Refresh Database"
@@ -48,7 +49,7 @@ msgstr "Luajlista e Tanishme"
 
 #: ../src/extended-interface.vala:102
 msgid "Browse database"
-msgstr "Shfletoni bazën e të dhënave"
+msgstr "Shfletoni bazë të dhënash"
 
 #: ../src/extended-interface.vala:151
 msgid "Repeat"
@@ -60,7 +61,7 @@ msgstr "Kuturu"
 
 #: ../src/extended-interface.vala:159
 msgid "Single Mode"
-msgstr "Mënyra njëshe"
+msgstr "Mënyra Njëshe"
 
 #: ../src/extended-interface.vala:163
 msgid "Consume Mode"
@@ -84,7 +85,7 @@ msgstr "Klient MPD shkruar në GTK+ për Xfce-në"
 
 #: ../src/extended-interface.vala:262
 msgid "translator-credits"
-msgstr "translator-credits"
+msgstr "Besnik Bleta"
 
 #: ../src/interface.vala:91 ../src/interface.vala:275
 msgid "Not connected"
@@ -181,7 +182,7 @@ msgstr "Mbylle dritaren te fusha e njoftimeve"
 
 #: ../src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
-msgstr "Shfaq shtyllë gjendjesh"
+msgstr "Shfaq shtyllë _gjendjesh"
 
 #: ../src/preferences-dialog.vala:131
 msgid "Song Format"
@@ -217,7 +218,7 @@ msgstr "Artist - Album - Titull Pjese"
 
 #: ../src/preferences-dialog.vala:149
 msgid "Custom..."
-msgstr "Vetjake…"
+msgstr "Vetjak…"
 
 #: ../src/preferences-dialog.vala:157
 msgid "Custom format:"
@@ -328,7 +329,7 @@ msgstr "Zhanër"
 
 #: ../src/mpdclient.c:380
 msgid "Failed to connect to MPD"
-msgstr "Dështoi lidhja me MPD-n"
+msgstr "S’u arrit të lidhej me MPD-n"
 
 #: ../src/mpdclient.c:385
 msgid "Connected to MPD"
