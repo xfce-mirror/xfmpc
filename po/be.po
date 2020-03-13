@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Zmicer Turok <zmicerturok@gmail.com>, 2018-2019
+# Zmicer Turok <nashtlumach@gmail.com>, 2018-2019
 # Zmicer Turok <zmicerturok@gmail.com >, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-05-07 19:09+0000\n"
-"Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
+"PO-Revision-Date: 2020-03-13 11:54+0000\n"
+"Last-Translator: Zmicer Turok <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/xfce-apps/language/be/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
