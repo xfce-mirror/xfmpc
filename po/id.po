@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2010
+# Triyan W. Nugroho <triyan.wn@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2020-09-07 06:32+0000\n"
+"PO-Revision-Date: 2020-09-08 08:24+0000\n"
 "Last-Translator: Triyan W. Nugroho <triyan.wn@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/xfce/xfce-apps/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -169,7 +170,7 @@ msgstr "Terapkan"
 
 #: ../src/preferences-dialog.vala:112
 msgid "Appearance"
-msgstr "Tampilan"
+msgstr "Penampilan"
 
 #: ../src/preferences-dialog.vala:116
 msgid "General"
