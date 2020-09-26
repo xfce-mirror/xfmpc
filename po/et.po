@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2020-09-26 10:33+0000\n"
+"PO-Revision-Date: 2020-09-26 11:27+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/xfce-apps/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -60,11 +60,11 @@ msgstr "Juhuslik"
 
 #: ../src/extended-interface.vala:159
 msgid "Single Mode"
-msgstr ""
+msgstr "Üks lugu"
 
 #: ../src/extended-interface.vala:163
 msgid "Consume Mode"
-msgstr ""
+msgstr "Eemalda esitatud lood"
 
 #: ../src/extended-interface.vala:170
 msgid "_Preferences"
