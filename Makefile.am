@@ -23,6 +23,7 @@ dist-hook: ChangeLog
 EXTRA_DIST =								\
 	third-party								\
 	IDEAS									\
+	README.md                               \
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in						\

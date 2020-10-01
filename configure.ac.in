@@ -29,7 +29,7 @@ AC_REVISION([xfmpc_version_build])
 dnl ***************************
 dnl *** Initialize automake ***
 dnl ***************************
-AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-bzip2])
+AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-bzip2 foreign])
 AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE()
 AM_SILENT_RULES([yes])
