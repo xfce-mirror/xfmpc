@@ -199,9 +199,9 @@ namespace Xfmpc {
    	   	   	 * window-state-event signal, so here we take the value only if
    	   	   	 * the window is visible
    	   	   	 **/
-			if ((bool) event.changed_mask & Gdk.WindowState.STICKY && this.visible) {
+			if ((bool) (event.changed_mask & Gdk.WindowState.STICKY) && this.visible) {
 				bool sticky;
-				if (((bool) event.new_window_state & Gdk.WindowState.STICKY) == false)
+				if (((bool) (event.new_window_state & Gdk.WindowState.STICKY)) == false)
 					sticky = false;
 				else
 					sticky = true;
