@@ -26,7 +26,7 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
-		private static Xfce.ArrowButton context_button;
+		private Gtk.MenuButton context_button;
 		private Gtk.ListStore list_store;
 		private Gtk.ComboBox combobox;
 		private Gtk.Notebook notebook;
@@ -73,11 +73,48 @@ namespace Xfmpc {
 			image = new Gtk.Image.from_icon_name ("view-refresh", Gtk.IconSize.MENU);
 			button.set_image (image);
 
-			this.context_button = new Xfce.ArrowButton (Gtk.ArrowType.DOWN);
-			((Widget) this.context_button).set_tooltip_text (_("Context Menu"));
-			((Button) this.context_button).pressed.connect (popup_context_menu);
-			((Button) this.context_button).clicked.connect (cb_context_menu_clicked);
-			hbox.pack_start (((Widget) this.context_button), false, false, 0);
+			context_button = new Gtk.MenuButton ();
+			context_button.set_tooltip_text (_("Context Menu"));
+			context_button.pressed.connect (popup_context_menu);
+			hbox.pack_start (context_button, false, false, 0);
+
+			context_menu = new Gtk.Menu ();
+			context_menu.deactivate.connect (cb_context_menu_deactivate);
+
+			repeat = new Gtk.CheckMenuItem.with_label (_("Repeat"));
+			repeat.activate.connect (cb_repeat_switch);
+			context_menu.append (repeat);
+
+			random = new Gtk.CheckMenuItem.with_label (_("Random"));
+			random.activate.connect (cb_random_switch);
+			context_menu.append (random);
+
+			single = new Gtk.CheckMenuItem.with_label (_("Single Mode"));
+			single.activate.connect (cb_single_switch);
+			context_menu.append (single);
+
+			consume = new Gtk.CheckMenuItem.with_label (_("Consume Mode"));
+			consume.toggled.connect (cb_consume_switch);
+			context_menu.append (consume);
+
+			var separator = new Gtk.SeparatorMenuItem ();
+			context_menu.append (separator);
+
+			var imi = new Gtk.MenuItem.with_mnemonic (_("_Preferences"));
+			imi.activate.connect (cb_preferences);
+			context_menu.append (imi);
+
+			imi = new Gtk.MenuItem.with_mnemonic (_("_Shortcuts"));
+			imi.activate.connect (cb_shortcuts);
+			context_menu.append (imi);
+
+			imi = new Gtk.MenuItem.with_mnemonic (_("_About"));
+			imi.activate.connect (cb_about);
+			context_menu.append (imi);
+
+			context_menu.show_all ();
+
+			context_button.set_popup (context_menu);
 
 			this.list_store = new Gtk.ListStore (Columns.N_COLUMNS,
 						  	     typeof (string),
@@ -128,58 +165,10 @@ namespace Xfmpc {
 		}
 
 		private void popup_context_menu () {
-			if (this.context_menu == null)
-				this.context_menu_new ((Gtk.Widget) this.context_button);
-
 			this.repeat.set_active (this.mpdclient.get_repeat ());
 			this.random.set_active (this.mpdclient.get_random ());
 			this.single.set_active (this.mpdclient.get_single ());
 			this.consume.set_active (this.mpdclient.get_consume ());
-
-			this.context_menu.popup_at_widget ((Gtk.Widget) this.context_button,
-							   Gdk.Gravity.SOUTH_WEST,
-							   Gdk.Gravity.NORTH_WEST,
-							   null);
-		}
-
-		private void context_menu_new (Gtk.Widget attach_widget) {
-			this.context_menu = new Gtk.Menu ();
-			this.context_menu.set_screen (attach_widget.get_screen ());
-			this.context_menu.attach_to_widget (attach_widget, (Gtk.MenuDetachFunc) menu_detach);
-			this.context_menu.deactivate.connect (cb_context_menu_deactivate);
-
-			this.repeat = new Gtk.CheckMenuItem.with_label (_("Repeat"));
-			this.repeat.activate.connect (cb_repeat_switch);
-			this.context_menu.append (this.repeat);
-
-			this.random = new Gtk.CheckMenuItem.with_label (_("Random"));
-			this.random.activate.connect (cb_random_switch);
-			this.context_menu.append (this.random);
-
-			this.single = new Gtk.CheckMenuItem.with_label (_("Single Mode"));
-			this.single.activate.connect (cb_single_switch);
-			this.context_menu.append (this.single);
-
-			this.consume = new Gtk.CheckMenuItem.with_label (_("Consume Mode"));
-			this.consume.toggled.connect (cb_consume_switch);
-			this.context_menu.append (this.consume);
-
-			var separator = new Gtk.SeparatorMenuItem ();
-			this.context_menu.append (separator);
-
-			var imi = new Gtk.MenuItem.with_mnemonic (_("_Preferences"));
-			imi.activate.connect (cb_preferences);
-			this.context_menu.append (imi);
-
-			var mi = new Gtk.MenuItem.with_mnemonic (_("_Shortcuts"));
-			mi.activate.connect (cb_shortcuts);
-			this.context_menu.append (mi);
-
-			imi = new Gtk.MenuItem.with_mnemonic (_("_About"));
-			imi.activate.connect (cb_about);
-			this.context_menu.append (imi);
-
-			this.context_menu.show_all ();
 		}
 
 		private void menu_detach (Gtk.Widget attach_widget, Gtk.Menu menu) {
@@ -209,13 +198,6 @@ namespace Xfmpc {
 
 			i = this.notebook.page_num ((Gtk.Widget) child);
 			this.notebook.set_current_page (i);
-		}
-
-		private void cb_context_menu_clicked () {
-			if (!((Gtk.ToggleButton) this.context_button).get_active ())
-				return;
-
-			popup_context_menu ();
 		}
 
 		private void cb_context_menu_deactivate () {
