@@ -21,8 +21,7 @@ xfmpc_SOURCES =								\
 	preferences.vala						\
 	progress-bar.vala						\
 	main.vala							\
-	mpdclient.c							\
-	xfce-arrow-button.c
+	mpdclient.c
 
 xfmpc_VALAFLAGS =							\
 	--header=xfmpc.h						\
@@ -30,8 +29,7 @@ xfmpc_VALAFLAGS =							\
 	--vapidir=$(top_srcdir)/third-party				\
 	--pkg=libxfce4ui-2						\
 	--pkg=config							\
-	--pkg=mpdclient							\
-	--pkg=xfce-arrow-button
+	--pkg=mpdclient
 
 xfmpc_CFLAGS =								\
 	@GTHREAD_CFLAGS@						\
@@ -54,8 +52,6 @@ BUILT_SOURCES = xfmpc_vala.stamp
 EXTRA_DIST =								\
 	mpdclient.h							\
 	mpdclient.vapi							\
-	xfce-arrow-button.h						\
-	xfce-arrow-button.vapi						\
 	xfmpc.h
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
