@@ -73,48 +73,48 @@ namespace Xfmpc {
 			image = new Gtk.Image.from_icon_name ("view-refresh", Gtk.IconSize.MENU);
 			button.set_image (image);
 
-			context_button = new Gtk.MenuButton ();
-			context_button.set_tooltip_text (_("Context Menu"));
-			context_button.pressed.connect (popup_context_menu);
-			hbox.pack_start (context_button, false, false, 0);
+			this.context_button = new Gtk.MenuButton ();
+			this.context_button.set_tooltip_text (_("Context Menu"));
+			this.context_button.pressed.connect (popup_context_menu);
+			hbox.pack_start (this.context_button, false, false, 0);
 
-			context_menu = new Gtk.Menu ();
-			context_menu.deactivate.connect (cb_context_menu_deactivate);
+			this.context_menu = new Gtk.Menu ();
+			this.context_menu.deactivate.connect (cb_context_menu_deactivate);
 
-			repeat = new Gtk.CheckMenuItem.with_label (_("Repeat"));
-			repeat.activate.connect (cb_repeat_switch);
-			context_menu.append (repeat);
+			this.repeat = new Gtk.CheckMenuItem.with_label (_("Repeat"));
+			this.repeat.activate.connect (cb_repeat_switch);
+			this.context_menu.append (this.repeat);
 
-			random = new Gtk.CheckMenuItem.with_label (_("Random"));
-			random.activate.connect (cb_random_switch);
-			context_menu.append (random);
+			this.random = new Gtk.CheckMenuItem.with_label (_("Random"));
+			this.random.activate.connect (cb_random_switch);
+			this.context_menu.append (this.random);
 
-			single = new Gtk.CheckMenuItem.with_label (_("Single Mode"));
-			single.activate.connect (cb_single_switch);
-			context_menu.append (single);
+			this.single = new Gtk.CheckMenuItem.with_label (_("Single Mode"));
+			this.single.activate.connect (cb_single_switch);
+			this.context_menu.append (this.single);
 
-			consume = new Gtk.CheckMenuItem.with_label (_("Consume Mode"));
-			consume.toggled.connect (cb_consume_switch);
-			context_menu.append (consume);
+			this.consume = new Gtk.CheckMenuItem.with_label (_("Consume Mode"));
+			this.consume.toggled.connect (cb_consume_switch);
+			this.context_menu.append (this.consume);
 
 			var separator = new Gtk.SeparatorMenuItem ();
-			context_menu.append (separator);
+			this.context_menu.append (separator);
 
 			var imi = new Gtk.MenuItem.with_mnemonic (_("_Preferences"));
 			imi.activate.connect (cb_preferences);
-			context_menu.append (imi);
+			this.context_menu.append (imi);
 
 			imi = new Gtk.MenuItem.with_mnemonic (_("_Shortcuts"));
 			imi.activate.connect (cb_shortcuts);
-			context_menu.append (imi);
+			this.context_menu.append (imi);
 
 			imi = new Gtk.MenuItem.with_mnemonic (_("_About"));
 			imi.activate.connect (cb_about);
-			context_menu.append (imi);
+			this.context_menu.append (imi);
 
-			context_menu.show_all ();
+			this.context_menu.show_all ();
 
-			context_button.set_popup (context_menu);
+			this.context_button.set_popup (context_menu);
 
 			this.list_store = new Gtk.ListStore (Columns.N_COLUMNS,
 						  	     typeof (string),
