@@ -99,7 +99,8 @@ namespace Xfmpc {
 
 			get_content_area ().pack_start (frame, true, true, 0);
 
-			add_button (_("Close"), Gtk.ResponseType.CLOSE);
+			Gtk.Dialog dialog = this;
+			dialog.add_button (_("Close"), Gtk.ResponseType.CLOSE);
 
 			show_all ();
 

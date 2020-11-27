@@ -28,7 +28,9 @@ namespace Xfmpc {
 			this.title = _("Xfmpc Shortcuts");
 			this.subtitle = _("Control your MPD client with your keyboard");
 
-			add_button (_("Close"), Gtk.ResponseType.CLOSE);
+			Gtk.Dialog dialog = this;
+			dialog.add_button (_("Close"), Gtk.ResponseType.CLOSE);
+
 			this.response.connect ((response) => {
 				switch (response) {
 					case Gtk.ResponseType.CLOSE:
