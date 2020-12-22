@@ -49,9 +49,9 @@ typedef struct _XfmpcMpdclientClass         XfmpcMpdclientClass;
 typedef struct _XfmpcMpdclient              XfmpcMpdclient;
 typedef struct _XfmpcMpdclientPrivate       XfmpcMpdclientPrivate;
 
-GType                   xfmpc_mpdclient_get_type                () G_GNUC_CONST;
+GType                   xfmpc_mpdclient_get_type                (void) G_GNUC_CONST;
 
-XfmpcMpdclient *        xfmpc_mpdclient_get_default             ();
+XfmpcMpdclient *        xfmpc_mpdclient_get_default             (void);
 gboolean                xfmpc_mpdclient_connect                 (XfmpcMpdclient *mpdclient);
 void                    xfmpc_mpdclient_disconnect              (XfmpcMpdclient *mpdclient);
 gboolean                xfmpc_mpdclient_is_connected            (XfmpcMpdclient *mpdclient);
@@ -128,7 +128,7 @@ void                    xfmpc_mpdclient_reload                  (XfmpcMpdclient 
 XfmpcSongInfo *         xfmpc_mpdclient_get_song_info           (XfmpcMpdclient *mpdclient,
                                                                  gint id);
 
-void                    xfmpc_song_info_free                    ();
+void                    xfmpc_song_info_free                    (XfmpcSongInfo *song_info);
 
 G_END_DECLS
 
