@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Michal Várady <miko.vaji@gmail.com>, 2019
+# Michal Várady <miko.vaji@gmail.com>, 2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-02-24 09:30+0000\n"
+"PO-Revision-Date: 2020-12-30 01:52+0000\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/xfce/xfce-apps/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Místní nabídka"
 
 #: ../src/extended-interface.vala:99
 msgid "Current Playlist"
-msgstr "Současný seznam médií"
+msgstr "Aktuální seznam médií"
 
 #: ../src/extended-interface.vala:102
 msgid "Browse database"
