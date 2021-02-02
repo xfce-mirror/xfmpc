@@ -49,11 +49,6 @@ dnl **************************
 LT_PREREQ([2.2.6])
 LT_INIT([disable-static])
 
-dnl **********************************
-dnl *** Check for standard headers ***
-dnl **********************************
-AC_HEADER_STDC()
-
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
@@ -84,11 +79,12 @@ dnl *** Check for debugging support ***
 dnl ***********************************
 XDT_FEATURE_DEBUG()
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 src/Makefile
 po/Makefile.in
 ])
+AC_OUTPUT
 
 dnl ***************************
 dnl *** Print configuration ***
