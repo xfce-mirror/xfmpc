@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Priit Jõerüüt <transifex@joeruut.com>, 2020
+# Priit Jõerüüt <transifex@joeruut.com>, 2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2020-09-26 11:27+0000\n"
+"PO-Revision-Date: 2021-03-08 22:07+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/xfce-apps/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgstr "Xfce MPD klient loodud GTK+ abil"
 
 #: ../src/extended-interface.vala:262
 msgid "translator-credits"
-msgstr "Kristjan Siimson <epost@ksiimson.se> &amp; tolge.pingviin.org\nPriit Jõerüüt 2020"
+msgstr "Kristjan Siimson <epost@ksiimson.se> &amp; tolge.pingviin.org\nPriit Jõerüüt 2020-2021"
 
 #: ../src/interface.vala:91 ../src/interface.vala:275
 msgid "Not connected"
@@ -177,7 +177,7 @@ msgstr "Üldine"
 
 #: ../src/preferences-dialog.vala:120
 msgid "Close window into notification area"
-msgstr "Sulge akne süsteemisalve"
+msgstr "Sulge aken süsteemisalve"
 
 #: ../src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
