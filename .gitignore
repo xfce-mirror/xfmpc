@@ -26,6 +26,7 @@ po/POTFILES
 po/stamp-it
 src/*.c
 src/*.h
+!src/mpdclient.*
 src/xfmpc
 src/xfmpc_vala.stamp
 xfmpc.desktop
