@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2021-03-30 11:34+0000\n"
+"PO-Revision-Date: 2021-04-17 19:03+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-apps/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "Navegar"
 
 #: ../src/extended-interface.vala:61
 msgid "Clear Playlist"
-msgstr "Vaciar la lista de reproducción"
+msgstr "Borrar la lista de reproducción"
 
 #: ../src/extended-interface.vala:69
 msgid "Refresh Database"
@@ -79,15 +79,15 @@ msgstr "_Atajos"
 
 #: ../src/extended-interface.vala:178
 msgid "_About"
-msgstr "_Acerca de"
+msgstr "Acerca _de"
 
 #: ../src/extended-interface.vala:258 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "Cliente MPD escrito en GTK+ para Xfce"
+msgstr "Cliente de MPD para Xfce"
 
 #: ../src/extended-interface.vala:262
 msgid "translator-credits"
-msgstr "Elega <elega@elega.com.ar>\r\nFitoschido <fitoschido@gmail.com>"
+msgstr "Toni Estevez <toni.estevez@gmail.com>, 2021\nElega <elega@elega.com.ar>, 2013\nFitoschido <fitoschido@gmail.com>. 2013"
 
 #: ../src/interface.vala:91 ../src/interface.vala:275
 msgid "Not connected"
@@ -134,7 +134,7 @@ msgstr "Preferencias de Xfmpc"
 
 #: ../src/preferences-dialog.vala:46
 msgid "Customize your MPD client"
-msgstr "Personalizar su cliente MPD"
+msgstr "Personalizar el cliente de MPD"
 
 #: ../src/preferences-dialog.vala:57
 msgid "MPD"
@@ -146,17 +146,17 @@ msgstr "Conexión"
 
 #: ../src/preferences-dialog.vala:65
 msgid "Use _default system settings"
-msgstr "Utilizar la configuración pre_determinada del sistema"
+msgstr "Usar la configuración pre_determinada del sistema"
 
 #: ../src/preferences-dialog.vala:66
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr "Si está activado, Xfmpc intentará leer las variables de entorno MPD_HOST y MPD_PORT, de lo contrario utilizará localhost"
+msgstr "Si se marca, Xfmpc intentará leer las variables de entorno MPD_HOST y MPD_PORT, de lo contrario usará el localhost"
 
 #: ../src/preferences-dialog.vala:80
 msgid "Hostname:"
-msgstr "Nombre de host:"
+msgstr "Nombre de equipo:"
 
 #: ../src/preferences-dialog.vala:87
 msgid "Port:"
@@ -180,19 +180,19 @@ msgstr "General"
 
 #: ../src/preferences-dialog.vala:120
 msgid "Close window into notification area"
-msgstr "Cerrar ventana en el área de notificación"
+msgstr "Cerrar la ventana en el área de notificación"
 
 #: ../src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
-msgstr "Mostrar _barra de estado"
+msgstr "Mostrar la _barra de estado"
 
 #: ../src/preferences-dialog.vala:131
 msgid "Song Format"
-msgstr "Formato de canción"
+msgstr "Formato de la canción"
 
 #: ../src/preferences-dialog.vala:137
 msgid "Song Format:"
-msgstr "Formato de canción:"
+msgstr "Formato de la canción:"
 
 #: ../src/preferences-dialog.vala:143 ../src/song-dialog.vala:64
 msgid "Title"
@@ -220,7 +220,7 @@ msgstr "Artista - Álbum - Pista. Título"
 
 #: ../src/preferences-dialog.vala:149
 msgid "Custom..."
-msgstr "Personalizado…"
+msgstr "Personalizar…"
 
 #: ../src/preferences-dialog.vala:157
 msgid "Custom format:"
@@ -278,32 +278,32 @@ msgstr "Atajos de Xfmpc"
 
 #: ../src/shortcuts-dialog.vala:29
 msgid "Control your MPD client with your keyboard"
-msgstr "Controle su cliente de MPD con su teclado"
+msgstr "Controle el cliente de MPD con el teclado"
 
 #. Shortcuts labels
 #: ../src/shortcuts-dialog.vala:48
 msgid "Quit: CTRL+q"
-msgstr "Salir: Ctrl+Q"
+msgstr "Salir: Ctrl + Q"
 
 #: ../src/shortcuts-dialog.vala:53
 msgid "Previous: CTRL+b"
-msgstr "Anterior: Ctrl+B"
+msgstr "Anterior: Ctrl + B"
 
 #: ../src/shortcuts-dialog.vala:58
 msgid "Play/Pause: CTRL+p"
-msgstr "Reproducir/pausar: Ctrl+P"
+msgstr "Reproducir/pausar: Ctrl + P"
 
 #: ../src/shortcuts-dialog.vala:63
 msgid "Stop: CTRL+s"
-msgstr "Detener: Ctrl+S"
+msgstr "Detener: Ctrl + S"
 
 #: ../src/shortcuts-dialog.vala:68
 msgid "Next: CTRL+f"
-msgstr "Siguiente: Ctrl+F"
+msgstr "Siguiente: Ctrl + F"
 
 #: ../src/shortcuts-dialog.vala:73
 msgid "Volume: CTRL+v"
-msgstr "Volumen: Ctrl+V"
+msgstr "Volumen: Ctrl + V"
 
 #: ../src/song-dialog.vala:48
 msgid "File"
@@ -331,7 +331,7 @@ msgstr "Género"
 
 #: ../src/mpdclient.c:380
 msgid "Failed to connect to MPD"
-msgstr "No se pudo conectar con MPD"
+msgstr "No se ha podido conectar con MPD"
 
 #: ../src/mpdclient.c:385
 msgid "Connected to MPD"
@@ -347,4 +347,4 @@ msgstr "Xfmpc"
 
 #: ../xfmpc.desktop.in.h:3
 msgid "MPD client"
-msgstr "Cliente MPD"
+msgstr "Cliente de MPD"
