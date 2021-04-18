@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2021-04-17 19:03+0000\n"
+"PO-Revision-Date: 2021-04-18 06:28+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-apps/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr "Repetir"
 
 #: ../src/extended-interface.vala:155
 msgid "Random"
-msgstr "Aleatorio"
+msgstr "Al azar"
 
 #: ../src/extended-interface.vala:159
 msgid "Single Mode"
