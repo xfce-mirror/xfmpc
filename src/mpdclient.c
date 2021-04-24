@@ -51,8 +51,6 @@ static guint            signals[LAST_SIGNAL] = { 0 };
 
 
 
-static void             xfmpc_mpdclient_class_init              (XfmpcMpdclientClass *klass);
-static void             xfmpc_mpdclient_init                    (XfmpcMpdclient *mpdclient);
 static void             xfmpc_mpdclient_finalize                (GObject *object);
 
 static void             xfmpc_mpdclient_initenv                 (XfmpcMpdclient *mpdclient);
