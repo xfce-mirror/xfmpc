@@ -3,8 +3,10 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-#  <abel.martin.ruiz@gmail.com>, 2009
+# Abel Martin (amartinr) <abel.martin.ruiz@gmail.com>, 2009
 # Adolfo Jayme-Barrientos, 2019
+# Adolfo Jayme-Barrientos, 2019
+# Casper casper, 2019
 # Casper casper, 2019
 # Toni Estévez <toni.estevez@gmail.com>, 2021
 msgid ""
@@ -12,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2021-04-18 06:28+0000\n"
+"PO-Revision-Date: 2021-05-01 06:26+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-apps/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -220,7 +222,7 @@ msgstr "Artista - Álbum - Pista. Título"
 
 #: ../src/preferences-dialog.vala:149
 msgid "Custom..."
-msgstr "Personalizar…"
+msgstr "Personalizar..."
 
 #: ../src/preferences-dialog.vala:157
 msgid "Custom format:"
