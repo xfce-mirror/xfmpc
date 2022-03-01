@@ -6,13 +6,13 @@
 # Chipong Luo <chipong.luo@yahoo.com>, 2011-2012
 # Hunt Xu <huntxu@live.cn>, 2009
 # Xiaobo Zhou <zhouxiaobo.500@gmail.com>, 2013
-# 玉堂白鹤 <yjwork@qq.com>, 2019
+# 玉堂白鹤 <yjwork@qq.com>, 2019,2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-03-23 08:25+0000\n"
+"PO-Revision-Date: 2022-03-01 04:51+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -176,7 +176,7 @@ msgstr "外观"
 
 #: ../src/preferences-dialog.vala:116
 msgid "General"
-msgstr "一般"
+msgstr "通用"
 
 #: ../src/preferences-dialog.vala:120
 msgid "Close window into notification area"
