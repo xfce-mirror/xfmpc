@@ -47,6 +47,7 @@ MAINTAINERCLEANFILES =						\
 	intltool-update
 
 DISTCLEANFILES =							\
-	$(desktop_DATA)
+	$(desktop_DATA)							\
+	po/.intltool-merge-cache.lock
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:

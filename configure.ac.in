@@ -17,12 +17,12 @@ m4_define([xfmpc_version], [xfmpc_version_major().xfmpc_version_minor().xfmpc_ve
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2008
+AC_COPYRIGHT([Copyright (c) 2022
         The Xfce development team. All rights reserved.])
-AC_INIT([Xfmpc], [xfmpc_version], [http://bugzilla.xfce.org/], [xfmpc],
-        [http://goodies.xfce.org/projects/applications/xfmpc])
+AC_INIT([Xfmpc], [xfmpc_version], [https://gitlab.xfce.org/apps/xfmpc], [xfmpc],
+        [https://docs.xfce.org/apps/xfmpc/start])
 AC_PREREQ([2.50])
-AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_MACRO_DIRS([m4])
 AC_CANONICAL_TARGET()
 AC_REVISION([xfmpc_version_build])
 
@@ -39,7 +39,7 @@ dnl *** Check for basic programs ***
 dnl ********************************
 AC_PROG_CC()
 AM_PROG_CC_C_O()
-AC_PROG_LD()
+LT_PATH_LD()
 AC_PROG_INSTALL()
 IT_PROG_INTLTOOL([0.35.0])
 
