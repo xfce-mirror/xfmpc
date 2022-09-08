@@ -68,7 +68,7 @@ msgstr ""
 
 #: ../src/extended-interface.vala:170
 msgid "_Preferences"
-msgstr ""
+msgstr "_ترجیحات"
 
 #: ../src/extended-interface.vala:174
 msgid "_Shortcuts"
