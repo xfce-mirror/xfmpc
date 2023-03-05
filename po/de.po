@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Andreas Eitel <github-aneitel@online.de>, 2019
+# Don Joe, 2023
 # Enrico Tröger <enrico.troeger@uvena.de>, 2008
 # Fabian Nowak <timystery@arcor.de>, 2008
 # Mike Massonnet <mmassonnet@xfce.org>, 2009
@@ -13,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-24 00:31+0100\n"
-"PO-Revision-Date: 2019-02-24 09:35+0000\n"
-"Last-Translator: Andreas Eitel <github-aneitel@online.de>\n"
+"POT-Creation-Date: 2022-11-28 15:06+0100\n"
+"PO-Revision-Date: 2013-07-03 18:46+0000\n"
+"Last-Translator: Don Joe, 2023\n"
 "Language-Team: German (http://www.transifex.com/xfce/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,53 +42,53 @@ msgstr "Wiedergabeliste leeren"
 
 #: ../src/extended-interface.vala:69
 msgid "Refresh Database"
-msgstr "Datenbak auffrischen"
+msgstr "Datenbank auffrischen"
 
 #: ../src/extended-interface.vala:77
 msgid "Context Menu"
 msgstr "Kontextmenü"
 
-#: ../src/extended-interface.vala:99
-msgid "Current Playlist"
-msgstr "Aktuelle Wiedergabeliste"
-
-#: ../src/extended-interface.vala:102
-msgid "Browse database"
-msgstr "Datenbank durchsuchen"
-
-#: ../src/extended-interface.vala:151
+#: ../src/extended-interface.vala:84
 msgid "Repeat"
 msgstr "Wiederholen"
 
-#: ../src/extended-interface.vala:155
+#: ../src/extended-interface.vala:88
 msgid "Random"
 msgstr "Zufall"
 
-#: ../src/extended-interface.vala:159
+#: ../src/extended-interface.vala:92
 msgid "Single Mode"
 msgstr "Einzelmodus"
 
-#: ../src/extended-interface.vala:163
+#: ../src/extended-interface.vala:96
 msgid "Consume Mode"
 msgstr "Verbrauchsmodus"
 
-#: ../src/extended-interface.vala:170
+#: ../src/extended-interface.vala:103
 msgid "_Preferences"
 msgstr "_Einstellungen"
 
-#: ../src/extended-interface.vala:174
+#: ../src/extended-interface.vala:107
 msgid "_Shortcuts"
 msgstr "_Tastenkürzel"
 
-#: ../src/extended-interface.vala:178
+#: ../src/extended-interface.vala:111
 msgid "_About"
 msgstr "_Info"
 
-#: ../src/extended-interface.vala:258 ../xfmpc.desktop.in.h:2
+#: ../src/extended-interface.vala:136
+msgid "Current Playlist"
+msgstr "Aktuelle Wiedergabeliste"
+
+#: ../src/extended-interface.vala:139
+msgid "Browse database"
+msgstr "Datenbank durchsuchen"
+
+#: ../src/extended-interface.vala:240 ../xfmpc.desktop.in.h:2
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD-Programm geschrieben in GTK+ für Xfce"
 
-#: ../src/extended-interface.vala:262
+#: ../src/extended-interface.vala:244
 msgid "translator-credits"
 msgstr "Namen der Übersetzer"
 
@@ -269,8 +270,8 @@ msgstr "%d: Datum"
 msgid "%T: Track"
 msgstr "%T: Titelnummer"
 
-#: ../src/preferences-dialog.vala:229 ../src/shortcuts-dialog.vala:31
-#: ../src/song-dialog.vala:102
+#: ../src/preferences-dialog.vala:230 ../src/shortcuts-dialog.vala:32
+#: ../src/song-dialog.vala:103
 msgid "Close"
 msgstr "Schließen"
 
@@ -283,27 +284,27 @@ msgid "Control your MPD client with your keyboard"
 msgstr "MPD mit der Tastatur bedienen"
 
 #. Shortcuts labels
-#: ../src/shortcuts-dialog.vala:48
+#: ../src/shortcuts-dialog.vala:50
 msgid "Quit: CTRL+q"
 msgstr "Beenden: STRG+q"
 
-#: ../src/shortcuts-dialog.vala:53
+#: ../src/shortcuts-dialog.vala:55
 msgid "Previous: CTRL+b"
 msgstr "Vorheriger: STRG+b"
 
-#: ../src/shortcuts-dialog.vala:58
+#: ../src/shortcuts-dialog.vala:60
 msgid "Play/Pause: CTRL+p"
 msgstr "Wiedergabe/Pause: STRG+p"
 
-#: ../src/shortcuts-dialog.vala:63
+#: ../src/shortcuts-dialog.vala:65
 msgid "Stop: CTRL+s"
 msgstr "Stopp: STRG+s"
 
-#: ../src/shortcuts-dialog.vala:68
+#: ../src/shortcuts-dialog.vala:70
 msgid "Next: CTRL+f"
 msgstr "Nächster: STRG+f"
 
-#: ../src/shortcuts-dialog.vala:73
+#: ../src/shortcuts-dialog.vala:75
 msgid "Volume: CTRL+v"
 msgstr "Lautstärke: STRG+v"
 
@@ -331,15 +332,15 @@ msgstr "Titelnummer"
 msgid "Genre"
 msgstr "Genre"
 
-#: ../src/mpdclient.c:380
+#: ../src/mpdclient.c:349
 msgid "Failed to connect to MPD"
 msgstr "Es konnte keine Verbindung zu MPD aufgebaut werden."
 
-#: ../src/mpdclient.c:385
+#: ../src/mpdclient.c:354
 msgid "Connected to MPD"
 msgstr "Verbunden mit MPD"
 
-#: ../src/mpdclient.c:625 ../src/mpdclient.c:655 ../src/mpdclient.c:670
+#: ../src/mpdclient.c:594 ../src/mpdclient.c:624 ../src/mpdclient.c:639
 msgid "n/a"
 msgstr "unbekannt"
 
