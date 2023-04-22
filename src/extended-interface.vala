@@ -62,8 +62,9 @@ namespace Xfmpc {
 			button.clicked.connect (cb_playlist_clear);
 			hbox.pack_start (button, false, false, 0);
 
-			var image = new Gtk.Image.from_icon_name ("document-new", Gtk.IconSize.MENU);
+			var image = new Gtk.Image.from_icon_name ("list-remove-all", Gtk.IconSize.MENU);
 			button.set_image (image);
+			button.get_style_context() .add_class ("destructive-action");
 
 			button = new Gtk.Button ();
 			button.set_tooltip_text (_("Refresh Database"));
