@@ -17,7 +17,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-[CCode (cprefix="", lower_case_prefix="", cheader_filename="config.h")]
+[CCode (cprefix="", cheader_filename="config.h")]
 namespace Config {
 	[CCode (cname = "GETTEXT_PACKAGE")]
 	public const string GETTEXT_PACKAGE;

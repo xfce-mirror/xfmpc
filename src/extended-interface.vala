@@ -171,9 +171,6 @@ namespace Xfmpc {
 			this.consume.set_active (this.mpdclient.get_consume ());
 		}
 
-		private void menu_detach (Gtk.Widget attach_widget, Gtk.Menu menu) {
-		}
-
 		/*
 		 * Signal callbacks
 		 */
