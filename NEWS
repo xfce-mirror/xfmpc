@@ -1,3 +1,35 @@
+0.3.1 (2023-04-22)
+=====
+- Improve icon and style of clear playlist button
+- build: Fix "unhandled error" vala warning
+- build: Fix "never used" vala warning
+- build: Fix "access to static member" vala warning
+- Fix previous commit
+- Update copyright year
+- build: Silence compiler warnings for generated C code
+- build: Add GLib requirement
+- Fix make distcheck and update urls
+- Fix missing-prototypes
+- Update COPYING
+- Fix compilation warnings
+- autoconf: Some updates
+- Update `.gitignore`
+- use Gtk MenuButton for context button
+- Call methods from GtkDialog instead of XfceTitleDialog (#8)
+- add parenthesis around expression
+- Adds new README.md and updates AM_INIT_AUTOMAKE macro with foreign 
+option
+- Add basic GitLab pipeline
+- Use 'multimedia-player' icon instead of 'stock_volume' (Bug #15636)
+- Translation Updates:
+  Albanian, Armenian (Armenia), Belarusian, Catalan, Chinese (China),
+  Chinese (Taiwan), Croatian, Czech, Danish, Eastern Armenian, English
+  (United Kingdom), Estonian, Finnish, French, Galician, German, Greek,
+  Hebrew, Icelandic, Indonesian, Interlingue, Italian, Lithuanian,
+  Norwegian Bokmål, Occitan (post 1500), Persian (Iran), Portuguese,
+  Serbian, Slovak, Slovenian, Spanish, Swedish, Turkish, Ukrainian,
+  Uyghur
+
     0.3.0 (2019-06-22)
 
 - Stable release of 0.2.90
@@ -106,4 +138,3 @@
     0.0.1 (2008-01-20)
 
 First release, with controls and notink more
-
