@@ -1,9 +1,11 @@
+ChangeLog
 INSTALL
 Makefile
 Makefile.in
 aclocal.m4
 compile
 config.*
+!config.vapi
 configure
 configure.ac
 depcomp
@@ -18,6 +20,9 @@ stamp-h1
 autom4te.cache
 .deps
 *.swp
+*.a
+*.la
+*.lo
 *.o
 *.gmo
 po/.intltool-merge-cache*
@@ -26,7 +31,6 @@ po/POTFILES
 po/stamp-it
 src/*.c
 src/*.h
-!src/mpdclient.*
 src/xfmpc
 src/xfmpc_vala.stamp
 xfmpc.desktop
