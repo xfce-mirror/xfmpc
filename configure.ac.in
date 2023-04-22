@@ -17,7 +17,7 @@ m4_define([xfmpc_version], [xfmpc_version_major().xfmpc_version_minor().xfmpc_ve
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2022
+AC_COPYRIGHT([Copyright (c) 2008-2023
         The Xfce development team. All rights reserved.])
 AC_INIT([Xfmpc], [xfmpc_version], [https://gitlab.xfce.org/apps/xfmpc], [xfmpc],
         [https://docs.xfce.org/apps/xfmpc/start])
