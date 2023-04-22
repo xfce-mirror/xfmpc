@@ -110,11 +110,11 @@ namespace Xfmpc {
 
   	  	  	/* Action group */
 			this.action_group = new Gtk.ActionGroup ("XfmpcMainWindow");
-			this.action_group.add_actions (this.action_entries, this);
-			this.action_group.add_toggle_actions (this.toggle_action_entries, this);
+			this.action_group.add_actions (action_entries, this);
+			this.action_group.add_toggle_actions (toggle_action_entries, this);
 			this.ui_manager.insert_action_group (this.action_group, 0);
 			try {
-				this.ui_manager.add_ui_from_string (this.ui_string, -1);
+				this.ui_manager.add_ui_from_string (ui_string, -1);
 			} catch (Error e) {
 				warning (e.message);
 			}

@@ -117,14 +117,14 @@ namespace Xfmpc {
 
 			this.menu.show_all ();
 
-			this.filter_entry = new Entry ();
-			this.filter_entry.set_icon_from_icon_name (EntryIconPosition.PRIMARY, "edit-find");
-			this.filter_entry.set_icon_activatable (EntryIconPosition.PRIMARY, false);
-			this.filter_entry.set_icon_activatable (EntryIconPosition.SECONDARY, true);
+			filter_entry = new Entry ();
+			filter_entry.set_icon_from_icon_name (EntryIconPosition.PRIMARY, "edit-find");
+			filter_entry.set_icon_activatable (EntryIconPosition.PRIMARY, false);
+			filter_entry.set_icon_activatable (EntryIconPosition.SECONDARY, true);
 
 			scrolled.add (this.treeview);
 			pack_start (scrolled, true, true, 0);
-			pack_start (this.filter_entry, false, false, 0);
+			pack_start (filter_entry, false, false, 0);
 
 			/* Signals */
 			this.mpdclient.pp_changed.connect (cb_pp_changed);
@@ -136,10 +136,10 @@ namespace Xfmpc {
 			this.treeview.button_press_event.connect (cb_button_released);
 			this.treeview.popup_menu.connect (cb_popup_menu);
 
-			this.filter_entry.activate.connect (cb_filter_entry_activated);
-			this.filter_entry.key_release_event.connect (cb_filter_entry_key_released);
-			this.filter_entry.changed.connect (cb_filter_entry_changed);
-			this.filter_entry.icon_release.connect (cb_filter_entry_icon_activated);
+			filter_entry.activate.connect (cb_filter_entry_activated);
+			filter_entry.key_release_event.connect (cb_filter_entry_key_released);
+			filter_entry.changed.connect (cb_filter_entry_changed);
+			filter_entry.icon_release.connect (cb_filter_entry_icon_activated);
 
 			this.preferences.notify["song-format"].connect (cb_playlist_changed);
 			this.preferences.notify["song-format-custom"].connect (cb_playlist_changed);
@@ -263,7 +263,7 @@ namespace Xfmpc {
 				return;
 
 			this.filter.get (iter, Columns.COLUMN_ID, out id, -1);
-			this.filter_entry.set_text ("");
+			filter_entry.set_text ("");
 			this.mpdclient.set_id (id);
 		}
 
