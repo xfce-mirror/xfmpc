@@ -177,10 +177,15 @@ namespace Xfmpc {
 
 		public void append (string filename, string basename, bool is_dir, bool is_bold) {
 			Gtk.TreeIter iter;
+			Gdk.Pixbuf pixbuf = null;
 
-			var pixbuf = Gtk.IconTheme.get_default ()
-				.load_icon(is_dir ? "folder" : "text-x-generic",
-					   Gtk.IconSize.MENU, 0);
+			try {
+				pixbuf = Gtk.IconTheme.get_default ()
+					.load_icon(is_dir ? "folder" : "text-x-generic",
+						   Gtk.IconSize.MENU, 0);
+			} catch (Error e) {
+				warning (e.message);
+			}
 
 			this.store.append (out iter);
 			this.store.set (iter,

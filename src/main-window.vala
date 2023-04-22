@@ -139,10 +139,14 @@ namespace Xfmpc {
 
 		private static void load_css () {
 			var provider = new Gtk.CssProvider ();
-			provider.load_from_data (
-				".primary-button { padding-left: 8px; padding-right: 8px; }" +
-				".red { background-color: #FF6666; }",
-				-1);
+			try {
+				provider.load_from_data (
+					".primary-button { padding-left: 8px; padding-right: 8px; }" +
+					".red { background-color: #FF6666; }",
+					-1);
+			} catch (Error e) {
+				warning (e.message);
+			}
 			Gtk.StyleContext.add_provider_for_screen (
 				Gdk.Screen.get_default (),
 				provider,
