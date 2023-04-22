@@ -25,7 +25,7 @@
 #include <libmpd/libmpd.h>
 
 #include "mpdclient.h"
-#include "xfmpc.h"
+#include "src/xfmpc.h"
 
 
 

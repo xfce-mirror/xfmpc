@@ -1,3 +1,4 @@
+src/libc/mpdclient.c
 src/dbbrowser.vala
 src/extended-interface.vala
 src/interface.vala
@@ -9,5 +10,4 @@ src/preferences-dialog.vala
 src/shortcuts-dialog.vala
 src/song-dialog.vala
 src/statusbar.vala
-src/mpdclient.c
 xfmpc.desktop.in

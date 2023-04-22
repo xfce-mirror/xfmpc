@@ -4,7 +4,7 @@
 
 [CCode (cprefix = "Xfmpc", lower_case_cprefix = "xfmpc_")]
 namespace Xfmpc {
-	[CCode (cheader_filename = "mpdclient.h")]
+	[CCode (cheader_filename = "src/libc/mpdclient.h")]
 	public class Mpdclient {
 		public bool connect ();
 		public bool database_read (string dir, out string filename, out string basename, out bool is_dir);
@@ -68,7 +68,7 @@ namespace Xfmpc {
 		public virtual signal void consume ();
 	}
 	[Compact]
-	[CCode (cheader_filename = "mpdclient.h")]
+	[CCode (cheader_filename = "src/libc/mpdclient.h")]
 	public class SongInfo {
 		public weak string album;
 		public weak string artist;

@@ -1,3 +1,6 @@
+SUBDIRS = \
+	libc
+
 AM_CPPFLAGS =								\
 	-I${top_srcdir}							\
 	-DGETTEXT_PACKAGE=\""$(GETTEXT_PACKAGE)"\"			\
@@ -20,12 +23,12 @@ xfmpc_SOURCES =								\
 	playlist.vala							\
 	preferences.vala						\
 	progress-bar.vala						\
-	main.vala							\
-	mpdclient.c
+	main.vala
 
 xfmpc_VALAFLAGS =							\
 	--header=xfmpc.h						\
-	--vapidir=.							\
+	--vapidir=.				\
+	--vapidir=$(top_srcdir)/src/libc				\
 	--vapidir=$(top_srcdir)/third-party				\
 	--pkg=libxfce4ui-2						\
 	--pkg=config							\
@@ -37,9 +40,11 @@ xfmpc_CFLAGS =								\
 	@GTK_CFLAGS@							\
 	@LIBXFCE4UI_CFLAGS@						\
 	@LIBXFCE4UTIL_CFLAGS@						\
-	@LIBMPD_CFLAGS@
+	@LIBMPD_CFLAGS@						\
+	@VALAC_CFLAGS@
 
 xfmpc_LDADD =								\
+	$(top_builddir)/src/libc/libcxfmpc.la							\
 	@GTHREAD_LIBS@							\
 	@LIBX11_LIBS@							\
 	@GTK_LIBS@							\
@@ -50,8 +55,6 @@ xfmpc_LDADD =								\
 BUILT_SOURCES = xfmpc_vala.stamp
 
 EXTRA_DIST =								\
-	mpdclient.h							\
-	mpdclient.vapi							\
 	xfmpc.h
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
