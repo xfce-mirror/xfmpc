@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
-_Name=Xfmpc
-_Comment=MPD client written in GTK+ for Xfce
-_GenericName=MPD client
+Name=Xfmpc
+Comment=MPD client written in GTK+ for Xfce
+GenericName=MPD client
 Exec=xfmpc
 Icon=multimedia-player
 Terminal=false
