@@ -7,24 +7,19 @@ dnl
 dnl ***************************
 dnl *** Version information ***
 dnl ***************************
-m4_define([xfmpc_version_major], [0])
-m4_define([xfmpc_version_minor], [3])
-m4_define([xfmpc_version_micro], [1])
-m4_define([xfmpc_version_build], [@REVISION@])
-m4_define([xfmpc_version_tag], [git]) # leave empty for release
-m4_define([xfmpc_version], [xfmpc_version_major().xfmpc_version_minor().xfmpc_version_micro()ifelse(xfmpc_version_tag(), [git], [xfmpc_version_tag()-xfmpc_version_build()], [xfmpc_version_tag()])])
+XDT_VERSION_INIT([0.3.1], [git])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2008-2023
         The Xfce development team. All rights reserved.])
-AC_INIT([Xfmpc], [xfmpc_version], [https://gitlab.xfce.org/apps/xfmpc], [xfmpc],
+AC_INIT([Xfmpc], [xdt_version], [https://gitlab.xfce.org/apps/xfmpc], [xfmpc],
         [https://docs.xfce.org/apps/xfmpc/start])
-AC_PREREQ([2.50])
+AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_CANONICAL_TARGET()
-AC_REVISION([xfmpc_version_build])
+AC_REVISION([xdt_version_build])
 
 dnl ***************************
 dnl *** Initialize automake ***
@@ -85,7 +80,7 @@ AM_GNU_GETTEXT_VERSION([0.19.8])
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
-XDT_FEATURE_DEBUG()
+XDT_FEATURE_DEBUG([xdt_debug_default])
 
 AC_CONFIG_FILES([
 Makefile

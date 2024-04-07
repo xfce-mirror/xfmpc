@@ -8,7 +8,6 @@ compile
 config.*
 !config.vapi
 configure
-configure.ac
 depcomp
 install-sh
 libtool
