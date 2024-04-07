@@ -9,7 +9,9 @@ dist_man_MANS = xfmpc.1
 desktopdir = $(datadir)/applications
 desktop_in_files = xfmpc.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
-@INTLTOOL_DESKTOP_RULE@
+
+xfmpc.desktop: xfmpc.desktop.in
+	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 .PHONY: ChangeLog
 
@@ -23,10 +25,6 @@ dist-hook: ChangeLog
 EXTRA_DIST =								\
 	third-party								\
 	IDEAS									\
-	README.md                               \
-	intltool-extract.in						\
-	intltool-merge.in						\
-	intltool-update.in						\
 	$(desktop_in_files)
 
 MAINTAINERCLEANFILES =						\
@@ -41,13 +39,9 @@ MAINTAINERCLEANFILES =						\
 	install-sh								\
 	ltmain.sh								\
 	missing									\
-	mkinstalldirs							\
-	intltool-extract						\
-	intltool-merge							\
-	intltool-update
+	mkinstalldirs
 
 DISTCLEANFILES =							\
-	$(desktop_DATA)							\
-	po/.intltool-merge-cache.lock
+	$(desktop_DATA)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
