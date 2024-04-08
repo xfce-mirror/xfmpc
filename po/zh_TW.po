@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-apps.xfmpc package.
 # 
 # Translators:
 # 黃柏諺 <s8321414@gmail.com>, 2019
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-08 00:52+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-04-08 12:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2019\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/xfce/xfce-apps/language/zh_TW/)\n"
@@ -19,88 +19,87 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../src/libc/mpdclient.c:349
+#: src/libc/mpdclient.c:349
 msgid "Failed to connect to MPD"
 msgstr "無法連接至 MPD"
 
-#: ../src/libc/mpdclient.c:354
+#: src/libc/mpdclient.c:354
 msgid "Connected to MPD"
 msgstr "已連接至 MPD"
 
-#: ../src/libc/mpdclient.c:594 ../src/libc/mpdclient.c:624
-#: ../src/libc/mpdclient.c:639
+#: src/libc/mpdclient.c:594 src/libc/mpdclient.c:624 src/libc/mpdclient.c:639
 msgid "n/a"
 msgstr "不可用"
 
-#: ../src/dbbrowser.vala:93
+#: src/dbbrowser.vala:93
 msgid "Add"
 msgstr "加入"
 
-#: ../src/dbbrowser.vala:96
+#: src/dbbrowser.vala:96
 msgid "Replace"
 msgstr "替換"
 
-#: ../src/dbbrowser.vala:99 ../src/playlist.vala:111
+#: src/dbbrowser.vala:99 src/playlist.vala:111
 msgid "Browse"
 msgstr "瀏覽"
 
-#: ../src/extended-interface.vala:61
+#: src/extended-interface.vala:61
 msgid "Clear Playlist"
 msgstr "清除播放清單"
 
-#: ../src/extended-interface.vala:70
+#: src/extended-interface.vala:70
 msgid "Refresh Database"
 msgstr "重新整理資料庫"
 
-#: ../src/extended-interface.vala:78
+#: src/extended-interface.vala:78
 msgid "Context Menu"
 msgstr "情境選單"
 
-#: ../src/extended-interface.vala:85
+#: src/extended-interface.vala:85
 msgid "Repeat"
 msgstr "返復"
 
-#: ../src/extended-interface.vala:89
+#: src/extended-interface.vala:89
 msgid "Random"
 msgstr "隨機"
 
-#: ../src/extended-interface.vala:93
+#: src/extended-interface.vala:93
 msgid "Single Mode"
 msgstr "單一模式"
 
-#: ../src/extended-interface.vala:97
+#: src/extended-interface.vala:97
 msgid "Consume Mode"
 msgstr "耗盡模式"
 
-#: ../src/extended-interface.vala:104
+#: src/extended-interface.vala:104
 msgid "_Preferences"
 msgstr "偏好設定(_P)"
 
-#: ../src/extended-interface.vala:108
+#: src/extended-interface.vala:108
 msgid "_Shortcuts"
 msgstr "捷徑(_S)"
 
-#: ../src/extended-interface.vala:112
+#: src/extended-interface.vala:112
 msgid "_About"
 msgstr "關於(_A)"
 
-#: ../src/extended-interface.vala:137
+#: src/extended-interface.vala:137
 msgid "Current Playlist"
 msgstr "目前的播放清單"
 
-#: ../src/extended-interface.vala:140
+#: src/extended-interface.vala:140
 msgid "Browse database"
 msgstr "瀏覽資料庫"
 
-#: ../src/extended-interface.vala:238
+#: src/extended-interface.vala:238 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "以 GTK+ 寫成的，為 Xfce 設計的 MPD 客戶端"
 
-#: ../src/extended-interface.vala:242
+#: src/extended-interface.vala:242
 msgid "translator-credits"
 msgstr "Cheng-Chia Tseng <pswo10680@gmail.com>, 2011."
 
-#: ../src/interface.vala:91 ../src/interface.vala:275
+#: src/interface.vala:91 src/interface.vala:275
 msgid "Not connected"
 msgstr "未連接"
 
@@ -108,234 +107,242 @@ msgstr "未連接"
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.vala:264
+#: src/interface.vala:264
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "來自「%s」專輯「%s」(%s)"
 
-#: ../src/interface.vala:271
+#: src/interface.vala:271
 msgid "Stopped"
 msgstr "已停止"
 
-#: ../src/main-window.vala:172
+#: src/main-window.vala:172
 msgid "Quit"
 msgstr "結束"
 
-#: ../src/main-window.vala:302
+#: src/main-window.vala:302
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d 首歌，%d 小時 %d 分鐘"
 
-#: ../src/main-window.vala:304
+#: src/main-window.vala:304
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d 首歌，%d 分鐘"
 
-#: ../src/playlist.vala:108
+#: src/playlist.vala:108
 msgid "Remove"
 msgstr "移除"
 
-#: ../src/playlist.vala:114
+#: src/playlist.vala:114
 msgid "Info"
 msgstr "資訊"
 
-#: ../src/preferences-dialog.vala:45
+#: src/preferences-dialog.vala:45
 msgid "Xfmpc Preferences"
 msgstr "Xfmpc 偏好設定"
 
-#: ../src/preferences-dialog.vala:46
+#: src/preferences-dialog.vala:46
 msgid "Customize your MPD client"
 msgstr "自訂您的 MPD 客戶端"
 
-#: ../src/preferences-dialog.vala:57
+#: src/preferences-dialog.vala:57
 msgid "MPD"
 msgstr "MPD"
 
-#: ../src/preferences-dialog.vala:61
+#: src/preferences-dialog.vala:61
 msgid "Connection"
 msgstr "連線"
 
-#: ../src/preferences-dialog.vala:65
+#: src/preferences-dialog.vala:65
 msgid "Use _default system settings"
 msgstr "使用預設系統設定值(_D)"
 
-#: ../src/preferences-dialog.vala:66
+#: src/preferences-dialog.vala:66
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
 msgstr "若勾選，Xfmpc 會先嘗試讀取環境變數 MPD_HOST 與 HPD_PORT，否則會使用本地端主機"
 
-#: ../src/preferences-dialog.vala:80
+#: src/preferences-dialog.vala:80
 msgid "Hostname:"
 msgstr "主機名稱："
 
-#: ../src/preferences-dialog.vala:87
+#: src/preferences-dialog.vala:87
 msgid "Port:"
 msgstr "連接埠："
 
-#: ../src/preferences-dialog.vala:97
+#: src/preferences-dialog.vala:97
 msgid "Password:"
 msgstr "密碼："
 
-#: ../src/preferences-dialog.vala:105
+#: src/preferences-dialog.vala:105
 msgid "Apply"
 msgstr "套用"
 
-#: ../src/preferences-dialog.vala:112
+#: src/preferences-dialog.vala:112
 msgid "Appearance"
 msgstr "外觀"
 
-#: ../src/preferences-dialog.vala:116
+#: src/preferences-dialog.vala:116
 msgid "General"
 msgstr "一般"
 
-#: ../src/preferences-dialog.vala:120
+#: src/preferences-dialog.vala:120
 msgid "Close window into notification area"
 msgstr "關閉視窗時縮入通知區域"
 
-#: ../src/preferences-dialog.vala:125
+#: src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
 msgstr "顯示狀態列(_S)"
 
-#: ../src/preferences-dialog.vala:131
+#: src/preferences-dialog.vala:131
 msgid "Song Format"
 msgstr "歌曲格式"
 
-#: ../src/preferences-dialog.vala:137
+#: src/preferences-dialog.vala:137
 msgid "Song Format:"
 msgstr "歌曲格式："
 
-#: ../src/preferences-dialog.vala:143 ../src/song-dialog.vala:64
+#: src/preferences-dialog.vala:143 src/song-dialog.vala:64
 msgid "Title"
 msgstr "標題"
 
-#: ../src/preferences-dialog.vala:144
+#: src/preferences-dialog.vala:144
 msgid "Album - Title"
 msgstr "專輯 - 標題"
 
-#: ../src/preferences-dialog.vala:145
+#: src/preferences-dialog.vala:145
 msgid "Artist - Title"
 msgstr "演出者 - 標題"
 
-#: ../src/preferences-dialog.vala:146
+#: src/preferences-dialog.vala:146
 msgid "Artist - Title (Date)"
 msgstr "演出者 - 標題 (日期)"
 
-#: ../src/preferences-dialog.vala:147
+#: src/preferences-dialog.vala:147
 msgid "Artist - Album - Title"
 msgstr "演出者 - 專輯 - 標題"
 
-#: ../src/preferences-dialog.vala:148
+#: src/preferences-dialog.vala:148
 msgid "Artist - Album - Track. Title"
 msgstr "演出者 - 專輯 - 軌道. 標題"
 
-#: ../src/preferences-dialog.vala:149
+#: src/preferences-dialog.vala:149
 msgid "Custom..."
 msgstr "自訂..."
 
-#: ../src/preferences-dialog.vala:157
+#: src/preferences-dialog.vala:157
 msgid "Custom format:"
 msgstr "自訂格式："
 
-#: ../src/preferences-dialog.vala:172
+#: src/preferences-dialog.vala:172
 msgid "Available parameters:"
 msgstr "可用參數："
 
-#: ../src/preferences-dialog.vala:183
+#: src/preferences-dialog.vala:183
 #, c-format
 msgid "%a: Artist"
 msgstr "%a：演出者"
 
-#: ../src/preferences-dialog.vala:188
+#: src/preferences-dialog.vala:188
 #, c-format
 msgid "%A: Album"
 msgstr "%A：專輯"
 
-#: ../src/preferences-dialog.vala:194
+#: src/preferences-dialog.vala:194
 msgid "%t: Title"
 msgstr "%t：標題"
 
-#: ../src/preferences-dialog.vala:199
+#: src/preferences-dialog.vala:199
 msgid "%D: Disc"
 msgstr "%D：碟片"
 
-#: ../src/preferences-dialog.vala:205
+#: src/preferences-dialog.vala:205
 #, c-format
 msgid "%f: File"
 msgstr "%f：檔案"
 
-#: ../src/preferences-dialog.vala:210
+#: src/preferences-dialog.vala:210
 #, c-format
 msgid "%g: Genre"
 msgstr "%g：曲風"
 
-#: ../src/preferences-dialog.vala:216
+#: src/preferences-dialog.vala:216
 #, c-format
 msgid "%d: Date"
 msgstr "%d：日期"
 
-#: ../src/preferences-dialog.vala:221
+#: src/preferences-dialog.vala:221
 msgid "%T: Track"
 msgstr "%T：軌道"
 
-#: ../src/preferences-dialog.vala:230 ../src/shortcuts-dialog.vala:32
-#: ../src/song-dialog.vala:103
+#: src/preferences-dialog.vala:230 src/shortcuts-dialog.vala:32
+#: src/song-dialog.vala:103
 msgid "Close"
 msgstr "關閉"
 
-#: ../src/shortcuts-dialog.vala:28
+#: src/shortcuts-dialog.vala:28
 msgid "Xfmpc Shortcuts"
 msgstr "Xfmpc 捷徑"
 
-#: ../src/shortcuts-dialog.vala:29
+#: src/shortcuts-dialog.vala:29
 msgid "Control your MPD client with your keyboard"
 msgstr "用鍵盤控制您的 MPD 客戶端"
 
 #. Shortcuts labels
-#: ../src/shortcuts-dialog.vala:50
+#: src/shortcuts-dialog.vala:50
 msgid "Quit: CTRL+q"
 msgstr "退出：CTRL+q"
 
-#: ../src/shortcuts-dialog.vala:55
+#: src/shortcuts-dialog.vala:55
 msgid "Previous: CTRL+b"
 msgstr "上一首：CTRL+b"
 
-#: ../src/shortcuts-dialog.vala:60
+#: src/shortcuts-dialog.vala:60
 msgid "Play/Pause: CTRL+p"
 msgstr "播放/暫停：CTRL+p"
 
-#: ../src/shortcuts-dialog.vala:65
+#: src/shortcuts-dialog.vala:65
 msgid "Stop: CTRL+s"
 msgstr "停止：CTRL+s"
 
-#: ../src/shortcuts-dialog.vala:70
+#: src/shortcuts-dialog.vala:70
 msgid "Next: CTRL+f"
 msgstr "下一首：CTRL+f"
 
-#: ../src/shortcuts-dialog.vala:75
+#: src/shortcuts-dialog.vala:75
 msgid "Volume: CTRL+v"
 msgstr "音量：CTRL+v"
 
-#: ../src/song-dialog.vala:48
+#: src/song-dialog.vala:48
 msgid "File"
 msgstr "檔案"
 
-#: ../src/song-dialog.vala:56
+#: src/song-dialog.vala:56
 msgid "Artist"
 msgstr "演出者"
 
-#: ../src/song-dialog.vala:72
+#: src/song-dialog.vala:72
 msgid "Album"
 msgstr "專輯"
 
-#: ../src/song-dialog.vala:80
+#: src/song-dialog.vala:80
 msgid "Date"
 msgstr "日期"
 
-#: ../src/song-dialog.vala:85
+#: src/song-dialog.vala:85
 msgid "Track"
 msgstr "軌道"
 
-#: ../src/song-dialog.vala:93
+#: src/song-dialog.vala:93
 msgid "Genre"
 msgstr "曲風"
+
+#: xfmpc.desktop.in:4
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
+#: xfmpc.desktop.in:6
+msgid "MPD client"
+msgstr "MPD 客戶端"
