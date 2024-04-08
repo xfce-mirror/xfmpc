@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-apps.xfmpc package.
 # 
 # Translators:
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2019
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-08 00:52+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-04-08 12:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2019\n"
 "Language-Team: Korean (http://app.transifex.com/xfce/xfce-apps/language/ko/)\n"
@@ -19,88 +19,87 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../src/libc/mpdclient.c:349
+#: src/libc/mpdclient.c:349
 msgid "Failed to connect to MPD"
 msgstr "MPD 연결에 실패"
 
-#: ../src/libc/mpdclient.c:354
+#: src/libc/mpdclient.c:354
 msgid "Connected to MPD"
 msgstr "MPD에 연결했습니다"
 
-#: ../src/libc/mpdclient.c:594 ../src/libc/mpdclient.c:624
-#: ../src/libc/mpdclient.c:639
+#: src/libc/mpdclient.c:594 src/libc/mpdclient.c:624 src/libc/mpdclient.c:639
 msgid "n/a"
 msgstr "없음"
 
-#: ../src/dbbrowser.vala:93
+#: src/dbbrowser.vala:93
 msgid "Add"
 msgstr "추가"
 
-#: ../src/dbbrowser.vala:96
+#: src/dbbrowser.vala:96
 msgid "Replace"
 msgstr "바꾸기"
 
-#: ../src/dbbrowser.vala:99 ../src/playlist.vala:111
+#: src/dbbrowser.vala:99 src/playlist.vala:111
 msgid "Browse"
 msgstr "찾아보기"
 
-#: ../src/extended-interface.vala:61
+#: src/extended-interface.vala:61
 msgid "Clear Playlist"
 msgstr "재생 목록 지우기"
 
-#: ../src/extended-interface.vala:70
+#: src/extended-interface.vala:70
 msgid "Refresh Database"
 msgstr "데이터베이스 갱신"
 
-#: ../src/extended-interface.vala:78
+#: src/extended-interface.vala:78
 msgid "Context Menu"
 msgstr "문맥 메뉴"
 
-#: ../src/extended-interface.vala:85
+#: src/extended-interface.vala:85
 msgid "Repeat"
 msgstr "반복"
 
-#: ../src/extended-interface.vala:89
+#: src/extended-interface.vala:89
 msgid "Random"
 msgstr "임의"
 
-#: ../src/extended-interface.vala:93
+#: src/extended-interface.vala:93
 msgid "Single Mode"
 msgstr "단일 모드"
 
-#: ../src/extended-interface.vala:97
+#: src/extended-interface.vala:97
 msgid "Consume Mode"
 msgstr "컨슘 모드"
 
-#: ../src/extended-interface.vala:104
+#: src/extended-interface.vala:104
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
-#: ../src/extended-interface.vala:108
+#: src/extended-interface.vala:108
 msgid "_Shortcuts"
 msgstr "바로 가기(_S)"
 
-#: ../src/extended-interface.vala:112
+#: src/extended-interface.vala:112
 msgid "_About"
 msgstr "정보(_A)"
 
-#: ../src/extended-interface.vala:137
+#: src/extended-interface.vala:137
 msgid "Current Playlist"
 msgstr "현재 재생 목록"
 
-#: ../src/extended-interface.vala:140
+#: src/extended-interface.vala:140
 msgid "Browse database"
 msgstr "데이터베이스 탐색"
 
-#: ../src/extended-interface.vala:238
+#: src/extended-interface.vala:238 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "GTK+로 작성한 Xfce용 MPD 클라이언트"
 
-#: ../src/extended-interface.vala:242
+#: src/extended-interface.vala:242
 msgid "translator-credits"
 msgstr "Seong-ho Cho <darkcircle.0426@gmail.com>"
 
-#: ../src/interface.vala:91 ../src/interface.vala:275
+#: src/interface.vala:91 src/interface.vala:275
 msgid "Not connected"
 msgstr "연결 안함"
 
@@ -108,234 +107,242 @@ msgstr "연결 안함"
 #. // "n/a" values, but no big deal IMO
 #. text = get_subtitle (interface);
 #. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
-#: ../src/interface.vala:264
+#: src/interface.vala:264
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
 msgstr "\"%s\"이(가)  \"%s\"(으)로 부터 (%s)"
 
-#: ../src/interface.vala:271
+#: src/interface.vala:271
 msgid "Stopped"
 msgstr "멈춤"
 
-#: ../src/main-window.vala:172
+#: src/main-window.vala:172
 msgid "Quit"
 msgstr "끝내기"
 
-#: ../src/main-window.vala:302
+#: src/main-window.vala:302
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "노래 %d곡, %d시간 %d분"
 
-#: ../src/main-window.vala:304
+#: src/main-window.vala:304
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "노개 %d곡, %d분"
 
-#: ../src/playlist.vala:108
+#: src/playlist.vala:108
 msgid "Remove"
 msgstr "제거"
 
-#: ../src/playlist.vala:114
+#: src/playlist.vala:114
 msgid "Info"
 msgstr "정보"
 
-#: ../src/preferences-dialog.vala:45
+#: src/preferences-dialog.vala:45
 msgid "Xfmpc Preferences"
 msgstr "Xfmpc 기본 설정"
 
-#: ../src/preferences-dialog.vala:46
+#: src/preferences-dialog.vala:46
 msgid "Customize your MPD client"
 msgstr "MPD 클라이언트 사용자 정의"
 
-#: ../src/preferences-dialog.vala:57
+#: src/preferences-dialog.vala:57
 msgid "MPD"
 msgstr "MPD"
 
-#: ../src/preferences-dialog.vala:61
+#: src/preferences-dialog.vala:61
 msgid "Connection"
 msgstr "연결"
 
-#: ../src/preferences-dialog.vala:65
+#: src/preferences-dialog.vala:65
 msgid "Use _default system settings"
 msgstr "기본 시스템 설정 사용(_D)"
 
-#: ../src/preferences-dialog.vala:66
+#: src/preferences-dialog.vala:66
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
 msgstr "이것을 선택하면, Xfmpc는 MPD_HOST 환경변수와 MPD_PORT 환경변수를 읽어들이려 하거나 localhost를 사용합니다"
 
-#: ../src/preferences-dialog.vala:80
+#: src/preferences-dialog.vala:80
 msgid "Hostname:"
 msgstr "호스트 이름:"
 
-#: ../src/preferences-dialog.vala:87
+#: src/preferences-dialog.vala:87
 msgid "Port:"
 msgstr "포트:"
 
-#: ../src/preferences-dialog.vala:97
+#: src/preferences-dialog.vala:97
 msgid "Password:"
 msgstr "암호:"
 
-#: ../src/preferences-dialog.vala:105
+#: src/preferences-dialog.vala:105
 msgid "Apply"
 msgstr "적용"
 
-#: ../src/preferences-dialog.vala:112
+#: src/preferences-dialog.vala:112
 msgid "Appearance"
 msgstr "모양새"
 
-#: ../src/preferences-dialog.vala:116
+#: src/preferences-dialog.vala:116
 msgid "General"
 msgstr "일반"
 
-#: ../src/preferences-dialog.vala:120
+#: src/preferences-dialog.vala:120
 msgid "Close window into notification area"
 msgstr "알림 영역으로 창 숨기기"
 
-#: ../src/preferences-dialog.vala:125
+#: src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
 msgstr "상태 표시줄 보기(_S)"
 
-#: ../src/preferences-dialog.vala:131
+#: src/preferences-dialog.vala:131
 msgid "Song Format"
 msgstr "노래 형식"
 
-#: ../src/preferences-dialog.vala:137
+#: src/preferences-dialog.vala:137
 msgid "Song Format:"
 msgstr "노래 형식:"
 
-#: ../src/preferences-dialog.vala:143 ../src/song-dialog.vala:64
+#: src/preferences-dialog.vala:143 src/song-dialog.vala:64
 msgid "Title"
 msgstr "제목"
 
-#: ../src/preferences-dialog.vala:144
+#: src/preferences-dialog.vala:144
 msgid "Album - Title"
 msgstr "앨범 - 제목"
 
-#: ../src/preferences-dialog.vala:145
+#: src/preferences-dialog.vala:145
 msgid "Artist - Title"
 msgstr "음악가 - 제목"
 
-#: ../src/preferences-dialog.vala:146
+#: src/preferences-dialog.vala:146
 msgid "Artist - Title (Date)"
 msgstr "음악가 - 제목(날짜)"
 
-#: ../src/preferences-dialog.vala:147
+#: src/preferences-dialog.vala:147
 msgid "Artist - Album - Title"
 msgstr "음악가 - 앨범 - 제목"
 
-#: ../src/preferences-dialog.vala:148
+#: src/preferences-dialog.vala:148
 msgid "Artist - Album - Track. Title"
 msgstr "음악가 - 앨범 - 트랙. 제목"
 
-#: ../src/preferences-dialog.vala:149
+#: src/preferences-dialog.vala:149
 msgid "Custom..."
 msgstr "사용자 정의..."
 
-#: ../src/preferences-dialog.vala:157
+#: src/preferences-dialog.vala:157
 msgid "Custom format:"
 msgstr "사용자 정의 형식:"
 
-#: ../src/preferences-dialog.vala:172
+#: src/preferences-dialog.vala:172
 msgid "Available parameters:"
 msgstr "사용 가능한 변수:"
 
-#: ../src/preferences-dialog.vala:183
+#: src/preferences-dialog.vala:183
 #, c-format
 msgid "%a: Artist"
 msgstr "%a: 음악가"
 
-#: ../src/preferences-dialog.vala:188
+#: src/preferences-dialog.vala:188
 #, c-format
 msgid "%A: Album"
 msgstr "%A: 앨범"
 
-#: ../src/preferences-dialog.vala:194
+#: src/preferences-dialog.vala:194
 msgid "%t: Title"
 msgstr "%t: 제목"
 
-#: ../src/preferences-dialog.vala:199
+#: src/preferences-dialog.vala:199
 msgid "%D: Disc"
 msgstr "%D: 디스크"
 
-#: ../src/preferences-dialog.vala:205
+#: src/preferences-dialog.vala:205
 #, c-format
 msgid "%f: File"
 msgstr "%f: 파일"
 
-#: ../src/preferences-dialog.vala:210
+#: src/preferences-dialog.vala:210
 #, c-format
 msgid "%g: Genre"
 msgstr "%g: 장르"
 
-#: ../src/preferences-dialog.vala:216
+#: src/preferences-dialog.vala:216
 #, c-format
 msgid "%d: Date"
 msgstr "%d: 날짜"
 
-#: ../src/preferences-dialog.vala:221
+#: src/preferences-dialog.vala:221
 msgid "%T: Track"
 msgstr "%T: 트랙"
 
-#: ../src/preferences-dialog.vala:230 ../src/shortcuts-dialog.vala:32
-#: ../src/song-dialog.vala:103
+#: src/preferences-dialog.vala:230 src/shortcuts-dialog.vala:32
+#: src/song-dialog.vala:103
 msgid "Close"
 msgstr "닫기"
 
-#: ../src/shortcuts-dialog.vala:28
+#: src/shortcuts-dialog.vala:28
 msgid "Xfmpc Shortcuts"
 msgstr "Xfmpc 바로 가기"
 
-#: ../src/shortcuts-dialog.vala:29
+#: src/shortcuts-dialog.vala:29
 msgid "Control your MPD client with your keyboard"
 msgstr "키보드로 MPD 클라이언트를 조작합니다"
 
 #. Shortcuts labels
-#: ../src/shortcuts-dialog.vala:50
+#: src/shortcuts-dialog.vala:50
 msgid "Quit: CTRL+q"
 msgstr "나가기: CTRL+q"
 
-#: ../src/shortcuts-dialog.vala:55
+#: src/shortcuts-dialog.vala:55
 msgid "Previous: CTRL+b"
 msgstr "이전: CTRL+b"
 
-#: ../src/shortcuts-dialog.vala:60
+#: src/shortcuts-dialog.vala:60
 msgid "Play/Pause: CTRL+p"
 msgstr "재생/일시정지: CTRL+p"
 
-#: ../src/shortcuts-dialog.vala:65
+#: src/shortcuts-dialog.vala:65
 msgid "Stop: CTRL+s"
 msgstr "멈춤: CTRL+s"
 
-#: ../src/shortcuts-dialog.vala:70
+#: src/shortcuts-dialog.vala:70
 msgid "Next: CTRL+f"
 msgstr "다음: CTRL+f"
 
-#: ../src/shortcuts-dialog.vala:75
+#: src/shortcuts-dialog.vala:75
 msgid "Volume: CTRL+v"
 msgstr "음량: CTRL+v"
 
-#: ../src/song-dialog.vala:48
+#: src/song-dialog.vala:48
 msgid "File"
 msgstr "파일"
 
-#: ../src/song-dialog.vala:56
+#: src/song-dialog.vala:56
 msgid "Artist"
 msgstr "음악가"
 
-#: ../src/song-dialog.vala:72
+#: src/song-dialog.vala:72
 msgid "Album"
 msgstr "앨범"
 
-#: ../src/song-dialog.vala:80
+#: src/song-dialog.vala:80
 msgid "Date"
 msgstr "날짜"
 
-#: ../src/song-dialog.vala:85
+#: src/song-dialog.vala:85
 msgid "Track"
 msgstr "트랙"
 
-#: ../src/song-dialog.vala:93
+#: src/song-dialog.vala:93
 msgid "Genre"
 msgstr "장르"
+
+#: xfmpc.desktop.in:4
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
+#: xfmpc.desktop.in:6
+msgid "MPD client"
+msgstr "MPD 클라이언트"
