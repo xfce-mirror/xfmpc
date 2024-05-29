@@ -25,7 +25,20 @@
 #include <libmpd/libmpd.h>
 
 #include "mpdclient.h"
+
+/*
+ * Silence '-Wunused-function' warning from xfmpc_main so it doesn't break CI build
+ * GCC 4.6 is required, see https://gcc.gnu.org/gcc-4.6/changes.html
+ */
+#if G_GNUC_CHECK_VERSION (4, 6)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+#endif
 #include "src/xfmpc.h"
+#if G_GNUC_CHECK_VERSION (4, 6)
+static gint xfmpc_main (gchar** args, gint args_length1) { return 0; }
+#pragma GCC diagnostic pop
+#endif
 
 
 
@@ -1241,4 +1254,3 @@ xfmpc_song_info_free (XfmpcSongInfo *song_info)
 
   g_slice_free (XfmpcSongInfo, song_info);
 }
-
