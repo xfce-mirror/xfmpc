@@ -33,10 +33,14 @@
 #if G_GNUC_CHECK_VERSION (4, 6)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-function"
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
 #endif
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
 #include "src/xfmpc.h"
-#if G_GNUC_CHECK_VERSION (4, 6)
 static gint xfmpc_main (gchar** args, gint args_length1) { return 0; }
+#pragma clang diagnostic pop
+#if G_GNUC_CHECK_VERSION (4, 6)
 #pragma GCC diagnostic pop
 #endif
 
