@@ -36,7 +36,6 @@ xfmpc_VALAFLAGS =							\
 
 xfmpc_CFLAGS =								\
 	@GTHREAD_CFLAGS@						\
-	@LIBX11_CFLAGS@							\
 	@GTK_CFLAGS@							\
 	@LIBXFCE4UI_CFLAGS@						\
 	@LIBXFCE4UTIL_CFLAGS@						\
@@ -46,7 +45,6 @@ xfmpc_CFLAGS =								\
 xfmpc_LDADD =								\
 	$(top_builddir)/src/libc/libcxfmpc.la							\
 	@GTHREAD_LIBS@							\
-	@LIBX11_LIBS@							\
 	@GTK_LIBS@							\
 	@LIBXFCE4UI_LIBS@						\
 	@LIBXFCE4UTIL_LIBS@						\

@@ -46,7 +46,6 @@ LT_INIT([disable-static])
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
-XDT_CHECK_LIBX11_REQUIRE()
 XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [3.22.0])
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.38.0])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.38.0])
