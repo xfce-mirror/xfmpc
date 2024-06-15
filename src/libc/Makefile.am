@@ -9,7 +9,6 @@ libcxfmpc_la_CFLAGS = \
 	-DGETTEXT_PACKAGE=\""$(GETTEXT_PACKAGE)"\" \
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\" \
 	$(GTHREAD_CFLAGS) \
-	$(LIBX11_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
@@ -17,7 +16,6 @@ libcxfmpc_la_CFLAGS = \
 
 libcxfmpc_la_LIBADD = \
 	$(GTHREAD_LIBS) \
-	$(LIBX11_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
