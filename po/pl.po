@@ -111,7 +111,7 @@ msgstr "Nie połączono"
 #: src/interface.vala:264
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr "autorstwa \"%s\" z \"%s\" (%s)"
+msgstr "autorstwa „%s” z „%s” (%s)"
 
 #: src/interface.vala:271
 msgid "Stopped"
