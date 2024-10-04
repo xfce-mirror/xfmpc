@@ -145,7 +145,7 @@ msgstr "Preferencje Xfmpc"
 
 #: src/preferences-dialog.vala:46
 msgid "Customize your MPD client"
-msgstr "Dostosuj do swych potrzeb swego klienta MPD"
+msgstr "Dostosuj swojego klienta MPD"
 
 #: src/preferences-dialog.vala:57
 msgid "MPD"
@@ -244,7 +244,7 @@ msgstr "Dostępne parametry:"
 #: src/preferences-dialog.vala:183
 #, c-format
 msgid "%a: Artist"
-msgstr "%a: Artysta"
+msgstr "%a: Wykonawca"
 
 #: src/preferences-dialog.vala:188
 #, c-format
@@ -322,7 +322,7 @@ msgstr "Plik"
 
 #: src/song-dialog.vala:56
 msgid "Artist"
-msgstr "Artysta"
+msgstr "Wykonawca"
 
 #: src/song-dialog.vala:72
 msgid "Album"
