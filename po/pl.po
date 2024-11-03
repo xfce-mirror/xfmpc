@@ -141,7 +141,7 @@ msgstr "Informacje"
 
 #: src/preferences-dialog.vala:45
 msgid "Xfmpc Preferences"
-msgstr "Preferencje Xfmpc"
+msgstr "Preferencje klienta"
 
 #: src/preferences-dialog.vala:46
 msgid "Customize your MPD client"
