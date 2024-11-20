@@ -215,19 +215,19 @@ msgstr "Album - Tytuł"
 
 #: src/preferences-dialog.vala:145
 msgid "Artist - Title"
-msgstr "Artysta - Tytuł"
+msgstr "Wykonawca - Tytuł"
 
 #: src/preferences-dialog.vala:146
 msgid "Artist - Title (Date)"
-msgstr "Artysta - Tytuł (Rok)"
+msgstr "Wykonawca - Tytuł (Rok)"
 
 #: src/preferences-dialog.vala:147
 msgid "Artist - Album - Title"
-msgstr "Artysta - Album - Tytuł"
+msgstr "Wykonawca - Album - Tytuł"
 
 #: src/preferences-dialog.vala:148
 msgid "Artist - Album - Track. Title"
-msgstr "Artysta - Album - Ścieżka. Tytuł"
+msgstr "Wykonawca - Album - Ścieżka. Tytuł"
 
 #: src/preferences-dialog.vala:149
 msgid "Custom..."
