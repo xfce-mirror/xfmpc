@@ -47,7 +47,10 @@ namespace Xfmpc {
 			{ "pp", null, "", "<control>p", null, action_pp },
 			{ "stop", null, "", "<control>s", null, action_stop },
 			{ "next", null, "", "<control>f", null, action_next },
-			{ "volume", null, "", "<control>v", null, action_volume }
+			{ "volume", null, "", "<control>v", null, action_volume },
+			{ "search", null, "", "<alt>s", null, action_search },
+			{ "search_playlist", null, "", "<alt>f", null, action_search_playlist },
+			{ "search_database", null, "", "<alt>d", null, action_search_database }
 		};
 
 		private const string ui_string =
@@ -59,6 +62,9 @@ namespace Xfmpc {
   <accelerator action="stop" />
   <accelerator action="next" />
   <accelerator action="volume" />
+  <accelerator action="search" />
+  <accelerator action="search_playlist" />
+  <accelerator action="search_database" />
 </ui>
 """;
 
@@ -269,6 +275,26 @@ namespace Xfmpc {
 
 		private void action_volume () {
 			this.@interface.popup_volume ();
+		}
+
+		private void action_search () {
+			this.extended_interface.combobox.grab_focus(); 
+			this.move_focus (0); 
+			this.move_focus (0); 
+		}
+
+		private void action_search_playlist () {
+			this.extended_interface.combobox.set_active (0);
+			this.extended_interface.combobox.grab_focus(); 
+			this.move_focus (0); 
+			this.move_focus (0); 
+		}
+
+		private void action_search_database () {
+			this.extended_interface.combobox.set_active (1);
+			this.extended_interface.combobox.grab_focus(); 
+			this.move_focus (0); 
+			this.move_focus (0); 
 		}
 
 		private void action_statusbar (Gtk.Action action) {
