@@ -77,6 +77,21 @@ namespace Xfmpc {
 			label.yalign = 0.5f;
 			vbox.add (label);
 
+			label = new Gtk.Label (_("Search: ALT+s"));
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			vbox.add (label);
+
+			label = new Gtk.Label (_("Filter Playlist: ALT+f"));
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			vbox.add (label);
+
+			label = new Gtk.Label (_("Search in Database: ALT+d"));
+			label.xalign = 0.0f;
+			label.yalign = 0.5f;
+			vbox.add (label);
+
 			show_all ();
 		}
 	}
