@@ -284,14 +284,14 @@ namespace Xfmpc {
 		}
 
 		private void action_search_playlist () {
-			this.extended_interface.combobox.set_active (0);
+			this.extended_interface.combobox.set_active (Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.PLAYLIST);
 			this.extended_interface.combobox.grab_focus(); 
 			this.move_focus (0); 
 			this.move_focus (0); 
 		}
 
 		private void action_search_database () {
-			this.extended_interface.combobox.set_active (1);
+			this.extended_interface.combobox.set_active (Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.DBBROWSER);
 			this.extended_interface.combobox.grab_focus(); 
 			this.move_focus (0); 
 			this.move_focus (0); 
