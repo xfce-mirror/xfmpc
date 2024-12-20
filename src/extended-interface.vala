@@ -28,7 +28,7 @@ namespace Xfmpc {
 
 		private Gtk.MenuButton context_button;
 		private Gtk.ListStore list_store;
-		private Gtk.ComboBox combobox;
+		public Gtk.ComboBox combobox;
 		private Gtk.Notebook notebook;
 		private Gtk.Menu context_menu;
 
