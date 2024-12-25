@@ -1,3 +1,27 @@
+0.3.2 (2024-12-25)
+=====
+- Update copyright year
+- I18n: Update po/LINGUAS list
+- I18n: Update po/LINGUAS list
+- build: Remove check for libx11
+- scan-build: Add false positive file
+- build: clang: Silence -Wunused-function
+- build: Fix -Werror=unused-function
+- I18n: Update po/LINGUAS list
+- build: Use XDT_VERSION_INIT and get rid of configure.ac.in
+- build: Switch from intltool to gettext
+- Translation Updates:
+  Albanian, Amharic, Arabic, Armenian (Armenia), Asturian, Basque,
+  Belarusian, Bulgarian, Catalan, Chinese (China), Chinese (Taiwan),
+  Croatian, Czech, Danish, Dutch, Eastern Armenian, English
+  (Australia), English (United Kingdom), Estonian, Finnish, French,
+  Galician, German, Greek, Hebrew, Hungarian, Icelandic, Indonesian,
+  Interlingue, Italian, Japanese, Kazakh, Korean, Lithuanian, Malay,
+  Norwegian Bokmål, Occitan (post 1500), Polish, Portuguese,
+  Portuguese (Brazil), Romanian, Russian, Serbian, Slovak, Slovenian,
+  Spanish, Swedish, Thai, Turkish, Ukrainian, Urdu, Urdu (Pakistan),
+  Uyghur
+
 0.3.1 (2023-04-22)
 =====
 - Improve icon and style of clear playlist button
