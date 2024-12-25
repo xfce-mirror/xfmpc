@@ -12,7 +12,7 @@ XDT_VERSION_INIT([0.3.1], [git])
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2008-2023
+AC_COPYRIGHT([Copyright (c) 2008-2024
         The Xfce development team. All rights reserved.])
 AC_INIT([Xfmpc], [xdt_version], [https://gitlab.xfce.org/apps/xfmpc], [xfmpc],
         [https://docs.xfce.org/apps/xfmpc/start])
