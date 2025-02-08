@@ -278,23 +278,21 @@ namespace Xfmpc {
 		}
 
 		private void action_search () {
-			this.extended_interface.combobox.grab_focus(); 
-			this.move_focus (0); 
-			this.move_focus (0); 
+			if (this.extended_interface.combobox.get_active () == Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.PLAYLIST)
+				this.extended_interface.playlist.filter_entry.grab_focus ();
+
+			if (this.extended_interface.combobox.get_active ()  == Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.DBBROWSER)
+				this.extended_interface.dbbrowser.search_entry.grab_focus ();
 		}
 
 		private void action_search_playlist () {
 			this.extended_interface.combobox.set_active (Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.PLAYLIST);
-			this.extended_interface.combobox.grab_focus(); 
-			this.move_focus (0); 
-			this.move_focus (0); 
+			this.extended_interface.playlist.filter_entry.grab_focus ();
 		}
 
 		private void action_search_database () {
 			this.extended_interface.combobox.set_active (Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.DBBROWSER);
-			this.extended_interface.combobox.grab_focus(); 
-			this.move_focus (0); 
-			this.move_focus (0); 
+			this.extended_interface.dbbrowser.search_entry.grab_focus ();
 		}
 
 		private void action_statusbar (Gtk.Action action) {
