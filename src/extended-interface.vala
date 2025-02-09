@@ -26,7 +26,7 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
-		public Xfmpc.Dbbrowser dbrowser;
+		public Xfmpc.Dbbrowser dbbrowser;
 		public Xfmpc.Playlist playlist;
 
 		private Gtk.MenuButton context_button;
