@@ -289,7 +289,7 @@ namespace Xfmpc {
 
 		private void action_search () {
 			if (this.extended_interface.combobox.get_active () == Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.PLAYLIST)
-				this.extended_interface.playlist.filter_entry.grab_focus ();
+				Xfmpc.Playlist.filter_entry.grab_focus ();
 
 			if (this.extended_interface.combobox.get_active ()  == Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.DBBROWSER)
 				this.extended_interface.dbbrowser.search_entry.grab_focus ();
@@ -297,7 +297,7 @@ namespace Xfmpc {
 
 		private void action_search_playlist () {
 			this.extended_interface.combobox.set_active (Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.PLAYLIST);
-			this.extended_interface.playlist.filter_entry.grab_focus ();
+			Xfmpc.Playlist.filter_entry.grab_focus ();
 		}
 
 		private void action_search_database () {
