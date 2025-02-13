@@ -29,7 +29,7 @@ namespace Xfmpc {
 		private Gtk.ListStore store;
 		private Gtk.TreeView treeview;
 		private Gtk.Menu menu;
-		private Gtk.Entry search_entry;
+		public Gtk.Entry search_entry;
 		private Gtk.MenuItem mi_browse;
 
 		private string wdir;

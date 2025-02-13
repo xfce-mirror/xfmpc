@@ -30,7 +30,7 @@ namespace Xfmpc {
 		private Gtk.TreeModelFilter filter;
 		private Gtk.TreeView treeview;
 		private Gtk.Menu menu;
-		private static Gtk.Entry filter_entry;
+		public static Gtk.Entry filter_entry;
 
 		private Gtk.MenuItem mi_browse;
 		private Gtk.MenuItem mi_information;

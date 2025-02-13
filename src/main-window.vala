@@ -44,10 +44,18 @@ namespace Xfmpc {
 		private const Gtk.ActionEntry[] action_entries = {
 			{ "quit", null, "", "<control>q", null, action_quit },
 			{ "previous", null, "", "<control>b", null, action_previous },
+			{ "xf86previous", null, "", "AudioPrev", null, action_previous },
 			{ "pp", null, "", "<control>p", null, action_pp },
+			{ "xf86play", null, "", "AudioPlay", null, action_pp },
+			{ "xf86pause", null, "", "AudioPause", null, action_pp },
 			{ "stop", null, "", "<control>s", null, action_stop },
+			{ "xf86stop", null, "", "AudioStop", null, action_stop },
 			{ "next", null, "", "<control>f", null, action_next },
-			{ "volume", null, "", "<control>v", null, action_volume }
+			{ "xf86next", null, "", "AudioNext", null, action_next },
+			{ "volume", null, "", "<control>v", null, action_volume },
+			{ "search", null, "", "<alt>s", null, action_search },
+			{ "search_playlist", null, "", "<alt>f", null, action_search_playlist },
+			{ "search_database", null, "", "<alt>d", null, action_search_database }
 		};
 
 		private const string ui_string =
@@ -55,10 +63,18 @@ namespace Xfmpc {
 <ui>
   <accelerator action="quit" />
   <accelerator action="previous" />
+  <accelerator action="xf86previous" />
   <accelerator action="pp" />
+  <accelerator action="xf86play" />
+  <accelerator action="xf86pause" />
   <accelerator action="stop" />
+  <accelerator action="xf86stop" />
   <accelerator action="next" />
+  <accelerator action="xf86next" />
   <accelerator action="volume" />
+  <accelerator action="search" />
+  <accelerator action="search_playlist" />
+  <accelerator action="search_database" />
 </ui>
 """;
 
@@ -269,6 +285,24 @@ namespace Xfmpc {
 
 		private void action_volume () {
 			this.@interface.popup_volume ();
+		}
+
+		private void action_search () {
+			if (this.extended_interface.combobox.get_active () == Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.PLAYLIST)
+				Xfmpc.Playlist.filter_entry.grab_focus ();
+
+			if (this.extended_interface.combobox.get_active ()  == Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.DBBROWSER)
+				this.extended_interface.dbbrowser.search_entry.grab_focus ();
+		}
+
+		private void action_search_playlist () {
+			this.extended_interface.combobox.set_active (Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.PLAYLIST);
+			Xfmpc.Playlist.filter_entry.grab_focus ();
+		}
+
+		private void action_search_database () {
+			this.extended_interface.combobox.set_active (Xfmpc.ExtendedInterface.ExtendedInterfaceWidget.DBBROWSER);
+			this.extended_interface.dbbrowser.search_entry.grab_focus ();
 		}
 
 		private void action_statusbar (Gtk.Action action) {

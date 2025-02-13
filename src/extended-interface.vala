@@ -26,9 +26,12 @@ namespace Xfmpc {
 		private unowned Xfmpc.Mpdclient mpdclient;
 		private unowned Xfmpc.Preferences preferences;
 
+		public Xfmpc.Dbbrowser dbbrowser;
+		public Xfmpc.Playlist playlist;
+
 		private Gtk.MenuButton context_button;
 		private Gtk.ListStore list_store;
-		private Gtk.ComboBox combobox;
+		public Gtk.ComboBox combobox;
 		private Gtk.Notebook notebook;
 		private Gtk.Menu context_menu;
 
@@ -133,10 +136,10 @@ namespace Xfmpc {
 			this.notebook.set_show_tabs (false);
 			pack_start (this.notebook, true, true, 0);
 
-			Gtk.Widget playlist = (Gtk.Widget) new Xfmpc.Playlist ();
+			this.playlist = new Xfmpc.Playlist ();
 			append_child (playlist, _("Current Playlist"));
 
-			Gtk.Widget dbbrowser = (Gtk.Widget) new Xfmpc.Dbbrowser ();
+			this.dbbrowser = new Xfmpc.Dbbrowser ();
 			append_child (dbbrowser, _("Browse database"));
 
 			playlist.set_data ("XfmpcDbbrowser", dbbrowser);
