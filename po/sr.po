@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-08 12:51+0200\n"
+"POT-Creation-Date: 2025-02-14 00:51+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>, 2012,2019\n"
 "Language-Team: Serbian (http://app.transifex.com/xfce/xfce-apps/language/sr/)\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: src/libc/mpdclient.c:349
+#: src/libc/mpdclient.c:366
 msgid "Failed to connect to MPD"
 msgstr "Не могу да се повежем на МПД"
 
-#: src/libc/mpdclient.c:354
+#: src/libc/mpdclient.c:371
 msgid "Connected to MPD"
 msgstr "Спојен са МПД-ом"
 
-#: src/libc/mpdclient.c:594 src/libc/mpdclient.c:624 src/libc/mpdclient.c:639
+#: src/libc/mpdclient.c:611 src/libc/mpdclient.c:641 src/libc/mpdclient.c:656
 msgid "n/a"
 msgstr "није доступно"
 
@@ -42,59 +42,59 @@ msgstr "Замени"
 msgid "Browse"
 msgstr "Разгледај"
 
-#: src/extended-interface.vala:61
+#: src/extended-interface.vala:64
 msgid "Clear Playlist"
 msgstr "О_чисти списак нумера"
 
-#: src/extended-interface.vala:70
+#: src/extended-interface.vala:73
 msgid "Refresh Database"
 msgstr "Освежи базу података"
 
-#: src/extended-interface.vala:78
+#: src/extended-interface.vala:81
 msgid "Context Menu"
 msgstr "Приручни изборник"
 
-#: src/extended-interface.vala:85
+#: src/extended-interface.vala:88
 msgid "Repeat"
 msgstr "Понови"
 
-#: src/extended-interface.vala:89
+#: src/extended-interface.vala:92
 msgid "Random"
 msgstr "Насумично"
 
-#: src/extended-interface.vala:93
+#: src/extended-interface.vala:96
 msgid "Single Mode"
 msgstr "Обичан начин"
 
-#: src/extended-interface.vala:97
+#: src/extended-interface.vala:100
 msgid "Consume Mode"
 msgstr "Потрошачки начин"
 
-#: src/extended-interface.vala:104
+#: src/extended-interface.vala:107
 msgid "_Preferences"
 msgstr "_Својства"
 
-#: src/extended-interface.vala:108
+#: src/extended-interface.vala:111
 msgid "_Shortcuts"
 msgstr "_Пречице"
 
-#: src/extended-interface.vala:112
+#: src/extended-interface.vala:115
 msgid "_About"
 msgstr "_О програму"
 
-#: src/extended-interface.vala:137
+#: src/extended-interface.vala:140
 msgid "Current Playlist"
 msgstr "Тренутни списак нумера"
 
-#: src/extended-interface.vala:140
+#: src/extended-interface.vala:143
 msgid "Browse database"
 msgstr "Преглед базе података"
 
-#: src/extended-interface.vala:238 xfmpc.desktop.in:5
+#: src/extended-interface.vala:241 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "МПД клијент писан у ГТК+ за ИксФЦЕ"
+msgstr "Странка МПД-а писана у ГТК+ за ИксФЦЕ"
 
-#: src/extended-interface.vala:242
+#: src/extended-interface.vala:245
 msgid "translator-credits"
 msgstr "Саша Петровић <salepetronije@gmail.com>"
 
@@ -115,16 +115,16 @@ msgstr "од „%s“ из „%s“ (%s)"
 msgid "Stopped"
 msgstr "Заустављено"
 
-#: src/main-window.vala:172
+#: src/main-window.vala:188
 msgid "Quit"
 msgstr "Напусти"
 
-#: src/main-window.vala:302
+#: src/main-window.vala:336
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d песама, %d сати и %d минута"
 
-#: src/main-window.vala:304
+#: src/main-window.vala:338
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d песама, %d минута"
@@ -143,7 +143,7 @@ msgstr "ИксФмпц поставке"
 
 #: src/preferences-dialog.vala:46
 msgid "Customize your MPD client"
-msgstr "Прилагодите вашег МПД клијента"
+msgstr "Прилагодите вашу странку МПД-а"
 
 #: src/preferences-dialog.vala:57
 msgid "MPD"
@@ -287,7 +287,7 @@ msgstr "ИксФмпц пречице"
 
 #: src/shortcuts-dialog.vala:29
 msgid "Control your MPD client with your keyboard"
-msgstr "Управљајте вашим МПД клијентом тастатуром"
+msgstr "Управљајте вашом странком МПД-а дугмадима"
 
 #. Shortcuts labels
 #: src/shortcuts-dialog.vala:50
@@ -313,6 +313,18 @@ msgstr "Следећа: КТРЛ+ф"
 #: src/shortcuts-dialog.vala:75
 msgid "Volume: CTRL+v"
 msgstr "Јачина: КТРЛ+в"
+
+#: src/shortcuts-dialog.vala:80
+msgid "Search: ALT+s"
+msgstr "Тражи: Мења+с"
+
+#: src/shortcuts-dialog.vala:85
+msgid "Filter Playlist: ALT+f"
+msgstr "Услови списак за извођење: Мења+ф"
+
+#: src/shortcuts-dialog.vala:90
+msgid "Search in Database: ALT+d"
+msgstr "Тражи у складишту података: Мења+д"
 
 #: src/song-dialog.vala:48
 msgid "File"
@@ -344,4 +356,4 @@ msgstr "ИксФмпц"
 
 #: xfmpc.desktop.in:6
 msgid "MPD client"
-msgstr "МПД клијент"
+msgstr "Странка МПД-а"
