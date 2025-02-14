@@ -6,14 +6,14 @@
 # Chipong Luo <chipong.luo@yahoo.com>, 2011-2012
 # Hunt Xu <huntxu@live.cn>, 2009
 # Cally Mal <zhouxiaobo.500@gmail.com>, 2013
-# 玉堂白鹤 <yjwork@qq.com>, 2019,2022
+# 玉堂白鹤 <yjwork@qq.com>, 2019,2022,2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-08 12:51+0200\n"
+"POT-Creation-Date: 2025-02-14 00:51+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
-"Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2019,2022\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2019,2022,2025\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,15 +21,15 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/libc/mpdclient.c:349
+#: src/libc/mpdclient.c:366
 msgid "Failed to connect to MPD"
 msgstr "无法与 MPD 连接"
 
-#: src/libc/mpdclient.c:354
+#: src/libc/mpdclient.c:371
 msgid "Connected to MPD"
 msgstr "与 MPD 已连接"
 
-#: src/libc/mpdclient.c:594 src/libc/mpdclient.c:624 src/libc/mpdclient.c:639
+#: src/libc/mpdclient.c:611 src/libc/mpdclient.c:641 src/libc/mpdclient.c:656
 msgid "n/a"
 msgstr "未知"
 
@@ -45,59 +45,59 @@ msgstr "替换"
 msgid "Browse"
 msgstr "浏览"
 
-#: src/extended-interface.vala:61
+#: src/extended-interface.vala:64
 msgid "Clear Playlist"
 msgstr "清除播放列表"
 
-#: src/extended-interface.vala:70
+#: src/extended-interface.vala:73
 msgid "Refresh Database"
 msgstr "刷新数据库"
 
-#: src/extended-interface.vala:78
+#: src/extended-interface.vala:81
 msgid "Context Menu"
 msgstr "交互菜单"
 
-#: src/extended-interface.vala:85
+#: src/extended-interface.vala:88
 msgid "Repeat"
 msgstr "重复"
 
-#: src/extended-interface.vala:89
+#: src/extended-interface.vala:92
 msgid "Random"
 msgstr "随机"
 
-#: src/extended-interface.vala:93
+#: src/extended-interface.vala:96
 msgid "Single Mode"
 msgstr "单曲模式"
 
-#: src/extended-interface.vala:97
+#: src/extended-interface.vala:100
 msgid "Consume Mode"
 msgstr "消耗模式"
 
-#: src/extended-interface.vala:104
+#: src/extended-interface.vala:107
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: src/extended-interface.vala:108
+#: src/extended-interface.vala:111
 msgid "_Shortcuts"
 msgstr "快捷键(_S)"
 
-#: src/extended-interface.vala:112
+#: src/extended-interface.vala:115
 msgid "_About"
 msgstr "关于(&A)"
 
-#: src/extended-interface.vala:137
+#: src/extended-interface.vala:140
 msgid "Current Playlist"
 msgstr "当前播放列表"
 
-#: src/extended-interface.vala:140
+#: src/extended-interface.vala:143
 msgid "Browse database"
 msgstr "浏览数据库"
 
-#: src/extended-interface.vala:238 xfmpc.desktop.in:5
+#: src/extended-interface.vala:241 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "使用 GTK+ 编写的用于 Xfce 的 MPD 客户端"
 
-#: src/extended-interface.vala:242
+#: src/extended-interface.vala:245
 msgid "translator-credits"
 msgstr "Hunt Xu <huntxu@live.cn>, 2009.\nChipong Luo <chipong.luo@yahoo.com>, 2011, 2012."
 
@@ -118,16 +118,16 @@ msgstr "由 “%s” 从 “%s”(%s)"
 msgid "Stopped"
 msgstr "已停止"
 
-#: src/main-window.vala:172
+#: src/main-window.vala:188
 msgid "Quit"
 msgstr "退出"
 
-#: src/main-window.vala:302
+#: src/main-window.vala:336
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d 首歌曲，%d 小时 %d 分钟"
 
-#: src/main-window.vala:304
+#: src/main-window.vala:338
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d 首歌曲，%d 分钟"
@@ -316,6 +316,18 @@ msgstr "前进：CTRL+f"
 #: src/shortcuts-dialog.vala:75
 msgid "Volume: CTRL+v"
 msgstr "音量：CTRL+v"
+
+#: src/shortcuts-dialog.vala:80
+msgid "Search: ALT+s"
+msgstr "搜索: ALT+s"
+
+#: src/shortcuts-dialog.vala:85
+msgid "Filter Playlist: ALT+f"
+msgstr "筛选播放列表: ALT+f"
+
+#: src/shortcuts-dialog.vala:90
+msgid "Search in Database: ALT+d"
+msgstr "在数据库中搜索: ALT+d"
 
 #: src/song-dialog.vala:48
 msgid "File"
