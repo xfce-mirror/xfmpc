@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the xfce-apps.xfmpc package.
 # 
 # Translators:
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2020,2022
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2020,2022,2025
 # Nuno Miguel <nunis@netcabo.pt>, 2008
 # Nuno Miguel <nunomgue@gmail.com>, 2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-08 12:51+0200\n"
+"POT-Creation-Date: 2025-02-14 00:51+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2020,2022\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2019-2020,2022,2025\n"
 "Language-Team: Portuguese (http://app.transifex.com/xfce/xfce-apps/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,15 +20,15 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: src/libc/mpdclient.c:349
+#: src/libc/mpdclient.c:366
 msgid "Failed to connect to MPD"
 msgstr "Falha ao ligar ao MPD"
 
-#: src/libc/mpdclient.c:354
+#: src/libc/mpdclient.c:371
 msgid "Connected to MPD"
 msgstr "Ligado ao MPD"
 
-#: src/libc/mpdclient.c:594 src/libc/mpdclient.c:624 src/libc/mpdclient.c:639
+#: src/libc/mpdclient.c:611 src/libc/mpdclient.c:641 src/libc/mpdclient.c:656
 msgid "n/a"
 msgstr "n/d"
 
@@ -44,59 +44,59 @@ msgstr "Substituir"
 msgid "Browse"
 msgstr "Explorar"
 
-#: src/extended-interface.vala:61
+#: src/extended-interface.vala:64
 msgid "Clear Playlist"
 msgstr "Limpar lista de reprodução"
 
-#: src/extended-interface.vala:70
+#: src/extended-interface.vala:73
 msgid "Refresh Database"
 msgstr "Atualizar base de dados"
 
-#: src/extended-interface.vala:78
+#: src/extended-interface.vala:81
 msgid "Context Menu"
 msgstr "Menu de contexto"
 
-#: src/extended-interface.vala:85
+#: src/extended-interface.vala:88
 msgid "Repeat"
 msgstr "Repetir"
 
-#: src/extended-interface.vala:89
+#: src/extended-interface.vala:92
 msgid "Random"
 msgstr "Aleatório"
 
-#: src/extended-interface.vala:93
+#: src/extended-interface.vala:96
 msgid "Single Mode"
 msgstr "Modo único"
 
-#: src/extended-interface.vala:97
+#: src/extended-interface.vala:100
 msgid "Consume Mode"
 msgstr "Modo de consumo"
 
-#: src/extended-interface.vala:104
+#: src/extended-interface.vala:107
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: src/extended-interface.vala:108
+#: src/extended-interface.vala:111
 msgid "_Shortcuts"
 msgstr "Atalho_s"
 
-#: src/extended-interface.vala:112
+#: src/extended-interface.vala:115
 msgid "_About"
 msgstr "_Sobre"
 
-#: src/extended-interface.vala:137
+#: src/extended-interface.vala:140
 msgid "Current Playlist"
 msgstr "Lista de reprodução atual"
 
-#: src/extended-interface.vala:140
+#: src/extended-interface.vala:143
 msgid "Browse database"
 msgstr "Explorar base de dados"
 
-#: src/extended-interface.vala:238 xfmpc.desktop.in:5
+#: src/extended-interface.vala:241 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Cliente MPD escrito em GTK+ para Xfce"
 
-#: src/extended-interface.vala:242
+#: src/extended-interface.vala:245
 msgid "translator-credits"
 msgstr "Hugo Carvalho <hugokarvalho@hotmail.com>\nNuno Miguel <nunomgue@gmail.com>"
 
@@ -117,16 +117,16 @@ msgstr "por \"%s\" de \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Parado"
 
-#: src/main-window.vala:172
+#: src/main-window.vala:188
 msgid "Quit"
 msgstr "Sair"
 
-#: src/main-window.vala:302
+#: src/main-window.vala:336
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d músicas, %d horas e %d minutos"
 
-#: src/main-window.vala:304
+#: src/main-window.vala:338
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d músicas, %d minutos"
@@ -315,6 +315,18 @@ msgstr "Seguinte: CTRL+f"
 #: src/shortcuts-dialog.vala:75
 msgid "Volume: CTRL+v"
 msgstr "Volume: CTRL+v"
+
+#: src/shortcuts-dialog.vala:80
+msgid "Search: ALT+s"
+msgstr "Pesquisar: ALT+s"
+
+#: src/shortcuts-dialog.vala:85
+msgid "Filter Playlist: ALT+f"
+msgstr "Filtrar lista de reprodução: ALT+f"
+
+#: src/shortcuts-dialog.vala:90
+msgid "Search in Database: ALT+d"
+msgstr "Pesquisar na base de dados: ALT+d"
 
 #: src/song-dialog.vala:48
 msgid "File"
