@@ -6,14 +6,15 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2014
 # Allan Nordhøy <epost@anotheragency.no>, 2017
 # Harald H. <haarektrans@gmail.com>, 2014
-# Kaci Heskjestad, 2019
+# heskjestad, 2025
+# heskjestad, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-08 12:51+0200\n"
+"POT-Creation-Date: 2025-02-14 00:51+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
-"Last-Translator: Kaci Heskjestad, 2019\n"
+"Last-Translator: heskjestad, 2025\n"
 "Language-Team: Norwegian Bokmål (http://app.transifex.com/xfce/xfce-apps/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,15 +22,15 @@ msgstr ""
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/libc/mpdclient.c:349
+#: src/libc/mpdclient.c:366
 msgid "Failed to connect to MPD"
 msgstr "Kunne ikke koble til MPD"
 
-#: src/libc/mpdclient.c:354
+#: src/libc/mpdclient.c:371
 msgid "Connected to MPD"
 msgstr "Tilkoblet MPD"
 
-#: src/libc/mpdclient.c:594 src/libc/mpdclient.c:624 src/libc/mpdclient.c:639
+#: src/libc/mpdclient.c:611 src/libc/mpdclient.c:641 src/libc/mpdclient.c:656
 msgid "n/a"
 msgstr "i/t"
 
@@ -45,59 +46,59 @@ msgstr "Erstatt"
 msgid "Browse"
 msgstr "Bla gjennom"
 
-#: src/extended-interface.vala:61
+#: src/extended-interface.vala:64
 msgid "Clear Playlist"
 msgstr "Tøm spilleliste"
 
-#: src/extended-interface.vala:70
+#: src/extended-interface.vala:73
 msgid "Refresh Database"
 msgstr "Gjenoppfrisk database"
 
-#: src/extended-interface.vala:78
+#: src/extended-interface.vala:81
 msgid "Context Menu"
 msgstr "Sammenhengsmeny"
 
-#: src/extended-interface.vala:85
+#: src/extended-interface.vala:88
 msgid "Repeat"
 msgstr "Gjenta"
 
-#: src/extended-interface.vala:89
+#: src/extended-interface.vala:92
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: src/extended-interface.vala:93
+#: src/extended-interface.vala:96
 msgid "Single Mode"
 msgstr "Enkeltvis"
 
-#: src/extended-interface.vala:97
+#: src/extended-interface.vala:100
 msgid "Consume Mode"
 msgstr "Forbruksvis"
 
-#: src/extended-interface.vala:104
+#: src/extended-interface.vala:107
 msgid "_Preferences"
 msgstr "_Innstillinger"
 
-#: src/extended-interface.vala:108
+#: src/extended-interface.vala:111
 msgid "_Shortcuts"
 msgstr "_Snarveier"
 
-#: src/extended-interface.vala:112
+#: src/extended-interface.vala:115
 msgid "_About"
 msgstr "_Om"
 
-#: src/extended-interface.vala:137
+#: src/extended-interface.vala:140
 msgid "Current Playlist"
 msgstr "Aktuell spilleliste"
 
-#: src/extended-interface.vala:140
+#: src/extended-interface.vala:143
 msgid "Browse database"
 msgstr "Bla i database"
 
-#: src/extended-interface.vala:238 xfmpc.desktop.in:5
+#: src/extended-interface.vala:241 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD-klient skrevet i GTK+ for Xfce"
 
-#: src/extended-interface.vala:242
+#: src/extended-interface.vala:245
 msgid "translator-credits"
 msgstr "haarek - Harald <https://www.transifex.com/accounts/profile/haarek/>\nkingu - Allan Nordhøy <https://www.transifex.com/accounts/profile/kingu/>\npapparonny - Ronny K. M. Olufsen <https://www.transifex.com/accounts/profile/papparonny/>"
 
@@ -118,16 +119,16 @@ msgstr "av «%s» fra «%s» (%s)"
 msgid "Stopped"
 msgstr "Stoppet"
 
-#: src/main-window.vala:172
+#: src/main-window.vala:188
 msgid "Quit"
 msgstr "Avslutt"
 
-#: src/main-window.vala:302
+#: src/main-window.vala:336
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d sanger, %d timer og %d minutter"
 
-#: src/main-window.vala:304
+#: src/main-window.vala:338
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d sanger, %d minutter"
@@ -316,6 +317,18 @@ msgstr "Neste: CTRL+f"
 #: src/shortcuts-dialog.vala:75
 msgid "Volume: CTRL+v"
 msgstr "Lydstyrke: CTRL+v"
+
+#: src/shortcuts-dialog.vala:80
+msgid "Search: ALT+s"
+msgstr "Søk: Alt + S"
+
+#: src/shortcuts-dialog.vala:85
+msgid "Filter Playlist: ALT+f"
+msgstr "Filtrer spilleliste: Alt + F"
+
+#: src/shortcuts-dialog.vala:90
+msgid "Search in Database: ALT+d"
+msgstr "Søk i database: Alt + D"
 
 #: src/song-dialog.vala:48
 msgid "File"
