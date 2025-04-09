@@ -4,12 +4,14 @@
 # 
 # Translators:
 # Cédric Valmary <cvalmary@yahoo.fr>, 2013
+# Cédric Valmary <cvalmary@yahoo.fr>, 2013
+# Quentin PAGÈS, 2020
 # Quentin PAGÈS, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-08 12:51+0200\n"
+"POT-Creation-Date: 2025-02-14 00:51+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Quentin PAGÈS, 2020\n"
 "Language-Team: Occitan (post 1500) (http://app.transifex.com/xfce/xfce-apps/language/oc/)\n"
@@ -19,15 +21,15 @@ msgstr ""
 "Language: oc\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/libc/mpdclient.c:349
+#: src/libc/mpdclient.c:366
 msgid "Failed to connect to MPD"
 msgstr "Impossible de se connectar a MPD"
 
-#: src/libc/mpdclient.c:354
+#: src/libc/mpdclient.c:371
 msgid "Connected to MPD"
 msgstr "Connectat a MPD"
 
-#: src/libc/mpdclient.c:594 src/libc/mpdclient.c:624 src/libc/mpdclient.c:639
+#: src/libc/mpdclient.c:611 src/libc/mpdclient.c:641 src/libc/mpdclient.c:656
 msgid "n/a"
 msgstr "n/a"
 
@@ -43,59 +45,59 @@ msgstr "_Remplaçar"
 msgid "Browse"
 msgstr "_Percórrer"
 
-#: src/extended-interface.vala:61
+#: src/extended-interface.vala:64
 msgid "Clear Playlist"
 msgstr "Voidar la lista de lectura"
 
-#: src/extended-interface.vala:70
+#: src/extended-interface.vala:73
 msgid "Refresh Database"
 msgstr "Refrescar la banca de donadas"
 
-#: src/extended-interface.vala:78
+#: src/extended-interface.vala:81
 msgid "Context Menu"
 msgstr "Menú contextual"
 
-#: src/extended-interface.vala:85
+#: src/extended-interface.vala:88
 msgid "Repeat"
 msgstr "Repetir"
 
-#: src/extended-interface.vala:89
+#: src/extended-interface.vala:92
 msgid "Random"
 msgstr "Aleaòri"
 
-#: src/extended-interface.vala:93
+#: src/extended-interface.vala:96
 msgid "Single Mode"
 msgstr "Monomòde"
 
-#: src/extended-interface.vala:97
+#: src/extended-interface.vala:100
 msgid "Consume Mode"
 msgstr "Mòde de consomacion"
 
-#: src/extended-interface.vala:104
+#: src/extended-interface.vala:107
 msgid "_Preferences"
 msgstr "_Preferéncias"
 
-#: src/extended-interface.vala:108
+#: src/extended-interface.vala:111
 msgid "_Shortcuts"
 msgstr "Aco_rchis"
 
-#: src/extended-interface.vala:112
+#: src/extended-interface.vala:115
 msgid "_About"
-msgstr "A _prepaus"
+msgstr "_A prepaus"
 
-#: src/extended-interface.vala:137
+#: src/extended-interface.vala:140
 msgid "Current Playlist"
 msgstr "Lista de lectura actuala"
 
-#: src/extended-interface.vala:140
+#: src/extended-interface.vala:143
 msgid "Browse database"
 msgstr "Percórrer la banca de donadas"
 
-#: src/extended-interface.vala:238 xfmpc.desktop.in:5
+#: src/extended-interface.vala:241 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Client MPD escrich en GTK+ per Xfce"
 
-#: src/extended-interface.vala:242
+#: src/extended-interface.vala:245
 msgid "translator-credits"
 msgstr "Cédric Valmary (Tot en òc)"
 
@@ -116,16 +118,16 @@ msgstr "per « %s » de « %s » (%s)"
 msgid "Stopped"
 msgstr "Arrestat"
 
-#: src/main-window.vala:172
+#: src/main-window.vala:188
 msgid "Quit"
 msgstr "Quitar"
 
-#: src/main-window.vala:302
+#: src/main-window.vala:336
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d cançons, %d oras e %d minutas"
 
-#: src/main-window.vala:304
+#: src/main-window.vala:338
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d cançons, %d minutas"
@@ -314,6 +316,18 @@ msgstr "Seguent : Ctrl+F"
 #: src/shortcuts-dialog.vala:75
 msgid "Volume: CTRL+v"
 msgstr "Volum : Ctrl+V"
+
+#: src/shortcuts-dialog.vala:80
+msgid "Search: ALT+s"
+msgstr "Cercar : ALT+s"
+
+#: src/shortcuts-dialog.vala:85
+msgid "Filter Playlist: ALT+f"
+msgstr "Filtrar la lista de lectura : ALT+f"
+
+#: src/shortcuts-dialog.vala:90
+msgid "Search in Database: ALT+d"
+msgstr "Cercar dins la basa de doandas : ALT+d"
 
 #: src/song-dialog.vala:48
 msgid "File"
