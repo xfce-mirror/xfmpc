@@ -29,4 +29,6 @@ namespace Config {
 	public const string PACKAGE_STRING;
 	[CCode (cname = "PACKAGE_NAME")]
 	public const string PACKAGE_NAME;
+	[CCode (cname = "COPYRIGHT_YEAR")]
+	public const string COPYRIGHT_YEAR;
 }
