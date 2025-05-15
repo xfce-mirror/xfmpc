@@ -17,7 +17,11 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-[CCode (cprefix="", cheader_filename="config.h")]
+#if MESON_BUILD
+[CCode (cprefix = "", cheader_filename = "xfce-revision.h")]
+#else
+[CCode (cprefix = "", cheader_filename = "config.h")]
+#endif
 namespace Config {
 	[CCode (cname = "GETTEXT_PACKAGE")]
 	public const string GETTEXT_PACKAGE;
@@ -31,4 +35,6 @@ namespace Config {
 	public const string PACKAGE_NAME;
 	[CCode (cname = "COPYRIGHT_YEAR")]
 	public const string COPYRIGHT_YEAR;
+	[CCode (cname = "VERSION_FULL")]
+	public const string VERSION_FULL;
 }

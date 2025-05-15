@@ -243,7 +243,7 @@ namespace Xfmpc {
                          	 	       "documenters", null,
                          	 	       "license", Xfce.get_license_text (Xfce.LicenseTextType.GPL),
                          	 	       "translator-credits", _("translator-credits"),
-                         	 	       "version", Config.PACKAGE_VERSION,
+                         	 	       "version", Config.VERSION_FULL,
                          	 	       "website", "http://goodies.xfce.org/projects/applications/xfmpc",
 					       null);
 		}
