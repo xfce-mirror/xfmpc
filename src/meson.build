@@ -1,6 +1,4 @@
-subdir('libc')
-
-xfmpc_sources = [
+libxfmpc_sources = [
   'dbbrowser.vala',
   'extended-interface.vala',
   'interface.vala',
@@ -16,9 +14,16 @@ xfmpc_sources = [
   xfce_revision_h,
 ]
 
-xfmpc = executable(
+libxfmpc_deps = [
+  glib,
+  gtk,
+  libxfce4ui,
+  libxfce4util,
+]
+
+libxfmpc = static_library(
   'xfmpc',
-  xfmpc_sources,
+  libxfmpc_sources,
   c_args: ['-w'],
   vala_args: [
     '--vapidir', meson.current_source_dir(),
@@ -31,12 +36,26 @@ xfmpc = executable(
     include_directories('..'),
   ],
   vala_header: 'xfmpc.h',
+  dependencies: libxfmpc_deps,
+  install: false,
+)
+
+libxfmpc_dep = declare_dependency(
+  include_directories: [
+    include_directories('.'),
+    include_directories('..'),
+  ],
+  dependencies: libxfmpc_deps,
+  link_with: libxfmpc,
+)
+
+subdir('libc')
+
+executable(
+  'xfmpc',
   dependencies: [
-    glib,
-    gtk,
+    libxfmpc_dep,
     libcxfmpc_dep,
-    libxfce4ui,
-    libxfce4util,
   ],
   install: true,
   install_dir: get_option('prefix') / get_option('bindir'),
