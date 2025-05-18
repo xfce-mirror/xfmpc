@@ -12,7 +12,7 @@ project(
 )
 
 project_namespace = 'apps'
-pkgdatadir = get_option('prefix') / get_option('datadir') / 'xfce4' / 'notes'
+pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
 copyright_year = '2025'
 
 vala = meson.get_compiler('vala')
