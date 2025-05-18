@@ -23,4 +23,5 @@ libcxfmpc_la_LIBADD = \
 
 EXTRA_DIST = \
 	mpdclient.h \
-	mpdclient.vapi
+	mpdclient.vapi \
+	meson.build

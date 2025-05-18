@@ -53,6 +53,7 @@ xfmpc_LDADD =								\
 BUILT_SOURCES = xfmpc_vala.stamp
 
 EXTRA_DIST =								\
-	xfmpc.h
+	xfmpc.h									\
+	meson.build
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:

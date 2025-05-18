@@ -25,6 +25,8 @@ dist-hook: ChangeLog
 EXTRA_DIST =								\
 	third-party								\
 	IDEAS									\
+	meson.build								\
+	xfce-revision.h.in						\
 	$(desktop_in_files)
 
 MAINTAINERCLEANFILES =						\
