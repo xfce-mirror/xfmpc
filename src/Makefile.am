@@ -53,6 +53,7 @@ xfmpc_LDADD =								\
 BUILT_SOURCES = xfmpc_vala.stamp
 
 EXTRA_DIST =								\
+	config.vapi								\
 	xfmpc.h									\
 	meson.build
 
