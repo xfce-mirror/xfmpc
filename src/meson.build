@@ -53,6 +53,7 @@ subdir('libc')
 
 executable(
   'xfmpc',
+  sources: xfce_revision_h,
   dependencies: [
     libxfmpc_dep,
     libcxfmpc_dep,
