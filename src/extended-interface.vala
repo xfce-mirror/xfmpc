@@ -239,11 +239,11 @@ namespace Xfmpc {
 					       "artists", null,
 					       "authors", authors,
 					       "comments", _("MPD client written in GTK+ for Xfce"),
-					       "copyright", "Copyright \xc2\xa9 2008-2024 The Xfce development team",
+					       "copyright", "Copyright \xc2\xa9 2008-" + Config.COPYRIGHT_YEAR + " The Xfce development team",
                          	 	       "documenters", null,
                          	 	       "license", Xfce.get_license_text (Xfce.LicenseTextType.GPL),
                          	 	       "translator-credits", _("translator-credits"),
-                         	 	       "version", Config.PACKAGE_VERSION,
+                         	 	       "version", Config.VERSION_FULL,
                          	 	       "website", "http://goodies.xfce.org/projects/applications/xfmpc",
 					       null);
 		}
