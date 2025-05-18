@@ -8,18 +8,22 @@ dnl ***************************
 dnl *** Version information ***
 dnl ***************************
 XDT_VERSION_INIT([0.3.2], [git])
+m4_define([copyright_year], [2025])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2008-2024
-        The Xfce development team. All rights reserved.])
+AC_COPYRIGHT([Copyright (c) 2008-copyright_year() The Xfce development team. All rights reserved.])
 AC_INIT([Xfmpc], [xdt_version], [https://gitlab.xfce.org/apps/xfmpc], [xfmpc],
         [https://docs.xfce.org/apps/xfmpc/start])
 AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_CANONICAL_TARGET()
 AC_REVISION([xdt_version_build])
+AC_DEFINE([VERSION_FULL], [PACKAGE_VERSION], [Alias for VERSION and PACKAGE_VERSION for meson compatibility])
+COPYRIGHT_YEAR=copyright_year()
+AC_DEFINE_UNQUOTED([COPYRIGHT_YEAR], ["$COPYRIGHT_YEAR"], [Copyright year])
+AC_SUBST([COPYRIGHT_YEAR])
 
 dnl ***************************
 dnl *** Initialize automake ***
@@ -46,11 +50,11 @@ LT_INIT([disable-static])
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
-XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [3.22.0])
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.38.0])
-XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.38.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.12.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.12.0])
+XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [3.24.0])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.18.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.18.0])
 XDT_CHECK_PACKAGE([LIBMPD], [libmpd], [0.15.0])
 
 dnl ***********************
