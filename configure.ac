@@ -7,7 +7,7 @@ dnl
 dnl ***************************
 dnl *** Version information ***
 dnl ***************************
-XDT_VERSION_INIT([0.3.2], [git])
+XDT_VERSION_INIT([0.4.0])
 m4_define([copyright_year], [2025])
 
 dnl ***************************
