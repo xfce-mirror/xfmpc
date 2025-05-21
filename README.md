@@ -29,17 +29,17 @@ See [NEWS](https://gitlab.xfce.org/apps/xfmpc/-/blob/master/NEWS) for details on
 From source code repository: 
 
     % cd xfmpc
-    % ./autogen.sh
-    % make
-    % make install
+    % meson setup build
+    % meson compile -C build
+    % meson install -C build
 
 From release tarball:
 
-    % tar xf xfmpc-<version>.tar.bz2
+    % tar xf xfmpc-<version>.tar.xz
     % cd xfmpc-<version>
-    % ./configure
-    % make
-    % make install
+    % meson setup build
+    % meson compile -C build
+    % meson install -C build
 
 ### Reporting Bugs
 
