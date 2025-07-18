@@ -164,7 +164,7 @@ msgstr "Użyj _domyślnych ustawień systemowych"
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr "Jeśli zaznaczone, Xfmpc będzie próbować odczytać zmienne środowiskowe MPD_HOST i MPD_PORT, w przeciwnym wypadku użyje komputera lokalnego."
+msgstr "Jeśli zaznaczone, Xfmpc będzie próbować odczytać zmienne środowiskowe MPD_HOST i MPD_PORT, w przeciwnym wypadku użyje komputera lokalnego."
 
 #: ../src/preferences-dialog.vala:80
 msgid "Hostname:"
