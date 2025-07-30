@@ -94,7 +94,7 @@ msgstr "Przeglądaj bazę danych"
 
 #: src/extended-interface.vala:241 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "Klient MPD napisany w GTK+ dla Xfce"
+msgstr "Graficzny klient MPD dla Xfce"
 
 #: src/extended-interface.vala:245
 msgid "translator-credits"
