@@ -242,6 +242,7 @@ namespace Xfmpc {
 					       "copyright", "Copyright \xc2\xa9 2008-" + Config.COPYRIGHT_YEAR + " The Xfce development team",
                          	 	       "documenters", null,
                          	 	       "license", Xfce.get_license_text (Xfce.LicenseTextType.GPL),
+                         	 	       "logo-icon-name", "multimedia-player",
                          	 	       "translator-credits", _("translator-credits"),
                          	 	       "version", Config.VERSION_FULL,
                          	 	       "website", "http://goodies.xfce.org/projects/applications/xfmpc",
