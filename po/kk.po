@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-08 12:51+0200\n"
+"POT-Creation-Date: 2025-07-18 11:05+0200\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2017,2020,2022\n"
 "Language-Team: Kazakh (http://app.transifex.com/xfce/xfce-apps/language/kk/)\n"
@@ -18,17 +18,17 @@ msgstr ""
 "Language: kk\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: src/libc/mpdclient.c:349
+#: src/libc/mpdclient.c:362
 msgid "Failed to connect to MPD"
-msgstr ""
+msgstr "MPD қызметіне қосылу сәтсіз аяқталды"
 
-#: src/libc/mpdclient.c:354
+#: src/libc/mpdclient.c:367
 msgid "Connected to MPD"
-msgstr ""
+msgstr "MPD қызметіне қосылды"
 
-#: src/libc/mpdclient.c:594 src/libc/mpdclient.c:624 src/libc/mpdclient.c:639
+#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
 msgid "n/a"
-msgstr ""
+msgstr "қ/ж"
 
 #: src/dbbrowser.vala:93
 msgid "Add"
@@ -42,61 +42,61 @@ msgstr "Алмастыру"
 msgid "Browse"
 msgstr "Қарап шығу"
 
-#: src/extended-interface.vala:61
+#: src/extended-interface.vala:64
 msgid "Clear Playlist"
 msgstr "Ойнату тізімін тазарту"
 
-#: src/extended-interface.vala:70
+#: src/extended-interface.vala:73
 msgid "Refresh Database"
 msgstr "Дерекқорды жаңарту"
 
-#: src/extended-interface.vala:78
+#: src/extended-interface.vala:81
 msgid "Context Menu"
 msgstr "Контекст мәзірі"
 
-#: src/extended-interface.vala:85
+#: src/extended-interface.vala:88
 msgid "Repeat"
 msgstr "Қайталау"
 
-#: src/extended-interface.vala:89
+#: src/extended-interface.vala:92
 msgid "Random"
 msgstr "Кездейсоқ"
 
-#: src/extended-interface.vala:93
+#: src/extended-interface.vala:96
 msgid "Single Mode"
-msgstr ""
+msgstr "Жалғыз режимі"
 
-#: src/extended-interface.vala:97
+#: src/extended-interface.vala:100
 msgid "Consume Mode"
-msgstr ""
+msgstr "Тұтыну режимі"
 
-#: src/extended-interface.vala:104
+#: src/extended-interface.vala:107
 msgid "_Preferences"
 msgstr "_Баптаулар"
 
-#: src/extended-interface.vala:108
+#: src/extended-interface.vala:111
 msgid "_Shortcuts"
 msgstr "Жар_лықтар"
 
-#: src/extended-interface.vala:112
+#: src/extended-interface.vala:115
 msgid "_About"
 msgstr "Осы т_уралы"
 
-#: src/extended-interface.vala:137
+#: src/extended-interface.vala:140
 msgid "Current Playlist"
 msgstr "Ағымдағы ойнату тізімі"
 
-#: src/extended-interface.vala:140
+#: src/extended-interface.vala:143
 msgid "Browse database"
 msgstr "Дерекқорды шолу"
 
-#: src/extended-interface.vala:238 xfmpc.desktop.in:5
+#: src/extended-interface.vala:241 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
-msgstr ""
+msgstr "Xfce үшін GTK+ негізінде жазылған MPD клиенті"
 
-#: src/extended-interface.vala:242
+#: src/extended-interface.vala:245
 msgid "translator-credits"
-msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2009-2010"
+msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
 #: src/interface.vala:91 src/interface.vala:275
 msgid "Not connected"
@@ -109,25 +109,25 @@ msgstr "Байланыспаған"
 #: src/interface.vala:264
 #, c-format
 msgid "by \"%s\" from \"%s\" (%s)"
-msgstr ""
+msgstr "\"%s\" ұсынған, \"%s\" ішінен (%s)"
 
 #: src/interface.vala:271
 msgid "Stopped"
 msgstr "Тоқтатылды"
 
-#: src/main-window.vala:172
+#: src/main-window.vala:188
 msgid "Quit"
 msgstr "Шығу"
 
-#: src/main-window.vala:302
+#: src/main-window.vala:336
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr ""
+msgstr "%d ән, %d сағат және %d минут"
 
-#: src/main-window.vala:304
+#: src/main-window.vala:338
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr ""
+msgstr "%d ән, %d минут"
 
 #: src/playlist.vala:108
 msgid "Remove"
@@ -143,7 +143,7 @@ msgstr "Xfmpc баптаулары"
 
 #: src/preferences-dialog.vala:46
 msgid "Customize your MPD client"
-msgstr ""
+msgstr "MPD клиентін баптау"
 
 #: src/preferences-dialog.vala:57
 msgid "MPD"
@@ -155,17 +155,17 @@ msgstr "Байланыс"
 
 #: src/preferences-dialog.vala:65
 msgid "Use _default system settings"
-msgstr ""
+msgstr "_Жүйелік әдепкі баптауларды қолдану"
 
 #: src/preferences-dialog.vala:66
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr ""
+msgstr "Белгіленген болса, Xfmpc MPD_HOST және MPD_PORT қоршам айнымалыларын оқуға тырысады, әйтпесе ол localhost қолданады"
 
 #: src/preferences-dialog.vala:80
 msgid "Hostname:"
-msgstr ""
+msgstr "Хост атауы:"
 
 #: src/preferences-dialog.vala:87
 msgid "Port:"
@@ -177,7 +177,7 @@ msgstr "Пароль:"
 
 #: src/preferences-dialog.vala:105
 msgid "Apply"
-msgstr ""
+msgstr "Іске асыру"
 
 #: src/preferences-dialog.vala:112
 msgid "Appearance"
@@ -189,19 +189,19 @@ msgstr "Жалпы"
 
 #: src/preferences-dialog.vala:120
 msgid "Close window into notification area"
-msgstr ""
+msgstr "Терезені хабарламалар аймағына жабу"
 
 #: src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
-msgstr ""
+msgstr "_Статус жолағын көрсету"
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
-msgstr ""
+msgstr "Ән пішімі"
 
 #: src/preferences-dialog.vala:137
 msgid "Song Format:"
-msgstr ""
+msgstr "Ән пішімі:"
 
 #: src/preferences-dialog.vala:143 src/song-dialog.vala:64
 msgid "Title"
@@ -209,23 +209,23 @@ msgstr "Атауы"
 
 #: src/preferences-dialog.vala:144
 msgid "Album - Title"
-msgstr ""
+msgstr "Альбом - Атауы"
 
 #: src/preferences-dialog.vala:145
 msgid "Artist - Title"
-msgstr ""
+msgstr "Орындаушы - Атауы"
 
 #: src/preferences-dialog.vala:146
 msgid "Artist - Title (Date)"
-msgstr ""
+msgstr "Орындаушы - Атауы (Күні)"
 
 #: src/preferences-dialog.vala:147
 msgid "Artist - Album - Title"
-msgstr ""
+msgstr "Орындаушы - Альбом - Атауы"
 
 #: src/preferences-dialog.vala:148
 msgid "Artist - Album - Track. Title"
-msgstr ""
+msgstr "Орындаушы - Альбом - Трек. Атауы"
 
 #: src/preferences-dialog.vala:149
 msgid "Custom..."
@@ -233,48 +233,48 @@ msgstr "Таңдауыңызша..."
 
 #: src/preferences-dialog.vala:157
 msgid "Custom format:"
-msgstr ""
+msgstr "Таңдауыңызша пішім:"
 
 #: src/preferences-dialog.vala:172
 msgid "Available parameters:"
-msgstr ""
+msgstr "Қолжетімді параметрлер:"
 
 #: src/preferences-dialog.vala:183
 #, c-format
 msgid "%a: Artist"
-msgstr ""
+msgstr "%a: Орындаушы"
 
 #: src/preferences-dialog.vala:188
 #, c-format
 msgid "%A: Album"
-msgstr ""
+msgstr "%A: Альбом"
 
 #: src/preferences-dialog.vala:194
 msgid "%t: Title"
-msgstr ""
+msgstr "%t: Тақырыбы"
 
 #: src/preferences-dialog.vala:199
 msgid "%D: Disc"
-msgstr ""
+msgstr "%D: Диск"
 
 #: src/preferences-dialog.vala:205
 #, c-format
 msgid "%f: File"
-msgstr ""
+msgstr "%f: Файл"
 
 #: src/preferences-dialog.vala:210
 #, c-format
 msgid "%g: Genre"
-msgstr ""
+msgstr "%g: Жанр"
 
 #: src/preferences-dialog.vala:216
 #, c-format
 msgid "%d: Date"
-msgstr ""
+msgstr "%d: Күні"
 
 #: src/preferences-dialog.vala:221
 msgid "%T: Track"
-msgstr ""
+msgstr "%T: Трек"
 
 #: src/preferences-dialog.vala:230 src/shortcuts-dialog.vala:32
 #: src/song-dialog.vala:103
@@ -283,36 +283,48 @@ msgstr "Жабу"
 
 #: src/shortcuts-dialog.vala:28
 msgid "Xfmpc Shortcuts"
-msgstr ""
+msgstr "Xfmpc жарлықтары"
 
 #: src/shortcuts-dialog.vala:29
 msgid "Control your MPD client with your keyboard"
-msgstr ""
+msgstr "MPD клиентін пернетақтамен басқарыңыз"
 
 #. Shortcuts labels
 #: src/shortcuts-dialog.vala:50
 msgid "Quit: CTRL+q"
-msgstr ""
+msgstr "Шығу: CTRL+q"
 
 #: src/shortcuts-dialog.vala:55
 msgid "Previous: CTRL+b"
-msgstr ""
+msgstr "Алдыңғы: CTRL+b"
 
 #: src/shortcuts-dialog.vala:60
 msgid "Play/Pause: CTRL+p"
-msgstr ""
+msgstr "Ойнату/Кідірту: CTRL+p"
 
 #: src/shortcuts-dialog.vala:65
 msgid "Stop: CTRL+s"
-msgstr ""
+msgstr "Тоқтату: CTRL+s"
 
 #: src/shortcuts-dialog.vala:70
 msgid "Next: CTRL+f"
-msgstr ""
+msgstr "Келесі: CTRL+f"
 
 #: src/shortcuts-dialog.vala:75
 msgid "Volume: CTRL+v"
-msgstr ""
+msgstr "Дыбыс деңгейі: CTRL+v"
+
+#: src/shortcuts-dialog.vala:80
+msgid "Search: ALT+s"
+msgstr "Іздеу: ALT+s"
+
+#: src/shortcuts-dialog.vala:85
+msgid "Filter Playlist: ALT+f"
+msgstr "Ойнату тізімін сүзу: ALT+f"
+
+#: src/shortcuts-dialog.vala:90
+msgid "Search in Database: ALT+d"
+msgstr "Мәліметтер базасынан іздеу: ALT+d"
 
 #: src/song-dialog.vala:48
 msgid "File"
@@ -324,7 +336,7 @@ msgstr "Орындаушы"
 
 #: src/song-dialog.vala:72
 msgid "Album"
-msgstr ""
+msgstr "Альбом"
 
 #: src/song-dialog.vala:80
 msgid "Date"
@@ -336,12 +348,12 @@ msgstr "Трек"
 
 #: src/song-dialog.vala:93
 msgid "Genre"
-msgstr ""
+msgstr "Жанр"
 
 #: xfmpc.desktop.in:4
 msgid "Xfmpc"
-msgstr ""
+msgstr "Xfmpc"
 
 #: xfmpc.desktop.in:6
 msgid "MPD client"
-msgstr ""
+msgstr "MPD клиенті"
