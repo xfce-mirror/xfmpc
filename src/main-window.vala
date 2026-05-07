@@ -90,6 +90,7 @@ namespace Xfmpc {
 			this.status_icon.activate.connect (status_icon_activated);
 			this.status_icon.popup_menu.connect (status_icon_popup_menu);
 			this.preferences.notify["show-status-icon"].connect (show_hide_status_icon);
+			Gtk.IconTheme.get_default ().changed.connect (() => { status_icon.set_from_icon_name ("multimedia-player"); });
 
   	  	  	/* Window */
 			set_default_icon_name ("xfmpc");
