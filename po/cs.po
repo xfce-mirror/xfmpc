@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the xfce-apps.xfmpc package.
 # 
 # Translators:
-# Michal Várady <miko.vaji@gmail.com>, 2019-2020,2024-2025
+# Michal Várady <miko.vaji@gmail.com>, 2019-2020,2024-2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-07-18 11:05+0200\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2019-2020,2024-2025\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2019-2020,2024-2026\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce-apps/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +44,7 @@ msgstr "Procházet"
 
 #: src/extended-interface.vala:64
 msgid "Clear Playlist"
-msgstr "Vymazat seznam médií"
+msgstr "Vymazat seznam skladeb"
 
 #: src/extended-interface.vala:73
 msgid "Refresh Database"
@@ -52,7 +52,7 @@ msgstr "Obnovit databázi"
 
 #: src/extended-interface.vala:81
 msgid "Context Menu"
-msgstr "Místní nabídka"
+msgstr "Kontextová nabídka"
 
 #: src/extended-interface.vala:88
 msgid "Repeat"
@@ -60,15 +60,15 @@ msgstr "Opakovat"
 
 #: src/extended-interface.vala:92
 msgid "Random"
-msgstr "Náhodně"
+msgstr "Náhodné přehrávání"
 
 #: src/extended-interface.vala:96
 msgid "Single Mode"
-msgstr "Jednoduchý režim"
+msgstr "Přehrát jednu skladbu"
 
 #: src/extended-interface.vala:100
 msgid "Consume Mode"
-msgstr "Spotřební režim"
+msgstr "Odebírat přehrané skladby"
 
 #: src/extended-interface.vala:107
 msgid "_Preferences"
@@ -84,7 +84,7 @@ msgstr "O _aplikaci"
 
 #: src/extended-interface.vala:140
 msgid "Current Playlist"
-msgstr "Aktuální seznam médií"
+msgstr "Aktuální seznam skladeb"
 
 #: src/extended-interface.vala:143
 msgid "Browse database"
@@ -92,7 +92,7 @@ msgstr "Procházet databázi"
 
 #: src/extended-interface.vala:241 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
-msgstr "Klient MPD napsaný v GTK+ pro prostředí Xfce"
+msgstr "Klient MPD napsaný v GTK+ pro Xfce"
 
 #: src/extended-interface.vala:245
 msgid "translator-credits"
@@ -122,12 +122,12 @@ msgstr "Ukončit"
 #: src/main-window.vala:336
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
-msgstr "%d skladeb, %d hodin a %d minut"
+msgstr "Skladeb: %d, délka: %d h %d min"
 
 #: src/main-window.vala:338
 #, c-format
 msgid "%d songs, %d minutes"
-msgstr "%d skladeb, %d minut"
+msgstr "Skladeb: %d, délka: %d min"
 
 #: src/playlist.vala:108
 msgid "Remove"
@@ -161,7 +161,7 @@ msgstr "Použít _výchozí nastavení systému"
 msgid ""
 "If checked, Xfmpc will try to read the environment variables MPD_HOST and "
 "MPD_PORT otherwise it will use localhost"
-msgstr "Pokud je volba zaškrtnuta, pokusí se aplikace Xfmpc přečíst proměnné prostředí MPD_HOST a MPD_PORT, v opačném případě použije tento počítač (localhost)"
+msgstr "Je-li volba zaškrtnuta, Xfmpc se pokusí načíst proměnné prostředí MPD_HOST a MPD_PORT. Jinak použije localhost."
 
 #: src/preferences-dialog.vala:80
 msgid "Hostname:"
@@ -189,7 +189,7 @@ msgstr "Obecné"
 
 #: src/preferences-dialog.vala:120
 msgid "Close window into notification area"
-msgstr "Zavřít okno do oznamovací oblasti"
+msgstr "Při zavření skrýt do oznamovací oblasti"
 
 #: src/preferences-dialog.vala:125
 msgid "Show _stastusbar"
@@ -213,19 +213,19 @@ msgstr "Album - Název"
 
 #: src/preferences-dialog.vala:145
 msgid "Artist - Title"
-msgstr "Umělec - Název"
+msgstr "Interpret - Název"
 
 #: src/preferences-dialog.vala:146
 msgid "Artist - Title (Date)"
-msgstr "Umělec - Název (Datum)"
+msgstr "Interpret - Název (Datum)"
 
 #: src/preferences-dialog.vala:147
 msgid "Artist - Album - Title"
-msgstr "Umělec - Album - Název"
+msgstr "Interpret - Album - Název"
 
 #: src/preferences-dialog.vala:148
 msgid "Artist - Album - Track. Title"
-msgstr "Umělec - Album - Stopa. Název"
+msgstr "Interpret - Album - Stopa. Název"
 
 #: src/preferences-dialog.vala:149
 msgid "Custom..."
@@ -242,7 +242,7 @@ msgstr "Dostupné parametry:"
 #: src/preferences-dialog.vala:183
 #, c-format
 msgid "%a: Artist"
-msgstr "%a: Umělec"
+msgstr "%a: Interpret"
 
 #: src/preferences-dialog.vala:188
 #, c-format
@@ -320,7 +320,7 @@ msgstr "Hledat: ALT+s"
 
 #: src/shortcuts-dialog.vala:85
 msgid "Filter Playlist: ALT+f"
-msgstr "Filtrovat seznam médií: ALT+f"
+msgstr "Filtrovat seznam skladeb: ALT+f"
 
 #: src/shortcuts-dialog.vala:90
 msgid "Search in Database: ALT+d"
@@ -332,7 +332,7 @@ msgstr "Soubor"
 
 #: src/song-dialog.vala:56
 msgid "Artist"
-msgstr "Umělec"
+msgstr "Interpret"
 
 #: src/song-dialog.vala:72
 msgid "Album"
