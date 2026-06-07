@@ -64,7 +64,7 @@ msgstr "Náhodné přehrávání"
 
 #: src/extended-interface.vala:96
 msgid "Single Mode"
-msgstr "Přehrát jednu skladbu"
+msgstr "Režim jedné skladby"
 
 #: src/extended-interface.vala:100
 msgid "Consume Mode"
