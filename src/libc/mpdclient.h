@@ -49,7 +49,7 @@ typedef struct _XfmpcMpdclientClass         XfmpcMpdclientClass;
 typedef struct _XfmpcMpdclient              XfmpcMpdclient;
 typedef struct _XfmpcMpdclientPrivate       XfmpcMpdclientPrivate;
 
-GType                   xfmpc_mpdclient_get_type                (void) G_GNUC_CONST;
+GType                   xfmpc_mpdclient_get_type                (void);
 
 XfmpcMpdclient *        xfmpc_mpdclient_get_default             (void);
 gboolean                xfmpc_mpdclient_connect                 (XfmpcMpdclient *mpdclient);
