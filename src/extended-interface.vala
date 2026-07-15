@@ -245,7 +245,7 @@ namespace Xfmpc {
                          	 	       "logo-icon-name", "multimedia-player",
                          	 	       "translator-credits", _("translator-credits"),
                          	 	       "version", Config.VERSION_FULL,
-                         	 	       "website", "http://goodies.xfce.org/projects/applications/xfmpc",
+                         	 	       "website", Config.PACKAGE_URL,
 					       null);
 		}
 	}
