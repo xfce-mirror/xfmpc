@@ -79,33 +79,7 @@ static gchar *          _get_formatted_name_custom              (mpd_Song *song,
 
 
 
-struct _XfmpcMpdclientClass
-{
-  GObjectClass              parent_class;
-
-  void (*connected)         (XfmpcMpdclient *mpdclient, gpointer user_data);
-  void (*song_changed)      (XfmpcMpdclient *mpdclient, gpointer user_data);
-  void (*pp_changed)        (XfmpcMpdclient *mpdclient, gboolean is_playing, gpointer user_data);
-  void (*time_changed)      (XfmpcMpdclient *mpdclient, gint time, gpointer user_data);
-  void (*total_time_changed)(XfmpcMpdclient *mpdclient, gint total_time, gpointer user_data);
-  void (*volume_changed)    (XfmpcMpdclient *mpdclient, gint volume, gpointer user_data);
-  void (*stopped)           (XfmpcMpdclient *mpdclient, gpointer user_data);
-  void (*database_changed)  (XfmpcMpdclient *mpdclient, gpointer user_data);
-  void (*playlist_changed)  (XfmpcMpdclient *mpdclient, gpointer user_data);
-  void (*repeat)            (XfmpcMpdclient *mpdclient, gboolean repeat, gpointer user_data);
-  void (*random)            (XfmpcMpdclient *mpdclient, gboolean random, gpointer user_data);
-  void (*single)            (XfmpcMpdclient *mpdclient, gboolean single, gpointer user_data);
-  void (*consume)           (XfmpcMpdclient *mpdclient, gboolean consume, gpointer user_data);
-};
-
-struct _XfmpcMpdclient
-{
-  GObject                   parent;
-  /*<private>*/
-  XfmpcMpdclientPrivate    *priv;
-};
-
-struct _XfmpcMpdclientPrivate
+typedef struct _XfmpcMpdclientPrivate
 {
   MpdObj                   *mi;
   gchar                    *host;
@@ -115,11 +89,14 @@ struct _XfmpcMpdclientPrivate
   gboolean                  connecting;
   guint                     connection_count;
   GMutex                    mutex;
+} XfmpcMpdclientPrivate;
+
+struct _XfmpcMpdclient
+{
+  GObject                   parent;
+  /*<private>*/
+  XfmpcMpdclientPrivate    *priv;
 };
-
-
-
-static GObjectClass *parent_class = NULL;
 
 
 
@@ -132,32 +109,27 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
 {
   GObjectClass *gobject_class;
 
-  parent_class = g_type_class_peek_parent (klass);
-
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = xfmpc_mpdclient_finalize;
 
   signals[SIG_CONNECTED] =
     g_signal_new ("connected", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, connected),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
   signals[SIG_SONG_CHANGED] =
     g_signal_new ("song-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, song_changed),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
   signals[SIG_PP_CHANGED] =
     g_signal_new ("pp-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, pp_changed),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__BOOLEAN,
                   G_TYPE_NONE, 1,
                   G_TYPE_BOOLEAN);
@@ -165,8 +137,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   signals[SIG_TIME_CHANGED] =
     g_signal_new ("time-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, time_changed),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__INT,
                   G_TYPE_NONE, 1,
                   G_TYPE_INT);
@@ -174,8 +145,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   signals[SIG_TOTAL_TIME_CHANGED] =
     g_signal_new ("total-time-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, total_time_changed),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__INT,
                   G_TYPE_NONE, 1,
                   G_TYPE_INT);
@@ -183,8 +153,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   signals[SIG_VOLUME_CHANGED] =
     g_signal_new ("volume-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, volume_changed),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__INT,
                   G_TYPE_NONE, 1,
                   G_TYPE_INT);
@@ -192,32 +161,28 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   signals[SIG_STOPPED] =
     g_signal_new ("stopped", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, stopped),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
   signals[SIG_DATABASE_CHANGED] =
     g_signal_new ("database-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, database_changed),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
   signals[SIG_PLAYLIST_CHANGED] =
     g_signal_new ("playlist-changed", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, playlist_changed),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
   signals[SIG_REPEAT] =
     g_signal_new ("repeat", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, repeat),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__BOOLEAN,
                   G_TYPE_NONE, 1,
                   G_TYPE_BOOLEAN);
@@ -225,8 +190,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   signals[SIG_RANDOM] =
     g_signal_new ("random", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, random),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__BOOLEAN,
                   G_TYPE_NONE, 1,
                   G_TYPE_BOOLEAN);
@@ -234,8 +198,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   signals[SIG_SINGLE] =
     g_signal_new ("single", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, single),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__BOOLEAN,
                   G_TYPE_NONE, 1,
                   G_TYPE_BOOLEAN);
@@ -243,8 +206,7 @@ xfmpc_mpdclient_class_init (XfmpcMpdclientClass *klass)
   signals[SIG_CONSUME] =
     g_signal_new ("consume", G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_FIRST|G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (XfmpcMpdclientClass, consume),
-                  NULL, NULL,
+                  0, NULL, NULL,
                   g_cclosure_marshal_VOID__BOOLEAN,
                   G_TYPE_NONE, 1,
                   G_TYPE_BOOLEAN);
@@ -270,7 +232,7 @@ xfmpc_mpdclient_finalize (GObject *object)
   mpd_free (priv->mi);
   g_mutex_clear (&priv->mutex);
 
-  (*G_OBJECT_CLASS (parent_class)->finalize) (object);
+  (*G_OBJECT_CLASS (xfmpc_mpdclient_parent_class)->finalize) (object);
 }
 
 

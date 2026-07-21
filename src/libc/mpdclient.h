@@ -35,21 +35,8 @@ struct _XfmpcSongInfo
   gchar *genre;
 };
 
-#define XFMPC_TYPE_MPDCLIENT                (xfmpc_mpdclient_get_type())
-
-#define XFMPC_MPDCLIENT(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclient))
-#define XFMPC_MPDCLIENT_CLASS(klass)        (G_TYPE_CHECK_CLASS_CAST ((klass), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclientClass))
-
-#define XFMPC_IS_MPDCLIENT(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFMPC_TYPE_MPDCLIENT))
-#define XFMPC_IS_MPDCLIENT_CLASS(klass)     (G_TYPE_CHECK_CLASS_TYPE ((klass), XFMPC_TYPE_MPDCLIENT))
-
-#define XFMPC_MPDCLIENT_GET_CLASS(obj)      (G_TYPE_INSTANCE_GET_CLASS ((obj), XFMPC_TYPE_MPDCLIENT, XfmpcMpdclientClass))
-
-typedef struct _XfmpcMpdclientClass         XfmpcMpdclientClass;
-typedef struct _XfmpcMpdclient              XfmpcMpdclient;
-typedef struct _XfmpcMpdclientPrivate       XfmpcMpdclientPrivate;
-
-GType                   xfmpc_mpdclient_get_type                (void);
+#define XFMPC_TYPE_MPDCLIENT (xfmpc_mpdclient_get_type())
+G_DECLARE_FINAL_TYPE (XfmpcMpdclient, xfmpc_mpdclient, XFMPC, MPDCLIENT, GObject)
 
 XfmpcMpdclient *        xfmpc_mpdclient_get_default             (void);
 gboolean                xfmpc_mpdclient_connect                 (XfmpcMpdclient *mpdclient);
