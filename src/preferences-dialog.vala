@@ -122,7 +122,7 @@ namespace Xfmpc {
 			this.show_status_icon.toggled.connect (cb_show_status_icon_toggled);
 			vbox2.pack_start (this.show_status_icon, false, false, 0);
 
-			this.show_statusbar = new Gtk.CheckButton.with_mnemonic (_("Show _stastusbar"));
+			this.show_statusbar = new Gtk.CheckButton.with_mnemonic (_("Show _statusbar"));
 			this.show_statusbar.set_active (this.preferences.show_statusbar);
 			this.show_statusbar.toggled.connect (cb_show_statusbar_toggled);
 			vbox2.pack_start (this.show_statusbar, false, false, 0);
