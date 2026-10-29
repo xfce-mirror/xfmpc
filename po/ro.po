@@ -193,7 +193,7 @@ msgstr "Închide fereastra din zona de notificare"
 
 #: src/preferences-dialog.vala:125
 msgid "Show _statusbar"
-msgstr ""
+msgstr "Afișează bara de _stare"
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
