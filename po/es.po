@@ -8,15 +8,16 @@
 # Adolfo Jayme Barrientos, 2019
 # Casper casper, 2019
 # Casper, 2019
+# Casper, 2026
 # Ignacio Poggi <ignaciop.3@gmail.com>, 2025
 # Toni Estévez <toni.estevez@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
-"Last-Translator: Ignacio Poggi <ignaciop.3@gmail.com>, 2025\n"
+"Last-Translator: Casper, 2026\n"
 "Language-Team: Spanish (http://app.transifex.com/xfce/xfce-apps/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,15 +25,15 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "No se ha podido conectar con MPD"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "Conectado con MPD"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "n/d"
 
@@ -100,7 +101,7 @@ msgstr "Examinar la base de datos"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Cliente de MPD para Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Toni Estevez <toni.estevez@gmail.com>, 2021\nElega <elega@elega.com.ar>, 2013\nFitoschido <fitoschido@gmail.com>. 2013"
 
@@ -121,16 +122,16 @@ msgstr "por «%s» de «%s» (%s)"
 msgid "Stopped"
 msgstr "Detenido"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Salir"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d canciones, %d horas y %d minutos"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d canciones, %d minutos"
@@ -198,8 +199,8 @@ msgid "Close window into notification area"
 msgstr "Cerrar la ventana en el área de notificación"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "Mostrar la _barra de estado"
+msgid "Show _statusbar"
+msgstr "Mostrar barra de e_stado"
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
