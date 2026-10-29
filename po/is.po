@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>, 2013-2014, 2019\n"
 "Language-Team: Icelandic (http://app.transifex.com/xfce/xfce-apps/language/is/)\n"
@@ -21,15 +21,15 @@ msgstr ""
 "Language: is\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "Gat ekki tengst MPD"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "Tengt við MPD"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "ekki tiltækt"
 
@@ -97,7 +97,7 @@ msgstr "Fletta í gagnagrunni"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD forrit skrifað í GTK+ fyrir Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Sveinn í Felli, sv1@fellsnet.is, 2013"
 
@@ -118,16 +118,16 @@ msgstr "eftir \"%s\" af \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Stöðvað"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Hætta"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d lög, %d klukkustundir og %d mínútur"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d lög, %d mínútur"
@@ -195,8 +195,8 @@ msgid "Close window into notification area"
 msgstr "Loka glugga inn á tilkynningasvæði"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "Birta _stöðustiku"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
