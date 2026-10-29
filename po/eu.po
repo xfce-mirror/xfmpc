@@ -98,7 +98,7 @@ msgstr "Xfce-rako GTK+ bidez idatzitako MPD bezeroa"
 
 #: src/extended-interface.vala:246
 msgid "translator-credits"
-msgstr "Piarres Beobide"
+msgstr "Piarres Beobide\nEder Etxebarria"
 
 #: src/interface.vala:91 src/interface.vala:275
 msgid "Not connected"
@@ -191,11 +191,11 @@ msgstr "Orokorra"
 
 #: src/preferences-dialog.vala:120
 msgid "Close window into notification area"
-msgstr "Itxi leihoa jakinarazpen-arera"
+msgstr "Itxi leihoa jakinarazpen-eremura"
 
 #: src/preferences-dialog.vala:125
 msgid "Show _statusbar"
-msgstr ""
+msgstr "Erakutsi _egoera-barra"
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
@@ -231,7 +231,7 @@ msgstr "Artista - Albuma - Pista. Izenburua"
 
 #: src/preferences-dialog.vala:149
 msgid "Custom..."
-msgstr "Pertsonalizatu..."
+msgstr "Pertsonalizatua..."
 
 #: src/preferences-dialog.vala:157
 msgid "Custom format:"
