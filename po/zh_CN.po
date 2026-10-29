@@ -6,14 +6,14 @@
 # Chipong Luo <chipong.luo@yahoo.com>, 2011-2012
 # Hunt Xu <huntxu@live.cn>, 2009
 # Cally Mal <zhouxiaobo.500@gmail.com>, 2013
-# 玉堂白鹤 <yjwork@qq.com>, 2019,2022,2025
+# 玉堂白鹤 <yjwork@qq.com>, 2019,2022,2025-2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
-"Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2019,2022,2025\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2019,2022,2025-2026\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -196,7 +196,7 @@ msgstr "关闭窗口至通知区域"
 
 #: src/preferences-dialog.vala:125
 msgid "Show _statusbar"
-msgstr ""
+msgstr "显示状态栏(_S)"
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
