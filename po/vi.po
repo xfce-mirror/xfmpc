@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Loc Huynh <https://github.com/hthienloc>, 2025\n"
 "Language-Team: Vietnamese (http://app.transifex.com/xfce/xfce-apps/language/vi/)\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "Không kết nối được với MPD"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "Đã kết nối tới MPD"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "không có"
 
@@ -94,7 +94,7 @@ msgstr "Duyệt cơ sở dữ liệu"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Trình khách MPD viết bằng GTK+ cho Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Vietnam Linux L10n <https://github.com/linux-l10n-vi>\nLoc Huynh <https://github.com/hthienloc>"
 
@@ -115,16 +115,16 @@ msgstr "bởi \"%s\" từ \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Đã dừng"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Thoát"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d bài hát, %d giờ %d phút"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d bài hát, %d phút"
@@ -192,8 +192,8 @@ msgid "Close window into notification area"
 msgstr "Thu nhỏ vào khay hệ thống"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "Hiện thanh _trạng thái"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
