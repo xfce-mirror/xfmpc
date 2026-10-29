@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Edin Veskovic <edin.lockedin@gmail.com>, 2019\n"
 "Language-Team: Croatian (http://app.transifex.com/xfce/xfce-apps/language/hr/)\n"
@@ -22,15 +22,15 @@ msgstr ""
 "Language: hr\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "Neuspjeh u spajanju na  MPD"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "Spojen na MPD"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "n/a"
 
@@ -98,7 +98,7 @@ msgstr "Pregledaj bazu podataka"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD klijent pisan u GTK+ za Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Ivica Koilić <ikoli@yahoo.com>"
 
@@ -119,16 +119,16 @@ msgstr "od \"%s\" iz \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Zaustavljeno"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Isključi"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d pjesama, %d sati i %d minuta"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d pjesme, %d minute"
@@ -196,8 +196,8 @@ msgid "Close window into notification area"
 msgstr "Zatvori prozor u području obavijesti"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "Pokaži _statusnu traku"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
