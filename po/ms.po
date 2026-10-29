@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>, 2014,2019\n"
 "Language-Team: Malay (http://app.transifex.com/xfce/xfce-apps/language/ms/)\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "Gagal bersambung dengan MPD"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "Bersambung dengan MPD"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "t/s"
 
@@ -94,7 +94,7 @@ msgstr "Layar pangkalan data"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Klien MPD ditulis dengan GTK+ untuk Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Abuyop <abuyop@gmail.com>"
 
@@ -115,16 +115,16 @@ msgstr "oleh \"%s\" daripada \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Dihentikan"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Keluar"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d lagu, %d jam dan %d minit"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d lagu, %d minit"
@@ -192,8 +192,8 @@ msgid "Close window into notification area"
 msgstr "Tutup tetingkap ke dalam kawasan pemberitahuan"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "Tunjuk palang _status"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
