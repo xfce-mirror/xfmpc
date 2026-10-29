@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2017,2020,2022\n"
 "Language-Team: Kazakh (http://app.transifex.com/xfce/xfce-apps/language/kk/)\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Language: kk\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "MPD қызметіне қосылу сәтсіз аяқталды"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "MPD қызметіне қосылды"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "қ/ж"
 
@@ -94,7 +94,7 @@ msgstr "Дерекқорды шолу"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Xfce үшін GTK+ негізінде жазылған MPD клиенті"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
@@ -115,16 +115,16 @@ msgstr "\"%s\" ұсынған, \"%s\" ішінен (%s)"
 msgid "Stopped"
 msgstr "Тоқтатылды"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Шығу"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d ән, %d сағат және %d минут"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d ән, %d минут"
@@ -192,8 +192,8 @@ msgid "Close window into notification area"
 msgstr "Терезені хабарламалар аймағына жабу"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "_Статус жолағын көрсету"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
