@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Dejweed, 2026\n"
 "Language-Team: Slovenian (http://app.transifex.com/xfce/xfce-apps/language/sl/)\n"
@@ -21,15 +21,15 @@ msgstr ""
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "Povezava s strežnikom MPD ni uspela"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "Povezan s strežnikom MPD"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "N/A"
 
@@ -97,7 +97,7 @@ msgstr "Podatkovna zbirka"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Odjemalec za MPD, napisan v GTK+, za Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Klemen Košir <klemen913@gmail.com>\nNenad Latinovič <nenadlatinovic@lavabit.com>"
 
@@ -118,16 +118,16 @@ msgstr "- \"%s\" - \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Zaustavljeno"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Končaj"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d skladb, %d ur in %d minut"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d skladb, %d minut"
@@ -195,8 +195,8 @@ msgid "Close window into notification area"
 msgstr "Zapri okno v obvestilno področje"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "Pokaži vrstico stanja"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
