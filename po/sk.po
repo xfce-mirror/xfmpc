@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Slavko <linux@slavino.sk>, 2026\n"
 "Language-Team: Slovak (http://app.transifex.com/xfce/xfce-apps/language/sk/)\n"
@@ -20,15 +20,15 @@ msgstr ""
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "Nepodarilo sa pripojiť na MPD"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "Pripojené na MPD"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "nedostupné"
 
@@ -96,7 +96,7 @@ msgstr "Prechádzať databázu"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD klient napísany v GTK+ pre Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Robert Hartl <hartl.robert@gmail.com>\nTomáš Vadina <kyberdev@gmail.com>"
 
@@ -117,16 +117,16 @@ msgstr "od \"%s\" z albumu \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Zastavené"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Ukončiť"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d skladieb, %d hodín a %d minút"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d skladieb, %d minút"
@@ -194,8 +194,8 @@ msgid "Close window into notification area"
 msgstr "Zatvoriť okno do oznamovacej oblasti"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "Zobraziť _stavový riadok"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
