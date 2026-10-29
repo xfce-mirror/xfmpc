@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Andrei Stepanov, 2024,2026\n"
 "Language-Team: Russian (http://app.transifex.com/xfce/xfce-apps/language/ru/)\n"
@@ -19,15 +19,15 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "Не удалось подключиться к MPD"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "Подключено к MPD"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "н/д"
 
@@ -95,7 +95,7 @@ msgstr "Обзор базы данных"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "MPD-клиент (использующий GTK+) для Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Aleksandr Ponomarenko, 2010"
 
@@ -116,16 +116,16 @@ msgstr "в исполнении «%s» из альбома «%s» (%s)"
 msgid "Stopped"
 msgstr "Остановлено"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Выйти"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "Композиций: %d, %d ч %d мин."
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "Композиций: %d, %d мин."
@@ -193,8 +193,8 @@ msgid "Close window into notification area"
 msgstr "При закрытии сворачивать в область уведомлений"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "Строка _состояния"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
