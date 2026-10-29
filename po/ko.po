@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2019,2026\n"
 "Language-Team: Korean (http://app.transifex.com/xfce/xfce-apps/language/ko/)\n"
@@ -19,15 +19,15 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "MPD 연결에 실패"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "MPD에 연결했습니다"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "없음"
 
@@ -95,7 +95,7 @@ msgstr "데이터베이스 탐색"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "GTK+로 작성한 Xfce용 MPD 클라이언트"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Seong-ho Cho <darkcircle.0426@gmail.com>"
 
@@ -116,16 +116,16 @@ msgstr "\"%s\"이(가)  \"%s\"(으)로 부터 (%s)"
 msgid "Stopped"
 msgstr "멈춤"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "끝내기"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "노래 %d곡, %d시간 %d분"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "노개 %d곡, %d분"
@@ -193,8 +193,8 @@ msgid "Close window into notification area"
 msgstr "알림 영역으로 창 숨기기"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "상태 표시줄 보기(_S)"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
