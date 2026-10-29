@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Lao (http://app.transifex.com/xfce/xfce-apps/language/lo/)\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Language: lo\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "ບໍ່ສາມາດເຊື່ອມຕໍ່ຫາ MPD ໄດ້"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "ເຊື່ອມຕໍ່ຫາ MPD ແລ້ວ"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "ບໍ່ມີຂໍ້ມູນ"
 
@@ -93,7 +93,7 @@ msgstr "ເບິ່ງຖານຂໍ້ມູນ"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "ຕົວຈັດການ MPD ທີ່ຂຽນດ້ວຍ GTK+ ສຳລັບ Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "ລາຍຊື່ຜູ້ແປ"
 
@@ -114,16 +114,16 @@ msgstr "ໂດຍ \"%s\" ຈາກ \"%s\" (%s)"
 msgid "Stopped"
 msgstr "ຢຸດແລ້ວ"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "ອອກ"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d ເພງ, %d ຊົ່ວໂມງ ແລະ %d ນາທີ"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d ເພງ, %d ນາທີ"
@@ -191,8 +191,8 @@ msgid "Close window into notification area"
 msgstr "ປິດໜ້າຕ່າງໄປໄວ້ໃນສ່ວນການແຈ້ງເຕືອນ"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "ສະແດງ _ແຖບສະຖານະ"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
