@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2019-2020,2024-2026\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce-apps/language/cs/)\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "Připojení k démonu MPD se nezdařilo"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "Připojeno k démonu MPD"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "n/a"
 
@@ -94,7 +94,7 @@ msgstr "Procházet databázi"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Klient MPD napsaný v GTK+ pro Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "Michal Várady <miko.vaji@gmail.com>"
 
@@ -115,16 +115,16 @@ msgstr "od \"%s\" z alba \"%s\" (%s)"
 msgid "Stopped"
 msgstr "Zastaveno"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Ukončit"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "Skladeb: %d, délka: %d h %d min"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "Skladeb: %d, délka: %d min"
@@ -192,7 +192,7 @@ msgid "Close window into notification area"
 msgstr "Při zavření skrýt do oznamovací oblasti"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
+msgid "Show _statusbar"
 msgstr "Zobrazit _stavový řádek"
 
 #: src/preferences-dialog.vala:131
