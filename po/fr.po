@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 11:05+0200\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
 "Last-Translator: Lucie <theluc7andcompagnie@gmail.com>, 2025\n"
 "Language-Team: French (http://app.transifex.com/xfce/xfce-apps/language/fr/)\n"
@@ -23,15 +23,15 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: src/libc/mpdclient.c:362
+#: src/libc/mpdclient.c:324
 msgid "Failed to connect to MPD"
 msgstr "Impossible de se connecter à MPD"
 
-#: src/libc/mpdclient.c:367
+#: src/libc/mpdclient.c:329
 msgid "Connected to MPD"
 msgstr "Connecté à MPD"
 
-#: src/libc/mpdclient.c:607 src/libc/mpdclient.c:637 src/libc/mpdclient.c:652
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
 msgid "n/a"
 msgstr "n/d"
 
@@ -99,7 +99,7 @@ msgstr "Parcourir la base de données"
 msgid "MPD client written in GTK+ for Xfce"
 msgstr "Client MPD écrit en GTK+ pour Xfce"
 
-#: src/extended-interface.vala:245
+#: src/extended-interface.vala:246
 msgid "translator-credits"
 msgstr "L’équipe de traduction francophone de Xfce"
 
@@ -120,16 +120,16 @@ msgstr "par « %s » dans « %s » (%s)"
 msgid "Stopped"
 msgstr "Arrêté"
 
-#: src/main-window.vala:188
+#: src/main-window.vala:189
 msgid "Quit"
 msgstr "Quitter"
 
-#: src/main-window.vala:336
+#: src/main-window.vala:337
 #, c-format
 msgid "%d songs, %d hours and %d minutes"
 msgstr "%d chansons, %d heures et %d minutes"
 
-#: src/main-window.vala:338
+#: src/main-window.vala:339
 #, c-format
 msgid "%d songs, %d minutes"
 msgstr "%d chansons, %d minutes"
@@ -197,8 +197,8 @@ msgid "Close window into notification area"
 msgstr "Fermer la fenêtre dans la zone de notification"
 
 #: src/preferences-dialog.vala:125
-msgid "Show _stastusbar"
-msgstr "Afficher la barre d’ét_at"
+msgid "Show _statusbar"
+msgstr ""
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
