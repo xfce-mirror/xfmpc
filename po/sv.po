@@ -5,14 +5,14 @@
 # Translators:
 # Arve Eriksson <arve.eriksson@startmail.com>, 2020
 # Daniel Nylander <po@danielnylander.se>, 2008-2009
-# Luna Jernberg <droidbittin@gmail.com>, 2025
+# Luna Jernberg <droidbittin@gmail.com>, 2025-2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
-"Last-Translator: Luna Jernberg <droidbittin@gmail.com>, 2025\n"
+"Last-Translator: Luna Jernberg <droidbittin@gmail.com>, 2025-2026\n"
 "Language-Team: Swedish (http://app.transifex.com/xfce/xfce-apps/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -195,7 +195,7 @@ msgstr "Stäng fönstret till meddelandefältet"
 
 #: src/preferences-dialog.vala:125
 msgid "Show _statusbar"
-msgstr ""
+msgstr "Visa _statusrad"
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
