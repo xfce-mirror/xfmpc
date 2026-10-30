@@ -5,14 +5,14 @@
 # Translators:
 # 黃柏諺 <s8321414@gmail.com>, 2019
 # Walter Cheuk <wwycheuk@gmail.com>, 2014
-# 黃柏諺 <s8321414@gmail.com>, 2025
+# 黃柏諺 <s8321414@gmail.com>, 2025-2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2025\n"
+"Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2025-2026\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/xfce/xfce-apps/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -195,7 +195,7 @@ msgstr "關閉視窗時縮入通知區域"
 
 #: src/preferences-dialog.vala:125
 msgid "Show _statusbar"
-msgstr ""
+msgstr "顯示狀態列(_S)"
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
