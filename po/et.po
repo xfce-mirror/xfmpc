@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the xfce-apps.xfmpc package.
 # 
 # Translators:
-# Priit Jõerüüt <transifex@joeruut.com>, 2020-2021,2025
+# Priit Jõerüüt <transifex@joeruut.com>, 2020-2021,2025-2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2026-10-28 13:00+0100\n"
 "PO-Revision-Date: 2013-07-03 18:46+0000\n"
-"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2020-2021,2025\n"
+"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2020-2021,2025-2026\n"
 "Language-Team: Estonian (http://app.transifex.com/xfce/xfce-apps/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +96,7 @@ msgstr "Xfce MPD klient loodud GTK+ abil"
 
 #: src/extended-interface.vala:246
 msgid "translator-credits"
-msgstr "Kristjan Siimson <epost@ksiimson.se> &amp; tolge.pingviin.org\nPriit Jõerüüt 2020-2025"
+msgstr "Kristjan Siimson <epost@ksiimson.se> &amp; tolge.pingviin.org\nPriit Jõerüüt 2020-2026"
 
 #: src/interface.vala:91 src/interface.vala:275
 msgid "Not connected"
@@ -193,7 +193,7 @@ msgstr "Sulge aken süsteemisalve"
 
 #: src/preferences-dialog.vala:125
 msgid "Show _statusbar"
-msgstr ""
+msgstr "Näita _olekuriba"
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
