@@ -194,7 +194,7 @@ msgstr "При закрытии сворачивать в область уве�
 
 #: src/preferences-dialog.vala:125
 msgid "Show _statusbar"
-msgstr ""
+msgstr "Показать _строку состояния"
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
