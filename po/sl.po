@@ -196,7 +196,7 @@ msgstr "Zapri okno v obvestilno področje"
 
 #: src/preferences-dialog.vala:125
 msgid "Show _statusbar"
-msgstr ""
+msgstr "Pokaži _statusno vrstico"
 
 #: src/preferences-dialog.vala:131
 msgid "Song Format"
