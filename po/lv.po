@@ -1,0 +1,359 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-apps.xfmpc package.
+# 
+# Translators:
+# Rihards Priedītis <rprieditis@gmail.com>, 2026
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Apps\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2026-10-28 13:00+0100\n"
+"PO-Revision-Date: 2013-07-03 18:46+0000\n"
+"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>, 2026\n"
+"Language-Team: Latvian (http://app.transifex.com/xfce/xfce-apps/language/lv/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lv\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+
+#: src/libc/mpdclient.c:324
+msgid "Failed to connect to MPD"
+msgstr "Neizdevās savienoties ar MPD"
+
+#: src/libc/mpdclient.c:329
+msgid "Connected to MPD"
+msgstr "Savienots ar MPD"
+
+#: src/libc/mpdclient.c:569 src/libc/mpdclient.c:599 src/libc/mpdclient.c:614
+msgid "n/a"
+msgstr "n/p"
+
+#: src/dbbrowser.vala:93
+msgid "Add"
+msgstr "Pievienot"
+
+#: src/dbbrowser.vala:96
+msgid "Replace"
+msgstr "Aizstāt"
+
+#: src/dbbrowser.vala:99 src/playlist.vala:111
+msgid "Browse"
+msgstr "Pārlūkot"
+
+#: src/extended-interface.vala:64
+msgid "Clear Playlist"
+msgstr "Notīrīt atskaņošanas sarakstu"
+
+#: src/extended-interface.vala:73
+msgid "Refresh Database"
+msgstr "Atsvaidzināt datubāzi"
+
+#: src/extended-interface.vala:81
+msgid "Context Menu"
+msgstr "Konteksta izvēlne"
+
+#: src/extended-interface.vala:88
+msgid "Repeat"
+msgstr "Atkārtot"
+
+#: src/extended-interface.vala:92
+msgid "Random"
+msgstr "Nejauši"
+
+#: src/extended-interface.vala:96
+msgid "Single Mode"
+msgstr "Viena celiņa režīms"
+
+#: src/extended-interface.vala:100
+msgid "Consume Mode"
+msgstr "Patērēšanas režīms"
+
+#: src/extended-interface.vala:107
+msgid "_Preferences"
+msgstr "_Iestatījumi"
+
+#: src/extended-interface.vala:111
+msgid "_Shortcuts"
+msgstr "Ī_sinājumtaustiņi"
+
+#: src/extended-interface.vala:115
+msgid "_About"
+msgstr "_Par"
+
+#: src/extended-interface.vala:140
+msgid "Current Playlist"
+msgstr "Pašreizējais atskaņošanas saraksts"
+
+#: src/extended-interface.vala:143
+msgid "Browse database"
+msgstr "Pārlūkot datubāzi"
+
+#: src/extended-interface.vala:241 xfmpc.desktop.in:5
+msgid "MPD client written in GTK+ for Xfce"
+msgstr "GTK+ MPD klients Xfce videi"
+
+#: src/extended-interface.vala:246
+msgid "translator-credits"
+msgstr "Rihards Priedītis <rprieditis@gmail.com>"
+
+#: src/interface.vala:91 src/interface.vala:275
+msgid "Not connected"
+msgstr "Nav savienojuma"
+
+#. // write private function in case it is wished to avoid the
+#. // "n/a" values, but no big deal IMO
+#. text = get_subtitle (interface);
+#. TRANSLATORS: subtitle "by \"artist\" from \"album\" (year)"
+#: src/interface.vala:264
+#, c-format
+msgid "by \"%s\" from \"%s\" (%s)"
+msgstr "izpilda „%s”, albums „%s” (%s)"
+
+#: src/interface.vala:271
+msgid "Stopped"
+msgstr "Apturēts"
+
+#: src/main-window.vala:189
+msgid "Quit"
+msgstr "Iziet"
+
+#: src/main-window.vala:337
+#, c-format
+msgid "%d songs, %d hours and %d minutes"
+msgstr "Dziesmas: %d, %d h %d min"
+
+#: src/main-window.vala:339
+#, c-format
+msgid "%d songs, %d minutes"
+msgstr "Dziesmas: %d, %d min"
+
+#: src/playlist.vala:108
+msgid "Remove"
+msgstr "Noņemt"
+
+#: src/playlist.vala:114
+msgid "Info"
+msgstr "Informācija"
+
+#: src/preferences-dialog.vala:45
+msgid "Xfmpc Preferences"
+msgstr "Xfmpc iestatījumi"
+
+#: src/preferences-dialog.vala:46
+msgid "Customize your MPD client"
+msgstr "Pielāgojiet savu MPD klientu"
+
+#: src/preferences-dialog.vala:57
+msgid "MPD"
+msgstr "MPD"
+
+#: src/preferences-dialog.vala:61
+msgid "Connection"
+msgstr "Savienojums"
+
+#: src/preferences-dialog.vala:65
+msgid "Use _default system settings"
+msgstr "Izmantot sistēmas _noklusējuma iestatījumus"
+
+#: src/preferences-dialog.vala:66
+msgid ""
+"If checked, Xfmpc will try to read the environment variables MPD_HOST and "
+"MPD_PORT otherwise it will use localhost"
+msgstr "Ja atzīmēts, Xfmpc mēģinās nolasīt vides mainīgos MPD_HOST un MPD_PORT, citādi izmantos localhost"
+
+#: src/preferences-dialog.vala:80
+msgid "Hostname:"
+msgstr "Resursdatora nosaukums:"
+
+#: src/preferences-dialog.vala:87
+msgid "Port:"
+msgstr "Ports:"
+
+#: src/preferences-dialog.vala:97
+msgid "Password:"
+msgstr "Parole:"
+
+#: src/preferences-dialog.vala:105
+msgid "Apply"
+msgstr "Lietot"
+
+#: src/preferences-dialog.vala:112
+msgid "Appearance"
+msgstr "Izskats"
+
+#: src/preferences-dialog.vala:116
+msgid "General"
+msgstr "Vispārīgi"
+
+#: src/preferences-dialog.vala:120
+msgid "Close window into notification area"
+msgstr "Aizverot logu, novietot to paziņojumu laukā"
+
+#: src/preferences-dialog.vala:125
+msgid "Show _statusbar"
+msgstr "Rādīt _statusa joslu"
+
+#: src/preferences-dialog.vala:131
+msgid "Song Format"
+msgstr "Dziesmas formāts"
+
+#: src/preferences-dialog.vala:137
+msgid "Song Format:"
+msgstr "Dziesmas formāts:"
+
+#: src/preferences-dialog.vala:143 src/song-dialog.vala:64
+msgid "Title"
+msgstr "Nosaukums"
+
+#: src/preferences-dialog.vala:144
+msgid "Album - Title"
+msgstr "Albums - nosaukums"
+
+#: src/preferences-dialog.vala:145
+msgid "Artist - Title"
+msgstr "Izpildītājs - nosaukums"
+
+#: src/preferences-dialog.vala:146
+msgid "Artist - Title (Date)"
+msgstr "Izpildītājs - nosaukums (datums)"
+
+#: src/preferences-dialog.vala:147
+msgid "Artist - Album - Title"
+msgstr "Izpildītājs - albums - nosaukums"
+
+#: src/preferences-dialog.vala:148
+msgid "Artist - Album - Track. Title"
+msgstr "Izpildītājs - albums - celiņš. Nosaukums"
+
+#: src/preferences-dialog.vala:149
+msgid "Custom..."
+msgstr "Pielāgots..."
+
+#: src/preferences-dialog.vala:157
+msgid "Custom format:"
+msgstr "Pielāgots formāts:"
+
+#: src/preferences-dialog.vala:172
+msgid "Available parameters:"
+msgstr "Pieejamie parametri:"
+
+#: src/preferences-dialog.vala:183
+#, c-format
+msgid "%a: Artist"
+msgstr "%a: izpildītājs"
+
+#: src/preferences-dialog.vala:188
+#, c-format
+msgid "%A: Album"
+msgstr "%A: albums"
+
+#: src/preferences-dialog.vala:194
+msgid "%t: Title"
+msgstr "%t: nosaukums"
+
+#: src/preferences-dialog.vala:199
+msgid "%D: Disc"
+msgstr "%D: disks"
+
+#: src/preferences-dialog.vala:205
+#, c-format
+msgid "%f: File"
+msgstr "%f: fails"
+
+#: src/preferences-dialog.vala:210
+#, c-format
+msgid "%g: Genre"
+msgstr "%g: žanrs"
+
+#: src/preferences-dialog.vala:216
+#, c-format
+msgid "%d: Date"
+msgstr "%d: datums"
+
+#: src/preferences-dialog.vala:221
+msgid "%T: Track"
+msgstr "%T: celiņš"
+
+#: src/preferences-dialog.vala:230 src/shortcuts-dialog.vala:32
+#: src/song-dialog.vala:103
+msgid "Close"
+msgstr "Aizvērt"
+
+#: src/shortcuts-dialog.vala:28
+msgid "Xfmpc Shortcuts"
+msgstr "Xfmpc īsinājumtaustiņi"
+
+#: src/shortcuts-dialog.vala:29
+msgid "Control your MPD client with your keyboard"
+msgstr "Vadiet savu MPD klientu ar tastatūru"
+
+#. Shortcuts labels
+#: src/shortcuts-dialog.vala:50
+msgid "Quit: CTRL+q"
+msgstr "Iziet: CTRL+q"
+
+#: src/shortcuts-dialog.vala:55
+msgid "Previous: CTRL+b"
+msgstr "Iepriekšējais: CTRL+b"
+
+#: src/shortcuts-dialog.vala:60
+msgid "Play/Pause: CTRL+p"
+msgstr "Atskaņot/pauzēt: CTRL+p"
+
+#: src/shortcuts-dialog.vala:65
+msgid "Stop: CTRL+s"
+msgstr "Apturēt: CTRL+s"
+
+#: src/shortcuts-dialog.vala:70
+msgid "Next: CTRL+f"
+msgstr "Nākamais: CTRL+f"
+
+#: src/shortcuts-dialog.vala:75
+msgid "Volume: CTRL+v"
+msgstr "Skaļums: CTRL+v"
+
+#: src/shortcuts-dialog.vala:80
+msgid "Search: ALT+s"
+msgstr "Meklēt: ALT+s"
+
+#: src/shortcuts-dialog.vala:85
+msgid "Filter Playlist: ALT+f"
+msgstr "Filtrēt atskaņošanas sarakstu: ALT+f"
+
+#: src/shortcuts-dialog.vala:90
+msgid "Search in Database: ALT+d"
+msgstr "Meklēt datubāzē: ALT+d"
+
+#: src/song-dialog.vala:48
+msgid "File"
+msgstr "Fails"
+
+#: src/song-dialog.vala:56
+msgid "Artist"
+msgstr "Izpildītājs"
+
+#: src/song-dialog.vala:72
+msgid "Album"
+msgstr "Albums"
+
+#: src/song-dialog.vala:80
+msgid "Date"
+msgstr "Datums"
+
+#: src/song-dialog.vala:85
+msgid "Track"
+msgstr "Celiņš"
+
+#: src/song-dialog.vala:93
+msgid "Genre"
+msgstr "Žanrs"
+
+#: xfmpc.desktop.in:4
+msgid "Xfmpc"
+msgstr "Xfmpc"
+
+#: xfmpc.desktop.in:6
+msgid "MPD client"
+msgstr "MPD klients"
