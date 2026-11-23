@@ -41,7 +41,7 @@ msgstr "Vervangen"
 
 #: src/dbbrowser.vala:99 src/playlist.vala:111
 msgid "Browse"
-msgstr "Bladeren"
+msgstr "Verkennen"
 
 #: src/extended-interface.vala:64
 msgid "Clear Playlist"
@@ -89,7 +89,7 @@ msgstr "Huidige speellijst"
 
 #: src/extended-interface.vala:143
 msgid "Browse database"
-msgstr "Blader door gegevensbank"
+msgstr "Gegevensbank verkennen"
 
 #: src/extended-interface.vala:241 xfmpc.desktop.in:5
 msgid "MPD client written in GTK+ for Xfce"
@@ -166,7 +166,7 @@ msgstr "Indien geselecteerd, zal Xfmpc proberen de omgevingsvariabelen MPD_HOST 
 
 #: src/preferences-dialog.vala:80
 msgid "Hostname:"
-msgstr "Hostnaam:"
+msgstr "Computernaam:"
 
 #: src/preferences-dialog.vala:87
 msgid "Port:"
@@ -305,7 +305,7 @@ msgstr "Spelen/Pauzeren: CTRL+p"
 
 #: src/shortcuts-dialog.vala:65
 msgid "Stop: CTRL+s"
-msgstr "Stop: CTRL+s"
+msgstr "Stoppen: CTRL+s"
 
 #: src/shortcuts-dialog.vala:70
 msgid "Next: CTRL+f"
